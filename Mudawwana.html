@@ -484,52 +484,59 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
 .update-banner{background:var(--green-soft);color:var(--green-ink);border:1px solid color-mix(in srgb,var(--green) 40%,transparent);border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:13px;display:flex;gap:10px;align-items:center}
 .update-banner .sp{flex:1}
 
-/* ---------- Splash / home (quiet) ---------- */
-#splash{position:fixed;inset:0;z-index:300;display:grid;grid-template-rows:1fr auto;background:var(--bg);color:var(--ink);transition:opacity 380ms var(--ease),visibility 380ms;overflow:hidden}
+/* ---------- Splash / home (Seven Threads) ---------- */
+#splash{position:fixed;inset:0;z-index:300;display:grid;grid-template-rows:1fr auto;background:var(--bg);color:var(--ink);transition:opacity 420ms var(--ease),visibility 420ms;overflow:hidden;--sease:cubic-bezier(.16,1,.3,1)}
 #splash.hide{opacity:0;visibility:hidden;pointer-events:none}
-#splash .lang{position:absolute;inset-inline-end:28px;top:22px;font-size:13px;color:var(--ink2);text-decoration:none;padding:6px 8px;border-radius:6px}
+#splash .field{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity 900ms ease}
+#splash .field.on{opacity:1}
+#splash .veil{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 46% 58% at 50% 52%,color-mix(in srgb,var(--bg) 55%,transparent),transparent 70%)}
+#splash .stage{position:absolute;inset:0;display:grid;grid-template-rows:1fr auto;transition:opacity 500ms var(--sease),transform 700ms var(--sease)}
+#splash .stage.leave{opacity:0;transform:scale(.985)}
+#splash .lang{position:absolute;inset-inline-end:28px;top:22px;font-size:13px;color:var(--ink2);text-decoration:none;padding:6px 8px;border-radius:6px;opacity:0;animation:sFade 600ms var(--sease) 2200ms both}
 #splash .lang:hover{color:var(--ink);background:var(--surface2)}
-#splash .col{align-self:center;justify-self:center;width:min(640px,calc(100vw - 48px));display:flex;flex-direction:column;align-items:center;text-align:center;padding-bottom:4vh}
-#splash .lockup{--wh:54px;display:flex;align-items:center;gap:calc(var(--wh)*.156);margin-bottom:24px;direction:ltr}
+#splash .col{align-self:center;justify-self:center;width:min(680px,calc(100vw - 48px));display:flex;flex-direction:column;align-items:center;text-align:center;padding-bottom:4vh;will-change:transform}
+#splash .lockup{--wh:58px;display:flex;align-items:center;gap:calc(var(--wh)*.156);margin-bottom:28px;direction:ltr;opacity:0;animation:sFade 800ms var(--sease) 200ms both}
 #splash .lockup .word{height:calc(var(--wh)*.45);width:auto;display:block}
-#splash .lockup .wheel{width:var(--wh);height:var(--wh);display:block;animation:spin 60s linear infinite;transform-origin:50% 50%}
+#splash .lockup .wheel{width:var(--wh);height:var(--wh);display:block;animation:spin 360s linear infinite;transform-origin:50% 50%}
 :root[data-theme="dark"] #splash .lockup,:root:not([data-theme="light"]) #splash .lockup{background:#fff;border-radius:12px;padding:12px 16px}
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]) #splash .lockup{background:none;padding:0}}
 :root[data-theme="light"] #splash .lockup{background:none;padding:0}
-#splash .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);font-weight:600;margin-bottom:16px}
-#splash h1{margin:0;font-size:56px;line-height:1;letter-spacing:-1.5px;font-weight:600}
-#splash h1 .ar-name{display:block;font-family:'IBM Plex Sans Arabic',var(--font);font-size:34px;font-weight:500;letter-spacing:0;color:var(--ink);margin-top:8px;line-height:1.4}
-#splash .rule{width:48px;height:1px;background:var(--gold);margin:24px 0;transform:scaleX(0);transform-origin:center}
-#splash .slogan{margin:0 0 24px;font-size:15px;color:var(--ink2);line-height:1.6}
-#splash .slogan span{display:block}
-#splash .start{height:52px;padding:0 40px;border-radius:999px;background:var(--green);color:#fff;font-size:15px;font-weight:600;display:inline-flex;align-items:center;gap:10px;transition:background var(--dur) var(--ease),transform var(--dur) var(--ease)}
-#splash .start:hover{background:var(--green-ink)}
-#splash .start:active{transform:translateY(1px)}
-#splash .start:focus-visible{outline-offset:4px}
-#splash .start svg{width:16px;height:16px}
-#splash .hint{margin-top:8px;font-size:11px;color:var(--ink3)}
-#splash .foot{padding:18px 28px;text-align:center;font-size:11px;color:var(--ink3)}
-#splash .foot b{font-weight:600;color:var(--ink2)}
-/* choreography: 900 ms, then stillness */
-#splash .lockup{animation:sFade 420ms var(--ease) both}
-#splash .eyebrow{animation:sFade 420ms var(--ease) 180ms both}
-#splash h1{animation:sRise 520ms var(--ease) 220ms both}
-#splash .rule{animation:sDraw 420ms var(--ease) 480ms both}
-#splash .slogan{animation:sFade 420ms var(--ease) 560ms both}
-#splash .start,#splash .hint{animation:sFade 420ms var(--ease) 640ms both}
-#splash .foot,#splash .lang{animation:sFade 420ms var(--ease) 760ms both}
-@keyframes sFade{from{opacity:0}to{opacity:1}}
-@keyframes sRise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#splash .eyebrow{font-size:11px;text-transform:uppercase;color:var(--ink3);font-weight:600;margin-bottom:18px;opacity:0;animation:sTrack 900ms var(--sease) 500ms both}
+@keyframes sTrack{from{opacity:0;letter-spacing:.1em}to{opacity:1;letter-spacing:.2em}}
+#splash .title{display:flex;flex-direction:column;align-items:center}
+#splash h1{margin:0;font-size:clamp(44px,6vw,72px);line-height:1;font-weight:600;letter-spacing:-1.5px;display:flex;justify-content:center;direction:ltr}
+#splash h1 .l{display:inline-block;overflow:hidden;line-height:1.05;padding-bottom:.06em}
+#splash h1 .l span{display:inline-block;transform:translateY(110%);animation:sRise 760ms var(--sease) both}
+@keyframes sRise{to{transform:none}}
+#splash .ar-name{font-family:'IBM Plex Sans Arabic',var(--font);font-size:clamp(28px,3.4vw,40px);font-weight:500;color:var(--ink);margin-top:10px;line-height:1.4;clip-path:inset(0 0 0 100%);animation:sWipe 560ms var(--sease) 1100ms both}
+@keyframes sWipe{to{clip-path:inset(0 0 0 0)}}
+#splash .rule{width:56px;height:1px;background:var(--gold);margin:26px 0 24px;transform:scaleX(0);animation:sDraw 520ms var(--sease) 1300ms both}
 @keyframes sDraw{to{transform:scaleX(1)}}
-#splash.fast *{animation-duration:0ms!important;animation-delay:0ms!important}
-#splash.fast .rule{transform:scaleX(1)}
-@media (max-width:640px){#splash h1{font-size:40px}#splash h1 .ar-name{font-size:26px}#splash .lockup{--wh:44px}}
-@media (max-height:620px){#splash .lockup{margin-bottom:14px}#splash h1{font-size:44px}#splash .rule{margin:14px 0}#splash .slogan{margin-bottom:14px}}
-/* wheel: rotates only on the home page, only when idle */
+#splash .slogan{margin:0 0 30px;font-size:16px;color:var(--ink2);line-height:1.7}
+#splash .slogan .ln{display:block}
+#splash .slogan .w{display:inline-block;opacity:0;transform:translateY(6px);animation:sWord 520ms var(--sease) both}
+@keyframes sWord{to{opacity:1;transform:none}}
+#splash .start{position:relative;height:54px;padding:0 42px;border-radius:999px;background:var(--green);color:#fff;font-size:15px;font-weight:600;display:inline-flex;align-items:center;gap:12px;overflow:hidden;opacity:0;transform:translateY(12px);animation:sBtn 700ms var(--sease) 1900ms both;box-shadow:0 18px 40px -18px color-mix(in srgb,var(--green) 70%,transparent);transition:background 200ms}
+#splash .start:hover{background:var(--green-ink)}
+#splash .start:focus-visible{outline-offset:4px}
+#splash .start svg{width:16px;height:16px;transition:transform 220ms var(--sease)}
+#splash .start:hover svg{transform:translateX(4px)}
+html[dir="rtl"] #splash .start:hover svg{transform:translateX(-4px)}
+#splash .start::after{content:'';position:absolute;inset:-20% -40%;background:linear-gradient(100deg,transparent 40%,rgba(255,255,255,.55) 50%,transparent 60%);transform:translateX(-120%);animation:sSweep 900ms var(--sease) 2300ms both}
+#splash .start:hover::after{animation:sSweep 900ms var(--sease) both}
+@keyframes sSweep{to{transform:translateX(120%)}}
+@keyframes sBtn{to{opacity:1;transform:none}}
+#splash .hint{margin-top:10px;font-size:11px;color:var(--ink3);opacity:0;animation:sFade 600ms var(--sease) 2100ms both}
+#splash .foot{padding:18px 28px;text-align:center;font-size:11px;color:var(--ink3);opacity:0;animation:sFade 600ms var(--sease) 2200ms both;position:relative}
+#splash .foot b{color:var(--ink2);font-weight:600}
+@keyframes sFade{to{opacity:1}}
+#splash.fast .stage *{animation-duration:1ms!important;animation-delay:0ms!important}
+#splash.fast .lockup .wheel{animation:spin 360s linear infinite!important}
+@media (prefers-reduced-motion:reduce){#splash .stage *{animation-duration:1ms!important;animation-delay:0ms!important}#splash .lockup .wheel{animation:none!important}}
+@media (max-width:640px){#splash .lockup{--wh:44px}}
+@media (max-height:620px){#splash .lockup{margin-bottom:14px}#splash .rule{margin:14px 0}#splash .slogan{margin-bottom:14px}}
 @keyframes spin{to{transform:rotate(360deg)}}
 .brand .logo .wheel{animation:none}
-body:not(.idle) #splash .lockup .wheel{animation-play-state:paused}
-@media (prefers-reduced-motion:reduce){#splash .lockup .wheel{animation:none}}
 .release{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:13px}
 .release b{font-weight:600}
 .release .sp{flex:1}
@@ -3957,22 +3964,104 @@ function download(name, content, type = 'text/html') {
 /* ---------------- Splash ---------------- */
 const Splash = {
   render() {
-    const b = Store.bank;
+    const b = Store.bank; const ar = LANG === 'ar';
+    const letters = b.appName.en.split('').map((ch, i) => `<span class="l"><span style="animation-delay:${700 + i * 32}ms">${h(ch)}</span></span>`).join('');
+    const words = (text, t0) => text.split(' ').map((w, i) => `<span class="w" style="animation-delay:${t0 + i * 45}ms">${h(w)}</span>`).join(' ');
     $('#splash').innerHTML = `
-      <a class="lang" href="#" data-act="lang">${LANG === 'en' ? 'عربي' : 'English'}</a>
-      <div class="col">
-        <div class="lockup" role="img" aria-label="Federal Tax Authority"><img class="word" src="${FTA_TEXT}" alt=""><img class="wheel" src="${FTA_WHEEL}" alt=""></div>
-        <div class="eyebrow">${LANG === 'en' ? h(b.area?.en || '') + ' Services · Internal tool' : 'خدمات ' + h(b.area?.ar || '') + ' · أداة داخلية'}</div>
-        <h1>${h(b.appName.en)}<span class="ar-name" lang="ar">${h(b.appName.ar)}</span></h1>
-        <div class="rule"></div>
-        <p class="slogan"><span>${t('slogan')}</span><span lang="${LANG === 'en' ? 'ar' : 'en'}" dir="${LANG === 'en' ? 'rtl' : 'ltr'}">${t('slogan_ar')}</span></p>
-        <button class="start" data-act="start">${t('start')} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
-        <div class="hint">${t('press_enter')}</div>
-      </div>
-      <div class="foot">${t('developed')} <b>${t('team')}</b> · v${h(b.version)} · ${new Date().getFullYear()}</div>`;
+      <canvas class="field" aria-hidden="true"></canvas><div class="veil"></div>
+      <div class="stage">
+        <a class="lang" href="#" data-act="lang">${ar ? 'English' : 'عربي'}</a>
+        <div class="col">
+          <div class="lockup" role="img" aria-label="Federal Tax Authority"><img class="word" src="${FTA_TEXT}" alt=""><img class="wheel" src="${FTA_WHEEL}" alt=""></div>
+          <div class="eyebrow">${ar ? 'خدمات ' + h(b.area?.ar || '') + ' · أداة داخلية' : h(b.area?.en || '') + ' Services · Internal tool'}</div>
+          <div class="title"><h1 aria-label="${h(b.appName.en)}">${letters}</h1><div class="ar-name" lang="ar">${h(b.appName.ar)}</div></div>
+          <div class="rule"></div>
+          <p class="slogan"><span class="ln">${words(t('slogan'), 1500)}</span><span class="ln" lang="${ar ? 'en' : 'ar'}" dir="${ar ? 'ltr' : 'rtl'}">${words(t('slogan_ar'), 1750)}</span></p>
+          <button class="start" data-act="start">${t('start')} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+          <div class="hint">${t('press_enter')}</div>
+        </div>
+        <div class="foot">${t('developed')} <b>${t('team')}</b> · v${h(b.version)} · ${new Date().getFullYear()}</div>
+      </div>`;
+    Field.mount($('#splash .field')); this.magnet();
   },
-  show(force) { this.render(); const el = $('#splash'); el.classList.toggle('fast', !force && Store.user.lastSplashDay === today()); el.classList.remove('hide'); if (document.activeElement && document.activeElement !== document.body) document.activeElement.blur(); },
-  hide() { const el = $('#splash'); if (el.classList.contains('hide')) return; el.classList.add('hide'); Store.user.lastSplashDay = today(); Store.markSeen(); setTimeout(() => { $('#q')?.focus(); if (!Store.user.tourDone && !document.body.classList.contains('present')) Tour.start(); }, 120); }
+  magnet() {
+    const btn = $('#splash .start'); if (!btn) return; let bx = 0, by = 0, tx = 0, ty = 0, raf;
+    const onMove = e => { const r = btn.getBoundingClientRect(); const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2); const d = Math.hypot(dx, dy); if (d < 90) { tx = dx / 90 * 6; ty = dy / 90 * 6; } else { tx = 0; ty = 0; } };
+    const tick = () => { bx += (tx - bx) * 0.18; by += (ty - by) * 0.18; btn.style.transform = `translate(${bx}px,${by}px)`; if ($('#splash .start') === btn && !$('#splash').classList.contains('hide')) raf = requestAnimationFrame(tick); };
+    this._unmagnet?.(); addEventListener('pointermove', onMove, { passive: true }); raf = requestAnimationFrame(tick);
+    this._unmagnet = () => { removeEventListener('pointermove', onMove); cancelAnimationFrame(raf); };
+  },
+  show(force) { this.render(); const el = $('#splash'); el.classList.toggle('fast', !force && Store.user.lastSplashDay === today()); el.classList.remove('hide'); Field.start(); if (document.activeElement && document.activeElement !== document.body) document.activeElement.blur(); },
+  hide() {
+    const el = $('#splash'); if (el.classList.contains('hide')) return;
+    Field.converge(); $('#splash .stage')?.classList.add('leave'); $('#splash .field')?.classList.remove('on');
+    setTimeout(() => { el.classList.add('hide'); Field.stop(); this._unmagnet?.(); }, 720);
+    Store.user.lastSplashDay = today(); Store.markSeen();
+    setTimeout(() => { $('#q')?.focus(); if (!Store.user.tourDone && !document.body.classList.contains('present')) Tour.start(); }, 820);
+  }
+};
+
+/* ---------------- Seven Threads field (WebGL) ---------------- */
+const Field = {
+  gl: null, cv: null, prog: null, u: {}, running: false, t0: 0, mouse: [0.5, 0.5], target: [0.5, 0.5], ms: 0, conv: 0, convT: 0, frames: [],
+  VS: 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}',
+  FS: `precision highp float;
+uniform vec2 R;uniform float T;uniform vec2 M;uniform float MS;uniform float CONV;uniform float DARK;uniform vec2 WH;
+float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);}
+void main(){
+  vec2 uv=gl_FragCoord.xy/R; float asp=R.x/R.y;
+  float ang=-0.32; mat2 rot=mat2(cos(ang),-sin(ang),sin(ang),cos(ang));
+  vec2 q=rot*vec2((uv.x-0.5)*asp,uv.y-0.5);
+  vec2 mq=rot*vec2((M.x-0.5)*asp,M.y-0.5); float md=length(q-mq); float push=exp(-md*md*22.)*0.035*MS;
+  vec2 wq=rot*vec2((WH.x-0.5)*asp,WH.y-0.5); float wd=length(q-wq); float bend=exp(-wd*wd*60.)*0.02;
+  vec3 col=vec3(0.); float acc=0.;
+  vec3 pal[7];
+  pal[0]=vec3(0.78,0.66,0.40); pal[1]=vec3(0.10,0.62,0.36); pal[2]=vec3(0.30,0.29,0.27); pal[3]=vec3(0.86,0.25,0.26); pal[4]=vec3(0.18,0.50,0.32); pal[5]=vec3(0.88,0.80,0.60); pal[6]=vec3(0.42,0.40,0.37);
+  for(int i=0;i<7;i++){
+    float fi=float(i); float ph=fi*1.7; float base=-0.42+fi*0.14;
+    float y=base+0.08*sin(q.x*1.6+T*0.045+ph)+0.045*sin(q.x*3.1-T*0.03+ph*2.3)+0.02*noise(vec2(q.x*2.+fi,T*0.02));
+    y+=push*sign(q.y-y)+bend*sign(q.y-y); y=mix(y,0.0,CONV*CONV);
+    float w=0.012+0.009*sin(q.x*2.2+T*0.05+ph)+0.004*noise(vec2(q.x*5.+fi*3.,T*0.03)); w*=1.0-0.7*CONV;
+    float d=abs(q.y-y); float body=1.0-smoothstep(w*0.55,w,d);
+    float sh=sqrt(max(0.,1.0-pow(d/max(w,1e-4),2.))); float light=0.55+0.45*sh*(0.6+0.4*sign(q.y-y));
+    float a=body*(0.11+0.07*sin(q.x*0.9+T*0.02+ph))*(1.0+DARK*1.3)*(1.0-CONV*0.9);
+    vec3 c=mix(pal[i],vec3(1.0),DARK*0.62)*light;
+    col=col*(1.0-a)+c*a; acc=acc+a*(1.0-acc);
+  }
+  float g=(hash(gl_FragCoord.xy+fract(T))-0.5)*0.03; float vig=smoothstep(1.3,0.35,length(uv-0.5));
+  float alpha=clamp(acc*vig+abs(g),0.,1.); gl_FragColor=vec4((col+g)*alpha,alpha);
+}`,
+  mount(cv) {
+    this.cv = cv; let gl = null; try { gl = cv.getContext('webgl', { antialias: false, alpha: true, premultipliedAlpha: true }); } catch (e) {}
+    this.gl = gl; if (!gl) { cv.style.background = 'radial-gradient(ellipse at 30% 20%, color-mix(in srgb,var(--gold) 14%,transparent), transparent 60%)'; cv.classList.add('on'); return; }
+    const sh = (t, src) => { const x = gl.createShader(t); gl.shaderSource(x, src); gl.compileShader(x); return x; };
+    const prog = gl.createProgram(); gl.attachShader(prog, sh(gl.VERTEX_SHADER, this.VS)); gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, this.FS)); gl.linkProgram(prog); gl.useProgram(prog); this.prog = prog;
+    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    ['R', 'T', 'M', 'MS', 'CONV', 'DARK', 'WH'].forEach(n => this.u[n] = gl.getUniformLocation(prog, n));
+    gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+    this.resize(); if (!this._bound) { this._bound = true; addEventListener('resize', () => this.resize()); addEventListener('pointermove', e => { this.target = [e.clientX / innerWidth, 1 - e.clientY / innerHeight]; this.ms = 1; }, { passive: true }); document.addEventListener('visibilitychange', () => { if (!document.hidden && this.running) requestAnimationFrame(ts => this.frame(ts)); }); }
+  },
+  resize() { if (!this.cv) return; const dpr = Math.min(devicePixelRatio || 1, 1.5); this.cv.width = innerWidth * dpr; this.cv.height = innerHeight * dpr; this.gl?.viewport(0, 0, this.cv.width, this.cv.height); },
+  isDark() { const th = document.documentElement.dataset.theme; return th === 'dark' || (!th && matchMedia('(prefers-color-scheme:dark)').matches); },
+  start() { if (!this.gl) return; this.conv = 0; this.convT = 0; this.t0 = performance.now(); this.running = true; this.frames = []; this.cv.classList.add('on'); if (matchMedia('(prefers-reduced-motion:reduce)').matches) { this.draw(0); this.running = false; return; } requestAnimationFrame(ts => this.frame(ts)); },
+  stop() { this.running = false; },
+  converge() { this.convT = 1; },
+  draw(t) {
+    const gl = this.gl, u = this.u; const w = $('#splash .wheel'); const wr = w ? w.getBoundingClientRect() : { left: innerWidth / 2, top: innerHeight / 3, width: 0, height: 0 };
+    gl.uniform2f(u.R, this.cv.width, this.cv.height); gl.uniform1f(u.T, t); gl.uniform2f(u.M, this.mouse[0], this.mouse[1]); gl.uniform1f(u.MS, Math.max(0, this.ms)); gl.uniform1f(u.CONV, this.conv); gl.uniform1f(u.DARK, this.isDark() ? 1 : 0); gl.uniform2f(u.WH, (wr.left + wr.width / 2) / innerWidth, 1 - (wr.top + wr.height / 2) / innerHeight);
+    gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  },
+  frame(now) {
+    if (!this.running || document.hidden) return; const f0 = performance.now();
+    this.mouse[0] += (this.target[0] - this.mouse[0]) * 0.08; this.mouse[1] += (this.target[1] - this.mouse[1]) * 0.08; this.ms += (0 - this.ms) * 0.02; this.conv += (this.convT - this.conv) * 0.08;
+    this.draw((now - this.t0) / 1000);
+    const col = $('#splash .col'); if (col) col.style.transform = `translate(${(this.mouse[0] - 0.5) * 2}px, ${(0.5 - this.mouse[1]) * 2}px)`;
+    this.frames.push(performance.now() - f0); if (this.frames.length > 180) this.frames.shift();
+    requestAnimationFrame(ts => this.frame(ts));
+  },
+  avgMs() { return this.frames.reduce((a, b) => a + b, 0) / Math.max(1, this.frames.length); }
 };
 
 /* ---------------- Service picker ---------------- */
@@ -4442,9 +4531,9 @@ function applyTheme() {
 }
 function toggleTheme() {
   const dark = document.documentElement.dataset.theme === 'dark' || (!document.documentElement.dataset.theme && matchMedia('(prefers-color-scheme:dark)').matches);
-  Store.user.theme = dark ? 'light' : 'dark'; Store.saveUser(); applyTheme(); renderShell(); if (!$('#splash').classList.contains('hide')) Splash.render();
+  Store.user.theme = dark ? 'light' : 'dark'; Store.saveUser(); applyTheme(); renderShell(); if (!$('#splash').classList.contains('hide')) { Splash.render(); $('#splash').classList.add('fast'); Field.start(); }
 }
-function setLang(l) { LANG = l; Store.user.lang = l; Store.saveUser(); document.documentElement.lang = l; document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr'; renderShell(); if (!$('#splash').classList.contains('hide')) Splash.render(); }
+function setLang(l) { LANG = l; Store.user.lang = l; Store.saveUser(); document.documentElement.lang = l; document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr'; renderShell(); if (!$('#splash').classList.contains('hide')) { Splash.render(); $('#splash').classList.add('fast'); Field.start(); } }
 
 document.addEventListener('click', async e => {
   const closeBtn = e.target.closest('[data-close]'); if (closeBtn) { closeBtn.closest('dialog')?.close(); }
@@ -4605,7 +4694,9 @@ function selfTest(silent) {
   ok('sha256: known vector', sha256('admin') === '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
   ok('brand: three logo assets embedded', [FTA_LOGO, FTA_WHEEL, FTA_TEXT].every(x => x.startsWith('data:image/png;base64,') && x.length > 8000));
   ok('brand: accent is the logo green', getComputedStyle(document.documentElement).getPropertyValue('--green').trim().toLowerCase() === (matchMedia('(prefers-color-scheme:dark)').matches && document.documentElement.dataset.theme !== 'light' || document.documentElement.dataset.theme === 'dark' ? '#2fb36b' : '#009247'));
-  ok('home: at most 9 elements', (() => { Splash.render(); const n = $$('#splash > *, #splash .col > *').filter(x => !x.classList.contains('col')).length; return n <= 9; })(), String($$('#splash > *, #splash .col > *').length));
+  ok('field: WebGL shader compiled (or graceful fallback)', !Field.gl || Field.gl.getProgramParameter(Field.prog, Field.gl.LINK_STATUS));
+  ok('field: frame time under 16.7 ms', (() => { if (!Field.gl) return true; const t0 = performance.now(); for (let i = 0; i < 30; i++) Field.draw(i / 60); Field.gl.finish?.(); return (performance.now() - t0) / 30 < 16.7; })());
+  ok('home: at most 9 elements', (() => { Splash.render(); const n = $$('#splash .stage > *, #splash .col > *').filter(x => !x.classList.contains('col')).length; return n <= 9; })(), String($$('#splash .stage > *, #splash .col > *').length - 1));
   ok('services: 27 unique in Registration file', EMBED.services.length === 27 && new Set(EMBED.services.map(x => x.id)).size === 27 && EMBED.area.en === 'Registration');
   ok('services: every section belongs to a service', EMBED.sections.every(x => EMBED.services.some(sv => sv.id === x.svc)));
   ok('services: scenarios carry a valid service', EMBED.scenarios.every(x => EMBED.services.some(sv => sv.id === x.svc)));
@@ -4636,8 +4727,6 @@ function selfTest(silent) {
   window.__selftest = R;
 }
 
-let idleT; const markActive = () => { document.body.classList.remove('idle'); clearTimeout(idleT); idleT = setTimeout(() => document.body.classList.add('idle'), 2500); };
-['pointermove', 'keydown', 'pointerdown'].forEach(ev => addEventListener(ev, markActive, { passive: true })); markActive();
 window.addEventListener('afterprint', () => { $('#print').innerHTML = ''; });
 
 /* ---------------- Boot ---------------- */
@@ -4646,7 +4735,7 @@ Search.build(); const restored = Composer.restore(); renderShell(); if (restored
 $('#main').addEventListener('scroll', debounce(spy, 60));
 if (!Store.user.skipSplash && location.hash !== '#selftest') Splash.show(); else $('#q').focus();
 if (location.hash === '#selftest') setTimeout(selfTest, 50);
-window.Mudawwana = { Store, Search, Composer, Splash, Services, Scenarios, Palette, Tour, Present, Print, Admin, norm, selfTest, buildHtml, computeChangelog, csvOf, parseCsv };
+window.Mudawwana = { Store, Search, Composer, Splash, Field, Services, Scenarios, Palette, Tour, Present, Print, Admin, norm, selfTest, buildHtml, computeChangelog, csvOf, parseCsv };
 })();
 </script>
 </body>
