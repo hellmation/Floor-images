@@ -15,14 +15,15 @@
 </style>
 <style>
 :root{
-  --bg:#F6F3EC; --surface:#FFFFFF; --surface2:#EFEBE2; --surface3:#E7E1D4;
-  --line:#E3DDD0; --line2:#CDC5B4;
-  --ink:#1C1B19; --ink2:#5B5750; --ink3:#8E897F;
-  --green:#009247; --green-ink:#006B34; --green-soft:#E3F2EA;
-  --red:#9F3B3B; --red-soft:#F6E7E5;
-  --gold:#B5985A; --gold-soft:#F3ECDD;
-  --amber:#8E6410; --amber-soft:#F7EED7;
-  --blue:#2F5D8A; --blue-soft:#E4ECF4;
+  /* FTA Brand Manual: Red 186C #C8102E · Green 348C #00843D · Black · Gold 8960C #B68A35 · Blue 647C #306190 · Grey 877C #C6C6C6 */
+  --bg:#F6F5F2; --surface:#FFFFFF; --surface2:#EFEEEA; --surface3:#E6E4DF;
+  --line:#E2E0DA; --line2:#C6C6C6;
+  --ink:#111111; --ink2:#4F4F4F; --ink3:#8A8A8A;
+  --green:#00843D; --green-ink:#00622D; --green-soft:#E0F1E7;
+  --red:#C8102E; --red-soft:#F9E3E6;
+  --gold:#B68A35; --gold-soft:#F4ECDC;
+  --amber:#8A6520; --amber-soft:#F6EEDA;
+  --blue:#306190; --blue-soft:#E3EAF2;
   --sel:#0E6B4F22;
   --shadow:0 1px 2px rgba(28,27,25,.05),0 12px 32px -16px rgba(28,27,25,.22);
   --shadow-lg:0 24px 64px -24px rgba(28,27,25,.35);
@@ -34,12 +35,12 @@
   color-scheme:light;
 }
 :root[data-theme="dark"]{
-  --bg:#131312; --surface:#1B1B19; --surface2:#232320; --surface3:#2B2A26;
-  --line:#2E2D29; --line2:#403E37;
-  --ink:#ECE7DC; --ink2:#B3ADA0; --ink3:#7C7669;
-  --green:#2FB36B; --green-ink:#7FD6A6; --green-soft:#143126;
-  --red:#D97E76; --red-soft:#3A2522;
-  --gold:#CBB078; --gold-soft:#2F2A1F;
+  --bg:#121212; --surface:#1A1A1A; --surface2:#222222; --surface3:#2A2A2A;
+  --line:#2C2C2C; --line2:#3E3E3E;
+  --ink:#EDEDEA; --ink2:#B4B4B0; --ink3:#7E7E7A;
+  --green:#25A15C; --green-ink:#7FD6A6; --green-soft:#12301F;
+  --red:#E3566B; --red-soft:#3A1E23;
+  --gold:#CFAA5E; --gold-soft:#2F2A1F;
   --amber:#D7A74C; --amber-soft:#352B17;
   --blue:#7FA7D1; --blue-soft:#1E2A38;
   --sel:#4DB18C26;
@@ -49,12 +50,12 @@
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#131312; --surface:#1B1B19; --surface2:#232320; --surface3:#2B2A26;
-    --line:#2E2D29; --line2:#403E37;
-    --ink:#ECE7DC; --ink2:#B3ADA0; --ink3:#7C7669;
-    --green:#2FB36B; --green-ink:#7FD6A6; --green-soft:#143126;
-    --red:#D97E76; --red-soft:#3A2522;
-    --gold:#CBB078; --gold-soft:#2F2A1F;
+    --bg:#121212; --surface:#1A1A1A; --surface2:#222222; --surface3:#2A2A2A;
+    --line:#2C2C2C; --line2:#3E3E3E;
+    --ink:#EDEDEA; --ink2:#B4B4B0; --ink3:#7E7E7A;
+    --green:#25A15C; --green-ink:#7FD6A6; --green-soft:#12301F;
+    --red:#E3566B; --red-soft:#3A1E23;
+    --gold:#CFAA5E; --gold-soft:#2F2A1F;
     --amber:#D7A74C; --amber-soft:#352B17;
     --blue:#7FA7D1; --blue-soft:#1E2A38;
     --sel:#4DB18C26;
@@ -537,6 +538,9 @@ html[dir="rtl"] #splash .start:hover svg{transform:translateX(-4px)}
 #splash .hint{margin-top:10px;font-size:11px;color:var(--ink3);opacity:0;animation:sFade 600ms var(--sease) 2100ms both}
 #splash .foot{padding:18px 28px;text-align:center;font-size:11px;color:var(--ink3);opacity:0;animation:sFade 600ms var(--sease) 2200ms both;position:relative}
 #splash .foot b{color:var(--ink2);font-weight:600}
+#splash .endorse{color:var(--gold);font-weight:600;font-size:12px;letter-spacing:.02em;display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;direction:ltr}
+#splash .endorse i{width:1px;height:12px;background:var(--gold);display:inline-block}
+#splash .endorse [lang=ar]{font-family:var(--font-ar-display)}
 @keyframes sFade{to{opacity:1}}
 #splash.fast .stage *{animation-duration:1ms!important;animation-delay:0ms!important}
 #splash.fast .lockup .wheel{animation:spin 360s linear infinite!important}
@@ -3180,6 +3184,7 @@ const I = {
   save: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 4h11l3 3v13H5z M8 4v5h7V4 M8 20v-6h8v6"/></svg>',
   dl: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>',
   bulb: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.3 1 2.1h5c0-.8.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>',
+  gear: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>',
   globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>',
 };
 
@@ -3726,7 +3731,7 @@ function renderShell() {
       <div class="topactions">
         <button class="pill" data-act="lang" title="${t('language')}">${LANG === 'en' ? 'عربي' : 'English'}</button>
         <button class="ib" data-act="theme" title="${t('theme')}">${document.documentElement.dataset.theme === 'dark' ? I.sun : I.moon}</button>
-        ${UI.isAdmin ? `<button class="ib on" data-act="admin" title="${t('admin')}">${I.shield}</button>` : ''}
+        <button class="ib ${UI.isAdmin ? 'on' : ''}" data-act="admin" title="${t('admin')}">${I.gear}</button>
         <button class="ib" data-act="help" title="${t('help')}">${I.help}</button>
         <button class="ib" id="trayToggle" data-act="tray-toggle" aria-label="composer">${I.tray}</button>
       </div>
@@ -3873,7 +3878,7 @@ function openDialog(html, cls = '') {
 function helpDialog() {
   const en = LANG === 'en';
   openDialog(`<div class="dlg-h"><h3>${t('help_title')}</h3><span class="sp"></span><button class="ib" data-close>${I.x}</button></div>
-  <div class="dlg-b help"><div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px"><button class="btn sec" data-act="suggest" data-close>${I.bulb} ${t('suggest')}</button><button class="btn sec" data-act="admin" data-close>${I.shield} ${t('admin')}</button><button class="btn sec" data-act="tour" data-close>${I.eye} ${t('act_tour')}</button><button class="btn sec" data-act="print" data-close>${I.dl} ${t('act_print')}</button><button class="btn sec" data-act="present" data-close>${t('act_present')}</button></div>
+  <div class="dlg-b help"><div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px"><button class="btn sec" data-act="suggest" data-close>${I.bulb} ${t('suggest')}</button><button class="btn sec" data-act="admin" data-close>${I.gear} ${t('admin')}</button><button class="btn sec" data-act="tour" data-close>${I.eye} ${t('act_tour')}</button><button class="btn sec" data-act="print" data-close>${I.dl} ${t('act_print')}</button><button class="btn sec" data-act="present" data-close>${t('act_present')}</button></div>
     <label class="check" style="margin-bottom:6px"><input type="checkbox" id="skipSplash" ${Store.user.skipSplash ? 'checked' : ''}> ${t('skip_splash')}</label>
     <div class="note" style="margin-bottom:4px">${h(L(Store.bank.appName))} v${h(Store.bank.version)} · ${h(Store.bank.publishedAt || '')} · ${t('developed')} ${t('team')}</div>
     ${en ? `
@@ -3988,7 +3993,7 @@ const Splash = {
           <button class="start" data-act="start">${t('start')} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
           <div class="hint">${t('press_enter')}</div>
         </div>
-        <div class="foot">${t('developed')} <b>${t('team')}</b> · v${h(b.version)} · ${new Date().getFullYear()}</div>
+        <div class="foot"><div class="endorse"><span lang="ar">هيئة اتحادية</span><i></i><span>Federal Authority</span></div>${t('developed')} <b>${t('team')}</b> · v${h(b.version)} · ${new Date().getFullYear()}</div>
       </div>`;
     Field.mount($('#splash .field')); this.magnet();
   },
@@ -4025,7 +4030,7 @@ void main(){
   vec2 wq=rot*vec2((WH.x-0.5)*asp,WH.y-0.5); float wd=length(q-wq); float bend=exp(-wd*wd*60.)*0.02;
   vec3 col=vec3(0.); float acc=0.;
   vec3 pal[7];
-  pal[0]=vec3(0.78,0.66,0.40); pal[1]=vec3(0.10,0.62,0.36); pal[2]=vec3(0.30,0.29,0.27); pal[3]=vec3(0.86,0.25,0.26); pal[4]=vec3(0.18,0.50,0.32); pal[5]=vec3(0.88,0.80,0.60); pal[6]=vec3(0.42,0.40,0.37);
+  pal[0]=vec3(0.714,0.541,0.208); pal[1]=vec3(0.0,0.518,0.239); pal[2]=vec3(0.20,0.20,0.20); pal[3]=vec3(0.784,0.063,0.180); pal[4]=vec3(0.188,0.380,0.565); pal[5]=vec3(0.776,0.776,0.776); pal[6]=vec3(0.0,0.518,0.239);
   for(int i=0;i<7;i++){
     float fi=float(i); float ph=fi*1.7; float base=-0.42+fi*0.14;
     float y=base+0.08*sin(q.x*1.6+T*0.045+ph)+0.045*sin(q.x*3.1-T*0.03+ph*2.3)+0.02*noise(vec2(q.x*2.+fi,T*0.02));
@@ -4701,7 +4706,7 @@ function selfTest(silent) {
   const html = buildHtml(Store.bank); ok('publish: self-serialisation round-trips', html.includes('id="bank"') && html.includes('"comments"') && /<div id="app"><\/div>/.test(html), `${(html.length / 1024).toFixed(0)} KB`);
   ok('sha256: known vector', sha256('admin') === '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
   ok('brand: three logo assets embedded', [FTA_LOGO, FTA_WHEEL, FTA_TEXT].every(x => x.startsWith('data:image/png;base64,') && x.length > 8000));
-  ok('brand: accent is the logo green', getComputedStyle(document.documentElement).getPropertyValue('--green').trim().toLowerCase() === (matchMedia('(prefers-color-scheme:dark)').matches && document.documentElement.dataset.theme !== 'light' || document.documentElement.dataset.theme === 'dark' ? '#2fb36b' : '#009247'));
+  ok('brand: accent is the logo green', getComputedStyle(document.documentElement).getPropertyValue('--green').trim().toLowerCase() === (matchMedia('(prefers-color-scheme:dark)').matches && document.documentElement.dataset.theme !== 'light' || document.documentElement.dataset.theme === 'dark' ? '#25a15c' : '#00843d'));
   ok('field: WebGL shader compiled (or graceful fallback)', !Field.gl || Field.gl.getProgramParameter(Field.prog, Field.gl.LINK_STATUS));
   ok('field: frame time under 16.7 ms', (() => { if (!Field.gl) return true; const t0 = performance.now(); for (let i = 0; i < 30; i++) Field.draw(i / 60); Field.gl.finish?.(); return (performance.now() - t0) / 30 < 16.7; })());
   ok('home: at most 9 elements', (() => { Splash.render(); const n = $$('#splash .stage > *, #splash .col > *').filter(x => !x.classList.contains('col')).length; return n <= 9; })(), String($$('#splash .stage > *, #splash .col > *').length - 1));
