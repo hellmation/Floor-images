@@ -25,6 +25,7 @@
   --sel:#0E6B4F22;
   --shadow:0 1px 2px rgba(28,27,25,.05),0 12px 32px -16px rgba(28,27,25,.22);
   --shadow-lg:0 24px 64px -24px rgba(28,27,25,.35);
+  --e1:none; --e2:0 1px 2px rgba(28,27,25,.05),0 10px 28px -16px rgba(28,27,25,.22); --e3:0 24px 64px -24px rgba(28,27,25,.35),0 2px 6px rgba(28,27,25,.06);
   --r:12px; --r-sm:8px;
   --font:'IBM Plex Sans','IBM Plex Sans Arabic','Segoe UI',system-ui,Tahoma,sans-serif;
   --dur:170ms; --ease:cubic-bezier(.2,.7,.2,1);
@@ -156,7 +157,9 @@ a{color:var(--green)}
 
 /* ---------- Card ---------- */
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px 10px;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease),transform var(--dur) var(--ease);position:relative}
-.card:hover{border-color:var(--line2);box-shadow:var(--shadow)}
+.card:hover{border-color:var(--line2);box-shadow:var(--e2);transform:translateY(-1px)}
+.card .btn.pri{transition:all 180ms cubic-bezier(.34,1.3,.5,1)}
+.card.in .btn.pri{transform:scale(1.02)}
 .card.active{border-color:var(--green);box-shadow:0 0 0 3px var(--sel),var(--shadow)}
 .card.in{border-inline-start:3px solid var(--green)}
 .card.flash{animation:flash 600ms var(--ease)}
@@ -210,9 +213,14 @@ mark{background:color-mix(in srgb,var(--gold) 35%,transparent);color:inherit;bor
 .tray-h h3{margin:0;font-size:14px;font-weight:600}
 .tray-h .n{background:var(--green);color:#fff;border-radius:999px;font-size:11px;min-width:20px;height:20px;display:grid;place-items:center;padding:0 6px;font-weight:600}
 .tray-h .sp{flex:1}
+.tray-h .mini-copy{height:30px;padding:0 10px;border-radius:8px;background:var(--green);color:#fff;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+.tray-h .mini-copy svg{width:14px;height:14px}
+.tray-h .cc{font-size:11px;color:var(--ink3);font-variant-numeric:tabular-nums}
 .tray-b{flex:1;overflow:auto;padding:12px 16px}
 .tray-f{border-top:1px solid var(--line);padding:12px 16px;background:var(--surface)}
 .tray .lbl{font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink3);font-weight:600;margin:14px 0 8px}
+.citem.out{animation:leave 180ms var(--ease) forwards}
+@keyframes leave{to{opacity:0;transform:translateX(12px) scale(.98);height:0;margin:0;padding:0}}
 .citem{display:flex;gap:8px;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 8px 8px 6px;margin-bottom:6px;transition:all var(--dur) var(--ease);animation:settle 260ms var(--ease)}
 @keyframes settle{from{opacity:0;transform:translateY(-4px) scale(.98)}to{opacity:1;transform:none}}
 .citem.drag{opacity:.4}
@@ -251,7 +259,11 @@ mark{background:color-mix(in srgb,var(--gold) 35%,transparent);color:inherit;bor
 .tray-f .row{display:flex;gap:8px;align-items:center}
 .tray-f .row .sp{flex:1}
 .copybtn{flex:1;justify-content:center}
-.copybtn.done{background:var(--green-ink)}
+.copybtn{position:relative;overflow:hidden}
+.copybtn::after{content:'';position:absolute;inset:0;background:var(--green-ink);transform:scaleX(0);transform-origin:0 50%;transition:transform 420ms var(--ease);z-index:0}
+.copybtn.done::after{transform:scaleX(1)}
+.copybtn>*{position:relative;z-index:1}
+.copybtn.done{background:var(--green)}
 .presets{display:flex;flex-wrap:wrap;gap:5px}
 .presets button{font-size:11.5px;padding:4px 9px;border-radius:7px;border:1px solid var(--line);background:var(--surface);color:var(--ink2);display:inline-flex;gap:6px;align-items:center;transition:all var(--dur) var(--ease)}
 .presets button:hover{border-color:var(--ink3);color:var(--ink)}
@@ -259,6 +271,115 @@ mark{background:color-mix(in srgb,var(--gold) 35%,transparent);color:inherit;bor
 .presets button i:hover{color:var(--red)}
 .tray-empty{color:var(--ink3);text-align:center;padding:36px 12px;font-size:13px;line-height:1.7}
 .tray-empty .kbd{margin:0 2px}
+
+/* ---------- Quality meter ---------- */
+.qm{border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--bg)}
+.qm .hd span{display:inline-flex;align-items:center;gap:5px}.qm .hd svg{width:13px;height:13px;color:var(--green)}
+.qm .bar{height:5px;border-radius:999px;background:var(--surface3);overflow:hidden;margin:6px 0 0}
+.qm ul{margin-top:8px}
+.qm .bar i{display:block;height:100%;border-radius:999px;transition:width 420ms var(--ease),background 300ms}
+.qm .hd{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600}
+.qm .hd b{font-variant-numeric:tabular-nums}
+.qm ul{margin:0;padding:0;list-style:none;font-size:11.5px;color:var(--ink2);display:grid;gap:3px}
+.qm li{display:flex;gap:6px;align-items:flex-start}
+.qm li svg{width:12px;height:12px;flex:0 0 auto;margin-top:3px}
+.qm li.ok{color:var(--ink3)} .qm li.ok svg{color:var(--green)} .qm li.bad svg{color:var(--red)} .qm li.warn svg{color:var(--amber)}
+.qm.g .bar i{background:var(--green)} .qm.a .bar i{background:var(--amber)} .qm.r .bar i{background:var(--red)}
+.sugg{display:flex;flex-wrap:wrap;gap:5px}
+.sugg button{font-size:11.5px;padding:4px 9px;border-radius:999px;border:1px dashed var(--line2);background:var(--surface);color:var(--ink2);max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:all var(--dur) var(--ease)}
+.sugg button:hover{border-style:solid;border-color:var(--green);color:var(--green-ink)}
+.scen{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.scen .sc{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-align:start;display:flex;flex-direction:column;gap:6px;transition:all var(--dur) var(--ease)}
+.scen .sc:hover{border-color:var(--green);box-shadow:var(--e2);transform:translateY(-1px)}
+.scen .sc b{font-size:13.5px}
+.scen .sc .ar{font-size:12.5px;color:var(--ink2)}
+.scen .sc .n{font-size:11px;color:var(--ink3);margin-top:2px}
+.scen .sc .acts{display:flex;gap:4px;margin-top:4px}
+/* ---------- Command palette ---------- */
+#palette{position:fixed;inset:0;z-index:400;background:rgba(20,19,17,.42);backdrop-filter:blur(3px);display:grid;place-items:start center;padding-top:12vh}
+#palette .box{width:min(640px,calc(100vw - 32px));background:var(--surface);border-radius:16px;box-shadow:var(--e3);overflow:hidden;border:1px solid var(--line)}
+#palette input{width:100%;height:54px;border:0;border-bottom:1px solid var(--line);background:transparent;padding:0 18px;font-size:16px;outline:none}
+#palette .list{max-height:52vh;overflow:auto;padding:6px}
+#palette .it{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:9px;font-size:13.5px;cursor:pointer}
+#palette .it.on{background:var(--green-soft);color:var(--green-ink)}
+#palette .it .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);width:70px;flex:0 0 auto}
+#palette .it .tx{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#palette .it .kbd{margin-inline-start:auto}
+#palette .ft{padding:8px 14px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink3);display:flex;gap:14px}
+/* ---------- Tour ---------- */
+#tour{position:fixed;inset:0;z-index:350;pointer-events:none}
+#tour .dim{position:absolute;inset:0;background:rgba(20,19,17,.5);pointer-events:auto;transition:clip-path 300ms var(--ease)}
+#tour .spot{position:absolute;border-radius:14px;box-shadow:0 0 0 9999px rgba(20,19,17,.55),0 0 0 3px var(--green);transition:all 320ms var(--ease);pointer-events:none}
+#tour .card{position:absolute;width:320px;background:var(--surface);border-radius:14px;box-shadow:var(--e3);padding:16px 18px;pointer-events:auto;transition:all 320ms var(--ease)}
+#tour .card:hover{transform:none}
+#tour .card .st{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);font-weight:600;margin-bottom:6px}
+#tour .card h4{margin:0 0 6px;font-size:15px}
+#tour .card p{margin:0 0 12px;font-size:13px;color:var(--ink2);line-height:1.6}
+#tour .card .acts{display:flex;gap:6px;justify-content:flex-end}
+/* ---------- Presentation mode ---------- */
+body.present{font-size:16px}
+body.present .topactions [data-act="admin"],body.present .topactions [data-act="suggest"]{display:none}
+body.present .card-body p{font-size:15.5px} body.present .card-body .ar{font-size:16.5px}
+body.present .brand .t1{font-size:17px}
+/* ---------- Banners ---------- */
+.sysbanner{background:var(--amber-soft);color:var(--amber);border:1px solid color-mix(in srgb,var(--amber) 40%,transparent);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:13px;display:flex;gap:10px;align-items:center}
+.sysbanner.red{background:var(--red-soft);color:var(--red);border-color:color-mix(in srgb,var(--red) 40%,transparent)}
+.sysbanner .sp{flex:1}
+/* ---------- Splash extras ---------- */
+#splash .inner>*{animation:rise 620ms var(--ease) both}
+#splash .inner>:nth-child(1){animation-delay:0ms}#splash .inner>:nth-child(2){animation-delay:120ms}#splash .inner>:nth-child(3){animation-delay:200ms}#splash .inner>:nth-child(4){animation-delay:280ms}#splash .inner>:nth-child(5){animation-delay:340ms}#splash .inner>:nth-child(6){animation-delay:400ms}#splash .inner>:nth-child(7){animation-delay:470ms}#splash .inner>:nth-child(8){animation-delay:560ms}#splash .inner>:nth-child(9){animation-delay:700ms}#splash .inner>:nth-child(10){animation-delay:780ms}#splash .inner>:nth-child(11){animation-delay:860ms}
+#splash.fast .inner>*{animation:none}
+#splash .fta .wheel{animation:spin 36s linear infinite,wheelin 900ms var(--ease) both}
+@keyframes wheelin{from{opacity:0;transform:rotate(-40deg) scale(.86)}to{opacity:1}}
+#splash.fast .fta .wheel{animation:spin 36s linear infinite}
+#splash .strip{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:620px;margin:8px 0 0}
+#splash .strip span{font-size:11.5px;padding:4px 10px;border-radius:999px;border:1px solid var(--line2);color:var(--ink2);background:color-mix(in srgb,var(--surface) 70%,transparent)}
+#splash .strip span b{color:var(--ink);font-variant-numeric:tabular-nums}
+#splash .strip span.new{border-color:var(--green);color:var(--green-ink);background:var(--green-soft)}
+#splash .meta2{font-size:11.5px;color:var(--ink3);margin-top:10px}
+#splash .quick{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;justify-content:center}
+/* ---------- Print ---------- */
+#print{display:none}
+@media print{
+  @page{size:A4;margin:18mm 16mm 20mm;@bottom-center{content:counter(page);font-family:'IBM Plex Sans',sans-serif;font-size:9pt;color:#777}}
+  html,body{overflow:visible!important;height:auto!important;background:#fff!important;color:#111!important}
+  #app,#splash,#overlays,#toasts,#palette,#tour,.selftest{display:none!important}
+  #print{display:block;font-size:10.5pt;line-height:1.5}
+  #print .cover{height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;page-break-after:always}
+  #print .cover img{width:130px;margin-bottom:28px}
+  #print .cover h1{font-size:30pt;margin:0 0 6px;letter-spacing:-.5px}
+  #print .cover .ar{font-size:20pt;color:#0E6B4F;margin-bottom:18px}
+  #print .cover .meta{color:#666;font-size:10pt;margin-top:30px}
+  #print .toc{page-break-after:always}
+  #print .toc h2{font-size:16pt;margin:0 0 12px}
+  #print .toc ol{padding-inline-start:20px;columns:2;column-gap:28px}
+  #print .toc li{margin:3px 0;font-size:10pt}
+  #print .toc li small{color:#888}
+  #print h2.sec{font-size:15pt;margin:0 0 4px;padding-bottom:6px;border-bottom:2px solid #0E6B4F;page-break-after:avoid;page-break-before:always;display:flex;justify-content:space-between;align-items:baseline}
+  #print h2.sec:first-of-type{page-break-before:auto}
+  #print h3.sub{font-size:11pt;margin:14px 0 6px;color:#0E6B4F;letter-spacing:.06em;text-transform:uppercase;page-break-after:avoid;display:flex;justify-content:space-between}
+  #print h3.sub span{text-transform:none;letter-spacing:0;color:#666;font-weight:400}
+  #print .pc{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;padding:7px 0;border-bottom:1px solid #e4e4e4;page-break-inside:avoid}
+  #print .pc .en{direction:ltr} #print .pc .ar{direction:rtl;text-align:right;font-family:'IBM Plex Sans Arabic',sans-serif}
+  #print .pc .cond{grid-column:1/-1;font-size:9pt;color:#8E6410}
+  #print .pc .id{font-family:ui-monospace,monospace;font-size:8pt;color:#aaa}
+  #print .tok{border:1px dashed #B5985A;border-radius:3px;padding:0 3px;background:none;color:#8E6410}
+}
+/* ---------- Bulk grid ---------- */
+.grid-tbl td[contenteditable]{min-width:220px;outline:none;border-radius:4px}
+.grid-tbl td[contenteditable]:focus{box-shadow:inset 0 0 0 2px var(--green)}
+.grid-tbl td.dirty{background:var(--amber-soft)}
+.cov{border-collapse:collapse;font-size:12px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.cov th,.cov td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:center}
+.cov th{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);background:var(--bg)}
+.cov td:first-child,.cov th:first-child{text-align:start}
+.cov td.z{background:var(--red-soft);color:var(--red);font-weight:600}
+.cov td.l{background:var(--amber-soft);color:var(--amber)}
+.cov td.g{color:var(--green-ink)}
+.cl{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:8px;background:var(--surface)}
+.cl .tt{display:flex;gap:8px;align-items:center;font-size:12.5px;margin-bottom:4px}
+.tray-f .verify{font-size:12px;color:var(--ink3);text-align:center;margin-top:8px}
+.tray-f .verify button{color:var(--green);font-weight:500}
 
 /* ---------- Toast ---------- */
 #toasts{position:fixed;inset-block-end:22px;inset-inline-start:50%;transform:translateX(-50%);align-items:center;display:flex;flex-direction:column;gap:8px;z-index:100;pointer-events:none}
@@ -397,11 +518,12 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
 <div id="splash" class="hide" aria-label="home"></div>
 <div id="app"></div>
 <div id="overlays"></div>
+<div id="print" aria-hidden="true"></div>
 <div id="toasts" aria-live="polite"></div>
 
 <script type="application/json" id="bank">
 {
- "version": "1.0.0",
+ "version": "2.0.0",
  "publishedAt": "2026-10-08",
  "appName": {
   "en": "Mudawwana",
@@ -415,7 +537,19 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
   "charLimit": 2000,
   "rtlMarks": true,
   "adminHash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
-  "logo": ""
+  "logo": "",
+  "stamp": {
+   "en": "Reviewed by {{name}} · {{team}} · {{date}}",
+   "ar": "تمت المراجعة بواسطة {{name}} · {{team}} · {{date}}"
+  },
+  "attachHeading": {
+   "en": "Required attachments:",
+   "ar": "المستندات المطلوبة:"
+  },
+  "teamName": {
+   "en": "Service Development Team",
+   "ar": "فريق تطوير الخدمات"
+  }
  },
  "openers": [
   {
@@ -1228,7 +1362,11 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
     "certificate of change",
     "attachment",
     "trade license"
-   ]
+   ],
+   "doc": {
+    "en": "Certificate of change in trade licence",
+    "ar": "شهادة التغيير بالرخصة التجارية"
+   }
   },
   {
    "id": "doi-04",
@@ -1241,7 +1379,11 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
     "commercial registration",
     "incorporation",
     "legal type"
-   ]
+   ],
+   "doc": {
+    "en": "Commercial registration certificate",
+    "ar": "شهادة التسجيل التجاري"
+   }
   },
   {
    "id": "doi-05",
@@ -1254,7 +1396,11 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
     "MOA",
     "memorandum",
     "attachment"
-   ]
+   ],
+   "doc": {
+    "en": "Original Memorandum of Association",
+    "ar": "عقد التأسيس الأصلي"
+   }
   },
   {
    "id": "doi-06",
@@ -1290,7 +1436,11 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
     "foreign",
     "certificate of incorporation",
     "COI"
-   ]
+   ],
+   "doc": {
+    "en": "Certificate of incorporation of the parent company",
+    "ar": "شهادة تأسيس الشركة الأم"
+   }
   },
   {
    "id": "doi-08",
@@ -1362,7 +1512,11 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
     "emirates id",
     "expired",
     "attachment"
-   ]
+   ],
+   "doc": {
+    "en": "Updated Emirates ID",
+    "ar": "الهوية الإماراتية المحدثة"
+   }
   },
   {
    "id": "np-05",
@@ -1375,7 +1529,11 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
     "passport",
     "expired",
     "attachment"
-   ]
+   ],
+   "doc": {
+    "en": "Updated passport",
+    "ar": "جواز السفر المحدث"
+   }
   },
   {
    "id": "np-06",
@@ -1597,7 +1755,11 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
     "certificate",
     "old and new",
     "license number"
-   ]
+   ],
+   "doc": {
+    "en": "Certificate of Continuation (old and new licence numbers)",
+    "ar": "شهادة الاستمرارية (رقما الرخصة القديم والجديد)"
+   }
   },
   {
    "id": "lid-01",
@@ -1634,7 +1796,11 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
     "cancellation",
     "liquidation",
     "certificate"
-   ]
+   ],
+   "doc": {
+    "en": "Trade licence cancellation / liquidation certificate",
+    "ar": "شهادة إلغاء أو تصفية الرخصة التجارية"
+   }
   },
   {
    "id": "led-02",
@@ -1677,7 +1843,11 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
     "title deed",
     "attachment",
     "expired"
-   ]
+   ],
+   "doc": {
+    "en": "Updated trade licence / title deed",
+    "ar": "الرخصة التجارية المحدثة أو سند الملكية"
+   }
   },
   {
    "id": "led-04",
@@ -1690,7 +1860,11 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
     "good standing",
     "certificate",
     "attachment"
-   ]
+   ],
+   "doc": {
+    "en": "Updated certificate of good standing",
+    "ar": "شهادة حسن السيرة والسلوك المحدثة"
+   }
   },
   {
    "id": "led-05",
@@ -1807,7 +1981,11 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
     "AOA",
     "shareholding certificate",
     "attachment"
-   ]
+   ],
+   "doc": {
+    "en": "Updated trade licence / MOA / AOA / shareholding certificate",
+    "ar": "الرخصة التجارية أو عقد التأسيس أو شهادة الأسهم المحدثة"
+   }
   },
   {
    "id": "ow-03",
@@ -1837,7 +2015,11 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
     "incumbency",
     "offshore",
     "attachment"
-   ]
+   ],
+   "doc": {
+    "en": "Updated certificate of incumbency",
+    "ar": "شهادة شغل الوظيفة المحدثة"
+   }
   },
   {
    "id": "ow-05",
@@ -1914,7 +2096,11 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
     "branch",
     "trade license",
     "attachment"
-   ]
+   ],
+   "doc": {
+    "en": "Valid trade licence for the branch",
+    "ar": "رخصة تجارية سارية للفرع"
+   }
   },
   {
    "id": "br-03",
@@ -2071,7 +2257,11 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
     "POA",
     "power of attorney",
     "attachment"
-   ]
+   ],
+   "doc": {
+    "en": "Updated MOA or power of attorney",
+    "ar": "عقد التأسيس المعدل أو الوكالة القانونية"
+   }
   },
   {
    "id": "tin-01",
@@ -2303,6 +2493,162 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
     "en": "Generic “{{authority}}” template was added by the tool for authorities not listed in the PDF. Dismiss to keep, or archive the comment.",
     "ar": "تمت إضافة قالب عام لجهة الإصدار «{{authority}}» للجهات غير المذكورة في الملف. تجاهل للإبقاء عليه، أو أرشف التعليق."
    }
+  },
+  {
+   "id": "rv-typo-doi-04",
+   "type": "typography",
+   "commentId": "doi-04",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "يرجى ارفاق شهادة التسجيل التجاري، وتعديل تاريخ التأسيس حسب تاريخ تغيير الشكل القانوني الموضح بها."
+   }
+  },
+  {
+   "id": "rv-typo-led-01",
+   "type": "typography",
+   "commentId": "led-01",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "يرجى ارفاق شهادة الغاء – تصفية الرخصة التجارية."
+   }
+  },
+  {
+   "id": "rv-typo-ow-05",
+   "type": "typography",
+   "commentId": "ow-05",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "في قائمة الملاك، يرجى تعديل الشكل القانوني للمالك الى \"شخص طبيعي\" وذلك للتمكن من إضافة بيانات الهوية الإماراتية."
+   }
+  },
+  {
+   "id": "rv-typo-ow-06",
+   "type": "typography",
+   "commentId": "ow-06",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "في قائمة الملاك، يرجى تعديل الشكل القانوني للمالك الى \"شخص اعتباري\" وذلك للتمكن من إضافة بيانات الرخصة التجارية."
+   }
+  },
+  {
+   "id": "rv-typo-ow-07",
+   "type": "typography",
+   "commentId": "ow-07",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "في قائمة الملاك، يرجى تعديل جهة اصدار المالك الى \"أجنبية\"."
+   }
+  },
+  {
+   "id": "rv-typo-ow-08",
+   "type": "typography",
+   "commentId": "ow-08",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "في قائمة الملاك، يرجى تعديل جهة الإصدار الى \"{{authority}}\"."
+   }
+  },
+  {
+   "id": "rv-typo-ad-03",
+   "type": "typography",
+   "commentId": "ad-03",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "حاولنا التواصل هاتفيا على الرقم الموجود في سجلكم الضريبي لكن لم يتم الرد على اتصالنا، لذا نرجو منكم إضافة رقم هاتف يمكن الوصول اليه."
+   }
+  },
+  {
+   "id": "rv-typo-ad-04",
+   "type": "typography",
+   "commentId": "ad-04",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "يرجى تعديل المدينة الي {{city}}."
+   }
+  },
+  {
+   "id": "rv-typo-ad-06",
+   "type": "typography",
+   "commentId": "ad-06",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "يرجى كتابة رقم تواصل فعال."
+   }
+  },
+  {
+   "id": "rv-typo-sg-01",
+   "type": "typography",
+   "commentId": "sg-01",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "يرجى تعديل الشخص المخول بالتوقيع ليكون مطابقا لعقد التأسيس المعدل."
+   }
+  },
+  {
+   "id": "rv-typo-sg-02",
+   "type": "typography",
+   "commentId": "sg-02",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "يرجى تعديل الشخص المخول بالتوقيع ليكون مطابقا للرخصة التجارية."
+   }
+  },
+  {
+   "id": "rv-typo-sg-03",
+   "type": "typography",
+   "commentId": "sg-03",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "يرجى ارفاق عقد التأسيس المعدل أو الوكالة القانونية التي توضح الشخص المخول بالتوقيع الحالي."
+   }
   }
  ],
  "placeholders": {
@@ -2419,7 +2765,144 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
    "at": "2026-10-08",
    "by": "admin",
    "note": "First draft: all Arabic proposals accepted (22 translations added, 3 corrections)."
+  },
+  {
+   "version": "2.0.0",
+   "at": "2026-10-08",
+   "by": "Service Development Team",
+   "note": "Flagship polish: home page, walkthrough, command palette, scenarios, quality meter, conflict/duplicate checks, attachment summary, reviewer stamp, paste verification, bulk editor, coverage map, approval workflow, change log, print-to-PDF, autosave."
   }
+ ],
+ "scenarios": [
+  {
+   "id": "sc-sole-llc",
+   "en": "Sole Establishment → LLC change",
+   "ar": "تحويل مؤسسة فردية إلى ذ.م.م",
+   "ids": [
+    "doi-02",
+    "doi-03",
+    "doi-05"
+   ]
+  },
+  {
+   "id": "sc-expired",
+   "en": "Expired trade licence",
+   "ar": "رخصة تجارية منتهية",
+   "ids": [
+    "led-02",
+    "led-03"
+   ]
+  },
+  {
+   "id": "sc-branch",
+   "en": "Branch added",
+   "ar": "إضافة فرع",
+   "ids": [
+    "br-01",
+    "br-02",
+    "br-03"
+   ]
+  },
+  {
+   "id": "sc-owner",
+   "en": "Owner / shareholder change",
+   "ar": "تغيير المالك أو الشركاء",
+   "ids": [
+    "ow-01",
+    "ow-02",
+    "ow-03"
+   ]
+  },
+  {
+   "id": "sc-foreign",
+   "en": "Foreign company / branch",
+   "ar": "شركة أجنبية أو فرع أجنبي",
+   "ids": [
+    "et-13",
+    "doi-07",
+    "doi-08"
+   ]
+  },
+  {
+   "id": "sc-heirs",
+   "en": "Heirs case",
+   "ar": "حالة ورثة",
+   "ids": [
+    "et-19",
+    "np-06",
+    "np-05"
+   ]
+  },
+  {
+   "id": "sc-difc",
+   "en": "DIFC-type licence (annual renewal)",
+   "ar": "رخصة من نوع DIFC (تجديد سنوي)",
+   "ids": [
+    "doi-06",
+    "lid-01",
+    "led-02"
+   ]
+  },
+  {
+   "id": "sc-offshore",
+   "en": "Offshore company",
+   "ar": "شركة أوفشور",
+   "ids": [
+    "ow-04",
+    "led-06"
+   ]
+  },
+  {
+   "id": "sc-natural",
+   "en": "Natural person details",
+   "ar": "بيانات الشخص الطبيعي",
+   "ids": [
+    "np-01",
+    "np-02",
+    "np-03",
+    "np-04"
+   ]
+  },
+  {
+   "id": "sc-contact",
+   "en": "Unreachable contact",
+   "ar": "تعذر التواصل",
+   "ids": [
+    "ad-03",
+    "ad-06",
+    "ad-02"
+   ]
+  }
+ ],
+ "conflicts": [
+  [
+   "np-03",
+   "np-06"
+  ],
+  [
+   "ow-05",
+   "ow-06"
+  ],
+  [
+   "ow-07",
+   "ow-08"
+  ],
+  [
+   "lid-01",
+   "lid-02"
+  ],
+  [
+   "led-02",
+   "led-05"
+  ],
+  [
+   "doi-01",
+   "doi-06"
+  ]
+ ],
+ "exclusiveSubsections": [
+  "entity-type",
+  "authority"
  ]
 }
 </script>
@@ -2528,6 +3011,15 @@ const T = {
     eyebrow: 'Federal Tax Authority · Internal tool', slogan: 'Clear comments. Consistent cases. In seconds.', slogan_ar: 'تعليقات واضحة، حالات متسقة، في ثوانٍ.',
     start: 'Start', press_enter: 'or press Enter', skip_splash: 'Skip this page next time', developed: 'Developed by the', team: 'Service Development Team',
     f_comments: 'comments', f_sections: 'sections', f_langs: 'languages', home: 'Home',
+    scenarios: 'Scenarios', start_scenario: 'Start from a scenario', sc_replace: 'Use', sc_add: 'Add to composer', sc_empty: 'No scenarios yet — admins can add them.',
+    often_with: 'Often added with', quality: 'Ready to paste', q_blanks: 'All blanks filled', q_blanks_bad: 'blank(s) still empty', q_mix: 'No rejection mixed with requests', q_mix_bad: 'Rejection mixed with amendment requests', q_multi: 'Single rejection', q_multi_bad: 'More than one rejection', q_dup: 'No duplicate requests', q_dup_bad: 'Two comments ask for the same thing', q_conf: 'No contradictions', q_conf_bad: 'Contradicting comments selected', q_ar: 'Arabic available for all', q_ar_bad: 'Arabic missing for some', q_len: 'Within portal limit', q_len_bad: 'Over the portal limit', q_cond: 'Conditions checked', q_cond_warn: 'Check the condition on marked items',
+    attach_sum: 'Attachment summary', stamp: 'Reviewer stamp', verify: 'Verify paste', verify_title: 'Paste here to verify', verify_hint: 'Paste what you just copied (Ctrl+V). We compare it with the composed comment.', verify_ok: 'Identical — Arabic survived intact.', verify_bad: 'Differences found. The portal field may have altered the text.', verify_report: 'Download report',
+    palette_ph: 'Type a command or search comments…', pal_actions: 'Actions', pal_comments: 'Comments', pal_scen: 'Scenario', pal_preset: 'Preset',
+    act_lang: 'Switch to Arabic', act_theme: 'Toggle dark mode', act_home: 'Home page', act_help: 'Help & shortcuts', act_admin: 'Open admin', act_copy_en: 'Copy composed — EN only', act_copy_ar: 'Copy composed — AR only', act_copy_both: 'Copy composed — EN then AR', act_clear: 'Clear composer', act_present: 'Presentation mode', act_print: 'Print comment bank (PDF)', act_tour: 'Replay the walkthrough', act_scen: 'Start from a scenario',
+    present_on: 'Presentation mode on — press P to exit', present_off: 'Presentation mode off',
+    tour1_t: 'Search is the home', tour1_p: 'Type what you found in the case — English, Arabic, or an abbreviation like MOA or EID. Typos are fine.', tour2_t: 'Add what applies', tour2_p: 'Press Enter or click Add. Add as many comments as the case needs; they stack in the composer.', tour3_t: 'Fill blanks once', tour3_p: 'Dates, numbers and names are typed once and appear in both languages. Choose the output language and format.', tour4_t: 'Copy and paste', tour4_p: 'Ctrl+Enter copies clean text with Arabic intact. The meter tells you when it is ready to paste.', next: 'Next', done: 'Done', skip: 'Skip',
+    new_since: 'new since your last visit', last_updated: 'Last updated', draft_restored: 'Your unfinished comment was restored', storage_blocked: 'This browser blocks local storage — favourites, presets and admin edits will not be kept.', version_conflict: 'You opened an older copy than the one you last edited', stay: 'Continue anyway',
+    print: 'Print bank', team_label: 'Team (for the stamp)',
   },
   ar: {
     search_ph: 'ابحث في التعليقات… مثال: هوية منتهية، عقد التأسيس، جافزا، eid',
@@ -2557,6 +3049,15 @@ const T = {
     eyebrow: 'الهيئة الاتحادية للضرائب · أداة داخلية', slogan: 'تعليقات واضحة، حالات متسقة، في ثوانٍ.', slogan_ar: 'Clear comments. Consistent cases. In seconds.',
     start: 'ابدأ', press_enter: 'أو اضغط Enter', skip_splash: 'تخطَّ هذه الصفحة في المرة القادمة', developed: 'تطوير', team: 'فريق تطوير الخدمات',
     f_comments: 'تعليق', f_sections: 'أقسام', f_langs: 'لغتان', home: 'الرئيسية',
+    scenarios: 'سيناريوهات', start_scenario: 'ابدأ من سيناريو', sc_replace: 'استخدم', sc_add: 'أضف إلى المنشئ', sc_empty: 'لا توجد سيناريوهات بعد — يمكن للمسؤول إضافتها.',
+    often_with: 'غالباً يُضاف معه', quality: 'جاهز للصق', q_blanks: 'كل الفراغات مملوءة', q_blanks_bad: 'فراغ لم يُملأ', q_mix: 'لا خلط بين رفض وطلبات', q_mix_bad: 'رفض مخلوط بطلبات تعديل', q_multi: 'رفض واحد فقط', q_multi_bad: 'أكثر من رفض', q_dup: 'لا طلبات مكررة', q_dup_bad: 'تعليقان يطلبان الشيء نفسه', q_conf: 'لا تناقض', q_conf_bad: 'تعليقات متناقضة', q_ar: 'العربية متوفرة للكل', q_ar_bad: 'العربية ناقصة لبعضها', q_len: 'ضمن حد البوابة', q_len_bad: 'يتجاوز حد البوابة', q_cond: 'الشروط مراجَعة', q_cond_warn: 'راجع شرط العناصر المعلّمة',
+    attach_sum: 'ملخص المرفقات', stamp: 'ختم المراجع', verify: 'تحقق من اللصق', verify_title: 'الصق هنا للتحقق', verify_hint: 'الصق ما نسخته (Ctrl+V). سنقارنه بالتعليق المركّب.', verify_ok: 'مطابق — العربية سليمة.', verify_bad: 'توجد اختلافات. قد يكون حقل البوابة غيّر النص.', verify_report: 'تنزيل تقرير',
+    palette_ph: 'اكتب أمراً أو ابحث في التعليقات…', pal_actions: 'أوامر', pal_comments: 'تعليقات', pal_scen: 'سيناريو', pal_preset: 'قالب',
+    act_lang: 'التبديل إلى الإنجليزية', act_theme: 'تبديل الوضع الداكن', act_home: 'الصفحة الرئيسية', act_help: 'المساعدة والاختصارات', act_admin: 'فتح الإدارة', act_copy_en: 'نسخ المركّب — EN فقط', act_copy_ar: 'نسخ المركّب — AR فقط', act_copy_both: 'نسخ المركّب — EN ثم AR', act_clear: 'مسح المنشئ', act_present: 'وضع العرض', act_print: 'طباعة بنك التعليقات (PDF)', act_tour: 'إعادة الجولة التعريفية', act_scen: 'ابدأ من سيناريو',
+    present_on: 'وضع العرض مفعّل — اضغط P للخروج', present_off: 'تم إيقاف وضع العرض',
+    tour1_t: 'البحث هو البداية', tour1_p: 'اكتب ما وجدته في الحالة — بالعربية أو الإنجليزية أو اختصار مثل MOA أو EID. الأخطاء الإملائية مقبولة.', tour2_t: 'أضف ما ينطبق', tour2_p: 'اضغط Enter أو انقر إضافة. أضف ما تحتاجه الحالة؛ تتجمع في المنشئ.', tour3_t: 'املأ الفراغات مرة واحدة', tour3_p: 'التواريخ والأرقام والأسماء تُكتب مرة واحدة وتظهر باللغتين. اختر لغة الإخراج وتنسيقه.', tour4_t: 'انسخ والصق', tour4_p: 'Ctrl+Enter ينسخ نصاً نظيفاً مع بقاء العربية سليمة. المؤشر يخبرك متى يكون جاهزاً.', next: 'التالي', done: 'تم', skip: 'تخطٍّ',
+    new_since: 'جديد منذ زيارتك الأخيرة', last_updated: 'آخر تحديث', draft_restored: 'تمت استعادة تعليقك غير المكتمل', storage_blocked: 'هذا المتصفح يمنع التخزين المحلي — لن تُحفظ المفضلة والقوالب وتعديلات الإدارة.', version_conflict: 'فتحت نسخة أقدم من التي عدّلتها آخر مرة', stay: 'المتابعة على أي حال',
+    print: 'طباعة البنك', team_label: 'الفريق (للختم)',
   }
 };
 const FTA_LOGO = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIgAAACVCAMAAAC0LEIlAAAAwFBMVEXp7OXj5NzvoKLm2tLTYGXfHiKoJiYZIh4sjVqx7s9RnnWS07AndUxsc2wLbzqyU1SMjo1orIrUMUSzN0R3x5oGhTv3ucX7xrvdeYdaEhWsSjXbhntVZTk9PkB9foCYfIavhnW+v8HFRTp2P0RVxX3+/v4OiEsVFxgGBggmJijrGSvRJS7rJS/RGSgKlFDx6esSeUjw5uazJi7q++7Gxsby5OO2t7enp6g2NjdHR0iWlpfSFxhnZ2m0GSccHSFWVlc+IH/5AAAAQHRSTlNinv/m////////////////////////////////////////////AP///////////w//Lv8s+Uj/////////////PjQX1gAAGNZJREFUeNrtXHt/osi2raIANWp85dXdZ86cc+4lgGgQBMX39/9WZ61dmE7SSdTunvndPy49+cUgUov9WHvtqnJU8GuH0ioIyuDXD/Vzn1L151rtQdvM53w5V1qrvxVIGuhWu234Ul91Op0beRmY9mDQUn+vRdoYfqA5eGf2OGu2tZxsdjpXrb8VCOyA4YFEtTrNx6frpgx/hdezK/N3AjFX109Pj9ft+VwPZo+PT7dNumTQwclHMRRCWJu20vO/BAhvrhUPc/OEY9ZpA9PgES8frzBmC8aBedpyrblpdprmL7GIubpqHo9Hjt6EH5RuiXU6N8DXnuH0dbMdIItwutnB+78fyHzA8Xk0nwgDXmheD1oaMYo/H2d4pQf00nWnhdxm8DxeD9T8twPRV7NHC+CpPh6fZrMbHczFEEgdNW9d4RIErJ4rQyCPs/ZfCMSCwOPSEMxcPeDL66sW/NQU7wxUoNszWO6x05r/dte0O7PjcT2jXxiat008s6EhiMSoNsPnetbWRg06s4uQnB9OpvXiaLfgB5qm2Zqr1pUY4hiwt81Zyxg9gHkAuPVbgODd+fulhvnCiLi+MnPrEnBIAPbg6KA4JDnh4X2tDvGh+FWLKFDHvMZy/C3ljYzVlNgEhZk2yOy2iczVrcE1g4gcAnhAd93vhlG0Ur8ERKOOHY8r/rw6mhjwFs7p48KbR6E4A9YXl12TYdtA8tTshGEchvoXgMyluM0sgyEX66PTsXwiWXT71HwEw87J+ghNZK5uN+sCECBirhHV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';
@@ -2564,11 +3065,13 @@ const FTA_WHEEL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAYAAAA
 const FTA_TEXT = 'data:image/png;base64,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';
 let LANG = 'en';
 const t = k => (T[LANG] && T[LANG][k]) ?? T.en[k] ?? k;
+const A = (en, ar) => LANG === 'ar' ? ar : en;
 const L = o => (o && (o[LANG] || o.en || o.ar)) || '';
 
 /* ---------------- Store ---------------- */
 const EMBED = JSON.parse($('#bank').textContent);
 const KEY = { bank: 'mdw.bank.v1', user: 'mdw.user.v1', stash: 'mdw.stash.' };
+function cmpVer(a, b) { const A = String(a).split('.').map(Number), B = String(b).split('.').map(Number); for (let i = 0; i < 3; i++) { if ((A[i] || 0) !== (B[i] || 0)) return (A[i] || 0) - (B[i] || 0); } return 0; }
 const Store = {
   bank: null, user: null, updateInfo: null,
   load() {
@@ -2580,7 +3083,7 @@ const Store = {
       if (stored) {
         try { localStorage.setItem(KEY.stash + stored.base, JSON.stringify(stored)); } catch (e) {}
         const oldIds = new Set((stored.bank.comments || []).map(c => c.id));
-        const added = this.bank.comments.filter(c => !oldIds.has(c.id));
+        const added = this.bank.comments.filter(c => !oldIds.has(c.id) && c.status === 'published');
         this.updateInfo = { from: stored.base, to: EMBED.version, added };
       }
     }
@@ -2588,9 +3091,15 @@ const Store = {
     this.bank.suggestions ||= [];
     try { this.user = JSON.parse(localStorage.getItem(KEY.user) || 'null'); } catch (e) {}
     this.user ||= {};
-    Object.assign(this.user, { favs: this.user.favs || [], recents: this.user.recents || [], presets: this.user.presets || [], usage: this.user.usage || {}, zeroHits: this.user.zeroHits || [], lang: this.user.lang || 'en', theme: this.user.theme || 'auto', name: this.user.name || '' });
+    Object.assign(this.user, { favs: this.user.favs || [], recents: this.user.recents || [], presets: this.user.presets || [], usage: this.user.usage || {}, zeroHits: this.user.zeroHits || [], lang: this.user.lang || 'en', theme: this.user.theme || 'auto', name: this.user.name || '', team: this.user.team || '', cooc: this.user.cooc || {}, recentValues: this.user.recentValues || {}, lastSeenIds: this.user.lastSeenIds || null, tourDone: !!this.user.tourDone, lastSplashDay: this.user.lastSplashDay || '', draft: this.user.draft || null });
+    this.bank.scenarios ||= []; this.bank.conflicts ||= []; this.bank.changelog ||= {};
+    this.storageOk = (() => { try { localStorage.setItem('mdw.probe', '1'); localStorage.removeItem('mdw.probe'); return true; } catch (e) { return false; } })();
+    this.versionConflict = stored && cmpVer(stored.base, EMBED.version) > 0 ? stored.base : null;
+    if (this.versionConflict) this.updateInfo = null;
   },
-  save() { try { localStorage.setItem(KEY.bank, JSON.stringify({ base: EMBED.version, bank: this.bank })); } catch (e) { toast(t('copy_failed'), 'err'); } },
+  save() { try { localStorage.setItem(KEY.bank, JSON.stringify({ base: EMBED.version, bank: this.bank })); } catch (e) { toast(t('storage_blocked'), 'err', 4000); } },
+  newSinceLast() { if (!this.user.lastSeenIds) return []; const seen = new Set(this.user.lastSeenIds); return this.published().filter(c => !seen.has(c.id)); },
+  markSeen() { this.user.lastSeenIds = this.published().map(c => c.id); this.saveUser(); },
   saveUser() { try { localStorage.setItem(KEY.user, JSON.stringify(this.user)); } catch (e) {} },
   comment(id) { return this.bank.comments.find(c => c.id === id); },
   section(id) { return this.bank.sections.find(s => s.id === id); },
@@ -2717,31 +3226,35 @@ async function copyText(text) {
 function renderText(text, terms, values) {
   if (!text) return '';
   const parts = []; let last = 0; let m; TOKEN_RE.lastIndex = 0;
+  const ar = hasArabic(text);
+  const seg = x => { if (!ar) return Search.highlight(x, terms); const marked = x.replace(/[A-Za-z][A-Za-z0-9 .,'\/()%&-]*[A-Za-z0-9).%]|[A-Za-z]/g, r => '\u0001' + r + '\u0002'); return Search.highlight(marked, terms).replace(/\u0001/g, '<bdi>').replace(/\u0002/g, '</bdi>'); };
   while ((m = TOKEN_RE.exec(text))) {
-    parts.push(Search.highlight(text.slice(last, m.index), terms));
+    parts.push(seg(text.slice(last, m.index)));
     const v = values && values[m[1]];
     parts.push(v ? `<span class="tok filled">${h(v)}</span>` : `<span class="tok">${h(labelOf(m[1]))}</span>`);
     last = m.index + m[0].length;
   }
-  parts.push(Search.highlight(text.slice(last), terms));
+  parts.push(seg(text.slice(last)));
   return parts.join('');
 }
 function labelOf(tok) { const p = (Store.bank.placeholders || {})[tok]; return p ? L(p) : tok; }
 
 /* ---------------- Composer ---------------- */
 const Composer = {
-  items: [], values: {}, opts: { lang: 'both', format: 'numbered', opener: false, closer: false },
+  items: [], values: {}, opts: { lang: 'both', format: 'numbered', opener: false, closer: false, attach: false, stamp: false }, lastCopied: '',
+  persist() { Store.user.draft = this.items.length ? { items: [...this.items], values: { ...this.values }, opts: { ...this.opts } } : null; Store.saveUser(); },
+  restore() { const d = Store.user.draft; if (!d || !d.items?.length) return false; this.items = d.items.filter(id => Store.comment(id)); this.values = d.values || {}; this.opts = { ...this.opts, ...(d.opts || {}) }; return this.items.length > 0; },
   has(id) { return this.items.includes(id); },
   add(id) {
     if (this.has(id)) { this.remove(id); return; }
-    this.items.push(id); this.render(); toast(t('toast_added'));
+    this.items.push(id); this.render(); this.persist(); toast(t('toast_added'));
     const card = $(`.card[data-id="${id}"]`); if (card) { card.classList.add('flash'); setTimeout(() => card.classList.remove('flash'), 650); }
     updateCardStates();
     if (window.matchMedia('(max-width:1180px)').matches) document.body.classList.add('tray-open');
   },
-  remove(id) { this.items = this.items.filter(x => x !== id); this.render(); updateCardStates(); },
-  move(id, dir) { const i = this.items.indexOf(id); const j = i + dir; if (j < 0 || j >= this.items.length) return; [this.items[i], this.items[j]] = [this.items[j], this.items[i]]; this.render(); },
-  clear() { this.items = []; this.values = {}; this.render(); updateCardStates(); },
+  remove(id) { const el = $(`#citems .citem[data-cid="${id}"]`); const fin = () => { this.items = this.items.filter(x => x !== id); this.render(); this.persist(); updateCardStates(); }; if (el && !matchMedia('(prefers-reduced-motion:reduce)').matches) { el.classList.add('out'); setTimeout(fin, 170); } else fin(); },
+  move(id, dir) { const i = this.items.indexOf(id); const j = i + dir; if (j < 0 || j >= this.items.length) return; [this.items[i], this.items[j]] = [this.items[j], this.items[i]]; this.render(); this.persist(); },
+  clear() { this.items = []; this.values = {}; this.render(); this.persist(); updateCardStates(); },
   tokens() { const out = []; this.items.forEach(id => { const c = Store.comment(id); if (!c) return; [...tokensOf(c.en), ...tokensOf(c.ar)].forEach(tk => { if (!out.includes(tk)) out.push(tk); }); }); return out; },
   fill(text) { return (text || '').replace(TOKEN_RE, (_, k) => { const v = this.values[k]; if (!v) return '(……)'; const p = Store.bank.placeholders?.[k]; return p?.type === 'date' ? fmtDate(v) : v; }); },
   lines(id, n) {
@@ -2772,13 +3285,13 @@ const Composer = {
     const closer = (w) => this.opts.closer && cl && cl[w] ? [{ d: 'ltr', s: '' }, { d: w === 'en' ? 'ltr' : 'rtl', s: (w === 'ar' ? rtl : '') + cl[w] }] : [];
     const sep = this.opts.format === 'plain' ? [{ d: 'ltr', s: '' }] : [];
     const join = arr => arr.flatMap((l, i) => i ? [...sep, l] : [l]);
-    if (lang === 'en') out.push(...opener('en'), ...join(block('en')), ...closer('en'));
-    else if (lang === 'ar') out.push(...opener('ar'), ...join(block('ar')), ...closer('ar'));
+    if (lang === 'en') out.push(...opener('en'), ...join(block('en')), ...closer('en'), ...this.extras('en'));
+    else if (lang === 'ar') out.push(...opener('ar'), ...join(block('ar')), ...closer('ar'), ...this.extras('ar'));
     else if (lang === 'both') {
       const en = block('en'), ar = block('ar');
-      out.push(...opener('en'), ...join(en), ...closer('en'));
+      out.push(...opener('en'), ...join(en), ...closer('en'), ...this.extras('en'));
       if (en.length && ar.length) out.push({ d: 'ltr', s: '' });
-      out.push(...opener('ar'), ...join(ar), ...closer('ar'));
+      out.push(...opener('ar'), ...join(ar), ...closer('ar'), ...this.extras('ar'));
     } else {
       out.push(...opener('en'), ...opener('ar').slice(0, 1));
       if (this.opts.opener) out.push({ d: 'ltr', s: '' });
@@ -2791,11 +3304,66 @@ const Composer = {
         if (en) out.push({ d: 'ltr', s: pre + en });
         if (ar) out.push({ d: 'rtl', s: rtl + (en ? '' : pre) + ar });
       });
-      out.push(...closer('en'), ...closer('ar').slice(1));
+      out.push(...closer('en'), ...closer('ar').slice(1), ...this.extras('en'), ...this.extras('ar'));
+    }
+    return out;
+  },
+  extras(which) {
+    const out = []; const rtl = Store.bank.settings.rtlMarks && which === 'ar' ? '\u200F' : ''; const d = which === 'en' ? 'ltr' : 'rtl';
+    if (this.opts.attach) {
+      const docs = this.items.map(id => Store.comment(id)).filter(c => c && c.doc && c.doc[which]).map(c => c.doc[which]);
+      if (docs.length) { out.push({ d: 'ltr', s: '' }); out.push({ d, s: rtl + (Store.bank.settings.attachHeading?.[which] || '') }); docs.forEach((x, i) => out.push({ d, s: rtl + `${i + 1}) ${x}` })); }
+    }
+    if (this.opts.stamp && Store.bank.settings.stamp?.[which]) {
+      const tm = Store.user.team || (Store.bank.settings.teamName?.[which] || ''); const name = Store.user.name || '—';
+      out.push({ d: 'ltr', s: '' }); out.push({ d, s: rtl + Store.bank.settings.stamp[which].replace('{{name}}', name).replace('{{team}}', tm).replace('{{date}}', fmtDate(today())) });
     }
     return out;
   },
   text() { return this.build().map(l => l.s).join('\n'); },
+  conflicts() {
+    const ids = this.items; const pairs = []; const conf = Store.bank.conflicts || []; const excl = Store.bank.exclusiveSubsections || [];
+    for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) {
+      const a = Store.comment(ids[i]), b = Store.comment(ids[j]); if (!a || !b) continue;
+      if (conf.some(([x, y]) => (x === a.id && y === b.id) || (x === b.id && y === a.id))) pairs.push([a.id, b.id]);
+      else if (a.ss === b.ss && excl.includes(a.ss)) pairs.push([a.id, b.id]);
+    }
+    return pairs;
+  },
+  duplicates() {
+    const ids = this.items; const pairs = [];
+    for (let i = 0; i < ids.length; i++) for (let j = i + 1; j < ids.length; j++) {
+      const a = Store.comment(ids[i]), b = Store.comment(ids[j]); if (!a || !b) continue;
+      if (a.kind === 'attachment' && b.kind === 'attachment' && a.doc && b.doc && norm(a.doc.en) === norm(b.doc.en)) pairs.push([a.id, b.id]);
+      else if (a.ss === b.ss && a.kind === b.kind && a.kind !== 'rejection') { const A = new Set(norm(a.en).split(' ')), B = new Set(norm(b.en).split(' ')); let k = 0; A.forEach(x => B.has(x) && k++); if (k / Math.max(A.size, B.size) > 0.8) pairs.push([a.id, b.id]); }
+    }
+    return pairs;
+  },
+  quality() {
+    if (!this.items.length) return null;
+    const checks = []; const toks = this.tokens(); const unfilled = toks.filter(k => !this.values[k]).length;
+    const kinds = this.items.map(id => Store.comment(id)?.kind); const rej = kinds.filter(k => k === 'rejection').length;
+    const limit = Store.bank.settings.charLimit || 0; const len = this.text().length;
+    const needAr = this.opts.lang !== 'en'; const missAr = needAr && this.items.some(id => !Store.comment(id)?.ar);
+    const conf = this.conflicts().length, dup = this.duplicates().length; const cond = this.items.some(id => Store.comment(id)?.cond);
+    checks.push({ k: 'blanks', ok: !unfilled, lvl: 'bad', m: unfilled ? `${unfilled} ${t('q_blanks_bad')}` : t('q_blanks') });
+    checks.push({ k: 'conf', ok: !conf, lvl: 'bad', m: conf ? t('q_conf_bad') : t('q_conf') });
+    checks.push({ k: 'mix', ok: !(rej && rej < kinds.length), lvl: 'bad', m: (rej && rej < kinds.length) ? t('q_mix_bad') : t('q_mix') });
+    checks.push({ k: 'multi', ok: rej <= 1, lvl: 'bad', m: rej > 1 ? t('q_multi_bad') : t('q_multi') });
+    checks.push({ k: 'dup', ok: !dup, lvl: 'warn', m: dup ? t('q_dup_bad') : t('q_dup') });
+    checks.push({ k: 'ar', ok: !missAr, lvl: 'warn', m: missAr ? t('q_ar_bad') : t('q_ar') });
+    checks.push({ k: 'len', ok: !(limit && len > limit), lvl: 'bad', m: (limit && len > limit) ? t('q_len_bad') : t('q_len') });
+    if (cond) checks.push({ k: 'cond', ok: true, lvl: 'warn', info: true, m: t('q_cond_warn') });
+    let score = 100; checks.forEach(c => { if (!c.ok) score -= c.lvl === 'bad' ? 25 : 10; }); score = Math.max(0, score);
+    return { score, checks, level: score >= 90 ? 'g' : score >= 60 ? 'a' : 'r' };
+  },
+  suggest() {
+    if (!this.items.length) return [];
+    const score = {}; const co = Store.user.cooc;
+    this.items.forEach(id => { Object.entries(co[id] || {}).forEach(([o, n]) => { score[o] = (score[o] || 0) + n * 3; }); });
+    (Store.bank.scenarios || []).forEach(sc => { if (sc.ids.some(id => this.items.includes(id))) sc.ids.forEach(o => { score[o] = (score[o] || 0) + 1; }); });
+    return Object.entries(score).filter(([o]) => !this.items.includes(o) && Store.comment(o)?.status === 'published').sort((a, b) => b[1] - a[1]).slice(0, 4).map(([o]) => o);
+  },
   warnings() {
     const w = []; const unfilled = this.tokens().filter(k => !this.values[k]).length;
     const kinds = this.items.map(id => Store.comment(id)?.kind);
@@ -2815,7 +3383,25 @@ const Composer = {
       toast(`<b>${t('copied')}</b> · ${this.items.length}`);
       const b = $('#copyBtn'); if (b) { b.classList.add('done'); b.innerHTML = I.check + ' ' + t('copied'); setTimeout(() => { b.classList.remove('done'); b.innerHTML = I.copy + ' ' + t('copy'); }, 1400); }
       this.items.forEach(id => recordUse(id));
+      this.lastCopied = this.text();
+      const co = Store.user.cooc; this.items.forEach(a => this.items.forEach(b => { if (a !== b) { co[a] ||= {}; co[a][b] = (co[a][b] || 0) + 1; } }));
+      Object.entries(this.values).forEach(([k, v]) => { if (!v) return; const rv = Store.user.recentValues; rv[k] = [v, ...(rv[k] || []).filter(x => x !== v)].slice(0, 10); });
+      Store.saveUser(); const vf = $('#verifyWrap'); if (vf) vf.style.display = '';
     } else toast(t('copy_failed'), 'err', 4000);
+  },
+  async copyAs(lang) { const prev = this.opts.lang; this.opts.lang = lang; await this.copy(); this.opts.lang = prev; },
+  verifyDialog() {
+    const d = openDialog(`<div class="dlg-h"><h3>${t('verify_title')}</h3><span class="sp"></span><button class="ib" data-close>${I.x}</button></div>
+      <div class="dlg-b"><p class="note">${t('verify_hint')}</p><div class="field"><textarea id="vf-ta" style="min-height:160px" dir="auto"></textarea></div><div id="vf-res" style="margin-top:10px"></div></div>
+      <div class="dlg-f"><button class="btn sec" data-close>${t('dismiss')}</button></div>`);
+    const ta = $('#vf-ta', d); setTimeout(() => ta.focus(), 50);
+    ta.addEventListener('input', () => {
+      const a = ta.value.replace(/\r\n/g, '\n').replace(/\u200F/g, '').trim(), b = this.lastCopied.replace(/\u200F/g, '').trim();
+      if (!a) { $('#vf-res', d).innerHTML = ''; return; }
+      const same = a === b; let diff = 0; const n = Math.max(a.length, b.length); for (let i = 0; i < n; i++) if (a[i] !== b[i]) diff++;
+      $('#vf-res', d).innerHTML = same ? `<div class="warn" style="background:var(--green-soft);color:var(--green-ink)">${I.check}<span>${t('verify_ok')}</span></div>` : `<div class="warn red">${I.warn}<span>${t('verify_bad')} (${diff} chars) · <button class="btn" id="vf-rep" style="height:24px;color:inherit;text-decoration:underline">${t('verify_report')}</button></span></div>`;
+      $('#vf-rep', d)?.addEventListener('click', () => download(`mudawwana-paste-report-${today()}.json`, JSON.stringify({ expected: b, pasted: a, at: nowIso(), ua: navigator.userAgent }, null, 2), 'application/json'));
+    });
   },
   savePreset() {
     if (!this.items.length) return;
@@ -2834,8 +3420,8 @@ const Composer = {
     const warns = this.warnings();
     tray.innerHTML = `
       <div class="tray-h">
-        <h3>${t('composer')}</h3><span class="n">${n}</span><span class="sp"></span>
-        ${n ? `<button class="btn" data-act="c-clear">${t('clear')}</button>` : ''}
+        <h3>${t('composer')}</h3><span class="n">${n}</span>${n ? `<span class="cc">${txt.length.toLocaleString()}</span>` : ''}<span class="sp"></span>
+        ${n ? `<button class="btn" data-act="c-clear" title="${t('clear')}">${I.trash}</button><button class="mini-copy" data-act="c-copy" title="${t('copy')} (Ctrl+Enter)">${I.copy} ${t('copy')}</button>` : ''}
         <button class="ib" data-act="tray-close" aria-label="close" style="display:none" id="trayClose">${I.x}</button>
       </div>
       <div class="tray-b">
@@ -2857,7 +3443,7 @@ const Composer = {
           if (p.type === 'date') input = `<input type="date" class="${miss}" data-tok="${k}" value="${h(v)}">`;
           else if (p.type === 'select') input = `<select data-tok="${k}" class="${miss}"><option value="">—</option>${(p.options || []).map(o => `<option ${o === v ? 'selected' : ''}>${h(o)}</option>`).join('')}</select>`;
           else if (p.type === 'authority') input = `<input list="dl-auth" class="${miss}" data-tok="${k}" value="${h(v)}" placeholder="…"><datalist id="dl-auth">${auths.map(a => `<option value="${h(a)}">`).join('')}</datalist>`;
-          else input = `<input type="text" class="${miss}" data-tok="${k}" value="${h(v)}" ${/Ar$/.test(k) ? 'dir="rtl" lang="ar"' : ''} placeholder="…">`;
+          else { const rv = (Store.user.recentValues[k] || []); input = `<input type="text" class="${miss}" data-tok="${k}" value="${h(v)}" ${/Ar$/.test(k) ? 'dir="rtl" lang="ar"' : ''} placeholder="…" ${rv.length ? `list="dl-${k}"` : ''}>${rv.length ? `<datalist id="dl-${k}">${rv.map(x => `<option value="${h(x)}">`).join('')}</datalist>` : ''}`; }
           return `<div class="field"><label>${h(L(p))} <span class="vtag">{{${k}}}</span></label>${input}</div>`;
         }).join('')}</div>` : ''}
         ${n ? `<div class="lbl">${t('output')}</div>
@@ -2868,19 +3454,27 @@ const Composer = {
         <div class="opts" style="margin-top:8px">
           <label class="check"><input type="checkbox" data-opt-chk="opener" ${this.opts.opener ? 'checked' : ''}> ${t('opener')}</label>
           <label class="check"><input type="checkbox" data-opt-chk="closer" ${this.opts.closer ? 'checked' : ''}> ${t('closer')}</label>
+          <label class="check"><input type="checkbox" data-opt-chk="attach" ${this.opts.attach ? 'checked' : ''}> ${t('attach_sum')}</label>
+          <label class="check"><input type="checkbox" data-opt-chk="stamp" ${this.opts.stamp ? 'checked' : ''}> ${t('stamp')}</label>
         </div>
         <div class="lbl">${t('preview')}</div>
         <div class="preview" id="preview" tabindex="0">${lines.map(l => `<span class="${l.d === 'rtl' ? 'arl' : 'enl'}" ${l.d === 'rtl' ? 'lang="ar"' : ''}>${h(l.s) || '&nbsp;'}</span>`).join('')}</div>
         <div class="meta"><span>${txt.length.toLocaleString()} ${t('chars')}${limit ? ` · ${t('limit')} ${limit.toLocaleString()}` : ''}</span>${over ? `<span class="over">${t('over_limit')}</span>` : ''}</div>
-        ${warns.map(w => `<div class="warn ${w.c}">${I.warn}<span>${w.m}</span></div>`).join('')}` : ''}
+` : ''}
+        ${(() => { const sg = this.suggest(); return sg.length ? `<div class="lbl">${t('often_with')}</div><div class="sugg">${sg.map(id => { const c = Store.comment(id); return `<button data-act="add" data-id="${id}" title="${h(c.en)}">${I.plus} ${h((c.en || c.ar).slice(0, 48))}…</button>`; }).join('')}</div>` : ''; })()}
         ${Store.user.presets.length ? `<div class="lbl">${t('presets')}</div><div class="presets">${Store.user.presets.map(p => `<button data-act="preset-load" data-pid="${p.id}">${h(p.name)} <span class="vtag">${p.ids.length}</span><i data-act="preset-del" data-pid="${p.id}" title="${t('remove')}">×</i></button>`).join('')}</div>` : ''}
       </div>
-      <div class="tray-f"><div class="row">
+      <div class="tray-f">${n ? this.qualityHtml() : ''}<div class="row" style="margin-top:${n ? '10px' : '0'}">
         <button class="btn lg pri copybtn" id="copyBtn" data-act="c-copy" ${n ? '' : 'disabled'}>${I.copy} ${t('copy')}</button>
         <button class="btn lg sec" data-act="c-preset" ${n ? '' : 'disabled'} title="${t('save_preset')}">${I.save}</button>
-      </div><div class="note" style="margin-top:8px;text-align:center"><span class="kbd">Ctrl</span>+<span class="kbd">Enter</span></div></div>`;
+      </div><div class="verify" id="verifyWrap" style="${this.lastCopied ? '' : 'display:none'}"><button data-act="c-verify">${t('verify')}</button></div><div class="note" style="margin-top:8px;text-align:center"><span class="kbd">Ctrl</span>+<span class="kbd">Enter</span></div></div>`;
     if (window.matchMedia('(max-width:1180px)').matches) $('#trayClose').style.display = 'grid';
     this.bindDrag();
+  },
+  qualityHtml() {
+    const q = this.quality(); if (!q) return '';
+    const open = q.checks.filter(c => !c.ok || c.info);
+    return `<div class="qm ${q.level}" id="qm"><div class="hd"><span>${q.level === 'g' && !open.length ? I.check + ' ' : ''}${t('quality')}</span><b>${q.score}%</b></div><div class="bar"><i style="width:${q.score}%"></i></div>${open.length ? `<ul>${open.map(c => `<li class="${c.info ? 'warn' : c.lvl}">${I.warn}<span>${c.m}</span></li>`).join('')}</ul>` : ''}</div>`;
   },
   bindDrag() {
     let dragId = null;
@@ -2897,6 +3491,7 @@ const Composer = {
     });
   }
 };
+Composer.persistDeb = debounce(() => Composer.persist(), 400);
 function recordUse(id) {
   Store.user.usage[id] = (Store.user.usage[id] || 0) + 1;
   Store.user.recents = [id, ...Store.user.recents.filter(x => x !== id)].slice(0, 8);
@@ -2915,7 +3510,7 @@ function renderShell() {
           <div><div class="t1">${h(L(b.appName))} <span class="ver">v${h(b.version)}</span></div><div class="t2">${h(L(b.subtitle))}</div></div>
         </button>
       </div>
-      <div class="searchwrap">${I.search}<input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="${h(t('search_ph'))}" aria-label="search"><span class="kbd">Ctrl K</span></div>
+      <div class="searchwrap">${I.search}<input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="${h(t('search_ph'))}" aria-label="search"><span class="kbd">/</span></div>
       <div class="topactions">
         <button class="pill" data-act="lang" title="${t('language')}">${I.globe} ${LANG === 'en' ? 'عربي' : 'English'}</button>
         <button class="ib" data-act="theme" title="${t('theme')}">${document.documentElement.dataset.theme === 'dark' ? I.sun : I.moon}</button>
@@ -2944,7 +3539,14 @@ function renderSidebar() {
       <div class="sub">${(s.subsections || []).map(ss => `<a href="#sub-${ss.id}" data-sub="${ss.id}">${h(L(ss))}<span class="n">${count(s.id, ss.id)}</span></a>`).join('')}</div></div>`).join('')}</div>
     ${favs.length ? `<h4>${t('favorites')}</h4><div class="mini">${favs.map(c => `<button data-act="jump" data-id="${c.id}" title="${h(c.en)}">${h((c.en || c.ar).slice(0, 34))}…</button>`).join('')}</div>` : ''}
     ${rec.length ? `<h4>${t('recents')}</h4><div class="mini">${rec.map(c => `<button data-act="jump" data-id="${c.id}" title="${h(c.en)}">${h((c.en || c.ar).slice(0, 34))}…</button>`).join('')}</div>` : ''}
-    ${Store.user.presets.length ? `<h4>${t('presets')}</h4><div class="mini">${Store.user.presets.map(p => `<button data-act="preset-load" data-pid="${p.id}">${h(p.name)}</button>`).join('')}</div>` : ''}`;
+    ${Store.user.presets.length ? `<h4>${t('presets')}</h4><div class="mini">${Store.user.presets.map(p => `<button data-act="preset-load" data-pid="${p.id}">${h(p.name)}</button>`).join('')}</div>` : ''}
+    ${Store.bank.scenarios.length ? `<h4>${t('scenarios')}</h4><div class="mini">${Store.bank.scenarios.map(sc => `<button data-act="scen-load" data-sid="${sc.id}" title="${h(sc.en)}">${h(L(sc))}</button>`).join('')}</div>` : ''}`;
+}
+function sysBanners() {
+  let o = '';
+  if (!Store.storageOk) o += `<div class="sysbanner red">${I.warn}<span>${t('storage_blocked')}</span></div>`;
+  if (Store.versionConflict) o += `<div class="sysbanner">${I.warn}<span><b>${t('version_conflict')}</b> — v${h(Store.versionConflict)} → v${h(EMBED.version)}</span><span class="sp"></span><button class="btn sec" data-act="vc-ok">${t('stay')}</button></div>`;
+  return o;
 }
 function passesFilter(c) {
   const f = UI.filter;
@@ -3005,12 +3607,12 @@ function renderMain() {
     if (!list.length) { const z = Store.user.zeroHits; if (!z.includes(UI.q.trim())) { z.unshift(UI.q.trim()); Store.user.zeroHits = z.slice(0, 50); Store.saveUser(); } }
     // group by section preserving score order of first appearance
     const groups = []; list.forEach(c => { let g = groups.find(x => x.s === c.s); if (!g) { g = { s: c.s, items: [] }; groups.push(g); } g.items.push(c); });
-    main.innerHTML = banner + `<div class="hero"><div><h1>${list.length} ${t('results')}</h1><p>“${h(UI.q)}”</p></div></div>${chipsHtml()}
+    main.innerHTML = sysBanners() + banner + `<div class="hero"><div><h1>${list.length} ${t('results')}</h1><p>“${h(UI.q)}”</p></div></div>${chipsHtml()}
       ${list.length ? groups.map(g => `<div class="sec-h"><h2>${h(L(Store.section(g.s)))}</h2><span class="cnt">${g.items.length}</span></div><div class="grid">${g.items.map(c => cardHtml(c, terms)).join('')}</div>`).join('')
         : `<div class="empty"><b>${t('no_results')}</b>${t('no_results_hint')}</div>`}`;
   } else {
     const pub = Store.published().filter(passesFilter);
-    main.innerHTML = banner + `<div class="hero"><div><h1>${t('browse_title')}</h1><p>${t('browse_sub')}</p></div><div class="vtag">${pub.length} · v${h(Store.bank.version)}</div></div>${chipsHtml()}<div class="gold-rule"></div>
+    main.innerHTML = sysBanners() + banner + `<div class="hero"><div><h1>${t('browse_title')}</h1><p>${t('browse_sub')}</p></div><div style="display:flex;gap:8px;align-items:center"><button class="btn sec" data-act="scenarios">${I.bulb} ${t('start_scenario')}</button><span class="vtag">${pub.length} · v${h(Store.bank.version)}</span></div></div>${chipsHtml()}<div class="gold-rule"></div>
       ${Store.bank.sections.map(s => {
         const inSec = pub.filter(c => c.s === s.id); if (!inSec.length) return '';
         return `<div class="sec-h" id="sec-${s.id}"><h2>${h(s.en)}</h2><span class="ar-t" lang="ar">${h(s.ar)}</span><span class="cnt">${inSec.length}</span></div>
@@ -3048,12 +3650,14 @@ function openDialog(html, cls = '') {
 function helpDialog() {
   const en = LANG === 'en';
   openDialog(`<div class="dlg-h"><h3>${t('help_title')}</h3><span class="sp"></span><button class="ib" data-close>${I.x}</button></div>
-  <div class="dlg-b help">
+  <div class="dlg-b help"><div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px"><button class="btn sec" data-act="tour" data-close>${I.eye} ${t('act_tour')}</button><button class="btn sec" data-act="print" data-close>${I.dl} ${t('act_print')}</button><button class="btn sec" data-act="present" data-close>${t('act_present')}</button></div>
     ${en ? `
     <p>Find the comments that match what you found in the case, add them to the composer, fill any blanks once, and copy. The result pastes cleanly into the customer portal with Arabic kept intact.</p>
     <h4>Keyboard</h4>
     <table>
-      <tr><td><span class="kbd">/</span> or <span class="kbd">Ctrl K</span></td><td>Focus search</td></tr>
+      <tr><td><span class="kbd">/</span></td><td>Focus search</td></tr>
+      <tr><td><span class="kbd">Ctrl K</span></td><td>Command palette — actions, scenarios, presets and comments</td></tr>
+      <tr><td><span class="kbd">P</span></td><td>Presentation mode (larger type, admin hidden)</td></tr>
       <tr><td><span class="kbd">↑</span> <span class="kbd">↓</span></td><td>Move between comments</td></tr>
       <tr><td><span class="kbd">Enter</span></td><td>Add / remove the highlighted comment</td></tr>
       <tr><td><span class="kbd">Space</span></td><td>Preview the highlighted comment in full</td></tr>
@@ -3078,7 +3682,9 @@ function helpDialog() {
     <p>ابحث عن التعليقات المطابقة لما وجدته في الحالة، أضفها إلى المنشئ، املأ الفراغات مرة واحدة، ثم انسخ. تُلصق النتيجة بشكل سليم في بوابة المتعامل مع بقاء العربية صحيحة.</p>
     <h4>لوحة المفاتيح</h4>
     <table>
-      <tr><td><span class="kbd">/</span> أو <span class="kbd">Ctrl K</span></td><td>الانتقال إلى البحث</td></tr>
+      <tr><td><span class="kbd">/</span></td><td>الانتقال إلى البحث</td></tr>
+      <tr><td><span class="kbd">Ctrl K</span></td><td>لوحة الأوامر — أوامر وسيناريوهات وقوالب وتعليقات</td></tr>
+      <tr><td><span class="kbd">P</span></td><td>وضع العرض</td></tr>
       <tr><td><span class="kbd">↑</span> <span class="kbd">↓</span></td><td>التنقل بين التعليقات</td></tr>
       <tr><td><span class="kbd">Enter</span></td><td>إضافة / إزالة التعليق المحدد</td></tr>
       <tr><td><span class="kbd">Space</span></td><td>معاينة التعليق كاملاً</td></tr>
@@ -3107,8 +3713,11 @@ function previewDialog(id) {
 }
 function whatsNewDialog() {
   const u = Store.updateInfo; if (!u) return;
-  openDialog(`<div class="dlg-h"><h3>${t('whats_new')} · v${h(u.to)}</h3><span class="sp"></span><button class="ib" data-close>${I.x}</button></div>
-    <div class="dlg-b"><div class="grid">${u.added.map(c => cardHtml(c, null)).join('')}</div></div>`, 'wide');
+  const cl = Store.bank.changelog?.[u.to];
+  openDialog(`<div class="dlg-h"><h3>${t('whats_new')} · v${h(u.to)}</h3>${cl?.note ? `<span class="vtag">${h(cl.note)}</span>` : ''}<span class="sp"></span><button class="ib" data-close>${I.x}</button></div>
+    <div class="dlg-b">${cl ? `<div class="stat"><div><b>${cl.added.length}</b><span>${A('added', 'مضاف')}</span></div><div><b>${cl.changed.length}</b><span>${A('changed', 'معدّل')}</span></div><div><b>${cl.archived.length}</b><span>${A('archived', 'مؤرشف')}</span></div></div>
+      ${cl.changed.map(x => `<div class="cl"><div class="tt"><span class="vtag" style="font-family:ui-monospace,monospace">${h(x.id)}</span></div><div class="diff en">${wordDiff(x.before.en, x.after.en)}</div><div class="diff ar" dir="rtl" lang="ar">${wordDiff(x.before.ar, x.after.ar)}</div></div>`).join('')}` : ''}
+      <div class="grid">${u.added.map(c => cardHtml(c, null)).join('')}</div></div>`, 'wide');
 }
 function suggestDialog() {
   const secs = Store.bank.sections.flatMap(s => (s.subsections || []).map(ss => ({ v: s.id + '/' + ss.id, l: L(s) + ' › ' + L(ss) })));
@@ -3150,16 +3759,145 @@ const Splash = {
         <div class="eyebrow" style="margin-top:12px;letter-spacing:.08em;text-transform:none;font-weight:500">${h(L(b.subtitle))}</div>
         <div class="rule"></div>
         <p class="slogan">${t('slogan')}<span class="${LANG === 'en' ? 'ar' : 'en'}" lang="${LANG === 'en' ? 'ar' : 'en'}" dir="${LANG === 'en' ? 'rtl' : 'ltr'}">${t('slogan_ar')}</span></p>
-        <div class="facts"><div><b>${pub.length}</b><span>${t('f_comments')}</span></div><div><b>${b.sections.length}</b><span>${t('f_sections')}</span></div><div><b>EN · AR</b><span>${t('f_langs')}</span></div><div><b>v${h(b.version)}</b><span>${h(b.publishedAt || '')}</span></div></div>
+        <div class="facts"><div><b>${pub.length}</b><span>${t('f_comments')}</span></div><div><b>${b.sections.length}</b><span>${t('f_sections')}</span></div><div><b>EN · AR</b><span>${t('f_langs')}</span></div><div><b>v${h(b.version)}</b><span>${t('last_updated')} ${h(b.publishedAt || '')}</span></div></div>
+        <div class="strip">${b.sections.map(s => `<span><b>${pub.filter(c => c.s === s.id).length}</b> ${h(L(s))}</span>`).join('')}${(() => { const nw = Store.newSinceLast().length; return nw ? `<span class="new"><b>${nw}</b> ${t('new_since')}</span>` : ''; })()}</div>
         <button class="start" data-act="start" autofocus>${t('start')} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
         <div class="hint">${t('press_enter')}</div>
         <label class="skip"><input type="checkbox" id="skipSplash" ${Store.user.skipSplash ? 'checked' : ''}> ${t('skip_splash')}</label>
       </div>
       <div class="foot"><div class="dev"><i></i><span>${t('developed')} <b>${t('team')}</b></span></div><span>© ${new Date().getFullYear()} · ${h(b.appName.en)} v${h(b.version)}</span></div>`;
   },
-  show() { this.render(); const el = $('#splash'); el.classList.remove('hide'); setTimeout(() => $('.start', el)?.focus(), 60); },
-  hide() { const el = $('#splash'); if (el.classList.contains('hide')) return; el.classList.add('hide'); setTimeout(() => $('#q')?.focus(), 80); }
+  show(force) { this.render(); const el = $('#splash'); el.classList.toggle('fast', !force && Store.user.lastSplashDay === today()); el.classList.remove('hide'); setTimeout(() => $('.start', el)?.focus(), 60); },
+  hide() { const el = $('#splash'); if (el.classList.contains('hide')) return; el.classList.add('hide'); Store.user.lastSplashDay = today(); Store.markSeen(); setTimeout(() => { $('#q')?.focus(); if (!Store.user.tourDone && !document.body.classList.contains('present')) Tour.start(); }, 120); }
 };
+
+/* ---------------- Scenarios ---------------- */
+const Scenarios = {
+  dialog() {
+    const sc = Store.bank.scenarios || [];
+    openDialog(`<div class="dlg-h"><h3>${t('start_scenario')}</h3><span class="sp"></span><button class="ib" data-close>${I.x}</button></div>
+      <div class="dlg-b">${sc.length ? `<div class="scen">${sc.map(x => `<div class="sc"><b>${h(x.en)}</b><span class="ar" lang="ar" dir="rtl">${h(x.ar)}</span><span class="n">${x.ids.filter(id => Store.comment(id)).length} · ${x.ids.map(id => Store.comment(id)).filter(Boolean).map(c => t('kind_' + c.kind)).filter((v, i, a) => a.indexOf(v) === i).join(', ')}</span>
+        <div class="acts"><button class="btn pri" data-act="scen-load" data-sid="${x.id}" data-close>${t('sc_replace')}</button><button class="btn sec" data-act="scen-add" data-sid="${x.id}" data-close>${t('sc_add')}</button></div></div>`).join('')}</div>` : `<p class="note">${t('sc_empty')}</p>`}</div>`, 'wide');
+  },
+  load(sid, append) {
+    const sc = Store.bank.scenarios.find(x => x.id === sid); if (!sc) return;
+    const ids = sc.ids.filter(id => Store.comment(id)?.status === 'published');
+    Composer.items = append ? [...Composer.items, ...ids.filter(id => !Composer.items.includes(id))] : [...ids];
+    Composer.render(); Composer.persist(); updateCardStates(); toast(`${h(L(sc))} · ${ids.length}`);
+    if (window.matchMedia('(max-width:1180px)').matches) document.body.classList.add('tray-open');
+  }
+};
+
+/* ---------------- Command palette ---------------- */
+const Palette = {
+  el: null, idx: 0, items: [],
+  actions() {
+    const a = [
+      { k: t('pal_actions'), tx: t('act_scen'), run: () => Scenarios.dialog(), kbd: '' },
+      { k: t('pal_actions'), tx: t('act_copy_both'), run: () => Composer.copyAs('both') },
+      { k: t('pal_actions'), tx: t('act_copy_en'), run: () => Composer.copyAs('en') },
+      { k: t('pal_actions'), tx: t('act_copy_ar'), run: () => Composer.copyAs('ar') },
+      { k: t('pal_actions'), tx: t('act_clear'), run: () => Composer.clear() },
+      { k: t('pal_actions'), tx: t('act_lang'), run: () => setLang(LANG === 'en' ? 'ar' : 'en') },
+      { k: t('pal_actions'), tx: t('act_theme'), run: () => toggleTheme() },
+      { k: t('pal_actions'), tx: t('act_present'), run: () => Present.toggle(), kbd: 'P' },
+      { k: t('pal_actions'), tx: t('act_print'), run: () => Print.run() },
+      { k: t('pal_actions'), tx: t('act_home'), run: () => Splash.show(true) },
+      { k: t('pal_actions'), tx: t('act_help'), run: () => helpDialog(), kbd: '?' },
+      { k: t('pal_actions'), tx: t('act_tour'), run: () => Tour.start() },
+      { k: t('pal_actions'), tx: t('act_admin'), run: () => Admin.enter() },
+    ];
+    Store.bank.scenarios.forEach(sc => a.push({ k: t('pal_scen'), tx: L(sc), run: () => Scenarios.load(sc.id) }));
+    Store.user.presets.forEach(p => a.push({ k: t('pal_preset'), tx: p.name, run: () => Composer.loadPreset(p.id) }));
+    return a;
+  },
+  open() {
+    if (this.el) return; const el = document.createElement('div'); el.id = 'palette'; this.el = el;
+    el.innerHTML = `<div class="box"><input id="pal-q" placeholder="${h(t('palette_ph'))}" autocomplete="off"><div class="list" id="pal-list"></div><div class="ft"><span><span class="kbd">↑↓</span> move</span><span><span class="kbd">Enter</span> run</span><span><span class="kbd">Esc</span> close</span></div></div>`;
+    $('#overlays').appendChild(el); this.update(''); $('#pal-q').focus();
+    $('#pal-q').addEventListener('input', e => this.update(e.target.value));
+    el.addEventListener('mousedown', e => { if (e.target === el) this.close(); });
+    el.addEventListener('click', e => { const it = e.target.closest('.it'); if (it) this.run(Number(it.dataset.i)); });
+  },
+  close() { this.el?.remove(); this.el = null; },
+  update(q) {
+    const qn = norm(q); let list = this.actions().filter(a => !qn || norm(a.tx).includes(qn) || norm(a.k).includes(qn));
+    if (qn) { const { hits } = Search.run(q); hits.slice(0, 8).forEach(x => { const c = Store.comment(x.id); list.push({ k: t('pal_comments'), tx: c.en || c.ar, run: () => Composer.add(c.id), keep: true }); }); }
+    else list = list.slice(0, 14);
+    this.items = list; this.idx = 0; this.paint();
+  },
+  paint() { $('#pal-list').innerHTML = this.items.map((a, i) => `<div class="it ${i === this.idx ? 'on' : ''}" data-i="${i}"><span class="k">${h(a.k)}</span><span class="tx">${h(a.tx)}</span>${a.kbd ? `<span class="kbd">${a.kbd}</span>` : ''}</div>`).join('') || `<div class="it"><span class="tx vtag">${t('no_results')}</span></div>`; $('#pal-list .it.on')?.scrollIntoView({ block: 'nearest' }); },
+  run(i) { const a = this.items[i]; if (!a) return; if (!a.keep) this.close(); a.run(); if (a.keep) { $('#pal-q').value = ''; this.update(''); $('#pal-q').focus(); } },
+  key(e) {
+    if (e.key === 'Escape') { e.preventDefault(); this.close(); }
+    else if (e.key === 'ArrowDown') { e.preventDefault(); this.idx = Math.min(this.items.length - 1, this.idx + 1); this.paint(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); this.idx = Math.max(0, this.idx - 1); this.paint(); }
+    else if (e.key === 'Enter') { e.preventDefault(); this.run(this.idx); }
+  }
+};
+
+/* ---------------- Tour ---------------- */
+const Tour = {
+  step: 0, el: null,
+  steps() { return [
+    { sel: '.searchwrap', t: t('tour1_t'), p: t('tour1_p') },
+    { sel: '.card', t: t('tour2_t'), p: t('tour2_p') },
+    { sel: '#tray .tray-b', t: t('tour3_t'), p: t('tour3_p'), prep: () => { if (!Composer.items.length) { const c = Store.published().find(x => tokensOf(x.en).length); if (c) { Composer.items.push(c.id); Composer.render(); updateCardStates(); } } } },
+    { sel: '#copyBtn', t: t('tour4_t'), p: t('tour4_p') },
+  ]; },
+  start() { this.step = 0; if (!this.el) { this.el = document.createElement('div'); this.el.id = 'tour'; $('#overlays').appendChild(this.el); } this.show(); },
+  show() {
+    const st = this.steps()[this.step]; if (!st) return this.end();
+    st.prep?.(); if (window.matchMedia('(max-width:1180px)').matches && this.step >= 2) document.body.classList.add('tray-open');
+    const tgt = $(st.sel); const r = tgt ? tgt.getBoundingClientRect() : { left: innerWidth / 2 - 150, top: 120, width: 300, height: 60 };
+    const pad = 8; const rtl = document.documentElement.dir === 'rtl';
+    let cx = r.left + r.width / 2 - 160, cy = r.bottom + 16; if (cy + 200 > innerHeight) cy = Math.max(16, r.top - 216); cx = Math.max(12, Math.min(innerWidth - 332, cx));
+    this.el.innerHTML = `<div class="spot" style="left:${r.left - pad}px;top:${r.top - pad}px;width:${r.width + pad * 2}px;height:${r.height + pad * 2}px"></div>
+      <div class="card" style="left:${cx}px;top:${cy}px"><div class="st">${this.step + 1} / 4</div><h4>${st.t}</h4><p>${st.p}</p><div class="acts"><button class="btn" data-tour="skip">${t('skip')}</button><button class="btn pri" data-tour="next">${this.step === 3 ? t('done') : t('next')}</button></div></div>`;
+    this.el.onclick = e => { const a = e.target.closest('[data-tour]')?.dataset.tour; if (a === 'skip') this.end(); else if (a === 'next') { this.step++; this.show(); } };
+    tgt?.scrollIntoView?.({ block: 'nearest' });
+  },
+  end() { this.el?.remove(); this.el = null; Store.user.tourDone = true; Store.saveUser(); $('#q')?.focus(); }
+};
+
+/* ---------------- Presentation mode ---------------- */
+const Present = { toggle() { const on = document.body.classList.toggle('present'); toast(on ? t('present_on') : t('present_off'), 'ok', 2600); if (on && $('#splash').classList.contains('hide')) Splash.show(true); } };
+
+/* ---------------- Print ---------------- */
+const Print = {
+  run() { this.build(); setTimeout(() => window.print(), 50); },
+  build() {
+    const b = Store.bank; const pub = Store.published();
+    const toc = b.sections.map((s, i) => `<li>${h(s.en)} <small>· ${h(s.ar)} · ${pub.filter(c => c.s === s.id).length}</small></li>`).join('');
+    $('#print').innerHTML = `<div class="cover"><img src="${FTA_LOGO}" alt=""><h1>${h(b.appName.en)} · ${h(b.subtitle.en)}</h1><div class="ar" lang="ar">${h(b.appName.ar)} · ${h(b.subtitle.ar)}</div><div>Comment bank · ${pub.length} comments · ${b.sections.length} sections</div><div class="meta">Version ${h(b.version)} · ${h(b.publishedAt || '')} · ${h(b.settings.teamName?.en || '')}</div></div>
+      <div class="toc"><h2>Contents · المحتويات</h2><ol>${toc}</ol></div>
+      ${b.sections.map(s => { const inSec = pub.filter(c => c.s === s.id); if (!inSec.length) return ''; return `<h2 class="sec"><span>${h(s.en)}</span><span lang="ar">${h(s.ar)}</span></h2>${(s.subsections || []).map(ss => { const items = inSec.filter(c => c.ss === ss.id); if (!items.length) return ''; return `<h3 class="sub">${h(ss.en)}<span lang="ar">${h(ss.ar)}</span></h3>${items.map(c => `<div class="pc"><div class="en">${renderText(c.en)}<div class="id">${h(c.id)}</div></div><div class="ar" lang="ar">${renderText(c.ar)}</div>${c.cond ? `<div class="cond">Only when: ${h(c.cond.en)} · ${h(c.cond.ar)}</div>` : ''}</div>`).join('')}`; }).join('')}`; }).join('')}`;
+  }
+};
+
+/* ---------------- Changelog ---------------- */
+function computeChangelog(from, to) {
+  const pubd = c => (c.status || 'published') === 'published';
+  const F = new Map((from.comments || []).map(c => [c.id, c])), T_ = new Map((to.comments || []).map(c => [c.id, c]));
+  const added = [], changed = [], archived = [];
+  T_.forEach((c, id) => { const o = F.get(id); if (!o) { if (pubd(c)) added.push(id); } else { if (pubd(o) && !pubd(c)) archived.push(id); else if (pubd(c) && (o.en !== c.en || o.ar !== c.ar || JSON.stringify(o.cond || null) !== JSON.stringify(c.cond || null))) changed.push({ id, before: { en: o.en, ar: o.ar }, after: { en: c.en, ar: c.ar } }); } });
+  F.forEach((o, id) => { if (!T_.has(id) && pubd(o)) archived.push(id); });
+  return { added, changed, archived };
+}
+function wordDiff(a, b) {
+  const A = (a || '').split(/(\s+)/), B = (b || '').split(/(\s+)/); const m = A.length, n = B.length; const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+  for (let i = m - 1; i >= 0; i--) for (let j = n - 1; j >= 0; j--) dp[i][j] = A[i] === B[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+  let i = 0, j = 0, out = ''; while (i < m && j < n) { if (A[i] === B[j]) { out += h(A[i]); i++; j++; } else if (dp[i + 1][j] >= dp[i][j + 1]) { out += `<del>${h(A[i])}</del>`; i++; } else { out += `<ins>${h(B[j])}</ins>`; j++; } }
+  while (i < m) out += `<del>${h(A[i++])}</del>`; while (j < n) out += `<ins>${h(B[j++])}</ins>`; return out;
+}
+function csvOf(rows) { const esc = v => { v = String(v ?? ''); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }; return '﻿' + rows.map(r => r.map(esc).join(',')).join('\r\n'); }
+function parseCsv(text) {
+  const rows = []; let row = [], cur = '', q = false; text = text.replace(/^﻿/, '');
+  for (let i = 0; i < text.length; i++) { const ch = text[i];
+    if (q) { if (ch === '"') { if (text[i + 1] === '"') { cur += '"'; i++; } else q = false; } else cur += ch; }
+    else if (ch === '"') q = true; else if (ch === ',') { row.push(cur); cur = ''; } else if (ch === '\n' || ch === '\r') { if (ch === '\r' && text[i + 1] === '\n') i++; row.push(cur); rows.push(row); row = []; cur = ''; } else cur += ch; }
+  if (cur.length || row.length) { row.push(cur); rows.push(row); } return rows.filter(r => r.some(x => x !== ''));
+}
 
 /* ---------------- Admin ---------------- */
 const Admin = {
@@ -3172,19 +3910,24 @@ const Admin = {
     UI.isAdmin = true; UI.view = 'admin'; renderShell(); toast(t('admin_on'));
   },
   render(main) {
-    const tabs = [['comments', 'Comments', Store.bank.comments.length], ['sections', 'Sections', Store.bank.sections.length], ['lines', 'Opening / closing lines', (Store.bank.openers.length + Store.bank.closers.length)], ['review', 'Review queue', (Store.bank.reviewItems || []).filter(r => r.status === 'open').length + Store.bank.suggestions.filter(s => s.status === 'pending').length], ['analytics', 'Analytics', ''], ['settings', 'Settings', ''], ['publish', 'Publish', '']];
-    main.innerHTML = `<div class="admin" dir="ltr"><div class="tabs">${tabs.map(([k, l, n]) => `<button class="${UI.adminTab === k ? 'on' : ''}" data-tab="${k}">${l}<span class="n">${n}</span></button>`).join('')}
-      <div style="margin-top:16px;padding:0 10px"><button class="btn sec" data-act="admin-browse">${I.eye} Reviewer view</button></div></div><div class="pane" id="pane"></div></div>`;
+    const pend = Store.bank.comments.filter(c => c.status === 'draft' || c.status === 'reviewed').length;
+    const tabs = [['comments', A('Comments', 'التعليقات'), Store.bank.comments.length], ['bulk', A('Bulk editor', 'التحرير الجماعي'), ''], ['scenarios', A('Scenarios', 'السيناريوهات'), Store.bank.scenarios.length], ['coverage', A('Coverage map', 'خريطة التغطية'), ''], ['sections', A('Sections', 'الأقسام'), Store.bank.sections.length], ['lines', A('Opening / closing lines', 'السطور الافتتاحية والختامية'), (Store.bank.openers.length + Store.bank.closers.length)], ['review', A('Review queue', 'قائمة المراجعة'), (Store.bank.reviewItems || []).filter(r => r.status === 'open').length + Store.bank.suggestions.filter(s => s.status === 'pending').length + pend], ['analytics', A('Analytics', 'التحليلات'), ''], ['settings', A('Settings', 'الإعدادات'), ''], ['publish', A('Publish', 'النشر'), '']];
+    main.innerHTML = `<div class="admin"><div class="tabs">${tabs.map(([k, l, n]) => `<button class="${UI.adminTab === k ? 'on' : ''}" data-tab="${k}">${l}<span class="n">${n}</span></button>`).join('')}
+      <div style="margin-top:16px;padding:0 10px;display:grid;gap:6px"><button class="btn sec" data-act="admin-browse">${I.eye} ${A('Reviewer view', 'واجهة المراجع')}</button><button class="btn" data-act="print">${I.dl} ${t('print')}</button></div></div><div class="pane" id="pane"></div></div>`;
     this['tab_' + UI.adminTab]($('#pane'));
   },
+  statusFilter: 'all',
   tab_comments(p) {
-    const f = norm(this.filter);
-    const rows = Store.bank.comments.filter(c => !f || norm([c.id, c.en, c.ar, (c.tags || []).join(' ')].join(' ')).includes(f));
-    p.innerHTML = `<h2>Comments</h2><p class="sub">Click a row to edit. Drafts are hidden from reviewers until published.</p>
-      <div class="toolbar"><input type="search" id="af" placeholder="Filter…" value="${h(this.filter)}"><span class="vtag">${rows.length} / ${Store.bank.comments.length}</span><span style="flex:1"></span><button class="btn pri" data-act="adm-new">${I.plus} New comment</button></div>
-      <table class="tbl"><thead><tr><th>ID</th><th>Section</th><th>English</th><th>Arabic</th><th>Kind</th><th>Status</th><th>v</th></tr></thead><tbody>
-      ${rows.map(c => `<tr class="row" data-edit="${c.id}"><td class="id">${h(c.id)}</td><td>${h(L(Store.section(c.s)))}<br><span class="vtag">${h(L(Store.sub(c.s, c.ss)))}</span></td><td><span class="snip">${h(c.en)}</span></td><td><span class="snip ar" dir="rtl">${h(c.ar) || '<i class="vtag">—</i>'}</span></td><td><span class="badge b-${c.kind}">${c.kind}</span></td><td>${c.status}</td><td class="vtag">${c.history.length + 1}</td></tr>`).join('')}
+    const f = norm(this.filter); const sf = this.statusFilter;
+    const rows = Store.bank.comments.filter(c => (sf === 'all' || (sf === 'pending' ? (c.status === 'draft' || c.status === 'reviewed') : c.status === sf)) && (!f || norm([c.id, c.en, c.ar, (c.tags || []).join(' ')].join(' ')).includes(f)));
+    p.innerHTML = `<h2>${A('Comments', 'التعليقات')}</h2><p class="sub">${A('Click a row to edit. Draft → Reviewed → Published; only published comments reach reviewers.', 'انقر على صف للتعديل. مسودة ← مُراجَع ← منشور؛ المنشور فقط يصل إلى المراجعين.')}</p>
+      <div class="toolbar"><input type="search" id="af" placeholder="${A('Filter…', 'تصفية…')}" value="${h(this.filter)}">
+        <div class="seg">${[['all', A('All', 'الكل')], ['pending', A('Pending approval', 'بانتظار الاعتماد')], ['published', A('Published', 'منشور')], ['archived', A('Archived', 'مؤرشف')]].map(([v, l]) => `<button data-sf="${v}" class="${sf === v ? 'on' : ''}">${l}</button>`).join('')}</div>
+        <span class="vtag">${rows.length} / ${Store.bank.comments.length}</span><span style="flex:1"></span><button class="btn pri" data-act="adm-new">${I.plus} ${A('New comment', 'تعليق جديد')}</button></div>
+      <table class="tbl"><thead><tr><th>ID</th><th>${A('Section', 'القسم')}</th><th>English</th><th>Arabic</th><th>${A('Kind', 'النوع')}</th><th>${A('Status', 'الحالة')}</th><th>v</th></tr></thead><tbody>
+      ${rows.map(c => `<tr class="row" data-edit="${c.id}"><td class="id">${h(c.id)}</td><td>${h(L(Store.section(c.s)))}<br><span class="vtag">${h(L(Store.sub(c.s, c.ss)))}</span></td><td><span class="snip">${h(c.en)}</span></td><td><span class="snip ar" dir="rtl">${h(c.ar) || '<i class="vtag">—</i>'}</span></td><td><span class="badge b-${c.kind}">${c.kind}</span></td><td>${c.status}${c.approvedBy ? `<br><span class="vtag">${h(c.approvedBy)} · ${h((c.approvedAt || '').slice(0, 10))}</span>` : ''}</td><td class="vtag">${c.history.length + 1}</td></tr>`).join('')}
       </tbody></table>`;
+    $$('[data-sf]', p).forEach(b => b.onclick = () => { this.statusFilter = b.dataset.sf; this.tab_comments(p); });
     $('#af', p).addEventListener('input', debounce(e => { this.filter = e.target.value; this.tab_comments(p); $('#af', p).focus(); const v = $('#af', p); v.setSelectionRange(v.value.length, v.value.length); }, 150));
   },
   editor(id) {
@@ -3195,7 +3938,7 @@ const Admin = {
         <div class="two">
           <div class="field"><label>Section</label><select id="ed-sec">${secOpts.map(o => `<option value="${o.v}" ${o.v === c.s + '/' + c.ss ? 'selected' : ''}>${h(o.l)}</option>`).join('')}</select></div>
           <div class="two"><div class="field"><label>Kind</label><select id="ed-kind">${['request', 'attachment', 'rejection', 'notice'].map(k => `<option ${c.kind === k ? 'selected' : ''}>${k}</option>`).join('')}</select></div>
-          <div class="field"><label>Status</label><select id="ed-status">${['published', 'draft', 'archived'].map(k => `<option ${c.status === k ? 'selected' : ''}>${k}</option>`).join('')}</select></div></div>
+          <div class="field"><label>Status</label><select id="ed-status">${['draft', 'reviewed', 'published', 'archived'].map(k => `<option ${c.status === k ? 'selected' : ''}>${k}</option>`).join('')}</select></div></div>
         </div>
         <div class="two">
           <div class="field"><label>English · type <span class="kbd">{{</span> for blanks</label><textarea id="ed-en" dir="ltr" style="min-height:120px">${h(c.en)}</textarea></div>
@@ -3212,7 +3955,10 @@ const Admin = {
         </div>
         <p class="note">Known blanks: ${Object.keys(Store.bank.placeholders || {}).map(k => `<span class="tok">{{${k}}}</span>`).join(' ')} — any new <b>{{name}}</b> becomes a free-text blank.</p>
       </div>
-      <div class="dlg-f">${isNew ? '' : `<button class="btn danger" id="ed-del">${I.trash} Delete</button>`}<span style="flex:1"></span><button class="btn sec" data-close>Cancel</button><button class="btn pri" id="ed-save">${I.save} Save</button></div>`, 'wide');
+      <div class="dlg-f">${isNew ? '' : `<button class="btn danger" id="ed-del">${I.trash} Delete</button>`}<span style="flex:1"></span>${c.approvedBy ? `<span class="vtag">Approved by ${h(c.approvedBy)} · ${h((c.approvedAt || '').slice(0, 10))}</span>` : ''}<button class="btn sec" data-close>Cancel</button><button class="btn sec" id="ed-approve" title="Set status to published and record approver">${I.check} Approve & publish</button><button class="btn pri" id="ed-save">${I.save} Save</button></div>`, 'wide');
+    let dirty = false; d.addEventListener('input', () => { dirty = true; }); d.addEventListener('cancel', e => { if (dirty && !confirm('Discard unsaved changes?')) e.preventDefault(); });
+    $$('[data-close]', d).forEach(b => b.addEventListener('click', e => { if (dirty && !confirm('Discard unsaved changes?')) { e.stopImmediatePropagation(); e.preventDefault(); } }, true));
+    $('#ed-approve', d).onclick = () => { $('#ed-status', d).value = 'published'; c.approvedBy = Store.user.name || 'admin'; c.approvedAt = nowIso(); $('#ed-save', d).click(); };
     // token autocomplete
     const toks = Object.keys(Store.bank.placeholders || {});
     [$('#ed-en', d), $('#ed-ar', d)].forEach(ta => {
@@ -3248,7 +3994,9 @@ const Admin = {
       if (prev) { const snap = { at: nowIso(), by: Store.user.name || 'admin', en: prev.en, ar: prev.ar, cond: prev.cond, kind: prev.kind, status: prev.status, tags: prev.tags }; next.history = [snap, ...(prev.history || [])].slice(0, 30); Object.assign(prev, next); }
       else { next.history = []; next.createdAt = nowIso(); Store.bank.comments.push(next); }
       next.updatedAt = nowIso(); next.updatedBy = Store.user.name || 'admin';
-      Store.save(); Search.build(); toast(t('toast_saved')); d.close(); this.render($('#main'));
+      if (next.status === 'published' && c.approvedBy && !prev?.approvedBy) { next.approvedBy = c.approvedBy; next.approvedAt = c.approvedAt; } else if (prev) { next.approvedBy = prev.approvedBy; next.approvedAt = prev.approvedAt; }
+      if (prev) Object.assign(prev, next);
+      dirty = false; Store.save(); Search.build(); toast(t('toast_saved')); d.close(); this.render($('#main'));
     };
     if (!isNew) {
       $('#ed-del', d).onclick = () => { if (!confirm('Delete this comment permanently? (Archiving is usually better.)')) return; Store.bank.comments = Store.bank.comments.filter(x => x.id !== c.id); Store.save(); Search.build(); d.close(); this.render($('#main')); };
@@ -3319,9 +4067,87 @@ const Admin = {
     const never = pub.filter(c => !u[c.id]);
     p.innerHTML = `<h2>Analytics</h2><p class="sub">Collected in this browser only (single-file mode). Export and merge files from several machines for a team view.</p>
       <div class="stat"><div><b>${pub.length}</b><span>published comments</span></div><div><b>${Object.values(u).reduce((a, b) => a + b, 0)}</b><span>copies made here</span></div><div><b>${never.length}</b><span>never used here</span></div><div><b>${Store.user.zeroHits.length}</b><span>searches with no result</span></div></div>
-      <div class="toolbar"><button class="btn sec" data-act="an-export">${I.dl} Export analytics JSON</button><button class="btn" data-act="an-reset">Reset</button></div>
+      <div class="toolbar"><button class="btn sec" data-act="an-export">${I.dl} ${A('Export analytics JSON', 'تصدير التحليلات')}</button><label class="btn sec">${I.dl} ${A('Import & merge team files', 'استيراد ودمج ملفات الفريق')}<input type="file" id="an-import" accept="application/json" multiple hidden></label><button class="btn" data-act="an-reset">${A('Reset', 'إعادة ضبط')}</button>${this.merged ? `<span class="vtag">${A('Merged files', 'ملفات مدمجة')}: ${this.merged.files}</span>` : ''}</div>
+      ${(() => { const U = this.merged ? this.merged.usage : u; const bySec = Store.bank.sections.map(s => ({ s, n: pub.filter(c => c.s === s.id).reduce((a, c) => a + (U[c.id] || 0), 0) })); const mx = Math.max(1, ...bySec.map(x => x.n)); return `<h4>${A('Usage by section', 'الاستخدام حسب القسم')}${this.merged ? ' · ' + A('team', 'الفريق') : ''}</h4><div class="rv">${bySec.map(x => `<div style="display:grid;grid-template-columns:220px 1fr 40px;gap:10px;align-items:center;font-size:12.5px;margin:4px 0"><span>${h(L(x.s))}</span><div style="height:8px;background:var(--surface3);border-radius:999px;overflow:hidden"><i style="display:block;height:100%;width:${x.n / mx * 100}%;background:var(--green)"></i></div><b style="text-align:end">${x.n}</b></div>`).join('')}</div>`; })()}
       <div class="two"><div><h4>Most used</h4><table class="tbl">${top.map(x => `<tr><td class="vtag">${x.n}</td><td><span class="snip">${h(x.c.en || x.c.ar)}</span></td></tr>`).join('') || '<tr><td class="note">No usage yet.</td></tr>'}</table></div>
-      <div><h4>Searches with no result — gaps to cover</h4><table class="tbl">${Store.user.zeroHits.map(q => `<tr><td>${h(q)}</td></tr>`).join('') || '<tr><td class="note">None.</td></tr>'}</table></div></div>`;
+      <div><h4>Searches with no result — gaps to cover</h4><table class="tbl">${(this.merged ? this.merged.zeroHits : Store.user.zeroHits).map(q => `<tr><td>${h(q)}</td></tr>`).join('') || '<tr><td class="note">None.</td></tr>'}</table></div></div>`;
+    $('#an-import', p).addEventListener('change', async e => {
+      const files = Array.from(e.target.files); if (!files.length) return; const m = this.merged || { usage: {}, zeroHits: [], files: 0 };
+      for (const f of files) { try { const j = JSON.parse(await f.text()); Object.entries(j.usage || {}).forEach(([k, v]) => m.usage[k] = (m.usage[k] || 0) + v); (j.zeroHits || []).forEach(q => { if (!m.zeroHits.includes(q)) m.zeroHits.push(q); }); m.files++; } catch (err) {} }
+      this.merged = m; toast(`${m.files} files merged`); this.render($('#main'));
+    });
+  },
+  tab_scenarios(p) {
+    const sc = Store.bank.scenarios;
+    p.innerHTML = `<h2>${A('Scenarios', 'السيناريوهات')}</h2><p class="sub">${A('Pre-built bundles reviewers start from. Keep them short and name them the way the team speaks.', 'حزم جاهزة يبدأ منها المراجعون. اجعلها قصيرة وسمّها كما يتحدث الفريق.')}</p>
+      <div class="toolbar"><button class="btn pri" data-act="scn-new">${I.plus} ${A('New scenario', 'سيناريو جديد')}</button></div>
+      ${sc.map((x, i) => `<div class="rv"><div class="t"><b>${h(x.en)}</b><span class="ar" lang="ar">${h(x.ar)}</span><span class="sp"></span><button class="ib" data-act="scn-move" data-sid="${x.id}" data-dir="-1" ${i === 0 ? 'disabled' : ''}>${I.up}</button><button class="ib" data-act="scn-move" data-sid="${x.id}" data-dir="1" ${i === sc.length - 1 ? 'disabled' : ''}>${I.down}</button><button class="btn sec" data-act="scn-edit" data-sid="${x.id}">${A('Edit', 'تعديل')}</button><button class="btn danger" data-act="scn-del" data-sid="${x.id}">${I.trash}</button></div>
+        <div class="note">${x.ids.map(id => { const c = Store.comment(id); return c ? `<span class="badge b-${c.kind}" style="margin:2px 2px 2px 0">${h(id)}</span> ${h((c.en || c.ar).slice(0, 60))}…<br>` : `<span class="badge b-draft">${h(id)} missing</span><br>`; }).join('')}</div></div>`).join('')}`;
+  },
+  scenarioEditor(sid) {
+    const isNew = !sid; const sc = isNew ? { id: uid('sc'), en: '', ar: '', ids: [] } : clone(Store.bank.scenarios.find(x => x.id === sid));
+    const d = openDialog(`<div class="dlg-h"><h3>${isNew ? A('New scenario', 'سيناريو جديد') : A('Edit scenario', 'تعديل السيناريو')}</h3><span class="sp"></span><button class="ib" data-close>${I.x}</button></div>
+      <div class="dlg-b editor"><div class="two"><div class="field"><label>Name (EN)</label><input id="sc-en" value="${h(sc.en)}"></div><div class="field"><label>Name (AR)</label><input id="sc-ar" dir="rtl" value="${h(sc.ar)}"></div></div>
+      <div class="field"><label>${A('Comments in this scenario (search and tick)', 'التعليقات في هذا السيناريو (ابحث وحدد)')}</label><input id="sc-q" placeholder="${A('Filter…', 'تصفية…')}"></div>
+      <div id="sc-list" style="max-height:320px;overflow:auto;border:1px solid var(--line);border-radius:10px;padding:6px"></div>
+      <div class="note" id="sc-sel"></div></div>
+      <div class="dlg-f"><button class="btn sec" data-close>Cancel</button><button class="btn pri" id="sc-save">${I.save} Save</button></div>`, 'wide');
+    const paint = () => { const q = norm($('#sc-q', d).value); const list = Store.bank.comments.filter(c => c.status !== 'archived' && (!q || norm(c.id + ' ' + c.en + ' ' + c.ar).includes(q))).slice(0, 80);
+      $('#sc-list', d).innerHTML = list.map(c => `<label class="check" style="display:flex;padding:5px 6px;border-radius:6px;gap:8px;align-items:flex-start"><input type="checkbox" data-scid="${c.id}" ${sc.ids.includes(c.id) ? 'checked' : ''}><span class="badge b-${c.kind}">${c.kind}</span><span style="flex:1;font-size:12.5px">${h(c.en || c.ar)}</span></label>`).join('');
+      $('#sc-sel', d).innerHTML = `${sc.ids.length} ${A('selected', 'محدد')}: ${sc.ids.map(id => `<span class="kbd">${h(id)}</span>`).join(' ')}`; };
+    paint(); $('#sc-q', d).addEventListener('input', paint);
+    $('#sc-list', d).addEventListener('change', e => { const id = e.target.dataset.scid; if (!id) return; if (e.target.checked) { if (!sc.ids.includes(id)) sc.ids.push(id); } else sc.ids = sc.ids.filter(x => x !== id); paint(); });
+    $('#sc-save', d).onclick = () => { sc.en = $('#sc-en', d).value.trim(); sc.ar = $('#sc-ar', d).value.trim(); if (!sc.en) return; if (isNew) Store.bank.scenarios.push(sc); else Object.assign(Store.bank.scenarios.find(x => x.id === sid), sc); Store.save(); d.close(); toast(t('toast_saved')); this.render($('#main')); renderSidebar(); };
+  },
+  tab_coverage(p) {
+    const kinds = ['request', 'attachment', 'rejection', 'notice']; const pub = Store.published();
+    p.innerHTML = `<h2>${A('Coverage map', 'خريطة التغطية')}</h2><p class="sub">${A('Rows are the AMTP form areas, columns are comment kinds. Red cells have no comment at all; amber cells have one. Use it to decide what to write next.', 'الصفوف هي مجالات النموذج والأعمدة أنواع التعليقات. الخلايا الحمراء بلا تعليقات، والكهرمانية بتعليق واحد.')}</p>
+      <table class="cov"><thead><tr><th>${A('Form area', 'مجال النموذج')}</th>${kinds.map(k => `<th>${t('kind_' + k)}</th>`).join('')}<th>${A('Total', 'المجموع')}</th><th>AR</th><th>${A('Used (here)', 'مستخدم')}</th></tr></thead><tbody>
+      ${Store.bank.sections.flatMap(s => (s.subsections || []).map(ss => { const items = pub.filter(c => c.ss === ss.id); const used = items.filter(c => Store.user.usage[c.id]).length; const ar = items.filter(c => c.ar).length;
+        return `<tr><td><b>${h(L(s))}</b> › ${h(L(ss))}</td>${kinds.map(k => { const n = items.filter(c => c.kind === k).length; const cls = n === 0 ? (k === 'rejection' || k === 'notice' ? '' : 'z') : n === 1 ? 'l' : 'g'; return `<td class="${cls}">${n || '·'}</td>`; }).join('')}<td><b>${items.length}</b></td><td class="${ar < items.length ? 'l' : 'g'}">${ar}/${items.length}</td><td>${used}/${items.length}</td></tr>`; })).join('')}
+      </tbody></table><p class="note" style="margin-top:10px">${A('Rejection and notice columns are not flagged red: most areas legitimately have none.', 'عمودا الرفض والإشعار لا يُعلَّمان بالأحمر لأن معظم المجالات لا تحتاجهما.')}</p>`;
+  },
+  bulkSel: new Set(), bulkDirty: {},
+  tab_bulk(p) {
+    const f = norm(this.filter); const rows = Store.bank.comments.filter(c => !f || norm([c.id, c.en, c.ar, (c.tags || []).join(' ')].join(' ')).includes(f));
+    const secOpts = Store.bank.sections.flatMap(s => (s.subsections || []).map(ss => ({ v: s.id + '/' + ss.id, l: s.en + ' › ' + ss.en })));
+    p.innerHTML = `<h2>${A('Bulk editor', 'التحرير الجماعي')}</h2><p class="sub">${A('Edit text directly in the grid (cells turn amber until saved). Tick rows for bulk actions. Excel-compatible CSV import/export with a validation report.', 'عدّل النص مباشرة في الجدول. حدد الصفوف للإجراءات الجماعية. استيراد وتصدير CSV متوافق مع Excel مع تقرير تحقق.')}</p>
+      <div class="toolbar"><input type="search" id="bf" placeholder="${A('Filter…', 'تصفية…')}" value="${h(this.filter)}"><span class="vtag">${rows.length}</span><span style="flex:1"></span>
+        <button class="btn pri" data-act="bulk-save">${I.save} ${A('Save edits', 'حفظ التعديلات')} <span class="vtag" id="bulk-n">${Object.keys(this.bulkDirty).length}</span></button>
+        <button class="btn sec" data-act="bulk-csv">${I.dl} CSV</button><label class="btn sec">${A('Import CSV', 'استيراد CSV')}<input type="file" id="bulk-imp" accept=".csv,text/csv" hidden></label></div>
+      <div class="toolbar" style="background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 10px"><span class="vtag">${A('Selected', 'المحدد')}: <b id="bulk-selN">${this.bulkSel.size}</b></span>
+        <select id="bulk-tag-sel" class="pill" style="height:30px"><option value="">${A('Add tag…', 'إضافة وسم…')}</option>${Array.from(new Set(Store.bank.comments.flatMap(c => c.tags || []))).sort().map(x => `<option>${h(x)}</option>`).join('')}</select><input id="bulk-tag" placeholder="${A('or new tag', 'أو وسم جديد')}" style="height:30px;border:1px solid var(--line2);border-radius:8px;padding:0 8px;background:var(--surface)"><button class="btn sec" data-act="bulk-tag">${A('Apply tag', 'تطبيق')}</button>
+        <select id="bulk-move" style="height:30px;border:1px solid var(--line2);border-radius:8px;background:var(--surface)"><option value="">${A('Move to…', 'نقل إلى…')}</option>${secOpts.map(o => `<option value="${o.v}">${h(o.l)}</option>`).join('')}</select><button class="btn sec" data-act="bulk-movego">${A('Move', 'نقل')}</button>
+        <select id="bulk-status" style="height:30px;border:1px solid var(--line2);border-radius:8px;background:var(--surface)"><option value="">${A('Set status…', 'تعيين الحالة…')}</option>${['draft', 'reviewed', 'published', 'archived'].map(x => `<option>${x}</option>`).join('')}</select><button class="btn sec" data-act="bulk-statusgo">${A('Set', 'تعيين')}</button></div>
+      <div style="overflow:auto"><table class="tbl grid-tbl"><thead><tr><th><input type="checkbox" id="bulk-all"></th><th>ID</th><th>${A('Section', 'القسم')}</th><th>English</th><th>Arabic</th><th>Tags</th><th>${A('Status', 'الحالة')}</th></tr></thead><tbody>
+      ${rows.map(c => `<tr data-bid="${c.id}"><td><input type="checkbox" data-bsel="${c.id}" ${this.bulkSel.has(c.id) ? 'checked' : ''}></td><td class="id">${h(c.id)}</td><td class="vtag">${h(L(Store.sub(c.s, c.ss)))}</td><td contenteditable="true" data-bf="en" dir="ltr" class="${this.bulkDirty[c.id]?.en != null ? 'dirty' : ''}">${h(this.bulkDirty[c.id]?.en ?? c.en)}</td><td contenteditable="true" data-bf="ar" dir="rtl" lang="ar" class="${this.bulkDirty[c.id]?.ar != null ? 'dirty' : ''}">${h(this.bulkDirty[c.id]?.ar ?? c.ar)}</td><td contenteditable="true" data-bf="tags" class="${this.bulkDirty[c.id]?.tags != null ? 'dirty' : ''}">${h(this.bulkDirty[c.id]?.tags ?? (c.tags || []).join(', '))}</td><td>${c.status}</td></tr>`).join('')}
+      </tbody></table></div>`;
+    $('#bf', p).addEventListener('input', debounce(e => { this.filter = e.target.value; this.tab_bulk(p); const v = $('#bf', p); v.focus(); v.setSelectionRange(v.value.length, v.value.length); }, 200));
+    p.addEventListener('input', e => { const td = e.target.closest('td[contenteditable]'); if (!td) return; const id = td.closest('tr').dataset.bid; (this.bulkDirty[id] ||= {})[td.dataset.bf] = td.textContent; td.classList.add('dirty'); $('#bulk-n', p).textContent = Object.keys(this.bulkDirty).length; });
+    p.addEventListener('change', e => { if (e.target.dataset.bsel) { e.target.checked ? this.bulkSel.add(e.target.dataset.bsel) : this.bulkSel.delete(e.target.dataset.bsel); $('#bulk-selN', p).textContent = this.bulkSel.size; } if (e.target.id === 'bulk-all') { rows.forEach(c => e.target.checked ? this.bulkSel.add(c.id) : this.bulkSel.delete(c.id)); this.tab_bulk(p); } });
+    $('#bulk-imp', p).addEventListener('change', async e => { const f = e.target.files[0]; if (!f) return; this.importCsv(await f.text()); });
+  },
+  bulkSave() {
+    let n = 0; Object.entries(this.bulkDirty).forEach(([id, ch]) => { const c = Store.comment(id); if (!c) return; const snap = { at: nowIso(), by: Store.user.name || 'admin', en: c.en, ar: c.ar, cond: c.cond, kind: c.kind, status: c.status, tags: c.tags }; c.history.unshift(snap); if (ch.en != null) c.en = ch.en.trim(); if (ch.ar != null) c.ar = ch.ar.trim(); if (ch.tags != null) c.tags = ch.tags.split(',').map(x => x.trim()).filter(Boolean); c.updatedAt = nowIso(); c.updatedBy = Store.user.name || 'admin'; n++; });
+    this.bulkDirty = {}; Store.save(); Search.build(); toast(`${n} ${A('updated', 'تم تحديثها')}`); this.render($('#main'));
+  },
+  bulkApply(fn) { let n = 0; this.bulkSel.forEach(id => { const c = Store.comment(id); if (c) { fn(c); c.updatedAt = nowIso(); n++; } }); Store.save(); Search.build(); toast(`${n} ${A('updated', 'تم تحديثها')}`); this.render($('#main')); },
+  exportCsv() { const rows = [['id', 'section', 'subsection', 'kind', 'status', 'en', 'ar', 'cond_en', 'cond_ar', 'tags', 'doc_en', 'doc_ar']]; Store.bank.comments.forEach(c => rows.push([c.id, c.s, c.ss, c.kind, c.status, c.en, c.ar, c.cond?.en || '', c.cond?.ar || '', (c.tags || []).join('; '), c.doc?.en || '', c.doc?.ar || ''])); download(`mudawwana-comments-v${Store.bank.version}.csv`, csvOf(rows), 'text/csv'); },
+  importCsv(text) {
+    const rows = parseCsv(text); if (!rows.length) { toast('Empty file', 'err'); return; } const hd = rows[0].map(x => x.trim().toLowerCase()); const col = k => hd.indexOf(k);
+    const need = ['id', 'en']; const miss = need.filter(k => col(k) < 0); if (miss.length) { toast(`Missing columns: ${miss.join(', ')}`, 'err', 5000); return; }
+    const report = { updated: [], created: [], errors: [] };
+    rows.slice(1).forEach((r, i) => { const g = k => col(k) >= 0 ? (r[col(k)] ?? '').trim() : undefined; const id = g('id'); if (!id) { report.errors.push(`row ${i + 2}: no id`); return; }
+      const s = g('section'), ss = g('subsection'); if (ss && !Store.bank.sections.some(x => x.id === s && x.subsections.some(y => y.id === ss))) { report.errors.push(`row ${i + 2} (${id}): unknown section ${s}/${ss}`); return; }
+      const kind = g('kind'); if (kind && !['request', 'attachment', 'rejection', 'notice'].includes(kind)) { report.errors.push(`row ${i + 2} (${id}): bad kind ${kind}`); return; }
+      const en = g('en') || '', ar = g('ar'); if (ar != null && JSON.stringify(tokensOf(en).sort()) !== JSON.stringify(tokensOf(ar).sort()) && ar) report.errors.push(`row ${i + 2} (${id}): EN/AR blanks differ (${tokensOf(en).join(',')} vs ${tokensOf(ar).join(',')})`);
+      let c = Store.comment(id); const patch = { en, ...(ar != null && { ar }), ...(kind && { kind }), ...(g('status') && { status: g('status') }), ...(s && ss && { s, ss }), ...(g('tags') != null && { tags: g('tags').split(/[;,]/).map(x => x.trim()).filter(Boolean) }) };
+      if (g('cond_en') || g('cond_ar')) patch.cond = { en: g('cond_en') || '', ar: g('cond_ar') || '' }; if (g('doc_en') || g('doc_ar')) patch.doc = { en: g('doc_en') || '', ar: g('doc_ar') || '' };
+      if (c) { const changed = Object.keys(patch).some(k => JSON.stringify(c[k]) !== JSON.stringify(patch[k])); if (!changed) return; c.history.unshift({ at: nowIso(), by: Store.user.name || 'csv', en: c.en, ar: c.ar, cond: c.cond, kind: c.kind, status: c.status, tags: c.tags }); Object.assign(c, patch, { updatedAt: nowIso() }); report.updated.push(id); }
+      else { if (!s || !ss) { report.errors.push(`row ${i + 2} (${id}): new comment needs section/subsection`); return; } Store.bank.comments.push({ id, s, ss, kind: kind || 'request', status: 'draft', en, ar: ar || '', tags: [], history: [], createdAt: nowIso(), ...patch, status: patch.status || 'draft' }); report.created.push(id); } });
+    Store.save(); Search.build();
+    openDialog(`<div class="dlg-h"><h3>CSV import report</h3><span class="sp"></span><button class="ib" data-close>${I.x}</button></div><div class="dlg-b"><div class="stat"><div><b>${report.updated.length}</b><span>updated</span></div><div><b>${report.created.length}</b><span>created (as drafts)</span></div><div><b>${report.errors.length}</b><span>rejected rows</span></div></div>${report.errors.length ? `<div class="rv"><b>Errors</b><ul class="note">${report.errors.map(x => `<li>${h(x)}</li>`).join('')}</ul></div>` : ''}</div><div class="dlg-f"><button class="btn pri" data-close>OK</button></div>`);
+    this.render($('#main'));
   },
   tab_settings(p) {
     const s = Store.bank.settings;
@@ -3329,7 +4155,9 @@ const Admin = {
       <div class="editor" style="max-width:720px">
         <div class="two"><div class="field"><label>App name (EN)</label><input id="st-name-en" value="${h(Store.bank.appName.en)}"></div><div class="field"><label>App name (AR)</label><input id="st-name-ar" dir="rtl" value="${h(Store.bank.appName.ar)}"></div></div>
         <div class="two"><div class="field"><label>Subtitle (EN)</label><input id="st-sub-en" value="${h(Store.bank.subtitle.en)}"></div><div class="field"><label>Subtitle (AR)</label><input id="st-sub-ar" dir="rtl" value="${h(Store.bank.subtitle.ar)}"></div></div>
-        <div class="two"><div class="field"><label>Portal character limit (0 = none)</label><input id="st-limit" type="number" value="${s.charLimit}"></div><div class="field"><label>Your name (shown in history)</label><input id="st-me" value="${h(Store.user.name)}"></div></div>
+        <div class="two"><div class="field"><label>Portal character limit (0 = none)</label><input id="st-limit" type="number" value="${s.charLimit}"></div><div class="field"><label>Your name (shown in history and the stamp)</label><input id="st-me" value="${h(Store.user.name)}"></div></div>
+        <div class="two"><div class="field"><label>${t('team_label')}</label><input id="st-team" value="${h(Store.user.team)}" placeholder="${h(s.teamName?.en || '')}"></div><div class="field"><label>Stamp template (EN) — {{name}} {{team}} {{date}}</label><input id="st-stamp-en" value="${h(s.stamp?.en || '')}"></div></div>
+        <div class="two"><div class="field"><label>Stamp template (AR)</label><input id="st-stamp-ar" dir="rtl" value="${h(s.stamp?.ar || '')}"></div><div class="field"><label>Attachment summary heading (EN / AR)</label><div style="display:flex;gap:6px"><input id="st-ah-en" value="${h(s.attachHeading?.en || '')}"><input id="st-ah-ar" dir="rtl" value="${h(s.attachHeading?.ar || '')}"></div></div></div>
         <label class="check"><input type="checkbox" id="st-rtl" ${s.rtlMarks ? 'checked' : ''}> Add invisible right-to-left marks before Arabic lines when copying (keeps Arabic intact in plain text fields)</label>
         <div class="two"><div class="field"><label>Change admin passphrase</label><input id="st-pass" type="password" placeholder="leave empty to keep"></div>
         <div class="field"><label>Logo (PNG/SVG, small)</label><div style="display:flex;gap:10px;align-items:center"><div class="logo-prev">${s.logo ? `<img src="${s.logo}">` : '<span class="vtag">none</span>'}</div><input type="file" id="st-logo" accept="image/*">${s.logo ? '<button class="btn" data-act="st-logo-clear">Remove</button>' : ''}</div></div></div>
@@ -3345,13 +4173,17 @@ const Admin = {
       <div class="editor" style="max-width:720px">
         <div class="two"><div class="field"><label>Version bump</label><select id="pb-bump"><option value="minor">Minor → v${a}.${b + 1}.0 (content added)</option><option value="patch">Patch → v${a}.${b}.${c + 1} (small fixes)</option><option value="none">Keep v${Store.bank.version}</option></select></div><div class="field"><label>Release note (shown in What’s new)</label><input id="pb-note" placeholder="e.g. Added 6 branch comments"></div></div>
         <div class="toolbar"><button class="btn lg pri" data-act="pb-download">${I.dl} Download new version</button><button class="btn sec" data-act="pb-json">Export bank JSON</button><label class="btn sec">Import bank JSON<input type="file" id="pb-import" accept="application/json" hidden></label><button class="btn danger" data-act="pb-reset">Reset to embedded</button></div>
-        <h4>Release log</h4><table class="tbl">${(Store.bank.releases || []).slice().reverse().map(r => `<tr><td><b>v${h(r.version)}</b></td><td>${h(r.at)}</td><td>${h(r.by || '')}</td><td>${h(r.note || '')}</td></tr>`).join('') || '<tr><td class="note">No releases yet.</td></tr>'}</table>
+        <h4>${A('Pending changes since embedded version', 'التغييرات منذ النسخة المضمّنة')}</h4>${(() => { const cl = computeChangelog(EMBED, Store.bank); return `<div class="stat"><div><b>${cl.added.length}</b><span>${A('added', 'مضاف')}</span></div><div><b>${cl.changed.length}</b><span>${A('changed', 'معدّل')}</span></div><div><b>${cl.archived.length}</b><span>${A('archived', 'مؤرشف')}</span></div></div>${cl.changed.slice(0, 20).map(x => `<div class="cl"><div class="tt"><span class="id vtag" style="font-family:ui-monospace,monospace">${h(x.id)}</span></div><div class="diff en">${wordDiff(x.before.en, x.after.en)}</div><div class="diff ar" dir="rtl" lang="ar">${wordDiff(x.before.ar, x.after.ar)}</div></div>`).join('')}`; })()}
+        <h4>${A('Release log', 'سجل الإصدارات')}</h4><table class="tbl">${(Store.bank.releases || []).slice().reverse().map(r => `<tr><td><b>v${h(r.version)}</b></td><td>${h(r.at)}</td><td>${h(r.by || '')}</td><td>${h(r.note || '')}</td></tr>`).join('') || '<tr><td class="note">No releases yet.</td></tr>'}</table>
       </div>`;
     $('#pb-import', p).addEventListener('change', async e => { const f = e.target.files[0]; if (!f) return; try { const j = JSON.parse(await f.text()); if (!j.comments || !j.sections) throw 0; if (!confirm(`Replace the current bank with "${f.name}" (v${j.version})?`)) return; Store.bank = j; Store.bank.comments.forEach(x => { x.status ||= 'published'; x.history ||= []; }); Store.bank.suggestions ||= []; Store.save(); Search.build(); toast('Imported'); renderShell(); } catch (err) { toast('Invalid bank file', 'err'); } });
   },
   publish() {
     const bump = $('#pb-bump').value, note = $('#pb-note').value.trim();
+    const res = selfTest(true); const fails = res.filter(r => !r.pass);
+    if (fails.length) { toast(`Publish blocked — ${fails.length} self-test failure(s): ${h(fails[0].name)}`, 'err', 6000); selfTest(); return; }
     if (bump !== 'none') Store.bump(bump);
+    Store.bank.changelog[Store.bank.version] = { at: today(), note, ...computeChangelog(EMBED, Store.bank) };
     Store.bank.publishedAt = today(); (Store.bank.releases ||= []).push({ version: Store.bank.version, at: today(), by: Store.user.name || 'admin', note });
     Store.save();
     const html = buildHtml(Store.bank);
@@ -3387,7 +4219,7 @@ document.addEventListener('click', async e => {
   if (el.dataset.tab) { UI.adminTab = el.dataset.tab; renderMain(); return; }
   if (el.dataset.edit && UI.isAdmin) { Admin.editor(el.dataset.edit); return; }
   if (el.dataset.sec || el.dataset.sub) { e.preventDefault(); const target = $(el.getAttribute('href')); if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); document.body.classList.remove('side-open'); if (UI.q) { UI.q = ''; $('#q').value = ''; renderMain(); setTimeout(() => $(el.getAttribute('href'))?.scrollIntoView({ block: 'start' }), 30); } return; }
-  const seg = el.closest('[data-opt]'); if (seg && el.dataset.v) { Composer.opts[seg.dataset.opt] = el.dataset.v; Composer.render(); return; }
+  const seg = el.closest('[data-opt]'); if (seg && el.dataset.v) { Composer.opts[seg.dataset.opt] = el.dataset.v; Composer.render(); Composer.persist(); return; }
   switch (act) {
     case 'add': Composer.add(id); break;
     case 'copy': { const c = Store.comment(id); const l = el.dataset.l; const rtl = Store.bank.settings.rtlMarks ? '‏' : ''; const txt = l === 'en' ? c.en : l === 'ar' ? rtl + c.ar : c.en + '\n' + rtl + c.ar; const ok = await copyText(txt.replace(TOKEN_RE, '(……)')); toast(ok ? t('copied') : t('copy_failed'), ok ? 'ok' : 'err'); if (ok) recordUse(id); break; }
@@ -3405,7 +4237,24 @@ document.addEventListener('click', async e => {
     case 'lang': setLang(LANG === 'en' ? 'ar' : 'en'); break;
     case 'theme': toggleTheme(); break;
     case 'start': Splash.hide(); break;
-    case 'home': Splash.show(); break;
+    case 'home': Splash.show(true); break;
+    case 'scenarios': Scenarios.dialog(); break;
+    case 'scen-load': Scenarios.load(el.dataset.sid, false); document.body.classList.remove('side-open'); break;
+    case 'scen-add': Scenarios.load(el.dataset.sid, true); break;
+    case 'c-verify': Composer.verifyDialog(); break;
+    case 'print': Print.run(); break;
+    case 'present': Present.toggle(); break;
+    case 'tour': Tour.start(); break;
+    case 'vc-ok': Store.versionConflict = null; renderMain(); break;
+    case 'scn-new': Admin.scenarioEditor(null); break;
+    case 'scn-edit': Admin.scenarioEditor(el.dataset.sid); break;
+    case 'scn-del': if (confirm('Delete this scenario?')) { Store.bank.scenarios = Store.bank.scenarios.filter(x => x.id !== el.dataset.sid); Store.save(); Admin.render($('#main')); renderSidebar(); } break;
+    case 'scn-move': { const arr = Store.bank.scenarios; const i = arr.findIndex(x => x.id === el.dataset.sid), j = i + Number(el.dataset.dir); [arr[i], arr[j]] = [arr[j], arr[i]]; Store.save(); Admin.render($('#main')); break; }
+    case 'bulk-save': Admin.bulkSave(); break;
+    case 'bulk-csv': Admin.exportCsv(); break;
+    case 'bulk-tag': { const tg = ($('#bulk-tag').value || $('#bulk-tag-sel').value).trim(); if (tg) Admin.bulkApply(c => { if (!c.tags.includes(tg)) c.tags.push(tg); }); break; }
+    case 'bulk-movego': { const v = $('#bulk-move').value; if (v) { const [s2, ss2] = v.split('/'); Admin.bulkApply(c => { c.s = s2; c.ss = ss2; }); } break; }
+    case 'bulk-statusgo': { const v = $('#bulk-status').value; if (v) Admin.bulkApply(c => { c.status = v; }); break; }
     case 'help': helpDialog(); break;
     case 'suggest': suggestDialog(); break;
     case 'admin': Admin.enter(); break;
@@ -3431,7 +4280,8 @@ document.addEventListener('click', async e => {
     case 'an-reset': if (confirm('Reset usage statistics in this browser?')) { Store.user.usage = {}; Store.user.zeroHits = []; Store.saveUser(); Admin.render($('#main')); } break;
     case 'st-save': {
       Store.bank.appName = { en: $('#st-name-en').value.trim(), ar: $('#st-name-ar').value.trim() }; Store.bank.subtitle = { en: $('#st-sub-en').value.trim(), ar: $('#st-sub-ar').value.trim() };
-      Store.bank.settings.charLimit = Number($('#st-limit').value) || 0; Store.bank.settings.rtlMarks = $('#st-rtl').checked; Store.user.name = $('#st-me').value.trim();
+      Store.bank.settings.charLimit = Number($('#st-limit').value) || 0; Store.bank.settings.rtlMarks = $('#st-rtl').checked; Store.user.name = $('#st-me').value.trim(); Store.user.team = $('#st-team').value.trim();
+      Store.bank.settings.stamp = { en: $('#st-stamp-en').value.trim(), ar: $('#st-stamp-ar').value.trim() }; Store.bank.settings.attachHeading = { en: $('#st-ah-en').value.trim(), ar: $('#st-ah-ar').value.trim() };
       const np = $('#st-pass').value; if (np) Store.bank.settings.adminHash = await hashText(np);
       Store.save(); Store.saveUser(); toast(t('toast_saved')); renderShell(); break; }
     case 'st-logo-clear': Store.bank.settings.logo = ''; Store.save(); renderShell(); break;
@@ -3443,28 +4293,30 @@ document.addEventListener('click', async e => {
 document.addEventListener('input', e => {
   const el = e.target;
   if (el.id === 'q') { UI.q = el.value; renderMainDebounced(); return; }
-  if (el.dataset.tok !== undefined) { Composer.values[el.dataset.tok] = el.value; el.classList.toggle('miss', !el.value); refreshPreview(); return; }
+  if (el.dataset.tok !== undefined) { Composer.values[el.dataset.tok] = el.value; el.classList.toggle('miss', !el.value); refreshPreview(); Composer.persistDeb(); return; }
 });
-document.addEventListener('change', e => { const el = e.target; if (el.id === 'skipSplash') { Store.user.skipSplash = el.checked; Store.saveUser(); return; } if (el.dataset.optChk) { Composer.opts[el.dataset.optChk] = el.checked; Composer.render(); } if (el.dataset.tok !== undefined && el.tagName === 'SELECT') { Composer.values[el.dataset.tok] = el.value; Composer.render(); } });
+document.addEventListener('change', e => { const el = e.target; if (el.id === 'skipSplash') { Store.user.skipSplash = el.checked; Store.saveUser(); return; } if (el.dataset.optChk) { Composer.opts[el.dataset.optChk] = el.checked; Composer.render(); Composer.persist(); } if (el.dataset.tok !== undefined && el.tagName === 'SELECT') { Composer.values[el.dataset.tok] = el.value; Composer.render(); } });
 const renderMainDebounced = debounce(() => { renderMain(); $('#main').scrollTop = 0; }, 60);
 function refreshPreview() { // light update without re-rendering inputs
   const lines = Composer.build(); const pv = $('#preview'); if (!pv) return;
   pv.innerHTML = lines.map(l => `<span class="${l.d === 'rtl' ? 'arl' : 'enl'}" ${l.d === 'rtl' ? 'lang="ar"' : ''}>${h(l.s) || '&nbsp;'}</span>`).join('');
   const txt = lines.map(l => l.s).join('\n'); const limit = Store.bank.settings.charLimit || 0; const meta = $('.tray .meta'); if (meta) meta.innerHTML = `<span>${txt.length.toLocaleString()} ${t('chars')}${limit ? ` · ${t('limit')} ${limit.toLocaleString()}` : ''}</span>${limit && txt.length > limit ? `<span class="over">${t('over_limit')}</span>` : ''}`;
-  const warns = Composer.warnings(); $$('.tray .warn').forEach(w => w.remove()); if (meta) meta.insertAdjacentHTML('afterend', warns.map(w => `<div class="warn ${w.c}">${I.warn}<span>${w.m}</span></div>`).join(''));
+  const qm = $('#qm'); if (qm) qm.outerHTML = Composer.qualityHtml(); const cc = $('.tray-h .cc'); if (cc) cc.textContent = txt.length.toLocaleString();
 }
 document.addEventListener('keydown', e => {
   const tag = document.activeElement?.tagName; const typing = /INPUT|TEXTAREA|SELECT/.test(tag) && document.activeElement.id !== 'q';
   const inDialog = !!$('dialog[open]');
   const splashOpen = !$('#splash').classList.contains('hide');
-  if (splashOpen) { if (e.key === 'Enter' || e.key === 'Escape') { e.preventDefault(); Splash.hide(); } return; }
-  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); $('#q').focus(); $('#q').select(); return; }
+  if (splashOpen) { if (e.key === 'Enter' || (e.key === 'Escape' && !document.body.classList.contains('present'))) { e.preventDefault(); Splash.hide(); } else if (e.key.toLowerCase() === 'p' && !typing) Present.toggle(); return; }
+  if (Palette.el) { Palette.key(e); return; }
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); Palette.open(); return; }
   if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); Composer.copy(); return; }
   if (inDialog) return;
   if (e.key === 'Escape') { if (document.activeElement.id === 'q' && UI.q) { UI.q = ''; $('#q').value = ''; renderMain(); } else if (document.body.classList.contains('tray-open')) document.body.classList.remove('tray-open'); else { document.activeElement.blur(); } return; }
   if (typing) return;
   if (e.key === '/' ) { e.preventDefault(); $('#q').focus(); return; }
   if (e.key === '?' && document.activeElement.id !== 'q') { helpDialog(); return; }
+  if (e.key.toLowerCase() === 'p' && document.activeElement.id !== 'q' && !e.ctrlKey && !e.metaKey) { Present.toggle(); return; }
   if (UI.view === 'admin') return;
   if (e.key === 'ArrowDown') { e.preventDefault(); setActive(Math.min(UI.visible.length - 1, UI.active + 1)); return; }
   if (e.key === 'ArrowUp') { e.preventDefault(); setActive(Math.max(0, UI.active - 1)); return; }
@@ -3475,7 +4327,7 @@ document.addEventListener('keydown', e => {
 document.addEventListener('focusin', e => { const card = e.target.closest?.('.card'); if (card) { const i = UI.visible.indexOf(card.dataset.id); if (i >= 0) setActive(i, false); } });
 
 /* ---------------- Self test ---------------- */
-function selfTest() {
+function selfTest(silent) {
   const R = []; const ok = (name, cond, extra = '') => R.push({ name, pass: !!cond, extra });
   ok('norm: hamza/taa/yaa', norm('أحمد الإمارة إلى') === 'احمد الاماره الي');
   ok('norm: diacritics + tatweel', norm('يُرجـــى') === 'يرجي');
@@ -3507,19 +4359,41 @@ function selfTest() {
   Object.assign(Composer, saved); Composer.render();
   const html = buildHtml(Store.bank); ok('publish: self-serialisation round-trips', html.includes('id="bank"') && html.includes('"comments"') && /<div id="app"><\/div>/.test(html), `${(html.length / 1024).toFixed(0)} KB`);
   ok('sha256: known vector', sha256('admin') === '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
+  ok('scenarios: all ids resolve', EMBED.scenarios.length >= 8 && EMBED.scenarios.every(sc => sc.ids.every(id => EMBED.comments.some(c => c.id === id))));
+  ok('conflicts: all ids resolve', EMBED.conflicts.every(([a, b]) => EMBED.comments.some(c => c.id === a) && EMBED.comments.some(c => c.id === b)));
+  ok('attachments: doc names present', EMBED.comments.filter(c => c.kind === 'attachment').every(c => c.doc?.en && c.doc?.ar));
+  const saved2 = { items: Composer.items, values: Composer.values, opts: { ...Composer.opts } };
+  Composer.items = ['np-03', 'np-06']; ok('quality: conflict detected', Composer.quality().checks.find(c => c.k === 'conf')?.ok === false);
+  Composer.items = ['et-01', 'et-02']; ok('quality: exclusive subsection conflict', Composer.conflicts().length === 1);
+  Composer.items = ['np-04', 'doi-05']; Composer.values = {}; Composer.opts = { lang: 'en', format: 'numbered', opener: false, closer: false, attach: true, stamp: false };
+  ok('composer: attachment summary', /Required attachments:\n1\) Updated Emirates ID\n2\) Original Memorandum of Association$/.test(Composer.text()), JSON.stringify(Composer.text().slice(-90)));
+  Composer.opts.stamp = true; Store.user.name ||= ''; ok('composer: stamp line', Composer.text().includes('Reviewed by '));
+  ok('quality: green when clean', (Composer.opts.attach = false, Composer.opts.stamp = false, Composer.quality().level === 'g'));
+  Composer.items = ['np-04', 'np-04']; ok('quality: duplicate detection', Composer.duplicates().length === 1);
+  Object.assign(Composer, saved2);
+  const cl = computeChangelog(EMBED, { comments: [...EMBED.comments.map(c => c.id === 'ad-01' ? { ...c, en: c.en + ' now' } : c), { id: 'zz', status: 'published', en: 'x', ar: '' }].filter(c => c.id !== 'ad-02') });
+  ok('changelog: added/changed/archived', cl.added.length === 1 && cl.changed.length === 1 && cl.archived.includes('ad-02'));
+  const csv = csvOf([['a', 'b'], ['1,2', 'q"uo"te'], ['عربي', 'line\nbreak']]); const back = parseCsv(csv); ok('csv: round-trip', back.length === 3 && back[1][0] === '1,2' && back[1][1] === 'q"uo"te' && back[2][1] === 'line\nbreak');
+  ok('palette: actions available', Palette.actions().length >= 13 + EMBED.scenarios.length);
+  ok('placeholders: recent values store', Array.isArray(Store.user.recentValues.date || []));
+  ok('version compare', cmpVer('1.10.0', '1.9.0') > 0 && cmpVer('1.0.0', '1.0.0') === 0);
+  ok('review: typography proposals keep tokens', EMBED.reviewItems.filter(r => r.type === 'typography').every(r => { const c = EMBED.comments.find(x => x.id === r.commentId); return JSON.stringify(tokensOf(c.en).sort()) === JSON.stringify(tokensOf(r.proposal.ar).sort()); }));
+  if (silent) { window.__selftest = R; return R; }
   const pass = R.filter(r => r.pass).length;
   const box = document.createElement('div'); box.className = 'selftest'; box.innerHTML = `<h4>Self-test · ${pass}/${R.length} passed</h4>` + R.map(r => `<div><span class="${r.pass ? 'ok' : 'fail'}">${r.pass ? '✓' : '✗'}</span><span>${h(r.name)}</span><span class="vtag" style="margin-inline-start:auto">${h(r.extra)}</span></div>`).join('') + `<div style="border:0;margin-top:8px"><button class="btn sec" onclick="this.closest('.selftest').remove()">Close</button></div>`;
   document.body.appendChild(box);
   window.__selftest = R;
 }
 
+window.addEventListener('afterprint', () => { $('#print').innerHTML = ''; });
+
 /* ---------------- Boot ---------------- */
 Store.load(); LANG = Store.user.lang; document.documentElement.lang = LANG; document.documentElement.dir = LANG === 'ar' ? 'rtl' : 'ltr'; applyTheme();
-Search.build(); renderShell();
+Search.build(); const restored = Composer.restore(); renderShell(); if (restored) setTimeout(() => toast(t('draft_restored')), 600);
 $('#main').addEventListener('scroll', debounce(spy, 60));
 if (!Store.user.skipSplash && location.hash !== '#selftest') Splash.show(); else $('#q').focus();
 if (location.hash === '#selftest') setTimeout(selfTest, 50);
-window.Mudawwana = { Store, Search, Composer, Splash, norm, selfTest, buildHtml };
+window.Mudawwana = { Store, Search, Composer, Splash, Scenarios, Palette, Tour, Present, Print, Admin, norm, selfTest, buildHtml, computeChangelog, csvOf, parseCsv };
 })();
 </script>
 </body>
