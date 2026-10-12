@@ -3763,13 +3763,13 @@ function renderText(text, terms, values) {
   while ((m = TOKEN_RE.exec(text))) {
     parts.push(seg(text.slice(last, m.index)));
     const v = values && values[m[1]];
-    parts.push(v ? `<span class="tok filled">${h(v)}</span>` : `<span class="tok">${h(labelOf(m[1]))}</span>`);
+    parts.push(v ? `<span class="tok filled"><bdi>${h(v)}</bdi></span>` : `<span class="tok" lang="${ar ? 'ar' : 'en'}">${h(labelOf(m[1], ar ? 'ar' : 'en'))}</span>`);
     last = m.index + m[0].length;
   }
   parts.push(seg(text.slice(last)));
   return parts.join('');
 }
-function labelOf(tok) { const p = (Store.bank.placeholders || {})[tok]; return p ? L(p) : tok; }
+function labelOf(tok, lang) { const p = (Store.bank.placeholders || {})[tok]; return p ? (lang ? (p[lang] || p.en) : L(p)) : tok; }
 
 /* ---------------- Composer ---------------- */
 const Composer = {
@@ -5061,6 +5061,7 @@ function selfTest(silent) {
   ok('output: LRM before English lines, RLM before Arabic lines', (() => { const sv = { items: Composer.items, values: Composer.values, opts: { ...Composer.opts } }; Composer.items = ['np-04']; Composer.opts = { lang: 'both', format: 'numbered', opener: false, closer: false, attach: false, stamp: false }; const L2 = Composer.build(); Object.assign(Composer, sv); return L2[0].s.startsWith('\u200E1. ') && L2[2].s.startsWith('\u200F1. '); })());
   ok('services: alphabetical in seed', EMBED.services.every((x, i, a) => i === 0 || a[i - 1].en.toLowerCase() <= x.en.toLowerCase()));
   ok('arabic: no English words inside Arabic comments', EMBED.comments.every(c => !/[A-Za-z]/.test((c.ar || '').replace(TOKEN_RE, ''))), EMBED.comments.filter(c => /[A-Za-z]/.test((c.ar || '').replace(TOKEN_RE, ''))).map(c => c.id).join(','));
+  ok('render: English comments show only English, Arabic only Arabic (both UI languages)', (() => { const prev = LANG; let bad = []; for (const l of ['en', 'ar']) { LANG = l; EMBED.comments.forEach(c => { const tx = html => { const d = document.createElement('div'); d.innerHTML = html; return d.textContent; }; const en = tx(renderText(c.en)), ar = tx(renderText(c.ar)); if (/[\u0600-\u06FF]/.test(en) || /[A-Za-z]/.test(ar)) bad.push(l + ':' + c.id); }); } LANG = prev; return !bad.length; })());
   ok('version compare', cmpVer('1.10.0', '1.9.0') > 0 && cmpVer('1.0.0', '1.0.0') === 0);
   ok('review: typography proposals keep tokens', EMBED.reviewItems.filter(r => r.type === 'typography').every(r => { const c = EMBED.comments.find(x => x.id === r.commentId); return JSON.stringify(tokensOf(c.en).sort()) === JSON.stringify(tokensOf(r.proposal.ar).sort()); }));
   if (silent) { window.__selftest = R; return R; }
