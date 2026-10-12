@@ -1,0 +1,2819 @@
+{
+ "version": "2.0.1",
+ "publishedAt": "2026-10-12",
+ "appName": {
+  "en": "Mudawwana",
+  "ar": "مدوّنة"
+ },
+ "subtitle": {
+  "en": "Registration Services · Comment Composer",
+  "ar": "منشئ تعليقات خدمات التسجيل"
+ },
+ "settings": {
+  "charLimit": 2000,
+  "rtlMarks": true,
+  "adminHash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+  "logo": "",
+  "stamp": {
+   "en": "Reviewed by {{name}} · {{team}} · {{date}}",
+   "ar": "تمت المراجعة بواسطة {{name}} · {{team}} · {{date}}"
+  },
+  "attachHeading": {
+   "en": "Required attachments:",
+   "ar": "المستندات المطلوبة:"
+  },
+  "teamName": {
+   "en": "Service Development Team",
+   "ar": "فريق تطوير الخدمات"
+  }
+ },
+ "openers": [
+  {
+   "id": "op1",
+   "en": "Dear Taxpayer, following the review of your application, kindly note the following:",
+   "ar": "عزيزي الخاضع للضريبة، بعد مراجعة طلبكم، يرجى ملاحظة ما يلي:"
+  }
+ ],
+ "closers": [
+  {
+   "id": "cl1",
+   "en": "Kindly resubmit the application once the above has been addressed.",
+   "ar": "يرجى إعادة تقديم الطلب بعد استيفاء ما ورد أعلاه."
+  }
+ ],
+ "sections": [
+  {
+   "id": "entity",
+   "en": "Entity Details",
+   "ar": "بيانات الكيان",
+   "subsections": [
+    {
+     "id": "entity-type",
+     "en": "Entity Types & Sub Types",
+     "ar": "أنواع الكيان وأنواعه الفرعية"
+    },
+    {
+     "id": "doi",
+     "en": "Date of Incorporation",
+     "ar": "تاريخ التأسيس"
+    },
+    {
+     "id": "natural",
+     "en": "Entity Details for Natural Person",
+     "ar": "بيانات الكيان للشخص الطبيعي"
+    },
+    {
+     "id": "commence",
+     "en": "Date of Commencement of Business",
+     "ar": "تاريخ بداية النشاط"
+    }
+   ],
+   "svc": "tax-records-amendment"
+  },
+  {
+   "id": "ident",
+   "en": "Identification Details",
+   "ar": "بيانات التعريف",
+   "subsections": [
+    {
+     "id": "authority",
+     "en": "Trade License Issuing Authority",
+     "ar": "جهة إصدار الرخصة التجارية"
+    },
+    {
+     "id": "tl-number",
+     "en": "Trade License Number",
+     "ar": "رقم الرخصة التجارية"
+    },
+    {
+     "id": "issue-date",
+     "en": "License Issue Date",
+     "ar": "تاريخ إصدار الرخصة"
+    },
+    {
+     "id": "expiry-date",
+     "en": "License Expiry Date",
+     "ar": "تاريخ انتهاء الرخصة"
+    },
+    {
+     "id": "names",
+     "en": "Legal & Trade Name",
+     "ar": "الاسم القانوني والتجاري"
+    },
+    {
+     "id": "activity",
+     "en": "Activity",
+     "ar": "النشاط"
+    },
+    {
+     "id": "owners",
+     "en": "Owner List",
+     "ar": "قائمة الملاك"
+    }
+   ],
+   "svc": "tax-records-amendment"
+  },
+  {
+   "id": "branch",
+   "en": "Local Branch Details",
+   "ar": "بيانات الفرع المحلي",
+   "subsections": [
+    {
+     "id": "branch-main",
+     "en": "Branch",
+     "ar": "الفرع"
+    }
+   ],
+   "svc": "tax-records-amendment"
+  },
+  {
+   "id": "contact",
+   "en": "Contact Details",
+   "ar": "بيانات التواصل",
+   "subsections": [
+    {
+     "id": "address",
+     "en": "Address & Contact",
+     "ar": "العنوان والتواصل"
+    }
+   ],
+   "svc": "tax-records-amendment"
+  },
+  {
+   "id": "signatory",
+   "en": "Authorized Signatory",
+   "ar": "المخوّل بالتوقيع",
+   "subsections": [
+    {
+     "id": "signatory-list",
+     "en": "Authorized Signatory List",
+     "ar": "قائمة المخوّلين بالتوقيع"
+    }
+   ],
+   "svc": "tax-records-amendment"
+  },
+  {
+   "id": "tin",
+   "en": "Multiple TIN",
+   "ar": "تعدد أرقام التسجيل",
+   "subsections": [
+    {
+     "id": "tin-main",
+     "en": "Multiple TIN Notice",
+     "ar": "إشعار تعدد أرقام التسجيل"
+    }
+   ],
+   "svc": "tax-records-amendment"
+  },
+  {
+   "id": "reject",
+   "en": "Rejections",
+   "ar": "الرفض",
+   "subsections": [
+    {
+     "id": "dereg",
+     "en": "De-registration Rejections",
+     "ar": "رفض — إلغاء التسجيل"
+    },
+    {
+     "id": "change-type",
+     "en": "Change Entity Type Rejection",
+     "ar": "رفض — تغيير الشكل القانوني"
+    }
+   ],
+   "svc": "tax-records-amendment"
+  }
+ ],
+ "comments": [
+  {
+   "id": "et-01",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - UAE Private Company\".",
+   "ar": "يرجى تعديل نوع الكيان إلى \"شخص اعتباري - مؤسَّس - شركة خاصة إماراتية\".",
+   "tags": [
+    "entity type",
+    "legal person",
+    "private company",
+    "LLC"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - UAE Private Company\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Legal Person - Incorporated - UAE Private Company\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "private company",
+      "LLC"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - UAE Private Company\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "private company",
+      "LLC"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-02",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Partnership/Heirs of Natural Person\".",
+   "ar": "يرجى تعديل نوع الكيان إلى \"شخص اعتباري - مؤسَّس - شراكة/ورثة شخص طبيعي\".",
+   "tags": [
+    "entity type",
+    "legal person",
+    "heirs",
+    "partnership"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Partnership/Heirs of Natural Person\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Legal Person - Incorporated - Partnership/Heirs of Natural Person\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "heirs",
+      "partnership"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Partnership/Heirs of Natural Person\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "heirs",
+      "partnership"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-03",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Public Joint Stock\".",
+   "ar": "يرجى تعديل نوع الكيان إلى \"شخص اعتباري - مؤسَّس - شركة مساهمة عامة\".",
+   "tags": [
+    "entity type",
+    "legal person",
+    "PJSC",
+    "joint stock"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Public Joint Stock\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Legal Person - Incorporated - Public Joint Stock\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "PJSC",
+      "joint stock"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Public Joint Stock\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "PJSC",
+      "joint stock"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-04",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Other\".",
+   "ar": "يرجى تعديل نوع الكيان إلى \"شخص اعتباري - مؤسَّس - أخرى\".",
+   "tags": [
+    "entity type",
+    "legal person",
+    "other"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Other\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Legal Person - Incorporated - Other\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "other"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Other\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "other"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-05",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Emirate Government Entity\".",
+   "ar": "يرجى تعديل نوع الكيان إلى \"شخص اعتباري - مؤسَّس - جهة حكومية محلية\".",
+   "tags": [
+    "entity type",
+    "legal person",
+    "government",
+    "emirate"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Emirate Government Entity\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Legal Person - Incorporated - Emirate Government Entity\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "government",
+      "emirate"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Emirate Government Entity\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "government",
+      "emirate"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-06",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Federal Government Entity\".",
+   "ar": "يرجى تعديل نوع الكيان إلى \"شخص اعتباري - مؤسَّس - جهة حكومية اتحادية\".",
+   "tags": [
+    "entity type",
+    "legal person",
+    "government",
+    "federal"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Federal Government Entity\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Legal Person - Incorporated - Federal Government Entity\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "government",
+      "federal"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Federal Government Entity\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "government",
+      "federal"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-07",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Foundation (As per Foundation Law)\".",
+   "ar": "يرجى تعديل نوع الكيان إلى \"شخص اعتباري - مؤسَّس - مؤسسة (وفقاً لقانون المؤسسات)\".",
+   "tags": [
+    "entity type",
+    "legal person",
+    "foundation"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Foundation (As per Foundation Law)\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Legal Person - Incorporated - Foundation (As per Foundation Law)\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "foundation"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Foundation (As per Foundation Law)\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "foundation"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-08",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Charity\".",
+   "ar": "يرجى تعديل نوع الكيان إلى \"شخص اعتباري - مؤسَّس - جمعية خيرية\".",
+   "tags": [
+    "entity type",
+    "legal person",
+    "charity"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Charity\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Legal Person - Incorporated - Charity\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "charity"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Charity\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "charity"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-09",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type \"Legal Person - Incorporated Trust\".",
+   "ar": "يرجى تعديل نوع الكيان إلى \"شخص اعتباري - صندوق ائتماني مؤسَّس\".",
+   "tags": [
+    "entity type",
+    "legal person",
+    "trust"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated Trust\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Legal Person - Incorporated Trust\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "trust"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated Trust\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "trust"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-10",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Society Institution\".",
+   "ar": "يرجى تعديل نوع الكيان إلى \"شخص اعتباري - مؤسَّس - مؤسسة مجتمعية\".",
+   "tags": [
+    "entity type",
+    "legal person",
+    "society"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Society Institution\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Legal Person - Incorporated - Society Institution\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "society"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Society Institution\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "society"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-11",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Association\".",
+   "ar": "يرجى تعديل نوع الكيان إلى \"شخص اعتباري - مؤسَّس - جمعية\".",
+   "tags": [
+    "entity type",
+    "legal person",
+    "association"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Association\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Legal Person - Incorporated - Association\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "association"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Association\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "association"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-12",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Club\".",
+   "ar": "يرجى تعديل نوع الكيان إلى \"شخص اعتباري - مؤسَّس - نادٍ\".",
+   "tags": [
+    "entity type",
+    "legal person",
+    "club"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Club\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Legal Person - Incorporated - Club\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "club"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Incorporated - Club\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "legal person",
+      "club"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-13",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type \"Legal Person - Foreign Business – foreign business with UAE trade license/permit\".",
+   "ar": "يرجى تعديل نوع الكيان إلى \"شخص اعتباري - أعمال أجنبية - أعمال أجنبية لديها رخصة/تصريح تجاري في الدولة\".",
+   "tags": [
+    "entity type",
+    "foreign business",
+    "with license"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Foreign Business – foreign business with UAE trade license/permit\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Legal Person - Foreign Business – foreign business with UAE trade license/permit\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "foreign business",
+      "with license"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Foreign Business – foreign business with UAE trade license/permit\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "foreign business",
+      "with license"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-14",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type \"Legal Person - Foreign Business – foreign business without UAE trade license/permit\".",
+   "ar": "يرجى تعديل نوع الكيان إلى \"شخص اعتباري - أعمال أجنبية - أعمال أجنبية ليس لديها رخصة/تصريح تجاري في الدولة\".",
+   "tags": [
+    "entity type",
+    "foreign business",
+    "without license"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Foreign Business – foreign business without UAE trade license/permit\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Legal Person - Foreign Business – foreign business without UAE trade license/permit\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "foreign business",
+      "without license"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Legal Person - Foreign Business – foreign business without UAE trade license/permit\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "foreign business",
+      "without license"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-15",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type \"Partnership - Domestic Incorporated Partnership\".",
+   "ar": "يرجى تعديل نوع الكيان إلى \"شراكة - شراكة محلية مؤسَّسة\".",
+   "tags": [
+    "entity type",
+    "partnership",
+    "domestic"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Partnership - Domestic Incorporated Partnership\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Partnership - Domestic Incorporated Partnership\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "partnership",
+      "domestic"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Partnership - Domestic Incorporated Partnership\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "partnership",
+      "domestic"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-16",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type \"Partnership - Foreign Incorporated Partnership\".",
+   "ar": "يرجى تعديل نوع الكيان إلى \"شراكة - شراكة أجنبية مؤسَّسة\".",
+   "tags": [
+    "entity type",
+    "partnership",
+    "foreign"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Partnership - Foreign Incorporated Partnership\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Partnership - Foreign Incorporated Partnership\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "partnership",
+      "foreign"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type \"Partnership - Foreign Incorporated Partnership\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "partnership",
+      "foreign"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-17",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type, choose \"Natural Person – Individual\".",
+   "ar": "يرجى تعديل نوع الكيان واختيار \"شخص طبيعي - فرد\".",
+   "tags": [
+    "entity type",
+    "natural person",
+    "individual"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type, choose \"Natural Person – Individual\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Natural Person – Individual\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "natural person",
+      "individual"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type, choose \"Natural Person – Individual\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "natural person",
+      "individual"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-18",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type, choose \"Natural Person – Other\".",
+   "ar": "يرجى تعديل نوع الكيان واختيار \"شخص طبيعي - أخرى\".",
+   "tags": [
+    "entity type",
+    "natural person",
+    "other"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type, choose \"Natural Person – Other\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Natural Person – Other\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "natural person",
+      "other"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type, choose \"Natural Person – Other\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "natural person",
+      "other"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "et-19",
+   "s": "entity",
+   "ss": "entity-type",
+   "kind": "request",
+   "en": "Kindly amend the Entity Type, choose \"Natural Person – Partnership/Heirs of Natural Person\".",
+   "ar": "يرجى تعديل نوع الكيان واختيار \"شخص طبيعي - شراكة/ورثة شخص طبيعي\".",
+   "tags": [
+    "entity type",
+    "natural person",
+    "heirs",
+    "partnership"
+   ],
+   "history": [
+    {
+     "at": "2026-10-12T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type, choose \"Natural Person – Partnership/Heirs of Natural Person\".",
+     "ar": "يرجى تعديل نوع الكيان إلى \"Natural Person – Partnership/Heirs of Natural Person\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "natural person",
+      "heirs",
+      "partnership"
+     ]
+    },
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the Entity Type, choose \"Natural Person – Partnership/Heirs of Natural Person\".",
+     "ar": "",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "entity type",
+      "natural person",
+      "heirs",
+      "partnership"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-12T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "doi-01",
+   "s": "entity",
+   "ss": "doi",
+   "kind": "request",
+   "en": "Kindly amend the date of incorporation as per trade license issuing date / establishment date.",
+   "ar": "يرجى تعديل تاريخ التأسيس حسب تاريخ اصدار الرخصة التجارية / تأسيس الرخصة التجارية.",
+   "tags": [
+    "incorporation",
+    "date",
+    "trade license"
+   ]
+  },
+  {
+   "id": "doi-02",
+   "s": "entity",
+   "ss": "doi",
+   "kind": "request",
+   "en": "If the legal form has been changed from sole Establishment to Limited liability, kindly Provide us with an official document from the license issuing authority stating the date of the change in the legal form and amend date of incorporation based on it.",
+   "ar": "إذا كان هناك تغيير في الشكل القانوني من مؤسسة فردية الى ذات مسؤولية محدودة يرجى ارفاق المستندات الرسمية من جهة اصدار الرخصة توضح تاريخ التغيير في الشكل القانوني وتعديل تاريخ التأسيس بناء علي المستند.",
+   "tags": [
+    "incorporation",
+    "legal form",
+    "sole establishment",
+    "LLC",
+    "change"
+   ],
+   "history": [
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "If the legal form has been changed from sole Establishment to Limited liability, kindly Provide us with an official document from the license issuing authority stating the date of the change in the legal form and amend date of incorporation based on it.",
+     "ar": "إذا كان هناك تغيير فالشكل القانوني من مؤسسة فردية الى ذات مسؤولية محدودة يرجى ارفاق المستندات الرسمية من جهة اصدار الرخصة توضح تاريخ التغيير في الشكل القانوني وتعديل تاريخ التأسيس بناء علي المستند.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "incorporation",
+      "legal form",
+      "sole establishment",
+      "LLC",
+      "change"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-08T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "doi-03",
+   "s": "entity",
+   "ss": "doi",
+   "kind": "attachment",
+   "en": "Kindly attach the certificate of change in trade license.",
+   "ar": "يرجى ارفاق شهادة تغيير بالرخصة التجارية.",
+   "tags": [
+    "certificate of change",
+    "attachment",
+    "trade license"
+   ],
+   "doc": {
+    "en": "Certificate of change in trade licence",
+    "ar": "شهادة التغيير بالرخصة التجارية"
+   }
+  },
+  {
+   "id": "doi-04",
+   "s": "entity",
+   "ss": "doi",
+   "kind": "attachment",
+   "en": "Kindly provide the commercial registration certificate and update the date of incorporation to reflect the date on which the legal type was changed, as indicated on the certificate.",
+   "ar": "يرجى ارفاق شهادة التسجيل التجاري, وتعديل تاريخ التأسيس حسب تاريخ تغيير الشكل القانوني الموضح بها.",
+   "tags": [
+    "commercial registration",
+    "incorporation",
+    "legal type"
+   ],
+   "doc": {
+    "en": "Commercial registration certificate",
+    "ar": "شهادة التسجيل التجاري"
+   }
+  },
+  {
+   "id": "doi-05",
+   "s": "entity",
+   "ss": "doi",
+   "kind": "attachment",
+   "en": "Kindly attach the original Memorandum of association.",
+   "ar": "يرجى ارفاق عقد التأسيس الأصلي.",
+   "tags": [
+    "MOA",
+    "memorandum",
+    "attachment"
+   ],
+   "doc": {
+    "en": "Original Memorandum of Association",
+    "ar": "عقد التأسيس الأصلي"
+   }
+  },
+  {
+   "id": "doi-06",
+   "s": "entity",
+   "ss": "doi",
+   "kind": "request",
+   "en": "Kindly amend the date of incorporation as per the certificate of incorporation.",
+   "ar": "يرجى تعديل تاريخ التأسيس حسب شهادة التأسيس.",
+   "cond": {
+    "en": "Applies to trade licences whose issuance date is renewed every year, e.g. DIFC trade licences.",
+    "ar": "هذا بالنسبة للرخص التجارية التي يتجدد تاريخ إصدارها كل سنة، على سبيل المثال: رخص مركز دبي المالي العالمي."
+   },
+   "tags": [
+    "incorporation",
+    "certificate of incorporation",
+    "DIFC",
+    "COI"
+   ]
+  },
+  {
+   "id": "doi-07",
+   "s": "entity",
+   "ss": "doi",
+   "kind": "attachment",
+   "en": "Kindly attach the certificate of incorporation for the parent company.",
+   "ar": "يرجى ارفاق شهادة التأسيس للشركة الأجنبية.",
+   "cond": {
+    "en": "For foreign companies / foreign branches.",
+    "ar": "فيما يخص الفروع الأجنبية."
+   },
+   "tags": [
+    "parent company",
+    "foreign",
+    "certificate of incorporation",
+    "COI"
+   ],
+   "doc": {
+    "en": "Certificate of incorporation of the parent company",
+    "ar": "شهادة تأسيس الشركة الأم"
+   }
+  },
+  {
+   "id": "doi-08",
+   "s": "entity",
+   "ss": "doi",
+   "kind": "request",
+   "en": "Kindly amend the Country of registration as per the country of the parent company.",
+   "ar": "يرجى تعديل بلد التسجيل حسب بلد الشركة الاجنبية.",
+   "tags": [
+    "country",
+    "registration",
+    "parent company",
+    "foreign"
+   ]
+  },
+  {
+   "id": "np-01",
+   "s": "entity",
+   "ss": "natural",
+   "kind": "request",
+   "en": "Kindly update the English first name, you may copy \"{{firstNameEn}}\" and the last name, you may copy \"{{lastNameEn}}\".",
+   "ar": "يرجى تحديث الاسم باللغة الإنجليزية، يمكنك نسخ الاسم الأول \"{{firstNameEn}}\" والاسم الأخير \"{{lastNameEn}}\".",
+   "tags": [
+    "name",
+    "english",
+    "first name",
+    "last name",
+    "natural person"
+   ]
+  },
+  {
+   "id": "np-02",
+   "s": "entity",
+   "ss": "natural",
+   "kind": "request",
+   "en": "Kindly update the Arabic first name, you may copy \"{{firstNameAr}}\" and the last name, you may copy \"{{lastNameAr}}\".",
+   "ar": "يرجى تحديث الاسم باللغة العربية، يمكنك نسخ الاسم الأول \"{{firstNameAr}}\" والاسم الأخير \"{{lastNameAr}}\".",
+   "tags": [
+    "name",
+    "arabic",
+    "first name",
+    "last name",
+    "natural person"
+   ]
+  },
+  {
+   "id": "np-03",
+   "s": "entity",
+   "ss": "natural",
+   "kind": "request",
+   "en": "Kindly choose \"yes\" for \"Is the Owner a resident of the UAE?\" and validate the owner's EID details.",
+   "ar": "يرجى اختيار \"نعم\" في \"هل المالك مقيم في الامارات؟\" واضافة تفاصيل الهوية الاماراتية.",
+   "tags": [
+    "resident",
+    "EID",
+    "emirates id",
+    "owner"
+   ]
+  },
+  {
+   "id": "np-04",
+   "s": "entity",
+   "ss": "natural",
+   "kind": "attachment",
+   "en": "Kindly attach the updated EID instead of the expired one.",
+   "ar": "يرجى ارفاق الهوية الامارتية الحديثة عوضا عن المنتهية.",
+   "tags": [
+    "EID",
+    "emirates id",
+    "expired",
+    "attachment"
+   ],
+   "doc": {
+    "en": "Updated Emirates ID",
+    "ar": "الهوية الإماراتية المحدثة"
+   }
+  },
+  {
+   "id": "np-05",
+   "s": "entity",
+   "ss": "natural",
+   "kind": "attachment",
+   "en": "Kindly attach the updated Passport instead of the expired one.",
+   "ar": "يرجى ارفاق جواز السفر الحديث عوضا عن المنتهي.",
+   "tags": [
+    "passport",
+    "expired",
+    "attachment"
+   ],
+   "doc": {
+    "en": "Updated passport",
+    "ar": "جواز السفر المحدث"
+   }
+  },
+  {
+   "id": "np-06",
+   "s": "entity",
+   "ss": "natural",
+   "kind": "request",
+   "en": "Kindly choose \"NO\" for \"Is the Owner a resident of the UAE?\" and add the representative passport details.",
+   "ar": "يرجى اختيار \"لا\" في \"هل المالك مقيم في الامارات؟\" واضافة تفاصيل جواز السفر.",
+   "cond": {
+    "en": "Heirs cases only — the representative's EID details are not added.",
+    "ar": "هذا يشمل الورثة فقط حيث لا نضيف رقم هوية الممثل."
+   },
+   "tags": [
+    "heirs",
+    "representative",
+    "passport",
+    "resident"
+   ]
+  },
+  {
+   "id": "dc-01",
+   "s": "entity",
+   "ss": "commence",
+   "kind": "request",
+   "en": "Kindly amend the date of commencement of the business as per trade license / Title deed.",
+   "ar": "يرجى تعديل تاريخ بداية النشاط حسب الرخصة التجارية / سند الملكية.",
+   "tags": [
+    "commencement",
+    "date",
+    "title deed"
+   ]
+  },
+  {
+   "id": "au-01",
+   "s": "ident",
+   "ss": "authority",
+   "kind": "request",
+   "en": "Kindly update the Trade License Issuing Authority to \"DEPARTMENT OF COMMUNITY DEVELOPMENT - ABU DHABI\".",
+   "ar": "يرجى تحديث جهة الإصدار الى \"دائرة تنمية المجتمع – ابوظبي\".",
+   "tags": [
+    "authority",
+    "DCD",
+    "abu dhabi",
+    "community development"
+   ]
+  },
+  {
+   "id": "au-02",
+   "s": "ident",
+   "ss": "authority",
+   "kind": "request",
+   "en": "Kindly update the Trade License Issuing Authority to \"Dubai Economy and Tourism\".",
+   "ar": "يرجى تحديث جهة إصدار الرخص التجارية إلى \"دبي للاقتصاد و السياحة\".",
+   "tags": [
+    "authority",
+    "DET",
+    "DED",
+    "dubai economy"
+   ]
+  },
+  {
+   "id": "au-03",
+   "s": "ident",
+   "ss": "authority",
+   "kind": "request",
+   "en": "Kindly update the Trade License Issuing Authority to \"Ports, Customs and Free Zone Corporation\".",
+   "ar": "يرجى تحديث جهة إصدار الرخص التجارية إلى \"مؤسسة الموانئ والجمارك والمنطقة الحرة\".",
+   "tags": [
+    "authority",
+    "PCFC",
+    "ports",
+    "customs"
+   ]
+  },
+  {
+   "id": "au-04",
+   "s": "ident",
+   "ss": "authority",
+   "kind": "request",
+   "en": "Kindly update the Trade License Issuing Authority to \"Dubai Integrated Economic Zones\".",
+   "ar": "يرجى تحديث جهة إصدار الرخص التجارية إلى \"مناطق دبي الاقتصادية المتكاملة\".",
+   "tags": [
+    "authority",
+    "DIEZ",
+    "DAFZA",
+    "dubai silicon oasis"
+   ]
+  },
+  {
+   "id": "au-05",
+   "s": "ident",
+   "ss": "authority",
+   "kind": "request",
+   "en": "Kindly update the Trade License Issuing Authority to \"Dubai Multi Commodities Centre\".",
+   "ar": "يرجى تحديث جهة الإصدار الى \"مركز دبي للسلع المتعددة\".",
+   "tags": [
+    "authority",
+    "DMCC",
+    "JLT"
+   ]
+  },
+  {
+   "id": "au-06",
+   "s": "ident",
+   "ss": "authority",
+   "kind": "request",
+   "en": "Kindly update the issuing authority to \"RAS Al-Khaimah Economic Zone\".",
+   "ar": "يرجى تحديث جهة الإصدار الى \"المنطقة الاقتصادية لراس الخيمة\".",
+   "tags": [
+    "authority",
+    "RAKEZ",
+    "ras al khaimah",
+    "RAK"
+   ]
+  },
+  {
+   "id": "au-07",
+   "s": "ident",
+   "ss": "authority",
+   "kind": "request",
+   "en": "Kindly update the Trade License Issuing Authority to \"Sharjah Media City\".",
+   "ar": "يرجى تحديث جهة الإصدار الى \"مدينة الشارقة للإعلام\".",
+   "tags": [
+    "authority",
+    "SHAMS",
+    "sharjah"
+   ]
+  },
+  {
+   "id": "au-08",
+   "s": "ident",
+   "ss": "authority",
+   "kind": "request",
+   "en": "Kindly update the Trade License Issuing Authority to \"Jebel Ali Free Zone\".",
+   "ar": "يرجى تحديث جهة الإصدار الى \"سلطة المنطقة الحرة – جبل علي\".",
+   "tags": [
+    "authority",
+    "JAFZA",
+    "jebel ali"
+   ]
+  },
+  {
+   "id": "au-09",
+   "s": "ident",
+   "ss": "authority",
+   "kind": "request",
+   "en": "Kindly update the Trade License Issuing Authority to \"DUBAI AVIATION CITY CORPORATION\".",
+   "ar": "يرجى تحديث جهة الإصدار الى \"مؤسسة مدينة دبي للطيران\".",
+   "tags": [
+    "authority",
+    "DACC",
+    "aviation",
+    "dubai south"
+   ]
+  },
+  {
+   "id": "au-10",
+   "s": "ident",
+   "ss": "authority",
+   "kind": "request",
+   "en": "Kindly update the Trade License Issuing Authority as per the attached \"Abu Dhabi Department of Economic Development\" not \"Al Ain\".",
+   "ar": "يرجى تحديث جهة إصدار الرخصة التجارية حسب المرفق \"أبوظبي\" وليس \"العين\".",
+   "tags": [
+    "authority",
+    "ADDED",
+    "abu dhabi",
+    "al ain"
+   ]
+  },
+  {
+   "id": "au-11",
+   "s": "ident",
+   "ss": "authority",
+   "kind": "request",
+   "en": "Kindly update the Trade License Issuing Authority to \"Dubai Development Authority\".",
+   "ar": "يرجى تحديث جهة الإصدار الى \"هيئة دبي للتطوير\".",
+   "tags": [
+    "authority",
+    "DDA",
+    "TECOM",
+    "dubai development"
+   ]
+  },
+  {
+   "id": "au-12",
+   "s": "ident",
+   "ss": "authority",
+   "kind": "request",
+   "en": "Kindly update the Trade License Issuing Authority to \"{{authority}}\".",
+   "ar": "يرجى تحديث جهة إصدار الرخصة التجارية الى \"{{authority}}\".",
+   "tags": [
+    "authority",
+    "generic",
+    "template"
+   ],
+   "note": "Generic template added by the tool (not in the PDF)."
+  },
+  {
+   "id": "tln-01",
+   "s": "ident",
+   "ss": "tl-number",
+   "kind": "request",
+   "en": "Kindly amend the trade license number to be matching the one in the trade license.",
+   "ar": "يرجى تعديل رقم الرخصة التجارية.",
+   "tags": [
+    "license number",
+    "trade license"
+   ]
+  },
+  {
+   "id": "tln-02",
+   "s": "ident",
+   "ss": "tl-number",
+   "kind": "attachment",
+   "en": "In regards to your mentioned comments, kindly arrange to provide the official Certificate of Continuation from the Issuing Authority inclusive of both Trade License Numbers (Old and New).",
+   "ar": "يرجى ارفاق شهادة استمراريه رسمية من جهة الاصدار تتضمن أرقام الرخص التجارية (القديمة والجديدة).",
+   "tags": [
+    "continuation",
+    "certificate",
+    "old and new",
+    "license number"
+   ],
+   "doc": {
+    "en": "Certificate of Continuation (old and new licence numbers)",
+    "ar": "شهادة الاستمرارية (رقما الرخصة القديم والجديد)"
+   }
+  },
+  {
+   "id": "lid-01",
+   "s": "ident",
+   "ss": "issue-date",
+   "kind": "request",
+   "en": "Kindly amend the license issue date as per trade license.",
+   "ar": "يرجى تعديل تاريخ اصدار الرخصة حسب الرخصة التجارية.",
+   "tags": [
+    "issue date",
+    "trade license"
+   ]
+  },
+  {
+   "id": "lid-02",
+   "s": "ident",
+   "ss": "issue-date",
+   "kind": "request",
+   "en": "Kindly amend the license issue date to ({{date}}).",
+   "ar": "يرجى تعديل تاريخ اصدار الرخصة الى ({{date}}).",
+   "tags": [
+    "issue date",
+    "specific date"
+   ]
+  },
+  {
+   "id": "led-01",
+   "s": "ident",
+   "ss": "expiry-date",
+   "kind": "attachment",
+   "en": "Kindly attach the trade license cancellation / liquidation certificate.",
+   "ar": "يرجي ارفاق شهادة الغاء – تصفية الرخصة التجارية.",
+   "tags": [
+    "cancellation",
+    "liquidation",
+    "certificate"
+   ],
+   "doc": {
+    "en": "Trade licence cancellation / liquidation certificate",
+    "ar": "شهادة إلغاء أو تصفية الرخصة التجارية"
+   }
+  },
+  {
+   "id": "led-02",
+   "s": "ident",
+   "ss": "expiry-date",
+   "kind": "request",
+   "en": "Kindly amend the license expiry date as per trade license.",
+   "ar": "يرجى تعديل تاريخ انتهاء الرخصة حسب الرخصة التجارية.",
+   "tags": [
+    "expiry date",
+    "trade license"
+   ],
+   "history": [
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the license expiry date as per trade license.",
+     "ar": "يرجى تعديل تاريخ انتهاء الرخصة.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "expiry date",
+      "trade license"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-08T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "led-03",
+   "s": "ident",
+   "ss": "expiry-date",
+   "kind": "attachment",
+   "en": "Kindly attach the updated trade license / title deed.",
+   "ar": "يرجى ارفاق الرخصة التجارية الحديثة / سند الملكية.",
+   "tags": [
+    "updated license",
+    "title deed",
+    "attachment",
+    "expired"
+   ],
+   "doc": {
+    "en": "Updated trade licence / title deed",
+    "ar": "الرخصة التجارية المحدثة أو سند الملكية"
+   }
+  },
+  {
+   "id": "led-04",
+   "s": "ident",
+   "ss": "expiry-date",
+   "kind": "attachment",
+   "en": "Kindly attach the updated certificate of good standing.",
+   "ar": "يرجى ارفاق شهادة حسن سيرة و سلوك.",
+   "tags": [
+    "good standing",
+    "certificate",
+    "attachment"
+   ],
+   "doc": {
+    "en": "Updated certificate of good standing",
+    "ar": "شهادة حسن السيرة والسلوك المحدثة"
+   }
+  },
+  {
+   "id": "led-05",
+   "s": "ident",
+   "ss": "expiry-date",
+   "kind": "request",
+   "en": "Kindly amend the license expiry date to correspond with the date of application submission.",
+   "ar": "يرجى تعديل تاريخ انتهاء الرخصة ليتماشى مع تاريخ تقديم الطلب.",
+   "tags": [
+    "expiry date",
+    "submission date"
+   ]
+  },
+  {
+   "id": "led-06",
+   "s": "ident",
+   "ss": "expiry-date",
+   "kind": "request",
+   "en": "Kindly amend the trade license expiry date to be 6 months after the issuance date of the updated certificate of incumbency.",
+   "ar": "يرجى تعديل تاريخ انتهاء الرخصة التجارية ليكون بعد 6 أشهر من تاريخ إصدار شهادة شغل الوظيفة المحدثة.",
+   "cond": {
+    "en": "JAFZA offshore companies only.",
+    "ar": "شركات جافزا الأوفشور فقط."
+   },
+   "tags": [
+    "expiry date",
+    "incumbency",
+    "JAFZA",
+    "offshore"
+   ],
+   "history": [
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the trade license expiry date to be 6 months after the issuance date of the updated certificate of incumbency.",
+     "ar": "",
+     "cond": {
+      "en": "JAFZA offshore companies only.",
+      "ar": "شركات جافزا الأوفشور فقط."
+     },
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "expiry date",
+      "incumbency",
+      "JAFZA",
+      "offshore"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-08T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "nm-01",
+   "s": "ident",
+   "ss": "names",
+   "kind": "request",
+   "en": "Kindly amend the legal name in English as per trade license. You may copy \"{{legalNameEn}}\".",
+   "ar": "يرجى تعديل الاسم القانوني بالإنجليزية حسب الرخصة التجارية. يمكنك نسخ \"{{legalNameEn}}\".",
+   "tags": [
+    "legal name",
+    "english",
+    "trade name"
+   ]
+  },
+  {
+   "id": "nm-02",
+   "s": "ident",
+   "ss": "names",
+   "kind": "request",
+   "en": "Kindly amend the legal name in Arabic as per trade license. You may copy \"{{legalNameAr}}\".",
+   "ar": "يرجى تعديل الاسم القانوني بالعربية حسب الرخصة التجارية. يمكنك نسخ \"{{legalNameAr}}\".",
+   "tags": [
+    "legal name",
+    "arabic",
+    "trade name"
+   ]
+  },
+  {
+   "id": "ac-01",
+   "s": "ident",
+   "ss": "activity",
+   "kind": "request",
+   "en": "Kindly update the business activities detail to the closest in the trade license.",
+   "ar": "يرجى تعديل النشاط الى اقرب نشاط في الرخصة التجارية.",
+   "tags": [
+    "activity",
+    "business activities"
+   ]
+  },
+  {
+   "id": "ow-01",
+   "s": "ident",
+   "ss": "owners",
+   "kind": "request",
+   "en": "Kindly amend the shareholding list as per the updated trade license.",
+   "ar": "يرجى تعديل قائمة الملاك حسب الرخصة التجارية.",
+   "tags": [
+    "owners",
+    "shareholding",
+    "shareholders"
+   ]
+  },
+  {
+   "id": "ow-02",
+   "s": "ident",
+   "ss": "owners",
+   "kind": "attachment",
+   "en": "Kindly attach the updated trade license / Memorandum of association / AOA / Shareholding certificate.",
+   "ar": "يرجى ارفاق عقد التأسيس، أو شهادة الأسهم، أو شهادة الوظائف التي توضح نسب الملكية.",
+   "tags": [
+    "MOA",
+    "AOA",
+    "shareholding certificate",
+    "attachment"
+   ],
+   "doc": {
+    "en": "Updated trade licence / MOA / AOA / shareholding certificate",
+    "ar": "الرخصة التجارية أو عقد التأسيس أو شهادة الأسهم المحدثة"
+   }
+  },
+  {
+   "id": "ow-03",
+   "s": "ident",
+   "ss": "owners",
+   "kind": "request",
+   "en": "Kindly answer \"yes\" to \"Do any of the owners hold 25% or more of the ownership?\" and add shareholders who hold 25% or more of the ownership.",
+   "ar": "يرجى إضافة أي شريك يمتلك 25% أو أكثر من إجمالي ملكية الشركة.",
+   "tags": [
+    "25%",
+    "ownership",
+    "shareholders"
+   ]
+  },
+  {
+   "id": "ow-04",
+   "s": "ident",
+   "ss": "owners",
+   "kind": "attachment",
+   "en": "Kindly attach the updated certificate of incumbency.",
+   "ar": "يرجى ارفاق احدث شهادة شغل وظيفة.",
+   "cond": {
+    "en": "Offshore companies only.",
+    "ar": "هذا فيما يخص شركات الأوفشور."
+   },
+   "tags": [
+    "incumbency",
+    "offshore",
+    "attachment"
+   ],
+   "doc": {
+    "en": "Updated certificate of incumbency",
+    "ar": "شهادة شغل الوظيفة المحدثة"
+   }
+  },
+  {
+   "id": "ow-05",
+   "s": "ident",
+   "ss": "owners",
+   "kind": "request",
+   "en": "In owner list section, kindly amend the owner type to \"Natural Person\" in order to add the EID details.",
+   "ar": "في قائمة الملاك, يرجى تعديل الشكل القانوني للمالك الى \"شخص طبيعي\" وذلك للتمكن من إضافة بيانات الهوية الإماراتية.",
+   "tags": [
+    "owner type",
+    "natural person",
+    "EID"
+   ]
+  },
+  {
+   "id": "ow-06",
+   "s": "ident",
+   "ss": "owners",
+   "kind": "request",
+   "en": "In owner list section, kindly amend the owner type to \"Legal Person\" in order to add the trade license details.",
+   "ar": "في قائمة الملاك, يرجى تعديل الشكل القانوني للمالك الى \"شخص اعتباري\" وذلك للتمكن من إضافة بيانات الرخصة التجارية.",
+   "tags": [
+    "owner type",
+    "legal person",
+    "trade license"
+   ]
+  },
+  {
+   "id": "ow-07",
+   "s": "ident",
+   "ss": "owners",
+   "kind": "request",
+   "en": "In owner list section, kindly amend the owner issuing authority to \"Foreign\".",
+   "ar": "في قائمة الملاك, يرجى تعديل جهة اصدار المالك الى \"أجنبية\".",
+   "tags": [
+    "owner",
+    "issuing authority",
+    "foreign"
+   ]
+  },
+  {
+   "id": "ow-08",
+   "s": "ident",
+   "ss": "owners",
+   "kind": "request",
+   "en": "In owner list section, kindly amend the owner issuing authority to \"{{authority}}\".",
+   "ar": "في قائمة الملاك, يرجى تعديل جهة الإصدار الى \"{{authority}}\".",
+   "tags": [
+    "owner",
+    "issuing authority"
+   ]
+  },
+  {
+   "id": "br-01",
+   "s": "branch",
+   "ss": "branch-main",
+   "kind": "request",
+   "en": "Kindly add the branch of the company under the main license in the same application.",
+   "ar": "يرجى إضافة الفرع التابع للرخصة الرئيسية في نفس الطلب.",
+   "tags": [
+    "branch",
+    "main license",
+    "same application"
+   ]
+  },
+  {
+   "id": "br-02",
+   "s": "branch",
+   "ss": "branch-main",
+   "kind": "attachment",
+   "en": "Kindly upload a valid trade license for the branch and then update the license details based on it.",
+   "ar": "يرجى ارفاق رخصة تجارية حديثة للفرع و إضافة البيانات حسب الرخصة.",
+   "tags": [
+    "branch",
+    "trade license",
+    "attachment"
+   ],
+   "doc": {
+    "en": "Valid trade licence for the branch",
+    "ar": "رخصة تجارية سارية للفرع"
+   }
+  },
+  {
+   "id": "br-03",
+   "s": "branch",
+   "ss": "branch-main",
+   "kind": "request",
+   "en": "Kindly update the business activities details to the closest in the trade license (for the branch).",
+   "ar": "يرجى تحديث النشاط للفرع.",
+   "tags": [
+    "branch",
+    "activity"
+   ]
+  },
+  {
+   "id": "br-04",
+   "s": "branch",
+   "ss": "branch-main",
+   "kind": "request",
+   "en": "Kindly provide evidence that the branch is legally a branch and not a separate company; if it is not, kindly remove it and submit a separate application for it.",
+   "ar": "يرجى ارفاق اثبات ان الفرع هو فرع قانوني و ليس شركة منفصلة. اذا لم يكن كذلك يرجى ازالته و تقديم طلب منفصل له.",
+   "tags": [
+    "branch",
+    "separate company",
+    "evidence"
+   ]
+  },
+  {
+   "id": "ad-01",
+   "s": "contact",
+   "ss": "address",
+   "kind": "request",
+   "en": "Kindly confirm the address.",
+   "ar": "يرجى تأكيد العنوان.",
+   "tags": [
+    "address",
+    "confirm"
+   ]
+  },
+  {
+   "id": "ad-02",
+   "s": "contact",
+   "ss": "address",
+   "kind": "request",
+   "en": "Kindly confirm the contact details in your tax records.",
+   "ar": "الرجاء التاكد من صحة ارقام التواصل الموجودة في سجلكم الضريبي.",
+   "tags": [
+    "contact",
+    "phone",
+    "tax records"
+   ]
+  },
+  {
+   "id": "ad-03",
+   "s": "contact",
+   "ss": "address",
+   "kind": "notice",
+   "en": "We tried to reach you through a phone call, but there was no response, so kindly add a reachable phone number.",
+   "ar": "حاولنا التواصل هاتفيا على الرقم الموجود في سجلكم الضريبي لكن لم يتم الرد على اتصالنا, لذا نرجو منكم إضافة رقم هاتف يمكن الوصول اليه.",
+   "tags": [
+    "phone",
+    "no response",
+    "call",
+    "reachable"
+   ]
+  },
+  {
+   "id": "ad-04",
+   "s": "contact",
+   "ss": "address",
+   "kind": "request",
+   "en": "Kindly amend the city to {{city}}.",
+   "ar": "يرجي تعديل المدينة الي {{city}}.",
+   "tags": [
+    "city",
+    "address"
+   ]
+  },
+  {
+   "id": "ad-05",
+   "s": "contact",
+   "ss": "address",
+   "kind": "request",
+   "en": "Kindly amend the emirate to {{emirate}}.",
+   "ar": "يرجى تعديل الإمارة الى {{emirate}}.",
+   "tags": [
+    "emirate",
+    "address"
+   ],
+   "history": [
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly amend the emirate to {{emirate}}.",
+     "ar": "يرجي تعديل المدينة الي {{emirate}}.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "emirate",
+      "address"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-08T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "ad-06",
+   "s": "contact",
+   "ss": "address",
+   "kind": "request",
+   "en": "Kindly write down a reachable UAE number.",
+   "ar": "يرجي كتابة رقم تواصل فعال.",
+   "tags": [
+    "phone",
+    "UAE number",
+    "reachable"
+   ]
+  },
+  {
+   "id": "sg-01",
+   "s": "signatory",
+   "ss": "signatory-list",
+   "kind": "request",
+   "en": "Kindly amend the authorized signatory list as per the updated memorandum of association.",
+   "ar": "يرجي تعديل الشخص المخول بالتوقيع ليكون مطابقا لعقد التأسيس المعدل.",
+   "tags": [
+    "signatory",
+    "MOA"
+   ]
+  },
+  {
+   "id": "sg-02",
+   "s": "signatory",
+   "ss": "signatory-list",
+   "kind": "request",
+   "en": "Kindly amend the authorized signatory list as per the updated trade license.",
+   "ar": "يرجي تعديل الشخص المخول بالتوقيع ليكون مطابقا للرخصة التجارية.",
+   "tags": [
+    "signatory",
+    "trade license"
+   ]
+  },
+  {
+   "id": "sg-03",
+   "s": "signatory",
+   "ss": "signatory-list",
+   "kind": "attachment",
+   "en": "Kindly attach the last updated Memorandum of association or the power of attorney showing the current Authorized Signatory.",
+   "ar": "يرجي ارفاق عقد التأسيس المعدل أو الوكالة القانونية التي توضح الشخص المخول بالتوقيع الحالي.",
+   "tags": [
+    "signatory",
+    "MOA",
+    "POA",
+    "power of attorney",
+    "attachment"
+   ],
+   "doc": {
+    "en": "Updated MOA or power of attorney",
+    "ar": "عقد التأسيس المعدل أو الوكالة القانونية"
+   }
+  },
+  {
+   "id": "tin-01",
+   "s": "tin",
+   "ss": "tin-main",
+   "kind": "notice",
+   "en": "Kindly be informed that our records indicate you already have a TIN ({{tin}}) registered with trade license number ({{tradeLicenseNo}}). You are required to proceed with De-Registering one of those TRNs, and place an Amendment Request for the one which will be assigned for the company.",
+   "ar": "يرجى العلم بأن سجلاتنا تشير إلى وجود رقم تسجيل ضريبي ({{tin}}) مسجل مسبقاً برقم الرخصة التجارية ({{tradeLicenseNo}}). يتعين عليكم التقدم بطلب إلغاء تسجيل أحد الرقمين الضريبيين، وتقديم طلب تعديل للرقم الذي سيتم اعتماده للشركة.",
+   "tags": [
+    "TIN",
+    "TRN",
+    "multiple",
+    "duplicate registration",
+    "deregister"
+   ],
+   "history": [
+    {
+     "at": "2026-10-08T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly be informed that our records indicate you already have a TIN ({{tin}}) registered with trade license number ({{tradeLicenseNo}}). You are required to proceed with De-Registering one of those TRNs, and place an Amendment Request for the one which will be assigned for the company.",
+     "ar": "",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "TIN",
+      "TRN",
+      "multiple",
+      "duplicate registration",
+      "deregister"
+     ]
+    }
+   ],
+   "updatedAt": "2026-10-08T00:00:00Z",
+   "updatedBy": "admin"
+  },
+  {
+   "id": "dr-01",
+   "s": "reject",
+   "ss": "dereg",
+   "kind": "rejection",
+   "en": "Kindly be informed that this AMTP Application has been Rejected, due to changes in the Trade License; as the Legal Type has been amended. You are required to proceed with De-Registering the TRN, and place a New Registration Request as a Legal Person – Incorporated.",
+   "ar": "يرجى التفضل بالعلم بأن طلب تعديل بيانات الشخص الضريبي هذا قد تم رفضه نظراً لتغيير الشكل القانوني للمؤسسة. فيجب عليكم التقدم بطلب الغاء تسجيل الرقم الضريبي، وتقديم طلب تسجيل جديد كشخص اعتباري.",
+   "tags": [
+    "rejected",
+    "legal type",
+    "deregister",
+    "new registration",
+    "legal person"
+   ]
+  },
+  {
+   "id": "dr-02",
+   "s": "reject",
+   "ss": "dereg",
+   "kind": "rejection",
+   "en": "Kindly be informed that this AMTP Application has been Rejected, due to changes in the Trade License; as the Legal Type has been amended. You are required to proceed with De-Registering the TRN, and place a New Registration Request. However, if a Service Agent/Sole Establishment TRN exists, of the new owner, you need to place an AMTP Request, and upload the Sole Establishment Trade License(s).",
+   "ar": "يرجى التفضل بالعلم بأن طلب تعديل بيانات الشخص الضريبي هذا قد تم رفضه نظراً لتغيير الشكل القانوني للمؤسسة. فيجب عليكم التقدم بطلب الغاء تسجيل الرقم الضريبي، ومع ذلك في حال وجود رقم تسجيل ضريبي مسبقاً للمالك الجديد يتعين عليكم التقدم بطلب تعديل بيانات الشخص الضريبي على الرقم الضريبي الموجود مسبقاً وإضافة رخص المؤسسات الفردية.",
+   "tags": [
+    "rejected",
+    "legal type",
+    "service agent",
+    "sole establishment",
+    "deregister"
+   ]
+  },
+  {
+   "id": "dr-03",
+   "s": "reject",
+   "ss": "dereg",
+   "kind": "rejection",
+   "en": "Kindly be informed that this AMTP Application has been Rejected, due to changes in the owner of the sole-establishment. You are required to proceed with De-Registering the TRN, and place a New Registration as long as the turnover has crossed the Registration Threshold. However, if a Sole Establishment TRN exists, of the new owner, you are required to place an AMTP Request, and upload the Sole Establishment Trade License(s) under their respective TRN.",
+   "ar": "يرجى التفضل بالعلم بأن طلب تعديل بيانات الشخص الضريبي هذا قد تم رفضه نظراً لتغيير مالك المؤسسة الفردية. فيجب عليكم التقدم بطلب الغاء تسجيل الرقم الضريبي، وتقديم طلب تسجيل للمالك الجديد طالما أن المبيعات تجاوزت حد التسجيل الضريبي. ومع ذلك في حال وجود رقم تسجيل ضريبي مسبقاً للمالك الجديد يتعين عليكم التقدم بطلب تعديل بيانات الشخص الضريبي على الرقم الضريبي الموجود مسبقاً وإضافة رخص المؤسسات الفردية.",
+   "tags": [
+    "rejected",
+    "owner change",
+    "sole establishment",
+    "threshold",
+    "deregister"
+   ]
+  },
+  {
+   "id": "dr-04",
+   "s": "reject",
+   "ss": "dereg",
+   "kind": "rejection",
+   "en": "Kindly be informed that this AMTP Application has been Rejected, due to change in Ownership of the Service Agent Trade License. Therefore, you are required to please proceed with De-Registering the TRN, and place a New Registration Request, so long as the Turnover has crossed the Registration Threshold. However, if a Service Agent/Sole Establishment TRN exists, of the new owner, you are able to place an AMTP Request, and upload the Sole Establishment Trade License(s).",
+   "ar": "يرجى التفضل بالعلم بأن طلب تعديل بيانات الشخص الضريبي هذا قد تم رفضه بسبب التغير في ملكية الرخصة التجارية لوكيل الخدمات. فيجب عليكم التقدم بطلب الغاء تسجيل الرقم الضريبي، وتقديم طلب تسجيل جديد طالما أن المبيعات تجاوزت حد التسجيل الضريبي. ومع ذلك في حال وجود رقم تسجيل ضريبي مسبقاً لوكيل الخدمات الجديد يتعين عليكم التقدم بطلب تعديل بيانات الشخص الضريبي على الرقم الضريبي الموجود مسبقاً وإضافة رخص وكيل الخدمات.",
+   "tags": [
+    "rejected",
+    "service agent",
+    "ownership",
+    "threshold",
+    "deregister"
+   ]
+  },
+  {
+   "id": "dr-05",
+   "s": "reject",
+   "ss": "dereg",
+   "kind": "rejection",
+   "en": "Kindly be informed that this AMTP Application has been Rejected, due to changes in the owner of the property. You are required to proceed with De-Registering the TRN, and place a New Registration for the new owner. However, if a Sole Establishment TRN exists, of the new owner, you are required to place an AMTP Request, and upload the Sole Establishment Trade License(s) under their respective TRN.",
+   "ar": "يرجى التفضل بالعلم بأن طلب تعديل بيانات الشخص الضريبي هذا قد تم رفضه بسبب التغير في ملكية العقار. فيجب عليكم التقدم بطلب الغاء تسجيل الرقم الضريبي، وتقديم طلب تسجيل جديد طالما أن المبيعات تجاوزت حد التسجيل الضريبي. ومع ذلك في حال وجود رقم تسجيل ضريبي مسبقاً للمالك الجديد يتعين عليكم التقدم بطلب تعديل بيانات الشخص الضريبي على الرقم الضريبي الموجود مسبقاً وإضافة سند ملكية العقار.",
+   "tags": [
+    "rejected",
+    "property",
+    "owner change",
+    "title deed",
+    "deregister"
+   ]
+  },
+  {
+   "id": "ct-01",
+   "s": "reject",
+   "ss": "change-type",
+   "kind": "rejection",
+   "en": "In accordance with the executive regulations of Federal Decree Law No. (28) of 2022 Tax Procedures, Cabinet Decision No. (74) of 2023, Article No. (6) about tax registration, De-registration and amendment procedures, FTA had reviewed your Amend taxable person details request. We would like to inform you that the Federal Tax Authority has reviewed your request for Amend taxable person details and found that the type of entity mentioned in your registration is incorrect and does not match your legal type. Therefore, the request will be rejected. Please submit a request to correct the entity type through the 'Change entity type' service and provide any additional information required to amend your tax record.",
+   "ar": "بالاستناد الى اللائحة التنفيذية للمرسوم بقانون اتحادي رقم (28) لسنة 2022 بشأن الإجراءات الضريبية، قرار مجلس الوزراء رقم (74) لسنة 2023، المادة رقم (6) بخصوص إجراءات التسجيل الضريبي والغاؤه وتعديل بياناته، نود إبلاغكم بأن الهيئة الاتحادية للضرائب قامت بمراجعة طلب تعديل البيانات الخاص بكم، وقد تبين أن نوع الكيان المذكور في تسجيلكم خاطئ ولا يتطابق مع الشكل القانوني الخاص بكم. وعليه، سيتم رفض الطلب. لذا يرجى التقدم بطلب لتصحيح الشكل القانوني عن طريق خدمة \"تغيير الشكل القانوني\" وتقديم أي معلومات إضافية مطلوبة لتعديل سجلكم الضريبي.",
+   "tags": [
+    "rejected",
+    "entity type",
+    "change entity type",
+    "decree law 28",
+    "cabinet decision 74"
+   ]
+  }
+ ],
+ "reviewItems": [
+  {
+   "id": "rv-01",
+   "type": "translation-error",
+   "commentId": "ad-05",
+   "status": "accepted",
+   "message": {
+    "en": "Arabic text says “city” (المدينة) but the English says “emirate”. Proposed fix replaces it with الإمارة.",
+    "ar": "النص العربي يذكر «المدينة» بينما الإنجليزي يذكر «الإمارة». المقترح: استبدالها بـ «الإمارة»."
+   },
+   "proposal": {
+    "ar": "يرجى تعديل الإمارة الى {{emirate}}."
+   },
+   "resolvedAt": "2026-10-08T00:00:00Z"
+  },
+  {
+   "id": "rv-02",
+   "type": "missing-arabic",
+   "commentId": "tin-01",
+   "status": "accepted",
+   "message": {
+    "en": "No Arabic version in the source. Proposed Arabic draft needs approval.",
+    "ar": "لا توجد نسخة عربية في المصدر. المسودة العربية المقترحة تحتاج إلى اعتماد."
+   },
+   "proposal": {
+    "ar": "يرجى العلم بأن سجلاتنا تشير إلى وجود رقم تسجيل ضريبي ({{tin}}) مسجل مسبقاً برقم الرخصة التجارية ({{tradeLicenseNo}}). يتعين عليكم التقدم بطلب إلغاء تسجيل أحد الرقمين الضريبيين، وتقديم طلب تعديل للرقم الذي سيتم اعتماده للشركة."
+   },
+   "resolvedAt": "2026-10-08T00:00:00Z"
+  },
+  {
+   "id": "rv-03",
+   "type": "missing-arabic",
+   "commentId": "led-06",
+   "status": "accepted",
+   "message": {
+    "en": "No Arabic version in the source. Proposed Arabic draft needs approval.",
+    "ar": "لا توجد نسخة عربية في المصدر. المسودة العربية المقترحة تحتاج إلى اعتماد."
+   },
+   "proposal": {
+    "ar": "يرجى تعديل تاريخ انتهاء الرخصة التجارية ليكون بعد 6 أشهر من تاريخ إصدار شهادة شغل الوظيفة المحدثة."
+   },
+   "resolvedAt": "2026-10-08T00:00:00Z"
+  },
+  {
+   "id": "rv-04",
+   "type": "missing-arabic",
+   "commentId": "et-01",
+   "status": "accepted",
+   "message": {
+    "en": "All 19 Entity Type comments are English-only in the source. A single Arabic pattern is proposed: «يرجى تعديل نوع الكيان إلى \"…\"». Accepting applies it to all 19.",
+    "ar": "جميع تعليقات نوع الكيان (19) بالإنجليزية فقط في المصدر. المقترح نمط عربي موحد: «يرجى تعديل نوع الكيان إلى \"…\"». القبول يطبّقه على التسعة عشر."
+   },
+   "proposal": {
+    "pattern": "entity-type"
+   },
+   "resolvedAt": "2026-10-08T00:00:00Z"
+  },
+  {
+   "id": "rv-05",
+   "type": "wording",
+   "commentId": "doi-02",
+   "status": "accepted",
+   "message": {
+    "en": "Arabic typo: «فالشكل» should be «في الشكل». Proposed fix.",
+    "ar": "خطأ إملائي: «فالشكل» والصواب «في الشكل»."
+   },
+   "proposal": {
+    "ar": "إذا كان هناك تغيير في الشكل القانوني من مؤسسة فردية الى ذات مسؤولية محدودة يرجى ارفاق المستندات الرسمية من جهة اصدار الرخصة توضح تاريخ التغيير في الشكل القانوني وتعديل تاريخ التأسيس بناء علي المستند."
+   },
+   "resolvedAt": "2026-10-08T00:00:00Z"
+  },
+  {
+   "id": "rv-06",
+   "type": "wording",
+   "commentId": "led-02",
+   "status": "accepted",
+   "message": {
+    "en": "Arabic omits “as per trade license”. Proposed: add «حسب الرخصة التجارية».",
+    "ar": "النص العربي لا يذكر «حسب الرخصة التجارية». المقترح إضافتها."
+   },
+   "proposal": {
+    "ar": "يرجى تعديل تاريخ انتهاء الرخصة حسب الرخصة التجارية."
+   },
+   "resolvedAt": "2026-10-08T00:00:00Z"
+  },
+  {
+   "id": "rv-07",
+   "type": "near-duplicate",
+   "commentId": "ac-01",
+   "status": "open",
+   "message": {
+    "en": "ac-01 (Activity) and br-03 (Branch activity) are near-duplicates; br-03 is the branch-specific variant. No change proposed — confirm both are wanted.",
+    "ar": "التعليقان ac-01 و br-03 متشابهان جداً؛ الثاني خاص بالفرع. لا تغيير مقترح — يرجى التأكيد على الحاجة لكليهما."
+   }
+  },
+  {
+   "id": "rv-08",
+   "type": "info",
+   "commentId": "au-12",
+   "status": "open",
+   "message": {
+    "en": "Generic “{{authority}}” template was added by the tool for authorities not listed in the PDF. Dismiss to keep, or archive the comment.",
+    "ar": "تمت إضافة قالب عام لجهة الإصدار «{{authority}}» للجهات غير المذكورة في الملف. تجاهل للإبقاء عليه، أو أرشف التعليق."
+   }
+  },
+  {
+   "id": "rv-typo-doi-04",
+   "type": "typography",
+   "commentId": "doi-04",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "يرجى ارفاق شهادة التسجيل التجاري، وتعديل تاريخ التأسيس حسب تاريخ تغيير الشكل القانوني الموضح بها."
+   }
+  },
+  {
+   "id": "rv-typo-led-01",
+   "type": "typography",
+   "commentId": "led-01",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "يرجى ارفاق شهادة الغاء – تصفية الرخصة التجارية."
+   }
+  },
+  {
+   "id": "rv-typo-ow-05",
+   "type": "typography",
+   "commentId": "ow-05",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "في قائمة الملاك، يرجى تعديل الشكل القانوني للمالك الى \"شخص طبيعي\" وذلك للتمكن من إضافة بيانات الهوية الإماراتية."
+   }
+  },
+  {
+   "id": "rv-typo-ow-06",
+   "type": "typography",
+   "commentId": "ow-06",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "في قائمة الملاك، يرجى تعديل الشكل القانوني للمالك الى \"شخص اعتباري\" وذلك للتمكن من إضافة بيانات الرخصة التجارية."
+   }
+  },
+  {
+   "id": "rv-typo-ow-07",
+   "type": "typography",
+   "commentId": "ow-07",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "في قائمة الملاك، يرجى تعديل جهة اصدار المالك الى \"أجنبية\"."
+   }
+  },
+  {
+   "id": "rv-typo-ow-08",
+   "type": "typography",
+   "commentId": "ow-08",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "في قائمة الملاك، يرجى تعديل جهة الإصدار الى \"{{authority}}\"."
+   }
+  },
+  {
+   "id": "rv-typo-ad-03",
+   "type": "typography",
+   "commentId": "ad-03",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "حاولنا التواصل هاتفيا على الرقم الموجود في سجلكم الضريبي لكن لم يتم الرد على اتصالنا، لذا نرجو منكم إضافة رقم هاتف يمكن الوصول اليه."
+   }
+  },
+  {
+   "id": "rv-typo-ad-04",
+   "type": "typography",
+   "commentId": "ad-04",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "يرجى تعديل المدينة الي {{city}}."
+   }
+  },
+  {
+   "id": "rv-typo-ad-06",
+   "type": "typography",
+   "commentId": "ad-06",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "يرجى كتابة رقم تواصل فعال."
+   }
+  },
+  {
+   "id": "rv-typo-sg-01",
+   "type": "typography",
+   "commentId": "sg-01",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "يرجى تعديل الشخص المخول بالتوقيع ليكون مطابقا لعقد التأسيس المعدل."
+   }
+  },
+  {
+   "id": "rv-typo-sg-02",
+   "type": "typography",
+   "commentId": "sg-02",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "يرجى تعديل الشخص المخول بالتوقيع ليكون مطابقا للرخصة التجارية."
+   }
+  },
+  {
+   "id": "rv-typo-sg-03",
+   "type": "typography",
+   "commentId": "sg-03",
+   "status": "open",
+   "message": {
+    "en": "Arabic punctuation/spelling house-style: Arabic comma «،», semicolon «؛», question mark «؟», and «يرجى».",
+    "ar": "توحيد علامات الترقيم العربية «،» «؛» «؟» وكتابة «يرجى»."
+   },
+   "proposal": {
+    "ar": "يرجى ارفاق عقد التأسيس المعدل أو الوكالة القانونية التي توضح الشخص المخول بالتوقيع الحالي."
+   }
+  }
+ ],
+ "placeholders": {
+  "date": {
+   "type": "date",
+   "en": "Date",
+   "ar": "التاريخ"
+  },
+  "tin": {
+   "type": "text",
+   "en": "TIN / TRN",
+   "ar": "رقم التسجيل الضريبي"
+  },
+  "tradeLicenseNo": {
+   "type": "text",
+   "en": "Trade licence number",
+   "ar": "رقم الرخصة التجارية"
+  },
+  "city": {
+   "type": "text",
+   "en": "City",
+   "ar": "المدينة"
+  },
+  "emirate": {
+   "type": "select",
+   "en": "Emirate",
+   "ar": "الإمارة",
+   "options": [
+    "Abu Dhabi",
+    "Dubai",
+    "Sharjah",
+    "Ajman",
+    "Umm Al Quwain",
+    "Ras Al Khaimah",
+    "Fujairah"
+   ]
+  },
+  "authority": {
+   "type": "authority",
+   "en": "Issuing authority",
+   "ar": "جهة الإصدار"
+  },
+  "firstNameEn": {
+   "type": "text",
+   "en": "First name (EN)",
+   "ar": "الاسم الأول (إنجليزي)"
+  },
+  "lastNameEn": {
+   "type": "text",
+   "en": "Last name (EN)",
+   "ar": "الاسم الأخير (إنجليزي)"
+  },
+  "firstNameAr": {
+   "type": "text",
+   "en": "First name (AR)",
+   "ar": "الاسم الأول (عربي)"
+  },
+  "lastNameAr": {
+   "type": "text",
+   "en": "Last name (AR)",
+   "ar": "الاسم الأخير (عربي)"
+  },
+  "legalNameEn": {
+   "type": "text",
+   "en": "Legal name (EN)",
+   "ar": "الاسم القانوني (إنجليزي)"
+  },
+  "legalNameAr": {
+   "type": "text",
+   "en": "Legal name (AR)",
+   "ar": "الاسم القانوني (عربي)"
+  }
+ },
+ "synonyms": {
+  "moa": "memorandum of association",
+  "aoa": "articles of association",
+  "eid": "emirates id",
+  "id": "emirates id",
+  "tl": "trade license",
+  "licence": "license",
+  "poa": "power of attorney",
+  "coi": "certificate of incorporation",
+  "trn": "tin",
+  "jafza": "jebel ali free zone",
+  "dmcc": "dubai multi commodities centre",
+  "det": "dubai economy and tourism",
+  "ded": "department of economic development",
+  "difc": "certificate of incorporation",
+  "rakez": "ras al khaimah economic zone",
+  "rak": "ras al khaimah",
+  "dda": "dubai development authority",
+  "pcfc": "ports customs free zone",
+  "diez": "dubai integrated economic zones",
+  "shams": "sharjah media city",
+  "dacc": "dubai aviation city corporation",
+  "dcd": "department of community development",
+  "llc": "limited liability",
+  "pjsc": "public joint stock",
+  "mobile": "phone",
+  "number": "phone",
+  "incumbency": "offshore",
+  "shareholder": "owner",
+  "shareholders": "owners",
+  "deregister": "de-registering",
+  "dereg": "de-registering",
+  "reject": "rejected",
+  "هوية": "الهوية الاماراتية",
+  "رخصه": "رخصة",
+  "عقد": "عقد التأسيس"
+ },
+ "releases": [
+  {
+   "version": "1.0.0",
+   "at": "2026-10-08",
+   "by": "admin",
+   "note": "First draft: all Arabic proposals accepted (22 translations added, 3 corrections)."
+  },
+  {
+   "version": "2.0.0",
+   "at": "2026-10-08",
+   "by": "Service Development Team",
+   "note": "Flagship polish: home page, walkthrough, command palette, scenarios, quality meter, conflict/duplicate checks, attachment summary, reviewer stamp, paste verification, bulk editor, coverage map, approval workflow, change log, print-to-PDF, autosave."
+  },
+  {
+   "version": "2.0.1",
+   "at": "2026-10-12",
+   "by": "admin",
+   "note": "Entity Type names translated to Arabic in all 19 Arabic comments."
+  }
+ ],
+ "scenarios": [
+  {
+   "id": "sc-sole-llc",
+   "en": "Sole Establishment → LLC change",
+   "ar": "تحويل مؤسسة فردية إلى ذ.م.م",
+   "ids": [
+    "doi-02",
+    "doi-03",
+    "doi-05"
+   ],
+   "svc": "tax-records-amendment"
+  },
+  {
+   "id": "sc-expired",
+   "en": "Expired trade licence",
+   "ar": "رخصة تجارية منتهية",
+   "ids": [
+    "led-02",
+    "led-03"
+   ],
+   "svc": "tax-records-amendment"
+  },
+  {
+   "id": "sc-branch",
+   "en": "Branch added",
+   "ar": "إضافة فرع",
+   "ids": [
+    "br-01",
+    "br-02",
+    "br-03"
+   ],
+   "svc": "tax-records-amendment"
+  },
+  {
+   "id": "sc-owner",
+   "en": "Owner / shareholder change",
+   "ar": "تغيير المالك أو الشركاء",
+   "ids": [
+    "ow-01",
+    "ow-02",
+    "ow-03"
+   ],
+   "svc": "tax-records-amendment"
+  },
+  {
+   "id": "sc-foreign",
+   "en": "Foreign company / branch",
+   "ar": "شركة أجنبية أو فرع أجنبي",
+   "ids": [
+    "et-13",
+    "doi-07",
+    "doi-08"
+   ],
+   "svc": "tax-records-amendment"
+  },
+  {
+   "id": "sc-heirs",
+   "en": "Heirs case",
+   "ar": "حالة ورثة",
+   "ids": [
+    "et-19",
+    "np-06",
+    "np-05"
+   ],
+   "svc": "tax-records-amendment"
+  },
+  {
+   "id": "sc-difc",
+   "en": "DIFC-type licence (annual renewal)",
+   "ar": "رخصة من نوع DIFC (تجديد سنوي)",
+   "ids": [
+    "doi-06",
+    "lid-01",
+    "led-02"
+   ],
+   "svc": "tax-records-amendment"
+  },
+  {
+   "id": "sc-offshore",
+   "en": "Offshore company",
+   "ar": "شركة أوفشور",
+   "ids": [
+    "ow-04",
+    "led-06"
+   ],
+   "svc": "tax-records-amendment"
+  },
+  {
+   "id": "sc-natural",
+   "en": "Natural person details",
+   "ar": "بيانات الشخص الطبيعي",
+   "ids": [
+    "np-01",
+    "np-02",
+    "np-03",
+    "np-04"
+   ],
+   "svc": "tax-records-amendment"
+  },
+  {
+   "id": "sc-contact",
+   "en": "Unreachable contact",
+   "ar": "تعذر التواصل",
+   "ids": [
+    "ad-03",
+    "ad-06",
+    "ad-02"
+   ],
+   "svc": "tax-records-amendment"
+  }
+ ],
+ "conflicts": [
+  [
+   "np-03",
+   "np-06"
+  ],
+  [
+   "ow-05",
+   "ow-06"
+  ],
+  [
+   "ow-07",
+   "ow-08"
+  ],
+  [
+   "lid-01",
+   "lid-02"
+  ],
+  [
+   "led-02",
+   "led-05"
+  ],
+  [
+   "doi-01",
+   "doi-06"
+  ]
+ ],
+ "exclusiveSubsections": [
+  "entity-type",
+  "authority"
+ ],
+ "area": {
+  "en": "Registration",
+  "ar": "التسجيل"
+ },
+ "services": [
+  {
+   "id": "amendment-of-clearance-companies-financial-guarantee",
+   "en": "Amendment of Clearance Companies Financial Guarantee",
+   "ar": "تعديل الضمانات المالية لشركات التخليص الجمركي"
+  },
+  {
+   "id": "amendment-of-excise-goods-record",
+   "en": "Amendment of Excise Goods Record",
+   "ar": "تعديل سجل السلع الانتقائية"
+  },
+  {
+   "id": "amendment-of-tax-agent-records",
+   "en": "Amendment of Tax Agent Records",
+   "ar": "تعديل سجلات الوكلاء الضريبيين"
+  },
+  {
+   "id": "amendment-of-warehouse-keeper-records",
+   "en": "Amendment of Warehouse Keeper Records",
+   "ar": "تعديل تسجيل أمين المستودع"
+  },
+  {
+   "id": "clearance-companies-deregistration",
+   "en": "Clearance Companies Deregistration",
+   "ar": "إلغاء تسجيل شركات التخليص الجمركي"
+  },
+  {
+   "id": "corporate-tax-deregistration",
+   "en": "Corporate Tax Deregistration",
+   "ar": "إلغاء التسجيل لضريبة الشركات"
+  },
+  {
+   "id": "corporate-tax-registration",
+   "en": "Corporate Tax Registration",
+   "ar": "التسجيل في ضريبة الشركات"
+  },
+  {
+   "id": "deregistration-of-tax-groups",
+   "en": "Deregistration of Tax Groups",
+   "ar": "إلغاء تسجيل المجموعات الضريبية"
+  },
+  {
+   "id": "deregistration-of-the-excise-tax-designated-zones",
+   "en": "Deregistration of the Excise Tax Designated Zones",
+   "ar": "إلغاء تسجيل المناطق المحددة للضريبة الانتقائية"
+  },
+  {
+   "id": "digital-tax-stamp-request",
+   "en": "Digital Tax Stamp Request",
+   "ar": "طلب الطوابع الرقمية الضريبية"
+  },
+  {
+   "id": "excise-goods-registration",
+   "en": "Excise Goods Registration",
+   "ar": "تسجيل السلع الانتقائية"
+  },
+  {
+   "id": "excise-tax-deregistration",
+   "en": "Excise Tax Deregistration",
+   "ar": "إلغاء التسجيل للضريبة الانتقائية"
+  },
+  {
+   "id": "excise-tax-registration",
+   "en": "Excise Tax Registration",
+   "ar": "التسجيل للضريبة الانتقائية"
+  },
+  {
+   "id": "exhibitions-and-conferences-services-supplier-licensing",
+   "en": "Exhibitions and Conferences Services Supplier Licensing",
+   "ar": "ترخيص موردي خدمات المعارض والمؤتمرات"
+  },
+  {
+   "id": "issuance-of-registration-certificates",
+   "en": "Issuance of Registration Certificates",
+   "ar": "إصدار شهادات التسجيل"
+  },
+  {
+   "id": "link-tax-agent-to-tax-agency",
+   "en": "Link Tax Agent to Tax Agency",
+   "ar": "ربط الوكيل الضريبي بالوكالة الضريبية"
+  },
+  {
+   "id": "registration-of-customs-clearance-companies",
+   "en": "Registration of Customs Clearance Companies",
+   "ar": "تسجيل شركات التخليص الجمركي"
+  },
+  {
+   "id": "registration-of-designated-zones-for-excise-tax",
+   "en": "Registration of Designated Zones for Excise Tax",
+   "ar": "تسجيل المناطق المحددة للضريبة الانتقائية"
+  },
+  {
+   "id": "registration-of-tax-agency",
+   "en": "Registration of Tax Agency",
+   "ar": "تسجيل وكالة ضريبية"
+  },
+  {
+   "id": "renewal-of-the-excise-tax-designated-zone-registration",
+   "en": "Renewal of the Excise Tax Designated Zone Registration",
+   "ar": "تجديد تسجيل المناطق المحددة للضريبة الانتقائية"
+  },
+  {
+   "id": "tax-agent-registration",
+   "en": "Tax Agent Registration",
+   "ar": "تسجيل وكيل ضريبي"
+  },
+  {
+   "id": "tax-group-record-amendment-value-added-tax",
+   "en": "Tax Group Record Amendment – Value Added Tax",
+   "ar": "تعديل سجل المجموعة الضريبية – ضريبة القيمة المضافة"
+  },
+  {
+   "id": "tax-group-registration-value-added-tax",
+   "en": "Tax Group Registration – Value Added Tax",
+   "ar": "تسجيل المجموعة الضريبية – ضريبة القيمة المضافة"
+  },
+  {
+   "id": "tax-records-amendment",
+   "en": "Tax Records Amendment",
+   "ar": "تعديل السجلات الضريبية"
+  },
+  {
+   "id": "vat-deregistration",
+   "en": "VAT Deregistration",
+   "ar": "إلغاء التسجيل لضريبة القيمة المضافة"
+  },
+  {
+   "id": "vat-registration",
+   "en": "VAT Registration",
+   "ar": "التسجيل لضريبة القيمة المضافة"
+  },
+  {
+   "id": "warehouse-keeper-registration",
+   "en": "Warehouse Keeper Registration",
+   "ar": "تسجيل أمين المستودع"
+  }
+ ]
+}
