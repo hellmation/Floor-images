@@ -244,8 +244,8 @@ mark{background:color-mix(in srgb,var(--gold) 35%,transparent);color:inherit;bor
 .check{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink2);cursor:pointer}
 .check input{accent-color:var(--green);width:15px;height:15px;margin:0}
 .preview{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere;min-height:90px;max-height:320px;overflow:auto;line-height:1.75}
-.preview .arl{direction:rtl;text-align:right;display:block;unicode-bidi:isolate;font-family:'IBM Plex Sans Arabic',var(--font)}
-.preview .enl{direction:ltr;text-align:left;display:block;unicode-bidi:isolate}
+.preview .arl{direction:rtl;text-align:right;text-align-last:right;display:block;unicode-bidi:isolate;font-family:'IBM Plex Sans Arabic',var(--font)}
+.preview .enl{direction:ltr;text-align:left;text-align-last:left;display:block;unicode-bidi:isolate;font-family:'IBM Plex Sans',var(--font)}
 .preview .tok{font-size:.9em}
 .meta{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--ink3);margin-top:6px;font-variant-numeric:tabular-nums}
 .meta .over{color:var(--red);font-weight:600}
@@ -3746,7 +3746,14 @@ function toast(msg, type = 'ok', ms = 2200) {
 }
 
 /* ---------------- Clipboard ---------------- */
-async function copyText(text) {
+function linesToHtml(lines) {
+  const esc = x => String(x).replace(/[\u200E\u200F]/g, '').replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+  return '<div>' + lines.map(l => l.s.replace(/[\u200E\u200F]/g, '') === '' ? '<p style="margin:0">&nbsp;</p>'
+    : (l.d === 'rtl' ? `<p dir="rtl" lang="ar" style="margin:0;direction:rtl;text-align:right;unicode-bidi:isolate">${esc(l.s)}</p>` : `<p dir="ltr" lang="en" style="margin:0;direction:ltr;text-align:left;unicode-bidi:isolate">${esc(l.s)}</p>`)).join('') + '</div>';
+}
+function textToLines(text) { return text.split('\n').map(s => ({ s, d: hasArabic(s) ? 'rtl' : 'ltr' })); }
+async function copyText(text, lines) {
+  try { if (window.ClipboardItem && navigator.clipboard?.write) { const html = linesToHtml(lines || textToLines(text)); await navigator.clipboard.write([new ClipboardItem({ 'text/plain': new Blob([text], { type: 'text/plain' }), 'text/html': new Blob([html], { type: 'text/html' }) })]); return true; } } catch (e) {}
   try { await navigator.clipboard.writeText(text); return true; } catch (e) {}
   try {
     const ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
@@ -3910,7 +3917,7 @@ const Composer = {
     if (!this.items.length) return;
     const unfilled = this.tokens().filter(k => !this.values[k]).length;
     if (unfilled && !confirm(t('confirm_unfilled'))) return;
-    const ok = await copyText(this.text());
+    const lines = this.build(); const ok = await copyText(lines.map(l => l.s).join('\n'), lines);
     if (ok) {
       toast(`<b>${t('copied')}</b> · ${this.items.length}`);
       const b = $('#copyBtn'); if (b) { b.classList.add('done'); b.innerHTML = I.check + ' ' + t('copied'); setTimeout(() => { b.classList.remove('done'); b.innerHTML = I.copy + ' ' + t('copy'); }, 1400); }
@@ -3990,7 +3997,7 @@ const Composer = {
           <label class="check"><input type="checkbox" data-opt-chk="stamp" ${this.opts.stamp ? 'checked' : ''}> ${t('stamp')}</label>
         </div>
         <div class="lbl">${t('preview')}</div>
-        <div class="preview" id="preview" tabindex="0">${lines.map(l => `<span class="${l.d === 'rtl' ? 'arl' : 'enl'}" ${l.d === 'rtl' ? 'lang="ar"' : ''}>${h(l.s) || '&nbsp;'}</span>`).join('')}</div>
+        <div class="preview" id="preview" tabindex="0">${lines.map(l => `<span class="${l.d === 'rtl' ? 'arl' : 'enl'}" dir="${l.d}" lang="${l.d === 'rtl' ? 'ar' : 'en'}">${h(l.s) || '&nbsp;'}</span>`).join('')}</div>
         <div class="meta"><span>${txt.length.toLocaleString()} ${t('chars')}${limit ? ` · ${t('limit')} ${limit.toLocaleString()}` : ''}</span>${over ? `<span class="over">${t('over_limit')}</span>` : ''}</div>
 ` : ''}
         ${(() => { const sg = this.suggest(); return sg.length ? `<div class="lbl">${t('often_with')}</div><div class="sugg">${sg.map(id => { const c = Store.comment(id); return `<button data-act="add" data-id="${id}" title="${h(c.en)}">${I.plus} ${h((c.en || c.ar).slice(0, 48))}…</button>`; }).join('')}</div>` : ''; })()}
@@ -4971,7 +4978,7 @@ document.addEventListener('change', e => { const el = e.target; if (el.id === 's
 const renderMainDebounced = debounce(() => { renderMain(); $('#main').scrollTop = 0; }, 60);
 function refreshPreview() { // light update without re-rendering inputs
   const lines = Composer.build(); const pv = $('#preview'); if (!pv) return;
-  pv.innerHTML = lines.map(l => `<span class="${l.d === 'rtl' ? 'arl' : 'enl'}" ${l.d === 'rtl' ? 'lang="ar"' : ''}>${h(l.s) || '&nbsp;'}</span>`).join('');
+  pv.innerHTML = lines.map(l => `<span class="${l.d === 'rtl' ? 'arl' : 'enl'}" dir="${l.d}" lang="${l.d === 'rtl' ? 'ar' : 'en'}">${h(l.s) || '&nbsp;'}</span>`).join('');
   const txt = lines.map(l => l.s).join('\n'); const limit = Store.bank.settings.charLimit || 0; const meta = $('.tray .meta'); if (meta) meta.innerHTML = `<span>${txt.length.toLocaleString()} ${t('chars')}${limit ? ` · ${t('limit')} ${limit.toLocaleString()}` : ''}</span>${limit && txt.length > limit ? `<span class="over">${t('over_limit')}</span>` : ''}`;
   const qm = $('#qm'); if (qm) qm.outerHTML = Composer.qualityHtml(); const cc = $('.tray-h .cc'); if (cc) cc.textContent = txt.length.toLocaleString();
 }
@@ -5062,6 +5069,7 @@ function selfTest(silent) {
   ok('services: alphabetical in seed', EMBED.services.every((x, i, a) => i === 0 || a[i - 1].en.toLowerCase() <= x.en.toLowerCase()));
   ok('arabic: no English words inside Arabic comments', EMBED.comments.every(c => !/[A-Za-z]/.test((c.ar || '').replace(TOKEN_RE, ''))), EMBED.comments.filter(c => /[A-Za-z]/.test((c.ar || '').replace(TOKEN_RE, ''))).map(c => c.id).join(','));
   ok('render: English comments show only English, Arabic only Arabic (both UI languages)', (() => { const prev = LANG; let bad = []; for (const l of ['en', 'ar']) { LANG = l; EMBED.comments.forEach(c => { const tx = html => { const d = document.createElement('div'); d.innerHTML = html; return d.textContent; }; const en = tx(renderText(c.en)), ar = tx(renderText(c.ar)); if (/[\u0600-\u06FF]/.test(en) || /[A-Za-z]/.test(ar)) bad.push(l + ':' + c.id); }); } LANG = prev; return !bad.length; })());
+  ok('copy: formatted copy marks English ltr/left and Arabic rtl/right', (() => { const h2 = linesToHtml([{ d: 'ltr', s: '\u200E1. Kindly' }, { d: 'ltr', s: '' }, { d: 'rtl', s: '\u200F1. يرجى' }]); return h2.includes('dir="ltr" lang="en" style="margin:0;direction:ltr;text-align:left') && h2.includes('dir="rtl" lang="ar" style="margin:0;direction:rtl;text-align:right') && !/[\u200E\u200F]/.test(h2); })());
   ok('version compare', cmpVer('1.10.0', '1.9.0') > 0 && cmpVer('1.0.0', '1.0.0') === 0);
   ok('review: typography proposals keep tokens', EMBED.reviewItems.filter(r => r.type === 'typography').every(r => { const c = EMBED.comments.find(x => x.id === r.commentId); return JSON.stringify(tokensOf(c.en).sort()) === JSON.stringify(tokensOf(r.proposal.ar).sort()); }));
   if (silent) { window.__selftest = R; return R; }
