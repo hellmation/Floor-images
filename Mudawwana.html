@@ -565,10 +565,14 @@ html[dir="rtl"] #splash .start:hover svg{transform:translateX(-4px)}
 @keyframes sSweep{to{transform:translateX(120%)}}
 @keyframes sBtn{to{opacity:1;transform:none}}
 #splash .hint{margin-top:10px;font-size:11px;color:var(--ink3);opacity:0;animation:sFade 600ms var(--sease) 2100ms both}
-#splash .foot{padding:18px 28px;text-align:center;font-size:11px;color:var(--ink3);opacity:0;animation:sFade 600ms var(--sease) 2200ms both;position:relative}
-#splash .foot b{color:var(--ink2);font-weight:600}
-#splash .endorse{color:var(--gold);font-weight:600;font-size:12px;letter-spacing:.02em;display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px;direction:ltr}
-#splash .endorse i{width:1px;height:12px;background:var(--gold);display:inline-block}
+#splash .foot{padding:0 28px 22px;text-align:center;color:var(--ink3);opacity:0;animation:sFade 600ms var(--sease) 2200ms both;position:relative;display:flex;flex-direction:column;align-items:center;gap:6px}
+#splash .foot .credit{font-size:12px;color:var(--ink2)}
+#splash .foot .credit b{color:var(--ink);font-weight:600}
+#splash .foot .meta{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);display:flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums}
+html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
+#splash .foot .meta .dot{width:3px;height:3px;border-radius:50%;background:var(--ink3);display:inline-block}
+#splash .endorse{color:var(--gold);font-weight:600;font-size:12.5px;letter-spacing:.03em;display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:4px;direction:ltr}
+#splash .endorse i{width:1px;height:13px;background:currentColor;opacity:.7;display:inline-block}
 #splash .endorse [lang=ar]{font-family:var(--font-ar-display)}
 @keyframes sFade{to{opacity:1}}
 #splash.fast .stage *{animation-duration:1ms!important;animation-delay:0ms!important}
@@ -3524,7 +3528,7 @@ const T = {
     suggest_title: 'Suggest a new or improved comment', suggest_en: 'English text', suggest_ar: 'Arabic text', suggest_why: 'Why / when is it used?', suggest_sec: 'Section', send: 'Export suggestion', cancel: 'Cancel',
     your_name: 'Your name (optional)',
     eyebrow: 'Federal Tax Authority · Internal tool', slogan: 'Clear comments. Consistent cases. In seconds.', slogan_ar: 'تعليقات واضحة، حالات متسقة، في ثوانٍ.',
-    start: 'Start', press_enter: 'or press Enter', skip_splash: 'Skip this page next time', developed: 'Developed by the', team: 'Service Development Team',
+    start: 'Start', press_enter: 'or press Enter', skip_splash: 'Skip this page next time', developed: 'Developed by the', team: 'Service Development Team', version_lbl: 'Version',
     f_comments: 'comments', f_sections: 'sections', f_langs: 'languages', home: 'Home',
     scenarios: 'Scenarios', start_scenario: 'Start from a scenario', sc_replace: 'Use', sc_add: 'Add to composer', sc_empty: 'No scenarios yet — admins can add them.',
     often_with: 'Often added with', quality: 'Ready to paste', q_blanks: 'All blanks filled', q_blanks_bad: 'blank(s) still empty', q_mix: 'No rejection mixed with requests', q_mix_bad: 'Rejection mixed with amendment requests', q_multi: 'Single rejection', q_multi_bad: 'More than one rejection', q_dup: 'No duplicate requests', q_dup_bad: 'Two comments ask for the same thing', q_conf: 'No contradictions', q_conf_bad: 'Contradicting comments selected', q_ar: 'Arabic available for all', q_ar_bad: 'Arabic missing for some', q_len: 'Within portal limit', q_len_bad: 'Over the portal limit', q_cond: 'Conditions checked', q_cond_warn: 'Check the condition on marked items',
@@ -3563,7 +3567,7 @@ const T = {
     suggest_title: 'اقترح تعليقاً جديداً أو محسّناً', suggest_en: 'النص الإنجليزي', suggest_ar: 'النص العربي', suggest_why: 'لماذا / متى يُستخدم؟', suggest_sec: 'القسم', send: 'تصدير الاقتراح', cancel: 'إلغاء',
     your_name: 'اسمك (اختياري)',
     eyebrow: 'الهيئة الاتحادية للضرائب · أداة داخلية', slogan: 'تعليقات واضحة، حالات متسقة، في ثوانٍ.', slogan_ar: 'Clear comments. Consistent cases. In seconds.',
-    start: 'ابدأ', press_enter: 'أو اضغط Enter', skip_splash: 'تخطَّ هذه الصفحة في المرة القادمة', developed: 'تطوير', team: 'فريق تطوير الخدمات',
+    start: 'ابدأ', press_enter: 'أو اضغط Enter', skip_splash: 'تخطَّ هذه الصفحة في المرة القادمة', developed: 'إعداد', version_lbl: 'الإصدار', team: 'فريق تطوير الخدمات',
     f_comments: 'تعليق', f_sections: 'أقسام', f_langs: 'لغتان', home: 'الرئيسية',
     scenarios: 'سيناريوهات', start_scenario: 'ابدأ من سيناريو', sc_replace: 'استخدم', sc_add: 'أضف إلى المنشئ', sc_empty: 'لا توجد سيناريوهات بعد — يمكن للمسؤول إضافتها.',
     often_with: 'غالباً يُضاف معه', quality: 'جاهز للصق', q_blanks: 'كل الفراغات مملوءة', q_blanks_bad: 'فراغ لم يُملأ', q_mix: 'لا خلط بين رفض وطلبات', q_mix_bad: 'رفض مخلوط بطلبات تعديل', q_multi: 'رفض واحد فقط', q_multi_bad: 'أكثر من رفض', q_dup: 'لا طلبات مكررة', q_dup_bad: 'تعليقان يطلبان الشيء نفسه', q_conf: 'لا تناقض', q_conf_bad: 'تعليقات متناقضة', q_ar: 'العربية متوفرة للكل', q_ar_bad: 'العربية ناقصة لبعضها', q_len: 'ضمن حد البوابة', q_len_bad: 'يتجاوز حد البوابة', q_cond: 'الشروط مراجَعة', q_cond_warn: 'راجع شرط العناصر المعلّمة',
@@ -4313,7 +4317,7 @@ const Splash = {
           <button class="start" data-act="start">${t('start')} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
           <div class="hint">${t('press_enter')}</div>
         </div>
-        <div class="foot"><div class="endorse"><span lang="ar">هيئة اتحادية</span><i></i><span>Federal Authority</span></div>${t('developed')} <b>${t('team')}</b> · v${h(b.version)} · ${new Date().getFullYear()}</div>
+        <div class="foot"><div class="endorse" aria-label="Federal Authority, هيئة اتحادية"><span>Federal Authority</span><i></i><span lang="ar">هيئة اتحادية</span></div><div class="credit">${t('developed')} <b>${t('team')}</b></div><div class="meta">${t('version_lbl')} <bdi>${h(b.version)}</bdi><span class="dot"></span><bdi>${new Date().getFullYear()}</bdi></div></div>
       </div>`;
     Field.mount($('#splash .field')); this.magnet();
   },
@@ -4358,12 +4362,12 @@ void main(){
     float w=0.012+0.009*sin(q.x*2.2+T*0.05+ph)+0.004*noise(vec2(q.x*5.+fi*3.,T*0.03)); w*=1.0-0.7*CONV;
     float d=abs(q.y-y); float body=1.0-smoothstep(w*0.55,w,d);
     float sh=sqrt(max(0.,1.0-pow(d/max(w,1e-4),2.))); float light=0.55+0.45*sh*(0.6+0.4*sign(q.y-y));
-    float a=body*(0.11+0.07*sin(q.x*0.9+T*0.02+ph))*(1.0+DARK*1.3)*(1.0-CONV*0.9);
-    vec3 dk=(i==0||i==5)?vec3(0.94,0.81,0.48):(i==1||i==4)?vec3(0.55,0.68,0.98):vec3(0.86,0.88,0.94);
+    float a=body*(0.11+0.07*sin(q.x*0.9+T*0.02+ph))*(1.0+DARK*0.55)*(1.0-CONV*0.9);
+    vec3 dk=(i==0||i==5)?vec3(0.80,0.70,0.48):(i==1||i==4)?vec3(0.52,0.62,0.88):vec3(0.78,0.80,0.88);
     vec3 c=mix(pal[i],dk,DARK)*light;
     col=col*(1.0-a)+c*a; acc=acc+a*(1.0-acc);
   }
-  float g=(hash(gl_FragCoord.xy+fract(T))-0.5)*0.03; float vig=smoothstep(1.3,0.35,length(uv-0.5));
+  float g=(hash(gl_FragCoord.xy+fract(T))-0.5)*0.03; float vig=smoothstep(1.3,0.35,length(uv-0.5))*smoothstep(0.03,0.24,uv.y)*smoothstep(1.0,0.9,uv.y);
   float alpha=clamp(acc*vig+abs(g),0.,1.); gl_FragColor=vec4((col+g)*alpha,alpha);
 }`,
   mount(cv) {
