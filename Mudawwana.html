@@ -387,12 +387,25 @@ body.present .brand .t1{font-size:17px}
 .tray-f .verify button{color:var(--green);font-weight:500}
 
 /* ---------- Service switcher ---------- */
-.svcbtn{display:flex;align-items:center;gap:10px;width:100%;text-align:start;padding:10px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);margin:0 0 6px;transition:all var(--dur) var(--ease)}
-.svcbtn:hover{border-color:var(--green);box-shadow:var(--e2)}
-.svcbtn .lab{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);font-weight:600}
-.svcbtn .nm{font-size:13px;font-weight:600;line-height:1.3}
+.svcbtn{position:relative;display:grid;grid-template-columns:34px minmax(0,1fr);grid-template-areas:"ico txt" "chg chg";align-items:center;column-gap:12px;row-gap:10px;width:100%;text-align:start;padding:12px 14px 10px 16px;border-radius:14px;background:linear-gradient(135deg,var(--green-soft),var(--surface) 70%);border:1.5px solid color-mix(in srgb,var(--green) 45%,var(--line));margin:0 0 10px;box-shadow:0 1px 0 rgba(0,0,0,.02),0 6px 18px -12px color-mix(in srgb,var(--green) 55%,transparent);transition:all var(--dur) var(--ease);overflow:hidden}
+html[dir="rtl"] .svcbtn{padding:12px 16px 10px 14px}
+.svcbtn::before{content:"";position:absolute;inset-block:0;inset-inline-start:0;width:4px;background:linear-gradient(180deg,var(--green),var(--green-ink))}
+.svcbtn:hover,.svcbtn:focus-visible{border-color:var(--green);box-shadow:0 0 0 3px color-mix(in srgb,var(--green) 18%,transparent),0 10px 24px -12px color-mix(in srgb,var(--green) 70%,transparent);transform:translateY(-1px)}
+.svcbtn .svc-ico{grid-area:ico;align-self:start;width:34px;height:34px;border-radius:10px;flex:0 0 auto;display:grid;place-items:center;background:var(--green);color:var(--accent-ink)}
+.svcbtn .svc-ico svg{width:18px;height:18px;color:inherit;margin:0}
+.svcbtn .svc-txt{grid-area:txt;min-width:0}
+.svcbtn .lab{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--green-ink);font-weight:700}
+.svcbtn .nm{font-size:14px;font-weight:700;line-height:1.3;color:var(--ink)}
 .svcbtn .nm2{font-size:11.5px;color:var(--ink2)}
-.svcbtn svg{width:16px;height:16px;color:var(--ink3);margin-inline-start:auto;flex:0 0 auto}
+.svcbtn .chg{grid-area:chg;display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;font-weight:600;color:var(--green-ink);background:var(--surface);border:1px solid color-mix(in srgb,var(--green) 35%,var(--line));border-radius:9px;padding:6px 10px;white-space:nowrap;transition:all var(--dur) var(--ease)}
+.svcbtn:hover .chg{background:var(--green);color:var(--accent-ink);border-color:var(--green)}
+.svcbtn .chg svg{width:13px;height:13px;color:inherit;margin:0}
+.svcbtn.pulse{animation:svcpulse 1.6s ease-out 2}
+@keyframes svcpulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--green) 55%,transparent)}70%{box-shadow:0 0 0 12px color-mix(in srgb,var(--green) 0%,transparent)}100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--green) 0%,transparent)}}
+:root[data-theme="dark"] .svcbtn{background:linear-gradient(135deg,rgba(217,180,90,.16),rgba(15,26,53,.9) 70%);border-color:rgba(217,180,90,.45)}
+:root[data-theme="dark"] .svcbtn::before{background:linear-gradient(180deg,#F0CE7A,#A8842F)}
+:root[data-theme="dark"] .svcbtn .svc-ico{background:linear-gradient(135deg,#A8842F,#F0CE7A)}
+:root[data-theme="dark"] .svcbtn .chg{background:rgba(5,10,24,.5)}
 .svclist{display:grid;gap:4px}
 .svclist button{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center;text-align:start;padding:9px 12px;border-radius:10px;border:1px solid transparent;transition:all var(--dur) var(--ease)}
 .svclist button:hover{background:var(--surface2)}
@@ -3501,6 +3514,7 @@ const I = {
   menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
   trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>',
   up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 6-6 6 6"/></svg>',
+  grid: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>',
   down: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 10 6 6 6-6"/></svg>',
   eye: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
   save: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 4h11l3 3v13H5z M8 4v5h7V4 M8 20v-6h8v6"/></svg>',
@@ -4087,7 +4101,7 @@ function renderSidebar() {
   const rec = Store.user.recents.map(id => Store.comment(id)).filter(Boolean);
   const sv = Store.service(Store.user.svc) || Store.bank.services[0];
   side.innerHTML = `
-    <button class="svcbtn" data-act="svc-pick" title="${t('choose_service')}"><div><div class="lab">${h(L(Store.bank.area || { en: 'Service', ar: 'الخدمة' }))} · ${t('service')}</div><div class="nm">${h(L(sv))}</div><div class="nm2" lang="${LANG === 'en' ? 'ar' : 'en'}" dir="${LANG === 'en' ? 'rtl' : 'ltr'}">${h(LANG === 'en' ? sv.ar : sv.en)}</div></div>${I.down}</button>
+    <button class="svcbtn" data-act="svc-pick" title="${t('act_service')}" aria-label="${t('service')}: ${h(L(sv))} — ${t('act_service')}"><span class="svc-ico">${I.grid}</span><div class="svc-txt"><div class="lab">${h(L(Store.bank.area || { en: 'Service', ar: 'الخدمة' }))} · ${t('service')}</div><div class="nm">${h(L(sv))}</div><div class="nm2" lang="${LANG === 'en' ? 'ar' : 'en'}" dir="${LANG === 'en' ? 'rtl' : 'ltr'}">${h(LANG === 'en' ? sv.ar : sv.en)}</div></div><span class="chg"><span>${t('act_service')}</span>${I.down}</span></button>
     ${Store.sectionsOf(sv.id).length ? `<h4>${t('sections')}</h4>` : `<div class="note" style="padding:6px 10px">${t('no_comments_yet')}</div>`}
     <div class="nav">${Store.sectionsOf(sv.id).map((s, i) => `<div class="sec"><a href="#sec-${s.id}" data-sec="${s.id}"><span class="k">${i + 1}</span>${h(L(s))}<span class="n">${count(s.id)}</span></a>
       <div class="sub">${(s.subsections || []).map(ss => `<a href="#sub-${ss.id}" data-sub="${ss.id}">${h(L(ss))}<span class="n">${count(s.id, ss.id)}</span></a>`).join('')}</div></div>`).join('')}</div>
@@ -4354,6 +4368,7 @@ const Splash = {
     Field.converge(); $('#splash .stage')?.classList.add('leave'); $('#splash .field')?.classList.remove('on');
     setTimeout(() => { el.classList.add('hide'); Field.stop(); this._unmagnet?.(); }, 720);
     Store.user.lastSplashDay = today(); Store.markSeen();
+    setTimeout(() => { const sb = $('.svcbtn'); if (sb) { sb.classList.add('pulse'); sb.addEventListener('animationend', () => sb.classList.remove('pulse'), { once: true }); } }, 900);
     setTimeout(() => { $('#q')?.focus(); if (!Store.user.tourDone && !document.body.classList.contains('present')) Tour.start(); }, 820);
   }
 };
@@ -5146,6 +5161,7 @@ function selfTest(silent) {
   ok('arabic: no English words inside Arabic comments', EMBED.comments.every(c => !/[A-Za-z]/.test((c.ar || '').replace(TOKEN_RE, ''))), EMBED.comments.filter(c => /[A-Za-z]/.test((c.ar || '').replace(TOKEN_RE, ''))).map(c => c.id).join(','));
   ok('render: English comments show only English, Arabic only Arabic (both UI languages)', (() => { const prev = LANG; let bad = []; for (const l of ['en', 'ar']) { LANG = l; EMBED.comments.forEach(c => { const tx = html => { const d = document.createElement('div'); d.innerHTML = html; return d.textContent; }; const en = tx(renderText(c.en)), ar = tx(renderText(c.ar)); if (/[\u0600-\u06FF]/.test(en) || /[A-Za-z]/.test(ar)) bad.push(l + ':' + c.id); }); } LANG = prev; return !bad.length; })());
   ok('copy: formatted copy marks English ltr/left and Arabic rtl/right', (() => { const h2 = linesToHtml([{ d: 'ltr', s: '\u200E1. Kindly' }, { d: 'ltr', s: '' }, { d: 'rtl', s: '\u200F1. يرجى' }]); return h2.includes('dir="ltr" lang="en" style="margin:0;direction:ltr;text-align:left') && h2.includes('dir="rtl" lang="ar" style="margin:0;direction:rtl;text-align:right') && !/[\u200E\u200F]/.test(h2); })());
+  ok('service card: shows area, service in both languages and a change-service affordance', (() => { const b = $('.svcbtn'); return !!b && !!b.querySelector('.lab') && !!b.querySelector('.nm') && !!b.querySelector('.nm2') && !!b.querySelector('.chg') && b.querySelector('.chg').textContent.trim().length > 0; })());
   ok('guide: one step per benefit (8), each target exists after prep', (() => { const st = Tour.steps(); return st.length === 8; })());
   ok('guide: button in top bar replays the walkthrough', !!document.querySelector('.topactions [data-act="tour"]'));
   ok('version compare', cmpVer('1.10.0', '1.9.0') > 0 && cmpVer('1.0.0', '1.0.0') === 0);
