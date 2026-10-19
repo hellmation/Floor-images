@@ -1,0 +1,3039 @@
+{
+ "version": "1.0.0",
+ "publishedAt": "2026-10-19",
+ "appName": {
+  "en": "Mudawwana",
+  "ar": "مدوّنة"
+ },
+ "subtitle": {
+  "en": "Deregistration Services · Comment Composer",
+  "ar": "منشئ تعليقات خدمات إلغاء التسجيل"
+ },
+ "area": {
+  "en": "Deregistration",
+  "ar": "إلغاء التسجيل"
+ },
+ "settings": {
+  "charLimit": 2000,
+  "rtlMarks": true,
+  "adminHash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+  "logo": "",
+  "stamp": {
+   "en": "Reviewed by {{name}} · {{team}} · {{date}}",
+   "ar": "تمت المراجعة بواسطة {{name}} · {{team}} · {{date}}"
+  },
+  "attachHeading": {
+   "en": "Required attachments:",
+   "ar": "المستندات المطلوبة:"
+  },
+  "teamName": {
+   "en": "Service Development Team",
+   "ar": "فريق تطوير الخدمات"
+  },
+  "storageKey": "mdw-dereg",
+  "department": {
+   "en": "Deregistration Department",
+   "ar": "إدارة إلغاء التسجيل"
+  },
+  "accent": {
+   "light": "#306190",
+   "dark": "#7fb3e6"
+  },
+  "searchHint": {
+   "en": "Search comments… e.g. cancellation, turnover, moa, branch, حصر إرث",
+   "ar": "ابحث في التعليقات… مثال: إلغاء، حجم الأعمال، عقد التأسيس، فرع، board"
+  }
+ },
+ "openers": [
+  {
+   "id": "op1",
+   "en": "Dear Taxpayer, following the review of your VAT deregistration application, kindly note the following:",
+   "ar": "عزيزي الخاضع للضريبة، بعد مراجعة طلب إلغاء التسجيل لضريبة القيمة المضافة الخاص بكم، يرجى ملاحظة ما يلي:"
+  }
+ ],
+ "closers": [
+  {
+   "id": "cl1",
+   "en": "Kindly resubmit the application with all the above requirements so that it can be reviewed without further delay.",
+   "ar": "يرجى إعادة تقديم الطلب مستوفياً جميع المتطلبات المذكورة أعلاه ليتسنى مراجعته دون تأخير."
+  }
+ ],
+ "sections": [
+  {
+   "id": "common",
+   "en": "Common requirements",
+   "ar": "المتطلبات المشتركة",
+   "svc": "vat-deregistration",
+   "subsections": [
+    {
+     "id": "financial",
+     "en": "Financial statement",
+     "ar": "البيان المالي"
+    },
+    {
+     "id": "sole-decl",
+     "en": "Sole establishment declaration",
+     "ar": "إقرار المؤسسات الفردية"
+    },
+    {
+     "id": "threshold-decl",
+     "en": "Threshold declaration",
+     "ar": "إقرار حد التسجيل"
+    },
+    {
+     "id": "resubmit",
+     "en": "Resubmission & status notices",
+     "ar": "إشعارات إعادة التقديم والحالة"
+    }
+   ]
+  },
+  {
+   "id": "licence",
+   "en": "Trade licence changes",
+   "ar": "تغييرات الرخصة التجارية",
+   "svc": "vat-deregistration",
+   "subsections": [
+    {
+     "id": "cancel",
+     "en": "Cancellation or liquidation",
+     "ar": "الإلغاء أو التصفية"
+    },
+    {
+     "id": "freeze",
+     "en": "Freezing of the licence",
+     "ar": "تجميد الرخصة"
+    },
+    {
+     "id": "legal",
+     "en": "Change of legal status or owner",
+     "ar": "تغيير الشكل القانوني أو المالك"
+    },
+    {
+     "id": "sale",
+     "en": "Sale of sole establishment",
+     "ar": "بيع المؤسسة الفردية"
+    },
+    {
+     "id": "wrong",
+     "en": "Wrong registration",
+     "ar": "التسجيل الخاطئ"
+    }
+   ]
+  },
+  {
+   "id": "multi",
+   "en": "Multiple TRNs & branches",
+   "ar": "تعدد أرقام التسجيل والفروع",
+   "svc": "vat-deregistration",
+   "subsections": [
+    {
+     "id": "dup",
+     "en": "Duplicate TRN / same owner",
+     "ar": "رقم تسجيل مكرر / المالك نفسه"
+    },
+    {
+     "id": "branch",
+     "en": "Branch",
+     "ar": "الفرع"
+    }
+   ]
+  },
+  {
+   "id": "supplies",
+   "en": "Supplies & thresholds",
+   "ar": "التوريدات وحدود التسجيل",
+   "svc": "vat-deregistration",
+   "subsections": [
+    {
+     "id": "below",
+     "en": "Below threshold",
+     "ar": "أقل من حد التسجيل"
+    },
+    {
+     "id": "zero",
+     "en": "Zero-rated supplies",
+     "ar": "التوريدات الخاضعة لنسبة الصفر"
+    },
+    {
+     "id": "stopped",
+     "en": "Stopped making taxable supplies",
+     "ar": "التوقف عن التوريدات الخاضعة للضريبة"
+    }
+   ]
+  },
+  {
+   "id": "special",
+   "en": "Special cases",
+   "ar": "حالات خاصة",
+   "svc": "vat-deregistration",
+   "subsections": [
+    {
+     "id": "board",
+     "en": "Board members",
+     "ar": "أعضاء مجالس الإدارة"
+    },
+    {
+     "id": "funds",
+     "en": "Fund management",
+     "ar": "إدارة الصناديق"
+    },
+    {
+     "id": "oa",
+     "en": "Owners’ associations",
+     "ar": "جمعيات الملاك"
+    },
+    {
+     "id": "property",
+     "en": "Property owners",
+     "ar": "ملاك العقارات"
+    },
+    {
+     "id": "death",
+     "en": "Passing of the owner",
+     "ar": "وفاة المالك"
+    },
+    {
+     "id": "gov",
+     "en": "Government entities",
+     "ar": "الجهات الحكومية"
+    },
+    {
+     "id": "charity",
+     "en": "Charities",
+     "ar": "الجهات الخيرية"
+    },
+    {
+     "id": "gv",
+     "en": "Global Village",
+     "ar": "القرية العالمية"
+    },
+    {
+     "id": "group",
+     "en": "Former tax group members",
+     "ar": "الأعضاء السابقون في مجموعة ضريبية"
+    }
+   ]
+  }
+ ],
+ "comments": [
+  {
+   "id": "cm-01",
+   "s": "common",
+   "ss": "financial",
+   "kind": "attachment",
+   "en": "Kindly attach a financial statement of the turnover (sales) and taxable expenses from the date of registration until today, on the company letterhead, signed by the authorised signatory and stamped. You may use the template available at: https://tax.gov.ae/ftatacsoft5cms/DataFolder/Files/Pdf/2022/Turnover%20Declaration%20Letter-REG-EN.docx",
+   "ar": "يرجى إرفاق بيان مالي بحجم الأعمال (المبيعات) والمصروفات الخاضعة للضريبة من تاريخ التسجيل حتى اليوم، على الورق الرسمي للشركة، موقعاً من المفوض بالتوقيع ومختوماً. يمكنكم استخدام النموذج المتاح على الرابط: https://tax.gov.ae/ftatacsoft5cms/DataFolder/Files/Pdf/2022/Turnover%20Declaration%20Letter-REG-EN.docx",
+   "tags": [
+    "financial statement",
+    "turnover",
+    "sales",
+    "expenses",
+    "declaration",
+    "letterhead",
+    "template"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach a financial statement of the turnover (sales) and taxable expenses from the date of registration until today, on the company letterhead, signed by the authorised signatory and stamped. You may use the template available at: https://tax.gov.ae/ftatacsoft5cms/DataFolder/Files/Pdf/2022/Turnover%20Declaration%20Letter-REG-EN.docx",
+     "ar": "يرجى إرفاق بيان مالي بحجم الأعمال (المبيعات) والمصروفات الخاضعة للضريبة من تاريخ التسجيل حتى اليوم، على الورق الرسمي للشركة، موقعاً من المفوض بالتوقيع ومختوماً. يمكنكم استخدام النموذج المتاح على الرابط: https://tax.gov.ae/ftatacsoft5cms/DataFolder/Files/Pdf/2022/Turnover%20Declaration%20Letter-REG-EN.docx",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "financial statement",
+      "turnover",
+      "sales",
+      "expenses",
+      "declaration",
+      "letterhead",
+      "template"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Financial statement (turnover and taxable expenses) since registration",
+    "ar": "بيان مالي بحجم الأعمال والمصروفات الخاضعة للضريبة منذ التسجيل"
+   },
+   "note": {
+    "en": "The turnover can also be checked from Taxpayer Overview before asking.",
+    "ar": "يمكن التحقق من حجم الأعمال من ملخص الخاضع للضريبة قبل الطلب."
+   }
+  },
+  {
+   "id": "cm-02",
+   "s": "common",
+   "ss": "sole-decl",
+   "kind": "attachment",
+   "en": "Kindly note that a natural person who owns several sole establishments is required to hold only one VAT registration covering all of them; separate registrations are not required. Therefore, kindly provide a letter declaring whether the owner, or any sole establishment owned by them, is registered for VAT, together with the relevant TRNs. If so, kindly confirm that you will file under one VAT-registered TRN. The letter must be signed and stamped (no stamp is required for a natural person). Kindly provide this declaration even if no such registrations exist.",
+   "ar": "يرجى العلم بأن الشخص الطبيعي الذي يملك عدة مؤسسات فردية يلزمه تسجيل واحد فقط لضريبة القيمة المضافة يشمل جميع مؤسساته، ولا يتطلب الأمر تسجيلات منفصلة. وعليه، يرجى تقديم خطاب يوضح ما إذا كان المالك أو أي مؤسسة فردية يملكها مسجلاً لضريبة القيمة المضافة مع ذكر أرقام التسجيل الضريبي. وفي حال وجودها، يرجى التأكيد على أنكم ستقدمون الإقرارات برقم تسجيل ضريبي واحد. ويجب أن يكون الخطاب موقعاً ومختوماً (لا يلزم الختم للشخص الطبيعي). يرجى تقديم هذا الإقرار حتى في حال عدم وجود تسجيلات أخرى.",
+   "tags": [
+    "sole establishment",
+    "natural person",
+    "declaration",
+    "one TRN",
+    "multiple establishments",
+    "owner"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly note that a natural person who owns several sole establishments is required to hold only one VAT registration covering all of them; separate registrations are not required. Therefore, kindly provide a letter declaring whether the owner, or any sole establishment owned by them, is registered for VAT, together with the relevant TRNs. If so, kindly confirm that you will file under one VAT-registered TRN. The letter must be signed and stamped (no stamp is required for a natural person). Kindly provide this declaration even if no such registrations exist.",
+     "ar": "يرجى العلم بأن الشخص الطبيعي الذي يملك عدة مؤسسات فردية يلزمه تسجيل واحد فقط لضريبة القيمة المضافة يشمل جميع مؤسساته، ولا يتطلب الأمر تسجيلات منفصلة. وعليه، يرجى تقديم خطاب يوضح ما إذا كان المالك أو أي مؤسسة فردية يملكها مسجلاً لضريبة القيمة المضافة مع ذكر أرقام التسجيل الضريبي. وفي حال وجودها، يرجى التأكيد على أنكم ستقدمون الإقرارات برقم تسجيل ضريبي واحد. ويجب أن يكون الخطاب موقعاً ومختوماً (لا يلزم الختم للشخص الطبيعي). يرجى تقديم هذا الإقرار حتى في حال عدم وجود تسجيلات أخرى.",
+     "cond": {
+      "en": "Only when the legal status of the entity is a sole establishment (check the owner from the Emirates ID number).",
+      "ar": "فقط عندما يكون الكيان مؤسسة فردية (تحقق من المالك عبر رقم الهوية الإماراتية)."
+     },
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "sole establishment",
+      "natural person",
+      "declaration",
+      "one TRN",
+      "multiple establishments",
+      "owner"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Only when the legal status of the entity is a sole establishment (check the owner from the Emirates ID number).",
+    "ar": "فقط عندما يكون الكيان مؤسسة فردية (تحقق من المالك عبر رقم الهوية الإماراتية)."
+   },
+   "doc": {
+    "en": "Declaration of sole establishments owned and their TRNs",
+    "ar": "إقرار بالمؤسسات الفردية المملوكة وأرقام تسجيلها الضريبي"
+   }
+  },
+  {
+   "id": "cm-03",
+   "s": "common",
+   "ss": "threshold-decl",
+   "kind": "attachment",
+   "en": "Kindly provide a declaration letter on the company letterhead confirming that you will not reach the mandatory registration threshold within the next month. The letter must be signed and stamped.",
+   "ar": "يرجى تقديم خطاب إقرار على الورق الرسمي للشركة يؤكد أنكم لن تتجاوزوا حد التسجيل الإلزامي خلال الشهر القادم، على أن يكون موقعاً ومختوماً.",
+   "tags": [
+    "declaration",
+    "threshold",
+    "mandatory",
+    "voluntary",
+    "next month",
+    "letterhead"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide a declaration letter on the company letterhead confirming that you will not reach the mandatory registration threshold within the next month. The letter must be signed and stamped.",
+     "ar": "يرجى تقديم خطاب إقرار على الورق الرسمي للشركة يؤكد أنكم لن تتجاوزوا حد التسجيل الإلزامي خلال الشهر القادم، على أن يكون موقعاً ومختوماً.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "declaration",
+      "threshold",
+      "mandatory",
+      "voluntary",
+      "next month",
+      "letterhead"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Declaration of not reaching the mandatory threshold next month",
+    "ar": "إقرار بعدم تجاوز حد التسجيل الإلزامي خلال الشهر القادم"
+   }
+  },
+  {
+   "id": "cm-04",
+   "s": "common",
+   "ss": "resubmit",
+   "kind": "notice",
+   "en": "Kindly ensure that the resubmitted application includes all the documents and requirements listed above, to avoid further resubmissions of the application.",
+   "ar": "يرجى التأكد من أن الطلب المعاد تقديمه يتضمن جميع المستندات والمتطلبات المذكورة أعلاه، تفادياً لإعادة تقديم الطلب مرة أخرى.",
+   "tags": [
+    "resubmit",
+    "all documents",
+    "complete",
+    "back and forth"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly ensure that the resubmitted application includes all the documents and requirements listed above, to avoid further resubmissions of the application.",
+     "ar": "يرجى التأكد من أن الطلب المعاد تقديمه يتضمن جميع المستندات والمتطلبات المذكورة أعلاه، تفادياً لإعادة تقديم الطلب مرة أخرى.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "resubmit",
+      "all documents",
+      "complete",
+      "back and forth"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cm-05",
+   "s": "common",
+   "ss": "resubmit",
+   "kind": "notice",
+   "en": "Your deregistration application has been pre-approved. Kindly submit the final VAT return, remove any draft applications and settle all outstanding liabilities so that the deregistration can be completed.",
+   "ar": "تمت الموافقة المبدئية على طلب إلغاء التسجيل. يرجى تقديم الإقرار الضريبي النهائي، وحذف أي طلبات في حالة مسودة، وسداد جميع الالتزامات المستحقة لاستكمال إلغاء التسجيل.",
+   "tags": [
+    "pre-approved",
+    "final return",
+    "draft applications",
+    "liabilities",
+    "outstanding"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Your deregistration application has been pre-approved. Kindly submit the final VAT return, remove any draft applications and settle all outstanding liabilities so that the deregistration can be completed.",
+     "ar": "تمت الموافقة المبدئية على طلب إلغاء التسجيل. يرجى تقديم الإقرار الضريبي النهائي، وحذف أي طلبات في حالة مسودة، وسداد جميع الالتزامات المستحقة لاستكمال إلغاء التسجيل.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "pre-approved",
+      "final return",
+      "draft applications",
+      "liabilities",
+      "outstanding"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cm-06",
+   "s": "common",
+   "ss": "resubmit",
+   "kind": "request",
+   "en": "Kindly provide a clarification of the reason for applying for deregistration, together with any supporting documents.",
+   "ar": "يرجى تقديم توضيح لسبب التقدم بطلب إلغاء التسجيل، مع إرفاق أي مستندات داعمة.",
+   "tags": [
+    "clarification",
+    "reason",
+    "deregistration",
+    "basis"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide a clarification of the reason for applying for deregistration, together with any supporting documents.",
+     "ar": "يرجى تقديم توضيح لسبب التقدم بطلب إلغاء التسجيل، مع إرفاق أي مستندات داعمة.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "clarification",
+      "reason",
+      "deregistration",
+      "basis"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lc-01",
+   "s": "licence",
+   "ss": "cancel",
+   "kind": "attachment",
+   "en": "Kindly provide the official cancellation or liquidation certificate of the trade licence issued by the licensing authority. If the licence has not yet been cancelled or liquidated, kindly provide the board resolution and the last taxable invoice issued.",
+   "ar": "يرجى تقديم شهادة الإلغاء أو التصفية الرسمية للرخصة التجارية الصادرة عن جهة الترخيص. وفي حال لم يتم إلغاء الرخصة أو تصفيتها بعد، يرجى تقديم قرار مجلس الإدارة وآخر فاتورة ضريبية صادرة.",
+   "tags": [
+    "cancellation",
+    "liquidation",
+    "certificate",
+    "licensing authority",
+    "board resolution",
+    "last invoice"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide the official cancellation or liquidation certificate of the trade licence issued by the licensing authority. If the licence has not yet been cancelled or liquidated, kindly provide the board resolution and the last taxable invoice issued.",
+     "ar": "يرجى تقديم شهادة الإلغاء أو التصفية الرسمية للرخصة التجارية الصادرة عن جهة الترخيص. وفي حال لم يتم إلغاء الرخصة أو تصفيتها بعد، يرجى تقديم قرار مجلس الإدارة وآخر فاتورة ضريبية صادرة.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "cancellation",
+      "liquidation",
+      "certificate",
+      "licensing authority",
+      "board resolution",
+      "last invoice"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Cancellation / liquidation certificate of the trade licence",
+    "ar": "شهادة إلغاء أو تصفية الرخصة التجارية"
+   }
+  },
+  {
+   "id": "lc-02",
+   "s": "licence",
+   "ss": "freeze",
+   "kind": "attachment",
+   "en": "Kindly provide the document or letter issued by the licensing authority confirming that the trade licence has been frozen.",
+   "ar": "يرجى تقديم المستند أو الخطاب الصادر عن جهة الترخيص الذي يثبت تجميد الرخصة التجارية.",
+   "tags": [
+    "freeze",
+    "frozen licence",
+    "suspended",
+    "licensing authority"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide the document or letter issued by the licensing authority confirming that the trade licence has been frozen.",
+     "ar": "يرجى تقديم المستند أو الخطاب الصادر عن جهة الترخيص الذي يثبت تجميد الرخصة التجارية.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "freeze",
+      "frozen licence",
+      "suspended",
+      "licensing authority"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Licence freezing letter from the licensing authority",
+    "ar": "خطاب تجميد الرخصة من جهة الترخيص"
+   }
+  },
+  {
+   "id": "lc-03",
+   "s": "licence",
+   "ss": "legal",
+   "kind": "attachment",
+   "en": "Kindly provide the Memorandum of Association (MOA) or the contract evidencing the change in the legal status of the entity.",
+   "ar": "يرجى تقديم عقد التأسيس أو العقد الذي يثبت تغيير الشكل القانوني للكيان.",
+   "tags": [
+    "MOA",
+    "memorandum",
+    "contract",
+    "legal status",
+    "legal form",
+    "change"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide the Memorandum of Association (MOA) or the contract evidencing the change in the legal status of the entity.",
+     "ar": "يرجى تقديم عقد التأسيس أو العقد الذي يثبت تغيير الشكل القانوني للكيان.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "MOA",
+      "memorandum",
+      "contract",
+      "legal status",
+      "legal form",
+      "change"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "MOA or contract evidencing the change in legal status",
+    "ar": "عقد التأسيس أو العقد المثبت لتغيير الشكل القانوني"
+   }
+  },
+  {
+   "id": "lc-04",
+   "s": "licence",
+   "ss": "legal",
+   "kind": "attachment",
+   "en": "Kindly provide the amended Memorandum of Association (MOA), or any official document evidencing the change in the legal status or ownership of the entity.",
+   "ar": "يرجى تقديم عقد التأسيس المعدّل، أو أي مستند رسمي يثبت تغيير الشكل القانوني للكيان أو ملكيته.",
+   "tags": [
+    "amended MOA",
+    "amendment",
+    "ownership",
+    "owner change",
+    "branch",
+    "legal status"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide the amended Memorandum of Association (MOA), or any official document evidencing the change in the legal status or ownership of the entity.",
+     "ar": "يرجى تقديم عقد التأسيس المعدّل، أو أي مستند رسمي يثبت تغيير الشكل القانوني للكيان أو ملكيته.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "amended MOA",
+      "amendment",
+      "ownership",
+      "owner change",
+      "branch",
+      "legal status"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Amended MOA or document evidencing the change",
+    "ar": "عقد التأسيس المعدّل أو مستند يثبت التغيير"
+   }
+  },
+  {
+   "id": "lc-05",
+   "s": "licence",
+   "ss": "legal",
+   "kind": "attachment",
+   "en": "Kindly provide copies of both the previous and the current trade licence.",
+   "ar": "يرجى تقديم نسخة من الرخصة التجارية السابقة والرخصة التجارية الحالية.",
+   "tags": [
+    "old licence",
+    "new licence",
+    "trade license",
+    "before and after"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide copies of both the previous and the current trade licence.",
+     "ar": "يرجى تقديم نسخة من الرخصة التجارية السابقة والرخصة التجارية الحالية.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "old licence",
+      "new licence",
+      "trade license",
+      "before and after"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Previous and current trade licence",
+    "ar": "الرخصة التجارية السابقة والحالية"
+   }
+  },
+  {
+   "id": "lc-06",
+   "s": "licence",
+   "ss": "legal",
+   "kind": "rejection",
+   "en": "Please note that your deregistration application has been rejected, as the change in the legal status or ownership of the entity does not meet the conditions for VAT deregistration while the business continues to make taxable supplies above the voluntary registration threshold. Kindly apply for a VAT registration amendment to update your details instead.",
+   "ar": "يرجى العلم بأنه تم رفض طلب إلغاء التسجيل، حيث إن تغيير الشكل القانوني للكيان أو ملكيته لا يستوفي شروط إلغاء التسجيل لضريبة القيمة المضافة ما دام النشاط مستمراً في تقديم توريدات خاضعة للضريبة تتجاوز حد التسجيل الاختياري. يرجى بدلاً من ذلك التقدم بطلب تعديل بيانات التسجيل لضريبة القيمة المضافة.",
+   "tags": [
+    "reject",
+    "amendment",
+    "above voluntary",
+    "LLC single owner",
+    "civil company",
+    "change owner",
+    "continue"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that your deregistration application has been rejected, as the change in the legal status or ownership of the entity does not meet the conditions for VAT deregistration while the business continues to make taxable supplies above the voluntary registration threshold. Kindly apply for a VAT registration amendment to update your details instead.",
+     "ar": "يرجى العلم بأنه تم رفض طلب إلغاء التسجيل، حيث إن تغيير الشكل القانوني للكيان أو ملكيته لا يستوفي شروط إلغاء التسجيل لضريبة القيمة المضافة ما دام النشاط مستمراً في تقديم توريدات خاضعة للضريبة تتجاوز حد التسجيل الاختياري. يرجى بدلاً من ذلك التقدم بطلب تعديل بيانات التسجيل لضريبة القيمة المضافة.",
+     "cond": {
+      "en": "Turnover above the voluntary threshold after an LLC → LLC single owner / civil company change, or a change of owner.",
+      "ar": "حجم الأعمال أعلى من الحد الاختياري بعد تحويل ذ.م.م إلى ذ.م.م بمالك واحد / شركة مدنية، أو تغيير المالك."
+     },
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "amendment",
+      "above voluntary",
+      "LLC single owner",
+      "civil company",
+      "change owner",
+      "continue"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Turnover above the voluntary threshold after an LLC → LLC single owner / civil company change, or a change of owner.",
+    "ar": "حجم الأعمال أعلى من الحد الاختياري بعد تحويل ذ.م.م إلى ذ.م.م بمالك واحد / شركة مدنية، أو تغيير المالك."
+   }
+  },
+  {
+   "id": "lc-07",
+   "s": "licence",
+   "ss": "sale",
+   "kind": "attachment",
+   "en": "Kindly provide the sale contract of the sole establishment trade licence.",
+   "ar": "يرجى تقديم عقد بيع الرخصة التجارية للمؤسسة الفردية.",
+   "tags": [
+    "sale",
+    "selling contract",
+    "sold",
+    "sole establishment",
+    "transfer"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide the sale contract of the sole establishment trade licence.",
+     "ar": "يرجى تقديم عقد بيع الرخصة التجارية للمؤسسة الفردية.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "sale",
+      "selling contract",
+      "sold",
+      "sole establishment",
+      "transfer"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Sale contract of the sole establishment",
+    "ar": "عقد بيع المؤسسة الفردية"
+   }
+  },
+  {
+   "id": "lc-08",
+   "s": "licence",
+   "ss": "wrong",
+   "kind": "rejection",
+   "en": "Dear Taxpayer, please note that your deregistration application has been rejected, as the entity type recorded in your registration does not match the legal status shown in your trade licence. Kindly amend your legal entity type through the “Change Entity Type” application.",
+   "ar": "عزيزي الخاضع للضريبة، يرجى العلم بأنه تم رفض طلب إلغاء التسجيل، حيث إن نوع الكيان المسجل لا يتطابق مع الشكل القانوني الوارد في الرخصة التجارية. يرجى تعديل نوع الكيان القانوني من خلال طلب «تغيير نوع الكيان».",
+   "tags": [
+    "wrong registration",
+    "entity type",
+    "change entity type",
+    "reject",
+    "mismatch"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Dear Taxpayer, please note that your deregistration application has been rejected, as the entity type recorded in your registration does not match the legal status shown in your trade licence. Kindly amend your legal entity type through the “Change Entity Type” application.",
+     "ar": "عزيزي الخاضع للضريبة، يرجى العلم بأنه تم رفض طلب إلغاء التسجيل، حيث إن نوع الكيان المسجل لا يتطابق مع الشكل القانوني الوارد في الرخصة التجارية. يرجى تعديل نوع الكيان القانوني من خلال طلب «تغيير نوع الكيان».",
+     "cond": {
+      "en": "Only after confirming from Taxpayer Overview that the entity type does not match the trade licence.",
+      "ar": "فقط بعد التأكد من ملخص الخاضع للضريبة أن نوع الكيان لا يطابق الرخصة التجارية."
+     },
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "wrong registration",
+      "entity type",
+      "change entity type",
+      "reject",
+      "mismatch"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Only after confirming from Taxpayer Overview that the entity type does not match the trade licence.",
+    "ar": "فقط بعد التأكد من ملخص الخاضع للضريبة أن نوع الكيان لا يطابق الرخصة التجارية."
+   }
+  },
+  {
+   "id": "lc-09",
+   "s": "licence",
+   "ss": "cancel",
+   "kind": "request",
+   "en": "Kindly provide the last taxable invoice issued by the entity.",
+   "ar": "يرجى تقديم آخر فاتورة ضريبية صادرة عن الكيان.",
+   "tags": [
+    "last invoice",
+    "taxable invoice",
+    "eligible date",
+    "last supply"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide the last taxable invoice issued by the entity.",
+     "ar": "يرجى تقديم آخر فاتورة ضريبية صادرة عن الكيان.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "last invoice",
+      "taxable invoice",
+      "eligible date",
+      "last supply"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Last taxable invoice",
+    "ar": "آخر فاتورة ضريبية"
+   }
+  },
+  {
+   "id": "mt-01",
+   "s": "multi",
+   "ss": "dup",
+   "kind": "request",
+   "en": "Kindly provide the Tax Registration Number (TRN) of the main company.",
+   "ar": "يرجى تزويدنا برقم التسجيل الضريبي للشركة الرئيسية.",
+   "tags": [
+    "main company",
+    "TRN",
+    "duplicate",
+    "parent"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide the Tax Registration Number (TRN) of the main company.",
+     "ar": "يرجى تزويدنا برقم التسجيل الضريبي للشركة الرئيسية.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "main company",
+      "TRN",
+      "duplicate",
+      "parent"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mt-02",
+   "s": "multi",
+   "ss": "dup",
+   "kind": "attachment",
+   "en": "Kindly provide a declaration letter on the company letterhead confirming that you will file your tax returns under the TRN of the main company. The letter must be signed and stamped.",
+   "ar": "يرجى تقديم خطاب إقرار على الورق الرسمي للشركة يؤكد أنكم ستقدمون الإقرارات الضريبية برقم التسجيل الضريبي للشركة الرئيسية، على أن يكون موقعاً ومختوماً.",
+   "tags": [
+    "declaration",
+    "file with main",
+    "main TRN",
+    "letterhead",
+    "continue filing"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide a declaration letter on the company letterhead confirming that you will file your tax returns under the TRN of the main company. The letter must be signed and stamped.",
+     "ar": "يرجى تقديم خطاب إقرار على الورق الرسمي للشركة يؤكد أنكم ستقدمون الإقرارات الضريبية برقم التسجيل الضريبي للشركة الرئيسية، على أن يكون موقعاً ومختوماً.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "declaration",
+      "file with main",
+      "main TRN",
+      "letterhead",
+      "continue filing"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Declaration of filing under the main company TRN",
+    "ar": "إقرار بتقديم الإقرارات برقم التسجيل الضريبي للشركة الرئيسية"
+   }
+  },
+  {
+   "id": "mt-03",
+   "s": "multi",
+   "ss": "dup",
+   "kind": "request",
+   "en": "Kindly provide the Tax Registration Number (TRN) of the other entity registered for VAT under the same owner.",
+   "ar": "يرجى تزويدنا برقم التسجيل الضريبي للكيان الآخر المسجل لضريبة القيمة المضافة باسم المالك نفسه.",
+   "tags": [
+    "other entity",
+    "TRN",
+    "same owner",
+    "another sole establishment"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide the Tax Registration Number (TRN) of the other entity registered for VAT under the same owner.",
+     "ar": "يرجى تزويدنا برقم التسجيل الضريبي للكيان الآخر المسجل لضريبة القيمة المضافة باسم المالك نفسه.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "other entity",
+      "TRN",
+      "same owner",
+      "another sole establishment"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mt-04",
+   "s": "multi",
+   "ss": "branch",
+   "kind": "request",
+   "en": "Kindly confirm whether the parent company holds a Tax Registration Number (TRN), and provide it if so.",
+   "ar": "يرجى تأكيد ما إذا كانت الشركة الأم تمتلك رقم تسجيل ضريبي، وتزويدنا به في حال وجوده.",
+   "tags": [
+    "branch",
+    "parent company",
+    "main TRN",
+    "confirm"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly confirm whether the parent company holds a Tax Registration Number (TRN), and provide it if so.",
+     "ar": "يرجى تأكيد ما إذا كانت الشركة الأم تمتلك رقم تسجيل ضريبي، وتزويدنا به في حال وجوده.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "branch",
+      "parent company",
+      "main TRN",
+      "confirm"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mt-05",
+   "s": "multi",
+   "ss": "branch",
+   "kind": "attachment",
+   "en": "Kindly provide the trade licences of both the parent company and the branch.",
+   "ar": "يرجى تقديم الرخصة التجارية لكل من الشركة الأم والفرع.",
+   "tags": [
+    "branch",
+    "parent",
+    "trade licence",
+    "both licences"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide the trade licences of both the parent company and the branch.",
+     "ar": "يرجى تقديم الرخصة التجارية لكل من الشركة الأم والفرع.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "branch",
+      "parent",
+      "trade licence",
+      "both licences"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Trade licences of the parent company and the branch",
+    "ar": "الرخصة التجارية للشركة الأم والفرع"
+   }
+  },
+  {
+   "id": "mt-06",
+   "s": "multi",
+   "ss": "branch",
+   "kind": "attachment",
+   "en": "Kindly provide the trade licence of the entity, showing that the registered establishment is a branch of it.",
+   "ar": "يرجى تقديم الرخصة التجارية للكيان بحيث يظهر فيها أن المنشأة المسجلة فرع تابع له.",
+   "tags": [
+    "branch",
+    "trade licence",
+    "mentioned",
+    "tax group member"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide the trade licence of the entity, showing that the registered establishment is a branch of it.",
+     "ar": "يرجى تقديم الرخصة التجارية للكيان بحيث يظهر فيها أن المنشأة المسجلة فرع تابع له.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "branch",
+      "trade licence",
+      "mentioned",
+      "tax group member"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Trade licence of the entity showing the branch",
+    "ar": "الرخصة التجارية للكيان مع بيان الفرع"
+   }
+  },
+  {
+   "id": "sp-01",
+   "s": "supplies",
+   "ss": "zero",
+   "kind": "attachment",
+   "en": "Kindly provide a signed and stamped declaration confirming that you will apply for an exception from VAT registration once the deregistration application is approved.",
+   "ar": "يرجى تقديم إقرار موقع ومختوم يؤكد أنكم ستتقدمون بطلب استثناء من التسجيل لضريبة القيمة المضافة فور الموافقة على طلب إلغاء التسجيل.",
+   "tags": [
+    "zero-rated",
+    "exception",
+    "declaration",
+    "exempt from registration"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide a signed and stamped declaration confirming that you will apply for an exception from VAT registration once the deregistration application is approved.",
+     "ar": "يرجى تقديم إقرار موقع ومختوم يؤكد أنكم ستتقدمون بطلب استثناء من التسجيل لضريبة القيمة المضافة فور الموافقة على طلب إلغاء التسجيل.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "zero-rated",
+      "exception",
+      "declaration",
+      "exempt from registration"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Declaration of applying for registration exception",
+    "ar": "إقرار بالتقدم بطلب الاستثناء من التسجيل"
+   }
+  },
+  {
+   "id": "sp-02",
+   "s": "supplies",
+   "ss": "stopped",
+   "kind": "attachment",
+   "en": "Kindly provide a letter from the entity confirming that it has stopped making taxable supplies, stating the date on which the last taxable supply was made.",
+   "ar": "يرجى تقديم خطاب من الكيان يؤكد توقفه عن تقديم التوريدات الخاضعة للضريبة، مع بيان تاريخ آخر توريد خاضع للضريبة.",
+   "tags": [
+    "stopped",
+    "no longer",
+    "taxable supplies",
+    "online business",
+    "foreign company",
+    "letter"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide a letter from the entity confirming that it has stopped making taxable supplies, stating the date on which the last taxable supply was made.",
+     "ar": "يرجى تقديم خطاب من الكيان يؤكد توقفه عن تقديم التوريدات الخاضعة للضريبة، مع بيان تاريخ آخر توريد خاضع للضريبة.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "stopped",
+      "no longer",
+      "taxable supplies",
+      "online business",
+      "foreign company",
+      "letter"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Letter confirming cessation of taxable supplies",
+    "ar": "خطاب يؤكد التوقف عن التوريدات الخاضعة للضريبة"
+   }
+  },
+  {
+   "id": "sp-03",
+   "s": "supplies",
+   "ss": "below",
+   "kind": "rejection",
+   "en": "Please note that your deregistration application has been rejected, as your taxable supplies over the last twelve months exceed the voluntary registration threshold and the business continues to make taxable supplies. Kindly apply for a VAT registration amendment if your registration details have changed.",
+   "ar": "يرجى العلم بأنه تم رفض طلب إلغاء التسجيل، حيث إن توريداتكم الخاضعة للضريبة خلال الاثني عشر شهراً الماضية تتجاوز حد التسجيل الاختياري وما زال النشاط مستمراً في تقديم توريدات خاضعة للضريبة. يرجى التقدم بطلب تعديل بيانات التسجيل في حال تغيّر بياناتكم.",
+   "tags": [
+    "reject",
+    "above threshold",
+    "twelve months",
+    "continue",
+    "amendment"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that your deregistration application has been rejected, as your taxable supplies over the last twelve months exceed the voluntary registration threshold and the business continues to make taxable supplies. Kindly apply for a VAT registration amendment if your registration details have changed.",
+     "ar": "يرجى العلم بأنه تم رفض طلب إلغاء التسجيل، حيث إن توريداتكم الخاضعة للضريبة خلال الاثني عشر شهراً الماضية تتجاوز حد التسجيل الاختياري وما زال النشاط مستمراً في تقديم توريدات خاضعة للضريبة. يرجى التقدم بطلب تعديل بيانات التسجيل في حال تغيّر بياناتكم.",
+     "cond": {
+      "en": "Turnover above the voluntary threshold (AED 187,500) in the last 12 months.",
+      "ar": "حجم الأعمال أعلى من الحد الاختياري (187,500 درهم) خلال آخر 12 شهراً."
+     },
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "above threshold",
+      "twelve months",
+      "continue",
+      "amendment"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Turnover above the voluntary threshold (AED 187,500) in the last 12 months.",
+    "ar": "حجم الأعمال أعلى من الحد الاختياري (187,500 درهم) خلال آخر 12 شهراً."
+   }
+  },
+  {
+   "id": "sp-04",
+   "s": "supplies",
+   "ss": "below",
+   "kind": "notice",
+   "en": "Kindly note that the deregistration will be processed on the basis that the business continues to make taxable supplies below the voluntary registration threshold. You remain obliged to monitor your taxable supplies and to register again if they exceed the registration threshold.",
+   "ar": "يرجى العلم بأن إلغاء التسجيل سيتم على أساس أن النشاط ما زال يقدم توريدات خاضعة للضريبة أقل من حد التسجيل الاختياري. وتظلون ملزمين بمتابعة توريداتكم الخاضعة للضريبة وإعادة التسجيل في حال تجاوزها حد التسجيل.",
+   "tags": [
+    "below voluntary",
+    "basis",
+    "monitor",
+    "register again",
+    "notice"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly note that the deregistration will be processed on the basis that the business continues to make taxable supplies below the voluntary registration threshold. You remain obliged to monitor your taxable supplies and to register again if they exceed the registration threshold.",
+     "ar": "يرجى العلم بأن إلغاء التسجيل سيتم على أساس أن النشاط ما زال يقدم توريدات خاضعة للضريبة أقل من حد التسجيل الاختياري. وتظلون ملزمين بمتابعة توريداتكم الخاضعة للضريبة وإعادة التسجيل في حال تجاوزها حد التسجيل.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "below voluntary",
+      "basis",
+      "monitor",
+      "register again",
+      "notice"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "se-01",
+   "s": "special",
+   "ss": "board",
+   "kind": "attachment",
+   "en": "Kindly provide the last invoice issued for the services performed as a member of a board of directors (director’s remuneration).",
+   "ar": "يرجى تقديم آخر فاتورة صادرة عن الخدمات المؤداة بصفة عضو في مجلس إدارة (مكافأة عضوية مجلس الإدارة).",
+   "tags": [
+    "board member",
+    "director",
+    "remuneration",
+    "reward",
+    "last invoice"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide the last invoice issued for the services performed as a member of a board of directors (director’s remuneration).",
+     "ar": "يرجى تقديم آخر فاتورة صادرة عن الخدمات المؤداة بصفة عضو في مجلس إدارة (مكافأة عضوية مجلس الإدارة).",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "board member",
+      "director",
+      "remuneration",
+      "reward",
+      "last invoice"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Last invoice for board membership services",
+    "ar": "آخر فاتورة عن خدمات عضوية مجلس الإدارة"
+   }
+  },
+  {
+   "id": "se-02",
+   "s": "special",
+   "ss": "board",
+   "kind": "notice",
+   "en": "Kindly note that, with effect from 1 January 2023, the functions of a member of a board of directors performed by a natural person are not considered a supply of services for VAT purposes, in accordance with the amended Article 3 of the Executive Regulation of the Federal Decree-Law on Value Added Tax.",
+   "ar": "يرجى العلم بأنه اعتباراً من 1 يناير 2023، لا تُعد مهام عضو مجلس الإدارة التي يؤديها شخص طبيعي توريداً للخدمات لأغراض ضريبة القيمة المضافة، وذلك وفقاً للمادة (3) المعدّلة من اللائحة التنفيذية للمرسوم بقانون اتحادي في شأن ضريبة القيمة المضافة.",
+   "tags": [
+    "board member",
+    "director",
+    "2023",
+    "not a supply",
+    "public clarification",
+    "article 3"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly note that, with effect from 1 January 2023, the functions of a member of a board of directors performed by a natural person are not considered a supply of services for VAT purposes, in accordance with the amended Article 3 of the Executive Regulation of the Federal Decree-Law on Value Added Tax.",
+     "ar": "يرجى العلم بأنه اعتباراً من 1 يناير 2023، لا تُعد مهام عضو مجلس الإدارة التي يؤديها شخص طبيعي توريداً للخدمات لأغراض ضريبة القيمة المضافة، وذلك وفقاً للمادة (3) المعدّلة من اللائحة التنفيذية للمرسوم بقانون اتحادي في شأن ضريبة القيمة المضافة.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "board member",
+      "director",
+      "2023",
+      "not a supply",
+      "public clarification",
+      "article 3"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "se-03",
+   "s": "special",
+   "ss": "funds",
+   "kind": "notice",
+   "en": "Kindly note that, with effect from 15 November 2024, the management of investment funds by a licensed fund manager is treated as an exempt supply in accordance with Cabinet Decision No. (100) of 2024 amending the Executive Regulation of the Federal Decree-Law on Value Added Tax.",
+   "ar": "يرجى العلم بأنه اعتباراً من 15 نوفمبر 2024، تُعامل إدارة صناديق الاستثمار من قبل مدير صندوق مرخص على أنها توريد معفى من الضريبة وفقاً لقرار مجلس الوزراء رقم (100) لسنة 2024 بتعديل اللائحة التنفيذية للمرسوم بقانون اتحادي في شأن ضريبة القيمة المضافة.",
+   "tags": [
+    "fund management",
+    "investment funds",
+    "exempt",
+    "2024",
+    "cabinet decision 100"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly note that, with effect from 15 November 2024, the management of investment funds by a licensed fund manager is treated as an exempt supply in accordance with Cabinet Decision No. (100) of 2024 amending the Executive Regulation of the Federal Decree-Law on Value Added Tax.",
+     "ar": "يرجى العلم بأنه اعتباراً من 15 نوفمبر 2024، تُعامل إدارة صناديق الاستثمار من قبل مدير صندوق مرخص على أنها توريد معفى من الضريبة وفقاً لقرار مجلس الوزراء رقم (100) لسنة 2024 بتعديل اللائحة التنفيذية للمرسوم بقانون اتحادي في شأن ضريبة القيمة المضافة.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "fund management",
+      "investment funds",
+      "exempt",
+      "2024",
+      "cabinet decision 100"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "se-04",
+   "s": "special",
+   "ss": "death",
+   "kind": "attachment",
+   "en": "Kindly provide the certificate of succession (inheritance limitation) issued by the competent court.",
+   "ar": "يرجى تقديم إعلام الوراثة (حصر الإرث) الصادر عن المحكمة المختصة.",
+   "tags": [
+    "death",
+    "passing",
+    "owner",
+    "inheritance",
+    "succession",
+    "court",
+    "heirs"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide the certificate of succession (inheritance limitation) issued by the competent court.",
+     "ar": "يرجى تقديم إعلام الوراثة (حصر الإرث) الصادر عن المحكمة المختصة.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "death",
+      "passing",
+      "owner",
+      "inheritance",
+      "succession",
+      "court",
+      "heirs"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Certificate of succession issued by the court",
+    "ar": "إعلام الوراثة الصادر عن المحكمة"
+   }
+  },
+  {
+   "id": "se-05",
+   "s": "special",
+   "ss": "gov",
+   "kind": "attachment",
+   "en": "Kindly provide the Cabinet Decision amending the list of Government Entities annexed to Cabinet Decision No. (58) of 2017, showing the removal of the entity from the list.",
+   "ar": "يرجى تقديم قرار مجلس الوزراء المعدِّل لقائمة الجهات الحكومية الملحقة بقرار مجلس الوزراء رقم (58) لسنة 2017، والذي يتضمن شطب الجهة من القائمة.",
+   "tags": [
+    "government entity",
+    "cabinet decision 58",
+    "list",
+    "removed"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide the Cabinet Decision amending the list of Government Entities annexed to Cabinet Decision No. (58) of 2017, showing the removal of the entity from the list.",
+     "ar": "يرجى تقديم قرار مجلس الوزراء المعدِّل لقائمة الجهات الحكومية الملحقة بقرار مجلس الوزراء رقم (58) لسنة 2017، والذي يتضمن شطب الجهة من القائمة.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "government entity",
+      "cabinet decision 58",
+      "list",
+      "removed"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Cabinet Decision removing the entity from the Government Entities list",
+    "ar": "قرار مجلس الوزراء بشطب الجهة من قائمة الجهات الحكومية"
+   }
+  },
+  {
+   "id": "se-06",
+   "s": "special",
+   "ss": "charity",
+   "kind": "attachment",
+   "en": "Kindly provide the Cabinet Decision amending the list of Designated Charities annexed to Cabinet Decision No. (55) of 2017, showing the removal of the entity from the list.",
+   "ar": "يرجى تقديم قرار مجلس الوزراء المعدِّل لقائمة الجهات الخيرية المحددة الملحقة بقرار مجلس الوزراء رقم (55) لسنة 2017، والذي يتضمن شطب الجهة من القائمة.",
+   "tags": [
+    "charity",
+    "cabinet decision 55",
+    "list",
+    "removed",
+    "designated charities"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide the Cabinet Decision amending the list of Designated Charities annexed to Cabinet Decision No. (55) of 2017, showing the removal of the entity from the list.",
+     "ar": "يرجى تقديم قرار مجلس الوزراء المعدِّل لقائمة الجهات الخيرية المحددة الملحقة بقرار مجلس الوزراء رقم (55) لسنة 2017، والذي يتضمن شطب الجهة من القائمة.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "charity",
+      "cabinet decision 55",
+      "list",
+      "removed",
+      "designated charities"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Cabinet Decision removing the entity from the Charities list",
+    "ar": "قرار مجلس الوزراء بشطب الجهة من قائمة الجهات الخيرية"
+   }
+  },
+  {
+   "id": "se-07",
+   "s": "special",
+   "ss": "gv",
+   "kind": "attachment",
+   "en": "Kindly provide the last contract signed between the entity and Global Village.",
+   "ar": "يرجى تقديم آخر عقد موقع بين الكيان والقرية العالمية.",
+   "tags": [
+    "global village",
+    "contract",
+    "season",
+    "last contract"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide the last contract signed between the entity and Global Village.",
+     "ar": "يرجى تقديم آخر عقد موقع بين الكيان والقرية العالمية.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "global village",
+      "contract",
+      "season",
+      "last contract"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Last contract with Global Village",
+    "ar": "آخر عقد مع القرية العالمية"
+   }
+  },
+  {
+   "id": "se-08",
+   "s": "special",
+   "ss": "property",
+   "kind": "attachment",
+   "en": "Kindly provide the building completion certificate issued by the competent authority.",
+   "ar": "يرجى تقديم شهادة إنجاز المبنى الصادرة عن الجهة المختصة.",
+   "tags": [
+    "property",
+    "completion certificate",
+    "building",
+    "residential",
+    "three years"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide the building completion certificate issued by the competent authority.",
+     "ar": "يرجى تقديم شهادة إنجاز المبنى الصادرة عن الجهة المختصة.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "property",
+      "completion certificate",
+      "building",
+      "residential",
+      "three years"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Building completion certificate",
+    "ar": "شهادة إنجاز المبنى"
+   }
+  },
+  {
+   "id": "se-09",
+   "s": "special",
+   "ss": "property",
+   "kind": "attachment",
+   "en": "Kindly provide the sale contracts of all properties that have been sold.",
+   "ar": "يرجى تقديم عقود بيع جميع العقارات التي تم بيعها.",
+   "tags": [
+    "property",
+    "sale contract",
+    "sold",
+    "commercial",
+    "residential"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide the sale contracts of all properties that have been sold.",
+     "ar": "يرجى تقديم عقود بيع جميع العقارات التي تم بيعها.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "property",
+      "sale contract",
+      "sold",
+      "commercial",
+      "residential"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Sale contracts of all properties sold",
+    "ar": "عقود بيع جميع العقارات المباعة"
+   }
+  },
+  {
+   "id": "se-10",
+   "s": "special",
+   "ss": "property",
+   "kind": "rejection",
+   "en": "Please note that your deregistration application has been rejected. The sale of a commercial property that was not part of a continuing business activity does not constitute a basis for VAT registration; the registration is therefore considered to have been made in error. Kindly provide a clarification if you believe this assessment is incorrect.",
+   "ar": "يرجى العلم بأنه تم رفض طلب إلغاء التسجيل. إن بيع عقار تجاري لم يكن ضمن نشاط تجاري مستمر لا يُعد أساساً للتسجيل لضريبة القيمة المضافة، وبالتالي يُعتبر التسجيل قد تم عن طريق الخطأ. يرجى تقديم توضيح إذا كنتم ترون أن هذا التقييم غير صحيح.",
+   "tags": [
+    "property",
+    "commercial",
+    "single property",
+    "wrong registration",
+    "business continuity",
+    "reject"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that your deregistration application has been rejected. The sale of a commercial property that was not part of a continuing business activity does not constitute a basis for VAT registration; the registration is therefore considered to have been made in error. Kindly provide a clarification if you believe this assessment is incorrect.",
+     "ar": "يرجى العلم بأنه تم رفض طلب إلغاء التسجيل. إن بيع عقار تجاري لم يكن ضمن نشاط تجاري مستمر لا يُعد أساساً للتسجيل لضريبة القيمة المضافة، وبالتالي يُعتبر التسجيل قد تم عن طريق الخطأ. يرجى تقديم توضيح إذا كنتم ترون أن هذا التقييم غير صحيح.",
+     "cond": {
+      "en": "Registered only to pay 5% on the sale of one or more commercial properties with no continuing business (basis: Others).",
+      "ar": "تم التسجيل فقط لسداد 5% على بيع عقار تجاري أو أكثر دون نشاط مستمر (الأساس: أخرى)."
+     },
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "property",
+      "commercial",
+      "single property",
+      "wrong registration",
+      "business continuity",
+      "reject"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Registered only to pay 5% on the sale of one or more commercial properties with no continuing business (basis: Others).",
+    "ar": "تم التسجيل فقط لسداد 5% على بيع عقار تجاري أو أكثر دون نشاط مستمر (الأساس: أخرى)."
+   }
+  },
+  {
+   "id": "se-11",
+   "s": "special",
+   "ss": "group",
+   "kind": "notice",
+   "en": "Kindly note that the eligible date for deregistration cannot precede the date on which your TRN was activated following the deregistration or amendment of the tax group, as shown in the tax group application status log.",
+   "ar": "يرجى العلم بأن تاريخ الأهلية لإلغاء التسجيل لا يمكن أن يسبق تاريخ تفعيل رقم التسجيل الضريبي الخاص بكم بعد إلغاء تسجيل المجموعة الضريبية أو تعديلها، كما هو مبين في سجل حالة طلب المجموعة الضريبية.",
+   "tags": [
+    "tax group",
+    "member",
+    "activation date",
+    "eligible date",
+    "status log"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly note that the eligible date for deregistration cannot precede the date on which your TRN was activated following the deregistration or amendment of the tax group, as shown in the tax group application status log.",
+     "ar": "يرجى العلم بأن تاريخ الأهلية لإلغاء التسجيل لا يمكن أن يسبق تاريخ تفعيل رقم التسجيل الضريبي الخاص بكم بعد إلغاء تسجيل المجموعة الضريبية أو تعديلها، كما هو مبين في سجل حالة طلب المجموعة الضريبية.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "tax group",
+      "member",
+      "activation date",
+      "eligible date",
+      "status log"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "se-12",
+   "s": "special",
+   "ss": "oa",
+   "kind": "notice",
+   "en": "Kindly note that, following the transfer of all rights and obligations of Dubai Owners’ Associations to Management Entities on 3 November 2019, Dubai Owners’ Associations no longer make taxable supplies and were required to deregister no later than 4 December 2019.",
+   "ar": "يرجى العلم بأنه عقب نقل جميع حقوق والتزامات جمعيات الملاك في دبي إلى جهات الإدارة بتاريخ 3 نوفمبر 2019، لم تعد جمعيات الملاك في دبي تقدم توريدات خاضعة للضريبة، وكان يتعين عليها إلغاء التسجيل في موعد أقصاه 4 ديسمبر 2019.",
+   "tags": [
+    "owners association",
+    "dubai",
+    "management entity",
+    "2019",
+    "public clarification"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-19T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly note that, following the transfer of all rights and obligations of Dubai Owners’ Associations to Management Entities on 3 November 2019, Dubai Owners’ Associations no longer make taxable supplies and were required to deregister no later than 4 December 2019.",
+     "ar": "يرجى العلم بأنه عقب نقل جميع حقوق والتزامات جمعيات الملاك في دبي إلى جهات الإدارة بتاريخ 3 نوفمبر 2019، لم تعد جمعيات الملاك في دبي تقدم توريدات خاضعة للضريبة، وكان يتعين عليها إلغاء التسجيل في موعد أقصاه 4 ديسمبر 2019.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "owners association",
+      "dubai",
+      "management entity",
+      "2019",
+      "public clarification"
+     ]
+    }
+   ]
+  }
+ ],
+ "reviewItems": [],
+ "placeholders": {
+  "date": {
+   "type": "date",
+   "en": "Date",
+   "ar": "التاريخ"
+  },
+  "tin": {
+   "type": "text",
+   "en": "TRN",
+   "ar": "رقم التسجيل الضريبي"
+  }
+ },
+ "synonyms": {
+  "moa": "memorandum of association",
+  "aoa": "articles of association",
+  "eid": "emirates id",
+  "id": "emirates id",
+  "tl": "trade license",
+  "licence": "license",
+  "poa": "power of attorney",
+  "coi": "certificate of incorporation",
+  "trn": "tin",
+  "jafza": "jebel ali free zone",
+  "dmcc": "dubai multi commodities centre",
+  "det": "dubai economy and tourism",
+  "ded": "department of economic development",
+  "difc": "certificate of incorporation",
+  "rakez": "ras al khaimah economic zone",
+  "rak": "ras al khaimah",
+  "dda": "dubai development authority",
+  "pcfc": "ports customs free zone",
+  "diez": "dubai integrated economic zones",
+  "shams": "sharjah media city",
+  "dacc": "dubai aviation city corporation",
+  "dcd": "department of community development",
+  "llc": "limited liability",
+  "pjsc": "public joint stock",
+  "mobile": "phone",
+  "number": "phone",
+  "incumbency": "offshore",
+  "shareholder": "owner",
+  "shareholders": "owners",
+  "deregister": "de-registering",
+  "dereg": "deregistration",
+  "reject": "rejected",
+  "هوية": "الهوية الاماراتية",
+  "رخصه": "رخصة",
+  "عقد": "عقد التأسيس",
+  "oa": "owners association",
+  "gv": "global village",
+  "bod": "board member",
+  "director": "board member",
+  "liquidate": "liquidation",
+  "cancel": "cancellation",
+  "cancelled": "cancellation",
+  "closed": "cancellation",
+  "closure": "cancellation",
+  "freeze": "frozen",
+  "frozen": "freeze",
+  "death": "passing",
+  "died": "passing",
+  "deceased": "passing",
+  "inheritance": "succession",
+  "heirs": "succession",
+  "sold": "sale",
+  "selling": "sale",
+  "turnover": "financial statement",
+  "sales": "turnover",
+  "revenue": "turnover",
+  "threshold": "threshold",
+  "vg": "tax group",
+  "group": "tax group",
+  "expo": "expo 2020",
+  "fund": "fund management",
+  "funds": "fund management",
+  "property": "property",
+  "real estate": "property",
+  "building": "property",
+  "completion": "completion certificate",
+  "wrong": "wrong registration",
+  "mistake": "wrong registration",
+  "error": "wrong registration",
+  "duplicate": "duplicate",
+  "main": "main company",
+  "parent": "main company",
+  "pre-approved": "pre-approved",
+  "final return": "final return",
+  "liabilities": "liabilities",
+  "penalty": "liabilities"
+ },
+ "releases": [
+  {
+   "version": "1.0.0",
+   "at": "2026-10-19",
+   "by": "Service Development Team",
+   "note": "First release of the Deregistration file: VAT Deregistration bank built from the VAT Deregistration Guidance (v3) with 37 bilingual comments and 35 case scenarios, each with basis, documents, eligible-date rule and reviewer checks."
+  }
+ ],
+ "scenarios": [
+  {
+   "id": "sc-cancel",
+   "en": "Cancellation of the trade licence",
+   "ar": "إلغاء الرخصة التجارية",
+   "ids": [
+    "lc-01",
+    "cm-01",
+    "cm-02"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Business no longer making taxable supplies",
+    "ar": "النشاط لم يعد يقدم توريدات خاضعة للضريبة"
+   },
+   "eligible": {
+    "en": "Whichever is earlier: the turnover date or the cancellation date",
+    "ar": "الأسبق بين تاريخ حجم الأعمال وتاريخ الإلغاء"
+   },
+   "docs": [
+    {
+     "en": "Cancellation certificate from the issuing authority",
+     "ar": "شهادة الإلغاء من جهة الإصدار"
+    },
+    {
+     "en": "Financial declaration from registration date until today (can be checked from Taxpayer Overview)",
+     "ar": "بيان مالي من تاريخ التسجيل حتى اليوم (يمكن التحقق منه من ملخص الخاضع للضريبة)"
+    },
+    {
+     "en": "Declaration of sole establishments owned, if the entity is a sole establishment (check the owner from the ID number)",
+     "ar": "إقرار بالمؤسسات الفردية المملوكة إذا كان الكيان مؤسسة فردية (تحقق من المالك عبر رقم الهوية)"
+    }
+   ],
+   "checks": [
+    {
+     "en": "If not yet cancelled or liquidated: board resolution and last taxable invoice",
+     "ar": "إذا لم يتم الإلغاء أو التصفية بعد: قرار مجلس الإدارة وآخر فاتورة ضريبية"
+    }
+   ]
+  },
+  {
+   "id": "sc-freeze",
+   "en": "Freezing of the trade licence",
+   "ar": "تجميد الرخصة التجارية",
+   "ids": [
+    "lc-02",
+    "cm-01",
+    "cm-02"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Business no longer making taxable supplies",
+    "ar": "النشاط لم يعد يقدم توريدات خاضعة للضريبة"
+   },
+   "eligible": {
+    "en": "Whichever is earlier: the turnover date or the freezing date",
+    "ar": "الأسبق بين تاريخ حجم الأعمال وتاريخ التجميد"
+   },
+   "docs": [
+    {
+     "en": "Freezing document or letter from the issuing authority",
+     "ar": "مستند أو خطاب التجميد من جهة الإصدار"
+    },
+    {
+     "en": "Financial declaration from registration date until today (can be checked from Taxpayer Overview)",
+     "ar": "بيان مالي من تاريخ التسجيل حتى اليوم (يمكن التحقق منه من ملخص الخاضع للضريبة)"
+    },
+    {
+     "en": "Declaration of sole establishments owned, if the entity is a sole establishment (check the owner from the ID number)",
+     "ar": "إقرار بالمؤسسات الفردية المملوكة إذا كان الكيان مؤسسة فردية (تحقق من المالك عبر رقم الهوية)"
+    }
+   ]
+  },
+  {
+   "id": "sc-sole-llc",
+   "en": "Change of legal status: sole establishment / service agency → LLC",
+   "ar": "تغيير الشكل القانوني: مؤسسة فردية / وكالة خدمات ← ذ.م.م",
+   "ids": [
+    "lc-03",
+    "lc-05",
+    "cm-01",
+    "cm-02"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Business no longer making taxable supplies",
+    "ar": "النشاط لم يعد يقدم توريدات خاضعة للضريبة"
+   },
+   "eligible": {
+    "en": "Whichever is earlier: the turnover date or the MOA date",
+    "ar": "الأسبق بين تاريخ حجم الأعمال وتاريخ عقد التأسيس"
+   },
+   "docs": [
+    {
+     "en": "MOA or contract evidencing the change in legal status",
+     "ar": "عقد التأسيس أو العقد المثبت لتغيير الشكل القانوني"
+    },
+    {
+     "en": "Previous and current trade licence",
+     "ar": "الرخصة التجارية السابقة والحالية"
+    },
+    {
+     "en": "Financial declaration from registration date until today (can be checked from Taxpayer Overview)",
+     "ar": "بيان مالي من تاريخ التسجيل حتى اليوم (يمكن التحقق منه من ملخص الخاضع للضريبة)"
+    },
+    {
+     "en": "Declaration of sole establishments owned, if the entity is a sole establishment (check the owner from the ID number)",
+     "ar": "إقرار بالمؤسسات الفردية المملوكة إذا كان الكيان مؤسسة فردية (تحقق من المالك عبر رقم الهوية)"
+    }
+   ]
+  },
+  {
+   "id": "sc-llc-sole",
+   "en": "Change of legal status: LLC → sole establishment / service agency",
+   "ar": "تغيير الشكل القانوني: ذ.م.م ← مؤسسة فردية / وكالة خدمات",
+   "ids": [
+    "lc-03",
+    "lc-05",
+    "cm-01"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Business no longer making taxable supplies",
+    "ar": "النشاط لم يعد يقدم توريدات خاضعة للضريبة"
+   },
+   "eligible": {
+    "en": "Whichever is earlier: the turnover date or the MOA date",
+    "ar": "الأسبق بين تاريخ حجم الأعمال وتاريخ عقد التأسيس"
+   },
+   "docs": [
+    {
+     "en": "MOA or contract evidencing the change in legal status",
+     "ar": "عقد التأسيس أو العقد المثبت لتغيير الشكل القانوني"
+    },
+    {
+     "en": "Previous and current trade licence",
+     "ar": "الرخصة التجارية السابقة والحالية"
+    },
+    {
+     "en": "Financial declaration from registration date until today (can be checked from Taxpayer Overview)",
+     "ar": "بيان مالي من تاريخ التسجيل حتى اليوم (يمكن التحقق منه من ملخص الخاضع للضريبة)"
+    }
+   ]
+  },
+  {
+   "id": "sc-llc-branch",
+   "en": "LLC converted to a branch of another LLC",
+   "ar": "تحويل ذ.م.م إلى فرع لشركة ذ.م.م أخرى",
+   "ids": [
+    "lc-04",
+    "lc-05",
+    "cm-01"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Business no longer making taxable supplies",
+    "ar": "النشاط لم يعد يقدم توريدات خاضعة للضريبة"
+   },
+   "eligible": {
+    "en": "Whichever is earlier: the turnover date or the amended MOA date",
+    "ar": "الأسبق بين تاريخ حجم الأعمال وتاريخ عقد التأسيس المعدّل"
+   },
+   "docs": [
+    {
+     "en": "Amended MOA or any document evidencing the change",
+     "ar": "عقد التأسيس المعدّل أو أي مستند يثبت التغيير"
+    },
+    {
+     "en": "Previous and current trade licence",
+     "ar": "الرخصة التجارية السابقة والحالية"
+    },
+    {
+     "en": "Financial declaration from registration date until today (can be checked from Taxpayer Overview)",
+     "ar": "بيان مالي من تاريخ التسجيل حتى اليوم (يمكن التحقق منه من ملخص الخاضع للضريبة)"
+    }
+   ]
+  },
+  {
+   "id": "sc-llc-single",
+   "en": "LLC → LLC single owner / civil company",
+   "ar": "ذ.م.م ← ذ.م.م بمالك واحد / شركة مدنية",
+   "ids": [
+    "lc-03",
+    "lc-05",
+    "cm-01"
+   ],
+   "svc": "vat-deregistration",
+   "eligible": {
+    "en": "Based on turnover, if accepted",
+    "ar": "بحسب حجم الأعمال في حال القبول"
+   },
+   "docs": [
+    {
+     "en": "MOA or contract evidencing the change in legal status",
+     "ar": "عقد التأسيس أو العقد المثبت لتغيير الشكل القانوني"
+    },
+    {
+     "en": "Previous and current trade licence",
+     "ar": "الرخصة التجارية السابقة والحالية"
+    },
+    {
+     "en": "Financial declaration from registration date until today (can be checked from Taxpayer Overview)",
+     "ar": "بيان مالي من تاريخ التسجيل حتى اليوم (يمكن التحقق منه من ملخص الخاضع للضريبة)"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Turnover above the voluntary threshold → reject and ask to apply for a VAT amendment",
+     "ar": "حجم الأعمال أعلى من الحد الاختياري ← رفض الطلب وطلب التقدم بتعديل التسجيل"
+    },
+    {
+     "en": "Turnover below the voluntary threshold → accept, with basis “below voluntary threshold”",
+     "ar": "حجم الأعمال أقل من الحد الاختياري ← قبول الطلب على أساس «أقل من الحد الاختياري»"
+    },
+    {
+     "en": "To reject, use the rejection comment “change does not meet the conditions”",
+     "ar": "للرفض استخدم تعليق الرفض «التغيير لا يستوفي الشروط»"
+    }
+   ]
+  },
+  {
+   "id": "sc-owner",
+   "en": "Change of owner (LLC)",
+   "ar": "تغيير مالك الشركة (ذ.م.م)",
+   "ids": [
+    "lc-04",
+    "lc-05",
+    "cm-01"
+   ],
+   "svc": "vat-deregistration",
+   "eligible": {
+    "en": "Based on turnover, if accepted",
+    "ar": "بحسب حجم الأعمال في حال القبول"
+   },
+   "docs": [
+    {
+     "en": "Amended MOA",
+     "ar": "عقد التأسيس المعدّل"
+    },
+    {
+     "en": "Previous and current trade licence",
+     "ar": "الرخصة التجارية السابقة والحالية"
+    },
+    {
+     "en": "Financial declaration from registration date until today (can be checked from Taxpayer Overview)",
+     "ar": "بيان مالي من تاريخ التسجيل حتى اليوم (يمكن التحقق منه من ملخص الخاضع للضريبة)"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Turnover above the voluntary threshold → reject and ask to apply for a VAT amendment",
+     "ar": "حجم الأعمال أعلى من الحد الاختياري ← رفض الطلب وطلب التقدم بتعديل التسجيل"
+    },
+    {
+     "en": "Turnover below the voluntary threshold → accept, with basis “below voluntary threshold”",
+     "ar": "حجم الأعمال أقل من الحد الاختياري ← قبول الطلب على أساس «أقل من الحد الاختياري»"
+    }
+   ]
+  },
+  {
+   "id": "sc-sale",
+   "en": "Sale of a sole establishment trade licence",
+   "ar": "بيع الرخصة التجارية لمؤسسة فردية",
+   "ids": [
+    "lc-07",
+    "lc-05",
+    "cm-01",
+    "cm-02"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Business no longer making taxable supplies",
+    "ar": "النشاط لم يعد يقدم توريدات خاضعة للضريبة"
+   },
+   "eligible": {
+    "en": "Whichever is earlier: the turnover date or the sale contract date",
+    "ar": "الأسبق بين تاريخ حجم الأعمال وتاريخ عقد البيع"
+   },
+   "docs": [
+    {
+     "en": "Sale contract",
+     "ar": "عقد البيع"
+    },
+    {
+     "en": "Previous and current trade licence",
+     "ar": "الرخصة التجارية السابقة والحالية"
+    },
+    {
+     "en": "Financial declaration from registration date until today (can be checked from Taxpayer Overview)",
+     "ar": "بيان مالي من تاريخ التسجيل حتى اليوم (يمكن التحقق منه من ملخص الخاضع للضريبة)"
+    },
+    {
+     "en": "Declaration of sole establishments owned, if the entity is a sole establishment (check the owner from the ID number)",
+     "ar": "إقرار بالمؤسسات الفردية المملوكة إذا كان الكيان مؤسسة فردية (تحقق من المالك عبر رقم الهوية)"
+    }
+   ]
+  },
+  {
+   "id": "sc-before-reg",
+   "en": "Cancellation / change / sale before the effective registration date",
+   "ar": "إلغاء / تغيير / بيع قبل تاريخ سريان التسجيل",
+   "ids": [
+    "lc-01",
+    "lc-03",
+    "lc-07",
+    "cm-02"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Business no longer making taxable supplies",
+    "ar": "النشاط لم يعد يقدم توريدات خاضعة للضريبة"
+   },
+   "eligible": {
+    "en": "20 days after the effective registration date",
+    "ar": "20 يوماً بعد تاريخ سريان التسجيل"
+   },
+   "docs": [
+    {
+     "en": "Cancellation certificate, MOA/contract, or sale contract (as applicable)",
+     "ar": "شهادة الإلغاء أو عقد التأسيس/العقد أو عقد البيع (بحسب الحالة)"
+    },
+    {
+     "en": "Declaration of sole establishments owned, if the entity is a sole establishment (check the owner from the ID number)",
+     "ar": "إقرار بالمؤسسات الفردية المملوكة إذا كان الكيان مؤسسة فردية (تحقق من المالك عبر رقم الهوية)"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Compare the registration application date with the date of the change in the trade licence",
+     "ar": "قارن بين تاريخ طلب التسجيل وتاريخ التغيير في الرخصة التجارية"
+    }
+   ]
+  },
+  {
+   "id": "sc-below-vol",
+   "en": "Below the voluntary threshold",
+   "ar": "أقل من الحد الاختياري",
+   "ids": [
+    "cm-03",
+    "cm-01",
+    "cm-02"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Making taxable supplies, but below the voluntary threshold",
+    "ar": "توريدات خاضعة للضريبة أقل من الحد الاختياري"
+   },
+   "eligible": {
+    "en": "The date the taxable supplies fell below the threshold",
+    "ar": "تاريخ انخفاض التوريدات الخاضعة للضريبة دون الحد"
+   },
+   "docs": [
+    {
+     "en": "Declaration letter that the entity will not reach the mandatory threshold next month",
+     "ar": "خطاب إقرار بأن الكيان لن يتجاوز الحد الإلزامي خلال الشهر القادم"
+    },
+    {
+     "en": "Financial declaration from registration date until today (can be checked from Taxpayer Overview)",
+     "ar": "بيان مالي من تاريخ التسجيل حتى اليوم (يمكن التحقق منه من ملخص الخاضع للضريبة)"
+    },
+    {
+     "en": "Declaration of sole establishments owned, if the entity is a sole establishment (check the owner from the ID number)",
+     "ar": "إقرار بالمؤسسات الفردية المملوكة إذا كان الكيان مؤسسة فردية (تحقق من المالك عبر رقم الهوية)"
+    }
+   ]
+  },
+  {
+   "id": "sc-below-mand",
+   "en": "Below the mandatory, above the voluntary threshold",
+   "ar": "أقل من الحد الإلزامي وأعلى من الاختياري",
+   "ids": [
+    "cm-03",
+    "cm-01",
+    "cm-02"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Making taxable supplies, below the mandatory but above the voluntary threshold",
+    "ar": "توريدات خاضعة للضريبة أقل من الحد الإلزامي وأعلى من الاختياري"
+   },
+   "eligible": {
+    "en": "Based on turnover",
+    "ar": "بحسب حجم الأعمال"
+   },
+   "docs": [
+    {
+     "en": "Declaration letter that the entity will not reach the mandatory threshold next month",
+     "ar": "خطاب إقرار بأن الكيان لن يتجاوز الحد الإلزامي خلال الشهر القادم"
+    },
+    {
+     "en": "Financial declaration from registration date until today (can be checked from Taxpayer Overview)",
+     "ar": "بيان مالي من تاريخ التسجيل حتى اليوم (يمكن التحقق منه من ملخص الخاضع للضريبة)"
+    },
+    {
+     "en": "Declaration of sole establishments owned, if the entity is a sole establishment (check the owner from the ID number)",
+     "ar": "إقرار بالمؤسسات الفردية المملوكة إذا كان الكيان مؤسسة فردية (تحقق من المالك عبر رقم الهوية)"
+    }
+   ]
+  },
+  {
+   "id": "sc-dup",
+   "en": "Duplicate TRN (same owner and legal status)",
+   "ar": "رقم تسجيل مكرر (المالك والشكل القانوني نفسه)",
+   "ids": [
+    "mt-01",
+    "mt-02"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Other",
+    "ar": "أخرى"
+   },
+   "eligible": {
+    "en": "As per the review date",
+    "ar": "بحسب تاريخ المراجعة"
+   },
+   "docs": [
+    {
+     "en": "TRN of the main company (compare both trade licences: same owner and legal status)",
+     "ar": "رقم التسجيل الضريبي للشركة الرئيسية (قارن الرخصتين: المالك والشكل القانوني نفسه)"
+    },
+    {
+     "en": "Declaration of filing under the main company",
+     "ar": "إقرار بتقديم الإقرارات مع الشركة الرئيسية"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Confirm the taxpayer will continue filing under the TRN whose turnover is above the threshold",
+     "ar": "تأكد من أن الخاضع للضريبة سيستمر في تقديم الإقرارات برقم التسجيل الذي يتجاوز حجم أعماله الحد"
+    }
+   ]
+  },
+  {
+   "id": "sc-sole-llc-owned",
+   "en": "Sole establishment licence owned by an LLC",
+   "ar": "رخصة مؤسسة فردية مملوكة لشركة ذ.م.م",
+   "ids": [
+    "mt-01",
+    "mt-02"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Other",
+    "ar": "أخرى"
+   },
+   "eligible": {
+    "en": "As per the review date",
+    "ar": "بحسب تاريخ المراجعة"
+   },
+   "docs": [
+    {
+     "en": "TRN of the main company (check the owner of the LLC licence)",
+     "ar": "رقم التسجيل الضريبي للشركة الرئيسية (تحقق من مالك رخصة الشركة)"
+    },
+    {
+     "en": "Declaration of filing under the main company",
+     "ar": "إقرار بتقديم الإقرارات مع الشركة الرئيسية"
+    }
+   ]
+  },
+  {
+   "id": "sc-other-sole",
+   "en": "Owner has another sole establishment registered for VAT",
+   "ar": "المالك لديه مؤسسة فردية أخرى مسجلة لضريبة القيمة المضافة",
+   "ids": [
+    "mt-03",
+    "mt-02"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Other",
+    "ar": "أخرى"
+   },
+   "eligible": {
+    "en": "As per the review date",
+    "ar": "بحسب تاريخ المراجعة"
+   },
+   "docs": [
+    {
+     "en": "TRN of the other entity (compare both licences: same owner and legal status)",
+     "ar": "رقم التسجيل الضريبي للكيان الآخر (قارن الرخصتين: المالك والشكل القانوني نفسه)"
+    },
+    {
+     "en": "Declaration of filing under the main company",
+     "ar": "إقرار بتقديم الإقرارات مع الشركة الرئيسية"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Confirm continued filing under the TRN with turnover above the threshold, and that it covers both VAT and Corporate Tax where required",
+     "ar": "تأكد من استمرار تقديم الإقرارات برقم التسجيل الذي يتجاوز حجم أعماله الحد، وأنه يشمل ضريبة القيمة المضافة وضريبة الشركات عند الاقتضاء"
+    }
+   ]
+  },
+  {
+   "id": "sc-multi-sole",
+   "en": "Single TRN covering several sole establishments (one changed, cancelled or sold)",
+   "ar": "رقم تسجيل واحد لعدة مؤسسات فردية (تغيّرت إحداها أو أُلغيت أو بيعت)",
+   "ids": [
+    "cm-01",
+    "lc-01",
+    "lc-07"
+   ],
+   "svc": "vat-deregistration",
+   "eligible": {
+    "en": "If all licences were cancelled, sold or changed: whichever is earlier, the turnover or the last change",
+    "ar": "إذا أُلغيت جميع الرخص أو بيعت أو تغيّرت: الأسبق بين حجم الأعمال وآخر تغيير"
+   },
+   "docs": [
+    {
+     "en": "Financial declaration from registration date until today (can be checked from Taxpayer Overview)",
+     "ar": "بيان مالي من تاريخ التسجيل حتى اليوم (يمكن التحقق منه من ملخص الخاضع للضريبة)"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Turnover above the voluntary threshold → reject and ask to apply for a VAT amendment",
+     "ar": "حجم الأعمال أعلى من الحد الاختياري ← رفض الطلب وطلب التقدم بتعديل التسجيل"
+    },
+    {
+     "en": "Turnover below the voluntary threshold → accept, with basis “below voluntary threshold”",
+     "ar": "حجم الأعمال أقل من الحد الاختياري ← قبول الطلب على أساس «أقل من الحد الاختياري»"
+    }
+   ]
+  },
+  {
+   "id": "sc-branch",
+   "en": "Branch (main licence issued in the UAE)",
+   "ar": "فرع (الرخصة الرئيسية صادرة داخل الدولة)",
+   "ids": [
+    "mt-04",
+    "mt-05"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Other",
+    "ar": "أخرى"
+   },
+   "eligible": {
+    "en": "As per the review date",
+    "ar": "بحسب تاريخ المراجعة"
+   },
+   "docs": [
+    {
+     "en": "TRN of the main company (compare both licences: same owner and legal status)",
+     "ar": "رقم التسجيل الضريبي للشركة الرئيسية (قارن الرخصتين)"
+    }
+   ],
+   "checks": [
+    {
+     "en": "All branches are treated the same, even if the entity was a tax group member",
+     "ar": "تُعامل جميع الفروع بالطريقة نفسها حتى لو كان الكيان عضواً في مجموعة ضريبية"
+    },
+    {
+     "en": "A branch of a foreign company is treated as a normal trade licence and reviewed as a normal application",
+     "ar": "فرع الشركة الأجنبية يُعامل كرخصة عادية ويُراجع كطلب عادي"
+    },
+    {
+     "en": "A branch owned by a different owner is reviewed as a normal application",
+     "ar": "الفرع المملوك لمالك مختلف يُراجع كطلب عادي"
+    }
+   ]
+  },
+  {
+   "id": "sc-zero-above",
+   "en": "Zero-rated supplies, above the voluntary threshold",
+   "ar": "توريدات بنسبة الصفر، أعلى من الحد الاختياري",
+   "ids": [
+    "sp-01"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Other",
+    "ar": "أخرى"
+   },
+   "eligible": {
+    "en": "As per the review date",
+    "ar": "بحسب تاريخ المراجعة"
+   },
+   "docs": [
+    {
+     "en": "Declaration of applying for a registration exception once approved",
+     "ar": "إقرار بالتقدم بطلب الاستثناء من التسجيل بعد الموافقة"
+    }
+   ]
+  },
+  {
+   "id": "sc-zero-below",
+   "en": "Zero-rated supplies, below the voluntary threshold",
+   "ar": "توريدات بنسبة الصفر، أقل من الحد الاختياري",
+   "ids": [
+    "cm-03",
+    "sp-01"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Making taxable supplies, but below the voluntary threshold",
+    "ar": "توريدات خاضعة للضريبة أقل من الحد الاختياري"
+   },
+   "eligible": {
+    "en": "Based on turnover",
+    "ar": "بحسب حجم الأعمال"
+   },
+   "docs": [
+    {
+     "en": "Declaration letter that the entity will not reach the mandatory threshold next month",
+     "ar": "خطاب إقرار بأن الكيان لن يتجاوز الحد الإلزامي خلال الشهر القادم"
+    },
+    {
+     "en": "Declaration of applying for a registration exception once approved",
+     "ar": "إقرار بالتقدم بطلب الاستثناء من التسجيل بعد الموافقة"
+    }
+   ]
+  },
+  {
+   "id": "sc-wrong",
+   "en": "Wrong registration (entity type does not match the trade licence)",
+   "ar": "تسجيل خاطئ (نوع الكيان لا يطابق الرخصة التجارية)",
+   "ids": [
+    "lc-08"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Other",
+    "ar": "أخرى"
+   },
+   "eligible": {
+    "en": "As per the review date (or turnover if accepted as below threshold)",
+    "ar": "بحسب تاريخ المراجعة (أو حجم الأعمال إذا قُبل كأقل من الحد)"
+   },
+   "docs": [
+    {
+     "en": "If a registration reference number for a new TRN was provided: check its status and contact the Registration team",
+     "ar": "إذا قُدّم رقم مرجعي لطلب تسجيل جديد: تحقق من حالته وتواصل مع فريق التسجيل"
+    },
+    {
+     "en": "Declaration letter that the entity will not reach the mandatory threshold next month",
+     "ar": "خطاب إقرار بأن الكيان لن يتجاوز الحد الإلزامي خلال الشهر القادم"
+    }
+   ],
+   "checks": [
+    {
+     "en": "First confirm from Taxpayer Overview that the entity type really does not match the licence",
+     "ar": "تأكد أولاً من ملخص الخاضع للضريبة أن نوع الكيان لا يطابق الرخصة فعلاً"
+    },
+    {
+     "en": "If taxable supplies are below the voluntary threshold, accept with basis “below voluntary threshold” instead of rejecting",
+     "ar": "إذا كانت التوريدات أقل من الحد الاختياري، اقبل الطلب على أساس «أقل من الحد الاختياري» بدلاً من الرفض"
+    }
+   ]
+  },
+  {
+   "id": "sc-online",
+   "en": "Online business",
+   "ar": "نشاط إلكتروني",
+   "ids": [
+    "cm-01",
+    "sp-02"
+   ],
+   "svc": "vat-deregistration",
+   "eligible": {
+    "en": "Based on turnover",
+    "ar": "بحسب حجم الأعمال"
+   },
+   "docs": [
+    {
+     "en": "Financial declaration from registration date until today (can be checked from Taxpayer Overview)",
+     "ar": "بيان مالي من تاريخ التسجيل حتى اليوم (يمكن التحقق منه من ملخص الخاضع للضريبة)"
+    },
+    {
+     "en": "Letter from the entity confirming it stopped making taxable supplies",
+     "ar": "خطاب من الكيان يؤكد التوقف عن التوريدات الخاضعة للضريبة"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Less than one year since registration (or sales in each of the last 12 months) → basis: Other",
+     "ar": "أقل من سنة منذ التسجيل (أو مبيعات في كل شهر من آخر 12 شهراً) ← الأساس: أخرى"
+    },
+    {
+     "en": "One year or more since registration, or no sales in the last 12 months → basis: no longer making taxable supplies",
+     "ar": "سنة أو أكثر منذ التسجيل أو لا مبيعات في آخر 12 شهراً ← الأساس: لم يعد يقدم توريدات خاضعة"
+    },
+    {
+     "en": "Foreign companies without a trade licence and online businesses must register from the first dirham of sales",
+     "ar": "الشركات الأجنبية بلا رخصة تجارية والأنشطة الإلكترونية ملزمة بالتسجيل من أول درهم مبيعات"
+    }
+   ]
+  },
+  {
+   "id": "sc-foreign",
+   "en": "Foreign company without a UAE trade licence",
+   "ar": "شركة أجنبية بدون رخصة تجارية في الدولة",
+   "ids": [
+    "cm-01",
+    "sp-02"
+   ],
+   "svc": "vat-deregistration",
+   "eligible": {
+    "en": "Based on turnover",
+    "ar": "بحسب حجم الأعمال"
+   },
+   "docs": [
+    {
+     "en": "Financial declaration from registration date until today (can be checked from Taxpayer Overview)",
+     "ar": "بيان مالي من تاريخ التسجيل حتى اليوم (يمكن التحقق منه من ملخص الخاضع للضريبة)"
+    },
+    {
+     "en": "Letter from the entity confirming it stopped making taxable supplies",
+     "ar": "خطاب من الكيان يؤكد التوقف عن التوريدات الخاضعة للضريبة"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Same one-year rule as online businesses for choosing the basis",
+     "ar": "تطبق قاعدة السنة نفسها المطبقة على الأنشطة الإلكترونية لاختيار الأساس"
+    },
+    {
+     "en": "A foreign company with a UAE trade licence is reviewed as a normal application",
+     "ar": "الشركة الأجنبية التي تحمل رخصة تجارية في الدولة تُراجع كطلب عادي"
+    }
+   ]
+  },
+  {
+   "id": "sc-board-before",
+   "en": "Board member registered before 01/01/2023",
+   "ar": "عضو مجلس إدارة مسجل قبل 01/01/2023",
+   "ids": [
+    "se-01",
+    "se-02",
+    "cm-02"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Business no longer making taxable supplies",
+    "ar": "النشاط لم يعد يقدم توريدات خاضعة للضريبة"
+   },
+   "eligible": {
+    "en": "Per the last invoice; if the invoice is dated after 01/01/2023 but relates to a period after that date, the eligible date is 01/01/2023",
+    "ar": "بحسب آخر فاتورة؛ وإذا كانت الفاتورة بعد 01/01/2023 وتخص فترة بعد ذلك التاريخ فتاريخ الأهلية هو 01/01/2023"
+   },
+   "docs": [
+    {
+     "en": "Last invoice received as a board member",
+     "ar": "آخر فاتورة مستلمة بصفة عضو مجلس إدارة"
+    },
+    {
+     "en": "Declaration of sole establishments owned, if the entity is a sole establishment (check the owner from the ID number)",
+     "ar": "إقرار بالمؤسسات الفردية المملوكة إذا كان الكيان مؤسسة فردية (تحقق من المالك عبر رقم الهوية)"
+    }
+   ],
+   "checks": [
+    {
+     "en": "If the invoice relates to a period before 01/01/2023, make sure the amount was declared in the return",
+     "ar": "إذا كانت الفاتورة تخص فترة قبل 01/01/2023، تأكد من الإفصاح عن المبلغ في الإقرار"
+    }
+   ]
+  },
+  {
+   "id": "sc-board-after",
+   "en": "Board member registered after 01/01/2023",
+   "ar": "عضو مجلس إدارة مسجل بعد 01/01/2023",
+   "ids": [
+    "se-02",
+    "cm-06"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Other",
+    "ar": "أخرى"
+   },
+   "eligible": {
+    "en": "As per the review date",
+    "ar": "بحسب تاريخ المراجعة"
+   },
+   "checks": [
+    {
+     "en": "Director functions performed by a natural person are not a supply of services from 01/01/2023",
+     "ar": "مهام عضو مجلس الإدارة التي يؤديها شخص طبيعي ليست توريداً للخدمات اعتباراً من 01/01/2023"
+    }
+   ]
+  },
+  {
+   "id": "sc-funds",
+   "en": "Fund management",
+   "ar": "إدارة الصناديق",
+   "ids": [
+    "se-03",
+    "cm-06"
+   ],
+   "svc": "vat-deregistration",
+   "eligible": {
+    "en": "Registered before 15/11/2024 → 15/11/2024; registered after → as per the review date",
+    "ar": "مسجل قبل 15/11/2024 ← 15/11/2024؛ مسجل بعده ← بحسب تاريخ المراجعة"
+   },
+   "docs": [
+    {
+     "en": "Clarification of the reason for deregistration",
+     "ar": "توضيح سبب إلغاء التسجيل"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Trade licence issued by a UAE authority → proceed (basis: no longer making taxable supplies, or Other if registered after 15/11/2024)",
+     "ar": "الرخصة صادرة من جهة في الدولة ← المتابعة (الأساس: لم يعد يقدم توريدات خاضعة، أو أخرى إذا سُجل بعد 15/11/2024)"
+    },
+    {
+     "en": "No UAE trade licence → reject; supplies of funds are taxable supplies",
+     "ar": "لا توجد رخصة في الدولة ← رفض؛ توريدات الصناديق خاضعة للضريبة"
+    }
+   ]
+  },
+  {
+   "id": "sc-oa-dubai",
+   "en": "Dubai Owners’ Association",
+   "ar": "جمعية ملاك في دبي",
+   "ids": [
+    "se-12"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Business no longer making taxable supplies",
+    "ar": "النشاط لم يعد يقدم توريدات خاضعة للضريبة"
+   },
+   "eligible": {
+    "en": "04/12/2019",
+    "ar": "04/12/2019"
+   },
+   "checks": [
+    {
+     "en": "Rights and obligations transferred to Management Entities on 03/11/2019; deregistration was due within 20 business days",
+     "ar": "انتقلت الحقوق والالتزامات إلى جهات الإدارة في 03/11/2019 وكان إلغاء التسجيل مستحقاً خلال 20 يوم عمل"
+    }
+   ]
+  },
+  {
+   "id": "sc-oa-normal",
+   "en": "Owners’ Association (other emirates)",
+   "ar": "جمعية ملاك (إمارات أخرى)",
+   "ids": [
+    "lc-09",
+    "cm-01"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Business no longer making taxable supplies",
+    "ar": "النشاط لم يعد يقدم توريدات خاضعة للضريبة"
+   },
+   "eligible": {
+    "en": "Based on the last taxable invoice",
+    "ar": "بحسب آخر فاتورة ضريبية"
+   }
+  },
+  {
+   "id": "sc-prop-res",
+   "en": "Property owner — residential property",
+   "ar": "مالك عقار — عقار سكني",
+   "ids": [
+    "se-08",
+    "se-09",
+    "cm-01",
+    "cm-02"
+   ],
+   "svc": "vat-deregistration",
+   "eligible": {
+    "en": "Completion certificate older than 3 years → the day after the 3 years; sale → sale contract date",
+    "ar": "شهادة الإنجاز أقدم من 3 سنوات ← اليوم التالي لانقضاء 3 سنوات؛ البيع ← تاريخ عقد البيع"
+   },
+   "docs": [
+    {
+     "en": "Completion certificate",
+     "ar": "شهادة الإنجاز"
+    },
+    {
+     "en": "Sale contract if sold",
+     "ar": "عقد البيع في حال البيع"
+    },
+    {
+     "en": "Financial declaration from registration date until today (can be checked from Taxpayer Overview)",
+     "ar": "بيان مالي من تاريخ التسجيل حتى اليوم (يمكن التحقق منه من ملخص الخاضع للضريبة)"
+    },
+    {
+     "en": "Declaration of sole establishments owned, if the entity is a sole establishment (check the owner from the ID number)",
+     "ar": "إقرار بالمؤسسات الفردية المملوكة إذا كان الكيان مؤسسة فردية (تحقق من المالك عبر رقم الهوية)"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Completion certificate not older than 3 years → basis: Other",
+     "ar": "شهادة الإنجاز لا تتجاوز 3 سنوات ← الأساس: أخرى"
+    },
+    {
+     "en": "Completion certificate older than 3 years → basis: no longer making taxable supplies",
+     "ar": "شهادة الإنجاز تتجاوز 3 سنوات ← الأساس: لم يعد يقدم توريدات خاضعة"
+    },
+    {
+     "en": "Property for personal use → wrong registration, basis: Other",
+     "ar": "عقار للاستخدام الشخصي ← تسجيل خاطئ، الأساس: أخرى"
+    }
+   ]
+  },
+  {
+   "id": "sc-prop-mixed",
+   "en": "Property owner — residential and commercial",
+   "ar": "مالك عقار — سكني وتجاري",
+   "ids": [
+    "se-08",
+    "se-09",
+    "cm-01",
+    "cm-03"
+   ],
+   "svc": "vat-deregistration",
+   "eligible": {
+    "en": "Based on turnover, or the sale contract date if sold",
+    "ar": "بحسب حجم الأعمال، أو تاريخ عقد البيع في حال البيع"
+   },
+   "docs": [
+    {
+     "en": "Completion certificate",
+     "ar": "شهادة الإنجاز"
+    },
+    {
+     "en": "Sale contract if sold",
+     "ar": "عقد البيع في حال البيع"
+    },
+    {
+     "en": "Financial declaration from registration date until today (can be checked from Taxpayer Overview)",
+     "ar": "بيان مالي من تاريخ التسجيل حتى اليوم (يمكن التحقق منه من ملخص الخاضع للضريبة)"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Stop counting zero-rated supplies after 3 years from the completion certificate; count only the commercial part (5% sales)",
+     "ar": "توقف عن احتساب التوريدات بنسبة الصفر بعد 3 سنوات من شهادة الإنجاز واحتسب الجزء التجاري فقط (مبيعات 5%)"
+    },
+    {
+     "en": "Below voluntary / below mandatory → the corresponding threshold basis; sale → no longer making taxable supplies",
+     "ar": "أقل من الاختياري / أقل من الإلزامي ← أساس الحد المقابل؛ البيع ← لم يعد يقدم توريدات خاضعة"
+    }
+   ]
+  },
+  {
+   "id": "sc-prop-com",
+   "en": "Property owner — commercial property",
+   "ar": "مالك عقار — عقار تجاري",
+   "ids": [
+    "se-09",
+    "se-10",
+    "cm-01"
+   ],
+   "svc": "vat-deregistration",
+   "eligible": {
+    "en": "Multiple properties sold: whichever is earlier, turnover or the last sale contract",
+    "ar": "عدة عقارات مباعة: الأسبق بين حجم الأعمال وآخر عقد بيع"
+   },
+   "docs": [
+    {
+     "en": "Sale contracts of all properties sold",
+     "ar": "عقود بيع جميع العقارات المباعة"
+    },
+    {
+     "en": "Financial declaration from registration date until today (can be checked from Taxpayer Overview)",
+     "ar": "بيان مالي من تاريخ التسجيل حتى اليوم (يمكن التحقق منه من ملخص الخاضع للضريبة)"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Registered only to pay 5% on the sale of a single (or several) commercial property with no continuing business → wrong registration, basis: Other",
+     "ar": "سجل فقط لسداد 5% على بيع عقار تجاري واحد (أو أكثر) دون نشاط مستمر ← تسجيل خاطئ، الأساس: أخرى"
+    },
+    {
+     "en": "Multiple properties, continuing then stopped → no longer making taxable supplies; still supplying below threshold → threshold basis",
+     "ar": "عدة عقارات ثم توقف ← لم يعد يقدم توريدات خاضعة؛ ما زال يورد دون الحد ← أساس الحد"
+    }
+   ]
+  },
+  {
+   "id": "sc-death",
+   "en": "Passing of the owner",
+   "ar": "وفاة المالك",
+   "ids": [
+    "se-04",
+    "cm-01",
+    "cm-02"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Business no longer making taxable supplies",
+    "ar": "النشاط لم يعد يقدم توريدات خاضعة للضريبة"
+   },
+   "eligible": {
+    "en": "Whichever is earlier: the turnover date or the succession certificate date",
+    "ar": "الأسبق بين تاريخ حجم الأعمال وتاريخ إعلام الوراثة"
+   },
+   "docs": [
+    {
+     "en": "Certificate of succession",
+     "ar": "إعلام الوراثة"
+    },
+    {
+     "en": "Financial declaration from registration date until today (can be checked from Taxpayer Overview)",
+     "ar": "بيان مالي من تاريخ التسجيل حتى اليوم (يمكن التحقق منه من ملخص الخاضع للضريبة)"
+    },
+    {
+     "en": "Declaration of sole establishments owned, if the entity is a sole establishment (check the owner from the ID number)",
+     "ar": "إقرار بالمؤسسات الفردية المملوكة إذا كان الكيان مؤسسة فردية (تحقق من المالك عبر رقم الهوية)"
+    }
+   ]
+  },
+  {
+   "id": "sc-gov",
+   "en": "Government entity removed from the list",
+   "ar": "جهة حكومية شُطبت من القائمة",
+   "ids": [
+    "se-05"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Business no longer making taxable supplies",
+    "ar": "النشاط لم يعد يقدم توريدات خاضعة للضريبة"
+   },
+   "eligible": {
+    "en": "Cabinet Decision date; if issued while in a tax group → TRN activation date",
+    "ar": "تاريخ قرار مجلس الوزراء؛ وإذا صدر أثناء عضوية مجموعة ضريبية ← تاريخ تفعيل رقم التسجيل"
+   },
+   "docs": [
+    {
+     "en": "Cabinet Decision removing the entity from the Government Entities list",
+     "ar": "قرار مجلس الوزراء بشطب الجهة من قائمة الجهات الحكومية"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Turnover is not considered for this case",
+     "ar": "لا يُؤخذ حجم الأعمال في الاعتبار في هذه الحالة"
+    }
+   ]
+  },
+  {
+   "id": "sc-charity",
+   "en": "Charity removed from the list",
+   "ar": "جهة خيرية شُطبت من القائمة",
+   "ids": [
+    "se-06"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Business no longer making taxable supplies",
+    "ar": "النشاط لم يعد يقدم توريدات خاضعة للضريبة"
+   },
+   "eligible": {
+    "en": "Cabinet Decision date; if issued while in a tax group → TRN activation date",
+    "ar": "تاريخ قرار مجلس الوزراء؛ وإذا صدر أثناء عضوية مجموعة ضريبية ← تاريخ تفعيل رقم التسجيل"
+   },
+   "docs": [
+    {
+     "en": "Cabinet Decision removing the entity from the Charities list",
+     "ar": "قرار مجلس الوزراء بشطب الجهة من قائمة الجهات الخيرية"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Turnover is not considered for this case",
+     "ar": "لا يُؤخذ حجم الأعمال في الاعتبار في هذه الحالة"
+    }
+   ]
+  },
+  {
+   "id": "sc-gv",
+   "en": "Global Village exhibitor",
+   "ar": "عارض في القرية العالمية",
+   "ids": [
+    "se-07",
+    "cm-01"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Business no longer making taxable supplies",
+    "ar": "النشاط لم يعد يقدم توريدات خاضعة للضريبة"
+   },
+   "eligible": {
+    "en": "One season → last day of the signed contract; more than one season → based on turnover",
+    "ar": "موسم واحد ← آخر يوم في العقد الموقع؛ أكثر من موسم ← بحسب حجم الأعمال"
+   },
+   "docs": [
+    {
+     "en": "Last contract with Global Village",
+     "ar": "آخر عقد مع القرية العالمية"
+    },
+    {
+     "en": "Financial declaration (more than one season)",
+     "ar": "بيان مالي (أكثر من موسم)"
+    }
+   ]
+  },
+  {
+   "id": "sc-expo",
+   "en": "EXPO 2020 participant",
+   "ar": "مشارك في إكسبو 2020",
+   "ids": [
+    "cm-01"
+   ],
+   "svc": "vat-deregistration",
+   "basis": {
+    "en": "Business no longer making taxable supplies",
+    "ar": "النشاط لم يعد يقدم توريدات خاضعة للضريبة"
+   },
+   "eligible": {
+    "en": "31/03/2022 (last day of EXPO 2020)",
+    "ar": "31/03/2022 (آخر يوم في إكسبو 2020)"
+   }
+  },
+  {
+   "id": "sc-group",
+   "en": "Former tax group member",
+   "ar": "عضو سابق في مجموعة ضريبية",
+   "ids": [
+    "se-11",
+    "cm-01",
+    "cm-02"
+   ],
+   "svc": "vat-deregistration",
+   "eligible": {
+    "en": "Never before the TRN activation date shown in the tax group application status log",
+    "ar": "لا يسبق أبداً تاريخ تفعيل رقم التسجيل المبين في سجل حالة طلب المجموعة الضريبية"
+   },
+   "docs": [
+    {
+     "en": "Documents of the underlying case (cancellation, change of legal status, sale, threshold, branch)",
+     "ar": "مستندات الحالة الأساسية (إلغاء، تغيير شكل قانوني، بيع، حد التسجيل، فرع)"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Open the group deregistration/amendment application and read the processed date from the status log: that is the TRN activation date",
+     "ar": "افتح طلب إلغاء/تعديل المجموعة واقرأ تاريخ المعالجة من سجل الحالة: هذا هو تاريخ تفعيل رقم التسجيل"
+    },
+    {
+     "en": "If the cancellation, change or sale happened while the entity was in the tax group → eligible date is the TRN activation date",
+     "ar": "إذا حدث الإلغاء أو التغيير أو البيع أثناء عضوية الكيان في المجموعة الضريبية ← تاريخ الأهلية هو تاريخ تفعيل رقم التسجيل"
+    },
+    {
+     "en": "If the cancellation, change or sale happened after leaving the group → whichever is earlier: turnover or the cancellation, change or sale date",
+     "ar": "إذا حدث الإلغاء أو التغيير أو البيع بعد مغادرة المجموعة ← الأسبق بين حجم الأعمال وتاريخ الإلغاء أو التغيير أو البيع"
+    },
+    {
+     "en": "Below threshold before joining → when it fell below; while in the group → TRN activation date; after leaving → when it fell below",
+     "ar": "أقل من الحد قبل الانضمام ← تاريخ الانخفاض؛ أثناء العضوية ← تاريخ تفعيل الرقم؛ بعد المغادرة ← تاريخ الانخفاض"
+    },
+    {
+     "en": "Branch with a UAE main licence → as per the review date; branch of a foreign company → reviewed like case 1",
+     "ar": "فرع برخصة رئيسية داخل الدولة ← بحسب تاريخ المراجعة؛ فرع شركة أجنبية ← يُراجع كالحالة 1"
+    }
+   ]
+  }
+ ],
+ "conflicts": [
+  [
+   "lc-06",
+   "cm-03"
+  ],
+  [
+   "lc-08",
+   "cm-03"
+  ],
+  [
+   "sp-03",
+   "sp-04"
+  ],
+  [
+   "sp-03",
+   "cm-03"
+  ]
+ ],
+ "exclusiveSubsections": [],
+ "services": [
+  {
+   "id": "ct-deregistration",
+   "en": "Corporate Tax Deregistration",
+   "ar": "إلغاء التسجيل لضريبة الشركات"
+  },
+  {
+   "id": "excise-deregistration",
+   "en": "Excise Tax Deregistration",
+   "ar": "إلغاء التسجيل للضريبة الانتقائية"
+  },
+  {
+   "id": "tax-group-deregistration",
+   "en": "Tax Group Deregistration",
+   "ar": "إلغاء تسجيل المجموعة الضريبية"
+  },
+  {
+   "id": "vat-deregistration",
+   "en": "VAT Deregistration",
+   "ar": "إلغاء التسجيل لضريبة القيمة المضافة"
+  },
+  {
+   "id": "warehouse-keeper-deregistration",
+   "en": "Warehouse Keeper Deregistration",
+   "ar": "إلغاء تسجيل أمين المستودع"
+  }
+ ],
+ "selftest": {
+  "demo": [
+   "lc-01",
+   "cm-01",
+   "cm-02"
+  ],
+  "total": 37,
+  "services": 5,
+  "mainSvc": "vat-deregistration",
+  "counts": {
+   "financial": 1,
+   "legal": 4,
+   "property": 3,
+   "board": 2
+  },
+  "search": [
+   {
+    "q": "cancellation certificate",
+    "id": "lc-01",
+    "first": true
+   },
+   {
+    "q": "شهادة الغاء",
+    "id": "lc-01",
+    "first": true
+   },
+   {
+    "q": "turnover",
+    "id": "cm-01"
+   },
+   {
+    "q": "moa",
+    "id": "lc-03"
+   },
+   {
+    "q": "liqudation",
+    "id": "lc-01"
+   },
+   {
+    "q": "global village",
+    "id": "se-07"
+   },
+   {
+    "q": "حصر ارث",
+    "id": "se-04"
+   },
+   {
+    "q": "board member",
+    "id": "se-01"
+   }
+  ],
+  "compose": [
+   "lc-01",
+   "cm-01"
+  ]
+ }
+}
