@@ -4030,13 +4030,14 @@ function renderText(text, terms, values) {
   const seg = x => { if (!ar) return Search.highlight(x, terms); const marked = x.replace(/[A-Za-z][A-Za-z0-9 .,'\/()%&-]*[A-Za-z0-9).%]|[A-Za-z]/g, r => '\u0001' + r + '\u0002'); return Search.highlight(marked, terms).replace(/\u0001/g, '<bdi>').replace(/\u0002/g, '</bdi>'); };
   while ((m = TOKEN_RE.exec(text))) {
     parts.push(seg(text.slice(last, m.index)));
-    const v = values && values[m[1]];
+    const v0 = values && values[m[1]]; const v = v0 && valueFor(m[1], v0, ar ? 'ar' : 'en');
     parts.push(v ? `<span class="tok filled"><bdi>${h(v)}</bdi></span>` : `<span class="tok" lang="${ar ? 'ar' : 'en'}">${h(labelOf(m[1], ar ? 'ar' : 'en'))}</span>`);
     last = m.index + m[0].length;
   }
   parts.push(seg(text.slice(last)));
   return parts.join('');
 }
+function valueFor(tok, v, lang) { const p = (Store.bank.placeholders || {})[tok]; if (!p) return v; if (p.type === 'date') return fmtDate(v); if (p.type === 'select' && lang === 'ar' && p.optionsAr) { const i = (p.options || []).indexOf(v); if (i >= 0 && p.optionsAr[i]) return p.optionsAr[i]; } return v; }
 function labelOf(tok, lang) { const p = (Store.bank.placeholders || {})[tok]; return p ? (lang ? (p[lang] || p.en) : L(p)) : tok; }
 
 /* ---------------- Composer ---------------- */
@@ -4056,7 +4057,7 @@ const Composer = {
   move(id, dir) { const i = this.items.indexOf(id); const j = i + dir; if (j < 0 || j >= this.items.length) return; [this.items[i], this.items[j]] = [this.items[j], this.items[i]]; this.render(); this.persist(); },
   clear() { this.items = []; this.values = {}; this.render(); this.persist(); updateCardStates(); },
   tokens() { const out = []; this.items.forEach(id => { const c = Store.comment(id); if (!c) return; [...tokensOf(c.en), ...tokensOf(c.ar)].forEach(tk => { if (!out.includes(tk)) out.push(tk); }); }); return out; },
-  fill(text) { return (text || '').replace(TOKEN_RE, (_, k) => { const v = this.values[k]; if (!v) return '(……)'; const p = Store.bank.placeholders?.[k]; return p?.type === 'date' ? fmtDate(v) : v; }); },
+  fill(text) { const ar = hasArabic(text); return (text || '').replace(TOKEN_RE, (_, k) => { const v = this.values[k]; if (!v) return '(……)'; return valueFor(k, v, ar ? 'ar' : 'en'); }); },
   lines(id, n) {
     const c = Store.comment(id); if (!c) return [];
     const en = this.fill(c.en), ar = this.fill(c.ar);
@@ -4241,7 +4242,7 @@ const Composer = {
           const p = ph[k] || { type: 'text', en: k }; const v = this.values[k] || ''; const miss = v ? '' : 'miss';
           let input;
           if (p.type === 'date') input = `<input type="date" class="${miss}" data-tok="${k}" value="${h(v)}">`;
-          else if (p.type === 'select') input = `<select data-tok="${k}" class="${miss}"><option value="">—</option>${(p.options || []).map(o => `<option ${o === v ? 'selected' : ''}>${h(o)}</option>`).join('')}</select>`;
+          else if (p.type === 'select') input = `<select data-tok="${k}" class="${miss}"><option value="">—</option>${(p.options || []).map((o, i) => `<option value="${h(o)}" ${o === v ? 'selected' : ''}>${h(LANG === 'ar' && p.optionsAr?.[i] ? p.optionsAr[i] : o)}${p.optionsAr?.[i] ? ` · ${h(LANG === 'ar' ? o : p.optionsAr[i])}` : ''}</option>`).join('')}</select>`;
           else if (p.type === 'authority') input = `<input list="dl-auth" class="${miss}" data-tok="${k}" value="${h(v)}" placeholder="…"><datalist id="dl-auth">${auths.map(a => `<option value="${h(a)}">`).join('')}</datalist>`;
           else { const rv = (Store.user.recentValues[k] || []); input = `<input type="text" class="${miss}" data-tok="${k}" value="${h(v)}" ${/Ar$/.test(k) ? 'dir="rtl" lang="ar"' : ''} placeholder="…" ${rv.length ? `list="dl-${k}"` : ''}>${rv.length ? `<datalist id="dl-${k}">${rv.map(x => `<option value="${h(x)}">`).join('')}</datalist>` : ''}`; }
           return `<div class="field"><label>${h(L(p))} <span class="vtag">{{${k}}}</span></label>${input}</div>`;
@@ -5416,6 +5417,7 @@ function selfTest(silent) {
   ok('palette: actions available', Palette.actions().length >= 13 + EMBED.scenarios.filter(x => x.svc === Store.user.svc).length);
   ok('placeholders: recent values store', Array.isArray(Store.user.recentValues.date || []));
   ok('output: LRM before English lines, RLM before Arabic lines', (() => { const sv = { items: Composer.items, values: Composer.values, opts: { ...Composer.opts } }; Composer.items = [pubIds[0]]; Composer.opts = { lang: 'both', format: 'numbered', opener: false, closer: false, attach: false, stamp: false }; const L2 = Composer.build(); Object.assign(Composer, sv); return L2[0].s.startsWith('\u200E1. ') && L2[2].s.startsWith('\u200F1. '); })());
+  ok('placeholders: bilingual select gives Arabic label on Arabic lines', (() => { const k = Object.keys(EMBED.placeholders).find(k => EMBED.placeholders[k].optionsAr); if (!k) return true; const p = EMBED.placeholders[k]; return valueFor(k, p.options[0], 'ar') === p.optionsAr[0] && valueFor(k, p.options[0], 'en') === p.options[0]; })());
   ok('services: alphabetical in seed', EMBED.services.every((x, i, a) => i === 0 || a[i - 1].en.toLowerCase() <= x.en.toLowerCase()));
   const noUrl = x => (x || '').replace(TOKEN_RE, '').replace(/https?:\/\/\S+/g, '');
   ok('arabic: no English words inside Arabic comments (links allowed)', EMBED.comments.every(c => !/[A-Za-z]/.test(noUrl(c.ar))), EMBED.comments.filter(c => /[A-Za-z]/.test(noUrl(c.ar))).map(c => c.id).join(','));

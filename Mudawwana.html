@@ -642,8 +642,8 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
 
 <script type="application/json" id="bank">
 {
- "version": "2.0.1",
- "publishedAt": "2026-10-12",
+ "version": "2.1.0",
+ "publishedAt": "2026-10-20",
  "appName": {
   "en": "Mudawwana",
   "ar": "مدوّنة"
@@ -834,6 +834,65 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
     }
    ],
    "svc": "tax-records-amendment"
+  },
+  {
+   "id": "vr-sole",
+   "en": "Sole Establishment Details",
+   "ar": "بيانات المؤسسة الفردية",
+   "svc": "vat-registration",
+   "subsections": [
+    {
+     "id": "vr-legal-name",
+     "en": "Legal Name",
+     "ar": "الاسم القانوني"
+    },
+    {
+     "id": "vr-stamp",
+     "en": "Company Stamp",
+     "ar": "ختم الشركة"
+    },
+    {
+     "id": "vr-same-owner",
+     "en": "Other Licences of the Same Owner",
+     "ar": "رخص أخرى للمالك نفسه"
+    }
+   ]
+  },
+  {
+   "id": "vr-owners",
+   "en": "Owner List",
+   "ar": "قائمة الملاك",
+   "svc": "vat-registration",
+   "subsections": [
+    {
+     "id": "vr-owner-id",
+     "en": "Owner Emirates ID",
+     "ar": "الهوية الإماراتية للمالك"
+    }
+   ]
+  },
+  {
+   "id": "vr-financial",
+   "en": "Financial Details & Declaration",
+   "ar": "البيانات المالية والإقرار",
+   "svc": "vat-registration",
+   "subsections": [
+    {
+     "id": "vr-declaration",
+     "en": "Declaration Letter",
+     "ar": "خطاب الإقرار"
+    },
+    {
+     "id": "vr-values",
+     "en": "Taxable Supplies Values",
+     "ar": "قيم التوريدات الخاضعة للضريبة"
+    },
+    {
+     "id": "vr-docs",
+     "en": "Supporting Documents",
+     "ar": "المستندات الداعمة"
+    }
+   ]
   }
  ],
  "comments": [
@@ -2794,6 +2853,374 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
     "decree law 28",
     "cabinet decision 74"
    ]
+  },
+  {
+   "id": "vr-01",
+   "s": "vr-sole",
+   "ss": "vr-legal-name",
+   "kind": "request",
+   "en": "Under Sole Establishment Details, kindly amend the Legal Name in Arabic to \"{{legalNameAr}}\".",
+   "ar": "ضمن بيانات المؤسسة الفردية، يرجى تعديل الاسم القانوني باللغة العربية إلى \"{{legalNameAr}}\".",
+   "tags": [
+    "legal name",
+    "arabic",
+    "sole establishment",
+    "amend"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Under Sole Establishment Details, kindly amend the Legal Name in Arabic to \"{{legalNameAr}}\".",
+     "ar": "ضمن بيانات المؤسسة الفردية، يرجى تعديل الاسم القانوني باللغة العربية إلى \"{{legalNameAr}}\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "legal name",
+      "arabic",
+      "sole establishment",
+      "amend"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vr-02",
+   "s": "vr-sole",
+   "ss": "vr-stamp",
+   "kind": "request",
+   "en": "Kindly replace the stamp \"{{stampName}}\" currently appearing on the attached documents with the official stamp of the company.",
+   "ar": "يرجى استبدال الختم \"{{stampName}}\" الظاهر حالياً على المستندات المرفقة بالختم الرسمي للشركة.",
+   "tags": [
+    "stamp",
+    "official stamp",
+    "wrong stamp",
+    "documents"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly replace the stamp \"{{stampName}}\" currently appearing on the attached documents with the official stamp of the company.",
+     "ar": "يرجى استبدال الختم \"{{stampName}}\" الظاهر حالياً على المستندات المرفقة بالختم الرسمي للشركة.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "stamp",
+      "official stamp",
+      "wrong stamp",
+      "documents"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vr-03",
+   "s": "vr-sole",
+   "ss": "vr-same-owner",
+   "kind": "request",
+   "en": "Kindly clarify whether the trade licence shown under Establishment Details is owned by the same owner, and whether it was previously registered for VAT.",
+   "ar": "يرجى توضيح ما إذا كانت الرخصة التجارية الواردة ضمن بيانات المنشأة مملوكة للمالك نفسه، وما إذا كانت مسجلة سابقاً لضريبة القيمة المضافة.",
+   "tags": [
+    "same owner",
+    "trade licence",
+    "previously registered",
+    "clarify",
+    "sole establishment"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly clarify whether the trade licence shown under Establishment Details is owned by the same owner, and whether it was previously registered for VAT.",
+     "ar": "يرجى توضيح ما إذا كانت الرخصة التجارية الواردة ضمن بيانات المنشأة مملوكة للمالك نفسه، وما إذا كانت مسجلة سابقاً لضريبة القيمة المضافة.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "same owner",
+      "trade licence",
+      "previously registered",
+      "clarify",
+      "sole establishment"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vr-04",
+   "s": "vr-owners",
+   "ss": "vr-owner-id",
+   "kind": "attachment",
+   "en": "Under Owner List, kindly attach a copy of the renewed Emirates ID and update the expiry date accordingly. If the ID has expired and has not been renewed, kindly clarify the reason for not renewing it.",
+   "ar": "ضمن قائمة الملاك، يرجى إرفاق نسخة من الهوية الإماراتية المجددة وتحديث تاريخ الانتهاء وفقاً لذلك. وفي حال انتهاء صلاحية الهوية وعدم تجديدها، يرجى توضيح سبب عدم التجديد.",
+   "tags": [
+    "emirates id",
+    "renewed",
+    "expired",
+    "expiry date",
+    "owner list",
+    "eid"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Under Owner List, kindly attach a copy of the renewed Emirates ID and update the expiry date accordingly. If the ID has expired and has not been renewed, kindly clarify the reason for not renewing it.",
+     "ar": "ضمن قائمة الملاك، يرجى إرفاق نسخة من الهوية الإماراتية المجددة وتحديث تاريخ الانتهاء وفقاً لذلك. وفي حال انتهاء صلاحية الهوية وعدم تجديدها، يرجى توضيح سبب عدم التجديد.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "emirates id",
+      "renewed",
+      "expired",
+      "expiry date",
+      "owner list",
+      "eid"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Renewed Emirates ID of the owner",
+    "ar": "الهوية الإماراتية المجددة للمالك"
+   }
+  },
+  {
+   "id": "vr-05",
+   "s": "vr-owners",
+   "ss": "vr-owner-id",
+   "kind": "notice",
+   "en": "Kindly note that, after renewing the Emirates IDs, you are required to apply for a Taxable Person amendment to update the owners’ ID details.",
+   "ar": "يرجى العلم بأنه بعد تجديد الهويات الإماراتية يتعين عليكم التقدم بطلب تعديل بيانات الخاضع للضريبة لتحديث بيانات هويات الملاك.",
+   "tags": [
+    "amend taxable person",
+    "owner details",
+    "renewed id",
+    "notice",
+    "after registration"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly note that, after renewing the Emirates IDs, you are required to apply for a Taxable Person amendment to update the owners’ ID details.",
+     "ar": "يرجى العلم بأنه بعد تجديد الهويات الإماراتية يتعين عليكم التقدم بطلب تعديل بيانات الخاضع للضريبة لتحديث بيانات هويات الملاك.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "amend taxable person",
+      "owner details",
+      "renewed id",
+      "notice",
+      "after registration"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vr-06",
+   "s": "vr-financial",
+   "ss": "vr-declaration",
+   "kind": "request",
+   "en": "Kindly have the attached declaration letter signed by the authorised signatory, in addition to the company stamp.",
+   "ar": "يرجى توقيع خطاب الإقرار المرفق من قبل المفوض بالتوقيع، إضافة إلى ختم الشركة.",
+   "tags": [
+    "declaration letter",
+    "signature",
+    "authorised signatory",
+    "stamp"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly have the attached declaration letter signed by the authorised signatory, in addition to the company stamp.",
+     "ar": "يرجى توقيع خطاب الإقرار المرفق من قبل المفوض بالتوقيع، إضافة إلى ختم الشركة.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "declaration letter",
+      "signature",
+      "authorised signatory",
+      "stamp"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vr-07",
+   "s": "vr-financial",
+   "ss": "vr-declaration",
+   "kind": "attachment",
+   "en": "Kindly attach a signed and stamped declaration letter of the taxable supplies from the establishment date until the application submission date.",
+   "ar": "يرجى إرفاق خطاب إقرار موقع ومختوم بالتوريدات الخاضعة للضريبة من تاريخ التأسيس حتى تاريخ تقديم الطلب.",
+   "tags": [
+    "declaration letter",
+    "taxable supplies",
+    "establishment date",
+    "submission date",
+    "signed",
+    "stamped"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach a signed and stamped declaration letter of the taxable supplies from the establishment date until the application submission date.",
+     "ar": "يرجى إرفاق خطاب إقرار موقع ومختوم بالتوريدات الخاضعة للضريبة من تاريخ التأسيس حتى تاريخ تقديم الطلب.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "declaration letter",
+      "taxable supplies",
+      "establishment date",
+      "submission date",
+      "signed",
+      "stamped"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Signed and stamped declaration of taxable supplies since establishment",
+    "ar": "خطاب إقرار موقع ومختوم بالتوريدات الخاضعة للضريبة منذ التأسيس"
+   }
+  },
+  {
+   "id": "vr-08",
+   "s": "vr-financial",
+   "ss": "vr-values",
+   "kind": "request",
+   "en": "Kindly update the financial values of the taxable supplies in the application to match the values stated in the attached declaration letter.",
+   "ar": "يرجى تحديث القيم المالية للتوريدات الخاضعة للضريبة في الطلب لتتطابق مع القيم الواردة في خطاب الإقرار المرفق.",
+   "tags": [
+    "taxable supplies",
+    "financial values",
+    "match",
+    "declaration letter",
+    "mismatch"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly update the financial values of the taxable supplies in the application to match the values stated in the attached declaration letter.",
+     "ar": "يرجى تحديث القيم المالية للتوريدات الخاضعة للضريبة في الطلب لتتطابق مع القيم الواردة في خطاب الإقرار المرفق.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "taxable supplies",
+      "financial values",
+      "match",
+      "declaration letter",
+      "mismatch"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vr-09",
+   "s": "vr-financial",
+   "ss": "vr-values",
+   "kind": "request",
+   "en": "Kindly update the financial values in the application so that they correspond to the dates of the related invoices. According to the attached supporting documents, the invoices are dated {{invoiceDate}}, while the related values have been reported under {{reportedMonth}}.",
+   "ar": "يرجى تحديث القيم المالية في الطلب بحيث تتوافق مع تواريخ الفواتير ذات الصلة. فوفقاً للمستندات الداعمة المرفقة، الفواتير مؤرخة بتاريخ {{invoiceDate}}، بينما أُدرجت القيم المتعلقة بها ضمن {{reportedMonth}}.",
+   "tags": [
+    "invoice dates",
+    "financial values",
+    "wrong month",
+    "period",
+    "supporting documents"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly update the financial values in the application so that they correspond to the dates of the related invoices. According to the attached supporting documents, the invoices are dated {{invoiceDate}}, while the related values have been reported under {{reportedMonth}}.",
+     "ar": "يرجى تحديث القيم المالية في الطلب بحيث تتوافق مع تواريخ الفواتير ذات الصلة. فوفقاً للمستندات الداعمة المرفقة، الفواتير مؤرخة بتاريخ {{invoiceDate}}، بينما أُدرجت القيم المتعلقة بها ضمن {{reportedMonth}}.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "invoice dates",
+      "financial values",
+      "wrong month",
+      "period",
+      "supporting documents"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vr-10",
+   "s": "vr-financial",
+   "ss": "vr-docs",
+   "kind": "attachment",
+   "en": "Kindly attach a full copy of the agreement with your customer.",
+   "ar": "يرجى إرفاق نسخة كاملة من الاتفاقية المبرمة مع عميلكم.",
+   "tags": [
+    "agreement",
+    "contract",
+    "customer",
+    "full copy"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach a full copy of the agreement with your customer.",
+     "ar": "يرجى إرفاق نسخة كاملة من الاتفاقية المبرمة مع عميلكم.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "agreement",
+      "contract",
+      "customer",
+      "full copy"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Full copy of the customer agreement",
+    "ar": "نسخة كاملة من اتفاقية العميل"
+   }
   }
  ],
  "reviewItems": [
@@ -3091,6 +3518,15 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
     "Umm Al Quwain",
     "Ras Al Khaimah",
     "Fujairah"
+   ],
+   "optionsAr": [
+    "أبوظبي",
+    "دبي",
+    "الشارقة",
+    "عجمان",
+    "أم القيوين",
+    "رأس الخيمة",
+    "الفجيرة"
    ]
   },
   "authority": {
@@ -3127,6 +3563,49 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "type": "text",
    "en": "Legal name (AR)",
    "ar": "الاسم القانوني (عربي)"
+  },
+  "stampName": {
+   "type": "text",
+   "en": "Name shown on the current stamp",
+   "ar": "الاسم الظاهر على الختم الحالي"
+  },
+  "invoiceDate": {
+   "type": "date",
+   "en": "Invoice date",
+   "ar": "تاريخ الفاتورة"
+  },
+  "reportedMonth": {
+   "type": "select",
+   "en": "Month in which the values were reported",
+   "ar": "الشهر الذي أُدرجت فيه القيم",
+   "options": [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+   ],
+   "optionsAr": [
+    "يناير",
+    "فبراير",
+    "مارس",
+    "أبريل",
+    "مايو",
+    "يونيو",
+    "يوليو",
+    "أغسطس",
+    "سبتمبر",
+    "أكتوبر",
+    "نوفمبر",
+    "ديسمبر"
+   ]
   }
  },
  "synonyms": {
@@ -3184,6 +3663,12 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "at": "2026-10-12",
    "by": "admin",
    "note": "Entity Type names translated to Arabic in all 19 Arabic comments."
+  },
+  {
+   "version": "2.1.0",
+   "at": "2026-10-20",
+   "by": "admin",
+   "note": "VAT Registration: first 10 comments (sole establishment details, owner list, financial declaration and values)."
   }
  ],
  "scenarios": [
@@ -3295,6 +3780,17 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
     "ad-02"
    ],
    "svc": "tax-records-amendment"
+  },
+  {
+   "id": "sc-vr-financial",
+   "en": "VAT registration — financial evidence incomplete",
+   "ar": "تسجيل ضريبة القيمة المضافة — أدلة مالية غير مكتملة",
+   "ids": [
+    "vr-07",
+    "vr-08",
+    "vr-10"
+   ],
+   "svc": "vat-registration"
   }
  ],
  "conflicts": [
@@ -3493,9 +3989,8 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "dereg": 5,
    "change-type": 1
   },
-  "total": 87,
+  "total": 97,
   "services": 27,
-  "mainSvc": "tax-records-amendment",
   "search": [
    {
     "q": "expired eid",
@@ -3526,6 +4021,18 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    {
     "q": "رخصه منتهيه",
     "id": "led-03"
+   },
+   {
+    "q": "stamp",
+    "id": "vr-02"
+   },
+   {
+    "q": "renewed id",
+    "id": "vr-04"
+   },
+   {
+    "q": "خطاب اقرار",
+    "id": "vr-07"
    }
   ],
   "compose": [
@@ -3891,13 +4398,14 @@ function renderText(text, terms, values) {
   const seg = x => { if (!ar) return Search.highlight(x, terms); const marked = x.replace(/[A-Za-z][A-Za-z0-9 .,'\/()%&-]*[A-Za-z0-9).%]|[A-Za-z]/g, r => '\u0001' + r + '\u0002'); return Search.highlight(marked, terms).replace(/\u0001/g, '<bdi>').replace(/\u0002/g, '</bdi>'); };
   while ((m = TOKEN_RE.exec(text))) {
     parts.push(seg(text.slice(last, m.index)));
-    const v = values && values[m[1]];
+    const v0 = values && values[m[1]]; const v = v0 && valueFor(m[1], v0, ar ? 'ar' : 'en');
     parts.push(v ? `<span class="tok filled"><bdi>${h(v)}</bdi></span>` : `<span class="tok" lang="${ar ? 'ar' : 'en'}">${h(labelOf(m[1], ar ? 'ar' : 'en'))}</span>`);
     last = m.index + m[0].length;
   }
   parts.push(seg(text.slice(last)));
   return parts.join('');
 }
+function valueFor(tok, v, lang) { const p = (Store.bank.placeholders || {})[tok]; if (!p) return v; if (p.type === 'date') return fmtDate(v); if (p.type === 'select' && lang === 'ar' && p.optionsAr) { const i = (p.options || []).indexOf(v); if (i >= 0 && p.optionsAr[i]) return p.optionsAr[i]; } return v; }
 function labelOf(tok, lang) { const p = (Store.bank.placeholders || {})[tok]; return p ? (lang ? (p[lang] || p.en) : L(p)) : tok; }
 
 /* ---------------- Composer ---------------- */
@@ -3917,7 +4425,7 @@ const Composer = {
   move(id, dir) { const i = this.items.indexOf(id); const j = i + dir; if (j < 0 || j >= this.items.length) return; [this.items[i], this.items[j]] = [this.items[j], this.items[i]]; this.render(); this.persist(); },
   clear() { this.items = []; this.values = {}; this.render(); this.persist(); updateCardStates(); },
   tokens() { const out = []; this.items.forEach(id => { const c = Store.comment(id); if (!c) return; [...tokensOf(c.en), ...tokensOf(c.ar)].forEach(tk => { if (!out.includes(tk)) out.push(tk); }); }); return out; },
-  fill(text) { return (text || '').replace(TOKEN_RE, (_, k) => { const v = this.values[k]; if (!v) return '(……)'; const p = Store.bank.placeholders?.[k]; return p?.type === 'date' ? fmtDate(v) : v; }); },
+  fill(text) { const ar = hasArabic(text); return (text || '').replace(TOKEN_RE, (_, k) => { const v = this.values[k]; if (!v) return '(……)'; return valueFor(k, v, ar ? 'ar' : 'en'); }); },
   lines(id, n) {
     const c = Store.comment(id); if (!c) return [];
     const en = this.fill(c.en), ar = this.fill(c.ar);
@@ -4102,7 +4610,7 @@ const Composer = {
           const p = ph[k] || { type: 'text', en: k }; const v = this.values[k] || ''; const miss = v ? '' : 'miss';
           let input;
           if (p.type === 'date') input = `<input type="date" class="${miss}" data-tok="${k}" value="${h(v)}">`;
-          else if (p.type === 'select') input = `<select data-tok="${k}" class="${miss}"><option value="">—</option>${(p.options || []).map(o => `<option ${o === v ? 'selected' : ''}>${h(o)}</option>`).join('')}</select>`;
+          else if (p.type === 'select') input = `<select data-tok="${k}" class="${miss}"><option value="">—</option>${(p.options || []).map((o, i) => `<option value="${h(o)}" ${o === v ? 'selected' : ''}>${h(LANG === 'ar' && p.optionsAr?.[i] ? p.optionsAr[i] : o)}${p.optionsAr?.[i] ? ` · ${h(LANG === 'ar' ? o : p.optionsAr[i])}` : ''}</option>`).join('')}</select>`;
           else if (p.type === 'authority') input = `<input list="dl-auth" class="${miss}" data-tok="${k}" value="${h(v)}" placeholder="…"><datalist id="dl-auth">${auths.map(a => `<option value="${h(a)}">`).join('')}</datalist>`;
           else { const rv = (Store.user.recentValues[k] || []); input = `<input type="text" class="${miss}" data-tok="${k}" value="${h(v)}" ${/Ar$/.test(k) ? 'dir="rtl" lang="ar"' : ''} placeholder="…" ${rv.length ? `list="dl-${k}"` : ''}>${rv.length ? `<datalist id="dl-${k}">${rv.map(x => `<option value="${h(x)}">`).join('')}</datalist>` : ''}`; }
           return `<div class="field"><label>${h(L(p))} <span class="vtag">{{${k}}}</span></label>${input}</div>`;
@@ -5277,6 +5785,7 @@ function selfTest(silent) {
   ok('palette: actions available', Palette.actions().length >= 13 + EMBED.scenarios.filter(x => x.svc === Store.user.svc).length);
   ok('placeholders: recent values store', Array.isArray(Store.user.recentValues.date || []));
   ok('output: LRM before English lines, RLM before Arabic lines', (() => { const sv = { items: Composer.items, values: Composer.values, opts: { ...Composer.opts } }; Composer.items = [pubIds[0]]; Composer.opts = { lang: 'both', format: 'numbered', opener: false, closer: false, attach: false, stamp: false }; const L2 = Composer.build(); Object.assign(Composer, sv); return L2[0].s.startsWith('\u200E1. ') && L2[2].s.startsWith('\u200F1. '); })());
+  ok('placeholders: bilingual select gives Arabic label on Arabic lines', (() => { const k = Object.keys(EMBED.placeholders).find(k => EMBED.placeholders[k].optionsAr); if (!k) return true; const p = EMBED.placeholders[k]; return valueFor(k, p.options[0], 'ar') === p.optionsAr[0] && valueFor(k, p.options[0], 'en') === p.options[0]; })());
   ok('services: alphabetical in seed', EMBED.services.every((x, i, a) => i === 0 || a[i - 1].en.toLowerCase() <= x.en.toLowerCase()));
   const noUrl = x => (x || '').replace(TOKEN_RE, '').replace(/https?:\/\/\S+/g, '');
   ok('arabic: no English words inside Arabic comments (links allowed)', EMBED.comments.every(c => !/[A-Za-z]/.test(noUrl(c.ar))), EMBED.comments.filter(c => /[A-Za-z]/.test(noUrl(c.ar))).map(c => c.id).join(','));
