@@ -4038,6 +4038,7 @@ function renderText(text, terms, values) {
   return parts.join('');
 }
 function valueFor(tok, v, lang) { const p = (Store.bank.placeholders || {})[tok]; if (!p) return v; if (p.type === 'date') return fmtDate(v); if (p.type === 'select' && lang === 'ar' && p.optionsAr) { const i = (p.options || []).indexOf(v); if (i >= 0 && p.optionsAr[i]) return p.optionsAr[i]; } return v; }
+function areaLabel(b, lang) { const a = b.area || {}; if (lang === 'ar') { const x = a.ar || ''; return /^خدمات\b/.test(x) ? x : 'خدمات ' + x; } const x = a.en || ''; return /services$/i.test(x) ? x : x + ' Services'; }
 function labelOf(tok, lang) { const p = (Store.bank.placeholders || {})[tok]; return p ? (lang ? (p[lang] || p.en) : L(p)) : tok; }
 
 /* ---------------- Composer ---------------- */
@@ -4308,7 +4309,7 @@ function renderShell() {
       <div class="brand">
         <button class="home" data-act="home" title="${t('home')}">
           <div class="logo ${b.settings.logo ? '' : 'fta'}">${b.settings.logo ? `<img src="${b.settings.logo}" alt="">` : `<img class="lg-lt" src="${FTA_WHEEL}" alt=""><img class="lg-dk" src="${FTA_WHEEL_DARK}" alt="">`}</div>
-          <div class="one">${h(L(b.appName))} <span>· ${LANG === 'en' ? h(b.area?.en || '') + ' Services' : 'خدمات ' + h(b.area?.ar || '')}</span></div>
+          <div class="one">${h(L(b.appName))} <span>· ${h(areaLabel(b, LANG))}</span></div>
         </button>
       </div>
       <div class="searchwrap">${I.search}<input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="${h(Store.bank.settings.searchHint?.[LANG] || t('search_ph'))}" aria-label="search"><span class="kbd">/</span></div>
@@ -4476,7 +4477,7 @@ function helpDialog() {
     <label class="check" style="margin-bottom:6px"><input type="checkbox" id="skipSplash" ${Store.user.skipSplash ? 'checked' : ''}> ${t('skip_splash')}</label>
     <div class="note" style="margin-bottom:4px">${h(L(Store.bank.appName))} v${h(Store.bank.version)} · ${h(Store.bank.publishedAt || '')} · ${t('developed')} ${t('team')}</div>
     ${en ? `
-    <p>This file covers the <b>${h(Store.bank.area?.en || '')}</b> services. Pick the service you are reviewing from the top of the sidebar, find the comments that match what you found in the case, add them to the composer, fill any blanks once, and copy. The result pastes cleanly into the customer portal with Arabic kept intact.</p>
+    <p>This file covers the <b>${h(areaLabel(Store.bank, 'en'))}</b>. Pick the service you are reviewing from the top of the sidebar, find the comments that match what you found in the case, add them to the composer, fill any blanks once, and copy. The result pastes cleanly into the customer portal with Arabic kept intact.</p>
     <h4>Keyboard</h4>
     <table>
       <tr><td><span class="kbd">/</span></td><td>Focus search</td></tr>
@@ -4503,7 +4504,7 @@ function helpDialog() {
     </ol>
     <p class="note">The admin passphrase only prevents accidental edits. Anyone who has the file can read its content. Favourites, presets and usage statistics are stored per browser.</p>`
     : `
-    <p>يغطي هذا الملف خدمات <b>${h(Store.bank.area?.ar || '')}</b>. اختر الخدمة التي تراجعها من أعلى الشريط الجانبي، ثم ابحث عن التعليقات المطابقة لما وجدته في الحالة، أضفها إلى المنشئ، املأ الفراغات مرة واحدة، ثم انسخ.</p>
+    <p>يغطي هذا الملف <b>${h(areaLabel(Store.bank, 'ar'))}</b>. اختر الخدمة التي تراجعها من أعلى الشريط الجانبي، ثم ابحث عن التعليقات المطابقة لما وجدته في الحالة، أضفها إلى المنشئ، املأ الفراغات مرة واحدة، ثم انسخ.</p>
     <h4>لوحة المفاتيح</h4>
     <table>
       <tr><td><span class="kbd">/</span></td><td>الانتقال إلى البحث</td></tr>
@@ -4581,7 +4582,7 @@ const Splash = {
         <div class="corner"><button class="ib themebtn" data-act="theme" title="${t('theme')}" aria-label="${t('theme')}">${document.documentElement.dataset.theme === 'dark' ? I.sun : I.moon}</button><a class="lang" href="#" data-act="lang">${ar ? 'English' : 'عربي'}</a></div>
         <div class="col">
           <div class="lockup" role="img" aria-label="Federal Tax Authority"><img class="word lg-lt" src="${FTA_TEXT}" alt=""><img class="word lg-dk" src="${FTA_TEXT_DARK}" alt=""><img class="wheel lg-lt" src="${FTA_WHEEL}" alt=""><img class="wheel lg-dk" src="${FTA_WHEEL_DARK}" alt=""></div>
-          <div class="eyebrow">${ar ? 'خدمات ' + h(b.area?.ar || '') + ' · أداة داخلية' : h(b.area?.en || '') + ' Services · Internal tool'}</div>
+          <div class="eyebrow">${ar ? h(areaLabel(b, 'ar')) + ' · أداة داخلية' : h(areaLabel(b, 'en')) + ' · Internal tool'}</div>
           <div class="title"><h1 aria-label="${h(b.appName.en)}">${letters}</h1><div class="ar-name" lang="ar">${h(b.appName.ar)}</div></div>
           <div class="rule"></div>
           <p class="slogan"><span class="ln">${words(t('slogan'), 1500)}</span><span class="ln" lang="${ar ? 'en' : 'ar'}" dir="${ar ? 'ltr' : 'rtl'}">${words(t('slogan_ar'), 1750)}</span></p>

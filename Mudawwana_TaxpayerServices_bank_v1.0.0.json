@@ -1,0 +1,2058 @@
+{
+ "version": "1.0.0",
+ "publishedAt": "2026-10-21",
+ "appName": {
+  "en": "Mudawwana",
+  "ar": "مدوّنة"
+ },
+ "subtitle": {
+  "en": "Taxpayer Services · Comment Composer",
+  "ar": "منشئ تعليقات خدمات الخاضعين للضريبة"
+ },
+ "area": {
+  "en": "Taxpayer Services",
+  "ar": "خدمات الخاضعين للضريبة"
+ },
+ "settings": {
+  "charLimit": 2000,
+  "rtlMarks": true,
+  "adminHash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+  "logo": "",
+  "stamp": {
+   "en": "Reviewed by {{name}} · {{team}} · {{date}}",
+   "ar": "تمت المراجعة بواسطة {{name}} · {{team}} · {{date}}"
+  },
+  "attachHeading": {
+   "en": "Required attachments:",
+   "ar": "المستندات المطلوبة:"
+  },
+  "teamName": {
+   "en": "Service Development Team",
+   "ar": "فريق تطوير الخدمات"
+  },
+  "storageKey": "mdw-tps",
+  "department": {
+   "en": "Taxpayer Services Department",
+   "ar": "إدارة خدمات الخاضعين للضريبة"
+  },
+  "accent": {
+   "light": "#8a6d3b",
+   "dark": "#d9b45a"
+  },
+  "searchHint": {
+   "en": "Search comments… e.g. entry exit report, domicile, special form, india",
+   "ar": "ابحث في التعليقات… مثال: تقرير الدخول والخروج، الموطن، النموذج الخاص، الهند"
+  }
+ },
+ "openers": [
+  {
+   "id": "op1",
+   "en": "Dear Applicant, following the review of your Tax Residency Certificate application, kindly note the following:",
+   "ar": "عزيزي مقدم الطلب، بعد مراجعة طلب شهادة الإقامة الضريبية الخاص بكم، يرجى ملاحظة ما يلي:"
+  }
+ ],
+ "closers": [
+  {
+   "id": "cl1",
+   "en": "Kindly resubmit the application once the above has been addressed. Best regards, Federal Tax Authority.",
+   "ar": "يرجى إعادة تقديم الطلب بعد استيفاء ما ورد أعلاه. مع أطيب التحيات، الهيئة الاتحادية للضرائب."
+  }
+ ],
+ "sections": [
+  {
+   "id": "natural",
+   "en": "Natural Person",
+   "ar": "الشخص الطبيعي",
+   "svc": "tax-residency-certificate",
+   "subsections": [
+    {
+     "id": "identity",
+     "en": "Identity & Presence Details",
+     "ar": "بيانات الهوية والتواجد"
+    },
+    {
+     "id": "ties",
+     "en": "Economic & Personal Ties",
+     "ar": "الروابط الاقتصادية والشخصية"
+    },
+    {
+     "id": "domicile",
+     "en": "Domicile Statement",
+     "ar": "إفادة الموطن"
+    },
+    {
+     "id": "period",
+     "en": "Financial Year / Period",
+     "ar": "السنة المالية / الفترة"
+    }
+   ]
+  },
+  {
+   "id": "legal",
+   "en": "Juridical Person",
+   "ar": "الشخص الاعتباري",
+   "svc": "tax-residency-certificate",
+   "subsections": [
+    {
+     "id": "legal-docs",
+     "en": "Missing Documents",
+     "ar": "المستندات الناقصة"
+    }
+   ]
+  },
+  {
+   "id": "government",
+   "en": "Government Entity",
+   "ar": "الجهة الحكومية",
+   "svc": "tax-residency-certificate",
+   "subsections": [
+    {
+     "id": "gov-docs",
+     "en": "Missing Documents",
+     "ar": "المستندات الناقصة"
+    }
+   ]
+  },
+  {
+   "id": "reject",
+   "en": "Rejections",
+   "ar": "الرفض",
+   "svc": "tax-residency-certificate",
+   "subsections": [
+    {
+     "id": "treaty",
+     "en": "Treaty Residence Not Met",
+     "ar": "عدم استيفاء شرط الإقامة في الاتفاقية"
+    },
+    {
+     "id": "eligibility",
+     "en": "Wrong Service or Information",
+     "ar": "خدمة أو معلومات غير صحيحة"
+    },
+    {
+     "id": "domicile",
+     "en": "Domicile Not Evidenced",
+     "ar": "عدم إثبات الموطن"
+    }
+   ]
+  },
+  {
+   "id": "form",
+   "en": "International Form (Special Form)",
+   "ar": "النموذج الدولي (النموذج الخاص)",
+   "svc": "tax-residency-certificate",
+   "subsections": [
+    {
+     "id": "form-status",
+     "en": "Form Status",
+     "ar": "حالة النموذج"
+    },
+    {
+     "id": "form-copy",
+     "en": "Additional Copy",
+     "ar": "نسخة إضافية"
+    }
+   ]
+  }
+ ],
+ "comments": [
+  {
+   "id": "tn-01",
+   "s": "natural",
+   "ss": "identity",
+   "kind": "request",
+   "en": "Kindly update the Emirates ID number, its expiry date and the residence visa number in the required fields of the application.",
+   "ar": "يرجى تحديث رقم الهوية الإماراتية وتاريخ انتهائها ورقم تأشيرة الإقامة في الحقول المطلوبة في الطلب.",
+   "tags": [
+    "emirates id",
+    "expiry",
+    "visa",
+    "required field",
+    "update"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly update the Emirates ID number, its expiry date and the residence visa number in the required fields of the application.",
+     "ar": "يرجى تحديث رقم الهوية الإماراتية وتاريخ انتهائها ورقم تأشيرة الإقامة في الحقول المطلوبة في الطلب.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "emirates id",
+      "expiry",
+      "visa",
+      "required field",
+      "update"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tn-02",
+   "s": "natural",
+   "ss": "identity",
+   "kind": "attachment",
+   "en": "Kindly update the passport details in the application and attach the entry and exit report issued by the Federal Authority for Identity, Citizenship, Customs and Port Security, or by a competent local government entity.",
+   "ar": "يرجى تحديث بيانات جواز السفر في الطلب وإرفاق تقرير الدخول والخروج الصادر عن الهيئة الاتحادية للهوية والجنسية والجمارك وأمن المنافذ أو عن جهة حكومية محلية مختصة.",
+   "tags": [
+    "passport",
+    "entry and exit report",
+    "ICP",
+    "movement report",
+    "days"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly update the passport details in the application and attach the entry and exit report issued by the Federal Authority for Identity, Citizenship, Customs and Port Security, or by a competent local government entity.",
+     "ar": "يرجى تحديث بيانات جواز السفر في الطلب وإرفاق تقرير الدخول والخروج الصادر عن الهيئة الاتحادية للهوية والجنسية والجمارك وأمن المنافذ أو عن جهة حكومية محلية مختصة.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "passport",
+      "entry and exit report",
+      "ICP",
+      "movement report",
+      "days"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Entry and exit report",
+    "ar": "تقرير الدخول والخروج"
+   },
+   "note": {
+    "en": "Count the days in the UAE from the entry/exit report; an entry and exit on the same date counts as a day.",
+    "ar": "احسب أيام التواجد في الدولة من تقرير الدخول والخروج؛ الدخول والخروج في اليوم نفسه يُحتسب يوماً."
+   }
+  },
+  {
+   "id": "tn-03",
+   "s": "natural",
+   "ss": "ties",
+   "kind": "attachment",
+   "en": "Kindly provide proof of employment or business in the UAE, such as proof of the source of income, a salary certificate, or evidence of carrying on a business in the UAE.",
+   "ar": "يرجى تقديم ما يثبت العمل أو مزاولة النشاط التجاري في الدولة، مثل إثبات مصدر الدخل أو شهادة راتب أو ما يثبت مزاولة نشاط تجاري في الدولة.",
+   "tags": [
+    "employment",
+    "business",
+    "salary certificate",
+    "source of income"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide proof of employment or business in the UAE, such as proof of the source of income, a salary certificate, or evidence of carrying on a business in the UAE.",
+     "ar": "يرجى تقديم ما يثبت العمل أو مزاولة النشاط التجاري في الدولة، مثل إثبات مصدر الدخل أو شهادة راتب أو ما يثبت مزاولة نشاط تجاري في الدولة.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "employment",
+      "business",
+      "salary certificate",
+      "source of income"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Proof of employment or business in the UAE",
+    "ar": "إثبات العمل أو النشاط التجاري في الدولة"
+   }
+  },
+  {
+   "id": "tn-04",
+   "s": "natural",
+   "ss": "ties",
+   "kind": "attachment",
+   "en": "Kindly provide proof of a permanent place of residence in the UAE, such as a certified tenancy contract, another long-term rental contract, a written and signed statement from the landlord or property owner, or a title deed together with a utility bill (water, electricity or gas) in your name.",
+   "ar": "يرجى تقديم ما يثبت وجود محل إقامة دائم في الدولة، مثل عقد إيجار مصدق أو عقد إيجار طويل الأجل آخر أو إفادة خطية موقعة من المؤجر أو مالك العقار أو سند ملكية مع فاتورة خدمات (ماء أو كهرباء أو غاز) باسمكم.",
+   "tags": [
+    "residence",
+    "tenancy contract",
+    "ejari",
+    "title deed",
+    "utility bill",
+    "permanent place"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide proof of a permanent place of residence in the UAE, such as a certified tenancy contract, another long-term rental contract, a written and signed statement from the landlord or property owner, or a title deed together with a utility bill (water, electricity or gas) in your name.",
+     "ar": "يرجى تقديم ما يثبت وجود محل إقامة دائم في الدولة، مثل عقد إيجار مصدق أو عقد إيجار طويل الأجل آخر أو إفادة خطية موقعة من المؤجر أو مالك العقار أو سند ملكية مع فاتورة خدمات (ماء أو كهرباء أو غاز) باسمكم.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "residence",
+      "tenancy contract",
+      "ejari",
+      "title deed",
+      "utility bill",
+      "permanent place"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Proof of permanent place of residence",
+    "ar": "إثبات محل الإقامة الدائم"
+   }
+  },
+  {
+   "id": "tn-05",
+   "s": "natural",
+   "ss": "ties",
+   "kind": "attachment",
+   "en": "Kindly provide proof that your financial and personal interests are in the UAE: a written statement explaining how you consider your financial and personal interests to be in the UAE, together with all supporting documentation.",
+   "ar": "يرجى تقديم ما يثبت أن مصالحكم المالية والشخصية في الدولة: إفادة خطية توضح كيف تعتبرون أن مصالحكم المالية والشخصية في الدولة، مع جميع المستندات الداعمة.",
+   "tags": [
+    "financial interests",
+    "personal interests",
+    "statement",
+    "supporting documents"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide proof that your financial and personal interests are in the UAE: a written statement explaining how you consider your financial and personal interests to be in the UAE, together with all supporting documentation.",
+     "ar": "يرجى تقديم ما يثبت أن مصالحكم المالية والشخصية في الدولة: إفادة خطية توضح كيف تعتبرون أن مصالحكم المالية والشخصية في الدولة، مع جميع المستندات الداعمة.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "financial interests",
+      "personal interests",
+      "statement",
+      "supporting documents"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Statement of financial and personal interests in the UAE",
+    "ar": "إفادة بالمصالح المالية والشخصية في الدولة"
+   }
+  },
+  {
+   "id": "tn-06",
+   "s": "natural",
+   "ss": "ties",
+   "kind": "request",
+   "en": "Kindly provide further evidence that your personal interests are more closely connected to the UAE than to any other country, including family and social connections, memberships of clubs and associations, and any cultural or other activities in the UAE in which you take part.",
+   "ar": "يرجى تقديم أدلة إضافية على أن مصالحكم الشخصية أوثق ارتباطاً بالدولة من أي دولة أخرى، بما في ذلك الروابط العائلية والاجتماعية وعضويات النوادي والجمعيات وأي أنشطة ثقافية أو غيرها تشاركون فيها في الدولة.",
+   "tags": [
+    "personal interests",
+    "family",
+    "social",
+    "clubs",
+    "closest connection",
+    "centre of vital interests"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide further evidence that your personal interests are more closely connected to the UAE than to any other country, including family and social connections, memberships of clubs and associations, and any cultural or other activities in the UAE in which you take part.",
+     "ar": "يرجى تقديم أدلة إضافية على أن مصالحكم الشخصية أوثق ارتباطاً بالدولة من أي دولة أخرى، بما في ذلك الروابط العائلية والاجتماعية وعضويات النوادي والجمعيات وأي أنشطة ثقافية أو غيرها تشاركون فيها في الدولة.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "personal interests",
+      "family",
+      "social",
+      "clubs",
+      "closest connection",
+      "centre of vital interests"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tn-07",
+   "s": "natural",
+   "ss": "domicile",
+   "kind": "attachment",
+   "en": "Kindly submit a signed personal statement explaining why you consider that you are domiciled, have your habitual abode, or have your centre of vital interests in the UAE, as required by the relevant Treaty, together with supporting documentary evidence of meeting the Treaty requirements to be considered a tax resident of the UAE.",
+   "ar": "يرجى تقديم إفادة شخصية موقعة توضح أسباب اعتباركم أن موطنكم أو محل إقامتكم المعتاد أو مركز مصالحكم الحيوية في الدولة وفقاً لمتطلبات الاتفاقية ذات الصلة، مع المستندات الداعمة التي تثبت استيفاء متطلبات الاتفاقية لاعتباركم مقيماً ضريبياً في الدولة.",
+   "tags": [
+    "personal statement",
+    "domicile",
+    "habitual abode",
+    "centre of vital interests",
+    "treaty",
+    "partial"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly submit a signed personal statement explaining why you consider that you are domiciled, have your habitual abode, or have your centre of vital interests in the UAE, as required by the relevant Treaty, together with supporting documentary evidence of meeting the Treaty requirements to be considered a tax resident of the UAE.",
+     "ar": "يرجى تقديم إفادة شخصية موقعة توضح أسباب اعتباركم أن موطنكم أو محل إقامتكم المعتاد أو مركز مصالحكم الحيوية في الدولة وفقاً لمتطلبات الاتفاقية ذات الصلة، مع المستندات الداعمة التي تثبت استيفاء متطلبات الاتفاقية لاعتباركم مقيماً ضريبياً في الدولة.",
+     "cond": {
+      "en": "Treaties reviewed on the partial basis (domicile, habitual abode or centre of vital interests).",
+      "ar": "الاتفاقيات التي تُراجع على الأساس الجزئي (الموطن أو الإقامة المعتادة أو مركز المصالح الحيوية)."
+     },
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "personal statement",
+      "domicile",
+      "habitual abode",
+      "centre of vital interests",
+      "treaty",
+      "partial"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Treaties reviewed on the partial basis (domicile, habitual abode or centre of vital interests).",
+    "ar": "الاتفاقيات التي تُراجع على الأساس الجزئي (الموطن أو الإقامة المعتادة أو مركز المصالح الحيوية)."
+   },
+   "doc": {
+    "en": "Signed personal statement on domicile / habitual abode / centre of vital interests",
+    "ar": "إفادة شخصية موقعة بشأن الموطن / الإقامة المعتادة / مركز المصالح الحيوية"
+   }
+  },
+  {
+   "id": "tn-08",
+   "s": "natural",
+   "ss": "domicile",
+   "kind": "attachment",
+   "en": "Kindly submit a signed personal statement explaining why you consider that your domicile, under the relevant Treaty, is in the UAE, together with supporting documentary evidence of your domicile in the UAE and the grounds for it.",
+   "ar": "يرجى تقديم إفادة شخصية موقعة توضح أسباب اعتباركم أن موطنكم، وفقاً للاتفاقية ذات الصلة، في الدولة، مع المستندات الداعمة التي تثبت موطنكم في الدولة والأسس التي يقوم عليها.",
+   "tags": [
+    "personal statement",
+    "domicile",
+    "treaty",
+    "UAE national"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly submit a signed personal statement explaining why you consider that your domicile, under the relevant Treaty, is in the UAE, together with supporting documentary evidence of your domicile in the UAE and the grounds for it.",
+     "ar": "يرجى تقديم إفادة شخصية موقعة توضح أسباب اعتباركم أن موطنكم، وفقاً للاتفاقية ذات الصلة، في الدولة، مع المستندات الداعمة التي تثبت موطنكم في الدولة والأسس التي يقوم عليها.",
+     "cond": {
+      "en": "Treaties where the domicile test applies (mostly UAE nationals).",
+      "ar": "الاتفاقيات التي يُطبق فيها اختبار الموطن (غالباً لمواطني الدولة)."
+     },
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "personal statement",
+      "domicile",
+      "treaty",
+      "UAE national"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Treaties where the domicile test applies (mostly UAE nationals).",
+    "ar": "الاتفاقيات التي يُطبق فيها اختبار الموطن (غالباً لمواطني الدولة)."
+   },
+   "doc": {
+    "en": "Signed personal statement on domicile",
+    "ar": "إفادة شخصية موقعة بشأن الموطن"
+   }
+  },
+  {
+   "id": "tn-09",
+   "s": "natural",
+   "ss": "domicile",
+   "kind": "notice",
+   "en": "The statement must cover the following points: why you consider your tax domicile to be in the UAE; how long you intend to remain in the UAE (current and future plans); proof of a permanent place of residence (title deed together with a utility bill); a high-level outline of your current and future financial interests in the UAE; if you own a business, the full structure of the business and, where available, the audited financial statements for the previous or current year; if you are employed, a salary certificate and, where applicable, proof of registration with the General Pension and Social Security Authority or any other pension scheme in the UAE; if family members reside with you in the UAE, copies of their valid Emirates IDs and residence visas with their occupations and relationship to you; if you are sponsored by your spouse, a copy of the marriage certificate; and if family members study in the UAE, proof of enrolment and current registration with the educational institution.",
+   "ar": "يجب أن تغطي الإفادة النقاط التالية: أسباب اعتباركم أن موطنكم الضريبي في الدولة؛ المدة التي تعتزمون البقاء فيها في الدولة (الخطط الحالية والمستقبلية)؛ إثبات محل إقامة دائم (سند ملكية مع فاتورة خدمات)؛ عرض موجز لمصالحكم المالية الحالية والمستقبلية في الدولة؛ إذا كنتم تملكون نشاطاً تجارياً، الهيكل الكامل للنشاط وكذلك البيانات المالية المدققة للسنة السابقة أو الحالية إن وجدت؛ إذا كنتم موظفين، شهادة راتب وإثبات التسجيل لدى الهيئة العامة للمعاشات والتأمينات الاجتماعية أو أي نظام تقاعدي آخر في الدولة إن وجد؛ إذا كان أفراد من عائلتكم يقيمون معكم في الدولة، نسخ من هوياتهم الإماراتية وتأشيرات إقامتهم السارية مع بيان مهنهم وصلة قرابتهم بكم؛ إذا كنتم على كفالة الزوج أو الزوجة، نسخة من عقد الزواج؛ وإذا كان أفراد من عائلتكم يدرسون في الدولة، إثبات القيد والتسجيل الحالي لدى المؤسسة التعليمية.",
+   "tags": [
+    "statement points",
+    "domicile",
+    "checklist",
+    "family",
+    "pension",
+    "audited"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "The statement must cover the following points: why you consider your tax domicile to be in the UAE; how long you intend to remain in the UAE (current and future plans); proof of a permanent place of residence (title deed together with a utility bill); a high-level outline of your current and future financial interests in the UAE; if you own a business, the full structure of the business and, where available, the audited financial statements for the previous or current year; if you are employed, a salary certificate and, where applicable, proof of registration with the General Pension and Social Security Authority or any other pension scheme in the UAE; if family members reside with you in the UAE, copies of their valid Emirates IDs and residence visas with their occupations and relationship to you; if you are sponsored by your spouse, a copy of the marriage certificate; and if family members study in the UAE, proof of enrolment and current registration with the educational institution.",
+     "ar": "يجب أن تغطي الإفادة النقاط التالية: أسباب اعتباركم أن موطنكم الضريبي في الدولة؛ المدة التي تعتزمون البقاء فيها في الدولة (الخطط الحالية والمستقبلية)؛ إثبات محل إقامة دائم (سند ملكية مع فاتورة خدمات)؛ عرض موجز لمصالحكم المالية الحالية والمستقبلية في الدولة؛ إذا كنتم تملكون نشاطاً تجارياً، الهيكل الكامل للنشاط وكذلك البيانات المالية المدققة للسنة السابقة أو الحالية إن وجدت؛ إذا كنتم موظفين، شهادة راتب وإثبات التسجيل لدى الهيئة العامة للمعاشات والتأمينات الاجتماعية أو أي نظام تقاعدي آخر في الدولة إن وجد؛ إذا كان أفراد من عائلتكم يقيمون معكم في الدولة، نسخ من هوياتهم الإماراتية وتأشيرات إقامتهم السارية مع بيان مهنهم وصلة قرابتهم بكم؛ إذا كنتم على كفالة الزوج أو الزوجة، نسخة من عقد الزواج؛ وإذا كان أفراد من عائلتكم يدرسون في الدولة، إثبات القيد والتسجيل الحالي لدى المؤسسة التعليمية.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "statement points",
+      "domicile",
+      "checklist",
+      "family",
+      "pension",
+      "audited"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tn-10",
+   "s": "natural",
+   "ss": "identity",
+   "kind": "request",
+   "en": "Kindly update your application to include the Emirates ID number, passport number and residence visa number, together with their expiry dates, in the appropriate fields under the “Beneficiary Information” section.",
+   "ar": "يرجى تحديث طلبكم بإضافة رقم الهوية الإماراتية ورقم جواز السفر ورقم تأشيرة الإقامة مع تواريخ انتهائها في الحقول المخصصة ضمن قسم «بيانات المستفيد».",
+   "tags": [
+    "beneficiary information",
+    "emirates id",
+    "passport",
+    "visa",
+    "expiry"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly update your application to include the Emirates ID number, passport number and residence visa number, together with their expiry dates, in the appropriate fields under the “Beneficiary Information” section.",
+     "ar": "يرجى تحديث طلبكم بإضافة رقم الهوية الإماراتية ورقم جواز السفر ورقم تأشيرة الإقامة مع تواريخ انتهائها في الحقول المخصصة ضمن قسم «بيانات المستفيد».",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "beneficiary information",
+      "emirates id",
+      "passport",
+      "visa",
+      "expiry"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tn-11",
+   "s": "natural",
+   "ss": "period",
+   "kind": "request",
+   "en": "Under Article 4 of the Income and Capital Tax Treaty between India and the United Arab Emirates, the FTA notes that you have not selected 1 January as the start of the financial year, which is a requirement of the Treaty. Kindly update the start of the financial year to 1 January of the selected year (for example, 01/01/{{year}}).",
+   "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل ورأس المال المبرمة بين الهند والإمارات العربية المتحدة، تلاحظ الهيئة أنكم لم تختاروا 1 يناير بداية للسنة المالية، وهو من متطلبات الاتفاقية. يرجى تحديث بداية السنة المالية إلى 1 يناير من السنة المختارة (مثال: 01/01/{{year}}).",
+   "tags": [
+    "india",
+    "financial year",
+    "calendar year",
+    "1 january",
+    "period"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Under Article 4 of the Income and Capital Tax Treaty between India and the United Arab Emirates, the FTA notes that you have not selected 1 January as the start of the financial year, which is a requirement of the Treaty. Kindly update the start of the financial year to 1 January of the selected year (for example, 01/01/{{year}}).",
+     "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل ورأس المال المبرمة بين الهند والإمارات العربية المتحدة، تلاحظ الهيئة أنكم لم تختاروا 1 يناير بداية للسنة المالية، وهو من متطلبات الاتفاقية. يرجى تحديث بداية السنة المالية إلى 1 يناير من السنة المختارة (مثال: 01/01/{{year}}).",
+     "cond": {
+      "en": "India only — calendar year is mandatory.",
+      "ar": "الهند فقط — السنة الميلادية إلزامية."
+     },
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "india",
+      "financial year",
+      "calendar year",
+      "1 january",
+      "period"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "India only — calendar year is mandatory.",
+    "ar": "الهند فقط — السنة الميلادية إلزامية."
+   }
+  },
+  {
+   "id": "tn-12",
+   "s": "natural",
+   "ss": "period",
+   "kind": "notice",
+   "en": "Kindly note that you must be present in the UAE for a period or periods totalling at least 183 days in the calendar year starting from 1 January of the selected year.",
+   "ar": "يرجى العلم بأنه يجب أن تكونوا متواجدين في الدولة لمدة أو مدد يبلغ مجموعها 183 يوماً على الأقل خلال السنة الميلادية التي تبدأ من 1 يناير من السنة المختارة.",
+   "tags": [
+    "india",
+    "183 days",
+    "calendar year",
+    "presence"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly note that you must be present in the UAE for a period or periods totalling at least 183 days in the calendar year starting from 1 January of the selected year.",
+     "ar": "يرجى العلم بأنه يجب أن تكونوا متواجدين في الدولة لمدة أو مدد يبلغ مجموعها 183 يوماً على الأقل خلال السنة الميلادية التي تبدأ من 1 يناير من السنة المختارة.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "india",
+      "183 days",
+      "calendar year",
+      "presence"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tl-01",
+   "s": "legal",
+   "ss": "legal-docs",
+   "kind": "attachment",
+   "en": "Kindly attach the licence (for example, the trade licence) and the lease agreement.",
+   "ar": "يرجى إرفاق الرخصة (مثل الرخصة التجارية) وعقد الإيجار.",
+   "tags": [
+    "trade licence",
+    "lease agreement",
+    "ejari",
+    "legal person"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach the licence (for example, the trade licence) and the lease agreement.",
+     "ar": "يرجى إرفاق الرخصة (مثل الرخصة التجارية) وعقد الإيجار.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "trade licence",
+      "lease agreement",
+      "ejari",
+      "legal person"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Trade licence and lease agreement",
+    "ar": "الرخصة التجارية وعقد الإيجار"
+   }
+  },
+  {
+   "id": "tl-02",
+   "s": "legal",
+   "ss": "legal-docs",
+   "kind": "attachment",
+   "en": "Kindly attach the Memorandum of Association.",
+   "ar": "يرجى إرفاق عقد التأسيس.",
+   "tags": [
+    "MOA",
+    "memorandum of association",
+    "legal person"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach the Memorandum of Association.",
+     "ar": "يرجى إرفاق عقد التأسيس.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "MOA",
+      "memorandum of association",
+      "legal person"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Memorandum of Association",
+    "ar": "عقد التأسيس"
+   }
+  },
+  {
+   "id": "tl-03",
+   "s": "legal",
+   "ss": "legal-docs",
+   "kind": "attachment",
+   "en": "Kindly attach the details of the authorised signatory (name, Emirates ID and passport) together with proof of their authorisation (the establishment contract or a power of attorney).",
+   "ar": "يرجى إرفاق بيانات المفوض بالتوقيع (الاسم والهوية الإماراتية وجواز السفر) مع ما يثبت تفويضه (عقد التأسيس أو وكالة قانونية).",
+   "tags": [
+    "authorised signatory",
+    "power of attorney",
+    "POA",
+    "emirates id",
+    "passport"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach the details of the authorised signatory (name, Emirates ID and passport) together with proof of their authorisation (the establishment contract or a power of attorney).",
+     "ar": "يرجى إرفاق بيانات المفوض بالتوقيع (الاسم والهوية الإماراتية وجواز السفر) مع ما يثبت تفويضه (عقد التأسيس أو وكالة قانونية).",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "authorised signatory",
+      "power of attorney",
+      "POA",
+      "emirates id",
+      "passport"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Authorised signatory details and proof of authorisation",
+    "ar": "بيانات المفوض بالتوقيع وإثبات التفويض"
+   }
+  },
+  {
+   "id": "tl-04",
+   "s": "legal",
+   "ss": "legal-docs",
+   "kind": "attachment",
+   "en": "Kindly attach proof that the entity is effectively managed and controlled in the UAE (if applicable): a written statement explaining how you consider the effective management and control of the entity to be in the UAE, together with all supporting documentation.",
+   "ar": "يرجى إرفاق ما يثبت أن الإدارة والسيطرة الفعلية للكيان في الدولة (إن انطبق): إفادة خطية توضح كيف تعتبرون أن الإدارة والسيطرة الفعلية للكيان في الدولة، مع جميع المستندات الداعمة.",
+   "tags": [
+    "effective management",
+    "control",
+    "POEM",
+    "statement",
+    "legal person"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach proof that the entity is effectively managed and controlled in the UAE (if applicable): a written statement explaining how you consider the effective management and control of the entity to be in the UAE, together with all supporting documentation.",
+     "ar": "يرجى إرفاق ما يثبت أن الإدارة والسيطرة الفعلية للكيان في الدولة (إن انطبق): إفادة خطية توضح كيف تعتبرون أن الإدارة والسيطرة الفعلية للكيان في الدولة، مع جميع المستندات الداعمة.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "effective management",
+      "control",
+      "POEM",
+      "statement",
+      "legal person"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Statement of effective management and control in the UAE",
+    "ar": "إفادة بالإدارة والسيطرة الفعلية في الدولة"
+   }
+  },
+  {
+   "id": "tl-05",
+   "s": "legal",
+   "ss": "legal-docs",
+   "kind": "attachment",
+   "en": "Kindly attach the certificate of incorporation.",
+   "ar": "يرجى إرفاق شهادة التأسيس.",
+   "tags": [
+    "certificate of incorporation",
+    "COI",
+    "legal person"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach the certificate of incorporation.",
+     "ar": "يرجى إرفاق شهادة التأسيس.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "certificate of incorporation",
+      "COI",
+      "legal person"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Certificate of incorporation",
+    "ar": "شهادة التأسيس"
+   }
+  },
+  {
+   "id": "tg-01",
+   "s": "government",
+   "ss": "gov-docs",
+   "kind": "attachment",
+   "en": "Kindly attach an official request letter on government letterhead, duly signed and stamped, outlining the ownership structure and all relevant ownership percentages, together with the Cabinet Decision issued by the Minister of Finance in which the entity is specified. Alternatively, you may cancel the current application and submit a new one under the Juridical Person (Legal) service.",
+   "ar": "يرجى إرفاق خطاب طلب رسمي على الورق الرسمي للجهة الحكومية، موقعاً ومختوماً حسب الأصول، يوضح هيكل الملكية وجميع نسب الملكية ذات الصلة، مع قرار مجلس الوزراء الصادر عن وزير المالية الذي تم تحديد الجهة فيه. ويمكنكم بدلاً من ذلك إلغاء الطلب الحالي وتقديم طلب جديد ضمن خدمة الشخص الاعتباري.",
+   "tags": [
+    "government",
+    "letterhead",
+    "ownership structure",
+    "cabinet decision",
+    "wholly owned"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach an official request letter on government letterhead, duly signed and stamped, outlining the ownership structure and all relevant ownership percentages, together with the Cabinet Decision issued by the Minister of Finance in which the entity is specified. Alternatively, you may cancel the current application and submit a new one under the Juridical Person (Legal) service.",
+     "ar": "يرجى إرفاق خطاب طلب رسمي على الورق الرسمي للجهة الحكومية، موقعاً ومختوماً حسب الأصول، يوضح هيكل الملكية وجميع نسب الملكية ذات الصلة، مع قرار مجلس الوزراء الصادر عن وزير المالية الذي تم تحديد الجهة فيه. ويمكنكم بدلاً من ذلك إلغاء الطلب الحالي وتقديم طلب جديد ضمن خدمة الشخص الاعتباري.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "government",
+      "letterhead",
+      "ownership structure",
+      "cabinet decision",
+      "wholly owned"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Official government letter and Cabinet Decision",
+    "ar": "خطاب رسمي من الجهة الحكومية وقرار مجلس الوزراء"
+   }
+  },
+  {
+   "id": "rj-01",
+   "s": "reject",
+   "ss": "treaty",
+   "kind": "rejection",
+   "en": "Under application of Article 4 of the Income Tax Treaty between Portugal and the United Arab Emirates, and the related definitions specified under Article 3 of the same Treaty, you are not considered a tax resident for UAE purposes and, hence, no Tax Residency Certificate can be issued.",
+   "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل المبرمة بين البرتغال والإمارات العربية المتحدة، والتعريفات ذات الصلة الواردة في المادة (3) من الاتفاقية نفسها، لا تُعتبرون مقيماً ضريبياً لأغراض الدولة، وبالتالي لا يمكن إصدار شهادة إقامة ضريبية.",
+   "tags": [
+    "reject",
+    "treaty",
+    "article 4",
+    "portugal"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Under application of Article 4 of the Income Tax Treaty between Portugal and the United Arab Emirates, and the related definitions specified under Article 3 of the same Treaty, you are not considered a tax resident for UAE purposes and, hence, no Tax Residency Certificate can be issued.",
+     "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل المبرمة بين البرتغال والإمارات العربية المتحدة، والتعريفات ذات الصلة الواردة في المادة (3) من الاتفاقية نفسها، لا تُعتبرون مقيماً ضريبياً لأغراض الدولة، وبالتالي لا يمكن إصدار شهادة إقامة ضريبية.",
+     "cond": {
+      "en": "Portugal treaty — applicant does not meet the residence definition (UAE nationals only).",
+      "ar": "اتفاقية البرتغال — مقدم الطلب لا يستوفي تعريف الإقامة (لمواطني الدولة فقط)."
+     },
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "treaty",
+      "article 4",
+      "portugal"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Portugal treaty — applicant does not meet the residence definition (UAE nationals only).",
+    "ar": "اتفاقية البرتغال — مقدم الطلب لا يستوفي تعريف الإقامة (لمواطني الدولة فقط)."
+   }
+  },
+  {
+   "id": "rj-02",
+   "s": "reject",
+   "ss": "treaty",
+   "kind": "rejection",
+   "en": "Under application of Article 4 of the Income and Capital Tax Treaty between Greece and the United Arab Emirates, and the related definitions specified under Article 3 of the same Treaty, you are not considered a tax resident for UAE purposes and, hence, no Tax Residency Certificate can be issued.",
+   "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل ورأس المال المبرمة بين اليونان والإمارات العربية المتحدة، والتعريفات ذات الصلة الواردة في المادة (3) من الاتفاقية نفسها، لا تُعتبرون مقيماً ضريبياً لأغراض الدولة، وبالتالي لا يمكن إصدار شهادة إقامة ضريبية.",
+   "tags": [
+    "reject",
+    "treaty",
+    "article 4",
+    "greece"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Under application of Article 4 of the Income and Capital Tax Treaty between Greece and the United Arab Emirates, and the related definitions specified under Article 3 of the same Treaty, you are not considered a tax resident for UAE purposes and, hence, no Tax Residency Certificate can be issued.",
+     "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل ورأس المال المبرمة بين اليونان والإمارات العربية المتحدة، والتعريفات ذات الصلة الواردة في المادة (3) من الاتفاقية نفسها، لا تُعتبرون مقيماً ضريبياً لأغراض الدولة، وبالتالي لا يمكن إصدار شهادة إقامة ضريبية.",
+     "cond": {
+      "en": "Greece treaty — applicant does not meet the residence definition (UAE nationals only).",
+      "ar": "اتفاقية اليونان — مقدم الطلب لا يستوفي تعريف الإقامة (لمواطني الدولة فقط)."
+     },
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "treaty",
+      "article 4",
+      "greece"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Greece treaty — applicant does not meet the residence definition (UAE nationals only).",
+    "ar": "اتفاقية اليونان — مقدم الطلب لا يستوفي تعريف الإقامة (لمواطني الدولة فقط)."
+   }
+  },
+  {
+   "id": "rj-03",
+   "s": "reject",
+   "ss": "treaty",
+   "kind": "rejection",
+   "en": "Under application of Article 4 of the Income and Capital Tax Treaty between Poland and the United Arab Emirates, as amended by the Protocol to the 1993 Treaty, and the related definitions specified under Article 3 of the same Treaty, you are not considered a tax resident for UAE purposes and, hence, no Tax Residency Certificate can be issued.",
+   "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل ورأس المال المبرمة بين بولندا والإمارات العربية المتحدة، بصيغتها المعدلة بالبروتوكول الملحق باتفاقية عام 1993، والتعريفات ذات الصلة الواردة في المادة (3) من الاتفاقية نفسها، لا تُعتبرون مقيماً ضريبياً لأغراض الدولة، وبالتالي لا يمكن إصدار شهادة إقامة ضريبية.",
+   "tags": [
+    "reject",
+    "treaty",
+    "article 4",
+    "poland",
+    "protocol",
+    "2016"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Under application of Article 4 of the Income and Capital Tax Treaty between Poland and the United Arab Emirates, as amended by the Protocol to the 1993 Treaty, and the related definitions specified under Article 3 of the same Treaty, you are not considered a tax resident for UAE purposes and, hence, no Tax Residency Certificate can be issued.",
+     "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل ورأس المال المبرمة بين بولندا والإمارات العربية المتحدة، بصيغتها المعدلة بالبروتوكول الملحق باتفاقية عام 1993، والتعريفات ذات الصلة الواردة في المادة (3) من الاتفاقية نفسها، لا تُعتبرون مقيماً ضريبياً لأغراض الدولة، وبالتالي لا يمكن إصدار شهادة إقامة ضريبية.",
+     "cond": {
+      "en": "Poland treaty — applicant does not meet the residence definition (UAE nationals only).",
+      "ar": "اتفاقية بولندا — مقدم الطلب لا يستوفي تعريف الإقامة (لمواطني الدولة فقط)."
+     },
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "treaty",
+      "article 4",
+      "poland",
+      "protocol",
+      "2016"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Poland treaty — applicant does not meet the residence definition (UAE nationals only).",
+    "ar": "اتفاقية بولندا — مقدم الطلب لا يستوفي تعريف الإقامة (لمواطني الدولة فقط)."
+   }
+  },
+  {
+   "id": "rj-04",
+   "s": "reject",
+   "ss": "treaty",
+   "kind": "rejection",
+   "en": "Under application of Article 4 of the Income and Capital Tax Treaty between Spain and the United Arab Emirates, and the related definitions specified under Article 3 of the same Treaty, you are not considered a tax resident for UAE purposes and, hence, no Tax Residency Certificate can be issued.",
+   "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل ورأس المال المبرمة بين إسبانيا والإمارات العربية المتحدة، والتعريفات ذات الصلة الواردة في المادة (3) من الاتفاقية نفسها، لا تُعتبرون مقيماً ضريبياً لأغراض الدولة، وبالتالي لا يمكن إصدار شهادة إقامة ضريبية.",
+   "tags": [
+    "reject",
+    "treaty",
+    "article 4",
+    "spain"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Under application of Article 4 of the Income and Capital Tax Treaty between Spain and the United Arab Emirates, and the related definitions specified under Article 3 of the same Treaty, you are not considered a tax resident for UAE purposes and, hence, no Tax Residency Certificate can be issued.",
+     "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل ورأس المال المبرمة بين إسبانيا والإمارات العربية المتحدة، والتعريفات ذات الصلة الواردة في المادة (3) من الاتفاقية نفسها، لا تُعتبرون مقيماً ضريبياً لأغراض الدولة، وبالتالي لا يمكن إصدار شهادة إقامة ضريبية.",
+     "cond": {
+      "en": "Spain treaty — applicant does not meet the residence definition (UAE nationals only).",
+      "ar": "اتفاقية إسبانيا — مقدم الطلب لا يستوفي تعريف الإقامة (لمواطني الدولة فقط)."
+     },
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "treaty",
+      "article 4",
+      "spain"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Spain treaty — applicant does not meet the residence definition (UAE nationals only).",
+    "ar": "اتفاقية إسبانيا — مقدم الطلب لا يستوفي تعريف الإقامة (لمواطني الدولة فقط)."
+   }
+  },
+  {
+   "id": "rj-05",
+   "s": "reject",
+   "ss": "treaty",
+   "kind": "rejection",
+   "en": "Under application of Article 4 of the Income Tax Treaty between Israel and the United Arab Emirates, and the related definitions specified under Article 3 of the same Treaty, you are not considered a tax resident for UAE purposes and, hence, no Tax Residency Certificate can be issued.",
+   "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل المبرمة بين إسرائيل والإمارات العربية المتحدة، والتعريفات ذات الصلة الواردة في المادة (3) من الاتفاقية نفسها، لا تُعتبرون مقيماً ضريبياً لأغراض الدولة، وبالتالي لا يمكن إصدار شهادة إقامة ضريبية.",
+   "tags": [
+    "reject",
+    "treaty",
+    "article 4",
+    "israel"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Under application of Article 4 of the Income Tax Treaty between Israel and the United Arab Emirates, and the related definitions specified under Article 3 of the same Treaty, you are not considered a tax resident for UAE purposes and, hence, no Tax Residency Certificate can be issued.",
+     "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل المبرمة بين إسرائيل والإمارات العربية المتحدة، والتعريفات ذات الصلة الواردة في المادة (3) من الاتفاقية نفسها، لا تُعتبرون مقيماً ضريبياً لأغراض الدولة، وبالتالي لا يمكن إصدار شهادة إقامة ضريبية.",
+     "cond": {
+      "en": "Israel treaty — applicant does not meet the residence definition (UAE nationals only).",
+      "ar": "اتفاقية إسرائيل — مقدم الطلب لا يستوفي تعريف الإقامة (لمواطني الدولة فقط)."
+     },
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "treaty",
+      "article 4",
+      "israel"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Israel treaty — applicant does not meet the residence definition (UAE nationals only).",
+    "ar": "اتفاقية إسرائيل — مقدم الطلب لا يستوفي تعريف الإقامة (لمواطني الدولة فقط)."
+   }
+  },
+  {
+   "id": "rj-06",
+   "s": "reject",
+   "ss": "treaty",
+   "kind": "rejection",
+   "en": "Under application of Article 4 of the Income and Capital Tax Treaty between India and the United Arab Emirates, the FTA notes that you have not been present in the UAE for a period or periods totalling at least 183 days in the calendar year for which you are applying for a Tax Residency Certificate. Hence, you are not considered a tax resident for UAE purposes and no Tax Residency Certificate can be issued.",
+   "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل ورأس المال المبرمة بين الهند والإمارات العربية المتحدة، تلاحظ الهيئة أنكم لم تتواجدوا في الدولة لمدة أو مدد يبلغ مجموعها 183 يوماً على الأقل خلال السنة الميلادية التي تطلبون شهادة الإقامة الضريبية عنها. وبالتالي لا تُعتبرون مقيماً ضريبياً لأغراض الدولة ولا يمكن إصدار شهادة إقامة ضريبية.",
+   "tags": [
+    "reject",
+    "india",
+    "183 days",
+    "calendar year",
+    "not amended"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Under application of Article 4 of the Income and Capital Tax Treaty between India and the United Arab Emirates, the FTA notes that you have not been present in the UAE for a period or periods totalling at least 183 days in the calendar year for which you are applying for a Tax Residency Certificate. Hence, you are not considered a tax resident for UAE purposes and no Tax Residency Certificate can be issued.",
+     "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل ورأس المال المبرمة بين الهند والإمارات العربية المتحدة، تلاحظ الهيئة أنكم لم تتواجدوا في الدولة لمدة أو مدد يبلغ مجموعها 183 يوماً على الأقل خلال السنة الميلادية التي تطلبون شهادة الإقامة الضريبية عنها. وبالتالي لا تُعتبرون مقيماً ضريبياً لأغراض الدولة ولا يمكن إصدار شهادة إقامة ضريبية.",
+     "cond": {
+      "en": "India — period not amended to the calendar year, or fewer than 183 days.",
+      "ar": "الهند — لم تُعدَّل الفترة إلى السنة الميلادية أو أقل من 183 يوماً."
+     },
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "india",
+      "183 days",
+      "calendar year",
+      "not amended"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "India — period not amended to the calendar year, or fewer than 183 days.",
+    "ar": "الهند — لم تُعدَّل الفترة إلى السنة الميلادية أو أقل من 183 يوماً."
+   }
+  },
+  {
+   "id": "rj-07",
+   "s": "reject",
+   "ss": "treaty",
+   "kind": "rejection",
+   "en": "Under application of Article 4 of the Income and Capital Tax Treaty between {{country}} and the United Arab Emirates, and the related definitions specified under Article 3 of the same Treaty, you are not considered a tax resident for UAE purposes and, hence, no Tax Residency Certificate can be issued.",
+   "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل ورأس المال المبرمة بين {{country}} والإمارات العربية المتحدة، والتعريفات ذات الصلة الواردة في المادة (3) من الاتفاقية نفسها، لا تُعتبرون مقيماً ضريبياً لأغراض الدولة، وبالتالي لا يمكن إصدار شهادة إقامة ضريبية.",
+   "tags": [
+    "reject",
+    "treaty",
+    "article 4",
+    "other country",
+    "generic"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Under application of Article 4 of the Income and Capital Tax Treaty between {{country}} and the United Arab Emirates, and the related definitions specified under Article 3 of the same Treaty, you are not considered a tax resident for UAE purposes and, hence, no Tax Residency Certificate can be issued.",
+     "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل ورأس المال المبرمة بين {{country}} والإمارات العربية المتحدة، والتعريفات ذات الصلة الواردة في المادة (3) من الاتفاقية نفسها، لا تُعتبرون مقيماً ضريبياً لأغراض الدولة، وبالتالي لا يمكن إصدار شهادة إقامة ضريبية.",
+     "cond": {
+      "en": "Any other treaty with the UAE-nationals-only condition (type the country name in both languages).",
+      "ar": "أي اتفاقية أخرى بشرط مواطني الدولة فقط (اكتب اسم الدولة باللغتين)."
+     },
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "treaty",
+      "article 4",
+      "other country",
+      "generic"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Any other treaty with the UAE-nationals-only condition (type the country name in both languages).",
+    "ar": "أي اتفاقية أخرى بشرط مواطني الدولة فقط (اكتب اسم الدولة باللغتين)."
+   }
+  },
+  {
+   "id": "rj-08",
+   "s": "reject",
+   "ss": "eligibility",
+   "kind": "rejection",
+   "en": "The FTA notes that, in your application for a Tax Residency Certificate under the relevant Income and Capital Tax Treaty provisions, you have stated that you are a UAE national. You have, however, not submitted any evidence to corroborate that you are a UAE national under application of the definition in the Treaty. Hence, you are not considered a tax resident for UAE purposes and no Tax Residency Certificate can be issued.",
+   "ar": "تلاحظ الهيئة أنكم ذكرتم في طلب شهادة الإقامة الضريبية المقدم بموجب أحكام اتفاقية ضريبة الدخل ورأس المال ذات الصلة أنكم من مواطني الدولة، إلا أنكم لم تقدموا أي دليل يثبت أنكم من مواطني الدولة وفقاً للتعريف الوارد في الاتفاقية. وبالتالي لا تُعتبرون مقيماً ضريبياً لأغراض الدولة ولا يمكن إصدار شهادة إقامة ضريبية.",
+   "tags": [
+    "reject",
+    "nationality",
+    "UAE national",
+    "wrong information",
+    "no evidence"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "The FTA notes that, in your application for a Tax Residency Certificate under the relevant Income and Capital Tax Treaty provisions, you have stated that you are a UAE national. You have, however, not submitted any evidence to corroborate that you are a UAE national under application of the definition in the Treaty. Hence, you are not considered a tax resident for UAE purposes and no Tax Residency Certificate can be issued.",
+     "ar": "تلاحظ الهيئة أنكم ذكرتم في طلب شهادة الإقامة الضريبية المقدم بموجب أحكام اتفاقية ضريبة الدخل ورأس المال ذات الصلة أنكم من مواطني الدولة، إلا أنكم لم تقدموا أي دليل يثبت أنكم من مواطني الدولة وفقاً للتعريف الوارد في الاتفاقية. وبالتالي لا تُعتبرون مقيماً ضريبياً لأغراض الدولة ولا يمكن إصدار شهادة إقامة ضريبية.",
+     "cond": null,
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "nationality",
+      "UAE national",
+      "wrong information",
+      "no evidence"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rj-09",
+   "s": "reject",
+   "ss": "eligibility",
+   "kind": "rejection",
+   "en": "The FTA has reviewed your application and notes that you have submitted it as a natural person while using a company TRN. Kindly submit a new application for a Tax Residency Certificate under the Juridical Person (Legal) service. If you require a Tax Residency Certificate for a natural person, kindly submit a proper request.",
+   "ar": "راجعت الهيئة طلبكم ولاحظت أنكم قدمتموه بصفة شخص طبيعي باستخدام رقم التسجيل الضريبي لشركة. يرجى تقديم طلب جديد للحصول على شهادة إقامة ضريبية ضمن خدمة الشخص الاعتباري. وإذا كنتم بحاجة إلى شهادة إقامة ضريبية لشخص طبيعي، يرجى تقديم الطلب بالشكل الصحيح.",
+   "tags": [
+    "reject",
+    "company TRN",
+    "natural person",
+    "wrong service"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "The FTA has reviewed your application and notes that you have submitted it as a natural person while using a company TRN. Kindly submit a new application for a Tax Residency Certificate under the Juridical Person (Legal) service. If you require a Tax Residency Certificate for a natural person, kindly submit a proper request.",
+     "ar": "راجعت الهيئة طلبكم ولاحظت أنكم قدمتموه بصفة شخص طبيعي باستخدام رقم التسجيل الضريبي لشركة. يرجى تقديم طلب جديد للحصول على شهادة إقامة ضريبية ضمن خدمة الشخص الاعتباري. وإذا كنتم بحاجة إلى شهادة إقامة ضريبية لشخص طبيعي، يرجى تقديم الطلب بالشكل الصحيح.",
+     "cond": null,
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "company TRN",
+      "natural person",
+      "wrong service"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rj-10",
+   "s": "reject",
+   "ss": "eligibility",
+   "kind": "rejection",
+   "en": "The FTA has reviewed your application and notes that you have submitted it as a juridical person while using a natural person TRN. Kindly submit a new application for a Tax Residency Certificate under the Natural Person service. If you require a Tax Residency Certificate for a juridical person, kindly submit a proper request.",
+   "ar": "راجعت الهيئة طلبكم ولاحظت أنكم قدمتموه بصفة شخص اعتباري باستخدام رقم التسجيل الضريبي لشخص طبيعي. يرجى تقديم طلب جديد للحصول على شهادة إقامة ضريبية ضمن خدمة الشخص الطبيعي. وإذا كنتم بحاجة إلى شهادة إقامة ضريبية لشخص اعتباري، يرجى تقديم الطلب بالشكل الصحيح.",
+   "tags": [
+    "reject",
+    "natural TRN",
+    "juridical person",
+    "legal",
+    "wrong service"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "The FTA has reviewed your application and notes that you have submitted it as a juridical person while using a natural person TRN. Kindly submit a new application for a Tax Residency Certificate under the Natural Person service. If you require a Tax Residency Certificate for a juridical person, kindly submit a proper request.",
+     "ar": "راجعت الهيئة طلبكم ولاحظت أنكم قدمتموه بصفة شخص اعتباري باستخدام رقم التسجيل الضريبي لشخص طبيعي. يرجى تقديم طلب جديد للحصول على شهادة إقامة ضريبية ضمن خدمة الشخص الطبيعي. وإذا كنتم بحاجة إلى شهادة إقامة ضريبية لشخص اعتباري، يرجى تقديم الطلب بالشكل الصحيح.",
+     "cond": null,
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "natural TRN",
+      "juridical person",
+      "legal",
+      "wrong service"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rj-11",
+   "s": "reject",
+   "ss": "eligibility",
+   "kind": "rejection",
+   "en": "The FTA has reviewed your application and notes that you are not eligible for the service offered to entities that are wholly owned by, and/or under the control of, the government. Kindly submit a new application for a Tax Residency Certificate under the Juridical Person (Legal) service.",
+   "ar": "راجعت الهيئة طلبكم ولاحظت أنكم غير مؤهلين للخدمة المخصصة للجهات المملوكة بالكامل للحكومة و/أو الخاضعة لسيطرتها. يرجى تقديم طلب جديد للحصول على شهادة إقامة ضريبية ضمن خدمة الشخص الاعتباري.",
+   "tags": [
+    "reject",
+    "government",
+    "not wholly owned",
+    "wrong service"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "The FTA has reviewed your application and notes that you are not eligible for the service offered to entities that are wholly owned by, and/or under the control of, the government. Kindly submit a new application for a Tax Residency Certificate under the Juridical Person (Legal) service.",
+     "ar": "راجعت الهيئة طلبكم ولاحظت أنكم غير مؤهلين للخدمة المخصصة للجهات المملوكة بالكامل للحكومة و/أو الخاضعة لسيطرتها. يرجى تقديم طلب جديد للحصول على شهادة إقامة ضريبية ضمن خدمة الشخص الاعتباري.",
+     "cond": null,
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "government",
+      "not wholly owned",
+      "wrong service"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rj-12",
+   "s": "reject",
+   "ss": "domicile",
+   "kind": "rejection",
+   "en": "The FTA notes that, in your application for a Tax Residency Certificate under the relevant Income and Capital Tax Treaty provisions, you have not submitted any evidence to corroborate that you are domiciled in the UAE under application of the definition in the relevant Treaty. Hence, you do not meet the requirements to be considered a tax resident for UAE purposes under the Treaty, and no Tax Residency Certificate can be issued.",
+   "ar": "تلاحظ الهيئة أنكم لم تقدموا في طلب شهادة الإقامة الضريبية المقدم بموجب أحكام اتفاقية ضريبة الدخل ورأس المال ذات الصلة أي دليل يثبت أن موطنكم في الدولة وفقاً للتعريف الوارد في الاتفاقية ذات الصلة. وبالتالي لا تستوفون متطلبات اعتباركم مقيماً ضريبياً لأغراض الدولة بموجب الاتفاقية، ولا يمكن إصدار شهادة إقامة ضريبية.",
+   "tags": [
+    "reject",
+    "domicile",
+    "no letter",
+    "no evidence"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "The FTA notes that, in your application for a Tax Residency Certificate under the relevant Income and Capital Tax Treaty provisions, you have not submitted any evidence to corroborate that you are domiciled in the UAE under application of the definition in the relevant Treaty. Hence, you do not meet the requirements to be considered a tax resident for UAE purposes under the Treaty, and no Tax Residency Certificate can be issued.",
+     "ar": "تلاحظ الهيئة أنكم لم تقدموا في طلب شهادة الإقامة الضريبية المقدم بموجب أحكام اتفاقية ضريبة الدخل ورأس المال ذات الصلة أي دليل يثبت أن موطنكم في الدولة وفقاً للتعريف الوارد في الاتفاقية ذات الصلة. وبالتالي لا تستوفون متطلبات اعتباركم مقيماً ضريبياً لأغراض الدولة بموجب الاتفاقية، ولا يمكن إصدار شهادة إقامة ضريبية.",
+     "cond": null,
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "domicile",
+      "no letter",
+      "no evidence"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rj-13",
+   "s": "reject",
+   "ss": "domicile",
+   "kind": "rejection",
+   "en": "The FTA notes that, after reviewing the documents and information submitted, you do not meet the requirements for being domiciled in the UAE under the provisions of the relevant Treaty and, hence, you are not considered a UAE tax resident under the Treaty. No Tax Residency Certificate can be issued.",
+   "ar": "تلاحظ الهيئة، بعد مراجعة المستندات والمعلومات المقدمة، أنكم لا تستوفون متطلبات الموطن في الدولة بموجب أحكام الاتفاقية ذات الصلة، وبالتالي لا تُعتبرون مقيماً ضريبياً في الدولة بموجب الاتفاقية. ولا يمكن إصدار شهادة إقامة ضريبية.",
+   "tags": [
+    "reject",
+    "domicile",
+    "not met",
+    "after review"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "The FTA notes that, after reviewing the documents and information submitted, you do not meet the requirements for being domiciled in the UAE under the provisions of the relevant Treaty and, hence, you are not considered a UAE tax resident under the Treaty. No Tax Residency Certificate can be issued.",
+     "ar": "تلاحظ الهيئة، بعد مراجعة المستندات والمعلومات المقدمة، أنكم لا تستوفون متطلبات الموطن في الدولة بموجب أحكام الاتفاقية ذات الصلة، وبالتالي لا تُعتبرون مقيماً ضريبياً في الدولة بموجب الاتفاقية. ولا يمكن إصدار شهادة إقامة ضريبية.",
+     "cond": null,
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "domicile",
+      "not met",
+      "after review"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sf-01",
+   "s": "form",
+   "ss": "form-status",
+   "kind": "rejection",
+   "en": "Please note that the International Form (“Special Form”) you submitted to the FTA for completion, stamping and signature has been rejected, as it does not meet the requirements for an International Form. Kindly resubmit the Special Form to the FTA via courier or self-delivery to the Federal Tax Authority, Taxpayer Services Centre, Floor P2, Central Park Business Towers, DIFC, Dubai, UAE. Please make sure that the Special Form meets the following requirements: the original form issued by the other jurisdiction must be in English or Arabic, otherwise it must be translated into English or Arabic and the translation approved in accordance with the law regulating translation in the UAE; the form must be properly completed and duly signed by the applicant (signed by the authorised signatory and stamped in the case of a juridical person); the request must cover the same 12-month period and jurisdiction as the requested Tax Residency Certificate; the application details and the documents provided must match (name, date, country, etc.); and the FTA section must be left empty for the FTA to complete and sign. Please note that an incorrectly submitted International Form will be disregarded and archived for FTA records and will not be returned to the applicant. Kindly also note that the International Form must be resubmitted within 30 business days; otherwise the application will be set as complete and a new application will be required.",
+   "ar": "يرجى العلم بأن النموذج الدولي («النموذج الخاص») الذي قدمتموه إلى الهيئة لاستكماله وختمه وتوقيعه قد تم رفضه لعدم استيفائه متطلبات النموذج الدولي. يرجى إعادة تقديم النموذج الخاص إلى الهيئة عبر شركة التوصيل أو بالتسليم الشخصي إلى الهيئة الاتحادية للضرائب، مركز خدمات الخاضعين للضريبة، الطابق بي 2، أبراج سنترال بارك للأعمال، مركز دبي المالي العالمي، دبي، الإمارات العربية المتحدة. يرجى التأكد من استيفاء النموذج الخاص للمتطلبات التالية: أن يكون النموذج الأصلي الصادر عن الدولة الأخرى باللغة الإنجليزية أو العربية، وإلا وجب ترجمته إلى الإنجليزية أو العربية واعتماد الترجمة وفقاً للقانون المنظم للترجمة في الدولة؛ وأن يكون النموذج مستوفىً بشكل صحيح وموقعاً حسب الأصول من مقدم الطلب (وموقعاً من المفوض بالتوقيع ومختوماً في حالة الشخص الاعتباري)؛ وأن يغطي الطلب فترة الاثني عشر شهراً نفسها والدولة نفسها الواردة في طلب شهادة الإقامة الضريبية؛ وأن تتطابق بيانات الطلب مع المستندات المقدمة (الاسم والتاريخ والدولة وغيرها)؛ وأن يُترك القسم المخصص للهيئة فارغاً لتقوم الهيئة بتعبئته وتوقيعه. ويرجى العلم بأن النموذج الدولي المقدم بشكل غير صحيح سيتم تجاهله وأرشفته في سجلات الهيئة ولن يُعاد إلى مقدم الطلب. كما يرجى العلم بأنه يجب إعادة تقديم النموذج الدولي خلال 30 يوم عمل، وإلا سيتم اعتبار الطلب مكتملاً وسيتعين تقديم طلب جديد.",
+   "tags": [
+    "special form",
+    "international form",
+    "SPL",
+    "rejected",
+    "incorrect form",
+    "resubmit",
+    "30 business days"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that the International Form (“Special Form”) you submitted to the FTA for completion, stamping and signature has been rejected, as it does not meet the requirements for an International Form. Kindly resubmit the Special Form to the FTA via courier or self-delivery to the Federal Tax Authority, Taxpayer Services Centre, Floor P2, Central Park Business Towers, DIFC, Dubai, UAE. Please make sure that the Special Form meets the following requirements: the original form issued by the other jurisdiction must be in English or Arabic, otherwise it must be translated into English or Arabic and the translation approved in accordance with the law regulating translation in the UAE; the form must be properly completed and duly signed by the applicant (signed by the authorised signatory and stamped in the case of a juridical person); the request must cover the same 12-month period and jurisdiction as the requested Tax Residency Certificate; the application details and the documents provided must match (name, date, country, etc.); and the FTA section must be left empty for the FTA to complete and sign. Please note that an incorrectly submitted International Form will be disregarded and archived for FTA records and will not be returned to the applicant. Kindly also note that the International Form must be resubmitted within 30 business days; otherwise the application will be set as complete and a new application will be required.",
+     "ar": "يرجى العلم بأن النموذج الدولي («النموذج الخاص») الذي قدمتموه إلى الهيئة لاستكماله وختمه وتوقيعه قد تم رفضه لعدم استيفائه متطلبات النموذج الدولي. يرجى إعادة تقديم النموذج الخاص إلى الهيئة عبر شركة التوصيل أو بالتسليم الشخصي إلى الهيئة الاتحادية للضرائب، مركز خدمات الخاضعين للضريبة، الطابق بي 2، أبراج سنترال بارك للأعمال، مركز دبي المالي العالمي، دبي، الإمارات العربية المتحدة. يرجى التأكد من استيفاء النموذج الخاص للمتطلبات التالية: أن يكون النموذج الأصلي الصادر عن الدولة الأخرى باللغة الإنجليزية أو العربية، وإلا وجب ترجمته إلى الإنجليزية أو العربية واعتماد الترجمة وفقاً للقانون المنظم للترجمة في الدولة؛ وأن يكون النموذج مستوفىً بشكل صحيح وموقعاً حسب الأصول من مقدم الطلب (وموقعاً من المفوض بالتوقيع ومختوماً في حالة الشخص الاعتباري)؛ وأن يغطي الطلب فترة الاثني عشر شهراً نفسها والدولة نفسها الواردة في طلب شهادة الإقامة الضريبية؛ وأن تتطابق بيانات الطلب مع المستندات المقدمة (الاسم والتاريخ والدولة وغيرها)؛ وأن يُترك القسم المخصص للهيئة فارغاً لتقوم الهيئة بتعبئته وتوقيعه. ويرجى العلم بأن النموذج الدولي المقدم بشكل غير صحيح سيتم تجاهله وأرشفته في سجلات الهيئة ولن يُعاد إلى مقدم الطلب. كما يرجى العلم بأنه يجب إعادة تقديم النموذج الدولي خلال 30 يوم عمل، وإلا سيتم اعتبار الطلب مكتملاً وسيتعين تقديم طلب جديد.",
+     "cond": null,
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "special form",
+      "international form",
+      "SPL",
+      "rejected",
+      "incorrect form",
+      "resubmit",
+      "30 business days"
+     ]
+    }
+   ],
+   "note": {
+    "en": "Internal comment: “Notification has been sent to applicant, incorrect SPL has been received. Awaiting correct form.”",
+    "ar": "التعليق الداخلي: «تم إرسال إشعار إلى مقدم الطلب، تم استلام نموذج خاص غير صحيح. بانتظار النموذج الصحيح.»"
+   }
+  },
+  {
+   "id": "sf-02",
+   "s": "form",
+   "ss": "form-status",
+   "kind": "notice",
+   "en": "Please note that the International Form (“Special Form”) has not been submitted to the FTA for completion, stamping and signature. Kindly submit the Special Form to the FTA via courier or self-delivery to the Federal Tax Authority, Taxpayer Services Centre, Floor P2, Central Park Business Towers, DIFC, Dubai, UAE. Please make sure that the Special Form meets the following requirements: the original form issued by the other jurisdiction must be in English or Arabic, otherwise it must be translated into English or Arabic and the translation approved in accordance with the law regulating translation in the UAE; the form must be properly completed and duly signed by the applicant (signed by the authorised signatory and stamped in the case of a juridical person); the request must cover the same 12-month period and jurisdiction as the requested Tax Residency Certificate; the application details and the documents provided must match (name, date, country, etc.); and the FTA section must be left empty for the FTA to complete and sign. Please note that an incorrectly submitted International Form will be disregarded and archived for FTA records and will not be returned to the applicant. Kindly also note that the International Form must be submitted within 30 business days; otherwise the application will be set as complete and a new application will be required.",
+   "ar": "يرجى العلم بأن النموذج الدولي («النموذج الخاص») لم يُقدَّم إلى الهيئة لاستكماله وختمه وتوقيعه. يرجى تقديم النموذج الخاص إلى الهيئة عبر شركة التوصيل أو بالتسليم الشخصي إلى الهيئة الاتحادية للضرائب، مركز خدمات الخاضعين للضريبة، الطابق بي 2، أبراج سنترال بارك للأعمال، مركز دبي المالي العالمي، دبي، الإمارات العربية المتحدة. يرجى التأكد من استيفاء النموذج الخاص للمتطلبات التالية: أن يكون النموذج الأصلي الصادر عن الدولة الأخرى باللغة الإنجليزية أو العربية، وإلا وجب ترجمته إلى الإنجليزية أو العربية واعتماد الترجمة وفقاً للقانون المنظم للترجمة في الدولة؛ وأن يكون النموذج مستوفىً بشكل صحيح وموقعاً حسب الأصول من مقدم الطلب (وموقعاً من المفوض بالتوقيع ومختوماً في حالة الشخص الاعتباري)؛ وأن يغطي الطلب فترة الاثني عشر شهراً نفسها والدولة نفسها الواردة في طلب شهادة الإقامة الضريبية؛ وأن تتطابق بيانات الطلب مع المستندات المقدمة (الاسم والتاريخ والدولة وغيرها)؛ وأن يُترك القسم المخصص للهيئة فارغاً لتقوم الهيئة بتعبئته وتوقيعه. ويرجى العلم بأن النموذج الدولي المقدم بشكل غير صحيح سيتم تجاهله وأرشفته في سجلات الهيئة ولن يُعاد إلى مقدم الطلب. كما يرجى العلم بأنه يجب تقديم النموذج الدولي خلال 30 يوم عمل، وإلا سيتم اعتبار الطلب مكتملاً وسيتعين تقديم طلب جديد.",
+   "tags": [
+    "special form",
+    "international form",
+    "SPL",
+    "not submitted",
+    "30 business days"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that the International Form (“Special Form”) has not been submitted to the FTA for completion, stamping and signature. Kindly submit the Special Form to the FTA via courier or self-delivery to the Federal Tax Authority, Taxpayer Services Centre, Floor P2, Central Park Business Towers, DIFC, Dubai, UAE. Please make sure that the Special Form meets the following requirements: the original form issued by the other jurisdiction must be in English or Arabic, otherwise it must be translated into English or Arabic and the translation approved in accordance with the law regulating translation in the UAE; the form must be properly completed and duly signed by the applicant (signed by the authorised signatory and stamped in the case of a juridical person); the request must cover the same 12-month period and jurisdiction as the requested Tax Residency Certificate; the application details and the documents provided must match (name, date, country, etc.); and the FTA section must be left empty for the FTA to complete and sign. Please note that an incorrectly submitted International Form will be disregarded and archived for FTA records and will not be returned to the applicant. Kindly also note that the International Form must be submitted within 30 business days; otherwise the application will be set as complete and a new application will be required.",
+     "ar": "يرجى العلم بأن النموذج الدولي («النموذج الخاص») لم يُقدَّم إلى الهيئة لاستكماله وختمه وتوقيعه. يرجى تقديم النموذج الخاص إلى الهيئة عبر شركة التوصيل أو بالتسليم الشخصي إلى الهيئة الاتحادية للضرائب، مركز خدمات الخاضعين للضريبة، الطابق بي 2، أبراج سنترال بارك للأعمال، مركز دبي المالي العالمي، دبي، الإمارات العربية المتحدة. يرجى التأكد من استيفاء النموذج الخاص للمتطلبات التالية: أن يكون النموذج الأصلي الصادر عن الدولة الأخرى باللغة الإنجليزية أو العربية، وإلا وجب ترجمته إلى الإنجليزية أو العربية واعتماد الترجمة وفقاً للقانون المنظم للترجمة في الدولة؛ وأن يكون النموذج مستوفىً بشكل صحيح وموقعاً حسب الأصول من مقدم الطلب (وموقعاً من المفوض بالتوقيع ومختوماً في حالة الشخص الاعتباري)؛ وأن يغطي الطلب فترة الاثني عشر شهراً نفسها والدولة نفسها الواردة في طلب شهادة الإقامة الضريبية؛ وأن تتطابق بيانات الطلب مع المستندات المقدمة (الاسم والتاريخ والدولة وغيرها)؛ وأن يُترك القسم المخصص للهيئة فارغاً لتقوم الهيئة بتعبئته وتوقيعه. ويرجى العلم بأن النموذج الدولي المقدم بشكل غير صحيح سيتم تجاهله وأرشفته في سجلات الهيئة ولن يُعاد إلى مقدم الطلب. كما يرجى العلم بأنه يجب تقديم النموذج الدولي خلال 30 يوم عمل، وإلا سيتم اعتبار الطلب مكتملاً وسيتعين تقديم طلب جديد.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "special form",
+      "international form",
+      "SPL",
+      "not submitted",
+      "30 business days"
+     ]
+    }
+   ],
+   "note": {
+    "en": "Internal comment: “Notification has been sent to applicant, no SPL form submitted to FTA.”",
+    "ar": "التعليق الداخلي: «تم إرسال إشعار إلى مقدم الطلب، لم يُقدَّم نموذج خاص إلى الهيئة.»"
+   }
+  },
+  {
+   "id": "sf-03",
+   "s": "form",
+   "ss": "form-status",
+   "kind": "request",
+   "en": "Please note that the International Form (“Special Form”) attached to the application is not correct. Please make sure that the Special Form meets the following requirements: the original form issued by the other jurisdiction must be in English or Arabic, otherwise it must be translated into English or Arabic and the translation approved in accordance with the law regulating translation in the UAE; the form must be properly completed and duly signed by the applicant (signed by the authorised signatory and stamped in the case of a juridical person); the request must cover the same 12-month period and jurisdiction as the requested Tax Residency Certificate; the application details and the documents provided must match (name, date, country, etc.); and the FTA section must be left empty for the FTA to complete and sign.",
+   "ar": "يرجى العلم بأن النموذج الدولي («النموذج الخاص») المرفق بالطلب غير صحيح. يرجى التأكد من استيفاء النموذج الخاص للمتطلبات التالية: أن يكون النموذج الأصلي الصادر عن الدولة الأخرى باللغة الإنجليزية أو العربية، وإلا وجب ترجمته إلى الإنجليزية أو العربية واعتماد الترجمة وفقاً للقانون المنظم للترجمة في الدولة؛ وأن يكون النموذج مستوفىً بشكل صحيح وموقعاً حسب الأصول من مقدم الطلب (وموقعاً من المفوض بالتوقيع ومختوماً في حالة الشخص الاعتباري)؛ وأن يغطي الطلب فترة الاثني عشر شهراً نفسها والدولة نفسها الواردة في طلب شهادة الإقامة الضريبية؛ وأن تتطابق بيانات الطلب مع المستندات المقدمة (الاسم والتاريخ والدولة وغيرها)؛ وأن يُترك القسم المخصص للهيئة فارغاً لتقوم الهيئة بتعبئته وتوقيعه.",
+   "tags": [
+    "special form",
+    "wrong form",
+    "before L2",
+    "attached form"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that the International Form (“Special Form”) attached to the application is not correct. Please make sure that the Special Form meets the following requirements: the original form issued by the other jurisdiction must be in English or Arabic, otherwise it must be translated into English or Arabic and the translation approved in accordance with the law regulating translation in the UAE; the form must be properly completed and duly signed by the applicant (signed by the authorised signatory and stamped in the case of a juridical person); the request must cover the same 12-month period and jurisdiction as the requested Tax Residency Certificate; the application details and the documents provided must match (name, date, country, etc.); and the FTA section must be left empty for the FTA to complete and sign.",
+     "ar": "يرجى العلم بأن النموذج الدولي («النموذج الخاص») المرفق بالطلب غير صحيح. يرجى التأكد من استيفاء النموذج الخاص للمتطلبات التالية: أن يكون النموذج الأصلي الصادر عن الدولة الأخرى باللغة الإنجليزية أو العربية، وإلا وجب ترجمته إلى الإنجليزية أو العربية واعتماد الترجمة وفقاً للقانون المنظم للترجمة في الدولة؛ وأن يكون النموذج مستوفىً بشكل صحيح وموقعاً حسب الأصول من مقدم الطلب (وموقعاً من المفوض بالتوقيع ومختوماً في حالة الشخص الاعتباري)؛ وأن يغطي الطلب فترة الاثني عشر شهراً نفسها والدولة نفسها الواردة في طلب شهادة الإقامة الضريبية؛ وأن تتطابق بيانات الطلب مع المستندات المقدمة (الاسم والتاريخ والدولة وغيرها)؛ وأن يُترك القسم المخصص للهيئة فارغاً لتقوم الهيئة بتعبئته وتوقيعه.",
+     "cond": {
+      "en": "Form attached in the application is wrong — before L2 approval.",
+      "ar": "النموذج المرفق بالطلب غير صحيح — قبل موافقة المستوى الثاني."
+     },
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "special form",
+      "wrong form",
+      "before L2",
+      "attached form"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Form attached in the application is wrong — before L2 approval.",
+    "ar": "النموذج المرفق بالطلب غير صحيح — قبل موافقة المستوى الثاني."
+   }
+  },
+  {
+   "id": "sf-04",
+   "s": "form",
+   "ss": "form-copy",
+   "kind": "notice",
+   "en": "If you wish to obtain a copy of the International Form, kindly submit an “Additional Copy” request through the TRC dashboard, indicating whether you require a scanned copy or the original hard copy. For a scanned copy, ensure the form is clearly completed, signed and attached. For the original copy, send it by courier to the FTA office in Dubai, Floor 13 reception, or deliver it in person to the Taxpayer Services Centre on Floor P2. The FTA will review the request and respond within 10 working days.",
+   "ar": "إذا رغبتم في الحصول على نسخة من النموذج الدولي، يرجى تقديم طلب «نسخة إضافية» من خلال لوحة شهادة الإقامة الضريبية مع تحديد ما إذا كنتم تطلبون نسخة ممسوحة ضوئياً أو النسخة الأصلية الورقية. للنسخة الممسوحة ضوئياً، يرجى التأكد من تعبئة النموذج بوضوح وتوقيعه وإرفاقه. وللنسخة الأصلية، يرجى إرسالها عبر شركة التوصيل إلى مكتب الهيئة في دبي، استقبال الطابق 13، أو تسليمها شخصياً إلى مركز خدمات الخاضعين للضريبة في الطابق بي 2. وستقوم الهيئة بمراجعة الطلب والرد خلال 10 أيام عمل.",
+   "tags": [
+    "additional copy",
+    "scanned copy",
+    "original",
+    "courier",
+    "floor 13",
+    "10 working days"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-21T00:00:00Z",
+     "by": "admin",
+     "en": "If you wish to obtain a copy of the International Form, kindly submit an “Additional Copy” request through the TRC dashboard, indicating whether you require a scanned copy or the original hard copy. For a scanned copy, ensure the form is clearly completed, signed and attached. For the original copy, send it by courier to the FTA office in Dubai, Floor 13 reception, or deliver it in person to the Taxpayer Services Centre on Floor P2. The FTA will review the request and respond within 10 working days.",
+     "ar": "إذا رغبتم في الحصول على نسخة من النموذج الدولي، يرجى تقديم طلب «نسخة إضافية» من خلال لوحة شهادة الإقامة الضريبية مع تحديد ما إذا كنتم تطلبون نسخة ممسوحة ضوئياً أو النسخة الأصلية الورقية. للنسخة الممسوحة ضوئياً، يرجى التأكد من تعبئة النموذج بوضوح وتوقيعه وإرفاقه. وللنسخة الأصلية، يرجى إرسالها عبر شركة التوصيل إلى مكتب الهيئة في دبي، استقبال الطابق 13، أو تسليمها شخصياً إلى مركز خدمات الخاضعين للضريبة في الطابق بي 2. وستقوم الهيئة بمراجعة الطلب والرد خلال 10 أيام عمل.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "additional copy",
+      "scanned copy",
+      "original",
+      "courier",
+      "floor 13",
+      "10 working days"
+     ]
+    }
+   ]
+  }
+ ],
+ "reviewItems": [],
+ "placeholders": {
+  "date": {
+   "type": "date",
+   "en": "Date",
+   "ar": "التاريخ"
+  },
+  "year": {
+   "type": "text",
+   "en": "Selected year",
+   "ar": "السنة المختارة"
+  },
+  "country": {
+   "type": "text",
+   "en": "Treaty country",
+   "ar": "دولة الاتفاقية"
+  }
+ },
+ "synonyms": {
+  "moa": "memorandum of association",
+  "aoa": "articles of association",
+  "eid": "emirates id",
+  "id": "emirates id",
+  "tl": "trade license",
+  "licence": "license",
+  "poa": "power of attorney",
+  "coi": "certificate of incorporation",
+  "trn": "tin",
+  "jafza": "jebel ali free zone",
+  "dmcc": "dubai multi commodities centre",
+  "det": "dubai economy and tourism",
+  "ded": "department of economic development",
+  "difc": "certificate of incorporation",
+  "rakez": "ras al khaimah economic zone",
+  "rak": "ras al khaimah",
+  "dda": "dubai development authority",
+  "pcfc": "ports customs free zone",
+  "diez": "dubai integrated economic zones",
+  "shams": "sharjah media city",
+  "dacc": "dubai aviation city corporation",
+  "dcd": "department of community development",
+  "llc": "limited liability",
+  "pjsc": "public joint stock",
+  "mobile": "phone",
+  "number": "phone",
+  "incumbency": "offshore",
+  "shareholder": "owner",
+  "shareholders": "owners",
+  "deregister": "de-registering",
+  "dereg": "de-registering",
+  "reject": "rejection",
+  "هوية": "الهوية الاماراتية",
+  "رخصه": "رخصة",
+  "عقد": "عقد التأسيس",
+  "spl": "special form",
+  "slp": "special form",
+  "international form": "special form",
+  "icp": "entry and exit report",
+  "icа": "entry and exit report",
+  "movement": "entry and exit report",
+  "days": "presence",
+  "domiciled": "domicile",
+  "abode": "domicile",
+  "vital": "domicile",
+  "poem": "effective management",
+  "trc": "tax residency certificate",
+  "dtt": "treaty",
+  "dta": "treaty",
+  "india": "india",
+  "national": "UAE national",
+  "citizen": "UAE national",
+  "nationality": "UAE national",
+  "juridical": "legal",
+  "company": "legal",
+  "gov": "government",
+  "tenancy": "residence",
+  "ejari": "residence",
+  "salary": "employment",
+  "copy": "additional copy"
+ },
+ "releases": [
+  {
+   "version": "1.0.0",
+   "at": "2026-10-21",
+   "by": "Service Development Team",
+   "note": "First release of the Taxpayer Services file: TRC bank with 35 bilingual comments and 13 case scenarios built from the reviewed TRC Certificate Application Comments and the International Form notice."
+  }
+ ],
+ "scenarios": [
+  {
+   "id": "sc-183",
+   "en": "Natural person — present 183 days or more",
+   "ar": "شخص طبيعي — تواجد 183 يوماً أو أكثر",
+   "ids": [
+    "tn-01",
+    "tn-02"
+   ],
+   "svc": "tax-residency-certificate",
+   "basis": {
+    "en": "Return to applicant — missing documents",
+    "ar": "إعادة إلى مقدم الطلب — مستندات ناقصة"
+   },
+   "docs": [
+    {
+     "en": "Emirates ID number, expiry date and residence visa number — OR — passport details with the entry/exit report",
+     "ar": "رقم الهوية الإماراتية وتاريخ انتهائها ورقم تأشيرة الإقامة — أو — بيانات جواز السفر مع تقرير الدخول والخروج"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Count the days from the entry/exit report; an entry and exit on the same date counts as a day",
+     "ar": "احسب الأيام من تقرير الدخول والخروج؛ الدخول والخروج في اليوم نفسه يُحتسب يوماً"
+    }
+   ]
+  },
+  {
+   "id": "sc-90",
+   "en": "Natural person — present 90 to 182 days",
+   "ar": "شخص طبيعي — تواجد من 90 إلى 182 يوماً",
+   "ids": [
+    "tn-01",
+    "tn-02",
+    "tn-03",
+    "tn-04"
+   ],
+   "svc": "tax-residency-certificate",
+   "basis": {
+    "en": "Return to applicant — missing documents",
+    "ar": "إعادة إلى مقدم الطلب — مستندات ناقصة"
+   },
+   "docs": [
+    {
+     "en": "Emirates ID, visa and passport details with the entry/exit report",
+     "ar": "بيانات الهوية والتأشيرة وجواز السفر مع تقرير الدخول والخروج"
+    },
+    {
+     "en": "AND one of: proof of employment/business, or proof of permanent place of residence",
+     "ar": "وأحد الأمرين: إثبات العمل/النشاط التجاري، أو إثبات محل الإقامة الدائم"
+    }
+   ]
+  },
+  {
+   "id": "sc-below90",
+   "en": "Natural person — present fewer than 90 days",
+   "ar": "شخص طبيعي — تواجد أقل من 90 يوماً",
+   "ids": [
+    "tn-01",
+    "tn-02",
+    "tn-03",
+    "tn-04",
+    "tn-05",
+    "tn-07",
+    "tn-06"
+   ],
+   "svc": "tax-residency-certificate",
+   "basis": {
+    "en": "Return to applicant — missing documents",
+    "ar": "إعادة إلى مقدم الطلب — مستندات ناقصة"
+   },
+   "docs": [
+    {
+     "en": "Identity and presence details with the entry/exit report",
+     "ar": "بيانات الهوية والتواجد مع تقرير الدخول والخروج"
+    },
+    {
+     "en": "AND all of: employment/business, permanent residence, financial and personal interests, signed personal statement, further evidence of closest personal interests",
+     "ar": "وجميع ما يلي: العمل/النشاط، الإقامة الدائمة، المصالح المالية والشخصية، الإفادة الشخصية الموقعة، أدلة إضافية على أوثق المصالح الشخصية"
+    }
+   ]
+  },
+  {
+   "id": "sc-legal",
+   "en": "Juridical person — missing documents",
+   "ar": "شخص اعتباري — مستندات ناقصة",
+   "ids": [
+    "tl-01",
+    "tl-02",
+    "tl-03",
+    "tl-04",
+    "tl-05"
+   ],
+   "svc": "tax-residency-certificate",
+   "basis": {
+    "en": "Return to applicant — missing documents",
+    "ar": "إعادة إلى مقدم الطلب — مستندات ناقصة"
+   },
+   "docs": [
+    {
+     "en": "Licence and lease agreement; MOA; authorised signatory with proof of authorisation; proof of effective management and control (if applicable); certificate of incorporation",
+     "ar": "الرخصة وعقد الإيجار؛ عقد التأسيس؛ المفوض بالتوقيع مع إثبات التفويض؛ إثبات الإدارة والسيطرة الفعلية (إن انطبق)؛ شهادة التأسيس"
+    }
+   ]
+  },
+  {
+   "id": "sc-gov",
+   "en": "Government entity — missing documents",
+   "ar": "جهة حكومية — مستندات ناقصة",
+   "ids": [
+    "tg-01"
+   ],
+   "svc": "tax-residency-certificate",
+   "basis": {
+    "en": "Return to applicant — missing documents",
+    "ar": "إعادة إلى مقدم الطلب — مستندات ناقصة"
+   },
+   "docs": [
+    {
+     "en": "Official letter on government letterhead with ownership structure and percentages; Cabinet Decision naming the entity",
+     "ar": "خطاب رسمي على الورق الرسمي للجهة مع هيكل الملكية والنسب؛ قرار مجلس الوزراء الذي يحدد الجهة"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Not wholly owned by the government → reject and redirect to the Juridical Person service",
+     "ar": "غير مملوكة بالكامل للحكومة ← رفض وتوجيه إلى خدمة الشخص الاعتباري"
+    }
+   ]
+  },
+  {
+   "id": "sc-india",
+   "en": "India — financial year must be the calendar year",
+   "ar": "الهند — يجب أن تكون السنة المالية هي السنة الميلادية",
+   "ids": [
+    "tn-11",
+    "tn-12",
+    "tn-01"
+   ],
+   "svc": "tax-residency-certificate",
+   "basis": {
+    "en": "Ask to amend the selected period",
+    "ar": "طلب تعديل الفترة المختارة"
+   },
+   "checks": [
+    {
+     "en": "183+ days in the calendar year starting 1 January",
+     "ar": "183 يوماً فأكثر في السنة الميلادية التي تبدأ في 1 يناير"
+    },
+    {
+     "en": "Not amended or refused → use the India rejection",
+     "ar": "لم تُعدَّل الفترة أو رُفض التعديل ← استخدم رفض الهند"
+    }
+   ]
+  },
+  {
+   "id": "sc-domicile",
+   "en": "Domicile — request a personal statement",
+   "ar": "الموطن — طلب إفادة شخصية",
+   "ids": [
+    "tn-08",
+    "tn-09",
+    "tn-10"
+   ],
+   "svc": "tax-residency-certificate",
+   "basis": {
+    "en": "Return to applicant — domicile evidence",
+    "ar": "إعادة إلى مقدم الطلب — إثبات الموطن"
+   },
+   "docs": [
+    {
+     "en": "Signed personal statement covering the nine points, with supporting evidence",
+     "ar": "إفادة شخصية موقعة تغطي النقاط التسع مع المستندات الداعمة"
+    }
+   ],
+   "checks": [
+    {
+     "en": "Per H.E. the DG and the TPS Director (meeting of 19 June 2025): domicile applicants are treated as residents and follow the normal process",
+     "ar": "وفق توجيه سعادة المدير العام ومدير خدمات الخاضعين للضريبة (اجتماع 19 يونيو 2025): يُعامل مقدمو طلبات الموطن كمقيمين ويُتبع الإجراء المعتاد"
+    },
+    {
+     "en": "No statement or evidence → “domicile not evidenced” rejection; evidence reviewed but insufficient → “domicile not met” rejection",
+     "ar": "لا إفادة أو أدلة ← رفض «عدم إثبات الموطن»؛ أدلة غير كافية بعد المراجعة ← رفض «عدم استيفاء الموطن»"
+    }
+   ]
+  },
+  {
+   "id": "sc-nationals",
+   "en": "Treaties open to UAE nationals only",
+   "ar": "اتفاقيات مقتصرة على مواطني الدولة",
+   "ids": [
+    "rj-07",
+    "tn-08"
+   ],
+   "svc": "tax-residency-certificate",
+   "basis": {
+    "en": "Eligibility check before review",
+    "ar": "التحقق من الأهلية قبل المراجعة"
+   },
+   "checks": [
+    {
+     "en": "UAE nationals only: Azerbaijan, Brazil, Bulgaria, Burundi, Germany, Greece, Poland, Portugal, Serbia, Slovenia, Spain, Ireland (183+ days), Latvia, Netherlands, Rwanda",
+     "ar": "لمواطني الدولة فقط: أذربيجان، البرازيل، بلغاريا، بوروندي، ألمانيا، اليونان، بولندا، البرتغال، صربيا، سلوفينيا، إسبانيا، أيرلندا (183 يوماً فأكثر)، لاتفيا، هولندا، رواندا"
+    },
+    {
+     "en": "Non-national applicant → treaty rejection (country-specific comment where available, otherwise the generic one)",
+     "ar": "مقدم طلب غير مواطن ← رفض بموجب الاتفاقية (تعليق الدولة إن وجد، وإلا التعليق العام)"
+    },
+    {
+     "en": "Greece: per MoF, applications continue to be accepted — both states agreed to the continued application of the treaty after its termination date",
+     "ar": "اليونان: بحسب وزارة المالية، يستمر قبول الطلبات — اتفقت الدولتان على استمرار تطبيق الاتفاقية بعد تاريخ إنهائها"
+    },
+    {
+     "en": "Poland: applies from 1 January 2016 (calendar years 2016 onwards)",
+     "ar": "بولندا: يسري اعتباراً من 1 يناير 2016 (السنوات الميلادية 2016 فما بعد)"
+    }
+   ]
+  },
+  {
+   "id": "sc-special",
+   "en": "Treaties with special conditions",
+   "ar": "اتفاقيات بشروط خاصة",
+   "ids": [
+    "tn-05",
+    "tn-02"
+   ],
+   "svc": "tax-residency-certificate",
+   "basis": {
+    "en": "Eligibility check before review",
+    "ar": "التحقق من الأهلية قبل المراجعة"
+   },
+   "checks": [
+    {
+     "en": "France: requires financial interests within the UAE",
+     "ar": "فرنسا: تتطلب مصالح مالية داخل الدولة"
+    },
+    {
+     "en": "Czech Republic: declaration letter that the applicant is not resident of another country",
+     "ar": "التشيك: خطاب إقرار بأن مقدم الطلب ليس مقيماً في دولة أخرى"
+    },
+    {
+     "en": "Israel: 183 days or more in each of the tax year concerned and the previous tax year",
+     "ar": "إسرائيل: 183 يوماً فأكثر في كل من السنة الضريبية المعنية والسنة السابقة لها"
+    },
+    {
+     "en": "India: calendar year (January to December) and 183+ days",
+     "ar": "الهند: السنة الميلادية (يناير إلى ديسمبر) و183 يوماً فأكثر"
+    },
+    {
+     "en": "Ireland: UAE nationals, 183+ days",
+     "ar": "أيرلندا: مواطنو الدولة، 183 يوماً فأكثر"
+    }
+   ]
+  },
+  {
+   "id": "sc-partial",
+   "en": "Treaties reviewed on the partial basis (183+, 90–182, below 90)",
+   "ar": "اتفاقيات تُراجع على الأساس الجزئي (183+، 90–182، أقل من 90)",
+   "ids": [
+    "tn-07"
+   ],
+   "svc": "tax-residency-certificate",
+   "basis": {
+    "en": "Follow the day-count scenarios",
+    "ar": "اتبع سيناريوهات عدد الأيام"
+   },
+   "checks": [
+    {
+     "en": "Includes, among others: Austria, Belgium, China, Croatia, Cyprus, Czech Republic, Egypt, Hungary, Indonesia, Italy, Japan, Lebanon, Lithuania, Morocco, New Zealand, Pakistan, Saudi Arabia, South Africa, Switzerland, Thailand, Tunisia, Turkey, United Kingdom, Uruguay, Uzbekistan",
+     "ar": "تشمل، من بين دول أخرى: النمسا، بلجيكا، الصين، كرواتيا، قبرص، التشيك، مصر، المجر، إندونيسيا، إيطاليا، اليابان، لبنان، ليتوانيا، المغرب، نيوزيلندا، باكستان، السعودية، جنوب أفريقيا، سويسرا، تايلاند، تونس، تركيا، المملكة المتحدة، أوروغواي، أوزبكستان"
+    },
+    {
+     "en": "Domicile statement wording: domiciled, habitual abode or centre of vital interests",
+     "ar": "صيغة إفادة الموطن: الموطن أو الإقامة المعتادة أو مركز المصالح الحيوية"
+    }
+   ]
+  },
+  {
+   "id": "sc-wrong-service",
+   "en": "Application submitted under the wrong service",
+   "ar": "طلب مقدم ضمن الخدمة الخطأ",
+   "ids": [
+    "rj-09"
+   ],
+   "svc": "tax-residency-certificate",
+   "basis": {
+    "en": "Rejection",
+    "ar": "رفض"
+   },
+   "checks": [
+    {
+     "en": "Company TRN in a natural-person application → redirect to Juridical Person; natural TRN in a legal application → redirect to Natural Person; company applying as government but not wholly owned → redirect to Juridical Person",
+     "ar": "رقم تسجيل شركة في طلب شخص طبيعي ← توجيه إلى الشخص الاعتباري؛ رقم تسجيل شخص طبيعي في طلب شخص اعتباري ← توجيه إلى الشخص الطبيعي؛ شركة تتقدم كجهة حكومية وليست مملوكة بالكامل ← توجيه إلى الشخص الاعتباري"
+    }
+   ]
+  },
+  {
+   "id": "sc-spl-wrong",
+   "en": "International Form — incorrect form received",
+   "ar": "النموذج الدولي — استلام نموذج غير صحيح",
+   "ids": [
+    "sf-01"
+   ],
+   "svc": "tax-residency-certificate",
+   "basis": {
+    "en": "Notification to applicant",
+    "ar": "إشعار لمقدم الطلب"
+   },
+   "checks": [
+    {
+     "en": "Internal comment: notification sent, incorrect SPL received, awaiting correct form; 30 business days to resubmit",
+     "ar": "تعليق داخلي: تم إرسال الإشعار، استلام نموذج غير صحيح، بانتظار النموذج الصحيح؛ 30 يوم عمل لإعادة التقديم"
+    }
+   ]
+  },
+  {
+   "id": "sc-spl-missing",
+   "en": "International Form — not submitted",
+   "ar": "النموذج الدولي — لم يُقدَّم",
+   "ids": [
+    "sf-02"
+   ],
+   "svc": "tax-residency-certificate",
+   "basis": {
+    "en": "Notification to applicant",
+    "ar": "إشعار لمقدم الطلب"
+   },
+   "checks": [
+    {
+     "en": "Internal comment: notification sent, no SPL form submitted; 30 business days to submit",
+     "ar": "تعليق داخلي: تم إرسال الإشعار، لم يُقدَّم نموذج خاص؛ 30 يوم عمل للتقديم"
+    }
+   ]
+  }
+ ],
+ "conflicts": [
+  [
+   "rj-12",
+   "rj-13"
+  ],
+  [
+   "rj-09",
+   "rj-10"
+  ],
+  [
+   "tn-07",
+   "tn-08"
+  ],
+  [
+   "sf-01",
+   "sf-02"
+  ]
+ ],
+ "exclusiveSubsections": [
+  "treaty"
+ ],
+ "services": [
+  {
+   "id": "commercial-activities-certificate",
+   "en": "Commercial Activities Certificate",
+   "ar": "شهادة الأنشطة التجارية"
+  },
+  {
+   "id": "tax-clearance-certificate",
+   "en": "Tax Clearance Certificate",
+   "ar": "شهادة براءة الذمة الضريبية"
+  },
+  {
+   "id": "tax-residency-certificate",
+   "en": "Tax Residency Certificate (TRC)",
+   "ar": "شهادة الإقامة الضريبية"
+  }
+ ],
+ "selftest": {
+  "demo": [
+   "tn-01",
+   "tn-02",
+   "tn-04"
+  ],
+  "total": 35,
+  "services": 3,
+  "mainSvc": "tax-residency-certificate",
+  "counts": {
+   "identity": 3,
+   "legal-docs": 5,
+   "treaty": 7,
+   "form-status": 3
+  },
+  "search": [
+   {
+    "q": "entry exit report",
+    "id": "tn-02",
+    "first": true
+   },
+   {
+    "q": "تقرير الدخول",
+    "id": "tn-02",
+    "first": true
+   },
+   {
+    "q": "special form",
+    "id": "sf-01"
+   },
+   {
+    "q": "spl",
+    "id": "sf-01"
+   },
+   {
+    "q": "moa",
+    "id": "tl-02"
+   },
+   {
+    "q": "india",
+    "id": "rj-06"
+   },
+   {
+    "q": "domicle",
+    "id": "tn-08"
+   },
+   {
+    "q": "الموطن",
+    "id": "tn-08"
+   }
+  ],
+  "compose": [
+   "tn-01",
+   "tn-02"
+  ],
+  "exclusive": [
+   "rj-01",
+   "rj-02"
+  ]
+ }
+}
