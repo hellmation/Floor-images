@@ -1,5 +1,5 @@
 {
- "version": "1.1.0",
+ "version": "1.2.0",
  "publishedAt": "2026-10-27",
  "appName": {
   "en": "Mudawwana",
@@ -272,6 +272,86 @@
      "id": "hb-supply",
      "en": "Contractor Compliance",
      "ar": "التزام المقاول"
+    }
+   ]
+  },
+  {
+   "id": "rf-summary",
+   "en": "Output / Input Summary",
+   "ar": "ملخص المخرجات / المدخلات",
+   "svc": "vat-refund-excess",
+   "subsections": [
+    {
+     "id": "rf-sum-missing",
+     "en": "Summary & Invoices Missing",
+     "ar": "الملخص والفواتير الناقصة"
+    },
+    {
+     "id": "rf-sum-incomplete",
+     "en": "Summary Incomplete",
+     "ar": "ملخص غير مكتمل"
+    }
+   ]
+  },
+  {
+   "id": "rf-bank",
+   "en": "Bank Details",
+   "ar": "البيانات البنكية",
+   "svc": "vat-refund-excess",
+   "subsections": [
+    {
+     "id": "rf-iban",
+     "en": "IBAN Validation Letter",
+     "ar": "خطاب التحقق من الآيبان"
+    }
+   ]
+  },
+  {
+   "id": "rf-vd",
+   "en": "Voluntary Disclosure",
+   "ar": "الإفصاح الطوعي",
+   "svc": "vat-refund-excess",
+   "subsections": [
+    {
+     "id": "rf-vd-return",
+     "en": "Return Needs Correction",
+     "ar": "الإقرار يحتاج إلى تصحيح"
+    },
+    {
+     "id": "rf-vd-status",
+     "en": "Disclosure Status",
+     "ar": "حالة الإفصاح"
+    },
+    {
+     "id": "rf-vd-letter",
+     "en": "Disclosure Letter",
+     "ar": "خطاب الإفصاح"
+    }
+   ]
+  },
+  {
+   "id": "rf-input",
+   "en": "Input Tax Eligibility",
+   "ar": "أهلية ضريبة المدخلات",
+   "svc": "vat-refund-excess",
+   "subsections": [
+    {
+     "id": "rf-insurance",
+     "en": "Health Insurance",
+     "ar": "التأمين الصحي"
+    }
+   ]
+  },
+  {
+   "id": "rf-internal",
+   "en": "Internal Notes",
+   "ar": "ملاحظات داخلية",
+   "svc": "vat-refund-excess",
+   "subsections": [
+    {
+     "id": "rf-int-notes",
+     "en": "Reviewer Notes",
+     "ar": "ملاحظات المراجع"
     }
    ]
   }
@@ -3043,6 +3123,604 @@
     "en": "Added by the Service Development Team — not in the original comment sheet; please confirm with the refund team.",
     "ar": "أضافه فريق تطوير الخدمات — غير وارد في جدول التعليقات الأصلي؛ يرجى التأكيد مع فريق الاسترداد."
    }
+  },
+  {
+   "id": "rf-01",
+   "s": "rf-summary",
+   "ss": "rf-sum-missing",
+   "kind": "attachment",
+   "en": "Kindly submit the output/input summary for the period {{periodFrom}} to {{periodTo}}. Please download the new format of the summary from this form (VAT311), under the additional documents field, and ensure that the documents listed in the summary are attached.",
+   "ar": "يرجى تقديم ملخص المخرجات/المدخلات عن الفترة من {{periodFrom}} إلى {{periodTo}}. يرجى تنزيل النموذج الجديد للملخص من هذا الطلب (VAT311) ضمن حقل المستندات الإضافية، والتأكد من إرفاق المستندات المذكورة في الملخص.",
+   "tags": [
+    "summary",
+    "output input summary",
+    "VAT311",
+    "missing",
+    "template"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly submit the output/input summary for the period {{periodFrom}} to {{periodTo}}. Please download the new format of the summary from this form (VAT311), under the additional documents field, and ensure that the documents listed in the summary are attached.",
+     "ar": "يرجى تقديم ملخص المخرجات/المدخلات عن الفترة من {{periodFrom}} إلى {{periodTo}}. يرجى تنزيل النموذج الجديد للملخص من هذا الطلب (VAT311) ضمن حقل المستندات الإضافية، والتأكد من إرفاق المستندات المذكورة في الملخص.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "summary",
+      "output input summary",
+      "VAT311",
+      "missing",
+      "template"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Output/input summary for the refund period (new format)",
+    "ar": "ملخص المخرجات/المدخلات عن فترة الاسترداد (النموذج الجديد)"
+   }
+  },
+  {
+   "id": "rf-02",
+   "s": "rf-summary",
+   "ss": "rf-sum-missing",
+   "kind": "attachment",
+   "en": "Kindly attach the five highest-value invoices for each of the following: standard-rated sales (box 1); zero-rated sales (box 4), together with the supporting documents (invoice, customs declaration and proof of exit); and standard-rated expenses (box 9).",
+   "ar": "يرجى إرفاق أعلى خمس فواتير من حيث القيمة لكل مما يلي: المبيعات الخاضعة للنسبة الأساسية (الخانة 1)؛ والمبيعات الخاضعة لنسبة الصفر (الخانة 4) مع المستندات الداعمة (الفاتورة والبيان الجمركي وإثبات الخروج)؛ والمصروفات الخاضعة للنسبة الأساسية (الخانة 9).",
+   "tags": [
+    "invoices",
+    "five highest",
+    "box 1",
+    "box 4",
+    "box 9",
+    "customs declaration",
+    "exit proof"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach the five highest-value invoices for each of the following: standard-rated sales (box 1); zero-rated sales (box 4), together with the supporting documents (invoice, customs declaration and proof of exit); and standard-rated expenses (box 9).",
+     "ar": "يرجى إرفاق أعلى خمس فواتير من حيث القيمة لكل مما يلي: المبيعات الخاضعة للنسبة الأساسية (الخانة 1)؛ والمبيعات الخاضعة لنسبة الصفر (الخانة 4) مع المستندات الداعمة (الفاتورة والبيان الجمركي وإثبات الخروج)؛ والمصروفات الخاضعة للنسبة الأساسية (الخانة 9).",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "invoices",
+      "five highest",
+      "box 1",
+      "box 4",
+      "box 9",
+      "customs declaration",
+      "exit proof"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Five highest invoices for boxes 1, 4 and 9 with supporting documents",
+    "ar": "أعلى خمس فواتير للخانات 1 و4 و9 مع المستندات الداعمة"
+   }
+  },
+  {
+   "id": "rf-03",
+   "s": "rf-summary",
+   "ss": "rf-sum-incomplete",
+   "kind": "request",
+   "en": "The total transactions in your output/input summary do not match the total amount declared in your return. Kindly complete the summary with all the transactions of the related return; you may insert additional rows to include all of your transactions. Please note that the refund request will be rejected if the totals do not match your declared return.",
+   "ar": "إجمالي المعاملات في ملخص المخرجات/المدخلات لا يطابق إجمالي المبلغ المصرّح به في إقراركم. يرجى تعبئة الملخص بجميع معاملات الإقرار المعني، ويمكنكم إضافة صفوف لإدراج جميع معاملاتكم. ويرجى العلم بأن طلب الاسترداد سيُرفض إذا لم تتطابق الإجماليات مع الإقرار المصرّح به.",
+   "tags": [
+    "summary",
+    "totals mismatch",
+    "all transactions",
+    "five transactions",
+    "rows"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "The total transactions in your output/input summary do not match the total amount declared in your return. Kindly complete the summary with all the transactions of the related return; you may insert additional rows to include all of your transactions. Please note that the refund request will be rejected if the totals do not match your declared return.",
+     "ar": "إجمالي المعاملات في ملخص المخرجات/المدخلات لا يطابق إجمالي المبلغ المصرّح به في إقراركم. يرجى تعبئة الملخص بجميع معاملات الإقرار المعني، ويمكنكم إضافة صفوف لإدراج جميع معاملاتكم. ويرجى العلم بأن طلب الاسترداد سيُرفض إذا لم تتطابق الإجماليات مع الإقرار المصرّح به.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "summary",
+      "totals mismatch",
+      "all transactions",
+      "five transactions",
+      "rows"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rf-04",
+   "s": "rf-summary",
+   "ss": "rf-sum-missing",
+   "kind": "notice",
+   "en": "Please note that the refund request will be rejected if the requested documents are not received within five (5) working days.",
+   "ar": "يرجى العلم بأن طلب الاسترداد سيُرفض في حال عدم استلام المستندات المطلوبة خلال خمسة (5) أيام عمل.",
+   "tags": [
+    "5 working days",
+    "deadline",
+    "rejected",
+    "reply"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that the refund request will be rejected if the requested documents are not received within five (5) working days.",
+     "ar": "يرجى العلم بأن طلب الاسترداد سيُرفض في حال عدم استلام المستندات المطلوبة خلال خمسة (5) أيام عمل.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "5 working days",
+      "deadline",
+      "rejected",
+      "reply"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rf-05",
+   "s": "rf-bank",
+   "ss": "rf-iban",
+   "kind": "attachment",
+   "en": "As your bank account is not valid in the Central Bank system, kindly attach an updated IBAN validation letter from your bank. The beneficiary name must match the legal name of the registrant and the IBAN must match the bank details registered in the e-Services. Please upload the letter under the additional documents field in this form.",
+   "ar": "نظراً لأن حسابكم البنكي غير صالح في نظام المصرف المركزي، يرجى إرفاق خطاب محدّث من البنك للتحقق من رقم الحساب المصرفي الدولي (الآيبان). ويجب أن يطابق اسم المستفيد الاسم القانوني للمسجَّل، وأن يطابق رقم الآيبان البيانات البنكية المسجلة في الخدمات الإلكترونية. يرجى تحميل الخطاب ضمن حقل المستندات الإضافية في هذا الطلب.",
+   "tags": [
+    "IBAN",
+    "bank letter",
+    "central bank",
+    "invalid account",
+    "beneficiary name"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "As your bank account is not valid in the Central Bank system, kindly attach an updated IBAN validation letter from your bank. The beneficiary name must match the legal name of the registrant and the IBAN must match the bank details registered in the e-Services. Please upload the letter under the additional documents field in this form.",
+     "ar": "نظراً لأن حسابكم البنكي غير صالح في نظام المصرف المركزي، يرجى إرفاق خطاب محدّث من البنك للتحقق من رقم الحساب المصرفي الدولي (الآيبان). ويجب أن يطابق اسم المستفيد الاسم القانوني للمسجَّل، وأن يطابق رقم الآيبان البيانات البنكية المسجلة في الخدمات الإلكترونية. يرجى تحميل الخطاب ضمن حقل المستندات الإضافية في هذا الطلب.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "IBAN",
+      "bank letter",
+      "central bank",
+      "invalid account",
+      "beneficiary name"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Updated IBAN validation letter from the bank",
+    "ar": "خطاب محدّث من البنك للتحقق من رقم الآيبان"
+   }
+  },
+  {
+   "id": "rf-06",
+   "s": "rf-bank",
+   "ss": "rf-iban",
+   "kind": "request",
+   "en": "The attached IBAN validation letter is not valid: the beneficiary name must match the legal name of the registrant and the IBAN must match the bank details registered in the e-Services. Please upload a valid letter under the additional documents field in this form.",
+   "ar": "خطاب التحقق من رقم الآيبان المرفق غير صالح: يجب أن يطابق اسم المستفيد الاسم القانوني للمسجَّل، وأن يطابق رقم الآيبان البيانات البنكية المسجلة في الخدمات الإلكترونية. يرجى تحميل خطاب صالح ضمن حقل المستندات الإضافية في هذا الطلب.",
+   "tags": [
+    "IBAN",
+    "bank letter",
+    "wrong letter",
+    "beneficiary name",
+    "mismatch"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "The attached IBAN validation letter is not valid: the beneficiary name must match the legal name of the registrant and the IBAN must match the bank details registered in the e-Services. Please upload a valid letter under the additional documents field in this form.",
+     "ar": "خطاب التحقق من رقم الآيبان المرفق غير صالح: يجب أن يطابق اسم المستفيد الاسم القانوني للمسجَّل، وأن يطابق رقم الآيبان البيانات البنكية المسجلة في الخدمات الإلكترونية. يرجى تحميل خطاب صالح ضمن حقل المستندات الإضافية في هذا الطلب.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "IBAN",
+      "bank letter",
+      "wrong letter",
+      "beneficiary name",
+      "mismatch"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rf-07",
+   "s": "rf-vd",
+   "ss": "rf-vd-status",
+   "kind": "notice",
+   "en": "Kindly resubmit this refund form (VAT311) only after the Federal Tax Authority (FTA) has acknowledged your voluntary disclosure.",
+   "ar": "يرجى إعادة تقديم طلب الاسترداد هذا (VAT311) فقط بعد اعتماد الهيئة لإفصاحكم الطوعي.",
+   "tags": [
+    "voluntary disclosure",
+    "VD",
+    "not approved",
+    "resubmit after"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly resubmit this refund form (VAT311) only after the FTA has acknowledged your voluntary disclosure.",
+     "ar": "يرجى إعادة تقديم طلب الاسترداد هذا (VAT311) فقط بعد اعتماد الهيئة لإفصاحكم الطوعي.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "voluntary disclosure",
+      "VD",
+      "not approved",
+      "resubmit after"
+     ]
+    }
+   ],
+   "note": {
+    "en": "The refund reviewer may approve voluntary disclosures only when the amount is under AED 10,000 and the taxpayer is claiming less; all others go to the Audit team.",
+    "ar": "يمكن لمراجع الاسترداد اعتماد الإفصاح الطوعي فقط عندما يكون المبلغ أقل من 10,000 درهم ويطالب الخاضع للضريبة بمبلغ أقل؛ وتُحال بقية الحالات إلى فريق التدقيق."
+   }
+  },
+  {
+   "id": "rf-08",
+   "s": "rf-vd",
+   "ss": "rf-vd-return",
+   "kind": "request",
+   "en": "There is a potential error in your filed return. Kindly review your submitted return for the period {{period}} and submit a voluntary disclosure if needed. Please note that this refund form (VAT311) should be resubmitted after the voluntary disclosure has been submitted. You may refer to the Voluntary Disclosure guide at: https://www.tax.gov.ae/en/vat/guides-listing",
+   "ar": "يوجد خطأ محتمل في الإقرار المقدم. يرجى مراجعة الإقرار المقدم عن الفترة {{period}} وتقديم إفصاح طوعي عند الحاجة. ويرجى العلم بأنه يجب إعادة تقديم طلب الاسترداد هذا (VAT311) بعد تقديم الإفصاح الطوعي. يمكنكم الاطلاع على دليل الإفصاح الطوعي على الرابط: https://www.tax.gov.ae/en/vat/guides-listing",
+   "tags": [
+    "voluntary disclosure",
+    "incorrect return",
+    "potential mistake",
+    "review return"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "There is a potential error in your filed return. Kindly review your submitted return for the period {{period}} and submit a voluntary disclosure if needed. Please note that this refund form (VAT311) should be resubmitted after the voluntary disclosure has been submitted. You may refer to the Voluntary Disclosure guide at: https://www.tax.gov.ae/en/vat/guides-listing",
+     "ar": "يوجد خطأ محتمل في الإقرار المقدم. يرجى مراجعة الإقرار المقدم عن الفترة {{period}} وتقديم إفصاح طوعي عند الحاجة. ويرجى العلم بأنه يجب إعادة تقديم طلب الاسترداد هذا (VAT311) بعد تقديم الإفصاح الطوعي. يمكنكم الاطلاع على دليل الإفصاح الطوعي على الرابط: https://www.tax.gov.ae/en/vat/guides-listing",
+     "cond": {
+      "en": "Option 1 — incorrect return.",
+      "ar": "الخيار 1 — إقرار غير صحيح."
+     },
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "voluntary disclosure",
+      "incorrect return",
+      "potential mistake",
+      "review return"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Option 1 — incorrect return.",
+    "ar": "الخيار 1 — إقرار غير صحيح."
+   }
+  },
+  {
+   "id": "rf-09",
+   "s": "rf-vd",
+   "ss": "rf-vd-return",
+   "kind": "request",
+   "en": "Your return appears to have been filed inaccurately, as the Value Added Tax (VAT) on the total amount in box 1 (VAT on outputs) does not equal 5%. Please review your return and submit a voluntary disclosure to correct the error, if needed. You may refer to the Voluntary Disclosure guide at: https://www.tax.gov.ae/en/vat/guides-listing",
+   "ar": "يبدو أن إقراركم قد قُدّم بشكل غير دقيق، حيث إن الضريبة على إجمالي المبلغ في الخانة 1 (الضريبة على المخرجات) لا تساوي 5%. يرجى مراجعة إقراركم وتقديم إفصاح طوعي لتصحيح الخطأ عند الحاجة. يمكنكم الاطلاع على دليل الإفصاح الطوعي على الرابط: https://www.tax.gov.ae/en/vat/guides-listing",
+   "tags": [
+    "voluntary disclosure",
+    "incorrect output",
+    "box 1",
+    "5%"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Your return appears to have been filed inaccurately, as the VAT on the total amount in box 1 (VAT on outputs) does not equal 5%. Please review your return and submit a voluntary disclosure to correct the error, if needed. You may refer to the Voluntary Disclosure guide at: https://www.tax.gov.ae/en/vat/guides-listing",
+     "ar": "يبدو أن إقراركم قد قُدّم بشكل غير دقيق، حيث إن الضريبة على إجمالي المبلغ في الخانة 1 (الضريبة على المخرجات) لا تساوي 5%. يرجى مراجعة إقراركم وتقديم إفصاح طوعي لتصحيح الخطأ عند الحاجة. يمكنكم الاطلاع على دليل الإفصاح الطوعي على الرابط: https://www.tax.gov.ae/en/vat/guides-listing",
+     "cond": {
+      "en": "Option 2 — incorrect output.",
+      "ar": "الخيار 2 — مخرجات غير صحيحة."
+     },
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "voluntary disclosure",
+      "incorrect output",
+      "box 1",
+      "5%"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Option 2 — incorrect output.",
+    "ar": "الخيار 2 — مخرجات غير صحيحة."
+   }
+  },
+  {
+   "id": "rf-10",
+   "s": "rf-vd",
+   "ss": "rf-vd-return",
+   "kind": "request",
+   "en": "Your return appears to have been filed inaccurately, as the Value Added Tax (VAT) reported in boxes 3, 6 and 7 (outputs) is not equal to or less than the amount in box 10 (inputs). Please review your return and submit a voluntary disclosure to correct the error, if needed. You may refer to the Voluntary Disclosure guide at: https://www.tax.gov.ae/en/vat/guides-listing",
+   "ar": "يبدو أن إقراركم قد قُدّم بشكل غير دقيق، حيث إن الضريبة المصرّح بها في الخانات 3 و6 و7 (المخرجات) لا تساوي أو تقل عن المبلغ في الخانة 10 (المدخلات). يرجى مراجعة إقراركم وتقديم إفصاح طوعي لتصحيح الخطأ عند الحاجة. يمكنكم الاطلاع على دليل الإفصاح الطوعي على الرابط: https://www.tax.gov.ae/en/vat/guides-listing",
+   "tags": [
+    "voluntary disclosure",
+    "reverse charge",
+    "box 3",
+    "box 6",
+    "box 7",
+    "box 10"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Your return appears to have been filed inaccurately, as the VAT reported in boxes 3, 6 and 7 (outputs) is not equal to or less than the amount in box 10 (inputs). Please review your return and submit a voluntary disclosure to correct the error, if needed. You may refer to the Voluntary Disclosure guide at: https://www.tax.gov.ae/en/vat/guides-listing",
+     "ar": "يبدو أن إقراركم قد قُدّم بشكل غير دقيق، حيث إن الضريبة المصرّح بها في الخانات 3 و6 و7 (المخرجات) لا تساوي أو تقل عن المبلغ في الخانة 10 (المدخلات). يرجى مراجعة إقراركم وتقديم إفصاح طوعي لتصحيح الخطأ عند الحاجة. يمكنكم الاطلاع على دليل الإفصاح الطوعي على الرابط: https://www.tax.gov.ae/en/vat/guides-listing",
+     "cond": {
+      "en": "Option 4 — incorrect reverse charge.",
+      "ar": "الخيار 4 — احتساب عكسي غير صحيح."
+     },
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "voluntary disclosure",
+      "reverse charge",
+      "box 3",
+      "box 6",
+      "box 7",
+      "box 10"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Option 4 — incorrect reverse charge.",
+    "ar": "الخيار 4 — احتساب عكسي غير صحيح."
+   }
+  },
+  {
+   "id": "rf-11",
+   "s": "rf-vd",
+   "ss": "rf-vd-return",
+   "kind": "request",
+   "en": "There is a potential error in your filed return, as the adjustment fields have been used. Kindly review your submitted return for the period {{period}} and submit a voluntary disclosure if needed. Please note that this refund form (VAT311) should be resubmitted after the voluntary disclosure has been submitted. You may refer to the Voluntary Disclosure guide at: https://www.tax.gov.ae/en/vat/guides-listing",
+   "ar": "يوجد خطأ محتمل في الإقرار المقدم، حيث تم استخدام حقول التعديل. يرجى مراجعة الإقرار المقدم عن الفترة {{period}} وتقديم إفصاح طوعي عند الحاجة. ويرجى العلم بأنه يجب إعادة تقديم طلب الاسترداد هذا (VAT311) بعد تقديم الإفصاح الطوعي. يمكنكم الاطلاع على دليل الإفصاح الطوعي على الرابط: https://www.tax.gov.ae/en/vat/guides-listing",
+   "tags": [
+    "voluntary disclosure",
+    "adjustment fields",
+    "adjustment"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "There is a potential error in your filed return, as the adjustment fields have been used. Kindly review your submitted return for the period {{period}} and submit a voluntary disclosure if needed. Please note that this refund form (VAT311) should be resubmitted after the voluntary disclosure has been submitted. You may refer to the Voluntary Disclosure guide at: https://www.tax.gov.ae/en/vat/guides-listing",
+     "ar": "يوجد خطأ محتمل في الإقرار المقدم، حيث تم استخدام حقول التعديل. يرجى مراجعة الإقرار المقدم عن الفترة {{period}} وتقديم إفصاح طوعي عند الحاجة. ويرجى العلم بأنه يجب إعادة تقديم طلب الاسترداد هذا (VAT311) بعد تقديم الإفصاح الطوعي. يمكنكم الاطلاع على دليل الإفصاح الطوعي على الرابط: https://www.tax.gov.ae/en/vat/guides-listing",
+     "cond": {
+      "en": "Option 5 — incorrect adjustment.",
+      "ar": "الخيار 5 — تعديل غير صحيح."
+     },
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "voluntary disclosure",
+      "adjustment fields",
+      "adjustment"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Option 5 — incorrect adjustment.",
+    "ar": "الخيار 5 — تعديل غير صحيح."
+   }
+  },
+  {
+   "id": "rf-12",
+   "s": "rf-vd",
+   "ss": "rf-vd-letter",
+   "kind": "attachment",
+   "en": "Please upload a letter providing the background facts and a detailed description of the error(s) disclosed in the voluntary disclosure form. The letter should also state the reasons for the voluntary disclosure and its impact on the relevant sections and boxes of the tax return; it will assist the Federal Tax Authority (FTA) in acknowledging your request. Kindly note that the letter must be signed and stamped by the authorised signatory.",
+   "ar": "يرجى تحميل خطاب يوضح الوقائع الأساسية ووصفاً تفصيلياً للخطأ (الأخطاء) المفصح عنها في نموذج الإفصاح الطوعي. كما يجب أن يبيّن الخطاب أسباب الإفصاح الطوعي وأثره على الأقسام والخانات ذات الصلة في الإقرار الضريبي، إذ سيساعد الهيئة في اعتماد طلبكم. ويرجى العلم بأنه يجب أن يكون الخطاب موقعاً ومختوماً من المفوض بالتوقيع.",
+   "tags": [
+    "voluntary disclosure",
+    "letter",
+    "logo",
+    "reason",
+    "signature",
+    "stamp"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Please upload a letter providing the background facts and a detailed description of the error(s) disclosed in the voluntary disclosure form. The letter should also state the reasons for the voluntary disclosure and its impact on the relevant sections and boxes of the tax return; it will assist the FTA in acknowledging your request. Kindly note that the letter must be signed and stamped by the authorised signatory.",
+     "ar": "يرجى تحميل خطاب يوضح الوقائع الأساسية ووصفاً تفصيلياً للخطأ (الأخطاء) المفصح عنها في نموذج الإفصاح الطوعي. كما يجب أن يبيّن الخطاب أسباب الإفصاح الطوعي وأثره على الأقسام والخانات ذات الصلة في الإقرار الضريبي، إذ سيساعد الهيئة في اعتماد طلبكم. ويرجى العلم بأنه يجب أن يكون الخطاب موقعاً ومختوماً من المفوض بالتوقيع.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "voluntary disclosure",
+      "letter",
+      "logo",
+      "reason",
+      "signature",
+      "stamp"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Voluntary disclosure explanatory letter, signed and stamped",
+    "ar": "الخطاب التوضيحي للإفصاح الطوعي، موقعاً ومختوماً"
+   }
+  },
+  {
+   "id": "rf-13",
+   "s": "rf-input",
+   "ss": "rf-insurance",
+   "kind": "request",
+   "en": "Please confirm that the Value Added Tax (VAT) recovered on your health insurance expenses relates only to your employees, their spouses and up to three children. If not, kindly submit a voluntary disclosure and exclude the amount.",
+   "ar": "يرجى تأكيد أن ضريبة القيمة المضافة المستردة عن مصروفات التأمين الصحي تخص الموظفين وأزواجهم وحتى ثلاثة أبناء فقط. وإن لم يكن الأمر كذلك، يرجى تقديم إفصاح طوعي واستبعاد المبلغ.",
+   "tags": [
+    "insurance",
+    "health insurance",
+    "abu dhabi",
+    "spouse",
+    "children",
+    "input tax"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Please confirm that the VAT recovered on your health insurance expenses relates only to your employees, their spouses and up to three children. If not, kindly submit a voluntary disclosure and exclude the amount.",
+     "ar": "يرجى تأكيد أن ضريبة القيمة المضافة المستردة عن مصروفات التأمين الصحي تخص الموظفين وأزواجهم وحتى ثلاثة أبناء فقط. وإن لم يكن الأمر كذلك، يرجى تقديم إفصاح طوعي واستبعاد المبلغ.",
+     "cond": {
+      "en": "Company based in Abu Dhabi.",
+      "ar": "الشركة مقرها أبوظبي."
+     },
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "insurance",
+      "health insurance",
+      "abu dhabi",
+      "spouse",
+      "children",
+      "input tax"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Company based in Abu Dhabi.",
+    "ar": "الشركة مقرها أبوظبي."
+   }
+  },
+  {
+   "id": "rf-14",
+   "s": "rf-input",
+   "ss": "rf-insurance",
+   "kind": "request",
+   "en": "Please confirm that the Value Added Tax (VAT) recovered on your health insurance expenses relates only to the company’s employees. If not, kindly submit a voluntary disclosure and exclude the amount.",
+   "ar": "يرجى تأكيد أن ضريبة القيمة المضافة المستردة عن مصروفات التأمين الصحي تخص موظفي الشركة فقط. وإن لم يكن الأمر كذلك، يرجى تقديم إفصاح طوعي واستبعاد المبلغ.",
+   "tags": [
+    "insurance",
+    "health insurance",
+    "other emirates",
+    "employees only",
+    "input tax"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Please confirm that the VAT recovered on your health insurance expenses relates only to the company’s employees. If not, kindly submit a voluntary disclosure and exclude the amount.",
+     "ar": "يرجى تأكيد أن ضريبة القيمة المضافة المستردة عن مصروفات التأمين الصحي تخص موظفي الشركة فقط. وإن لم يكن الأمر كذلك، يرجى تقديم إفصاح طوعي واستبعاد المبلغ.",
+     "cond": {
+      "en": "Company based in an emirate other than Abu Dhabi.",
+      "ar": "الشركة مقرها في إمارة أخرى غير أبوظبي."
+     },
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "insurance",
+      "health insurance",
+      "other emirates",
+      "employees only",
+      "input tax"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Company based in an emirate other than Abu Dhabi.",
+    "ar": "الشركة مقرها في إمارة أخرى غير أبوظبي."
+   }
+  },
+  {
+   "id": "rf-i1",
+   "s": "rf-internal",
+   "ss": "rf-int-notes",
+   "kind": "internal",
+   "en": "Internal: a voluntary disclosure may be approved by the refund reviewer only when the amount is under AED 10,000 and the taxpayer is asking for less; all other voluntary disclosures are handled by the Audit team before the refund (VAT311) can be processed.",
+   "ar": "داخلي: يمكن لمراجع الاسترداد اعتماد الإفصاح الطوعي فقط عندما يكون المبلغ أقل من 10,000 درهم ويطالب الخاضع للضريبة بمبلغ أقل؛ وتُعالج بقية الإفصاحات الطوعية من قبل فريق التدقيق قبل معالجة طلب الاسترداد (VAT311).",
+   "tags": [
+    "internal",
+    "voluntary disclosure",
+    "10,000",
+    "audit team"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Internal: a voluntary disclosure may be approved by the refund reviewer only when the amount is under AED 10,000 and the taxpayer is asking for less; all other voluntary disclosures are handled by the Audit team before the refund (VAT311) can be processed.",
+     "ar": "داخلي: يمكن لمراجع الاسترداد اعتماد الإفصاح الطوعي فقط عندما يكون المبلغ أقل من 10,000 درهم ويطالب الخاضع للضريبة بمبلغ أقل؛ وتُعالج بقية الإفصاحات الطوعية من قبل فريق التدقيق قبل معالجة طلب الاسترداد (VAT311).",
+     "cond": null,
+     "kind": "internal",
+     "status": "published",
+     "tags": [
+      "internal",
+      "voluntary disclosure",
+      "10,000",
+      "audit team"
+     ]
+    }
+   ]
   }
  ],
  "reviewItems": [],
@@ -3071,6 +3749,21 @@
    "type": "text",
    "en": "Previous application reference number",
    "ar": "الرقم المرجعي للطلب السابق"
+  },
+  "periodFrom": {
+   "type": "date",
+   "en": "Period from",
+   "ar": "الفترة من"
+  },
+  "periodTo": {
+   "type": "date",
+   "en": "Period to",
+   "ar": "الفترة إلى"
+  },
+  "period": {
+   "type": "text",
+   "en": "Tax period",
+   "ar": "الفترة الضريبية"
   }
  },
  "synonyms": {
@@ -3134,7 +3827,7 @@
   "ejari": "residence",
   "salary": "employment",
   "copy": "additional copy",
-  "iban": "bank account",
+  "iban": "IBAN",
   "bank": "bank account",
   "khulasa": "family book",
   "khulasat": "family book",
@@ -3149,7 +3842,16 @@
   "grant": "financial grant",
   "late": "12 months",
   "deadline": "12 months",
-  "refund": "refund"
+  "refund": "refund",
+  "vd": "voluntary disclosure",
+  "disclosure": "voluntary disclosure",
+  "vat311": "VAT311",
+  "311": "VAT311",
+  "summary": "output input summary",
+  "insurance": "health insurance",
+  "medical": "health insurance",
+  "rc": "reverse charge",
+  "box": "box"
  },
  "releases": [
   {
@@ -3163,6 +3865,12 @@
    "at": "2026-10-27",
    "by": "Service Development Team",
    "note": "New Residences VAT Refund for UAE Nationals: 40 bilingual comments (7 proposed additions marked for confirmation) and 10 scenarios from the refund application comment sheet."
+  },
+  {
+   "version": "1.2.0",
+   "at": "2026-10-27",
+   "by": "Service Development Team",
+   "note": "VAT Refund of Excess Refundable Tax (VAT311): 15 bilingual resubmission comments and 8 scenarios from the refund resubmission comments."
   }
  ],
  "scenarios": [
@@ -3663,6 +4371,132 @@
     "en": "Clarification before decision",
     "ar": "توضيح قبل القرار"
    }
+  },
+  {
+   "id": "rf-sc-summary",
+   "en": "Summary and invoices missing",
+   "ar": "الملخص والفواتير غير مرفقة",
+   "ids": [
+    "rf-01",
+    "rf-02",
+    "rf-04"
+   ],
+   "svc": "vat-refund-excess",
+   "basis": {
+    "en": "Resubmit",
+    "ar": "إعادة تقديم"
+   }
+  },
+  {
+   "id": "rf-sc-5tx",
+   "en": "Summary filled with only five transactions",
+   "ar": "الملخص يتضمن خمس معاملات فقط",
+   "ids": [
+    "rf-03",
+    "rf-04"
+   ],
+   "svc": "vat-refund-excess",
+   "basis": {
+    "en": "Resubmit",
+    "ar": "إعادة تقديم"
+   }
+  },
+  {
+   "id": "rf-sc-iban",
+   "en": "Bank account not valid in the Central Bank system",
+   "ar": "الحساب البنكي غير صالح في نظام المصرف المركزي",
+   "ids": [
+    "rf-05",
+    "rf-04"
+   ],
+   "svc": "vat-refund-excess",
+   "basis": {
+    "en": "Resubmit",
+    "ar": "إعادة تقديم"
+   }
+  },
+  {
+   "id": "rf-sc-iban-letter",
+   "en": "IBAN letter attached but not valid",
+   "ar": "خطاب الآيبان المرفق غير صالح",
+   "ids": [
+    "rf-06",
+    "rf-04"
+   ],
+   "svc": "vat-refund-excess",
+   "basis": {
+    "en": "Resubmit",
+    "ar": "إعادة تقديم"
+   }
+  },
+  {
+   "id": "rf-sc-vd",
+   "en": "Return needs a voluntary disclosure",
+   "ar": "الإقرار يحتاج إلى إفصاح طوعي",
+   "ids": [
+    "rf-08",
+    "rf-04"
+   ],
+   "svc": "vat-refund-excess",
+   "basis": {
+    "en": "Resubmit after the disclosure",
+    "ar": "إعادة التقديم بعد الإفصاح"
+   },
+   "checks": [
+    {
+     "en": "Pick the matching option: incorrect return / output not 5% / reverse charge boxes 3,6,7 vs 10 / adjustment fields",
+     "ar": "اختر الخيار المطابق: إقرار غير صحيح / المخرجات لا تساوي 5% / الاحتساب العكسي الخانات 3 و6 و7 مقابل 10 / حقول التعديل"
+    },
+    {
+     "en": "Under AED 10,000 and claiming less → the reviewer may approve; otherwise Audit team",
+     "ar": "أقل من 10,000 درهم ويطالب بأقل ← يمكن للمراجع الاعتماد؛ غير ذلك ← فريق التدقيق"
+    }
+   ]
+  },
+  {
+   "id": "rf-sc-vd-pending",
+   "en": "Voluntary disclosure not yet acknowledged",
+   "ar": "الإفصاح الطوعي لم يُعتمد بعد",
+   "ids": [
+    "rf-07"
+   ],
+   "svc": "vat-refund-excess",
+   "basis": {
+    "en": "Resubmit after acknowledgement",
+    "ar": "إعادة التقديم بعد الاعتماد"
+   }
+  },
+  {
+   "id": "rf-sc-vd-letter",
+   "en": "Voluntary disclosure letter missing",
+   "ar": "خطاب الإفصاح الطوعي غير مرفق",
+   "ids": [
+    "rf-12"
+   ],
+   "svc": "vat-refund-excess",
+   "basis": {
+    "en": "Resubmit",
+    "ar": "إعادة تقديم"
+   }
+  },
+  {
+   "id": "rf-sc-insurance",
+   "en": "Health insurance input tax check",
+   "ar": "التحقق من ضريبة مدخلات التأمين الصحي",
+   "ids": [
+    "rf-14"
+   ],
+   "svc": "vat-refund-excess",
+   "basis": {
+    "en": "Clarification",
+    "ar": "توضيح"
+   },
+   "checks": [
+    {
+     "en": "Company in Abu Dhabi → employees, spouses and up to three children; other emirates → employees only",
+     "ar": "الشركة في أبوظبي ← الموظفون وأزواجهم وحتى ثلاثة أبناء؛ الإمارات الأخرى ← الموظفون فقط"
+    }
+   ]
   }
  ],
  "conflicts": [
@@ -3697,6 +4531,14 @@
   [
    "hb-22",
    "hb-34"
+  ],
+  [
+   "rf-13",
+   "rf-14"
+  ],
+  [
+   "rf-05",
+   "rf-06"
   ]
  ],
  "exclusiveSubsections": [
@@ -3722,6 +4564,11 @@
    "id": "tax-residency-certificate",
    "en": "Tax Residency Certificate (TRC)",
    "ar": "شهادة الإقامة الضريبية"
+  },
+  {
+   "id": "vat-refund-excess",
+   "en": "VAT Refund of Excess Refundable Tax (VAT311)",
+   "ar": "استرداد ضريبة القيمة المضافة القابلة للاسترداد الزائدة"
   }
  ],
  "selftest": {
@@ -3730,8 +4577,8 @@
    "tn-02",
    "tn-04"
   ],
-  "total": 75,
-  "services": 4,
+  "total": 90,
+  "services": 5,
   "counts": {
    "identity": 3,
    "legal-docs": 5,
@@ -3789,6 +4636,18 @@
    {
     "q": "power of attorney",
     "id": "hb-32"
+   },
+   {
+    "q": "iban",
+    "id": "rf-05"
+   },
+   {
+    "q": "voluntary disclosure",
+    "id": "rf-08"
+   },
+   {
+    "q": "الإفصاح الطوعي",
+    "id": "rf-07"
    }
   ],
   "compose": [

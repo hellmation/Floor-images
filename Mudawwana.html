@@ -167,14 +167,55 @@ body.resizing .side,body.resizing .main,body.resizing .tray{pointer-events:none}
 .empty b{display:block;color:var(--ink2);font-size:15px;font-weight:500;margin-bottom:6px}
 
 /* ---------- Card ---------- */
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px 10px;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease),transform var(--dur) var(--ease);position:relative}
+.card{--k:var(--green);background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 16px 12px 20px;transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease),transform var(--dur) var(--ease),background var(--dur) var(--ease);position:relative;overflow:hidden}
+html[dir="rtl"] .card{padding:12px 20px 12px 16px}
+.card::before{content:"";position:absolute;inset-block:0;inset-inline-start:0;width:4px;background:var(--k)}
+.card.k-request{--k:var(--green)}.card.k-attachment{--k:var(--blue)}.card.k-rejection{--k:var(--red)}.card.k-notice{--k:var(--gold)}.card.k-internal{--k:var(--amber)}
+.kpill{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:.03em;padding:3px 9px;border-radius:999px;color:var(--k);background:color-mix(in srgb,var(--k) 12%,transparent);white-space:nowrap;flex:0 0 auto}
+.kpill i{width:6px;height:6px;border-radius:50%;background:var(--k);flex:0 0 auto}
+.kpill svg{width:11px;height:11px}
+.card .quick{margin-inline-start:auto;display:flex;gap:4px;opacity:.45;transition:opacity var(--dur) var(--ease);flex:0 0 auto}
+.card:hover .quick,.card:focus-within .quick,.card.active .quick{opacity:1}
+.card .quick .ib,.card .quick .star{width:28px;height:28px;border-radius:8px;border:1px solid var(--line);background:var(--surface);display:inline-flex;align-items:center;justify-content:center;color:var(--ink2);font-size:10.5px;font-weight:700;letter-spacing:.02em;padding:0}
+.card .quick .ib:hover,.card .quick .star:hover{border-color:var(--k);color:var(--k)}
+.card .quick .ib svg{width:14px;height:14px}
+.card .quick .star.on{color:var(--gold);border-color:color-mix(in srgb,var(--gold) 50%,transparent)}
+.card-body{position:relative}
+.card-body::before{content:"";position:absolute;top:2px;bottom:2px;left:50%;width:1px;background:var(--line)}
+.card-f .chips2{display:flex;gap:6px;flex-wrap:wrap;align-items:center;min-width:0}
+.chip2{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line2);border-radius:999px;padding:2px 9px;font-size:11px;color:var(--ink2);background:var(--surface);max-width:100%}
+.chip2 svg{width:11px;height:11px;flex:0 0 auto}
+.chip2.cond{color:var(--amber);border-color:color-mix(in srgb,var(--amber) 55%,transparent);background:var(--amber-soft)}
+.chip2.doc{color:var(--blue);border-color:color-mix(in srgb,var(--blue) 40%,transparent)}
+.chip2.flag{color:var(--amber)}.chip2.draft{color:var(--ink3);border-style:dashed}
+.addbtn{height:34px;padding:0 16px;border-radius:999px;background:var(--green);color:var(--accent-ink);font-weight:600;font-size:12.5px;display:inline-flex;align-items:center;gap:6px;box-shadow:0 8px 18px -10px color-mix(in srgb,var(--green) 80%,transparent);transition:all 180ms cubic-bezier(.34,1.3,.5,1);flex:0 0 auto}
+.addbtn svg{width:14px;height:14px}
+.addbtn:hover{transform:translateY(-1px);box-shadow:0 12px 22px -10px color-mix(in srgb,var(--green) 85%,transparent)}
+.card.in{background:color-mix(in srgb,var(--green) 4%,var(--surface));border-color:color-mix(in srgb,var(--green) 38%,var(--line))}
+.card.in .addbtn{background:var(--surface);color:var(--green-ink);border:1px solid var(--green);box-shadow:none}
+.card.in .addbtn .pos{background:var(--green);color:var(--accent-ink);border-radius:999px;min-width:18px;height:18px;padding:0 5px;display:inline-grid;place-items:center;font-size:10.5px}
+:root[data-theme="dark"] .card.in{background:color-mix(in srgb,var(--green) 7%,var(--surface))}
+/* compact density */
+.dense-seg{margin-inline-start:auto}
+.card.dense{padding:9px 14px 9px 18px;border-radius:12px}
+html[dir="rtl"] .card.dense{padding:9px 18px 9px 14px}
+.card.dense .card-h{margin-bottom:0;display:none}
+.card.dense .card-f{display:none}
+.card.dense .more{display:none}
+.card.dense .card-body{display:grid;grid-template-columns:auto 1fr 1fr auto;gap:12px;align-items:center}
+.card.dense .card-body::before{display:none}
+.card.dense .card-body p{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px}
+.card.dense .dense-k{width:8px;height:8px;border-radius:50%;background:var(--k);flex:0 0 auto}
+.card.dense .dense-add{width:28px;height:28px;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center;color:var(--green);background:var(--surface)}
+.card.dense .dense-add svg{width:13px;height:13px}
+.card.dense.in .dense-add{background:var(--green);color:var(--accent-ink);border-color:var(--green)}
+.card:not(.dense) .dense-k,.card:not(.dense) .dense-add{display:none}
 .card:hover{border-color:var(--line2);box-shadow:var(--e2);transform:translateY(-1px)}
 .card .btn.pri{transition:all 180ms cubic-bezier(.34,1.3,.5,1)}
 .card.in .btn.pri{transform:scale(1.02)}
 .card.active{border-color:var(--green);box-shadow:0 0 0 3px var(--sel),var(--shadow)}
-.card.in{border-inline-start:3px solid var(--green)}
 .card.flash{animation:flash 600ms var(--ease)}
-@keyframes flash{0%{background:var(--green-soft)}100%{background:var(--surface)}}
+@keyframes flash{0%{background:var(--green-soft)}100%{background:transparent}}
 .card-h{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px;min-height:22px}
 .crumb{font-size:11.5px;color:var(--ink3);margin-inline-end:auto}
 .crumb b{font-weight:500;color:var(--ink2)}
@@ -186,22 +227,21 @@ body.resizing .side,body.resizing .main,body.resizing .tray{pointer-events:none}
 .b-rejection{background:var(--red-soft);color:var(--red)}
 .b-notice{background:var(--gold-soft);color:var(--gold)}
 .b-internal{background:var(--amber-soft);color:var(--amber);border:1px dashed color-mix(in srgb,var(--amber) 50%,transparent)}
-.card.k-internal{border-inline-start:3px solid var(--amber)}
 .b-cond{background:var(--amber-soft);color:var(--amber);text-transform:none;letter-spacing:0;font-weight:500}
 .b-flag{background:var(--amber-soft);color:var(--amber);text-transform:none;letter-spacing:0;font-weight:500}
 .b-draft{background:var(--surface3);color:var(--ink2)}
-.card-body{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.card-body p{margin:0;font-size:13.5px;overflow-wrap:anywhere}
+.card-body{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card-body p{margin:0;font-size:14px;line-height:1.7;overflow-wrap:anywhere}
 .card-body .en{color:var(--ink)}
-.card-body .ar{color:var(--ink);font-size:14px}
+.card-body .ar{color:var(--ink);font-size:14.5px;line-height:1.95}
 html[dir="rtl"] .card-body .ar{order:-1}
 .card-body .none{color:var(--ink3);font-style:italic;font-size:12.5px}
 .card.clamp .card-body p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .card .more{font-size:12px;color:var(--green);margin-top:4px;font-weight:500}
 .main{container-type:inline-size}
-@container (max-width:760px){.card-body{grid-template-columns:1fr}}
+@container (max-width:760px){.card-body{grid-template-columns:1fr}.card-body::before{display:none}}
 @supports not (container-type:inline-size){@media (max-width:1400px){.card-body{grid-template-columns:1fr}}}
-.card-f{display:flex;align-items:center;gap:4px;margin-top:10px;padding-top:8px;border-top:1px dashed var(--line)}
+.card-f{display:flex;align-items:center;gap:10px;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
 .card-f .sp{flex:1}
 .tok.filled{background:var(--green-soft);color:var(--green-ink);border-style:solid}
 .tok{background:var(--gold-soft);color:var(--amber);border-radius:5px;padding:0 5px;font-weight:500;font-size:.92em;border:1px dashed color-mix(in srgb,var(--gold) 60%,transparent)}
@@ -4173,7 +4213,7 @@ const T = {
   en: {
     search_ph: 'Search comments… e.g. expired eid, moa, jafza, هوية',
     all: 'All', sections: 'Sections', favorites: 'Favourites', recents: 'Recently used', presets: 'Case presets',
-    kind_request: 'Request', kind_attachment: 'Attachment', kind_rejection: 'Rejection', kind_notice: 'Notice', kind_internal: 'Internal note', aud_lbl: 'Show', aud_ext: 'To the taxpayer', aud_int: 'Internal notes', aud_all: 'All', aud_note: 'Internal notes are for the internal comment field and the Level 2 reviewer — they are never sent to the taxpayer.', aud_field: 'Audience', aud_ext_h: 'Sent to the taxpayer through the portal', aud_int_h: 'Internal review note (Level 1 → Level 2), never sent', w_internal: 'Internal review note included — paste it in the internal comment field only, never to the taxpayer.',
+    kind_request: 'Request', kind_attachment: 'Attachment', kind_rejection: 'Rejection', kind_notice: 'Notice', kind_internal: 'Internal note', density: 'Density', d_comfort: 'Comfortable', d_compact: 'Compact', fav: 'Favourite', aud_lbl: 'Show', aud_ext: 'To the taxpayer', aud_int: 'Internal notes', aud_all: 'All', aud_note: 'Internal notes are for the internal comment field and the Level 2 reviewer — they are never sent to the taxpayer.', aud_field: 'Audience', aud_ext_h: 'Sent to the taxpayer through the portal', aud_int_h: 'Internal review note (Level 1 → Level 2), never sent', w_internal: 'Internal review note included — paste it in the internal comment field only, never to the taxpayer.',
     f_all: 'All kinds', f_cond: 'Has condition', f_ar: 'Has Arabic', f_ph: 'Has blanks',
     composer: 'Composer', add: 'Add', added: 'Added', copy_en: 'Copy EN', copy_ar: 'Copy AR', copy_both: 'Copy both', copied: 'Copied', copy_failed: 'Copy failed — select the preview and press Ctrl+C',
     results: 'results', no_results: 'No comments match', no_results_hint: 'Try fewer words, an abbreviation (MOA, EID, TL) or Arabic. Press Esc to clear.',
@@ -4212,7 +4252,7 @@ const T = {
   ar: {
     search_ph: 'ابحث في التعليقات… مثال: هوية منتهية، عقد التأسيس، جافزا، eid',
     all: 'الكل', sections: 'الأقسام', favorites: 'المفضلة', recents: 'المستخدمة مؤخراً', presets: 'قوالب الحالات',
-    kind_request: 'طلب تعديل', kind_attachment: 'مرفق', kind_rejection: 'رفض', kind_notice: 'إشعار', kind_internal: 'ملاحظة داخلية', aud_lbl: 'عرض', aud_ext: 'إلى الخاضع للضريبة', aud_int: 'ملاحظات داخلية', aud_all: 'الكل', aud_note: 'الملاحظات الداخلية مخصصة لحقل التعليق الداخلي ومراجع المستوى الثاني — ولا تُرسل إلى الخاضع للضريبة أبداً.', aud_field: 'الجهة المستهدفة', aud_ext_h: 'يُرسل إلى الخاضع للضريبة عبر البوابة', aud_int_h: 'ملاحظة مراجعة داخلية (المستوى 1 ← 2)، لا تُرسل', w_internal: 'يتضمن الرد ملاحظة مراجعة داخلية — تُلصق في حقل التعليق الداخلي فقط ولا تُرسل للخاضع للضريبة.',
+    kind_request: 'طلب تعديل', kind_attachment: 'مرفق', kind_rejection: 'رفض', kind_notice: 'إشعار', kind_internal: 'ملاحظة داخلية', density: 'الكثافة', d_comfort: 'مريح', d_compact: 'مضغوط', fav: 'مفضلة', aud_lbl: 'عرض', aud_ext: 'إلى الخاضع للضريبة', aud_int: 'ملاحظات داخلية', aud_all: 'الكل', aud_note: 'الملاحظات الداخلية مخصصة لحقل التعليق الداخلي ومراجع المستوى الثاني — ولا تُرسل إلى الخاضع للضريبة أبداً.', aud_field: 'الجهة المستهدفة', aud_ext_h: 'يُرسل إلى الخاضع للضريبة عبر البوابة', aud_int_h: 'ملاحظة مراجعة داخلية (المستوى 1 ← 2)، لا تُرسل', w_internal: 'يتضمن الرد ملاحظة مراجعة داخلية — تُلصق في حقل التعليق الداخلي فقط ولا تُرسل للخاضع للضريبة.',
     f_all: 'كل الأنواع', f_cond: 'له شرط', f_ar: 'له نص عربي', f_ph: 'به فراغات',
     composer: 'المنشئ', add: 'إضافة', added: 'مضاف', copy_en: 'نسخ EN', copy_ar: 'نسخ AR', copy_both: 'نسخ الاثنين', copied: 'تم النسخ', copy_failed: 'تعذر النسخ — حدد المعاينة واضغط Ctrl+C',
     results: 'نتيجة', no_results: 'لا توجد تعليقات مطابقة', no_results_hint: 'جرّب كلمات أقل أو اختصاراً (MOA, EID, TL) أو بالإنجليزية. اضغط Esc للمسح.',
@@ -4796,26 +4836,35 @@ function cardHtml(c, terms, hl = true) {
   const long = (c.en || '').length > 260 || (c.ar || '').length > 260;
   const expanded = UI.expanded.has(c.id);
   const fav = Store.user.favs.includes(c.id);
-  return `<article class="card k-${c.kind} ${Composer.has(c.id) ? 'in' : ''} ${long && !expanded ? 'clamp' : ''}" data-id="${c.id}" tabindex="0">
+  const pos = Composer.items.indexOf(c.id) + 1; const used = Store.user.usage[c.id] || 0; const dense = Store.user.density === 'compact';
+  return `<article class="card k-${c.kind} ${Composer.has(c.id) ? 'in' : ''} ${long && !expanded && !dense ? 'clamp' : ''} ${dense ? 'dense' : ''}" data-id="${c.id}" tabindex="0" title="${dense ? h((c.en || '').slice(0, 300)) : ''}">
     <div class="card-h">
-      <span class="badge b-${c.kind}">${t('kind_' + c.kind)}</span>
+      <span class="kpill"><i></i>${c.kind === 'internal' ? I.lock : ''}${t('kind_' + c.kind)}</span>
       <span class="crumb">${UI.q && UI.scope === 'all' ? `<span class="svc">${h(L(Store.service(sec?.svc)))}</span> › ` : ''}<b>${h(L(sec))}</b> › ${h(L(sub))}</span>
-      ${c.cond ? `<span class="badge b-cond" title="${h(L(c.cond))}">${I.warn} ${t('only_when')}: ${h(L(c.cond))}</span>` : ''}
-      ${flagged && UI.isAdmin ? `<span class="badge b-flag">${t('flag')}</span>` : ''}
-      ${c.status !== 'published' ? `<span class="badge b-draft">${t('draft')}</span>` : ''}
-      <button class="star ${fav ? 'on' : ''}" data-act="fav" data-id="${c.id}" aria-label="favourite">${fav ? I.star : I.starO}</button>
+      <span class="quick">
+        <button class="star ${fav ? 'on' : ''}" data-act="fav" data-id="${c.id}" aria-label="favourite" title="${t('fav')}">${fav ? I.star : I.starO}</button>
+        ${c.en && c.ar ? `<button class="ib" data-act="copy" data-id="${c.id}" data-l="both" title="${t('copy_both')}">${I.copy}</button>` : ''}
+        ${c.en ? `<button class="ib" data-act="copy" data-id="${c.id}" data-l="en" title="${t('copy_en')}">EN</button>` : ''}
+        ${c.ar ? `<button class="ib" data-act="copy" data-id="${c.id}" data-l="ar" title="${t('copy_ar')}">AR</button>` : ''}
+      </span>
     </div>
     <div class="card-body">
+      <span class="dense-k"></span>
       <p class="en" lang="en" dir="ltr">${c.en ? renderText(c.en, hl ? terms : null) : `<span class="none">— no English —</span>`}</p>
       <p class="ar" lang="ar" dir="rtl">${c.ar ? renderText(c.ar, hl ? terms : null) : `<span class="none" dir="ltr">— no Arabic in source —</span>`}</p>
+      <button class="dense-add" data-act="add" data-id="${c.id}" aria-label="${t('add')}">${Composer.has(c.id) ? I.check : I.plus}</button>
     </div>
     ${long ? `<button class="more" data-act="expand" data-id="${c.id}">${expanded ? t('less') : t('more')}</button>` : ''}
     <div class="card-f">
-      <button class="btn pri" data-act="add" data-id="${c.id}">${Composer.has(c.id) ? I.check + ' ' + t('added') : I.plus + ' ' + t('add')}</button>
+      <div class="chips2">
+        ${c.cond ? `<span class="chip2 cond" title="${h(L(c.cond))}">${I.warn}<span>${t('only_when')}: ${h(L(c.cond))}</span></span>` : ''}
+        ${c.doc ? `<span class="chip2 doc">${I.tray}<span>${h(L(c.doc))}</span></span>` : ''}
+        ${used ? `<span class="chip2">${used}×</span>` : ''}
+        ${flagged && UI.isAdmin ? `<span class="chip2 flag">${t('flag')}</span>` : ''}
+        ${c.status !== 'published' ? `<span class="chip2 draft">${t('draft')}</span>` : ''}
+      </div>
       <span class="sp"></span>
-      ${c.en ? `<button class="btn" data-act="copy" data-id="${c.id}" data-l="en">${t('copy_en')}</button>` : ''}
-      ${c.ar ? `<button class="btn" data-act="copy" data-id="${c.id}" data-l="ar">${t('copy_ar')}</button>` : ''}
-      ${c.en && c.ar ? `<button class="btn" data-act="copy" data-id="${c.id}" data-l="both">${I.copy} ${t('copy_both')}</button>` : ''}
+      <button class="addbtn" data-act="add" data-id="${c.id}">${Composer.has(c.id) ? `${I.check} ${t('added')} <span class="pos">${pos}</span>` : `${I.plus} ${t('add')}`}</button>
     </div>
   </article>`;
 }
@@ -4829,6 +4878,7 @@ function chipsHtml() {
     <button class="chip ${f.cond ? 'on' : ''}" data-chip="cond">${t('f_cond')}</button>
     <button class="chip ${f.ar ? 'on' : ''}" data-chip="ar">${t('f_ar')}</button>
     <button class="chip ${f.ph ? 'on' : ''}" data-chip="ph">${t('f_ph')}</button>
+    <span class="seg dense-seg" role="group" aria-label="${t('density')}"><button data-density="comfortable" class="${Store.user.density !== 'compact' ? 'on' : ''}">${t('d_comfort')}</button><button data-density="compact" class="${Store.user.density === 'compact' ? 'on' : ''}">${t('d_compact')}</button></span>
   </div>`;
 }
 function renderMain() {
@@ -4863,7 +4913,7 @@ function renderMain() {
   UI.active = -1; setActive(UI.visible.length ? 0 : -1, false);
 }
 function updateCardStates() {
-  $$('.card').forEach(el => { const id = el.dataset.id; const on = Composer.has(id); el.classList.toggle('in', on); const b = $('[data-act="add"]', el); if (b) b.innerHTML = on ? I.check + ' ' + t('added') : I.plus + ' ' + t('add'); });
+  $$('.card').forEach(el => { const id = el.dataset.id; const on = Composer.has(id); el.classList.toggle('in', on); const pos = Composer.items.indexOf(id) + 1; const b = $('.addbtn', el); if (b) b.innerHTML = on ? `${I.check} ${t('added')} <span class="pos">${pos}</span>` : `${I.plus} ${t('add')}`; const d = $('.dense-add', el); if (d) d.innerHTML = on ? I.check : I.plus; });
 }
 function setActive(i, scroll = true) {
   $$('.card.active').forEach(x => x.classList.remove('active'));
@@ -5689,9 +5739,10 @@ function setLang(l) { LANG = l; Store.user.lang = l; Store.saveUser(); document.
 
 document.addEventListener('click', async e => {
   const closeBtn = e.target.closest('[data-close]'); if (closeBtn) { closeBtn.closest('dialog')?.close(); }
-  const el = e.target.closest('[data-act],[data-chip],[data-scope],[data-aud],[data-tab],[data-edit],[data-sec],[data-sub],[data-opt] button'); if (!el) return;
+  const el = e.target.closest('[data-act],[data-chip],[data-scope],[data-aud],[data-density],[data-tab],[data-edit],[data-sec],[data-sub],[data-opt] button'); if (!el) return;
   const act = el.dataset.act; const id = el.dataset.id;
   if (el.dataset.scope) { UI.scope = el.dataset.scope; renderMain(); return; }
+  if (el.dataset.density) { Store.user.density = el.dataset.density; Store.saveUser(); renderMain(); return; }
   if (el.dataset.aud) { UI.audience = el.dataset.aud; Store.user.audience = UI.audience; Store.saveUser(); if (UI.audience === 'internal') UI.filter.kind = 'all'; renderSidebar(); renderMain(); return; }
   if (el.matches('a.lang')) e.preventDefault();
   if (el.dataset.chip) { const k = el.dataset.chip; if (k === 'kind') UI.filter.kind = el.dataset.v; else UI.filter[k] = !UI.filter[k]; renderMain(); return; }
@@ -5882,10 +5933,11 @@ function selfTest(silent) {
   ok('output: LRM before English lines, RLM before Arabic lines', (() => { const sv = { items: Composer.items, values: Composer.values, opts: { ...Composer.opts } }; Composer.items = [pubIds[0]]; Composer.opts = { lang: 'both', format: 'numbered', opener: false, closer: false, attach: false, stamp: false }; const L2 = Composer.build(); Object.assign(Composer, sv); return L2[0].s.startsWith('\u200E1. ') && L2[2].s.startsWith('\u200F1. '); })());
   ok('placeholders: bilingual select gives Arabic label on Arabic lines', (() => { const k = Object.keys(EMBED.placeholders).find(k => EMBED.placeholders[k].optionsAr); if (!k) return true; const p = EMBED.placeholders[k]; return valueFor(k, p.options[0], 'ar') === p.optionsAr[0] && valueFor(k, p.options[0], 'en') === p.options[0]; })());
   ok('services: alphabetical in seed', EMBED.services.every((x, i, a) => i === 0 || a[i - 1].en.toLowerCase() <= x.en.toLowerCase()));
-  const noUrl = x => (x || '').replace(TOKEN_RE, '').replace(/https?:\/\/\S+/g, '');
+  const noUrl = x => (x || '').replace(TOKEN_RE, '').replace(/https?:\/\/\S+/g, '').replace(/\b(VAT|CT|EXC)\d{3}\b/g, '');
   ok('arabic: no English words inside Arabic comments (links allowed)', EMBED.comments.every(c => !/[A-Za-z]/.test(noUrl(c.ar))), EMBED.comments.filter(c => /[A-Za-z]/.test(noUrl(c.ar))).map(c => c.id).join(','));
-  ok('render: English comments show only English, Arabic only Arabic (both UI languages)', (() => { const prev = LANG; let bad = []; for (const l of ['en', 'ar']) { LANG = l; EMBED.comments.forEach(c => { const tx = html => { const d = document.createElement('div'); d.innerHTML = html; return d.textContent; }; const en = tx(renderText(c.en)), ar = tx(renderText(c.ar)).replace(/https?:\/\/\S+/g, ''); if (/[\u0600-\u06FF]/.test(en) || /[A-Za-z]/.test(ar)) bad.push(l + ':' + c.id); }); } LANG = prev; return !bad.length; })());
+  ok('render: English comments show only English, Arabic only Arabic (both UI languages)', (() => { const prev = LANG; let bad = []; for (const l of ['en', 'ar']) { LANG = l; EMBED.comments.forEach(c => { const tx = html => { const d = document.createElement('div'); d.innerHTML = html; return d.textContent; }; const en = tx(renderText(c.en)), ar = tx(renderText(c.ar)).replace(/https?:\/\/\S+/g, '').replace(/\b(VAT|CT|EXC)\d{3}\b/g, ''); if (/[\u0600-\u06FF]/.test(en) || /[A-Za-z]/.test(ar)) bad.push(l + ':' + c.id); }); } LANG = prev; return !bad.length; })());
   ok('copy: formatted copy marks English ltr/left and Arabic rtl/right', (() => { const h2 = linesToHtml([{ d: 'ltr', s: '\u200E1. Kindly' }, { d: 'ltr', s: '' }, { d: 'rtl', s: '\u200F1. يرجى' }]); return h2.includes('dir="ltr" lang="en" style="margin:0;direction:ltr;text-align:left') && h2.includes('dir="rtl" lang="ar" style="margin:0;direction:rtl;text-align:right') && !/[\u200E\u200F]/.test(h2); })());
+  ok('cards: kind stripe, quick actions and single Add button', (() => { const d = document.createElement('div'); d.innerHTML = cardHtml(Store.published()[0], null); const a = d.firstElementChild; return a.classList.contains('k-' + Store.published()[0].kind) && a.querySelectorAll('.quick .ib, .quick .star').length >= 3 && a.querySelectorAll('.addbtn').length === 1 && !!a.querySelector('.kpill'); })());
   ok('audience: switch filters internal notes and sidebar counts', (() => { if (!hasInternal()) return true; const keep = UI.audience; UI.audience = 'external'; const e = Store.published().filter(inAudience).every(c => c.kind !== 'internal'); UI.audience = 'internal'; const i = Store.published().filter(inAudience).every(c => c.kind === 'internal'); UI.audience = 'all'; const a = Store.published().filter(inAudience).length === Store.published().length; UI.audience = keep; return e && i && a; })());
   ok('layout: two draggable gutters, width persists and resets', (() => { const gs = $$('.gutter'); if (gs.length !== 2) return false; const keep = Store.user.layout; Resizer.set('side', 320); const w1 = $('.side').getBoundingClientRect().width; const ok1 = Math.abs(w1 - 320) < 2 && (Store.user.layout || {}).side === 320; Resizer.reset('side'); const ok2 = !(Store.user.layout || {}).side; Store.user.layout = keep; Resizer.apply(); return ok1 && ok2; })());
   ok('service card: shows area, service in both languages and a change-service affordance', (() => { const b = $('.svcbtn'); return !!b && !!b.querySelector('.lab') && !!b.querySelector('.nm') && !!b.querySelector('.nm2') && !!b.querySelector('.chg') && b.querySelector('.chg').textContent.trim().length > 0; })());
