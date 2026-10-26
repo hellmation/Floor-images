@@ -343,7 +343,7 @@
    "s": "common",
    "ss": "sole-decl",
    "kind": "attachment",
-   "en": "Kindly note that a natural person who owns several sole establishments is required to hold only one VAT registration covering all of them; separate registrations are not required. Therefore, kindly provide a letter declaring whether the owner, or any sole establishment owned by them, is registered for VAT, together with the relevant TRNs. If so, kindly confirm that you will file under one VAT-registered TRN. The letter must be signed and stamped (no stamp is required for a natural person). Kindly provide this declaration even if no such registrations exist.",
+   "en": "Kindly note that a natural person who owns several sole establishments is required to hold only one Value Added Tax (VAT) registration covering all of them; separate registrations are not required. Therefore, kindly provide a letter declaring whether the owner, or any sole establishment owned by them, is registered for VAT, together with the relevant TRNs. If so, kindly confirm that you will file under one VAT-registered Tax Registration Number (TRN). The letter must be signed and stamped (no stamp is required for a natural person). Kindly provide this declaration even if no such registrations exist.",
    "ar": "يرجى العلم بأن الشخص الطبيعي الذي يملك عدة مؤسسات فردية يلزمه تسجيل واحد فقط لضريبة القيمة المضافة يشمل جميع مؤسساته، ولا يتطلب الأمر تسجيلات منفصلة. وعليه، يرجى تقديم خطاب يوضح ما إذا كان المالك أو أي مؤسسة فردية يملكها مسجلاً لضريبة القيمة المضافة مع ذكر أرقام التسجيل الضريبي. وفي حال وجودها، يرجى التأكيد على أنكم ستقدمون الإقرارات برقم تسجيل ضريبي واحد. ويجب أن يكون الخطاب موقعاً ومختوماً (لا يلزم الختم للشخص الطبيعي). يرجى تقديم هذا الإقرار حتى في حال عدم وجود تسجيلات أخرى.",
    "tags": [
     "sole establishment",
@@ -468,7 +468,7 @@
    "s": "common",
    "ss": "resubmit",
    "kind": "notice",
-   "en": "Your deregistration application has been pre-approved. Kindly submit the final VAT return, remove any draft applications and settle all outstanding liabilities so that the deregistration can be completed.",
+   "en": "Your deregistration application has been pre-approved. Kindly submit the final Value Added Tax (VAT) return, remove any draft applications and settle all outstanding liabilities so that the deregistration can be completed.",
    "ar": "تمت الموافقة المبدئية على طلب إلغاء التسجيل. يرجى تقديم الإقرار الضريبي النهائي، وحذف أي طلبات في حالة مسودة، وسداد جميع الالتزامات المستحقة لاستكمال إلغاء التسجيل.",
    "tags": [
     "pre-approved",
@@ -618,7 +618,7 @@
    "s": "licence",
    "ss": "legal",
    "kind": "attachment",
-   "en": "Kindly provide the Memorandum of Association (MOA) or the contract evidencing the change in the legal status of the entity.",
+   "en": "Kindly provide the Memorandum of Association (Memorandum of Association) or the contract evidencing the change in the legal status of the entity.",
    "ar": "يرجى تقديم عقد التأسيس أو العقد الذي يثبت تغيير الشكل القانوني للكيان.",
    "tags": [
     "MOA",
@@ -651,7 +651,7 @@
     }
    ],
    "doc": {
-    "en": "MOA or contract evidencing the change in legal status",
+    "en": "Memorandum of Association or contract evidencing the change in legal status",
     "ar": "عقد التأسيس أو العقد المثبت لتغيير الشكل القانوني"
    }
   },
@@ -660,7 +660,7 @@
    "s": "licence",
    "ss": "legal",
    "kind": "attachment",
-   "en": "Kindly provide the amended Memorandum of Association (MOA), or any official document evidencing the change in the legal status or ownership of the entity.",
+   "en": "Kindly provide the amended Memorandum of Association (Memorandum of Association), or any official document evidencing the change in the legal status or ownership of the entity.",
    "ar": "يرجى تقديم عقد التأسيس المعدّل، أو أي مستند رسمي يثبت تغيير الشكل القانوني للكيان أو ملكيته.",
    "tags": [
     "amended MOA",
@@ -693,7 +693,7 @@
     }
    ],
    "doc": {
-    "en": "Amended MOA or document evidencing the change",
+    "en": "Amended Memorandum of Association or document evidencing the change",
     "ar": "عقد التأسيس المعدّل أو مستند يثبت التغيير"
    }
   },
@@ -740,7 +740,7 @@
    "s": "licence",
    "ss": "legal",
    "kind": "rejection",
-   "en": "Please note that your deregistration application has been rejected, as the change in the legal status or ownership of the entity does not meet the conditions for VAT deregistration while the business continues to make taxable supplies above the voluntary registration threshold. Kindly apply for a VAT registration amendment to update your details instead.",
+   "en": "Please note that your deregistration application has been rejected, as the change in the legal status or ownership of the entity does not meet the conditions for Value Added Tax (VAT) deregistration while the business continues to make taxable supplies above the voluntary registration threshold. Kindly apply for a VAT registration amendment to update your details instead.",
    "ar": "يرجى العلم بأنه تم رفض طلب إلغاء التسجيل، حيث إن تغيير الشكل القانوني للكيان أو ملكيته لا يستوفي شروط إلغاء التسجيل لضريبة القيمة المضافة ما دام النشاط مستمراً في تقديم توريدات خاضعة للضريبة تتجاوز حد التسجيل الاختياري. يرجى بدلاً من ذلك التقدم بطلب تعديل بيانات التسجيل لضريبة القيمة المضافة.",
    "tags": [
     "reject",
@@ -778,8 +778,8 @@
     }
    ],
    "cond": {
-    "en": "Turnover above the voluntary threshold after an LLC → LLC single owner / civil company change, or a change of owner.",
-    "ar": "حجم الأعمال أعلى من الحد الاختياري بعد تحويل ذ.م.م إلى ذ.م.م بمالك واحد / شركة مدنية، أو تغيير المالك."
+    "en": "Turnover above the voluntary threshold after an limited liability company (LLC) → LLC single owner / civil company change, or a change of owner.",
+    "ar": "حجم الأعمال أعلى من الحد الاختياري بعد تحويل شركة ذات مسؤولية محدودة إلى شركة ذات مسؤولية محدودة بمالك واحد / شركة مدنية، أو تغيير المالك."
    }
   },
   {
@@ -942,7 +942,7 @@
    "s": "multi",
    "ss": "dup",
    "kind": "attachment",
-   "en": "Kindly provide a declaration letter on the company letterhead confirming that you will file your tax returns under the TRN of the main company. The letter must be signed and stamped.",
+   "en": "Kindly provide a declaration letter on the company letterhead confirming that you will file your tax returns under the Tax Registration Number (TRN) of the main company. The letter must be signed and stamped.",
    "ar": "يرجى تقديم خطاب إقرار على الورق الرسمي للشركة يؤكد أنكم ستقدمون الإقرارات الضريبية برقم التسجيل الضريبي للشركة الرئيسية، على أن يكون موقعاً ومختوماً.",
    "tags": [
     "declaration",
@@ -973,7 +973,7 @@
     }
    ],
    "doc": {
-    "en": "Declaration of filing under the main company TRN",
+    "en": "Declaration of filing under the main company Tax Registration Number (TRN)",
     "ar": "إقرار بتقديم الإقرارات برقم التسجيل الضريبي للشركة الرئيسية"
    }
   },
@@ -982,7 +982,7 @@
    "s": "multi",
    "ss": "dup",
    "kind": "request",
-   "en": "Kindly provide the Tax Registration Number (TRN) of the other entity registered for VAT under the same owner.",
+   "en": "Kindly provide the Tax Registration Number (TRN) of the other entity registered for Value Added Tax (VAT) under the same owner.",
    "ar": "يرجى تزويدنا برقم التسجيل الضريبي للكيان الآخر المسجل لضريبة القيمة المضافة باسم المالك نفسه.",
    "tags": [
     "other entity",
@@ -1126,7 +1126,7 @@
    "s": "supplies",
    "ss": "zero",
    "kind": "attachment",
-   "en": "Kindly provide a signed and stamped declaration confirming that you will apply for an exception from VAT registration once the deregistration application is approved.",
+   "en": "Kindly provide a signed and stamped declaration confirming that you will apply for an exception from Value Added Tax (VAT) registration once the deregistration application is approved.",
    "ar": "يرجى تقديم إقرار موقع ومختوم يؤكد أنكم ستتقدمون بطلب استثناء من التسجيل لضريبة القيمة المضافة فور الموافقة على طلب إلغاء التسجيل.",
    "tags": [
     "zero-rated",
@@ -1206,7 +1206,7 @@
    "s": "supplies",
    "ss": "below",
    "kind": "rejection",
-   "en": "Please note that your deregistration application has been rejected, as your taxable supplies over the last twelve months exceed the voluntary registration threshold and the business continues to make taxable supplies. Kindly apply for a VAT registration amendment if your registration details have changed.",
+   "en": "Please note that your deregistration application has been rejected, as your taxable supplies over the last twelve months exceed the voluntary registration threshold and the business continues to make taxable supplies. Kindly apply for a Value Added Tax (VAT) registration amendment if your registration details have changed.",
    "ar": "يرجى العلم بأنه تم رفض طلب إلغاء التسجيل، حيث إن توريداتكم الخاضعة للضريبة خلال الاثني عشر شهراً الماضية تتجاوز حد التسجيل الاختياري وما زال النشاط مستمراً في تقديم توريدات خاضعة للضريبة. يرجى التقدم بطلب تعديل بيانات التسجيل في حال تغيّر بياناتكم.",
    "tags": [
     "reject",
@@ -1639,7 +1639,7 @@
    "s": "special",
    "ss": "property",
    "kind": "rejection",
-   "en": "Please note that your deregistration application has been rejected. The sale of a commercial property that was not part of a continuing business activity does not constitute a basis for VAT registration; the registration is therefore considered to have been made in error. Kindly provide a clarification if you believe this assessment is incorrect.",
+   "en": "Please note that your deregistration application has been rejected. The sale of a commercial property that was not part of a continuing business activity does not constitute a basis for Value Added Tax (VAT) registration; the registration is therefore considered to have been made in error. Kindly provide a clarification if you believe this assessment is incorrect.",
    "ar": "يرجى العلم بأنه تم رفض طلب إلغاء التسجيل. إن بيع عقار تجاري لم يكن ضمن نشاط تجاري مستمر لا يُعد أساساً للتسجيل لضريبة القيمة المضافة، وبالتالي يُعتبر التسجيل قد تم عن طريق الخطأ. يرجى تقديم توضيح إذا كنتم ترون أن هذا التقييم غير صحيح.",
    "tags": [
     "property",
@@ -1684,7 +1684,7 @@
    "s": "special",
    "ss": "group",
    "kind": "notice",
-   "en": "Kindly note that the eligible date for deregistration cannot precede the date on which your TRN was activated following the deregistration or amendment of the tax group, as shown in the tax group application status log.",
+   "en": "Kindly note that the eligible date for deregistration cannot precede the date on which your Tax Registration Number (TRN) was activated following the deregistration or amendment of the tax group, as shown in the tax group application status log.",
    "ar": "يرجى العلم بأن تاريخ الأهلية لإلغاء التسجيل لا يمكن أن يسبق تاريخ تفعيل رقم التسجيل الضريبي الخاص بكم بعد إلغاء تسجيل المجموعة الضريبية أو تعديلها، كما هو مبين في سجل حالة طلب المجموعة الضريبية.",
    "tags": [
     "tax group",
@@ -1987,7 +1987,7 @@
     }
    ],
    "doc": {
-    "en": "Declaration of no PE, no State Sourced Income, no nexus and no dependent agent in the UAE",
+    "en": "Declaration of no Permanent Establishment, no State Sourced Income, no nexus and no dependent agent in the UAE",
     "ar": "إقرار بعدم وجود منشأة دائمة أو دخل ناشئ في الدولة أو صلة أو وكيل تابع في الدولة"
    }
   },
@@ -2361,7 +2361,7 @@
    "s": "ct-docs",
    "ss": "ct-natural",
    "kind": "attachment",
-   "en": "Kindly provide the Memorandum of Association (where the sale or conversion was from a sole establishment to an LLC), or the sale agreement.",
+   "en": "Kindly provide the Memorandum of Association (where the sale or conversion was from a sole establishment to an limited liability company (LLC)), or the sale agreement.",
    "ar": "يرجى تقديم عقد التأسيس (في حال تم البيع أو التحويل من مؤسسة فردية إلى شركة ذات مسؤولية محدودة)، أو اتفاقية البيع.",
    "tags": [
     "MOA",
@@ -2390,7 +2390,7 @@
     }
    ],
    "doc": {
-    "en": "MOA or sale agreement",
+    "en": "Memorandum of Association or sale agreement",
     "ar": "عقد التأسيس أو اتفاقية البيع"
    }
   },
@@ -2399,7 +2399,7 @@
    "s": "ct-docs",
    "ss": "ct-natural",
    "kind": "attachment",
-   "en": "Kindly provide a confirmation letter stating that you are not conducting any business, and are not registered with the FTA, under your name in the UAE.",
+   "en": "Kindly provide a confirmation letter stating that you are not conducting any business, and are not registered with the Federal Tax Authority (FTA), under your name in the UAE.",
    "ar": "يرجى تقديم خطاب تأكيد بعدم مزاولتكم أي أعمال وعدم تسجيلكم لدى الهيئة الاتحادية للضرائب باسمكم في الدولة.",
    "tags": [
     "confirmation letter",
@@ -2430,7 +2430,7 @@
     }
    ],
    "doc": {
-    "en": "Confirmation of no business and no FTA registration under the owner’s name",
+    "en": "Confirmation of no business and no Federal Tax Authority (FTA) registration under the owner’s name",
     "ar": "تأكيد بعدم مزاولة أعمال وعدم التسجيل لدى الهيئة باسم المالك"
    }
   },
@@ -2625,7 +2625,7 @@
    "s": "ct-reject",
    "ss": "ct-rj",
    "kind": "rejection",
-   "en": "The deregistration application cannot proceed, as the registration is linked with another tax type (VAT or Excise Tax). The duplicated TRN {{otherTrn}} must be deregistered.",
+   "en": "The deregistration application cannot proceed, as the registration is linked with another tax type (VAT or Excise Tax). The duplicated Tax Registration Number (TRN) {{otherTrn}} must be deregistered.",
    "ar": "لا يمكن المضي في طلب إلغاء التسجيل نظراً لارتباط التسجيل بنوع ضريبة آخر (ضريبة القيمة المضافة أو الضريبة الانتقائية). يجب إلغاء تسجيل رقم التسجيل الضريبي المكرر {{otherTrn}}.",
    "tags": [
     "reject",
@@ -2731,7 +2731,7 @@
    "s": "ct-reject",
    "ss": "ct-rj",
    "kind": "rejection",
-   "en": "The TRN deregistration cannot be processed because the trade licence is frozen. The trade licence must be cancelled in order to proceed with the deregistration.",
+   "en": "The Tax Registration Number (TRN) deregistration cannot be processed because the trade licence is frozen. The trade licence must be cancelled in order to proceed with the deregistration.",
    "ar": "لا يمكن معالجة طلب إلغاء تسجيل رقم التسجيل الضريبي نظراً لأن الرخصة التجارية مجمّدة. يجب إلغاء الرخصة التجارية للمضي في إلغاء التسجيل.",
    "tags": [
     "reject",
@@ -2799,8 +2799,8 @@
    "s": "ct-internal",
    "ss": "ct-notes",
    "kind": "internal",
-   "en": "Dear L2, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review: - The cessation date is as per the trade licence cancellation. - Declaration letter / financial statements have been provided covering all the tax periods up to the cessation date (signed or stamped). - The declaration letter / financial statements for the last period up to the cessation date show no fixed assets recorded. - No revenue was generated for the period {{period}} and the taxpayer elected for Small Business Relief (include all the periods of the CT returns). - There is no VAT or Excise Tax history on this TRN / the taxpayer has submitted a VAT deregistration application (to check). - Penalty imposed by {{penaltyBy}} / no penalty to be imposed (to check; if imposed manually and not through the system, mention it). All the above has been checked and the case is clear for L2 review and approval with no tax risk on this taxpayer.",
-   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة: - تاريخ التوقف وفقاً لتاريخ إلغاء الرخصة التجارية. - تم تقديم خطاب إقرار / بيانات مالية تغطي جميع الفترات الضريبية حتى تاريخ التوقف (موقعة أو مختومة). - أظهر خطاب الإقرار / البيانات المالية عن الفترة الأخيرة حتى تاريخ التوقف عدم وجود أصول ثابتة مسجلة. - لم يتم تحقيق أي إيرادات خلال الفترة {{period}} وقد اختار الخاضع للضريبة إعفاء الأعمال الصغيرة (تُدرج جميع فترات إقرارات ضريبة الشركات). - لا يوجد سجل لضريبة القيمة المضافة أو الضريبة الانتقائية على رقم التسجيل هذا / قدّم الخاضع للضريبة طلب إلغاء التسجيل لضريبة القيمة المضافة (للتحقق). - تم فرض غرامة بواسطة {{penaltyBy}} / لا توجد غرامة مستحقة (للتحقق؛ في حال فرضها يدوياً وليس عبر النظام تجب الإشارة إلى ذلك). تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
+   "en": "Dear Level 2 reviewer, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review:\n- The cessation date is as per the trade licence cancellation.\n- Declaration letter / financial statements have been provided covering all the tax periods up to the cessation date (signed or stamped).\n- The declaration letter / financial statements for the last period up to the cessation date show no fixed assets recorded.\n- No revenue was generated for the period {{period}} and the taxpayer elected for Small Business Relief (include all the periods of the Corporate Tax returns).\n- There is no Value Added Tax (VAT) or Excise Tax history on this Tax Registration Number (TRN) / the taxpayer has submitted a VAT deregistration application (to check).\n- Penalty imposed by {{penaltyBy}} / no penalty to be imposed (to check; if imposed manually and not through the system, mention it). All the above has been checked and the case is clear for Level 2 review and approval with no tax risk on this taxpayer.",
+   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة:\n- تاريخ التوقف وفقاً لتاريخ إلغاء الرخصة التجارية.\n- تم تقديم خطاب إقرار / بيانات مالية تغطي جميع الفترات الضريبية حتى تاريخ التوقف (موقعة أو مختومة).\n- أظهر خطاب الإقرار / البيانات المالية عن الفترة الأخيرة حتى تاريخ التوقف عدم وجود أصول ثابتة مسجلة.\n- لم يتم تحقيق أي إيرادات خلال الفترة {{period}} وقد اختار الخاضع للضريبة إعفاء الأعمال الصغيرة (تُدرج جميع فترات إقرارات ضريبة الشركات).\n- لا يوجد سجل لضريبة القيمة المضافة أو الضريبة الانتقائية على رقم التسجيل هذا / قدّم الخاضع للضريبة طلب إلغاء التسجيل لضريبة القيمة المضافة (للتحقق).\n- تم فرض غرامة بواسطة {{penaltyBy}} / لا توجد غرامة مستحقة (للتحقق؛ في حال فرضها يدوياً وليس عبر النظام تجب الإشارة إلى ذلك). تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
    "tags": [
     "internal",
     "L1",
@@ -2837,8 +2837,8 @@
    "s": "ct-internal",
    "ss": "ct-notes",
    "kind": "internal",
-   "en": "Dear L2, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review: - The cessation date is as per the trade licence cancellation. - Declaration letter / financial statements have been provided covering all the tax periods up to the cessation date (signed or stamped). - The declaration letter / financial statements for the last period up to the cessation date show no fixed assets recorded. - The total revenue is below AED 3 million for the tax period {{period}} and the taxpayer elected for Small Business Relief (include all the tax periods of the CT returns). - There is no VAT or Excise Tax history on this TRN / the taxpayer has submitted a VAT deregistration application (to check). - Penalty imposed by {{penaltyBy}} / no penalty to be imposed (to check; if imposed manually and not through the system, mention it). All the above has been checked and the case is clear for L2 review and approval with no tax risk on this taxpayer.",
-   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة: - تاريخ التوقف وفقاً لتاريخ إلغاء الرخصة التجارية. - تم تقديم خطاب إقرار / بيانات مالية تغطي جميع الفترات الضريبية حتى تاريخ التوقف (موقعة أو مختومة). - أظهر خطاب الإقرار / البيانات المالية عن الفترة الأخيرة حتى تاريخ التوقف عدم وجود أصول ثابتة مسجلة. - إجمالي الإيرادات أقل من 3 ملايين درهم عن الفترة الضريبية {{period}} وقد اختار الخاضع للضريبة إعفاء الأعمال الصغيرة (تُدرج جميع الفترات الضريبية لإقرارات ضريبة الشركات). - لا يوجد سجل لضريبة القيمة المضافة أو الضريبة الانتقائية على رقم التسجيل هذا / قدّم الخاضع للضريبة طلب إلغاء التسجيل لضريبة القيمة المضافة (للتحقق). - تم فرض غرامة بواسطة {{penaltyBy}} / لا توجد غرامة مستحقة (للتحقق؛ في حال فرضها يدوياً وليس عبر النظام تجب الإشارة إلى ذلك). تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
+   "en": "Dear Level 2 reviewer, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review:\n- The cessation date is as per the trade licence cancellation.\n- Declaration letter / financial statements have been provided covering all the tax periods up to the cessation date (signed or stamped).\n- The declaration letter / financial statements for the last period up to the cessation date show no fixed assets recorded.\n- The total revenue is below AED 3 million for the tax period {{period}} and the taxpayer elected for Small Business Relief (include all the tax periods of the Corporate Tax returns).\n- There is no Value Added Tax (VAT) or Excise Tax history on this Tax Registration Number (TRN) / the taxpayer has submitted a VAT deregistration application (to check).\n- Penalty imposed by {{penaltyBy}} / no penalty to be imposed (to check; if imposed manually and not through the system, mention it). All the above has been checked and the case is clear for Level 2 review and approval with no tax risk on this taxpayer.",
+   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة:\n- تاريخ التوقف وفقاً لتاريخ إلغاء الرخصة التجارية.\n- تم تقديم خطاب إقرار / بيانات مالية تغطي جميع الفترات الضريبية حتى تاريخ التوقف (موقعة أو مختومة).\n- أظهر خطاب الإقرار / البيانات المالية عن الفترة الأخيرة حتى تاريخ التوقف عدم وجود أصول ثابتة مسجلة.\n- إجمالي الإيرادات أقل من 3 ملايين درهم عن الفترة الضريبية {{period}} وقد اختار الخاضع للضريبة إعفاء الأعمال الصغيرة (تُدرج جميع الفترات الضريبية لإقرارات ضريبة الشركات).\n- لا يوجد سجل لضريبة القيمة المضافة أو الضريبة الانتقائية على رقم التسجيل هذا / قدّم الخاضع للضريبة طلب إلغاء التسجيل لضريبة القيمة المضافة (للتحقق).\n- تم فرض غرامة بواسطة {{penaltyBy}} / لا توجد غرامة مستحقة (للتحقق؛ في حال فرضها يدوياً وليس عبر النظام تجب الإشارة إلى ذلك). تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
    "tags": [
     "internal",
     "L1",
@@ -2875,8 +2875,8 @@
    "s": "ct-internal",
    "ss": "ct-notes",
    "kind": "internal",
-   "en": "Dear L2, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review: - The cessation date is as per the trade licence cancellation. - Declaration letter / financial statements have been provided covering all the tax periods up to the cessation date (signed or stamped). - The declaration letter / financial statements for the last period up to the cessation date show no fixed assets recorded. - The taxpayer generated revenue in the tax period {{period}}; however, the taxable income did not reach the AED 375,000 threshold and no tax liability is payable (include all the tax periods of the CT returns). - There is no VAT or Excise Tax history on this TRN / the taxpayer has submitted a VAT deregistration application (to check). - Penalty imposed by {{penaltyBy}} / no penalty to be imposed (to check; if imposed manually and not through the system, mention it). All the above has been checked and the case is clear for L2 review and approval with no tax risk on this taxpayer.",
-   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة: - تاريخ التوقف وفقاً لتاريخ إلغاء الرخصة التجارية. - تم تقديم خطاب إقرار / بيانات مالية تغطي جميع الفترات الضريبية حتى تاريخ التوقف (موقعة أو مختومة). - أظهر خطاب الإقرار / البيانات المالية عن الفترة الأخيرة حتى تاريخ التوقف عدم وجود أصول ثابتة مسجلة. - حقق الخاضع للضريبة إيرادات خلال الفترة الضريبية {{period}}، إلا أن الدخل الخاضع للضريبة لم يبلغ حد 375,000 درهم ولا توجد التزامات ضريبية مستحقة (تُدرج جميع الفترات الضريبية لإقرارات ضريبة الشركات). - لا يوجد سجل لضريبة القيمة المضافة أو الضريبة الانتقائية على رقم التسجيل هذا / قدّم الخاضع للضريبة طلب إلغاء التسجيل لضريبة القيمة المضافة (للتحقق). - تم فرض غرامة بواسطة {{penaltyBy}} / لا توجد غرامة مستحقة (للتحقق؛ في حال فرضها يدوياً وليس عبر النظام تجب الإشارة إلى ذلك). تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
+   "en": "Dear Level 2 reviewer, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review:\n- The cessation date is as per the trade licence cancellation.\n- Declaration letter / financial statements have been provided covering all the tax periods up to the cessation date (signed or stamped).\n- The declaration letter / financial statements for the last period up to the cessation date show no fixed assets recorded.\n- The taxpayer generated revenue in the tax period {{period}}; however, the taxable income did not reach the AED 375,000 threshold and no tax liability is payable (include all the tax periods of the Corporate Tax returns).\n- There is no Value Added Tax (VAT) or Excise Tax history on this Tax Registration Number (TRN) / the taxpayer has submitted a VAT deregistration application (to check).\n- Penalty imposed by {{penaltyBy}} / no penalty to be imposed (to check; if imposed manually and not through the system, mention it). All the above has been checked and the case is clear for Level 2 review and approval with no tax risk on this taxpayer.",
+   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة:\n- تاريخ التوقف وفقاً لتاريخ إلغاء الرخصة التجارية.\n- تم تقديم خطاب إقرار / بيانات مالية تغطي جميع الفترات الضريبية حتى تاريخ التوقف (موقعة أو مختومة).\n- أظهر خطاب الإقرار / البيانات المالية عن الفترة الأخيرة حتى تاريخ التوقف عدم وجود أصول ثابتة مسجلة.\n- حقق الخاضع للضريبة إيرادات خلال الفترة الضريبية {{period}}، إلا أن الدخل الخاضع للضريبة لم يبلغ حد 375,000 درهم ولا توجد التزامات ضريبية مستحقة (تُدرج جميع الفترات الضريبية لإقرارات ضريبة الشركات).\n- لا يوجد سجل لضريبة القيمة المضافة أو الضريبة الانتقائية على رقم التسجيل هذا / قدّم الخاضع للضريبة طلب إلغاء التسجيل لضريبة القيمة المضافة (للتحقق).\n- تم فرض غرامة بواسطة {{penaltyBy}} / لا توجد غرامة مستحقة (للتحقق؛ في حال فرضها يدوياً وليس عبر النظام تجب الإشارة إلى ذلك). تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
    "tags": [
     "internal",
     "L1",
@@ -2913,8 +2913,8 @@
    "s": "ct-internal",
    "ss": "ct-notes",
    "kind": "internal",
-   "en": "Dear L2, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review: - This person should not be registered, as the taxpayer holds another TRN: {{otherTrn}}. - The CT return is submitted under the other TRN; the taxpayer is not required to file under both TRNs, so no return will appear in this application. - No penalties should be imposed. - Confirmation letter that the taxpayer will register for CT (where a system error prevented registration). All the above has been checked and the case is clear for L2 review and approval with no tax risk on this taxpayer.",
-   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة: - لا ينبغي تسجيل هذا الشخص، إذ إن الخاضع للضريبة لديه رقم تسجيل ضريبي آخر: {{otherTrn}}. - تم تقديم إقرار ضريبة الشركات على رقم التسجيل الآخر، ولا يُطلب من الخاضع للضريبة التقديم على كلا الرقمين، وبالتالي لن يظهر أي إقرار في هذا الطلب. - لا ينبغي فرض أي غرامات. - خطاب تأكيد بأن الخاضع للضريبة سيقوم بالتسجيل لضريبة الشركات (في حال وجود خطأ في النظام حال دون التسجيل). تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
+   "en": "Dear Level 2 reviewer, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review:\n- This person should not be registered, as the taxpayer holds another Tax Registration Number (TRN): {{otherTrn}}.\n- The Corporate Tax return is submitted under the other TRN; the taxpayer is not required to file under both TRNs, so no return will appear in this application.\n- No penalties should be imposed.\n- Confirmation letter that the taxpayer will register for Corporate Tax (where a system error prevented registration). All the above has been checked and the case is clear for Level 2 review and approval with no tax risk on this taxpayer.",
+   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة:\n- لا ينبغي تسجيل هذا الشخص، إذ إن الخاضع للضريبة لديه رقم تسجيل ضريبي آخر: {{otherTrn}}.\n- تم تقديم إقرار ضريبة الشركات على رقم التسجيل الآخر، ولا يُطلب من الخاضع للضريبة التقديم على كلا الرقمين، وبالتالي لن يظهر أي إقرار في هذا الطلب.\n- لا ينبغي فرض أي غرامات.\n- خطاب تأكيد بأن الخاضع للضريبة سيقوم بالتسجيل لضريبة الشركات (في حال وجود خطأ في النظام حال دون التسجيل). تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
    "tags": [
     "internal",
     "L1",
@@ -2947,8 +2947,8 @@
    "s": "ct-internal",
    "ss": "ct-notes",
    "kind": "internal",
-   "en": "Dear L2, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review: - The cessation date is as per the change of the legal type. - Declaration letter / financial statements have been provided covering the first tax period up to the date of the change of legal type (signed). - No revenue was generated for the period {{period}} and the taxpayer elected for Small Business Relief (include all the periods of the CT returns; check the revenue). - VAT has been deregistered. All the above has been checked and the case is clear for L2 review and approval with no tax risk on this taxpayer.",
-   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة: - تاريخ التوقف وفقاً لتاريخ تغيير الشكل القانوني. - تم تقديم خطاب إقرار / بيانات مالية تغطي الفترة الضريبية الأولى حتى تاريخ تغيير الشكل القانوني (موقعة). - لم يتم تحقيق أي إيرادات خلال الفترة {{period}} وقد اختار الخاضع للضريبة إعفاء الأعمال الصغيرة (تُدرج جميع فترات إقرارات ضريبة الشركات مع التحقق من الإيرادات). - تم إلغاء التسجيل لضريبة القيمة المضافة. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
+   "en": "Dear Level 2 reviewer, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review:\n- The cessation date is as per the change of the legal type.\n- Declaration letter / financial statements have been provided covering the first tax period up to the date of the change of legal type (signed).\n- No revenue was generated for the period {{period}} and the taxpayer elected for Small Business Relief (include all the periods of the Corporate Tax returns; check the revenue).\n- Value Added Tax (VAT) has been deregistered. All the above has been checked and the case is clear for Level 2 review and approval with no tax risk on this taxpayer.",
+   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة:\n- تاريخ التوقف وفقاً لتاريخ تغيير الشكل القانوني.\n- تم تقديم خطاب إقرار / بيانات مالية تغطي الفترة الضريبية الأولى حتى تاريخ تغيير الشكل القانوني (موقعة).\n- لم يتم تحقيق أي إيرادات خلال الفترة {{period}} وقد اختار الخاضع للضريبة إعفاء الأعمال الصغيرة (تُدرج جميع فترات إقرارات ضريبة الشركات مع التحقق من الإيرادات).\n- تم إلغاء التسجيل لضريبة القيمة المضافة. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
    "tags": [
     "internal",
     "L1",
@@ -2985,8 +2985,8 @@
    "s": "ct-internal",
    "ss": "ct-notes",
    "kind": "internal",
-   "en": "Dear L2, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review: - The application should be rejected, as the taxpayer must submit an Amend Taxable Person Details application (sale of business from LLC to LLC without a change of legal type).",
-   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة: - يجب رفض الطلب، إذ يتعين على الخاضع للضريبة تقديم طلب تعديل بيانات الخاضع للضريبة (بيع الأعمال من شركة ذات مسؤولية محدودة إلى شركة ذات مسؤولية محدودة دون تغيير الشكل القانوني).",
+   "en": "Dear Level 2 reviewer, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review:\n- The application should be rejected, as the taxpayer must submit an Amend Taxable Person Details application (sale of business from limited liability company (LLC) to LLC without a change of legal type).",
+   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة:\n- يجب رفض الطلب، إذ يتعين على الخاضع للضريبة تقديم طلب تعديل بيانات الخاضع للضريبة (بيع الأعمال من شركة ذات مسؤولية محدودة إلى شركة ذات مسؤولية محدودة دون تغيير الشكل القانوني).",
    "tags": [
     "internal",
     "L1",
@@ -3025,8 +3025,8 @@
    "s": "ct-internal",
    "ss": "ct-notes",
    "kind": "internal",
-   "en": "Dear L2, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review: - The cessation date is as per the board resolution or an official minute of meeting. - The taxpayer confirmed, by attaching a declaration letter, that it has no PE, no nexus in the UAE, no State Sourced Income and no business or business activity in the UAE on behalf of the foreign business. - No revenue was generated for the period {{period}} and the taxpayer elected for Small Business Relief (include all the periods of the CT returns). - There is no VAT or Excise Tax history on this TRN / the taxpayer has submitted a VAT deregistration application (to check). - The certificate of continuity has been attached. All the above has been checked and the case is clear for L2 review and approval with no tax risk on this taxpayer.",
-   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة: - تاريخ التوقف وفقاً لقرار مجلس الإدارة أو محضر اجتماع رسمي. - أكد الخاضع للضريبة، من خلال إرفاق خطاب إقرار، عدم وجود منشأة دائمة أو صلة في الدولة، وعدم تحقيق دخل ناشئ في الدولة، وعدم مزاولة أعمال أو نشاط أعمال في الدولة نيابةً عن الأعمال الأجنبية. - لم يتم تحقيق أي إيرادات خلال الفترة {{period}} وقد اختار الخاضع للضريبة إعفاء الأعمال الصغيرة (تُدرج جميع فترات إقرارات ضريبة الشركات). - لا يوجد سجل لضريبة القيمة المضافة أو الضريبة الانتقائية على رقم التسجيل هذا / قدّم الخاضع للضريبة طلب إلغاء التسجيل لضريبة القيمة المضافة (للتحقق). - تم إرفاق شهادة الاستمرارية. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
+   "en": "Dear Level 2 reviewer, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review:\n- The cessation date is as per the board resolution or an official minute of meeting.\n- The taxpayer confirmed, by attaching a declaration letter, that it has no Permanent Establishment, no nexus in the UAE, no State Sourced Income and no business or business activity in the UAE on behalf of the foreign business.\n- No revenue was generated for the period {{period}} and the taxpayer elected for Small Business Relief (include all the periods of the Corporate Tax returns).\n- There is no Value Added Tax (VAT) or Excise Tax history on this Tax Registration Number (TRN) / the taxpayer has submitted a VAT deregistration application (to check).\n- The certificate of continuity has been attached. All the above has been checked and the case is clear for Level 2 review and approval with no tax risk on this taxpayer.",
+   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة:\n- تاريخ التوقف وفقاً لقرار مجلس الإدارة أو محضر اجتماع رسمي.\n- أكد الخاضع للضريبة، من خلال إرفاق خطاب إقرار، عدم وجود منشأة دائمة أو صلة في الدولة، وعدم تحقيق دخل ناشئ في الدولة، وعدم مزاولة أعمال أو نشاط أعمال في الدولة نيابةً عن الأعمال الأجنبية.\n- لم يتم تحقيق أي إيرادات خلال الفترة {{period}} وقد اختار الخاضع للضريبة إعفاء الأعمال الصغيرة (تُدرج جميع فترات إقرارات ضريبة الشركات).\n- لا يوجد سجل لضريبة القيمة المضافة أو الضريبة الانتقائية على رقم التسجيل هذا / قدّم الخاضع للضريبة طلب إلغاء التسجيل لضريبة القيمة المضافة (للتحقق).\n- تم إرفاق شهادة الاستمرارية. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
    "tags": [
     "internal",
     "L1",
@@ -3061,8 +3061,8 @@
    "s": "ct-internal",
    "ss": "ct-notes",
    "kind": "internal",
-   "en": "Dear L2, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review: - The cessation date is as per the board resolution. - The taxpayer confirmed, by attaching a declaration letter, that it has no PE, no nexus in the UAE, no State Sourced Income and no business or business activity in the UAE on behalf of the foreign business. - No revenue was generated for the period {{period}} and the taxpayer elected for Small Business Relief (include all the periods of the CT returns). - There is no VAT history on this TRN / the taxpayer has submitted a VAT deregistration application (to check). All the above has been checked and the case is clear for L2 review and approval with no tax risk on this taxpayer.",
-   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة: - تاريخ التوقف وفقاً لقرار مجلس الإدارة. - أكد الخاضع للضريبة، من خلال إرفاق خطاب إقرار، عدم وجود منشأة دائمة أو صلة في الدولة، وعدم تحقيق دخل ناشئ في الدولة، وعدم مزاولة أعمال أو نشاط أعمال في الدولة نيابةً عن الأعمال الأجنبية. - لم يتم تحقيق أي إيرادات خلال الفترة {{period}} وقد اختار الخاضع للضريبة إعفاء الأعمال الصغيرة (تُدرج جميع فترات إقرارات ضريبة الشركات). - لا يوجد سجل لضريبة القيمة المضافة على رقم التسجيل هذا / قدّم الخاضع للضريبة طلب إلغاء التسجيل لضريبة القيمة المضافة (للتحقق). تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
+   "en": "Dear Level 2 reviewer, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review:\n- The cessation date is as per the board resolution.\n- The taxpayer confirmed, by attaching a declaration letter, that it has no Permanent Establishment, no nexus in the UAE, no State Sourced Income and no business or business activity in the UAE on behalf of the foreign business.\n- No revenue was generated for the period {{period}} and the taxpayer elected for Small Business Relief (include all the periods of the Corporate Tax returns).\n- There is no Value Added Tax (VAT) history on this Tax Registration Number (TRN) / the taxpayer has submitted a VAT deregistration application (to check). All the above has been checked and the case is clear for Level 2 review and approval with no tax risk on this taxpayer.",
+   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة:\n- تاريخ التوقف وفقاً لقرار مجلس الإدارة.\n- أكد الخاضع للضريبة، من خلال إرفاق خطاب إقرار، عدم وجود منشأة دائمة أو صلة في الدولة، وعدم تحقيق دخل ناشئ في الدولة، وعدم مزاولة أعمال أو نشاط أعمال في الدولة نيابةً عن الأعمال الأجنبية.\n- لم يتم تحقيق أي إيرادات خلال الفترة {{period}} وقد اختار الخاضع للضريبة إعفاء الأعمال الصغيرة (تُدرج جميع فترات إقرارات ضريبة الشركات).\n- لا يوجد سجل لضريبة القيمة المضافة على رقم التسجيل هذا / قدّم الخاضع للضريبة طلب إلغاء التسجيل لضريبة القيمة المضافة (للتحقق). تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
    "tags": [
     "internal",
     "L1",
@@ -3099,8 +3099,8 @@
    "s": "ct-internal",
    "ss": "ct-notes",
    "kind": "internal",
-   "en": "Dear L2, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review: - The taxpayer is a Qualifying Public Benefit Entity and is therefore not required to register or to file a CT return. All the above has been checked and the case is clear for L2 review and approval with no tax risk on this taxpayer.",
-   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة: - الخاضع للضريبة جهة نفع عام مؤهلة، وبالتالي غير مطالب بالتسجيل أو بتقديم إقرار ضريبة الشركات. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
+   "en": "Dear Level 2 reviewer, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review:\n- The taxpayer is a Qualifying Public Benefit Entity and is therefore not required to register or to file a Corporate Tax return. All the above has been checked and the case is clear for Level 2 review and approval with no tax risk on this taxpayer.",
+   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة:\n- الخاضع للضريبة جهة نفع عام مؤهلة، وبالتالي غير مطالب بالتسجيل أو بتقديم إقرار ضريبة الشركات. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
    "tags": [
     "internal",
     "L1",
@@ -3135,8 +3135,8 @@
    "s": "ct-internal",
    "ss": "ct-notes",
    "kind": "internal",
-   "en": "Dear L2, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review: - The taxpayer is an Exempt Person for CT purposes (Government Entity / Government Controlled Entity), and no return is required.",
-   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة: - الخاضع للضريبة شخص مُعفى من ضريبة الشركات بصفته (جهة حكومية / جهة خاضعة لسيطرة الحكومة)، ولا يُطلب منه تقديم إقرار.",
+   "en": "Dear Level 2 reviewer, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review:\n- The taxpayer is an Exempt Person for Corporate Tax purposes (Government Entity / Government Controlled Entity), and no return is required.",
+   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة:\n- الخاضع للضريبة شخص مُعفى من ضريبة الشركات بصفته (جهة حكومية / جهة خاضعة لسيطرة الحكومة)، ولا يُطلب منه تقديم إقرار.",
    "tags": [
     "internal",
     "L1",
@@ -3171,8 +3171,8 @@
    "s": "ct-internal",
    "ss": "ct-notes",
    "kind": "internal",
-   "en": "Dear L2, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review: - The taxpayer is not required to register for CT. - The taxpayer shared the notification form from the Ministry of Finance. - The taxpayer is subject to tax at the Emirate level. - Financial statements were shared and all the income was generated from the Extractive Business. All the above has been checked and the case is clear for L2 review and approval with no tax risk on this taxpayer.",
-   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة: - الخاضع للضريبة غير مطالب بالتسجيل لضريبة الشركات. - قدّم الخاضع للضريبة نموذج الإخطار الصادر عن وزارة المالية. - الخاضع للضريبة يخضع للضريبة على مستوى الإمارة. - تم تقديم البيانات المالية، وجميع الدخل ناتج عن الأعمال الاستخراجية. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
+   "en": "Dear Level 2 reviewer, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review:\n- The taxpayer is not required to register for Corporate Tax.\n- The taxpayer shared the notification form from the Ministry of Finance.\n- The taxpayer is subject to tax at the Emirate level.\n- Financial statements were shared and all the income was generated from the Extractive Business. All the above has been checked and the case is clear for Level 2 review and approval with no tax risk on this taxpayer.",
+   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة:\n- الخاضع للضريبة غير مطالب بالتسجيل لضريبة الشركات.\n- قدّم الخاضع للضريبة نموذج الإخطار الصادر عن وزارة المالية.\n- الخاضع للضريبة يخضع للضريبة على مستوى الإمارة.\n- تم تقديم البيانات المالية، وجميع الدخل ناتج عن الأعمال الاستخراجية. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
    "tags": [
     "internal",
     "L1",
@@ -3209,8 +3209,8 @@
    "s": "ct-internal",
    "ss": "ct-notes",
    "kind": "internal",
-   "en": "Dear L2, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review: - The taxpayer is not required to register for CT. - The taxpayer shared the confirmation letter from the Ministry of Finance. - The taxpayer is subject to tax at the Emirate level. - Financial statements were shared and all the income was generated from the Non-Extractive Natural Resource Business. All the above has been checked and the case is clear for L2 review and approval with no tax risk on this taxpayer.",
-   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة: - الخاضع للضريبة غير مطالب بالتسجيل لضريبة الشركات. - قدّم الخاضع للضريبة خطاب التأكيد الصادر عن وزارة المالية. - الخاضع للضريبة يخضع للضريبة على مستوى الإمارة. - تم تقديم البيانات المالية، وجميع الدخل ناتج عن أعمال الموارد الطبيعية غير الاستخراجية. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
+   "en": "Dear Level 2 reviewer, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review:\n- The taxpayer is not required to register for Corporate Tax.\n- The taxpayer shared the confirmation letter from the Ministry of Finance.\n- The taxpayer is subject to tax at the Emirate level.\n- Financial statements were shared and all the income was generated from the Non-Extractive Natural Resource Business. All the above has been checked and the case is clear for Level 2 review and approval with no tax risk on this taxpayer.",
+   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة:\n- الخاضع للضريبة غير مطالب بالتسجيل لضريبة الشركات.\n- قدّم الخاضع للضريبة خطاب التأكيد الصادر عن وزارة المالية.\n- الخاضع للضريبة يخضع للضريبة على مستوى الإمارة.\n- تم تقديم البيانات المالية، وجميع الدخل ناتج عن أعمال الموارد الطبيعية غير الاستخراجية. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
    "tags": [
     "internal",
     "L1",
@@ -3247,8 +3247,8 @@
    "s": "ct-internal",
    "ss": "ct-notes",
    "kind": "internal",
-   "en": "Dear L2, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review: - The cessation date is as per the board resolution. - Confirmation letter that both partners hold TRNs and that the income is reported / will be reported in their returns. All the above has been checked and the case is clear for L2 review and approval with no tax risk on this taxpayer.",
-   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة: - تاريخ التوقف وفقاً لقرار مجلس الإدارة. - خطاب تأكيد بأن كلا الشريكين لديهما أرقام تسجيل ضريبي وأن الدخل تم الإفصاح عنه / سيتم الإفصاح عنه في إقراراتهما. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
+   "en": "Dear Level 2 reviewer, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review:\n- The cessation date is as per the board resolution.\n- Confirmation letter that both partners hold TRNs and that the income is reported / will be reported in their returns. All the above has been checked and the case is clear for Level 2 review and approval with no tax risk on this taxpayer.",
+   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة:\n- تاريخ التوقف وفقاً لقرار مجلس الإدارة.\n- خطاب تأكيد بأن كلا الشريكين لديهما أرقام تسجيل ضريبي وأن الدخل تم الإفصاح عنه / سيتم الإفصاح عنه في إقراراتهما. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
    "tags": [
     "internal",
     "L1",
@@ -3281,8 +3281,8 @@
    "s": "ct-internal",
    "ss": "ct-notes",
    "kind": "internal",
-   "en": "Dear L2, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review: - The cessation date is as per the publication date of the Cabinet Decision. - No revenue was generated for the period {{period}} and the taxpayer elected for Small Business Relief (include all the periods of the CT returns). - The mandated activities of the taxpayer are as per the Cabinet Decision. All the above has been checked and the case is clear for L2 review and approval with no tax risk on this taxpayer.",
-   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة: - تاريخ التوقف وفقاً لتاريخ نشر قرار مجلس الوزراء. - لم يتم تحقيق أي إيرادات خلال الفترة {{period}} وقد اختار الخاضع للضريبة إعفاء الأعمال الصغيرة (تُدرج جميع فترات إقرارات ضريبة الشركات). - الأنشطة المكلّف بها الخاضع للضريبة وفقاً لقرار مجلس الوزراء. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
+   "en": "Dear Level 2 reviewer, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review:\n- The cessation date is as per the publication date of the Cabinet Decision.\n- No revenue was generated for the period {{period}} and the taxpayer elected for Small Business Relief (include all the periods of the Corporate Tax returns).\n- The mandated activities of the taxpayer are as per the Cabinet Decision. All the above has been checked and the case is clear for Level 2 review and approval with no tax risk on this taxpayer.",
+   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة:\n- تاريخ التوقف وفقاً لتاريخ نشر قرار مجلس الوزراء.\n- لم يتم تحقيق أي إيرادات خلال الفترة {{period}} وقد اختار الخاضع للضريبة إعفاء الأعمال الصغيرة (تُدرج جميع فترات إقرارات ضريبة الشركات).\n- الأنشطة المكلّف بها الخاضع للضريبة وفقاً لقرار مجلس الوزراء. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
    "tags": [
     "internal",
     "L1",
@@ -3317,8 +3317,8 @@
    "s": "ct-internal",
    "ss": "ct-natural-notes",
    "kind": "internal",
-   "en": "Dear L2, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review: - Declaration letter / financial statements / turnover declaration have been provided covering all the tax periods (signed). - Total revenue is below the AED 1 million threshold and the taxpayer can be deregistered. - Confirmation letter that the owner does not hold any other TRNs has been attached and confirmed by the taxpayer. - No final return is required. All the above has been checked and the case is clear for L2 review and approval with no tax risk on this taxpayer.",
-   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة: - تم تقديم خطاب إقرار / بيانات مالية / إقرار بحجم الأعمال يغطي جميع الفترات الضريبية (موقع). - إجمالي الإيرادات أقل من حد المليون درهم، ويمكن إلغاء تسجيل الخاضع للضريبة. - تم إرفاق خطاب تأكيد بعدم وجود أي أرقام تسجيل ضريبي أخرى للمالك، وتم تأكيده من قبل الخاضع للضريبة. - لا يُطلب تقديم إقرار نهائي. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
+   "en": "Dear Level 2 reviewer, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review:\n- Declaration letter / financial statements / turnover declaration have been provided covering all the tax periods (signed).\n- Total revenue is below the AED 1 million threshold and the taxpayer can be deregistered.\n- Confirmation letter that the owner does not hold any other TRNs has been attached and confirmed by the taxpayer.\n- No final return is required. All the above has been checked and the case is clear for Level 2 review and approval with no tax risk on this taxpayer.",
+   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة:\n- تم تقديم خطاب إقرار / بيانات مالية / إقرار بحجم الأعمال يغطي جميع الفترات الضريبية (موقع).\n- إجمالي الإيرادات أقل من حد المليون درهم، ويمكن إلغاء تسجيل الخاضع للضريبة.\n- تم إرفاق خطاب تأكيد بعدم وجود أي أرقام تسجيل ضريبي أخرى للمالك، وتم تأكيده من قبل الخاضع للضريبة.\n- لا يُطلب تقديم إقرار نهائي. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
    "tags": [
     "internal",
     "L1",
@@ -3353,8 +3353,8 @@
    "s": "ct-internal",
    "ss": "ct-natural-notes",
    "kind": "internal",
-   "en": "Dear L2, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review: - The cessation date is as per the MOA. - Declaration letter / financial statements have been provided covering the first tax period up to the date of the change of legal type (signed). - No revenue was generated for the period {{period}} and the taxpayer elected for Small Business Relief (include all the periods of the CT returns; check the revenue). - Confirmation letter that the owner does not hold any other TRNs and is not conducting any business has been attached and confirmed by the taxpayer. - The CT certificate of the new company (LLC) has been attached. - VAT has been deregistered. All the above has been checked and the case is clear for L2 review and approval with no tax risk on this taxpayer.",
-   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة: - تاريخ التوقف وفقاً لعقد التأسيس. - تم تقديم خطاب إقرار / بيانات مالية تغطي الفترة الضريبية الأولى حتى تاريخ تغيير الشكل القانوني (موقعة). - لم يتم تحقيق أي إيرادات خلال الفترة {{period}} وقد اختار الخاضع للضريبة إعفاء الأعمال الصغيرة (تُدرج جميع فترات إقرارات ضريبة الشركات مع التحقق من الإيرادات). - تم إرفاق خطاب تأكيد بعدم وجود أي أرقام تسجيل ضريبي أخرى للمالك وعدم مزاولته أي أعمال، وتم تأكيده من قبل الخاضع للضريبة. - تم إرفاق شهادة ضريبة الشركات للشركة الجديدة (ذات المسؤولية المحدودة). - تم إلغاء التسجيل لضريبة القيمة المضافة. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
+   "en": "Dear Level 2 reviewer, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review:\n- The cessation date is as per the Memorandum of Association.\n- Declaration letter / financial statements have been provided covering the first tax period up to the date of the change of legal type (signed).\n- No revenue was generated for the period {{period}} and the taxpayer elected for Small Business Relief (include all the periods of the Corporate Tax returns; check the revenue).\n- Confirmation letter that the owner does not hold any other TRNs and is not conducting any business has been attached and confirmed by the taxpayer.\n- The Corporate Tax registration certificate of the new company (LLC) has been attached.\n- Value Added Tax (VAT) has been deregistered. All the above has been checked and the case is clear for Level 2 review and approval with no tax risk on this taxpayer.",
+   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة:\n- تاريخ التوقف وفقاً لعقد التأسيس.\n- تم تقديم خطاب إقرار / بيانات مالية تغطي الفترة الضريبية الأولى حتى تاريخ تغيير الشكل القانوني (موقعة).\n- لم يتم تحقيق أي إيرادات خلال الفترة {{period}} وقد اختار الخاضع للضريبة إعفاء الأعمال الصغيرة (تُدرج جميع فترات إقرارات ضريبة الشركات مع التحقق من الإيرادات).\n- تم إرفاق خطاب تأكيد بعدم وجود أي أرقام تسجيل ضريبي أخرى للمالك وعدم مزاولته أي أعمال، وتم تأكيده من قبل الخاضع للضريبة.\n- تم إرفاق شهادة ضريبة الشركات للشركة الجديدة (ذات المسؤولية المحدودة).\n- تم إلغاء التسجيل لضريبة القيمة المضافة. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
    "tags": [
     "internal",
     "L1",
@@ -3393,8 +3393,8 @@
    "s": "ct-internal",
    "ss": "ct-natural-notes",
    "kind": "internal",
-   "en": "Dear L2, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review: - The cessation date is as per the death certificate. - Confirmation letter that the owner was not conducting any business and was not registered with the FTA under their name in the UAE has been attached and confirmed. - Declaration letter / financial statements / turnover declaration have been provided covering the first tax period and the {{period}} tax period (signed). - Confirmation letter that the heirs will not continue the business has been attached. All the above has been checked and the case is clear for L2 review and approval with no tax risk on this taxpayer.",
-   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة: - تاريخ التوقف وفقاً لشهادة الوفاة. - تم إرفاق خطاب تأكيد بعدم مزاولة المالك أي أعمال وعدم تسجيله لدى الهيئة الاتحادية للضرائب باسمه في الدولة، وتم تأكيده. - تم تقديم خطاب إقرار / بيانات مالية / إقرار بحجم الأعمال يغطي الفترة الضريبية الأولى والفترة الضريبية {{period}} (موقع). - تم إرفاق خطاب تأكيد بأن الورثة لن يستمروا في مزاولة الأعمال. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
+   "en": "Dear Level 2 reviewer, as per the attachments the taxpayer has provided the necessary documents; I have checked them and noted the below for your kind review:\n- The cessation date is as per the death certificate.\n- Confirmation letter that the owner was not conducting any business and was not registered with the Federal Tax Authority (FTA) under their name in the UAE has been attached and confirmed.\n- Declaration letter / financial statements / turnover declaration have been provided covering the first tax period and the {{period}} tax period (signed).\n- Confirmation letter that the heirs will not continue the business has been attached. All the above has been checked and the case is clear for Level 2 review and approval with no tax risk on this taxpayer.",
+   "ar": "إلى مراجع المستوى الثاني، بناءً على المرفقات قدّم الخاضع للضريبة المستندات اللازمة، وقد تم التحقق منها ورصد الملاحظات التالية للمراجعة الكريمة:\n- تاريخ التوقف وفقاً لشهادة الوفاة.\n- تم إرفاق خطاب تأكيد بعدم مزاولة المالك أي أعمال وعدم تسجيله لدى الهيئة الاتحادية للضرائب باسمه في الدولة، وتم تأكيده.\n- تم تقديم خطاب إقرار / بيانات مالية / إقرار بحجم الأعمال يغطي الفترة الضريبية الأولى والفترة الضريبية {{period}} (موقع).\n- تم إرفاق خطاب تأكيد بأن الورثة لن يستمروا في مزاولة الأعمال. تم التحقق من جميع ما ورد أعلاه، والحالة جاهزة لمراجعة واعتماد المستوى الثاني دون أي مخاطر ضريبية على هذا الخاضع للضريبة.",
    "tags": [
     "internal",
     "L1",
@@ -3429,7 +3429,7 @@
    "s": "ct-internal",
    "ss": "ct-fast",
    "kind": "internal",
-   "en": "The application has been reviewed under the Fast-Track Process, which is designed to expedite eligible CT deregistration applications through a simplified review. The review included: verifying that the trade licence cancellation date matches the date of cessation; confirming that the tax amount is AED 0 in the submitted returns; and performing a high-level review of the submitted financial statements, including revenue below AED 3 million, net profit below AED 375,000, and a balance sheet check with no risks identified. Based on the above review, no material risks were identified; therefore, no detailed review of the Corporate Tax return or of the VAT deregistration status was performed under the Fast-Track Process by L1.",
+   "en": "The application has been reviewed under the Fast-Track Process, which is designed to expedite eligible Corporate Tax deregistration applications through a simplified review. The review included: verifying that the trade licence cancellation date matches the date of cessation; confirming that the tax amount is AED 0 in the submitted returns; and performing a high-level review of the submitted financial statements, including revenue below AED 3 million, net profit below AED 375,000, and a balance sheet check with no risks identified. Based on the above review, no material risks were identified; therefore, no detailed review of the Corporate Tax return or of the Value Added Tax (VAT) deregistration status was performed under the Fast-Track Process by the Level 1 reviewer.",
    "ar": "تمت مراجعة الطلب ضمن إجراءات المسار السريع التي تهدف إلى تسريع طلبات إلغاء التسجيل المؤهلة لضريبة الشركات من خلال مراجعة مبسطة. شملت المراجعة: التحقق من تطابق تاريخ إلغاء الرخصة التجارية مع تاريخ التوقف؛ والتأكد من أن مبلغ الضريبة صفر درهم في الإقرارات المقدمة؛ وإجراء مراجعة عالية المستوى للقوائم المالية المقدمة بما في ذلك إيرادات أقل من 3 ملايين درهم وصافي ربح أقل من 375,000 درهم ومراجعة الميزانية العمومية دون تحديد أي مخاطر. وبناءً على ما سبق لم يتم تحديد أي مخاطر جوهرية، وعليه لم يتم إجراء مراجعة تفصيلية لإقرار ضريبة الشركات أو لحالة إلغاء التسجيل في ضريبة القيمة المضافة ضمن المسار السريع من قبل المستوى الأول.",
    "tags": [
     "internal",
@@ -3463,7 +3463,7 @@
    "s": "ct-internal",
    "ss": "ct-fast",
    "kind": "internal",
-   "en": "Under the Fast-Track Process, the check covered verifying the trade licence cancellation date, the financial statements including the balance sheet and profit and loss, that the tax amounts are zero (no detailed return review), and that there is no late CT deregistration penalty. Approved.",
+   "en": "Under the Fast-Track Process, the check covered verifying the trade licence cancellation date, the financial statements including the balance sheet and profit and loss, that the tax amounts are zero (no detailed return review), and that there is no late Corporate Tax deregistration penalty. Approved.",
    "ar": "ضمن إجراءات المسار السريع، شملت المراجعة التحقق من تاريخ إلغاء الرخصة التجارية، ومراجعة القوائم المالية بما في ذلك الميزانية العمومية وقائمة الأرباح والخسائر، والتأكد من أن مبالغ الضريبة تساوي صفراً (دون مراجعة تفصيلية للإقرار)، والتأكد من عدم وجود غرامة تأخير على إلغاء التسجيل لضريبة الشركات. تمت الموافقة.",
    "tags": [
     "internal",
@@ -3497,8 +3497,8 @@
    "s": "ct-internal",
    "ss": "ct-fast",
    "kind": "internal",
-   "en": "Fully checked: 1) the cessation date matches the trade licence cancellation date; 2) the CT returns for the periods up to the cessation date have been submitted; 3) the trade licence cancellation and the financial statements are both attached; 4) no VAT history / VAT deregistration approved; 5) no / AED {{penaltyAmount}} CT deregistration penalty imposed. Approved.",
-   "ar": "تم التحقق بالكامل: 1) تاريخ التوقف مطابق لتاريخ إلغاء الرخصة التجارية؛ 2) تم تقديم إقرارات ضريبة الشركات عن الفترات حتى تاريخ التوقف؛ 3) تم إرفاق إلغاء الرخصة التجارية والبيانات المالية؛ 4) لا يوجد سجل لضريبة القيمة المضافة / تمت الموافقة على إلغاء تسجيلها؛ 5) لا توجد / تم فرض غرامة إلغاء تسجيل لضريبة الشركات بقيمة {{penaltyAmount}} درهم. تمت الموافقة.",
+   "en": "Fully checked:\n1) the cessation date matches the trade licence cancellation date\n2) the Corporate Tax returns for the periods up to the cessation date have been submitted\n3) the trade licence cancellation and the financial statements are both attached\n4) no Value Added Tax (VAT) history / VAT deregistration approved\n5) no / AED {{penaltyAmount}} Corporate Tax deregistration penalty imposed. Approved.",
+   "ar": "تم التحقق بالكامل:\n1) تاريخ التوقف مطابق لتاريخ إلغاء الرخصة التجارية\n2) تم تقديم إقرارات ضريبة الشركات عن الفترات حتى تاريخ التوقف\n3) تم إرفاق إلغاء الرخصة التجارية والبيانات المالية\n4) لا يوجد سجل لضريبة القيمة المضافة / تمت الموافقة على إلغاء تسجيلها\n5) لا توجد / تم فرض غرامة إلغاء تسجيل لضريبة الشركات بقيمة {{penaltyAmount}} درهم. تمت الموافقة.",
    "tags": [
     "internal",
     "L2",
@@ -3531,7 +3531,7 @@
    "s": "ct-internal",
    "ss": "ct-rj-l1",
    "kind": "internal",
-   "en": "L1 rejection reason: the submitted Corporate Tax registration details are incorrect and do not comply with the registration guidelines; the taxpayer should correct them through Amend Taxable Person Details / Change Entity Type.",
+   "en": "Level 1 rejection reason: the submitted Corporate Tax registration details are incorrect and do not comply with the registration guidelines; the taxpayer should correct them through Amend Taxable Person Details / Change Entity Type.",
    "ar": "سبب الرفض (المستوى الأول): بيانات تسجيل ضريبة الشركات المقدمة غير صحيحة ولا تتوافق مع إرشادات التسجيل؛ يتعين على الخاضع للضريبة تصحيحها من خلال تعديل بيانات الخاضع للضريبة / تغيير نوع الكيان.",
    "tags": [
     "internal",
@@ -3565,7 +3565,7 @@
    "s": "ct-internal",
    "ss": "ct-rj-l1",
    "kind": "internal",
-   "en": "L1 rejection reason: the business was sold without a change in legal type or ownership, which requires an Amend Taxable Person Details application.",
+   "en": "Level 1 rejection reason: the business was sold without a change in legal type or ownership, which requires an Amend Taxable Person Details application.",
    "ar": "سبب الرفض (المستوى الأول): بيعت الأعمال دون تغيير في الشكل القانوني أو الملكية، وهو ما يستوجب تقديم طلب تعديل بيانات الخاضع للضريبة.",
    "tags": [
     "internal",
@@ -3599,7 +3599,7 @@
    "s": "ct-internal",
    "ss": "ct-rj-l1",
    "kind": "internal",
-   "en": "L1 rejection reason: the required documents were not submitted despite multiple requests.",
+   "en": "Level 1 rejection reason: the required documents were not submitted despite multiple requests.",
    "ar": "سبب الرفض (المستوى الأول): لم تُقدَّم المستندات المطلوبة رغم الطلبات المتكررة.",
    "tags": [
     "internal",
@@ -3633,7 +3633,7 @@
    "s": "ct-internal",
    "ss": "ct-rj-l1",
    "kind": "internal",
-   "en": "L1 rejection reason: the applicant is listed in Cabinet Decision No. 37 of 2023 and must remain registered and submit the annual declaration.",
+   "en": "Level 1 rejection reason: the applicant is listed in Cabinet Decision No. 37 of 2023 and must remain registered and submit the annual declaration.",
    "ar": "سبب الرفض (المستوى الأول): مقدم الطلب مدرج في قرار مجلس الوزراء رقم (37) لسنة 2023، ويتعين عليه البقاء مسجلاً وتقديم الإقرار السنوي.",
    "tags": [
     "internal",
@@ -3667,7 +3667,7 @@
    "s": "ct-internal",
    "ss": "ct-rj-l1",
    "kind": "internal",
-   "en": "L1 rejection reason: the taxpayer is not eligible to deregister the TRN while the trade licence is frozen; the licence must be cancelled to proceed.",
+   "en": "Level 1 rejection reason: the taxpayer is not eligible to deregister the Tax Registration Number (TRN) while the trade licence is frozen; the licence must be cancelled to proceed.",
    "ar": "سبب الرفض (المستوى الأول): الخاضع للضريبة غير مؤهل لإلغاء تسجيل رقم التسجيل الضريبي ما دامت الرخصة التجارية مجمّدة؛ يجب إلغاء الرخصة للمضي في الإلغاء.",
    "tags": [
     "internal",
@@ -3701,7 +3701,7 @@
    "s": "ct-internal",
    "ss": "ct-rj-l1",
    "kind": "internal",
-   "en": "L1 rejection reason: the natural person reported revenue exceeding AED 1 million; deregistration is not permitted under the applicable guidelines.",
+   "en": "Level 1 rejection reason: the natural person reported revenue exceeding AED 1 million; deregistration is not permitted under the applicable guidelines.",
    "ar": "سبب الرفض (المستوى الأول): أفصح الشخص الطبيعي عن إيرادات تتجاوز مليون درهم؛ لا يُسمح بإلغاء التسجيل وفقاً للإرشادات المعمول بها.",
    "tags": [
     "internal",

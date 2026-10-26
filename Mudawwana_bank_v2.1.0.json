@@ -1,6 +1,6 @@
 {
- "version": "2.0.1",
- "publishedAt": "2026-10-12",
+ "version": "2.1.0",
+ "publishedAt": "2026-10-20",
  "appName": {
   "en": "Mudawwana",
   "ar": "مدوّنة"
@@ -25,6 +25,15 @@
   "teamName": {
    "en": "Service Development Team",
    "ar": "فريق تطوير الخدمات"
+  },
+  "storageKey": "mdw",
+  "department": {
+   "en": "Registration Department",
+   "ar": "إدارة التسجيل"
+  },
+  "accent": {
+   "light": "#00843d",
+   "dark": "#d9b45a"
   }
  },
  "openers": [
@@ -182,6 +191,65 @@
     }
    ],
    "svc": "tax-records-amendment"
+  },
+  {
+   "id": "vr-sole",
+   "en": "Sole Establishment Details",
+   "ar": "بيانات المؤسسة الفردية",
+   "svc": "vat-registration",
+   "subsections": [
+    {
+     "id": "vr-legal-name",
+     "en": "Legal Name",
+     "ar": "الاسم القانوني"
+    },
+    {
+     "id": "vr-stamp",
+     "en": "Company Stamp",
+     "ar": "ختم الشركة"
+    },
+    {
+     "id": "vr-same-owner",
+     "en": "Other Licences of the Same Owner",
+     "ar": "رخص أخرى للمالك نفسه"
+    }
+   ]
+  },
+  {
+   "id": "vr-owners",
+   "en": "Owner List",
+   "ar": "قائمة الملاك",
+   "svc": "vat-registration",
+   "subsections": [
+    {
+     "id": "vr-owner-id",
+     "en": "Owner Emirates ID",
+     "ar": "الهوية الإماراتية للمالك"
+    }
+   ]
+  },
+  {
+   "id": "vr-financial",
+   "en": "Financial Details & Declaration",
+   "ar": "البيانات المالية والإقرار",
+   "svc": "vat-registration",
+   "subsections": [
+    {
+     "id": "vr-declaration",
+     "en": "Declaration Letter",
+     "ar": "خطاب الإقرار"
+    },
+    {
+     "id": "vr-values",
+     "en": "Taxable Supplies Values",
+     "ar": "قيم التوريدات الخاضعة للضريبة"
+    },
+    {
+     "id": "vr-docs",
+     "en": "Supporting Documents",
+     "ar": "المستندات الداعمة"
+    }
+   ]
   }
  ],
  "comments": [
@@ -1246,7 +1314,7 @@
    "s": "entity",
    "ss": "natural",
    "kind": "request",
-   "en": "Kindly choose \"yes\" for \"Is the Owner a resident of the UAE?\" and validate the owner's EID details.",
+   "en": "Kindly choose \"yes\" for \"Is the Owner a resident of the UAE?\" and validate the owner's Emirates ID details.",
    "ar": "يرجى اختيار \"نعم\" في \"هل المالك مقيم في الامارات؟\" واضافة تفاصيل الهوية الاماراتية.",
    "tags": [
     "resident",
@@ -1260,7 +1328,7 @@
    "s": "entity",
    "ss": "natural",
    "kind": "attachment",
-   "en": "Kindly attach the updated EID instead of the expired one.",
+   "en": "Kindly attach the updated Emirates ID instead of the expired one.",
    "ar": "يرجى ارفاق الهوية الامارتية الحديثة عوضا عن المنتهية.",
    "tags": [
     "EID",
@@ -1298,7 +1366,7 @@
    "en": "Kindly choose \"NO\" for \"Is the Owner a resident of the UAE?\" and add the representative passport details.",
    "ar": "يرجى اختيار \"لا\" في \"هل المالك مقيم في الامارات؟\" واضافة تفاصيل جواز السفر.",
    "cond": {
-    "en": "Heirs cases only — the representative's EID details are not added.",
+    "en": "Heirs cases only — the representative's Emirates ID details are not added.",
     "ar": "هذا يشمل الورثة فقط حيث لا نضيف رقم هوية الممثل."
    },
    "tags": [
@@ -1729,7 +1797,7 @@
    "s": "ident",
    "ss": "owners",
    "kind": "attachment",
-   "en": "Kindly attach the updated trade license / Memorandum of association / AOA / Shareholding certificate.",
+   "en": "Kindly attach the updated trade license / Memorandum of association / Articles of Association / Shareholding certificate.",
    "ar": "يرجى ارفاق عقد التأسيس، أو شهادة الأسهم، أو شهادة الوظائف التي توضح نسب الملكية.",
    "tags": [
     "MOA",
@@ -1738,7 +1806,7 @@
     "attachment"
    ],
    "doc": {
-    "en": "Updated trade licence / MOA / AOA / shareholding certificate",
+    "en": "Updated trade licence / Memorandum of Association / AOA / shareholding certificate",
     "ar": "الرخصة التجارية أو عقد التأسيس أو شهادة الأسهم المحدثة"
    }
   },
@@ -1781,7 +1849,7 @@
    "s": "ident",
    "ss": "owners",
    "kind": "request",
-   "en": "In owner list section, kindly amend the owner type to \"Natural Person\" in order to add the EID details.",
+   "en": "In owner list section, kindly amend the owner type to \"Natural Person\" in order to add the Emirates ID details.",
    "ar": "في قائمة الملاك, يرجى تعديل الشكل القانوني للمالك الى \"شخص طبيعي\" وذلك للتمكن من إضافة بيانات الهوية الإماراتية.",
    "tags": [
     "owner type",
@@ -2014,7 +2082,7 @@
     "attachment"
    ],
    "doc": {
-    "en": "Updated MOA or power of attorney",
+    "en": "Updated Memorandum of Association or power of attorney",
     "ar": "عقد التأسيس المعدل أو الوكالة القانونية"
    }
   },
@@ -2023,7 +2091,7 @@
    "s": "tin",
    "ss": "tin-main",
    "kind": "notice",
-   "en": "Kindly be informed that our records indicate you already have a TIN ({{tin}}) registered with trade license number ({{tradeLicenseNo}}). You are required to proceed with De-Registering one of those TRNs, and place an Amendment Request for the one which will be assigned for the company.",
+   "en": "Kindly be informed that our records indicate you already have a Tax Identification Number (TIN) ({{tin}}) registered with trade license number ({{tradeLicenseNo}}). You are required to proceed with De-Registering one of those TRNs, and place an Amendment Request for the one which will be assigned for the company.",
    "ar": "يرجى العلم بأن سجلاتنا تشير إلى وجود رقم تسجيل ضريبي ({{tin}}) مسجل مسبقاً برقم الرخصة التجارية ({{tradeLicenseNo}}). يتعين عليكم التقدم بطلب إلغاء تسجيل أحد الرقمين الضريبيين، وتقديم طلب تعديل للرقم الذي سيتم اعتماده للشركة.",
    "tags": [
     "TIN",
@@ -2058,7 +2126,7 @@
    "s": "reject",
    "ss": "dereg",
    "kind": "rejection",
-   "en": "Kindly be informed that this AMTP Application has been Rejected, due to changes in the Trade License; as the Legal Type has been amended. You are required to proceed with De-Registering the TRN, and place a New Registration Request as a Legal Person – Incorporated.",
+   "en": "Kindly be informed that this Amend Taxable Person Details Application has been Rejected, due to changes in the Trade License; as the Legal Type has been amended. You are required to proceed with De-Registering the Tax Registration Number (TRN), and place a New Registration Request as a Legal Person – Incorporated.",
    "ar": "يرجى التفضل بالعلم بأن طلب تعديل بيانات الشخص الضريبي هذا قد تم رفضه نظراً لتغيير الشكل القانوني للمؤسسة. فيجب عليكم التقدم بطلب الغاء تسجيل الرقم الضريبي، وتقديم طلب تسجيل جديد كشخص اعتباري.",
    "tags": [
     "rejected",
@@ -2073,7 +2141,7 @@
    "s": "reject",
    "ss": "dereg",
    "kind": "rejection",
-   "en": "Kindly be informed that this AMTP Application has been Rejected, due to changes in the Trade License; as the Legal Type has been amended. You are required to proceed with De-Registering the TRN, and place a New Registration Request. However, if a Service Agent/Sole Establishment TRN exists, of the new owner, you need to place an AMTP Request, and upload the Sole Establishment Trade License(s).",
+   "en": "Kindly be informed that this Amend Taxable Person Details Application has been Rejected, due to changes in the Trade License; as the Legal Type has been amended. You are required to proceed with De-Registering the Tax Registration Number (TRN), and place a New Registration Request. However, if a Service Agent/Sole Establishment TRN exists, of the new owner, you need to place an Amend Taxable Person Details Request, and upload the Sole Establishment Trade License(s).",
    "ar": "يرجى التفضل بالعلم بأن طلب تعديل بيانات الشخص الضريبي هذا قد تم رفضه نظراً لتغيير الشكل القانوني للمؤسسة. فيجب عليكم التقدم بطلب الغاء تسجيل الرقم الضريبي، ومع ذلك في حال وجود رقم تسجيل ضريبي مسبقاً للمالك الجديد يتعين عليكم التقدم بطلب تعديل بيانات الشخص الضريبي على الرقم الضريبي الموجود مسبقاً وإضافة رخص المؤسسات الفردية.",
    "tags": [
     "rejected",
@@ -2088,7 +2156,7 @@
    "s": "reject",
    "ss": "dereg",
    "kind": "rejection",
-   "en": "Kindly be informed that this AMTP Application has been Rejected, due to changes in the owner of the sole-establishment. You are required to proceed with De-Registering the TRN, and place a New Registration as long as the turnover has crossed the Registration Threshold. However, if a Sole Establishment TRN exists, of the new owner, you are required to place an AMTP Request, and upload the Sole Establishment Trade License(s) under their respective TRN.",
+   "en": "Kindly be informed that this Amend Taxable Person Details Application has been Rejected, due to changes in the owner of the sole-establishment. You are required to proceed with De-Registering the Tax Registration Number (TRN), and place a New Registration as long as the turnover has crossed the Registration Threshold. However, if a Sole Establishment TRN exists, of the new owner, you are required to place an Amend Taxable Person Details Request, and upload the Sole Establishment Trade License(s) under their respective TRN.",
    "ar": "يرجى التفضل بالعلم بأن طلب تعديل بيانات الشخص الضريبي هذا قد تم رفضه نظراً لتغيير مالك المؤسسة الفردية. فيجب عليكم التقدم بطلب الغاء تسجيل الرقم الضريبي، وتقديم طلب تسجيل للمالك الجديد طالما أن المبيعات تجاوزت حد التسجيل الضريبي. ومع ذلك في حال وجود رقم تسجيل ضريبي مسبقاً للمالك الجديد يتعين عليكم التقدم بطلب تعديل بيانات الشخص الضريبي على الرقم الضريبي الموجود مسبقاً وإضافة رخص المؤسسات الفردية.",
    "tags": [
     "rejected",
@@ -2103,7 +2171,7 @@
    "s": "reject",
    "ss": "dereg",
    "kind": "rejection",
-   "en": "Kindly be informed that this AMTP Application has been Rejected, due to change in Ownership of the Service Agent Trade License. Therefore, you are required to please proceed with De-Registering the TRN, and place a New Registration Request, so long as the Turnover has crossed the Registration Threshold. However, if a Service Agent/Sole Establishment TRN exists, of the new owner, you are able to place an AMTP Request, and upload the Sole Establishment Trade License(s).",
+   "en": "Kindly be informed that this Amend Taxable Person Details Application has been Rejected, due to change in Ownership of the Service Agent Trade License. Therefore, you are required to please proceed with De-Registering the Tax Registration Number (TRN), and place a New Registration Request, so long as the Turnover has crossed the Registration Threshold. However, if a Service Agent/Sole Establishment TRN exists, of the new owner, you are able to place an Amend Taxable Person Details Request, and upload the Sole Establishment Trade License(s).",
    "ar": "يرجى التفضل بالعلم بأن طلب تعديل بيانات الشخص الضريبي هذا قد تم رفضه بسبب التغير في ملكية الرخصة التجارية لوكيل الخدمات. فيجب عليكم التقدم بطلب الغاء تسجيل الرقم الضريبي، وتقديم طلب تسجيل جديد طالما أن المبيعات تجاوزت حد التسجيل الضريبي. ومع ذلك في حال وجود رقم تسجيل ضريبي مسبقاً لوكيل الخدمات الجديد يتعين عليكم التقدم بطلب تعديل بيانات الشخص الضريبي على الرقم الضريبي الموجود مسبقاً وإضافة رخص وكيل الخدمات.",
    "tags": [
     "rejected",
@@ -2118,7 +2186,7 @@
    "s": "reject",
    "ss": "dereg",
    "kind": "rejection",
-   "en": "Kindly be informed that this AMTP Application has been Rejected, due to changes in the owner of the property. You are required to proceed with De-Registering the TRN, and place a New Registration for the new owner. However, if a Sole Establishment TRN exists, of the new owner, you are required to place an AMTP Request, and upload the Sole Establishment Trade License(s) under their respective TRN.",
+   "en": "Kindly be informed that this Amend Taxable Person Details Application has been Rejected, due to changes in the owner of the property. You are required to proceed with De-Registering the Tax Registration Number (TRN), and place a New Registration for the new owner. However, if a Sole Establishment TRN exists, of the new owner, you are required to place an Amend Taxable Person Details Request, and upload the Sole Establishment Trade License(s) under their respective TRN.",
    "ar": "يرجى التفضل بالعلم بأن طلب تعديل بيانات الشخص الضريبي هذا قد تم رفضه بسبب التغير في ملكية العقار. فيجب عليكم التقدم بطلب الغاء تسجيل الرقم الضريبي، وتقديم طلب تسجيل جديد طالما أن المبيعات تجاوزت حد التسجيل الضريبي. ومع ذلك في حال وجود رقم تسجيل ضريبي مسبقاً للمالك الجديد يتعين عليكم التقدم بطلب تعديل بيانات الشخص الضريبي على الرقم الضريبي الموجود مسبقاً وإضافة سند ملكية العقار.",
    "tags": [
     "rejected",
@@ -2142,6 +2210,374 @@
     "decree law 28",
     "cabinet decision 74"
    ]
+  },
+  {
+   "id": "vr-01",
+   "s": "vr-sole",
+   "ss": "vr-legal-name",
+   "kind": "request",
+   "en": "Under Sole Establishment Details, kindly amend the Legal Name in Arabic to \"{{legalNameAr}}\".",
+   "ar": "ضمن بيانات المؤسسة الفردية، يرجى تعديل الاسم القانوني باللغة العربية إلى \"{{legalNameAr}}\".",
+   "tags": [
+    "legal name",
+    "arabic",
+    "sole establishment",
+    "amend"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Under Sole Establishment Details, kindly amend the Legal Name in Arabic to \"{{legalNameAr}}\".",
+     "ar": "ضمن بيانات المؤسسة الفردية، يرجى تعديل الاسم القانوني باللغة العربية إلى \"{{legalNameAr}}\".",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "legal name",
+      "arabic",
+      "sole establishment",
+      "amend"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vr-02",
+   "s": "vr-sole",
+   "ss": "vr-stamp",
+   "kind": "request",
+   "en": "Kindly replace the stamp \"{{stampName}}\" currently appearing on the attached documents with the official stamp of the company.",
+   "ar": "يرجى استبدال الختم \"{{stampName}}\" الظاهر حالياً على المستندات المرفقة بالختم الرسمي للشركة.",
+   "tags": [
+    "stamp",
+    "official stamp",
+    "wrong stamp",
+    "documents"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly replace the stamp \"{{stampName}}\" currently appearing on the attached documents with the official stamp of the company.",
+     "ar": "يرجى استبدال الختم \"{{stampName}}\" الظاهر حالياً على المستندات المرفقة بالختم الرسمي للشركة.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "stamp",
+      "official stamp",
+      "wrong stamp",
+      "documents"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vr-03",
+   "s": "vr-sole",
+   "ss": "vr-same-owner",
+   "kind": "request",
+   "en": "Kindly clarify whether the trade licence shown under Establishment Details is owned by the same owner, and whether it was previously registered for Value Added Tax (VAT).",
+   "ar": "يرجى توضيح ما إذا كانت الرخصة التجارية الواردة ضمن بيانات المنشأة مملوكة للمالك نفسه، وما إذا كانت مسجلة سابقاً لضريبة القيمة المضافة.",
+   "tags": [
+    "same owner",
+    "trade licence",
+    "previously registered",
+    "clarify",
+    "sole establishment"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly clarify whether the trade licence shown under Establishment Details is owned by the same owner, and whether it was previously registered for VAT.",
+     "ar": "يرجى توضيح ما إذا كانت الرخصة التجارية الواردة ضمن بيانات المنشأة مملوكة للمالك نفسه، وما إذا كانت مسجلة سابقاً لضريبة القيمة المضافة.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "same owner",
+      "trade licence",
+      "previously registered",
+      "clarify",
+      "sole establishment"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vr-04",
+   "s": "vr-owners",
+   "ss": "vr-owner-id",
+   "kind": "attachment",
+   "en": "Under Owner List, kindly attach a copy of the renewed Emirates ID and update the expiry date accordingly. If the ID has expired and has not been renewed, kindly clarify the reason for not renewing it.",
+   "ar": "ضمن قائمة الملاك، يرجى إرفاق نسخة من الهوية الإماراتية المجددة وتحديث تاريخ الانتهاء وفقاً لذلك. وفي حال انتهاء صلاحية الهوية وعدم تجديدها، يرجى توضيح سبب عدم التجديد.",
+   "tags": [
+    "emirates id",
+    "renewed",
+    "expired",
+    "expiry date",
+    "owner list",
+    "eid"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Under Owner List, kindly attach a copy of the renewed Emirates ID and update the expiry date accordingly. If the ID has expired and has not been renewed, kindly clarify the reason for not renewing it.",
+     "ar": "ضمن قائمة الملاك، يرجى إرفاق نسخة من الهوية الإماراتية المجددة وتحديث تاريخ الانتهاء وفقاً لذلك. وفي حال انتهاء صلاحية الهوية وعدم تجديدها، يرجى توضيح سبب عدم التجديد.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "emirates id",
+      "renewed",
+      "expired",
+      "expiry date",
+      "owner list",
+      "eid"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Renewed Emirates ID of the owner",
+    "ar": "الهوية الإماراتية المجددة للمالك"
+   }
+  },
+  {
+   "id": "vr-05",
+   "s": "vr-owners",
+   "ss": "vr-owner-id",
+   "kind": "notice",
+   "en": "Kindly note that, after renewing the Emirates IDs, you are required to apply for a Taxable Person amendment to update the owners’ ID details.",
+   "ar": "يرجى العلم بأنه بعد تجديد الهويات الإماراتية يتعين عليكم التقدم بطلب تعديل بيانات الخاضع للضريبة لتحديث بيانات هويات الملاك.",
+   "tags": [
+    "amend taxable person",
+    "owner details",
+    "renewed id",
+    "notice",
+    "after registration"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly note that, after renewing the Emirates IDs, you are required to apply for a Taxable Person amendment to update the owners’ ID details.",
+     "ar": "يرجى العلم بأنه بعد تجديد الهويات الإماراتية يتعين عليكم التقدم بطلب تعديل بيانات الخاضع للضريبة لتحديث بيانات هويات الملاك.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "amend taxable person",
+      "owner details",
+      "renewed id",
+      "notice",
+      "after registration"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vr-06",
+   "s": "vr-financial",
+   "ss": "vr-declaration",
+   "kind": "request",
+   "en": "Kindly have the attached declaration letter signed by the authorised signatory, in addition to the company stamp.",
+   "ar": "يرجى توقيع خطاب الإقرار المرفق من قبل المفوض بالتوقيع، إضافة إلى ختم الشركة.",
+   "tags": [
+    "declaration letter",
+    "signature",
+    "authorised signatory",
+    "stamp"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly have the attached declaration letter signed by the authorised signatory, in addition to the company stamp.",
+     "ar": "يرجى توقيع خطاب الإقرار المرفق من قبل المفوض بالتوقيع، إضافة إلى ختم الشركة.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "declaration letter",
+      "signature",
+      "authorised signatory",
+      "stamp"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vr-07",
+   "s": "vr-financial",
+   "ss": "vr-declaration",
+   "kind": "attachment",
+   "en": "Kindly attach a signed and stamped declaration letter of the taxable supplies from the establishment date until the application submission date.",
+   "ar": "يرجى إرفاق خطاب إقرار موقع ومختوم بالتوريدات الخاضعة للضريبة من تاريخ التأسيس حتى تاريخ تقديم الطلب.",
+   "tags": [
+    "declaration letter",
+    "taxable supplies",
+    "establishment date",
+    "submission date",
+    "signed",
+    "stamped"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach a signed and stamped declaration letter of the taxable supplies from the establishment date until the application submission date.",
+     "ar": "يرجى إرفاق خطاب إقرار موقع ومختوم بالتوريدات الخاضعة للضريبة من تاريخ التأسيس حتى تاريخ تقديم الطلب.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "declaration letter",
+      "taxable supplies",
+      "establishment date",
+      "submission date",
+      "signed",
+      "stamped"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Signed and stamped declaration of taxable supplies since establishment",
+    "ar": "خطاب إقرار موقع ومختوم بالتوريدات الخاضعة للضريبة منذ التأسيس"
+   }
+  },
+  {
+   "id": "vr-08",
+   "s": "vr-financial",
+   "ss": "vr-values",
+   "kind": "request",
+   "en": "Kindly update the financial values of the taxable supplies in the application to match the values stated in the attached declaration letter.",
+   "ar": "يرجى تحديث القيم المالية للتوريدات الخاضعة للضريبة في الطلب لتتطابق مع القيم الواردة في خطاب الإقرار المرفق.",
+   "tags": [
+    "taxable supplies",
+    "financial values",
+    "match",
+    "declaration letter",
+    "mismatch"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly update the financial values of the taxable supplies in the application to match the values stated in the attached declaration letter.",
+     "ar": "يرجى تحديث القيم المالية للتوريدات الخاضعة للضريبة في الطلب لتتطابق مع القيم الواردة في خطاب الإقرار المرفق.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "taxable supplies",
+      "financial values",
+      "match",
+      "declaration letter",
+      "mismatch"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vr-09",
+   "s": "vr-financial",
+   "ss": "vr-values",
+   "kind": "request",
+   "en": "Kindly update the financial values in the application so that they correspond to the dates of the related invoices. According to the attached supporting documents, the invoices are dated {{invoiceDate}}, while the related values have been reported under {{reportedMonth}}.",
+   "ar": "يرجى تحديث القيم المالية في الطلب بحيث تتوافق مع تواريخ الفواتير ذات الصلة. فوفقاً للمستندات الداعمة المرفقة، الفواتير مؤرخة بتاريخ {{invoiceDate}}، بينما أُدرجت القيم المتعلقة بها ضمن {{reportedMonth}}.",
+   "tags": [
+    "invoice dates",
+    "financial values",
+    "wrong month",
+    "period",
+    "supporting documents"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly update the financial values in the application so that they correspond to the dates of the related invoices. According to the attached supporting documents, the invoices are dated {{invoiceDate}}, while the related values have been reported under {{reportedMonth}}.",
+     "ar": "يرجى تحديث القيم المالية في الطلب بحيث تتوافق مع تواريخ الفواتير ذات الصلة. فوفقاً للمستندات الداعمة المرفقة، الفواتير مؤرخة بتاريخ {{invoiceDate}}، بينما أُدرجت القيم المتعلقة بها ضمن {{reportedMonth}}.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "invoice dates",
+      "financial values",
+      "wrong month",
+      "period",
+      "supporting documents"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vr-10",
+   "s": "vr-financial",
+   "ss": "vr-docs",
+   "kind": "attachment",
+   "en": "Kindly attach a full copy of the agreement with your customer.",
+   "ar": "يرجى إرفاق نسخة كاملة من الاتفاقية المبرمة مع عميلكم.",
+   "tags": [
+    "agreement",
+    "contract",
+    "customer",
+    "full copy"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-20T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-20T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach a full copy of the agreement with your customer.",
+     "ar": "يرجى إرفاق نسخة كاملة من الاتفاقية المبرمة مع عميلكم.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "agreement",
+      "contract",
+      "customer",
+      "full copy"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Full copy of the customer agreement",
+    "ar": "نسخة كاملة من اتفاقية العميل"
+   }
   }
  ],
  "reviewItems": [
@@ -2439,6 +2875,15 @@
     "Umm Al Quwain",
     "Ras Al Khaimah",
     "Fujairah"
+   ],
+   "optionsAr": [
+    "أبوظبي",
+    "دبي",
+    "الشارقة",
+    "عجمان",
+    "أم القيوين",
+    "رأس الخيمة",
+    "الفجيرة"
    ]
   },
   "authority": {
@@ -2475,6 +2920,49 @@
    "type": "text",
    "en": "Legal name (AR)",
    "ar": "الاسم القانوني (عربي)"
+  },
+  "stampName": {
+   "type": "text",
+   "en": "Name shown on the current stamp",
+   "ar": "الاسم الظاهر على الختم الحالي"
+  },
+  "invoiceDate": {
+   "type": "date",
+   "en": "Invoice date",
+   "ar": "تاريخ الفاتورة"
+  },
+  "reportedMonth": {
+   "type": "select",
+   "en": "Month in which the values were reported",
+   "ar": "الشهر الذي أُدرجت فيه القيم",
+   "options": [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+   ],
+   "optionsAr": [
+    "يناير",
+    "فبراير",
+    "مارس",
+    "أبريل",
+    "مايو",
+    "يونيو",
+    "يوليو",
+    "أغسطس",
+    "سبتمبر",
+    "أكتوبر",
+    "نوفمبر",
+    "ديسمبر"
+   ]
   }
  },
  "synonyms": {
@@ -2532,6 +3020,12 @@
    "at": "2026-10-12",
    "by": "admin",
    "note": "Entity Type names translated to Arabic in all 19 Arabic comments."
+  },
+  {
+   "version": "2.1.0",
+   "at": "2026-10-20",
+   "by": "admin",
+   "note": "VAT Registration: first 10 comments (sole establishment details, owner list, financial declaration and values)."
   }
  ],
  "scenarios": [
@@ -2643,6 +3137,17 @@
     "ad-02"
    ],
    "svc": "tax-records-amendment"
+  },
+  {
+   "id": "sc-vr-financial",
+   "en": "VAT registration — financial evidence incomplete",
+   "ar": "تسجيل ضريبة القيمة المضافة — أدلة مالية غير مكتملة",
+   "ids": [
+    "vr-07",
+    "vr-08",
+    "vr-10"
+   ],
+   "svc": "vat-registration"
   }
  ],
  "conflicts": [
@@ -2815,5 +3320,88 @@
    "en": "Warehouse Keeper Registration",
    "ar": "تسجيل أمين المستودع"
   }
- ]
+ ],
+ "selftest": {
+  "demo": [
+   "np-04",
+   "lid-02",
+   "doi-05"
+  ],
+  "counts": {
+   "entity-type": 19,
+   "doi": 8,
+   "natural": 6,
+   "commence": 1,
+   "authority": 12,
+   "tl-number": 2,
+   "issue-date": 2,
+   "expiry-date": 6,
+   "names": 2,
+   "activity": 1,
+   "owners": 8,
+   "branch-main": 4,
+   "address": 6,
+   "signatory-list": 3,
+   "tin-main": 1,
+   "dereg": 5,
+   "change-type": 1
+  },
+  "total": 97,
+  "services": 27,
+  "search": [
+   {
+    "q": "expired eid",
+    "id": "np-04",
+    "first": true
+   },
+   {
+    "q": "هوية منتهية",
+    "id": "np-04",
+    "first": true
+   },
+   {
+    "q": "moa",
+    "id": "doi-05"
+   },
+   {
+    "q": "jafza",
+    "id": "au-08"
+   },
+   {
+    "q": "jafza",
+    "id": "led-06"
+   },
+   {
+    "q": "incorporaton",
+    "id": "doi-01"
+   },
+   {
+    "q": "رخصه منتهيه",
+    "id": "led-03"
+   },
+   {
+    "q": "stamp",
+    "id": "vr-02"
+   },
+   {
+    "q": "renewed id",
+    "id": "vr-04"
+   },
+   {
+    "q": "خطاب اقرار",
+    "id": "vr-07"
+   }
+  ],
+  "compose": [
+   "lid-02",
+   "np-04"
+  ],
+  "composeValues": {
+   "date": "2026-01-15"
+  },
+  "exclusive": [
+   "et-01",
+   "et-02"
+  ]
+ }
 }

@@ -565,7 +565,7 @@
    "s": "natural",
    "ss": "period",
    "kind": "request",
-   "en": "Under Article 4 of the Income and Capital Tax Treaty between India and the United Arab Emirates, the FTA notes that you have not selected 1 January as the start of the financial year, which is a requirement of the Treaty. Kindly update the start of the financial year to 1 January of the selected year (for example, 01/01/{{year}}).",
+   "en": "Under Article 4 of the Income and Capital Tax Treaty between India and the United Arab Emirates, the Federal Tax Authority (FTA) notes that you have not selected 1 January as the start of the financial year, which is a requirement of the Treaty. Kindly update the start of the financial year to 1 January of the selected year (for example, 01/01/{{year}}).",
    "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل ورأس المال المبرمة بين الهند والإمارات العربية المتحدة، تلاحظ الهيئة أنكم لم تختاروا 1 يناير بداية للسنة المالية، وهو من متطلبات الاتفاقية. يرجى تحديث بداية السنة المالية إلى 1 يناير من السنة المختارة (مثال: 01/01/{{year}}).",
    "tags": [
     "india",
@@ -1081,7 +1081,7 @@
    "s": "reject",
    "ss": "treaty",
    "kind": "rejection",
-   "en": "Under application of Article 4 of the Income and Capital Tax Treaty between India and the United Arab Emirates, the FTA notes that you have not been present in the UAE for a period or periods totalling at least 183 days in the calendar year for which you are applying for a Tax Residency Certificate. Hence, you are not considered a tax resident for UAE purposes and no Tax Residency Certificate can be issued.",
+   "en": "Under application of Article 4 of the Income and Capital Tax Treaty between India and the United Arab Emirates, the Federal Tax Authority (FTA) notes that you have not been present in the UAE for a period or periods totalling at least 183 days in the calendar year for which you are applying for a Tax Residency Certificate. Hence, you are not considered a tax resident for UAE purposes and no Tax Residency Certificate can be issued.",
    "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل ورأس المال المبرمة بين الهند والإمارات العربية المتحدة، تلاحظ الهيئة أنكم لم تتواجدوا في الدولة لمدة أو مدد يبلغ مجموعها 183 يوماً على الأقل خلال السنة الميلادية التي تطلبون شهادة الإقامة الضريبية عنها. وبالتالي لا تُعتبرون مقيماً ضريبياً لأغراض الدولة ولا يمكن إصدار شهادة إقامة ضريبية.",
    "tags": [
     "reject",
@@ -1167,7 +1167,7 @@
    "s": "reject",
    "ss": "eligibility",
    "kind": "rejection",
-   "en": "The FTA notes that, in your application for a Tax Residency Certificate under the relevant Income and Capital Tax Treaty provisions, you have stated that you are a UAE national. You have, however, not submitted any evidence to corroborate that you are a UAE national under application of the definition in the Treaty. Hence, you are not considered a tax resident for UAE purposes and no Tax Residency Certificate can be issued.",
+   "en": "The Federal Tax Authority (FTA) notes that, in your application for a Tax Residency Certificate under the relevant Income and Capital Tax Treaty provisions, you have stated that you are a UAE national. You have, however, not submitted any evidence to corroborate that you are a UAE national under application of the definition in the Treaty. Hence, you are not considered a tax resident for UAE purposes and no Tax Residency Certificate can be issued.",
    "ar": "تلاحظ الهيئة أنكم ذكرتم في طلب شهادة الإقامة الضريبية المقدم بموجب أحكام اتفاقية ضريبة الدخل ورأس المال ذات الصلة أنكم من مواطني الدولة، إلا أنكم لم تقدموا أي دليل يثبت أنكم من مواطني الدولة وفقاً للتعريف الوارد في الاتفاقية. وبالتالي لا تُعتبرون مقيماً ضريبياً لأغراض الدولة ولا يمكن إصدار شهادة إقامة ضريبية.",
    "tags": [
     "reject",
@@ -1203,7 +1203,7 @@
    "s": "reject",
    "ss": "eligibility",
    "kind": "rejection",
-   "en": "The FTA has reviewed your application and notes that you have submitted it as a natural person while using a company TRN. Kindly submit a new application for a Tax Residency Certificate under the Juridical Person (Legal) service. If you require a Tax Residency Certificate for a natural person, kindly submit a proper request.",
+   "en": "The Federal Tax Authority (FTA) has reviewed your application and notes that you have submitted it as a natural person while using a company Tax Registration Number (TRN). Kindly submit a new application for a Tax Residency Certificate under the Juridical Person (Legal) service. If you require a Tax Residency Certificate for a natural person, kindly submit a proper request.",
    "ar": "راجعت الهيئة طلبكم ولاحظت أنكم قدمتموه بصفة شخص طبيعي باستخدام رقم التسجيل الضريبي لشركة. يرجى تقديم طلب جديد للحصول على شهادة إقامة ضريبية ضمن خدمة الشخص الاعتباري. وإذا كنتم بحاجة إلى شهادة إقامة ضريبية لشخص طبيعي، يرجى تقديم الطلب بالشكل الصحيح.",
    "tags": [
     "reject",
@@ -1237,7 +1237,7 @@
    "s": "reject",
    "ss": "eligibility",
    "kind": "rejection",
-   "en": "The FTA has reviewed your application and notes that you have submitted it as a juridical person while using a natural person TRN. Kindly submit a new application for a Tax Residency Certificate under the Natural Person service. If you require a Tax Residency Certificate for a juridical person, kindly submit a proper request.",
+   "en": "The Federal Tax Authority (FTA) has reviewed your application and notes that you have submitted it as a juridical person while using a natural person Tax Registration Number (TRN). Kindly submit a new application for a Tax Residency Certificate under the Natural Person service. If you require a Tax Residency Certificate for a juridical person, kindly submit a proper request.",
    "ar": "راجعت الهيئة طلبكم ولاحظت أنكم قدمتموه بصفة شخص اعتباري باستخدام رقم التسجيل الضريبي لشخص طبيعي. يرجى تقديم طلب جديد للحصول على شهادة إقامة ضريبية ضمن خدمة الشخص الطبيعي. وإذا كنتم بحاجة إلى شهادة إقامة ضريبية لشخص اعتباري، يرجى تقديم الطلب بالشكل الصحيح.",
    "tags": [
     "reject",
@@ -1273,7 +1273,7 @@
    "s": "reject",
    "ss": "eligibility",
    "kind": "rejection",
-   "en": "The FTA has reviewed your application and notes that you are not eligible for the service offered to entities that are wholly owned by, and/or under the control of, the government. Kindly submit a new application for a Tax Residency Certificate under the Juridical Person (Legal) service.",
+   "en": "The Federal Tax Authority (FTA) has reviewed your application and notes that you are not eligible for the service offered to entities that are wholly owned by, and/or under the control of, the government. Kindly submit a new application for a Tax Residency Certificate under the Juridical Person (Legal) service.",
    "ar": "راجعت الهيئة طلبكم ولاحظت أنكم غير مؤهلين للخدمة المخصصة للجهات المملوكة بالكامل للحكومة و/أو الخاضعة لسيطرتها. يرجى تقديم طلب جديد للحصول على شهادة إقامة ضريبية ضمن خدمة الشخص الاعتباري.",
    "tags": [
     "reject",
@@ -1307,7 +1307,7 @@
    "s": "reject",
    "ss": "domicile",
    "kind": "rejection",
-   "en": "The FTA notes that, in your application for a Tax Residency Certificate under the relevant Income and Capital Tax Treaty provisions, you have not submitted any evidence to corroborate that you are domiciled in the UAE under application of the definition in the relevant Treaty. Hence, you do not meet the requirements to be considered a tax resident for UAE purposes under the Treaty, and no Tax Residency Certificate can be issued.",
+   "en": "The Federal Tax Authority (FTA) notes that, in your application for a Tax Residency Certificate under the relevant Income and Capital Tax Treaty provisions, you have not submitted any evidence to corroborate that you are domiciled in the UAE under application of the definition in the relevant Treaty. Hence, you do not meet the requirements to be considered a tax resident for UAE purposes under the Treaty, and no Tax Residency Certificate can be issued.",
    "ar": "تلاحظ الهيئة أنكم لم تقدموا في طلب شهادة الإقامة الضريبية المقدم بموجب أحكام اتفاقية ضريبة الدخل ورأس المال ذات الصلة أي دليل يثبت أن موطنكم في الدولة وفقاً للتعريف الوارد في الاتفاقية ذات الصلة. وبالتالي لا تستوفون متطلبات اعتباركم مقيماً ضريبياً لأغراض الدولة بموجب الاتفاقية، ولا يمكن إصدار شهادة إقامة ضريبية.",
    "tags": [
     "reject",
@@ -1341,7 +1341,7 @@
    "s": "reject",
    "ss": "domicile",
    "kind": "rejection",
-   "en": "The FTA notes that, after reviewing the documents and information submitted, you do not meet the requirements for being domiciled in the UAE under the provisions of the relevant Treaty and, hence, you are not considered a UAE tax resident under the Treaty. No Tax Residency Certificate can be issued.",
+   "en": "The Federal Tax Authority (FTA) notes that, after reviewing the documents and information submitted, you do not meet the requirements for being domiciled in the UAE under the provisions of the relevant Treaty and, hence, you are not considered a UAE tax resident under the Treaty. No Tax Residency Certificate can be issued.",
    "ar": "تلاحظ الهيئة، بعد مراجعة المستندات والمعلومات المقدمة، أنكم لا تستوفون متطلبات الموطن في الدولة بموجب أحكام الاتفاقية ذات الصلة، وبالتالي لا تُعتبرون مقيماً ضريبياً في الدولة بموجب الاتفاقية. ولا يمكن إصدار شهادة إقامة ضريبية.",
    "tags": [
     "reject",
@@ -1459,7 +1459,7 @@
    "s": "form",
    "ss": "form-status",
    "kind": "request",
-   "en": "Please note that the International Form (“Special Form”) attached to the application is not correct. Please make sure that the Special Form meets the following requirements: the original form issued by the other jurisdiction must be in English or Arabic, otherwise it must be translated into English or Arabic and the translation approved in accordance with the law regulating translation in the UAE; the form must be properly completed and duly signed by the applicant (signed by the authorised signatory and stamped in the case of a juridical person); the request must cover the same 12-month period and jurisdiction as the requested Tax Residency Certificate; the application details and the documents provided must match (name, date, country, etc.); and the FTA section must be left empty for the FTA to complete and sign.",
+   "en": "Please note that the International Form (“Special Form”) attached to the application is not correct. Please make sure that the Special Form meets the following requirements: the original form issued by the other jurisdiction must be in English or Arabic, otherwise it must be translated into English or Arabic and the translation approved in accordance with the law regulating translation in the UAE; the form must be properly completed and duly signed by the applicant (signed by the authorised signatory and stamped in the case of a juridical person); the request must cover the same 12-month period and jurisdiction as the requested Tax Residency Certificate; the application details and the documents provided must match (name, date, country, etc.); and the Federal Tax Authority (FTA) section must be left empty for the FTA to complete and sign.",
    "ar": "يرجى العلم بأن النموذج الدولي («النموذج الخاص») المرفق بالطلب غير صحيح. يرجى التأكد من استيفاء النموذج الخاص للمتطلبات التالية: أن يكون النموذج الأصلي الصادر عن الدولة الأخرى باللغة الإنجليزية أو العربية، وإلا وجب ترجمته إلى الإنجليزية أو العربية واعتماد الترجمة وفقاً للقانون المنظم للترجمة في الدولة؛ وأن يكون النموذج مستوفىً بشكل صحيح وموقعاً حسب الأصول من مقدم الطلب (وموقعاً من المفوض بالتوقيع ومختوماً في حالة الشخص الاعتباري)؛ وأن يغطي الطلب فترة الاثني عشر شهراً نفسها والدولة نفسها الواردة في طلب شهادة الإقامة الضريبية؛ وأن تتطابق بيانات الطلب مع المستندات المقدمة (الاسم والتاريخ والدولة وغيرها)؛ وأن يُترك القسم المخصص للهيئة فارغاً لتقوم الهيئة بتعبئته وتوقيعه.",
    "tags": [
     "special form",
@@ -1500,7 +1500,7 @@
    "s": "form",
    "ss": "form-copy",
    "kind": "notice",
-   "en": "If you wish to obtain a copy of the International Form, kindly submit an “Additional Copy” request through the TRC dashboard, indicating whether you require a scanned copy or the original hard copy. For a scanned copy, ensure the form is clearly completed, signed and attached. For the original copy, send it by courier to the FTA office in Dubai, Floor 13 reception, or deliver it in person to the Taxpayer Services Centre on Floor P2. The FTA will review the request and respond within 10 working days.",
+   "en": "If you wish to obtain a copy of the International Form, kindly submit an “Additional Copy” request through the Tax Residency Certificate (TRC) dashboard, indicating whether you require a scanned copy or the original hard copy. For a scanned copy, ensure the form is clearly completed, signed and attached. For the original copy, send it by courier to the Federal Tax Authority (FTA) office in Dubai, Floor 13 reception, or deliver it in person to the Taxpayer Services Centre on Floor P2. The FTA will review the request and respond within 10 working days.",
    "ar": "إذا رغبتم في الحصول على نسخة من النموذج الدولي، يرجى تقديم طلب «نسخة إضافية» من خلال لوحة شهادة الإقامة الضريبية مع تحديد ما إذا كنتم تطلبون نسخة ممسوحة ضوئياً أو النسخة الأصلية الورقية. للنسخة الممسوحة ضوئياً، يرجى التأكد من تعبئة النموذج بوضوح وتوقيعه وإرفاقه. وللنسخة الأصلية، يرجى إرسالها عبر شركة التوصيل إلى مكتب الهيئة في دبي، استقبال الطابق 13، أو تسليمها شخصياً إلى مركز خدمات الخاضعين للضريبة في الطابق بي 2. وستقوم الهيئة بمراجعة الطلب والرد خلال 10 أيام عمل.",
    "tags": [
     "additional copy",

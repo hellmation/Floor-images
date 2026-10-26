@@ -256,10 +256,32 @@ mark{background:color-mix(in srgb,var(--gold) 35%,transparent);color:inherit;bor
 .seg{display:inline-flex;border:1px solid var(--line2);border-radius:9px;padding:2px;background:var(--surface2);gap:2px}
 .seg button{height:26px;padding:0 10px;border-radius:7px;font-size:12px;color:var(--ink2);font-weight:500;transition:all var(--dur) var(--ease)}
 .seg button.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.audbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:14px 0 4px}
+.audbar .lbl{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);font-weight:600}
+html[dir="rtl"] .audbar .lbl{letter-spacing:0}
+.seg.aud{padding:3px;border-radius:12px}
+.seg.aud button{height:32px;padding:0 14px;border-radius:9px;display:inline-flex;align-items:center;gap:7px;font-size:12.5px}
+.seg.aud button svg{width:15px;height:15px}
+.seg.aud button .n{font-size:10.5px;font-weight:600;color:var(--ink3);background:var(--surface3);border-radius:999px;padding:1px 7px}
+.seg.aud button.on.ext{color:var(--green-ink)}
+.seg.aud button.on.ext .n{background:var(--green-soft);color:var(--green-ink)}
+.seg.aud button.on.int{color:var(--amber)}
+.seg.aud button.on.int .n{background:var(--amber-soft);color:var(--amber)}
+.audnote{font-size:12px;color:var(--amber);background:var(--amber-soft);border-radius:8px;padding:6px 10px;display:inline-flex;align-items:center;gap:6px}
+.audnote svg{width:14px;height:14px}
+.aud-pick{display:flex;gap:6px}
+.aud-pick label{flex:1;display:flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid var(--line2);border-radius:10px;cursor:pointer;font-size:13px;background:var(--surface)}
+.aud-pick label:has(input:checked){border-color:var(--green);background:var(--green-soft);color:var(--green-ink)}
+.aud-pick label.int:has(input:checked){border-color:var(--amber);background:var(--amber-soft);color:var(--amber)}
+.aud-pick svg{width:18px;height:18px;flex:0 0 auto}
+.aud-pick small{color:var(--ink3);font-size:11px}
+.aud-pick input{accent-color:var(--green)}
+.aud-pick label.int input{accent-color:var(--amber)}
 .opts{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .check{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink2);cursor:pointer}
 .check input{accent-color:var(--green);width:15px;height:15px;margin:0}
 .preview{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere;min-height:90px;max-height:320px;overflow:auto;line-height:1.75}
+.card .en,.card .ar,.preview .enl,.preview .arl,.tx .t{white-space:pre-line}
 .preview .arl{direction:rtl;text-align:right;text-align-last:right;display:block;unicode-bidi:isolate;font-family:'IBM Plex Sans Arabic',var(--font)}
 .preview .enl{direction:ltr;text-align:left;text-align-last:left;display:block;unicode-bidi:isolate;font-family:'IBM Plex Sans',var(--font)}
 .preview .tok{font-size:.9em}
@@ -1224,7 +1246,7 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "s": "natural",
    "ss": "period",
    "kind": "request",
-   "en": "Under Article 4 of the Income and Capital Tax Treaty between India and the United Arab Emirates, the FTA notes that you have not selected 1 January as the start of the financial year, which is a requirement of the Treaty. Kindly update the start of the financial year to 1 January of the selected year (for example, 01/01/{{year}}).",
+   "en": "Under Article 4 of the Income and Capital Tax Treaty between India and the United Arab Emirates, the Federal Tax Authority (FTA) notes that you have not selected 1 January as the start of the financial year, which is a requirement of the Treaty. Kindly update the start of the financial year to 1 January of the selected year (for example, 01/01/{{year}}).",
    "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل ورأس المال المبرمة بين الهند والإمارات العربية المتحدة، تلاحظ الهيئة أنكم لم تختاروا 1 يناير بداية للسنة المالية، وهو من متطلبات الاتفاقية. يرجى تحديث بداية السنة المالية إلى 1 يناير من السنة المختارة (مثال: 01/01/{{year}}).",
    "tags": [
     "india",
@@ -1740,7 +1762,7 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "s": "reject",
    "ss": "treaty",
    "kind": "rejection",
-   "en": "Under application of Article 4 of the Income and Capital Tax Treaty between India and the United Arab Emirates, the FTA notes that you have not been present in the UAE for a period or periods totalling at least 183 days in the calendar year for which you are applying for a Tax Residency Certificate. Hence, you are not considered a tax resident for UAE purposes and no Tax Residency Certificate can be issued.",
+   "en": "Under application of Article 4 of the Income and Capital Tax Treaty between India and the United Arab Emirates, the Federal Tax Authority (FTA) notes that you have not been present in the UAE for a period or periods totalling at least 183 days in the calendar year for which you are applying for a Tax Residency Certificate. Hence, you are not considered a tax resident for UAE purposes and no Tax Residency Certificate can be issued.",
    "ar": "بموجب المادة (4) من اتفاقية ضريبة الدخل ورأس المال المبرمة بين الهند والإمارات العربية المتحدة، تلاحظ الهيئة أنكم لم تتواجدوا في الدولة لمدة أو مدد يبلغ مجموعها 183 يوماً على الأقل خلال السنة الميلادية التي تطلبون شهادة الإقامة الضريبية عنها. وبالتالي لا تُعتبرون مقيماً ضريبياً لأغراض الدولة ولا يمكن إصدار شهادة إقامة ضريبية.",
    "tags": [
     "reject",
@@ -1826,7 +1848,7 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "s": "reject",
    "ss": "eligibility",
    "kind": "rejection",
-   "en": "The FTA notes that, in your application for a Tax Residency Certificate under the relevant Income and Capital Tax Treaty provisions, you have stated that you are a UAE national. You have, however, not submitted any evidence to corroborate that you are a UAE national under application of the definition in the Treaty. Hence, you are not considered a tax resident for UAE purposes and no Tax Residency Certificate can be issued.",
+   "en": "The Federal Tax Authority (FTA) notes that, in your application for a Tax Residency Certificate under the relevant Income and Capital Tax Treaty provisions, you have stated that you are a UAE national. You have, however, not submitted any evidence to corroborate that you are a UAE national under application of the definition in the Treaty. Hence, you are not considered a tax resident for UAE purposes and no Tax Residency Certificate can be issued.",
    "ar": "تلاحظ الهيئة أنكم ذكرتم في طلب شهادة الإقامة الضريبية المقدم بموجب أحكام اتفاقية ضريبة الدخل ورأس المال ذات الصلة أنكم من مواطني الدولة، إلا أنكم لم تقدموا أي دليل يثبت أنكم من مواطني الدولة وفقاً للتعريف الوارد في الاتفاقية. وبالتالي لا تُعتبرون مقيماً ضريبياً لأغراض الدولة ولا يمكن إصدار شهادة إقامة ضريبية.",
    "tags": [
     "reject",
@@ -1862,7 +1884,7 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "s": "reject",
    "ss": "eligibility",
    "kind": "rejection",
-   "en": "The FTA has reviewed your application and notes that you have submitted it as a natural person while using a company TRN. Kindly submit a new application for a Tax Residency Certificate under the Juridical Person (Legal) service. If you require a Tax Residency Certificate for a natural person, kindly submit a proper request.",
+   "en": "The Federal Tax Authority (FTA) has reviewed your application and notes that you have submitted it as a natural person while using a company Tax Registration Number (TRN). Kindly submit a new application for a Tax Residency Certificate under the Juridical Person (Legal) service. If you require a Tax Residency Certificate for a natural person, kindly submit a proper request.",
    "ar": "راجعت الهيئة طلبكم ولاحظت أنكم قدمتموه بصفة شخص طبيعي باستخدام رقم التسجيل الضريبي لشركة. يرجى تقديم طلب جديد للحصول على شهادة إقامة ضريبية ضمن خدمة الشخص الاعتباري. وإذا كنتم بحاجة إلى شهادة إقامة ضريبية لشخص طبيعي، يرجى تقديم الطلب بالشكل الصحيح.",
    "tags": [
     "reject",
@@ -1896,7 +1918,7 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "s": "reject",
    "ss": "eligibility",
    "kind": "rejection",
-   "en": "The FTA has reviewed your application and notes that you have submitted it as a juridical person while using a natural person TRN. Kindly submit a new application for a Tax Residency Certificate under the Natural Person service. If you require a Tax Residency Certificate for a juridical person, kindly submit a proper request.",
+   "en": "The Federal Tax Authority (FTA) has reviewed your application and notes that you have submitted it as a juridical person while using a natural person Tax Registration Number (TRN). Kindly submit a new application for a Tax Residency Certificate under the Natural Person service. If you require a Tax Residency Certificate for a juridical person, kindly submit a proper request.",
    "ar": "راجعت الهيئة طلبكم ولاحظت أنكم قدمتموه بصفة شخص اعتباري باستخدام رقم التسجيل الضريبي لشخص طبيعي. يرجى تقديم طلب جديد للحصول على شهادة إقامة ضريبية ضمن خدمة الشخص الطبيعي. وإذا كنتم بحاجة إلى شهادة إقامة ضريبية لشخص اعتباري، يرجى تقديم الطلب بالشكل الصحيح.",
    "tags": [
     "reject",
@@ -1932,7 +1954,7 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "s": "reject",
    "ss": "eligibility",
    "kind": "rejection",
-   "en": "The FTA has reviewed your application and notes that you are not eligible for the service offered to entities that are wholly owned by, and/or under the control of, the government. Kindly submit a new application for a Tax Residency Certificate under the Juridical Person (Legal) service.",
+   "en": "The Federal Tax Authority (FTA) has reviewed your application and notes that you are not eligible for the service offered to entities that are wholly owned by, and/or under the control of, the government. Kindly submit a new application for a Tax Residency Certificate under the Juridical Person (Legal) service.",
    "ar": "راجعت الهيئة طلبكم ولاحظت أنكم غير مؤهلين للخدمة المخصصة للجهات المملوكة بالكامل للحكومة و/أو الخاضعة لسيطرتها. يرجى تقديم طلب جديد للحصول على شهادة إقامة ضريبية ضمن خدمة الشخص الاعتباري.",
    "tags": [
     "reject",
@@ -1966,7 +1988,7 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "s": "reject",
    "ss": "domicile",
    "kind": "rejection",
-   "en": "The FTA notes that, in your application for a Tax Residency Certificate under the relevant Income and Capital Tax Treaty provisions, you have not submitted any evidence to corroborate that you are domiciled in the UAE under application of the definition in the relevant Treaty. Hence, you do not meet the requirements to be considered a tax resident for UAE purposes under the Treaty, and no Tax Residency Certificate can be issued.",
+   "en": "The Federal Tax Authority (FTA) notes that, in your application for a Tax Residency Certificate under the relevant Income and Capital Tax Treaty provisions, you have not submitted any evidence to corroborate that you are domiciled in the UAE under application of the definition in the relevant Treaty. Hence, you do not meet the requirements to be considered a tax resident for UAE purposes under the Treaty, and no Tax Residency Certificate can be issued.",
    "ar": "تلاحظ الهيئة أنكم لم تقدموا في طلب شهادة الإقامة الضريبية المقدم بموجب أحكام اتفاقية ضريبة الدخل ورأس المال ذات الصلة أي دليل يثبت أن موطنكم في الدولة وفقاً للتعريف الوارد في الاتفاقية ذات الصلة. وبالتالي لا تستوفون متطلبات اعتباركم مقيماً ضريبياً لأغراض الدولة بموجب الاتفاقية، ولا يمكن إصدار شهادة إقامة ضريبية.",
    "tags": [
     "reject",
@@ -2000,7 +2022,7 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "s": "reject",
    "ss": "domicile",
    "kind": "rejection",
-   "en": "The FTA notes that, after reviewing the documents and information submitted, you do not meet the requirements for being domiciled in the UAE under the provisions of the relevant Treaty and, hence, you are not considered a UAE tax resident under the Treaty. No Tax Residency Certificate can be issued.",
+   "en": "The Federal Tax Authority (FTA) notes that, after reviewing the documents and information submitted, you do not meet the requirements for being domiciled in the UAE under the provisions of the relevant Treaty and, hence, you are not considered a UAE tax resident under the Treaty. No Tax Residency Certificate can be issued.",
    "ar": "تلاحظ الهيئة، بعد مراجعة المستندات والمعلومات المقدمة، أنكم لا تستوفون متطلبات الموطن في الدولة بموجب أحكام الاتفاقية ذات الصلة، وبالتالي لا تُعتبرون مقيماً ضريبياً في الدولة بموجب الاتفاقية. ولا يمكن إصدار شهادة إقامة ضريبية.",
    "tags": [
     "reject",
@@ -2118,7 +2140,7 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "s": "form",
    "ss": "form-status",
    "kind": "request",
-   "en": "Please note that the International Form (“Special Form”) attached to the application is not correct. Please make sure that the Special Form meets the following requirements: the original form issued by the other jurisdiction must be in English or Arabic, otherwise it must be translated into English or Arabic and the translation approved in accordance with the law regulating translation in the UAE; the form must be properly completed and duly signed by the applicant (signed by the authorised signatory and stamped in the case of a juridical person); the request must cover the same 12-month period and jurisdiction as the requested Tax Residency Certificate; the application details and the documents provided must match (name, date, country, etc.); and the FTA section must be left empty for the FTA to complete and sign.",
+   "en": "Please note that the International Form (“Special Form”) attached to the application is not correct. Please make sure that the Special Form meets the following requirements: the original form issued by the other jurisdiction must be in English or Arabic, otherwise it must be translated into English or Arabic and the translation approved in accordance with the law regulating translation in the UAE; the form must be properly completed and duly signed by the applicant (signed by the authorised signatory and stamped in the case of a juridical person); the request must cover the same 12-month period and jurisdiction as the requested Tax Residency Certificate; the application details and the documents provided must match (name, date, country, etc.); and the Federal Tax Authority (FTA) section must be left empty for the FTA to complete and sign.",
    "ar": "يرجى العلم بأن النموذج الدولي («النموذج الخاص») المرفق بالطلب غير صحيح. يرجى التأكد من استيفاء النموذج الخاص للمتطلبات التالية: أن يكون النموذج الأصلي الصادر عن الدولة الأخرى باللغة الإنجليزية أو العربية، وإلا وجب ترجمته إلى الإنجليزية أو العربية واعتماد الترجمة وفقاً للقانون المنظم للترجمة في الدولة؛ وأن يكون النموذج مستوفىً بشكل صحيح وموقعاً حسب الأصول من مقدم الطلب (وموقعاً من المفوض بالتوقيع ومختوماً في حالة الشخص الاعتباري)؛ وأن يغطي الطلب فترة الاثني عشر شهراً نفسها والدولة نفسها الواردة في طلب شهادة الإقامة الضريبية؛ وأن تتطابق بيانات الطلب مع المستندات المقدمة (الاسم والتاريخ والدولة وغيرها)؛ وأن يُترك القسم المخصص للهيئة فارغاً لتقوم الهيئة بتعبئته وتوقيعه.",
    "tags": [
     "special form",
@@ -2159,7 +2181,7 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "s": "form",
    "ss": "form-copy",
    "kind": "notice",
-   "en": "If you wish to obtain a copy of the International Form, kindly submit an “Additional Copy” request through the TRC dashboard, indicating whether you require a scanned copy or the original hard copy. For a scanned copy, ensure the form is clearly completed, signed and attached. For the original copy, send it by courier to the FTA office in Dubai, Floor 13 reception, or deliver it in person to the Taxpayer Services Centre on Floor P2. The FTA will review the request and respond within 10 working days.",
+   "en": "If you wish to obtain a copy of the International Form, kindly submit an “Additional Copy” request through the Tax Residency Certificate (TRC) dashboard, indicating whether you require a scanned copy or the original hard copy. For a scanned copy, ensure the form is clearly completed, signed and attached. For the original copy, send it by courier to the Federal Tax Authority (FTA) office in Dubai, Floor 13 reception, or deliver it in person to the Taxpayer Services Centre on Floor P2. The FTA will review the request and respond within 10 working days.",
    "ar": "إذا رغبتم في الحصول على نسخة من النموذج الدولي، يرجى تقديم طلب «نسخة إضافية» من خلال لوحة شهادة الإقامة الضريبية مع تحديد ما إذا كنتم تطلبون نسخة ممسوحة ضوئياً أو النسخة الأصلية الورقية. للنسخة الممسوحة ضوئياً، يرجى التأكد من تعبئة النموذج بوضوح وتوقيعه وإرفاقه. وللنسخة الأصلية، يرجى إرسالها عبر شركة التوصيل إلى مكتب الهيئة في دبي، استقبال الطابق 13، أو تسليمها شخصياً إلى مركز خدمات الخاضعين للضريبة في الطابق بي 2. وستقوم الهيئة بمراجعة الطلب والرد خلال 10 أيام عمل.",
    "tags": [
     "additional copy",
@@ -2784,6 +2806,8 @@ const I = {
   trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>',
   up: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 6-6 6 6"/></svg>',
   grid: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>',
+  send: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>',
+  lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
   down: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 10 6 6 6-6"/></svg>',
   eye: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
   save: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 4h11l3 3v13H5z M8 4v5h7V4 M8 20v-6h8v6"/></svg>',
@@ -2800,7 +2824,7 @@ const T = {
   en: {
     search_ph: 'Search comments… e.g. expired eid, moa, jafza, هوية',
     all: 'All', sections: 'Sections', favorites: 'Favourites', recents: 'Recently used', presets: 'Case presets',
-    kind_request: 'Request', kind_attachment: 'Attachment', kind_rejection: 'Rejection', kind_notice: 'Notice', kind_internal: 'Internal note', w_internal: 'Internal review note included — paste it in the internal comment field only, never to the taxpayer.',
+    kind_request: 'Request', kind_attachment: 'Attachment', kind_rejection: 'Rejection', kind_notice: 'Notice', kind_internal: 'Internal note', aud_lbl: 'Show', aud_ext: 'To the taxpayer', aud_int: 'Internal notes', aud_all: 'All', aud_note: 'Internal notes are for the internal comment field and the Level 2 reviewer — they are never sent to the taxpayer.', aud_field: 'Audience', aud_ext_h: 'Sent to the taxpayer through the portal', aud_int_h: 'Internal review note (Level 1 → Level 2), never sent', w_internal: 'Internal review note included — paste it in the internal comment field only, never to the taxpayer.',
     f_all: 'All kinds', f_cond: 'Has condition', f_ar: 'Has Arabic', f_ph: 'Has blanks',
     composer: 'Composer', add: 'Add', added: 'Added', copy_en: 'Copy EN', copy_ar: 'Copy AR', copy_both: 'Copy both', copied: 'Copied', copy_failed: 'Copy failed — select the preview and press Ctrl+C',
     results: 'results', no_results: 'No comments match', no_results_hint: 'Try fewer words, an abbreviation (MOA, EID, TL) or Arabic. Press Esc to clear.',
@@ -2839,7 +2863,7 @@ const T = {
   ar: {
     search_ph: 'ابحث في التعليقات… مثال: هوية منتهية، عقد التأسيس، جافزا، eid',
     all: 'الكل', sections: 'الأقسام', favorites: 'المفضلة', recents: 'المستخدمة مؤخراً', presets: 'قوالب الحالات',
-    kind_request: 'طلب تعديل', kind_attachment: 'مرفق', kind_rejection: 'رفض', kind_notice: 'إشعار', kind_internal: 'ملاحظة داخلية', w_internal: 'يتضمن الرد ملاحظة مراجعة داخلية — تُلصق في حقل التعليق الداخلي فقط ولا تُرسل للخاضع للضريبة.',
+    kind_request: 'طلب تعديل', kind_attachment: 'مرفق', kind_rejection: 'رفض', kind_notice: 'إشعار', kind_internal: 'ملاحظة داخلية', aud_lbl: 'عرض', aud_ext: 'إلى الخاضع للضريبة', aud_int: 'ملاحظات داخلية', aud_all: 'الكل', aud_note: 'الملاحظات الداخلية مخصصة لحقل التعليق الداخلي ومراجع المستوى الثاني — ولا تُرسل إلى الخاضع للضريبة أبداً.', aud_field: 'الجهة المستهدفة', aud_ext_h: 'يُرسل إلى الخاضع للضريبة عبر البوابة', aud_int_h: 'ملاحظة مراجعة داخلية (المستوى 1 ← 2)، لا تُرسل', w_internal: 'يتضمن الرد ملاحظة مراجعة داخلية — تُلصق في حقل التعليق الداخلي فقط ولا تُرسل للخاضع للضريبة.',
     f_all: 'كل الأنواع', f_cond: 'له شرط', f_ar: 'له نص عربي', f_ph: 'به فراغات',
     composer: 'المنشئ', add: 'إضافة', added: 'مضاف', copy_en: 'نسخ EN', copy_ar: 'نسخ AR', copy_both: 'نسخ الاثنين', copied: 'تم النسخ', copy_failed: 'تعذر النسخ — حدد المعاينة واضغط Ctrl+C',
     results: 'نتيجة', no_results: 'لا توجد تعليقات مطابقة', no_results_hint: 'جرّب كلمات أقل أو اختصاراً (MOA, EID, TL) أو بالإنجليزية. اضغط Esc للمسح.',
@@ -3030,7 +3054,7 @@ const Search = {
 
 /* ---------------- UI state ---------------- */
 const UI = {
-  q: '', scope: 'svc', filter: { kind: 'all', cond: false, ar: false, ph: false }, active: -1, visible: [], view: 'browse', expanded: new Set(), adminTab: 'comments', isAdmin: false,
+  q: '', scope: 'svc', audience: 'external', filter: { kind: 'all', cond: false, ar: false, ph: false }, active: -1, visible: [], view: 'browse', expanded: new Set(), adminTab: 'comments', isAdmin: false,
 };
 
 /* ---------------- Toast ---------------- */
@@ -3372,7 +3396,7 @@ function renderShell() {
 }
 function renderSidebar() {
   const side = $('#side'); if (!side) return;
-  const pub = Store.published(); const count = (s, ss) => pub.filter(c => c.s === s && (!ss || c.ss === ss)).length;
+  const pub = Store.published().filter(inAudience); const count = (s, ss) => pub.filter(c => c.s === s && (!ss || c.ss === ss)).length;
   const favs = Store.user.favs.map(id => Store.comment(id)).filter(Boolean);
   const rec = Store.user.recents.map(id => Store.comment(id)).filter(Boolean);
   const sv = Store.service(Store.user.svc) || Store.bank.services[0];
@@ -3393,7 +3417,7 @@ function releaseBanner() {
 }
 function resetAll() {
   Composer.items = []; Composer.values = {}; Composer.opts = { lang: 'both', format: 'numbered', opener: false, closer: false, attach: false, stamp: false }; Composer.lastCopied = ''; Composer.persist();
-  UI.q = ''; UI.scope = 'svc'; UI.filter = { kind: 'all', cond: false, ar: false, ph: false }; UI.expanded = new Set();
+  UI.q = ''; UI.scope = 'svc'; UI.audience = 'external'; Store.user.audience = 'external'; UI.filter = { kind: 'all', cond: false, ar: false, ph: false }; UI.expanded = new Set();
   const q = $('#q'); if (q) q.value = '';
   $$('dialog[open]').forEach(d => d.close());
   renderMain(); Composer.render(); updateCardStates(); const m = $('#main'); if (m) m.scrollTop = 0;
@@ -3406,8 +3430,11 @@ function sysBanners() {
   return o;
 }
 function inSvc(c) { return Store.svcOf(c) === Store.user.svc; }
+function hasInternal() { return Store.published().some(c => c.kind === 'internal'); }
+function inAudience(c) { if (!hasInternal() || UI.audience === 'all') return true; return UI.audience === 'internal' ? c.kind === 'internal' : c.kind !== 'internal'; }
 function passesFilter(c) {
   const f = UI.filter;
+  if (!inAudience(c)) return false;
   if (f.kind !== 'all' && c.kind !== f.kind) return false;
   if (f.cond && !c.cond) return false;
   if (f.ar && !c.ar) return false;
@@ -3445,8 +3472,10 @@ function cardHtml(c, terms, hl = true) {
 }
 function chipsHtml() {
   const f = UI.filter;
-  return `<div class="chips">
-    ${[['all', 'f_all'], ['request', 'kind_request'], ['attachment', 'kind_attachment'], ['rejection', 'kind_rejection'], ['notice', 'kind_notice'], ...(Store.published().some(c => c.kind === 'internal') ? [['internal', 'kind_internal']] : [])].map(([v, k]) => `<button class="chip ${f.kind === v ? 'on' : ''}" data-chip="kind" data-v="${v}">${t(k)}</button>`).join('')}
+  const aud = hasInternal() ? (() => { const all = Store.published().filter(UI.q.trim() ? () => true : inSvc); const ne = all.filter(c => c.kind !== 'internal').length, ni = all.length - ne; const B = (v, cls, ic, lab, n) => `<button data-aud="${v}" class="${cls} ${UI.audience === v ? 'on' : ''}" aria-pressed="${UI.audience === v}">${ic}${lab}<span class="n">${n}</span></button>`;
+    return `<div class="audbar"><span class="lbl">${t('aud_lbl')}</span><div class="seg aud" role="group" aria-label="${t('aud_field')}">${B('external', 'ext', I.send, t('aud_ext'), ne)}${B('internal', 'int', I.lock, t('aud_int'), ni)}${B('all', 'all', '', t('aud_all'), all.length)}</div>${UI.audience !== 'external' ? `<span class="audnote">${I.lock}${t('aud_note')}</span>` : ''}</div>`; })() : '';
+  return aud + `<div class="chips">
+    ${[['all', 'f_all'], ['request', 'kind_request'], ['attachment', 'kind_attachment'], ['rejection', 'kind_rejection'], ['notice', 'kind_notice']].filter(([v]) => UI.audience !== 'internal' || v === 'all').map(([v, k]) => `<button class="chip ${f.kind === v ? 'on' : ''}" data-chip="kind" data-v="${v}">${t(k)}</button>`).join('')}
     <span style="width:8px"></span>
     <button class="chip ${f.cond ? 'on' : ''}" data-chip="cond">${t('f_cond')}</button>
     <button class="chip ${f.ar ? 'on' : ''}" data-chip="ar">${t('f_ar')}</button>
@@ -4005,13 +4034,14 @@ const Admin = {
     $('#af', p).addEventListener('input', debounce(e => { this.filter = e.target.value; this.tab_comments(p); $('#af', p).focus(); const v = $('#af', p); v.setSelectionRange(v.value.length, v.value.length); }, 150));
   },
   editor(id) {
-    const isNew = !id; const sec0 = Store.sectionsOf(Store.user.svc)[0] || Store.bank.sections[0]; const c = isNew ? { id: uid('c'), s: sec0.id, ss: sec0.subsections[0].id, kind: 'request', en: '', ar: '', tags: [], status: 'draft', history: [] } : clone(Store.comment(id));
+    const isNew = !id; const sec0 = Store.sectionsOf(Store.user.svc)[0] || Store.bank.sections[0]; const c = isNew ? { id: uid('c'), s: sec0.id, ss: sec0.subsections[0].id, kind: UI.audience === 'internal' ? 'internal' : 'request', en: '', ar: '', tags: [], status: 'draft', history: [] } : clone(Store.comment(id));
     const secSel = Store.bank.services.filter(sv => Store.sectionsOf(sv.id).length).map(sv => `<optgroup label="${h(sv.en)}">${Store.sectionsOf(sv.id).flatMap(s => (s.subsections || []).map(ss => `<option value="${s.id}/${ss.id}" ${s.id + '/' + ss.id === c.s + '/' + c.ss ? 'selected' : ''}>${h(s.en)} › ${h(ss.en)}</option>`)).join('')}</optgroup>`).join('');
     const d = openDialog(`<div class="dlg-h"><h3>${isNew ? 'New comment' : 'Edit comment'}</h3><span class="id vtag" style="font-family:ui-monospace,monospace">${h(c.id)}</span><span class="sp"></span>${isNew ? '' : `<button class="btn sec" id="ed-hist">History (${c.history.length})</button>`}<button class="ib" data-close>${I.x}</button></div>
       <div class="dlg-b editor">
+        <div class="field"><label>${t('aud_field')}</label><div class="aud-pick"><label class="ext"><input type="radio" name="ed-aud" value="external" ${c.kind !== 'internal' ? 'checked' : ''}>${I.send}<span><b>${t('aud_ext')}</b><br><small>${t('aud_ext_h')}</small></span></label><label class="int"><input type="radio" name="ed-aud" value="internal" ${c.kind === 'internal' ? 'checked' : ''}>${I.lock}<span><b>${t('aud_int')}</b><br><small>${t('aud_int_h')}</small></span></label></div></div>
         <div class="two">
           <div class="field"><label>${A('Service › Section › Subsection', 'الخدمة › القسم › القسم الفرعي')}</label><select id="ed-sec">${secSel}</select></div>
-          <div class="two"><div class="field"><label>Kind</label><select id="ed-kind">${['request', 'attachment', 'rejection', 'notice', 'internal'].map(k => `<option ${c.kind === k ? 'selected' : ''}>${k}</option>`).join('')}</select></div>
+          <div class="two"><div class="field"><label>Kind</label><select id="ed-kind" ${c.kind === 'internal' ? 'disabled' : ''}>${['request', 'attachment', 'rejection', 'notice'].map(k => `<option ${c.kind === k ? 'selected' : ''}>${k}</option>`).join('')}</select></div>
           <div class="field"><label>Status</label><select id="ed-status">${['draft', 'reviewed', 'published', 'archived'].map(k => `<option ${c.status === k ? 'selected' : ''}>${k}</option>`).join('')}</select></div></div>
         </div>
         <div class="two">
@@ -4059,9 +4089,11 @@ const Admin = {
       const near = Store.bank.comments.filter(o => o.id !== c.id && (sim(en, norm(o.en)) > 0.7 || sim(ar, norm(o.ar)) > 0.7));
       if (near.length) box.innerHTML = `<div class="inline-warn">${I.warn} Near-duplicate of: ${near.map(o => `<b>${h(o.id)}</b> “${h((o.en || o.ar).slice(0, 70))}…”`).join(' · ')}</div>`;
     }, 250);
+    d.querySelectorAll('input[name="ed-aud"]').forEach(r => r.addEventListener('change', () => { $('#ed-kind', d).disabled = r.value === 'internal' && r.checked; }));
     $('#ed-save', d).onclick = () => {
       const [s, ss] = $('#ed-sec', d).value.split('/');
-      const next = { ...c, s, ss, kind: $('#ed-kind', d).value, status: $('#ed-status', d).value, en: $('#ed-en', d).value.trim(), ar: $('#ed-ar', d).value.trim(), tags: $('#ed-tags', d).value.split(',').map(x => x.trim()).filter(Boolean), note: $('#ed-note', d).value.trim() };
+      const aud = d.querySelector('input[name="ed-aud"]:checked')?.value || 'external';
+      const next = { ...c, s, ss, kind: aud === 'internal' ? 'internal' : $('#ed-kind', d).value, status: $('#ed-status', d).value, en: $('#ed-en', d).value.trim(), ar: $('#ed-ar', d).value.trim(), tags: $('#ed-tags', d).value.split(',').map(x => x.trim()).filter(Boolean), note: $('#ed-note', d).value.trim() };
       const ce = $('#ed-cen', d).value.trim(), ca = $('#ed-car', d).value.trim(); next.cond = (ce || ca) ? { en: ce, ar: ca } : undefined;
       if (!next.en && !next.ar) { toast('Text is empty', 'err'); return; }
       const prev = Store.comment(c.id);
@@ -4308,9 +4340,10 @@ function setLang(l) { LANG = l; Store.user.lang = l; Store.saveUser(); document.
 
 document.addEventListener('click', async e => {
   const closeBtn = e.target.closest('[data-close]'); if (closeBtn) { closeBtn.closest('dialog')?.close(); }
-  const el = e.target.closest('[data-act],[data-chip],[data-scope],[data-tab],[data-edit],[data-sec],[data-sub],[data-opt] button'); if (!el) return;
+  const el = e.target.closest('[data-act],[data-chip],[data-scope],[data-aud],[data-tab],[data-edit],[data-sec],[data-sub],[data-opt] button'); if (!el) return;
   const act = el.dataset.act; const id = el.dataset.id;
   if (el.dataset.scope) { UI.scope = el.dataset.scope; renderMain(); return; }
+  if (el.dataset.aud) { UI.audience = el.dataset.aud; Store.user.audience = UI.audience; Store.saveUser(); if (UI.audience === 'internal') UI.filter.kind = 'all'; renderSidebar(); renderMain(); return; }
   if (el.matches('a.lang')) e.preventDefault();
   if (el.dataset.chip) { const k = el.dataset.chip; if (k === 'kind') UI.filter.kind = el.dataset.v; else UI.filter[k] = !UI.filter[k]; renderMain(); return; }
   if (el.dataset.tab) { UI.adminTab = el.dataset.tab; renderMain(); return; }
@@ -4504,6 +4537,7 @@ function selfTest(silent) {
   ok('arabic: no English words inside Arabic comments (links allowed)', EMBED.comments.every(c => !/[A-Za-z]/.test(noUrl(c.ar))), EMBED.comments.filter(c => /[A-Za-z]/.test(noUrl(c.ar))).map(c => c.id).join(','));
   ok('render: English comments show only English, Arabic only Arabic (both UI languages)', (() => { const prev = LANG; let bad = []; for (const l of ['en', 'ar']) { LANG = l; EMBED.comments.forEach(c => { const tx = html => { const d = document.createElement('div'); d.innerHTML = html; return d.textContent; }; const en = tx(renderText(c.en)), ar = tx(renderText(c.ar)).replace(/https?:\/\/\S+/g, ''); if (/[\u0600-\u06FF]/.test(en) || /[A-Za-z]/.test(ar)) bad.push(l + ':' + c.id); }); } LANG = prev; return !bad.length; })());
   ok('copy: formatted copy marks English ltr/left and Arabic rtl/right', (() => { const h2 = linesToHtml([{ d: 'ltr', s: '\u200E1. Kindly' }, { d: 'ltr', s: '' }, { d: 'rtl', s: '\u200F1. يرجى' }]); return h2.includes('dir="ltr" lang="en" style="margin:0;direction:ltr;text-align:left') && h2.includes('dir="rtl" lang="ar" style="margin:0;direction:rtl;text-align:right') && !/[\u200E\u200F]/.test(h2); })());
+  ok('audience: switch filters internal notes and sidebar counts', (() => { if (!hasInternal()) return true; const keep = UI.audience; UI.audience = 'external'; const e = Store.published().filter(inAudience).every(c => c.kind !== 'internal'); UI.audience = 'internal'; const i = Store.published().filter(inAudience).every(c => c.kind === 'internal'); UI.audience = 'all'; const a = Store.published().filter(inAudience).length === Store.published().length; UI.audience = keep; return e && i && a; })());
   ok('layout: two draggable gutters, width persists and resets', (() => { const gs = $$('.gutter'); if (gs.length !== 2) return false; const keep = Store.user.layout; Resizer.set('side', 320); const w1 = $('.side').getBoundingClientRect().width; const ok1 = Math.abs(w1 - 320) < 2 && (Store.user.layout || {}).side === 320; Resizer.reset('side'); const ok2 = !(Store.user.layout || {}).side; Store.user.layout = keep; Resizer.apply(); return ok1 && ok2; })());
   ok('service card: shows area, service in both languages and a change-service affordance', (() => { const b = $('.svcbtn'); return !!b && !!b.querySelector('.lab') && !!b.querySelector('.nm') && !!b.querySelector('.nm2') && !!b.querySelector('.chg') && b.querySelector('.chg').textContent.trim().length > 0; })());
   ok('guide: one step per benefit (8), each target exists after prep', (() => { const st = Tour.steps(); return st.length === 8; })());
@@ -4521,7 +4555,7 @@ window.addEventListener('afterprint', () => { $('#print').innerHTML = ''; });
 
 /* ---------------- Boot ---------------- */
 Store.load(); LANG = Store.user.lang; (() => { const l = $('link[rel="icon"]'); if (l) l.href = FTA_WHEEL; })(); document.documentElement.lang = LANG; document.documentElement.dir = LANG === 'ar' ? 'rtl' : 'ltr'; applyTheme();
-Search.build(); const restored = Composer.restore(); renderShell(); if (restored) setTimeout(() => toast(t('draft_restored')), 600);
+Search.build(); UI.audience = ['external', 'internal', 'all'].includes(Store.user.audience) ? Store.user.audience : 'external'; const restored = Composer.restore(); renderShell(); if (restored) setTimeout(() => toast(t('draft_restored')), 600);
 $('#main').addEventListener('scroll', debounce(spy, 60));
 if (!Store.user.skipSplash && location.hash !== '#selftest') Splash.show(); else $('#q').focus();
 if (location.hash === '#selftest') setTimeout(selfTest, 50);
