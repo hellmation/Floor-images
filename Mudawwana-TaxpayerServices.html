@@ -185,6 +185,8 @@ body.resizing .side,body.resizing .main,body.resizing .tray{pointer-events:none}
 .b-attachment{background:var(--blue-soft);color:var(--blue)}
 .b-rejection{background:var(--red-soft);color:var(--red)}
 .b-notice{background:var(--gold-soft);color:var(--gold)}
+.b-internal{background:var(--amber-soft);color:var(--amber);border:1px dashed color-mix(in srgb,var(--amber) 50%,transparent)}
+.card.k-internal{border-inline-start:3px solid var(--amber)}
 .b-cond{background:var(--amber-soft);color:var(--amber);text-transform:none;letter-spacing:0;font-weight:500}
 .b-flag{background:var(--amber-soft);color:var(--amber);text-transform:none;letter-spacing:0;font-weight:500}
 .b-draft{background:var(--surface3);color:var(--ink2)}
@@ -2798,7 +2800,7 @@ const T = {
   en: {
     search_ph: 'Search comments… e.g. expired eid, moa, jafza, هوية',
     all: 'All', sections: 'Sections', favorites: 'Favourites', recents: 'Recently used', presets: 'Case presets',
-    kind_request: 'Request', kind_attachment: 'Attachment', kind_rejection: 'Rejection', kind_notice: 'Notice',
+    kind_request: 'Request', kind_attachment: 'Attachment', kind_rejection: 'Rejection', kind_notice: 'Notice', kind_internal: 'Internal note', w_internal: 'Internal review note included — paste it in the internal comment field only, never to the taxpayer.',
     f_all: 'All kinds', f_cond: 'Has condition', f_ar: 'Has Arabic', f_ph: 'Has blanks',
     composer: 'Composer', add: 'Add', added: 'Added', copy_en: 'Copy EN', copy_ar: 'Copy AR', copy_both: 'Copy both', copied: 'Copied', copy_failed: 'Copy failed — select the preview and press Ctrl+C',
     results: 'results', no_results: 'No comments match', no_results_hint: 'Try fewer words, an abbreviation (MOA, EID, TL) or Arabic. Press Esc to clear.',
@@ -2837,7 +2839,7 @@ const T = {
   ar: {
     search_ph: 'ابحث في التعليقات… مثال: هوية منتهية، عقد التأسيس، جافزا، eid',
     all: 'الكل', sections: 'الأقسام', favorites: 'المفضلة', recents: 'المستخدمة مؤخراً', presets: 'قوالب الحالات',
-    kind_request: 'طلب تعديل', kind_attachment: 'مرفق', kind_rejection: 'رفض', kind_notice: 'إشعار',
+    kind_request: 'طلب تعديل', kind_attachment: 'مرفق', kind_rejection: 'رفض', kind_notice: 'إشعار', kind_internal: 'ملاحظة داخلية', w_internal: 'يتضمن الرد ملاحظة مراجعة داخلية — تُلصق في حقل التعليق الداخلي فقط ولا تُرسل للخاضع للضريبة.',
     f_all: 'كل الأنواع', f_cond: 'له شرط', f_ar: 'له نص عربي', f_ph: 'به فراغات',
     composer: 'المنشئ', add: 'إضافة', added: 'مضاف', copy_en: 'نسخ EN', copy_ar: 'نسخ AR', copy_both: 'نسخ الاثنين', copied: 'تم النسخ', copy_failed: 'تعذر النسخ — حدد المعاينة واضغط Ctrl+C',
     results: 'نتيجة', no_results: 'لا توجد تعليقات مطابقة', no_results_hint: 'جرّب كلمات أقل أو اختصاراً (MOA, EID, TL) أو بالإنجليزية. اضغط Esc للمسح.',
@@ -3206,6 +3208,7 @@ const Composer = {
     if (unfilled) w.push({ c: 'amber', m: `${unfilled} ${t('w_unfilled')}` });
     if (rej > 1) w.push({ c: 'red', m: t('w_multi_rej') });
     if (rej && rej < kinds.length) w.push({ c: 'red', m: t('w_mix') });
+    const intl = kinds.filter(k => k === 'internal').length; if (intl && intl < kinds.length) w.push({ c: 'red', m: t('w_internal') });
     if (this.items.some(id => Store.comment(id)?.cond)) w.push({ c: 'amber', m: t('w_cond') });
     return w;
   },
@@ -3417,7 +3420,7 @@ function cardHtml(c, terms, hl = true) {
   const long = (c.en || '').length > 260 || (c.ar || '').length > 260;
   const expanded = UI.expanded.has(c.id);
   const fav = Store.user.favs.includes(c.id);
-  return `<article class="card ${Composer.has(c.id) ? 'in' : ''} ${long && !expanded ? 'clamp' : ''}" data-id="${c.id}" tabindex="0">
+  return `<article class="card k-${c.kind} ${Composer.has(c.id) ? 'in' : ''} ${long && !expanded ? 'clamp' : ''}" data-id="${c.id}" tabindex="0">
     <div class="card-h">
       <span class="badge b-${c.kind}">${t('kind_' + c.kind)}</span>
       <span class="crumb">${UI.q && UI.scope === 'all' ? `<span class="svc">${h(L(Store.service(sec?.svc)))}</span> › ` : ''}<b>${h(L(sec))}</b> › ${h(L(sub))}</span>
@@ -3443,7 +3446,7 @@ function cardHtml(c, terms, hl = true) {
 function chipsHtml() {
   const f = UI.filter;
   return `<div class="chips">
-    ${[['all', 'f_all'], ['request', 'kind_request'], ['attachment', 'kind_attachment'], ['rejection', 'kind_rejection'], ['notice', 'kind_notice']].map(([v, k]) => `<button class="chip ${f.kind === v ? 'on' : ''}" data-chip="kind" data-v="${v}">${t(k)}</button>`).join('')}
+    ${[['all', 'f_all'], ['request', 'kind_request'], ['attachment', 'kind_attachment'], ['rejection', 'kind_rejection'], ['notice', 'kind_notice'], ...(Store.published().some(c => c.kind === 'internal') ? [['internal', 'kind_internal']] : [])].map(([v, k]) => `<button class="chip ${f.kind === v ? 'on' : ''}" data-chip="kind" data-v="${v}">${t(k)}</button>`).join('')}
     <span style="width:8px"></span>
     <button class="chip ${f.cond ? 'on' : ''}" data-chip="cond">${t('f_cond')}</button>
     <button class="chip ${f.ar ? 'on' : ''}" data-chip="ar">${t('f_ar')}</button>
@@ -4008,7 +4011,7 @@ const Admin = {
       <div class="dlg-b editor">
         <div class="two">
           <div class="field"><label>${A('Service › Section › Subsection', 'الخدمة › القسم › القسم الفرعي')}</label><select id="ed-sec">${secSel}</select></div>
-          <div class="two"><div class="field"><label>Kind</label><select id="ed-kind">${['request', 'attachment', 'rejection', 'notice'].map(k => `<option ${c.kind === k ? 'selected' : ''}>${k}</option>`).join('')}</select></div>
+          <div class="two"><div class="field"><label>Kind</label><select id="ed-kind">${['request', 'attachment', 'rejection', 'notice', 'internal'].map(k => `<option ${c.kind === k ? 'selected' : ''}>${k}</option>`).join('')}</select></div>
           <div class="field"><label>Status</label><select id="ed-status">${['draft', 'reviewed', 'published', 'archived'].map(k => `<option ${c.status === k ? 'selected' : ''}>${k}</option>`).join('')}</select></div></div>
         </div>
         <div class="two">
