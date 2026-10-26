@@ -1,6 +1,6 @@
 {
- "version": "1.0.0",
- "publishedAt": "2026-10-21",
+ "version": "1.1.0",
+ "publishedAt": "2026-10-27",
  "appName": {
   "en": "Mudawwana",
   "ar": "مدوّنة"
@@ -151,6 +151,127 @@
      "id": "form-copy",
      "en": "Additional Copy",
      "ar": "نسخة إضافية"
+    }
+   ]
+  },
+  {
+   "id": "hb-outcome",
+   "en": "Application Outcome",
+   "ar": "نتيجة الطلب",
+   "svc": "new-residence-vat-refund",
+   "subsections": [
+    {
+     "id": "hb-status",
+     "en": "Status Notices",
+     "ar": "إشعارات الحالة"
+    }
+   ]
+  },
+  {
+   "id": "hb-applicant",
+   "en": "Applicant & Bank Details",
+   "ar": "بيانات مقدم الطلب والحساب البنكي",
+   "svc": "new-residence-vat-refund",
+   "subsections": [
+    {
+     "id": "hb-identity",
+     "en": "Identity & Contact Details",
+     "ar": "بيانات الهوية والتواصل"
+    },
+    {
+     "id": "hb-bank",
+     "en": "Bank Account",
+     "ar": "الحساب البنكي"
+    }
+   ]
+  },
+  {
+   "id": "hb-residence",
+   "en": "Residence & Completion",
+   "ar": "المسكن وشهادة الإنجاز",
+   "svc": "new-residence-vat-refund",
+   "subsections": [
+    {
+     "id": "hb-completion",
+     "en": "Completion Certificate & Land",
+     "ar": "شهادة الإنجاز والأرض"
+    },
+    {
+     "id": "hb-eligibility",
+     "en": "Residence Eligibility",
+     "ar": "أهلية المسكن"
+    }
+   ]
+  },
+  {
+   "id": "hb-amount",
+   "en": "Refund Amount & Invoices",
+   "ar": "مبلغ الاسترداد والفواتير",
+   "svc": "new-residence-vat-refund",
+   "subsections": [
+    {
+     "id": "hb-claimed",
+     "en": "Claimed Amount",
+     "ar": "المبلغ المطالب به"
+    },
+    {
+     "id": "hb-invoices",
+     "en": "Invoices",
+     "ar": "الفواتير"
+    },
+    {
+     "id": "hb-retention",
+     "en": "Retention Payments",
+     "ar": "الدفعات المحتجزة"
+    }
+   ]
+  },
+  {
+   "id": "hb-deadline",
+   "en": "Deadlines & Rejections",
+   "ar": "المواعيد والرفض",
+   "svc": "new-residence-vat-refund",
+   "subsections": [
+    {
+     "id": "hb-12m",
+     "en": "12-Month Deadline",
+     "ar": "مهلة الاثني عشر شهراً"
+    },
+    {
+     "id": "hb-docs",
+     "en": "Documents Not Provided",
+     "ar": "عدم تقديم المستندات"
+    }
+   ]
+  },
+  {
+   "id": "hb-represent",
+   "en": "Representation",
+   "ar": "التمثيل والوكالة",
+   "svc": "new-residence-vat-refund",
+   "subsections": [
+    {
+     "id": "hb-court",
+     "en": "Court Permission (Minor / Interdicted)",
+     "ar": "إذن المحكمة (قاصر / محجور عليه)"
+    },
+    {
+     "id": "hb-poa",
+     "en": "Power of Attorney",
+     "ar": "الوكالة"
+    }
+   ]
+  },
+  {
+   "id": "hb-contractor",
+   "en": "Contractor & Supply Chain",
+   "ar": "المقاول وسلسلة التوريد",
+   "svc": "new-residence-vat-refund",
+   "subsections": [
+    {
+     "id": "hb-supply",
+     "en": "Contractor Compliance",
+     "ar": "التزام المقاول"
     }
    ]
   }
@@ -1532,6 +1653,1396 @@
      ]
     }
    ]
+  },
+  {
+   "id": "hb-01",
+   "s": "hb-outcome",
+   "ss": "hb-status",
+   "kind": "notice",
+   "en": "The application is eligible for a refund.",
+   "ar": "الطلب مؤهل للاسترداد.",
+   "tags": [
+    "eligible",
+    "outcome",
+    "approved"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "The application is eligible for a refund.",
+     "ar": "الطلب مؤهل للاسترداد.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "eligible",
+      "outcome",
+      "approved"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-02",
+   "s": "hb-outcome",
+   "ss": "hb-status",
+   "kind": "notice",
+   "en": "The application has been reviewed and approved for an amount of AED {{amount}}.",
+   "ar": "تمت مراجعة الطلب والموافقة عليه بمبلغ ({{amount}}) درهم.",
+   "tags": [
+    "approved",
+    "amount",
+    "outcome"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "The application has been reviewed and approved for an amount of AED {{amount}}.",
+     "ar": "تمت مراجعة الطلب والموافقة عليه بمبلغ ({{amount}}) درهم.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "approved",
+      "amount",
+      "outcome"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-03",
+   "s": "hb-outcome",
+   "ss": "hb-status",
+   "kind": "notice",
+   "en": "The application has been returned at the applicant’s request.",
+   "ar": "تمت إعادة الطلب بناءً على طلب مقدم الطلب.",
+   "tags": [
+    "returned",
+    "applicant request"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "The application has been returned at the applicant’s request.",
+     "ar": "تمت إعادة الطلب بناءً على طلب مقدم الطلب.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "returned",
+      "applicant request"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-04",
+   "s": "hb-outcome",
+   "ss": "hb-status",
+   "kind": "rejection",
+   "en": "Please note that the application has been rejected at the applicant’s request.",
+   "ar": "يرجى العلم بأنه تم رفض الطلب بناءً على طلب مقدم الطلب.",
+   "tags": [
+    "reject",
+    "applicant request"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that the application has been rejected at the applicant’s request.",
+     "ar": "يرجى العلم بأنه تم رفض الطلب بناءً على طلب مقدم الطلب.",
+     "cond": null,
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "applicant request"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-05",
+   "s": "hb-applicant",
+   "ss": "hb-bank",
+   "kind": "request",
+   "en": "Kindly update the bank account details so that they match the details recorded in the system.",
+   "ar": "يرجى تحديث بيانات الحساب البنكي لتتطابق مع البيانات المدخلة في النظام.",
+   "tags": [
+    "bank account",
+    "IBAN",
+    "bank details",
+    "mismatch"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly update the bank account details so that they match the details recorded in the system.",
+     "ar": "يرجى تحديث بيانات الحساب البنكي لتتطابق مع البيانات المدخلة في النظام.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "bank account",
+      "IBAN",
+      "bank details",
+      "mismatch"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-06",
+   "s": "hb-applicant",
+   "ss": "hb-bank",
+   "kind": "attachment",
+   "en": "Kindly attach the bank account confirmation letter issued by the bank, showing the account holder’s full name (three-part name).",
+   "ar": "يرجى إرفاق رسالة تأكيد الحساب البنكي الصادرة من البنك، على أن تتضمن الاسم الثلاثي لصاحب الحساب.",
+   "tags": [
+    "bank letter",
+    "account confirmation",
+    "IBAN",
+    "full name"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach the bank account confirmation letter issued by the bank, showing the account holder’s full name (three-part name).",
+     "ar": "يرجى إرفاق رسالة تأكيد الحساب البنكي الصادرة من البنك، على أن تتضمن الاسم الثلاثي لصاحب الحساب.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "bank letter",
+      "account confirmation",
+      "IBAN",
+      "full name"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Bank account confirmation letter",
+    "ar": "رسالة تأكيد الحساب البنكي"
+   }
+  },
+  {
+   "id": "hb-07",
+   "s": "hb-applicant",
+   "ss": "hb-identity",
+   "kind": "request",
+   "en": "Kindly correct the Emirates ID number so that it matches the attached document.",
+   "ar": "يرجى تصحيح رقم الهوية ليطابق المستند المرفق.",
+   "tags": [
+    "emirates id",
+    "id number",
+    "mismatch"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly correct the Emirates ID number so that it matches the attached document.",
+     "ar": "يرجى تصحيح رقم الهوية ليطابق المستند المرفق.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "emirates id",
+      "id number",
+      "mismatch"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-08",
+   "s": "hb-applicant",
+   "ss": "hb-identity",
+   "kind": "attachment",
+   "en": "Kindly attach a valid copy of the Emirates ID.",
+   "ar": "يرجى إرفاق نسخة سارية المفعول من الهوية الإماراتية.",
+   "tags": [
+    "emirates id",
+    "valid",
+    "copy"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach a valid copy of the Emirates ID.",
+     "ar": "يرجى إرفاق نسخة سارية المفعول من الهوية الإماراتية.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "emirates id",
+      "valid",
+      "copy"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Valid Emirates ID copy",
+    "ar": "نسخة سارية من الهوية الإماراتية"
+   }
+  },
+  {
+   "id": "hb-09",
+   "s": "hb-applicant",
+   "ss": "hb-identity",
+   "kind": "request",
+   "en": "Kindly correct the name of the residence owner in English so that it matches the name shown on the Emirates ID.",
+   "ar": "يرجى تصحيح اسم مالك المسكن باللغة الإنجليزية ليطابق الاسم الوارد في الهوية الإماراتية.",
+   "tags": [
+    "owner name",
+    "english",
+    "emirates id"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly correct the name of the residence owner in English so that it matches the name shown on the Emirates ID.",
+     "ar": "يرجى تصحيح اسم مالك المسكن باللغة الإنجليزية ليطابق الاسم الوارد في الهوية الإماراتية.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "owner name",
+      "english",
+      "emirates id"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-10",
+   "s": "hb-applicant",
+   "ss": "hb-identity",
+   "kind": "request",
+   "en": "Kindly correct the name of the residence owner in Arabic so that it matches the name shown on the Emirates ID.",
+   "ar": "يرجى تصحيح اسم مالك المسكن باللغة العربية ليطابق الاسم الوارد في الهوية الإماراتية.",
+   "tags": [
+    "owner name",
+    "arabic",
+    "emirates id"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly correct the name of the residence owner in Arabic so that it matches the name shown on the Emirates ID.",
+     "ar": "يرجى تصحيح اسم مالك المسكن باللغة العربية ليطابق الاسم الوارد في الهوية الإماراتية.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "owner name",
+      "arabic",
+      "emirates id"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-11",
+   "s": "hb-applicant",
+   "ss": "hb-identity",
+   "kind": "request",
+   "en": "Kindly correct the email address registered in the system, as it is incorrect.",
+   "ar": "يرجى تصحيح البريد الإلكتروني المسجل في النظام، حيث إنه غير صحيح.",
+   "tags": [
+    "email",
+    "contact",
+    "incorrect"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly correct the email address registered in the system, as it is incorrect.",
+     "ar": "يرجى تصحيح البريد الإلكتروني المسجل في النظام، حيث إنه غير صحيح.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "email",
+      "contact",
+      "incorrect"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-12",
+   "s": "hb-applicant",
+   "ss": "hb-identity",
+   "kind": "attachment",
+   "en": "Kindly attach a copy of the family data page from the UAE Federal Authority for Identity, Citizenship, Customs and Port Security application, showing the owner’s name and the family number, or a copy of the family book (Khulasat Al Qaid) including the page on which the residence owner’s name appears.",
+   "ar": "يرجى إرفاق نسخة من صفحة بيانات الأسرة الصادرة من تطبيق الهيئة الاتحادية للهوية والجنسية متضمنةً اسم المالك ورقم الأسرة، أو نسخة من خلاصة القيد متضمنةً الصفحة التي يظهر بها اسم مالك المسكن.",
+   "tags": [
+    "family book",
+    "khulasat al qaid",
+    "family data",
+    "ICP",
+    "nationality"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach a copy of the family data page from the UAE ICP application, showing the owner’s name and the family number, or a copy of the family book (Khulasat Al Qaid) including the page on which the residence owner’s name appears.",
+     "ar": "يرجى إرفاق نسخة من صفحة بيانات الأسرة الصادرة من تطبيق الهيئة الاتحادية للهوية والجنسية متضمنةً اسم المالك ورقم الأسرة، أو نسخة من خلاصة القيد متضمنةً الصفحة التي يظهر بها اسم مالك المسكن.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "family book",
+      "khulasat al qaid",
+      "family data",
+      "ICP",
+      "nationality"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Family book or Federal Authority for Identity, Citizenship, Customs and Port Security family data page",
+    "ar": "خلاصة القيد أو صفحة بيانات الأسرة"
+   }
+  },
+  {
+   "id": "hb-13",
+   "s": "hb-residence",
+   "ss": "hb-completion",
+   "kind": "request",
+   "en": "Kindly correct the plot number so that it matches the details shown on the attached completion certificate.",
+   "ar": "يرجى تصحيح رقم الأرض ليطابق البيانات الواردة في شهادة الإنجاز المرفقة.",
+   "tags": [
+    "plot number",
+    "land number",
+    "completion certificate"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly correct the plot number so that it matches the details shown on the attached completion certificate.",
+     "ar": "يرجى تصحيح رقم الأرض ليطابق البيانات الواردة في شهادة الإنجاز المرفقة.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "plot number",
+      "land number",
+      "completion certificate"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-14",
+   "s": "hb-residence",
+   "ss": "hb-completion",
+   "kind": "request",
+   "en": "Kindly correct the date of the completion certificate so that it matches the date shown on the attached completion certificate.",
+   "ar": "يرجى تصحيح تاريخ شهادة الإنجاز ليطابق التاريخ الوارد في شهادة الإنجاز المرفقة.",
+   "tags": [
+    "completion certificate",
+    "date",
+    "mismatch"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly correct the date of the completion certificate so that it matches the date shown on the attached completion certificate.",
+     "ar": "يرجى تصحيح تاريخ شهادة الإنجاز ليطابق التاريخ الوارد في شهادة الإنجاز المرفقة.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "completion certificate",
+      "date",
+      "mismatch"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-15",
+   "s": "hb-residence",
+   "ss": "hb-completion",
+   "kind": "attachment",
+   "en": "Kindly attach a copy of the building completion certificate.",
+   "ar": "يرجى إرفاق نسخة من شهادة الإنجاز.",
+   "tags": [
+    "completion certificate",
+    "attach"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach a copy of the building completion certificate.",
+     "ar": "يرجى إرفاق نسخة من شهادة الإنجاز.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "completion certificate",
+      "attach"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Building completion certificate",
+    "ar": "شهادة إنجاز المبنى"
+   }
+  },
+  {
+   "id": "hb-16",
+   "s": "hb-residence",
+   "ss": "hb-eligibility",
+   "kind": "notice",
+   "en": "Please note that a refund cannot be claimed for a ready-built residence granted by the government where the owner did not bear the cost of its construction.",
+   "ar": "يرجى العلم بأنه لا يمكن طلب استرداد عن مسكن جاهز ممنوح من الحكومة ولم يتحمل المالك تكلفة تشييده.",
+   "tags": [
+    "government grant",
+    "ready-built",
+    "not eligible"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that a refund cannot be claimed for a ready-built residence granted by the government where the owner did not bear the cost of its construction.",
+     "ar": "يرجى العلم بأنه لا يمكن طلب استرداد عن مسكن جاهز ممنوح من الحكومة ولم يتحمل المالك تكلفة تشييده.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "government grant",
+      "ready-built",
+      "not eligible"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-17",
+   "s": "hb-residence",
+   "ss": "hb-eligibility",
+   "kind": "rejection",
+   "en": "Please note that the application does not meet the refund conditions, as the components of the building do not satisfy the conditions of a residence eligible for the refund.",
+   "ar": "يرجى العلم بأن الطلب غير مستوفٍ لشروط الاسترداد، حيث إن مكونات المبنى لا تستوفي شروط المسكن المؤهل للاسترداد.",
+   "tags": [
+    "reject",
+    "building components",
+    "not a residence",
+    "conditions"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that the application does not meet the refund conditions, as the components of the building do not satisfy the conditions of a residence eligible for the refund.",
+     "ar": "يرجى العلم بأن الطلب غير مستوفٍ لشروط الاسترداد، حيث إن مكونات المبنى لا تستوفي شروط المسكن المؤهل للاسترداد.",
+     "cond": null,
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "building components",
+      "not a residence",
+      "conditions"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-18",
+   "s": "hb-residence",
+   "ss": "hb-eligibility",
+   "kind": "request",
+   "en": "Kindly clarify the reason for submitting another application for the same residence.",
+   "ar": "يرجى توضيح سبب تقديم طلب آخر على نفس المسكن.",
+   "tags": [
+    "duplicate",
+    "same residence",
+    "clarify"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly clarify the reason for submitting another application for the same residence.",
+     "ar": "يرجى توضيح سبب تقديم طلب آخر على نفس المسكن.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "duplicate",
+      "same residence",
+      "clarify"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-19",
+   "s": "hb-residence",
+   "ss": "hb-eligibility",
+   "kind": "rejection",
+   "en": "Please note that the application has been rejected, as the owner of the residence is not a UAE national.",
+   "ar": "يرجى العلم بأنه تم رفض الطلب، حيث إن مالك المسكن ليس من مواطني دولة الإمارات العربية المتحدة.",
+   "tags": [
+    "reject",
+    "nationality",
+    "not UAE national"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that the application has been rejected, as the owner of the residence is not a UAE national.",
+     "ar": "يرجى العلم بأنه تم رفض الطلب، حيث إن مالك المسكن ليس من مواطني دولة الإمارات العربية المتحدة.",
+     "cond": null,
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "nationality",
+      "not UAE national"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-20",
+   "s": "hb-amount",
+   "ss": "hb-claimed",
+   "kind": "request",
+   "en": "Kindly correct the amount of tax claimed for refund.",
+   "ar": "يرجى تصحيح مبلغ الضريبة المطلوب استرداده.",
+   "tags": [
+    "amount",
+    "claimed",
+    "correct"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly correct the amount of tax claimed for refund.",
+     "ar": "يرجى تصحيح مبلغ الضريبة المطلوب استرداده.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "amount",
+      "claimed",
+      "correct"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-21",
+   "s": "hb-amount",
+   "ss": "hb-claimed",
+   "kind": "request",
+   "en": "Kindly enter the amount of refundable tax, as the amount currently claimed in the system is AED 0.",
+   "ar": "يرجى إدخال قيمة المبلغ الضريبي المستحق للاسترداد، حيث إن المبلغ المطلوب استرداده في النظام حالياً هو (0) درهم.",
+   "tags": [
+    "amount",
+    "zero",
+    "enter amount"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly enter the amount of refundable tax, as the amount currently claimed in the system is AED 0.",
+     "ar": "يرجى إدخال قيمة المبلغ الضريبي المستحق للاسترداد، حيث إن المبلغ المطلوب استرداده في النظام حالياً هو (0) درهم.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "amount",
+      "zero",
+      "enter amount"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-22",
+   "s": "hb-amount",
+   "ss": "hb-invoices",
+   "kind": "rejection",
+   "en": "Please note that the application has been rejected, as the submitted invoice(s) are not eligible for the refund.",
+   "ar": "يرجى العلم بأنه تم رفض الطلب، حيث إن الفاتورة/الفواتير المقدمة غير مؤهلة للاسترداد.",
+   "tags": [
+    "reject",
+    "invoices",
+    "not eligible"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that the application has been rejected, as the submitted invoice(s) are not eligible for the refund.",
+     "ar": "يرجى العلم بأنه تم رفض الطلب، حيث إن الفاتورة/الفواتير المقدمة غير مؤهلة للاسترداد.",
+     "cond": null,
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "invoices",
+      "not eligible"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-23",
+   "s": "hb-amount",
+   "ss": "hb-retention",
+   "kind": "request",
+   "en": "Please note that the application was submitted through the retention payments refund screen. As this invoice is not a retention payment invoice, kindly submit it under a regular refund application.",
+   "ar": "يرجى العلم بأنه تم تقديم الطلب عبر شاشة طلب الاسترداد للدفعات المحتجزة، وبما أن هذه الفاتورة لا تندرج ضمن فواتير الدفعات المحتجزة، يرجى تقديمها ضمن طلب استرداد عادي.",
+   "tags": [
+    "retention",
+    "wrong screen",
+    "regular refund"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that the application was submitted through the retention payments refund screen. As this invoice is not a retention payment invoice, kindly submit it under a regular refund application.",
+     "ar": "يرجى العلم بأنه تم تقديم الطلب عبر شاشة طلب الاسترداد للدفعات المحتجزة، وبما أن هذه الفاتورة لا تندرج ضمن فواتير الدفعات المحتجزة، يرجى تقديمها ضمن طلب استرداد عادي.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "retention",
+      "wrong screen",
+      "regular refund"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-24",
+   "s": "hb-amount",
+   "ss": "hb-retention",
+   "kind": "rejection",
+   "en": "Please note that the application has been rejected, as it was declared in the first application that no claim for retention amounts would be submitted later.",
+   "ar": "يرجى العلم بأنه تم رفض الطلب، حيث إنه في الطلب الأول تم التصريح بأنه لن يتم التقديم على طلب المبالغ المحتجزة لاحقاً.",
+   "tags": [
+    "reject",
+    "retention",
+    "not declared",
+    "first application"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that the application has been rejected, as it was declared in the first application that no claim for retention amounts would be submitted later.",
+     "ar": "يرجى العلم بأنه تم رفض الطلب، حيث إنه في الطلب الأول تم التصريح بأنه لن يتم التقديم على طلب المبالغ المحتجزة لاحقاً.",
+     "cond": null,
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "retention",
+      "not declared",
+      "first application"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-25",
+   "s": "hb-amount",
+   "ss": "hb-invoices",
+   "kind": "rejection",
+   "en": "Please note that the application has been rejected, as the full amount claimed was refunded in the previous application with reference number {{refNo}}, and additional invoices cannot be claimed after the refund was completed in the first application.",
+   "ar": "يرجى العلم بأنه تم رفض الطلب، حيث إنه تم استرداد كامل المبلغ المطالب به في الطلب السابق ذي الرقم المرجعي ({{refNo}})، ولا يمكن المطالبة باسترداد الفواتير الإضافية بعد استكمال الاسترداد في الطلب الأول.",
+   "tags": [
+    "reject",
+    "already refunded",
+    "previous application",
+    "additional invoices"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that the application has been rejected, as the full amount claimed was refunded in the previous application with reference number {{refNo}}, and additional invoices cannot be claimed after the refund was completed in the first application.",
+     "ar": "يرجى العلم بأنه تم رفض الطلب، حيث إنه تم استرداد كامل المبلغ المطالب به في الطلب السابق ذي الرقم المرجعي ({{refNo}})، ولا يمكن المطالبة باسترداد الفواتير الإضافية بعد استكمال الاسترداد في الطلب الأول.",
+     "cond": null,
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "already refunded",
+      "previous application",
+      "additional invoices"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-26",
+   "s": "hb-deadline",
+   "ss": "hb-12m",
+   "kind": "rejection",
+   "en": "Please note that the application has been rejected, as the amended application was submitted more than twelve (12) months after the date of issue of the completion certificate.",
+   "ar": "يرجى العلم بأنه تم رفض الطلب، حيث إنه تم تقديم الطلب التصحيحي بعد مرور (12) شهراً من تاريخ إصدار شهادة الإنجاز.",
+   "tags": [
+    "reject",
+    "12 months",
+    "amended application",
+    "late"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that the application has been rejected, as the amended application was submitted more than twelve (12) months after the date of issue of the completion certificate.",
+     "ar": "يرجى العلم بأنه تم رفض الطلب، حيث إنه تم تقديم الطلب التصحيحي بعد مرور (12) شهراً من تاريخ إصدار شهادة الإنجاز.",
+     "cond": null,
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "12 months",
+      "amended application",
+      "late"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-27",
+   "s": "hb-deadline",
+   "ss": "hb-12m",
+   "kind": "rejection",
+   "en": "Please note that the application has been rejected for not meeting the eligibility conditions for the refund under Federal Decree-Law No. (8) of 2017 on Value Added Tax and Cabinet Decision No. (52) of 2017 on its Executive Regulation, as the application was received after the period specified in Article (66), namely twelve (12) months from the date of completion of the residence, being the earlier of: the date the residence was occupied, or the date it was certified as completed by the competent authority in the UAE (the building/residence completion certificate).",
+   "ar": "يرجى العلم بأنه تم رفض الطلب، وذلك لعدم استيفاء شروط الأهلية لطلب الاسترداد وفقاً لأحكام المرسوم بقانون اتحادي رقم (8) لسنة 2017 في شأن ضريبة القيمة المضافة وقرار مجلس الوزراء رقم (52) لسنة 2017 في شأن اللائحة التنفيذية، حيث إنه تم استلام الطلب بعد انقضاء المدة المحددة في المادة (66) وهي (12) شهراً من تاريخ إنجاز المسكن، وهو التاريخ الأسبق مما يلي: تاريخ شغل المسكن، أو تاريخ اعتماده وإقرار إنجازه من الجهة المختصة في الدولة (شهادة إنجاز المبنى/المسكن).",
+   "tags": [
+    "reject",
+    "12 months",
+    "article 66",
+    "late submission",
+    "legal"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that the application has been rejected for not meeting the eligibility conditions for the refund under Federal Decree-Law No. (8) of 2017 on Value Added Tax and Cabinet Decision No. (52) of 2017 on its Executive Regulation, as the application was received after the period specified in Article (66), namely twelve (12) months from the date of completion of the residence, being the earlier of: the date the residence was occupied, or the date it was certified as completed by the competent authority in the UAE (the building/residence completion certificate).",
+     "ar": "يرجى العلم بأنه تم رفض الطلب، وذلك لعدم استيفاء شروط الأهلية لطلب الاسترداد وفقاً لأحكام المرسوم بقانون اتحادي رقم (8) لسنة 2017 في شأن ضريبة القيمة المضافة وقرار مجلس الوزراء رقم (52) لسنة 2017 في شأن اللائحة التنفيذية، حيث إنه تم استلام الطلب بعد انقضاء المدة المحددة في المادة (66) وهي (12) شهراً من تاريخ إنجاز المسكن، وهو التاريخ الأسبق مما يلي: تاريخ شغل المسكن، أو تاريخ اعتماده وإقرار إنجازه من الجهة المختصة في الدولة (شهادة إنجاز المبنى/المسكن).",
+     "cond": null,
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "12 months",
+      "article 66",
+      "late submission",
+      "legal"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-28",
+   "s": "hb-deadline",
+   "ss": "hb-docs",
+   "kind": "rejection",
+   "en": "Please note that the application has been rejected, as the verification body was not provided with the required documents within the period specified in the email sent by that body.",
+   "ar": "يرجى العلم بأنه تم رفض الطلب، وذلك لعدم موافاة جهة التحقق بالمستندات المطلوبة خلال المدة المحددة وفقاً للبريد الإلكتروني المرسل من الجهة.",
+   "tags": [
+    "reject",
+    "verification body",
+    "documents",
+    "deadline"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that the application has been rejected, as the verification body was not provided with the required documents within the period specified in the email sent by that body.",
+     "ar": "يرجى العلم بأنه تم رفض الطلب، وذلك لعدم موافاة جهة التحقق بالمستندات المطلوبة خلال المدة المحددة وفقاً للبريد الإلكتروني المرسل من الجهة.",
+     "cond": null,
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "verification body",
+      "documents",
+      "deadline"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-29",
+   "s": "hb-deadline",
+   "ss": "hb-docs",
+   "kind": "rejection",
+   "en": "Please note that the application has been rejected, as the supporting documents for the financial grant were not provided.",
+   "ar": "يرجى العلم بأنه تم رفض الطلب، حيث إنه لم يتم توفير المستندات الداعمة بالمنحة المالية.",
+   "tags": [
+    "reject",
+    "financial grant",
+    "supporting documents"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Please note that the application has been rejected, as the supporting documents for the financial grant were not provided.",
+     "ar": "يرجى العلم بأنه تم رفض الطلب، حيث إنه لم يتم توفير المستندات الداعمة بالمنحة المالية.",
+     "cond": null,
+     "kind": "rejection",
+     "status": "published",
+     "tags": [
+      "reject",
+      "financial grant",
+      "supporting documents"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-30",
+   "s": "hb-represent",
+   "ss": "hb-court",
+   "kind": "attachment",
+   "en": "Kindly attach a court permission concerning the minor(s) (naming them), covering the following: representing the property owner before the Federal Tax Authority in relation to the Value Added Tax (VAT) refund for UAE nationals’ residences; receiving and collecting all refunded tax amounts for the construction cost of the residence covered by the application (address / plot number); and depositing the refunded amounts into the account of the guardian or their authorised representative.",
+   "ar": "يرجى إرفاق إذن صادر من المحكمة بشأن القُصّر (مع ذكر أسمائهم) على أن يتضمن ما يلي: تمثيل مالك العقار أمام الهيئة الاتحادية للضرائب فيما يخص استرداد ضريبة القيمة المضافة عن مساكن المواطنين؛ واستلام وتحصيل جميع المبالغ الضريبية المستردة عن تكلفة بناء المسكن الذي تم تقديم الطلب عنه (العنوان / رقم الأرض)؛ وإيداع المبالغ المستردة في حساب الوصي أو من يوكله.",
+   "tags": [
+    "minor",
+    "court permission",
+    "guardian",
+    "heirs"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach a court permission concerning the minor(s) (naming them), covering the following: representing the property owner before the Federal Tax Authority in relation to the VAT refund for UAE nationals’ residences; receiving and collecting all refunded tax amounts for the construction cost of the residence covered by the application (address / plot number); and depositing the refunded amounts into the account of the guardian or their authorised representative.",
+     "ar": "يرجى إرفاق إذن صادر من المحكمة بشأن القُصّر (مع ذكر أسمائهم) على أن يتضمن ما يلي: تمثيل مالك العقار أمام الهيئة الاتحادية للضرائب فيما يخص استرداد ضريبة القيمة المضافة عن مساكن المواطنين؛ واستلام وتحصيل جميع المبالغ الضريبية المستردة عن تكلفة بناء المسكن الذي تم تقديم الطلب عنه (العنوان / رقم الأرض)؛ وإيداع المبالغ المستردة في حساب الوصي أو من يوكله.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "minor",
+      "court permission",
+      "guardian",
+      "heirs"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Court permission concerning the minor(s)",
+    "ar": "إذن المحكمة بشأن القُصّر"
+   }
+  },
+  {
+   "id": "hb-31",
+   "s": "hb-represent",
+   "ss": "hb-court",
+   "kind": "attachment",
+   "en": "Kindly attach a court permission concerning the interdicted person, covering the following: representing the property owner before the Federal Tax Authority in relation to the Value Added Tax (VAT) refund for UAE nationals’ residences; receiving and collecting all refunded tax amounts for the construction cost of the residence covered by the application (address / plot number); and depositing the refunded amounts into the account of the guardian or their authorised representative.",
+   "ar": "يرجى إرفاق إذن صادر من المحكمة بشأن المحجور عليه على أن يتضمن ما يلي: تمثيل مالك العقار أمام الهيئة الاتحادية للضرائب فيما يخص استرداد ضريبة القيمة المضافة عن مساكن المواطنين؛ واستلام وتحصيل جميع المبالغ الضريبية المستردة عن تكلفة بناء المسكن الذي تم تقديم الطلب عنه (العنوان / رقم الأرض)؛ وإيداع المبالغ المستردة في حساب الوصي أو من يوكله.",
+   "tags": [
+    "interdicted",
+    "court permission",
+    "guardian"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach a court permission concerning the interdicted person, covering the following: representing the property owner before the Federal Tax Authority in relation to the VAT refund for UAE nationals’ residences; receiving and collecting all refunded tax amounts for the construction cost of the residence covered by the application (address / plot number); and depositing the refunded amounts into the account of the guardian or their authorised representative.",
+     "ar": "يرجى إرفاق إذن صادر من المحكمة بشأن المحجور عليه على أن يتضمن ما يلي: تمثيل مالك العقار أمام الهيئة الاتحادية للضرائب فيما يخص استرداد ضريبة القيمة المضافة عن مساكن المواطنين؛ واستلام وتحصيل جميع المبالغ الضريبية المستردة عن تكلفة بناء المسكن الذي تم تقديم الطلب عنه (العنوان / رقم الأرض)؛ وإيداع المبالغ المستردة في حساب الوصي أو من يوكله.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "interdicted",
+      "court permission",
+      "guardian"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Court permission concerning the interdicted person",
+    "ar": "إذن المحكمة بشأن المحجور عليه"
+   }
+  },
+  {
+   "id": "hb-32",
+   "s": "hb-represent",
+   "ss": "hb-poa",
+   "kind": "attachment",
+   "en": "Kindly provide a special power of attorney covering the following: representing the property owner before the Federal Tax Authority in relation to the Value Added Tax (VAT) refund for UAE nationals’ residences; receiving and collecting all refunded tax amounts for the construction cost of the residence covered by the application (address / plot number); and depositing the refunded amounts into the account of the attorney, or a bank transfer from the Federal Tax Authority’s account to the attorney’s account. Please note that the power of attorney template is available in the attachments above and must be attested by a notary public.",
+   "ar": "يرجى تقديم وكالة خاصة تتضمن ما يلي: تمثيل مالك العقار أمام الهيئة الاتحادية للضرائب فيما يخص استرداد ضريبة القيمة المضافة عن مساكن المواطنين؛ واستلام وتحصيل جميع المبالغ الضريبية المستردة عن تكلفة بناء المسكن الذي تم تقديم الطلب عنه (العنوان / رقم الأرض)؛ وإيداع المبالغ المستردة في حساب الوكيل أو تحويل بنكي من حساب الهيئة الاتحادية للضرائب إلى حساب الوكيل. مع العلم بأن صيغة الوكالة متوفرة في المرفقات أعلاه ويجب تصديقها من قبل كاتب العدل.",
+   "tags": [
+    "power of attorney",
+    "special POA",
+    "notary",
+    "representative"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide a special power of attorney covering the following: representing the property owner before the Federal Tax Authority in relation to the VAT refund for UAE nationals’ residences; receiving and collecting all refunded tax amounts for the construction cost of the residence covered by the application (address / plot number); and depositing the refunded amounts into the account of the attorney, or a bank transfer from the Federal Tax Authority’s account to the attorney’s account. Please note that the power of attorney template is available in the attachments above and must be attested by a notary public.",
+     "ar": "يرجى تقديم وكالة خاصة تتضمن ما يلي: تمثيل مالك العقار أمام الهيئة الاتحادية للضرائب فيما يخص استرداد ضريبة القيمة المضافة عن مساكن المواطنين؛ واستلام وتحصيل جميع المبالغ الضريبية المستردة عن تكلفة بناء المسكن الذي تم تقديم الطلب عنه (العنوان / رقم الأرض)؛ وإيداع المبالغ المستردة في حساب الوكيل أو تحويل بنكي من حساب الهيئة الاتحادية للضرائب إلى حساب الوكيل. مع العلم بأن صيغة الوكالة متوفرة في المرفقات أعلاه ويجب تصديقها من قبل كاتب العدل.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "power of attorney",
+      "special POA",
+      "notary",
+      "representative"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Notarised special power of attorney",
+    "ar": "وكالة خاصة مصدقة من كاتب العدل"
+   }
+  },
+  {
+   "id": "hb-33",
+   "s": "hb-contractor",
+   "ss": "hb-supply",
+   "kind": "request",
+   "en": "With reference to Article (1) of Federal Decree-Law No. (8) of 2017 on Value Added Tax and its amendments, Recoverable Tax is defined as \"amounts that were paid and may be returned by the Authority to the Taxable Person pursuant to the provisions of this Decree-Law\". Accordingly, the Authority must have collected the tax related to the refund application. Based on our review of the input tax and your supply chain, the Authority has not received from the contractor the amount you are claiming. Kindly clarify the reasons why the tax was not remitted to the Authority by the contractor, noting that, according to the documents available to us, you are the contractor responsible for building the residence.",
+   "ar": "بالإشارة إلى المادة (1) من المرسوم بقانون اتحادي رقم (8) لسنة 2017 في شأن ضريبة القيمة المضافة وتعديلاته، تُعرَّف الضريبة القابلة للاسترداد بأنها: «المبالغ التي تم دفعها والتي يجوز للهيئة إعادتها إلى الخاضع للضريبة وفقاً لأحكام هذا المرسوم بقانون». وبناءً عليه، يتعين أن تكون الهيئة قد حصّلت الضريبة المرتبطة بطلب الاسترداد. وبناءً على مراجعتنا للضريبة المدخلة وسلسلة التوريد الخاصة بكم، لم تستلم الهيئة من المقاول المبلغ الذي تطالبون باسترداده، وعليه يرجى توضيح أسباب عدم توريد الضريبة للهيئة من قبل المقاول، مع الأخذ بعين الاعتبار أنه بحسب المستندات المتوفرة لدينا فإنكم المقاول المسؤول عن بناء المسكن.",
+   "tags": [
+    "contractor",
+    "builder",
+    "returns not filed",
+    "supply chain",
+    "article 1",
+    "recoverable tax"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "With reference to Article (1) of Federal Decree-Law No. (8) of 2017 on Value Added Tax and its amendments, Recoverable Tax is defined as \"amounts that were paid and may be returned by the Authority to the Taxable Person pursuant to the provisions of this Decree-Law\". Accordingly, the Authority must have collected the tax related to the refund application. Based on our review of the input tax and your supply chain, the Authority has not received from the contractor the amount you are claiming. Kindly clarify the reasons why the tax was not remitted to the Authority by the contractor, noting that, according to the documents available to us, you are the contractor responsible for building the residence.",
+     "ar": "بالإشارة إلى المادة (1) من المرسوم بقانون اتحادي رقم (8) لسنة 2017 في شأن ضريبة القيمة المضافة وتعديلاته، تُعرَّف الضريبة القابلة للاسترداد بأنها: «المبالغ التي تم دفعها والتي يجوز للهيئة إعادتها إلى الخاضع للضريبة وفقاً لأحكام هذا المرسوم بقانون». وبناءً عليه، يتعين أن تكون الهيئة قد حصّلت الضريبة المرتبطة بطلب الاسترداد. وبناءً على مراجعتنا للضريبة المدخلة وسلسلة التوريد الخاصة بكم، لم تستلم الهيئة من المقاول المبلغ الذي تطالبون باسترداده، وعليه يرجى توضيح أسباب عدم توريد الضريبة للهيئة من قبل المقاول، مع الأخذ بعين الاعتبار أنه بحسب المستندات المتوفرة لدينا فإنكم المقاول المسؤول عن بناء المسكن.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "contractor",
+      "builder",
+      "returns not filed",
+      "supply chain",
+      "article 1",
+      "recoverable tax"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hb-34",
+   "s": "hb-amount",
+   "ss": "hb-invoices",
+   "kind": "attachment",
+   "en": "Kindly attach the tax invoices issued in the name of the residence owner, showing the supplier’s Tax Registration Number (TRN), together with proof of payment for each invoice.",
+   "ar": "يرجى إرفاق الفواتير الضريبية الصادرة باسم مالك المسكن، متضمنةً رقم التسجيل الضريبي للمورد، مع إثبات سداد كل فاتورة.",
+   "tags": [
+    "tax invoices",
+    "proof of payment",
+    "TRN",
+    "owner name"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach the tax invoices issued in the name of the residence owner, showing the supplier’s Tax Registration Number (TRN), together with proof of payment for each invoice.",
+     "ar": "يرجى إرفاق الفواتير الضريبية الصادرة باسم مالك المسكن، متضمنةً رقم التسجيل الضريبي للمورد، مع إثبات سداد كل فاتورة.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "tax invoices",
+      "proof of payment",
+      "TRN",
+      "owner name"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Tax invoices in the owner’s name with proof of payment",
+    "ar": "الفواتير الضريبية باسم المالك مع إثبات السداد"
+   },
+   "note": {
+    "en": "Added by the Service Development Team — not in the original comment sheet; please confirm with the refund team.",
+    "ar": "أضافه فريق تطوير الخدمات — غير وارد في جدول التعليقات الأصلي؛ يرجى التأكيد مع فريق الاسترداد."
+   }
+  },
+  {
+   "id": "hb-35",
+   "s": "hb-residence",
+   "ss": "hb-completion",
+   "kind": "attachment",
+   "en": "Kindly attach the land ownership document (title deed or site plan) issued by the competent authority in the name of the residence owner.",
+   "ar": "يرجى إرفاق مستند ملكية الأرض (سند الملكية أو خريطة الموقع) الصادر عن الجهة المختصة باسم مالك المسكن.",
+   "tags": [
+    "title deed",
+    "site plan",
+    "land ownership",
+    "plot"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach the land ownership document (title deed or site plan) issued by the competent authority in the name of the residence owner.",
+     "ar": "يرجى إرفاق مستند ملكية الأرض (سند الملكية أو خريطة الموقع) الصادر عن الجهة المختصة باسم مالك المسكن.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "title deed",
+      "site plan",
+      "land ownership",
+      "plot"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Title deed or site plan in the owner’s name",
+    "ar": "سند الملكية أو خريطة الموقع باسم المالك"
+   },
+   "note": {
+    "en": "Added by the Service Development Team — not in the original comment sheet; please confirm with the refund team.",
+    "ar": "أضافه فريق تطوير الخدمات — غير وارد في جدول التعليقات الأصلي؛ يرجى التأكيد مع فريق الاسترداد."
+   }
+  },
+  {
+   "id": "hb-36",
+   "s": "hb-residence",
+   "ss": "hb-completion",
+   "kind": "attachment",
+   "en": "Kindly attach the building permit issued by the competent authority for the residence.",
+   "ar": "يرجى إرفاق رخصة البناء الصادرة عن الجهة المختصة للمسكن.",
+   "tags": [
+    "building permit",
+    "construction permit"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach the building permit issued by the competent authority for the residence.",
+     "ar": "يرجى إرفاق رخصة البناء الصادرة عن الجهة المختصة للمسكن.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "building permit",
+      "construction permit"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Building permit",
+    "ar": "رخصة البناء"
+   },
+   "note": {
+    "en": "Added by the Service Development Team — not in the original comment sheet; please confirm with the refund team.",
+    "ar": "أضافه فريق تطوير الخدمات — غير وارد في جدول التعليقات الأصلي؛ يرجى التأكيد مع فريق الاسترداد."
+   }
+  },
+  {
+   "id": "hb-37",
+   "s": "hb-contractor",
+   "ss": "hb-supply",
+   "kind": "attachment",
+   "en": "Kindly attach the construction contract signed with the contractor and/or consultant, showing the contract value and the scope of works.",
+   "ar": "يرجى إرفاق عقد البناء المبرم مع المقاول و/أو الاستشاري، متضمناً قيمة العقد ونطاق الأعمال.",
+   "tags": [
+    "construction contract",
+    "contractor",
+    "consultant"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach the construction contract signed with the contractor and/or consultant, showing the contract value and the scope of works.",
+     "ar": "يرجى إرفاق عقد البناء المبرم مع المقاول و/أو الاستشاري، متضمناً قيمة العقد ونطاق الأعمال.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "construction contract",
+      "contractor",
+      "consultant"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Construction contract with the contractor / consultant",
+    "ar": "عقد البناء مع المقاول / الاستشاري"
+   },
+   "note": {
+    "en": "Added by the Service Development Team — not in the original comment sheet; please confirm with the refund team.",
+    "ar": "أضافه فريق تطوير الخدمات — غير وارد في جدول التعليقات الأصلي؛ يرجى التأكيد مع فريق الاسترداد."
+   }
+  },
+  {
+   "id": "hb-38",
+   "s": "hb-residence",
+   "ss": "hb-eligibility",
+   "kind": "attachment",
+   "en": "Kindly provide a signed declaration confirming that the residence is used, or will be used, exclusively as the residence of the applicant or the applicant’s family, and is not used for any commercial purpose.",
+   "ar": "يرجى تقديم إقرار موقع يؤكد أن المسكن مستخدم أو سيُستخدم حصرياً كمسكن لمقدم الطلب أو لأسرته، وأنه غير مستخدم لأي غرض تجاري.",
+   "tags": [
+    "residence use",
+    "exclusive use",
+    "declaration",
+    "commercial"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly provide a signed declaration confirming that the residence is used, or will be used, exclusively as the residence of the applicant or the applicant’s family, and is not used for any commercial purpose.",
+     "ar": "يرجى تقديم إقرار موقع يؤكد أن المسكن مستخدم أو سيُستخدم حصرياً كمسكن لمقدم الطلب أو لأسرته، وأنه غير مستخدم لأي غرض تجاري.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "residence use",
+      "exclusive use",
+      "declaration",
+      "commercial"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Declaration of exclusive residential use",
+    "ar": "إقرار بالاستخدام السكني الحصري"
+   },
+   "note": {
+    "en": "Added by the Service Development Team — not in the original comment sheet; please confirm with the refund team.",
+    "ar": "أضافه فريق تطوير الخدمات — غير وارد في جدول التعليقات الأصلي؛ يرجى التأكيد مع فريق الاسترداد."
+   }
+  },
+  {
+   "id": "hb-39",
+   "s": "hb-amount",
+   "ss": "hb-retention",
+   "kind": "attachment",
+   "en": "Kindly attach the retention payment invoices together with proof of payment of the retained amounts to the contractor.",
+   "ar": "يرجى إرفاق فواتير الدفعات المحتجزة مع إثبات سداد المبالغ المحتجزة للمقاول.",
+   "tags": [
+    "retention",
+    "invoices",
+    "proof of payment"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly attach the retention payment invoices together with proof of payment of the retained amounts to the contractor.",
+     "ar": "يرجى إرفاق فواتير الدفعات المحتجزة مع إثبات سداد المبالغ المحتجزة للمقاول.",
+     "cond": null,
+     "kind": "attachment",
+     "status": "published",
+     "tags": [
+      "retention",
+      "invoices",
+      "proof of payment"
+     ]
+    }
+   ],
+   "doc": {
+    "en": "Retention payment invoices with proof of payment",
+    "ar": "فواتير الدفعات المحتجزة مع إثبات السداد"
+   },
+   "note": {
+    "en": "Added by the Service Development Team — not in the original comment sheet; please confirm with the refund team.",
+    "ar": "أضافه فريق تطوير الخدمات — غير وارد في جدول التعليقات الأصلي؛ يرجى التأكيد مع فريق الاسترداد."
+   }
+  },
+  {
+   "id": "hb-40",
+   "s": "hb-amount",
+   "ss": "hb-claimed",
+   "kind": "request",
+   "en": "Kindly update the amount claimed so that it matches the total Value Added Tax (VAT) shown on the eligible invoices attached to the application.",
+   "ar": "يرجى تحديث المبلغ المطالب به ليطابق إجمالي ضريبة القيمة المضافة الواردة في الفواتير المؤهلة المرفقة بالطلب.",
+   "tags": [
+    "amount",
+    "invoices total",
+    "mismatch"
+   ],
+   "status": "published",
+   "updatedAt": "2026-10-27T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-10-27T00:00:00Z",
+     "by": "admin",
+     "en": "Kindly update the amount claimed so that it matches the total VAT shown on the eligible invoices attached to the application.",
+     "ar": "يرجى تحديث المبلغ المطالب به ليطابق إجمالي ضريبة القيمة المضافة الواردة في الفواتير المؤهلة المرفقة بالطلب.",
+     "cond": null,
+     "kind": "request",
+     "status": "published",
+     "tags": [
+      "amount",
+      "invoices total",
+      "mismatch"
+     ]
+    }
+   ],
+   "note": {
+    "en": "Added by the Service Development Team — not in the original comment sheet; please confirm with the refund team.",
+    "ar": "أضافه فريق تطوير الخدمات — غير وارد في جدول التعليقات الأصلي؛ يرجى التأكيد مع فريق الاسترداد."
+   }
   }
  ],
  "reviewItems": [],
@@ -1550,6 +3061,16 @@
    "type": "text",
    "en": "Treaty country",
    "ar": "دولة الاتفاقية"
+  },
+  "amount": {
+   "type": "text",
+   "en": "Approved amount (AED)",
+   "ar": "المبلغ المعتمد (درهم)"
+  },
+  "refNo": {
+   "type": "text",
+   "en": "Previous application reference number",
+   "ar": "الرقم المرجعي للطلب السابق"
   }
  },
  "synonyms": {
@@ -1612,7 +3133,23 @@
   "tenancy": "residence",
   "ejari": "residence",
   "salary": "employment",
-  "copy": "additional copy"
+  "copy": "additional copy",
+  "iban": "bank account",
+  "bank": "bank account",
+  "khulasa": "family book",
+  "khulasat": "family book",
+  "plot": "plot number",
+  "land": "plot number",
+  "bcc": "completion certificate",
+  "completion": "completion certificate",
+  "wakala": "power of attorney",
+  "minor": "minor",
+  "retention": "retention",
+  "retentions": "retention",
+  "grant": "financial grant",
+  "late": "12 months",
+  "deadline": "12 months",
+  "refund": "refund"
  },
  "releases": [
   {
@@ -1620,6 +3157,12 @@
    "at": "2026-10-21",
    "by": "Service Development Team",
    "note": "First release of the Taxpayer Services file: TRC bank with 35 bilingual comments and 13 case scenarios built from the reviewed TRC Certificate Application Comments and the International Form notice."
+  },
+  {
+   "version": "1.1.0",
+   "at": "2026-10-27",
+   "by": "Service Development Team",
+   "note": "New Residences VAT Refund for UAE Nationals: 40 bilingual comments (7 proposed additions marked for confirmation) and 10 scenarios from the refund application comment sheet."
   }
  ],
  "scenarios": [
@@ -1955,6 +3498,171 @@
      "ar": "تعليق داخلي: تم إرسال الإشعار، لم يُقدَّم نموذج خاص؛ 30 يوم عمل للتقديم"
     }
    ]
+  },
+  {
+   "id": "hb-sc-identity",
+   "en": "Identity details do not match the Emirates ID",
+   "ar": "بيانات الهوية لا تطابق الهوية الإماراتية",
+   "ids": [
+    "hb-07",
+    "hb-09",
+    "hb-10",
+    "hb-08"
+   ],
+   "svc": "new-residence-vat-refund",
+   "basis": {
+    "en": "Return to applicant",
+    "ar": "إعادة إلى مقدم الطلب"
+   }
+  },
+  {
+   "id": "hb-sc-bank",
+   "en": "Bank details to be corrected",
+   "ar": "تصحيح بيانات الحساب البنكي",
+   "ids": [
+    "hb-05",
+    "hb-06"
+   ],
+   "svc": "new-residence-vat-refund",
+   "basis": {
+    "en": "Return to applicant",
+    "ar": "إعادة إلى مقدم الطلب"
+   }
+  },
+  {
+   "id": "hb-sc-completion",
+   "en": "Completion certificate details to be corrected",
+   "ar": "تصحيح بيانات شهادة الإنجاز",
+   "ids": [
+    "hb-13",
+    "hb-14",
+    "hb-15"
+   ],
+   "svc": "new-residence-vat-refund",
+   "basis": {
+    "en": "Return to applicant",
+    "ar": "إعادة إلى مقدم الطلب"
+   }
+  },
+  {
+   "id": "hb-sc-amount",
+   "en": "Refund amount to be corrected",
+   "ar": "تصحيح مبلغ الاسترداد",
+   "ids": [
+    "hb-20",
+    "hb-40",
+    "hb-34"
+   ],
+   "svc": "new-residence-vat-refund",
+   "basis": {
+    "en": "Return to applicant",
+    "ar": "إعادة إلى مقدم الطلب"
+   }
+  },
+  {
+   "id": "hb-sc-retention",
+   "en": "Retention payments claim",
+   "ar": "طلب الدفعات المحتجزة",
+   "ids": [
+    "hb-39"
+   ],
+   "svc": "new-residence-vat-refund",
+   "basis": {
+    "en": "Review the retention request",
+    "ar": "مراجعة طلب المحتجزات"
+   },
+   "checks": [
+    {
+     "en": "Invoice is not a retention invoice → ask to resubmit as a regular refund",
+     "ar": "الفاتورة ليست فاتورة محتجزات ← طلب إعادة التقديم كاسترداد عادي"
+    },
+    {
+     "en": "First application declared no later retention claim → reject",
+     "ar": "الطلب الأول صرّح بعدم التقديم لاحقاً ← رفض"
+    }
+   ]
+  },
+  {
+   "id": "hb-sc-minor",
+   "en": "Owner is a minor or an interdicted person",
+   "ar": "المالك قاصر أو محجور عليه",
+   "ids": [
+    "hb-30"
+   ],
+   "svc": "new-residence-vat-refund",
+   "basis": {
+    "en": "Court permission required",
+    "ar": "يلزم إذن المحكمة"
+   },
+   "checks": [
+    {
+     "en": "Interdicted person → use the interdicted-person court permission comment instead",
+     "ar": "المحجور عليه ← استخدم تعليق إذن المحكمة الخاص بالمحجور عليه"
+    }
+   ]
+  },
+  {
+   "id": "hb-sc-poa",
+   "en": "Application submitted by a representative",
+   "ar": "تقديم الطلب عبر وكيل",
+   "ids": [
+    "hb-32"
+   ],
+   "svc": "new-residence-vat-refund",
+   "basis": {
+    "en": "Special power of attorney required",
+    "ar": "يلزم وكالة خاصة"
+   }
+  },
+  {
+   "id": "hb-sc-late",
+   "en": "Submitted after 12 months from completion",
+   "ar": "تقديم الطلب بعد 12 شهراً من الإنجاز",
+   "ids": [
+    "hb-27"
+   ],
+   "svc": "new-residence-vat-refund",
+   "basis": {
+    "en": "Rejection — Article (66)",
+    "ar": "رفض — المادة (66)"
+   },
+   "checks": [
+    {
+     "en": "12 months run from the earlier of occupation and the completion certificate",
+     "ar": "تُحسب 12 شهراً من الأسبق بين تاريخ شغل المسكن وشهادة الإنجاز"
+    },
+    {
+     "en": "Amended application after 12 months → use the shorter amended-application rejection",
+     "ar": "طلب تصحيحي بعد 12 شهراً ← استخدم رفض الطلب التصحيحي"
+    }
+   ]
+  },
+  {
+   "id": "hb-sc-approve",
+   "en": "Application approved",
+   "ar": "الموافقة على الطلب",
+   "ids": [
+    "hb-02"
+   ],
+   "svc": "new-residence-vat-refund",
+   "basis": {
+    "en": "Approved",
+    "ar": "موافقة"
+   }
+  },
+  {
+   "id": "hb-sc-builder",
+   "en": "Applicant is the contractor and tax was not remitted",
+   "ar": "مقدم الطلب هو المقاول ولم تُورَّد الضريبة",
+   "ids": [
+    "hb-33",
+    "hb-37"
+   ],
+   "svc": "new-residence-vat-refund",
+   "basis": {
+    "en": "Clarification before decision",
+    "ar": "توضيح قبل القرار"
+   }
   }
  ],
  "conflicts": [
@@ -1973,6 +3681,22 @@
   [
    "sf-01",
    "sf-02"
+  ],
+  [
+   "hb-01",
+   "hb-04"
+  ],
+  [
+   "hb-02",
+   "hb-04"
+  ],
+  [
+   "hb-26",
+   "hb-27"
+  ],
+  [
+   "hb-22",
+   "hb-34"
   ]
  ],
  "exclusiveSubsections": [
@@ -1983,6 +3707,11 @@
    "id": "commercial-activities-certificate",
    "en": "Commercial Activities Certificate",
    "ar": "شهادة الأنشطة التجارية"
+  },
+  {
+   "id": "new-residence-vat-refund",
+   "en": "New Residences VAT Refund for UAE Nationals",
+   "ar": "استرداد ضريبة القيمة المضافة عن المساكن الجديدة لمواطني الدولة"
   },
   {
    "id": "tax-clearance-certificate",
@@ -2001,9 +3730,8 @@
    "tn-02",
    "tn-04"
   ],
-  "total": 35,
-  "services": 3,
-  "mainSvc": "tax-residency-certificate",
+  "total": 75,
+  "services": 4,
   "counts": {
    "identity": 3,
    "legal-docs": 5,
@@ -2044,6 +3772,23 @@
    {
     "q": "الموطن",
     "id": "tn-08"
+   },
+   {
+    "q": "completion certificate",
+    "id": "hb-15"
+   },
+   {
+    "q": "خلاصة القيد",
+    "id": "hb-12",
+    "first": true
+   },
+   {
+    "q": "iban",
+    "id": "hb-06"
+   },
+   {
+    "q": "power of attorney",
+    "id": "hb-32"
    }
   ],
   "compose": [
