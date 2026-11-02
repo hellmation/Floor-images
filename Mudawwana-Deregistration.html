@@ -1023,39 +1023,14 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "svc": "*",
    "subsections": [
     {
-     "id": "call-head",
-     "en": "Fixed Header (every attempt)",
-     "ar": "الترويسة الثابتة (لكل محاولة)"
-    },
-    {
-     "id": "call-answered",
-     "en": "Answered",
-     "ar": "تمت الإجابة"
-    },
-    {
-     "id": "call-noanswer",
-     "en": "Not Answered / No Contact",
-     "ar": "لم يتم الرد / تعذّر التواصل"
-    },
-    {
-     "id": "call-other",
-     "en": "Refused / Wrong Person / No Valid Number",
-     "ar": "رفض / شخص غير معني / لا يوجد رقم صالح"
-    },
-    {
-     "id": "call-back",
-     "en": "Call Back",
-     "ar": "معاودة الاتصال"
-    },
-    {
-     "id": "call-tl",
-     "en": "Team Leader Waiver & Reassignment",
-     "ar": "إعفاء رئيس الفريق وإعادة الإسناد"
+     "id": "call-rec",
+     "en": "Call Record",
+     "ar": "تسجيل المكالمة"
     },
     {
      "id": "call-tp",
-     "en": "Lines to the Taxpayer (return request & SMS)",
-     "ar": "نصوص موجهة للخاضع للضريبة (طلب الإعادة والرسالة النصية)"
+     "en": "Lines to the Taxpayer (return request)",
+     "ar": "نصوص موجهة للخاضع للضريبة (طلب الإعادة)"
     }
    ]
   }
@@ -4504,55 +4479,21 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    ]
   },
   {
-   "id": "call-00",
-   "s": "call-log",
-   "ss": "call-head",
-   "kind": "internal",
-   "en": "[OUTBOUND CALL] Resubmission {{resub}} | Call type: {{callType}} | Attempt {{attempt}}\nApplication: {{appRef}}\nTaxpayer / contact name: {{contactName}} – Role: {{role}}\nMobile dialled: {{mobile}} (registered number: {{regNumber}})\nDate: {{date}} – Start: {{startTime}} – Ring: {{ring}} sec – Talk: {{talk}} – Line: official – Officer: {{officer}}",
-   "ar": "[مكالمة صادرة] إعادة التقديم رقم {{resub}} | نوع المكالمة: {{callType}} | المحاولة {{attempt}}\nالطلب: {{appRef}}\nاسم الخاضع للضريبة / جهة الاتصال: {{contactName}} – الصفة: {{role}}\nرقم الهاتف المتصل به: {{mobile}} (الرقم المسجل: {{regNumber}})\nالتاريخ: {{date}} – البداية: {{startTime}} – مدة الرنين: {{ring}} ثانية – مدة المكالمة: {{talk}} – الخط: الرسمي – الموظف: {{officer}}",
-   "tags": [
-    "call",
-    "outbound",
-    "audit trail",
-    "header",
-    "fixed header",
-    "every attempt"
-   ],
-   "status": "published",
-   "updatedAt": "2026-11-02T00:00:00Z",
-   "updatedBy": "admin",
-   "history": [
-    {
-     "at": "2026-11-02T00:00:00Z",
-     "by": "admin",
-     "en": "[OUTBOUND CALL] Resubmission {{resub}} | Call type: {{callType}} | Attempt {{attempt}}\nApplication: {{appRef}}\nTaxpayer / contact name: {{contactName}} – Role: {{role}}\nMobile dialled: {{mobile}} (registered number: {{regNumber}})\nDate: {{date}} – Start: {{startTime}} – Ring: {{ring}} sec – Talk: {{talk}} – Line: official – Officer: {{officer}}",
-     "ar": "[مكالمة صادرة] إعادة التقديم رقم {{resub}} | نوع المكالمة: {{callType}} | المحاولة {{attempt}}\nالطلب: {{appRef}}\nاسم الخاضع للضريبة / جهة الاتصال: {{contactName}} – الصفة: {{role}}\nرقم الهاتف المتصل به: {{mobile}} (الرقم المسجل: {{regNumber}})\nالتاريخ: {{date}} – البداية: {{startTime}} – مدة الرنين: {{ring}} ثانية – مدة المكالمة: {{talk}} – الخط: الرسمي – الموظف: {{officer}}",
-     "cond": null,
-     "kind": "internal",
-     "status": "published",
-     "tags": [
-      "header",
-      "fixed header",
-      "every attempt"
-     ]
-    }
-   ]
-  },
-  {
    "id": "call-01",
    "s": "call-log",
-   "ss": "call-answered",
+   "ss": "call-rec",
    "kind": "internal",
-   "en": "Status: ANSWERED – INFORMED\nIdentity confirmed via: {{idVia}}\nTaxpayer was informed of ALL items required for resubmission {{resub}}:\n{{items}}\nTaxpayer response: {{response}}\nWritten follow-up: return request issued {{returnAt}} with the same items | SMS sent: {{sms}}\nNext step: await resubmission. If returned again, a CONFIRMATION call is mandatory.",
-   "ar": "الحالة: تمت الإجابة – تم الإبلاغ\nتم التحقق من الهوية عبر: {{idVia}}\nتم إبلاغ الخاضع للضريبة بجميع البنود المطلوبة لإعادة التقديم رقم {{resub}}:\n{{items}}\nرد الخاضع للضريبة: {{response}}\nالمتابعة الخطية: صدر طلب الإعادة بتاريخ {{returnAt}} بالبنود نفسها | الرسالة النصية: {{sms}}\nالخطوة التالية: انتظار إعادة التقديم. وفي حال الإعادة مرة أخرى تكون مكالمة التأكيد إلزامية.",
+   "en": "[CALL] {{date}} {{time}} – Status: {{callStatus}}\nSpoke with: {{contactName}}\nAction taken with the taxpayer: {{action}}\nAdditional comments: {{notes}}",
+   "ar": "[مكالمة] {{date}} {{time}} – الحالة: {{callStatus}}\nتم التحدث مع: {{contactName}}\nالإجراء المتخذ مع الخاضع للضريبة: {{action}}\nملاحظات إضافية: {{notes}}",
    "tags": [
     "call",
     "outbound",
     "audit trail",
     "answered",
     "informed",
-    "informative call",
-    "resubmission 2"
+    "confirmed",
+    "clarified",
+    "call record"
    ],
    "status": "published",
    "updatedAt": "2026-11-02T00:00:00Z",
@@ -4561,157 +4502,28 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
     {
      "at": "2026-11-02T00:00:00Z",
      "by": "admin",
-     "en": "Status: ANSWERED – INFORMED\nIdentity confirmed via: {{idVia}}\nTaxpayer was informed of ALL items required for resubmission {{resub}}:\n{{items}}\nTaxpayer response: {{response}}\nWritten follow-up: return request issued {{returnAt}} with the same items | SMS sent: {{sms}}\nNext step: await resubmission. If returned again, a CONFIRMATION call is mandatory.",
-     "ar": "الحالة: تمت الإجابة – تم الإبلاغ\nتم التحقق من الهوية عبر: {{idVia}}\nتم إبلاغ الخاضع للضريبة بجميع البنود المطلوبة لإعادة التقديم رقم {{resub}}:\n{{items}}\nرد الخاضع للضريبة: {{response}}\nالمتابعة الخطية: صدر طلب الإعادة بتاريخ {{returnAt}} بالبنود نفسها | الرسالة النصية: {{sms}}\nالخطوة التالية: انتظار إعادة التقديم. وفي حال الإعادة مرة أخرى تكون مكالمة التأكيد إلزامية.",
-     "cond": {
-      "en": "Informative call – second return of the same application.",
-      "ar": "المكالمة الإعلامية – الإعادة الثانية للطلب نفسه."
-     },
+     "en": "[CALL] {{date}} {{time}} – Status: {{callStatus}}\nSpoke with: {{contactName}}\nAction taken with the taxpayer: {{action}}\nAdditional comments: {{notes}}",
+     "ar": "[مكالمة] {{date}} {{time}} – الحالة: {{callStatus}}\nتم التحدث مع: {{contactName}}\nالإجراء المتخذ مع الخاضع للضريبة: {{action}}\nملاحظات إضافية: {{notes}}",
+     "cond": null,
      "kind": "internal",
      "status": "published",
      "tags": [
       "answered",
       "informed",
-      "informative call",
-      "resubmission 2"
-     ]
-    }
-   ],
-   "cond": {
-    "en": "Informative call – second return of the same application.",
-    "ar": "المكالمة الإعلامية – الإعادة الثانية للطلب نفسه."
-   }
-  },
-  {
-   "id": "call-02",
-   "s": "call-log",
-   "ss": "call-answered",
-   "kind": "internal",
-   "en": "Status: ANSWERED – CLARIFIED\nCall type: CLARIFICATION (optional) | Resubmission count at time of call: {{resub}}\nIdentity confirmed via: {{idVia}}\nDocument / entry in question: {{needed}}\nQuestion asked (verbatim): \"{{question}}\"\nTaxpayer answer (verbatim): \"{{answer}}\" – read back and confirmed by the taxpayer: YES\nEffect on the review: {{effect}}",
-   "ar": "الحالة: تمت الإجابة – تم التوضيح\nنوع المكالمة: توضيحية (اختيارية) | عدد مرات إعادة التقديم وقت المكالمة: {{resub}}\nتم التحقق من الهوية عبر: {{idVia}}\nالمستند / البند محل الاستفسار: {{needed}}\nالسؤال المطروح (نصاً): «{{question}}»\nإجابة الخاضع للضريبة (نصاً): «{{answer}}» – تمت إعادة قراءتها وتأكيدها من الخاضع للضريبة: نعم\nالأثر على المراجعة: {{effect}}",
-   "tags": [
-    "call",
-    "outbound",
-    "audit trail",
-    "clarified",
-    "clarification call",
-    "no return",
-    "verbatim"
-   ],
-   "status": "published",
-   "updatedAt": "2026-11-02T00:00:00Z",
-   "updatedBy": "admin",
-   "history": [
-    {
-     "at": "2026-11-02T00:00:00Z",
-     "by": "admin",
-     "en": "Status: ANSWERED – CLARIFIED\nCall type: CLARIFICATION (optional) | Resubmission count at time of call: {{resub}}\nIdentity confirmed via: {{idVia}}\nDocument / entry in question: {{needed}}\nQuestion asked (verbatim): \"{{question}}\"\nTaxpayer answer (verbatim): \"{{answer}}\" – read back and confirmed by the taxpayer: YES\nEffect on the review: {{effect}}",
-     "ar": "الحالة: تمت الإجابة – تم التوضيح\nنوع المكالمة: توضيحية (اختيارية) | عدد مرات إعادة التقديم وقت المكالمة: {{resub}}\nتم التحقق من الهوية عبر: {{idVia}}\nالمستند / البند محل الاستفسار: {{needed}}\nالسؤال المطروح (نصاً): «{{question}}»\nإجابة الخاضع للضريبة (نصاً): «{{answer}}» – تمت إعادة قراءتها وتأكيدها من الخاضع للضريبة: نعم\nالأثر على المراجعة: {{effect}}",
-     "cond": {
-      "en": "Clarification call – nothing needs to be uploaded, amended or resubmitted.",
-      "ar": "المكالمة التوضيحية – لا يلزم تحميل أو تعديل أو إعادة تقديم."
-     },
-     "kind": "internal",
-     "status": "published",
-     "tags": [
+      "confirmed",
       "clarified",
-      "clarification call",
-      "no return",
-      "verbatim"
-     ]
-    }
-   ],
-   "cond": {
-    "en": "Clarification call – nothing needs to be uploaded, amended or resubmitted.",
-    "ar": "المكالمة التوضيحية – لا يلزم تحميل أو تعديل أو إعادة تقديم."
-   }
-  },
-  {
-   "id": "call-03",
-   "s": "call-log",
-   "ss": "call-answered",
-   "kind": "internal",
-   "en": "Status: CLARIFICATION – RETURN REQUIRED\nIdentity confirmed via: {{idVia}}\nQuestion asked (verbatim): \"{{question}}\" – Taxpayer answer (verbatim): \"{{answer}}\"\nThe answer shows that a document or correction is needed: {{needed}}\nNo list of requirements was given on the call; written return request issued {{returnAt}}.\nReturn rule applied: resubmission {{resub}} → {{nextCall}}",
-   "ar": "الحالة: توضيح – يلزم إعادة الطلب\nتم التحقق من الهوية عبر: {{idVia}}\nالسؤال المطروح (نصاً): «{{question}}» – إجابة الخاضع للضريبة (نصاً): «{{answer}}»\nتبيّن من الإجابة الحاجة إلى مستند أو تصحيح: {{needed}}\nلم تُذكر قائمة متطلبات أثناء المكالمة؛ صدر طلب الإعادة الخطي بتاريخ {{returnAt}}.\nقاعدة الإعادة المطبقة: إعادة التقديم رقم {{resub}} ← {{nextCall}}",
-   "tags": [
-    "call",
-    "outbound",
-    "audit trail",
-    "clarification",
-    "return required",
-    "written request"
-   ],
-   "status": "published",
-   "updatedAt": "2026-11-02T00:00:00Z",
-   "updatedBy": "admin",
-   "history": [
-    {
-     "at": "2026-11-02T00:00:00Z",
-     "by": "admin",
-     "en": "Status: CLARIFICATION – RETURN REQUIRED\nIdentity confirmed via: {{idVia}}\nQuestion asked (verbatim): \"{{question}}\" – Taxpayer answer (verbatim): \"{{answer}}\"\nThe answer shows that a document or correction is needed: {{needed}}\nNo list of requirements was given on the call; written return request issued {{returnAt}}.\nReturn rule applied: resubmission {{resub}} → {{nextCall}}",
-     "ar": "الحالة: توضيح – يلزم إعادة الطلب\nتم التحقق من الهوية عبر: {{idVia}}\nالسؤال المطروح (نصاً): «{{question}}» – إجابة الخاضع للضريبة (نصاً): «{{answer}}»\nتبيّن من الإجابة الحاجة إلى مستند أو تصحيح: {{needed}}\nلم تُذكر قائمة متطلبات أثناء المكالمة؛ صدر طلب الإعادة الخطي بتاريخ {{returnAt}}.\nقاعدة الإعادة المطبقة: إعادة التقديم رقم {{resub}} ← {{nextCall}}",
-     "cond": null,
-     "kind": "internal",
-     "status": "published",
-     "tags": [
-      "clarification",
-      "return required",
-      "written request"
+      "call record"
      ]
     }
    ]
   },
   {
-   "id": "call-04",
+   "id": "call-02",
    "s": "call-log",
-   "ss": "call-answered",
+   "ss": "call-rec",
    "kind": "internal",
-   "en": "Status: ANSWERED – {{confirmStatus}}\nIdentity confirmed via: {{idVia}}\nItems reviewed with the taxpayer, with confirmation per item (CONFIRMED / NOT CLEAR – guidance given):\n{{items}}\nPreviously communicated on: {{prevDates}}\nWritten follow-up: return request issued {{returnAt}} with the same items | SMS sent: {{sms}}",
-   "ar": "الحالة: تمت الإجابة – {{confirmStatus}}\nتم التحقق من الهوية عبر: {{idVia}}\nالبنود التي تمت مراجعتها مع الخاضع للضريبة مع التأكيد لكل بند (مؤكد / غير واضح – تم تقديم الإرشاد):\n{{items}}\nسبق إبلاغه بتاريخ: {{prevDates}}\nالمتابعة الخطية: صدر طلب الإعادة بتاريخ {{returnAt}} بالبنود نفسها | الرسالة النصية: {{sms}}",
-   "tags": [
-    "call",
-    "outbound",
-    "audit trail",
-    "confirmed",
-    "partially confirmed",
-    "confirmation call",
-    "resubmission 3"
-   ],
-   "status": "published",
-   "updatedAt": "2026-11-02T00:00:00Z",
-   "updatedBy": "admin",
-   "history": [
-    {
-     "at": "2026-11-02T00:00:00Z",
-     "by": "admin",
-     "en": "Status: ANSWERED – {{confirmStatus}}\nIdentity confirmed via: {{idVia}}\nItems reviewed with the taxpayer, with confirmation per item (CONFIRMED / NOT CLEAR – guidance given):\n{{items}}\nPreviously communicated on: {{prevDates}}\nWritten follow-up: return request issued {{returnAt}} with the same items | SMS sent: {{sms}}",
-     "ar": "الحالة: تمت الإجابة – {{confirmStatus}}\nتم التحقق من الهوية عبر: {{idVia}}\nالبنود التي تمت مراجعتها مع الخاضع للضريبة مع التأكيد لكل بند (مؤكد / غير واضح – تم تقديم الإرشاد):\n{{items}}\nسبق إبلاغه بتاريخ: {{prevDates}}\nالمتابعة الخطية: صدر طلب الإعادة بتاريخ {{returnAt}} بالبنود نفسها | الرسالة النصية: {{sms}}",
-     "cond": {
-      "en": "Confirmation call – third and later returns of the same application.",
-      "ar": "مكالمة التأكيد – الإعادة الثالثة وما بعدها للطلب نفسه."
-     },
-     "kind": "internal",
-     "status": "published",
-     "tags": [
-      "confirmed",
-      "partially confirmed",
-      "confirmation call",
-      "resubmission 3"
-     ]
-    }
-   ],
-   "cond": {
-    "en": "Confirmation call – third and later returns of the same application.",
-    "ar": "مكالمة التأكيد – الإعادة الثالثة وما بعدها للطلب نفسه."
-   }
-  },
-  {
-   "id": "call-05",
-   "s": "call-log",
-   "ss": "call-noanswer",
-   "kind": "internal",
-   "en": "Status: {{noAnswerStatus}}\nAttempt {{attempt}}: {{date}} {{startTime}}, rang {{ring}} sec (minimum 30).\nNext: second attempt after at least 1 hour, within 9:00 AM – 8:00 PM, on the official line.",
-   "ar": "الحالة: {{noAnswerStatus}}\nالمحاولة {{attempt}}: {{date}} {{startTime}}، مدة الرنين {{ring}} ثانية (الحد الأدنى 30).\nالتالي: محاولة ثانية بعد ساعة على الأقل، خلال الفترة من 9:00 صباحاً إلى 8:00 مساءً، عبر الخط الرسمي.",
+   "en": "[CALL] {{date}} {{time}} – Status: {{callStatus}} – Attempt {{attempt}}\nCalled: {{contactName}}\nAction taken: {{action}}\nAdditional comments: {{notes}}",
+   "ar": "[مكالمة] {{date}} {{time}} – الحالة: {{callStatus}} – المحاولة {{attempt}}\nتم الاتصال بـ: {{contactName}}\nالإجراء المتخذ: {{action}}\nملاحظات إضافية: {{notes}}",
    "tags": [
     "call",
     "outbound",
@@ -4719,7 +4531,9 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
     "not answered",
     "busy",
     "switched off",
-    "single attempt"
+    "refused",
+    "wrong number",
+    "attempt"
    ],
    "status": "published",
    "updatedAt": "2026-11-02T00:00:00Z",
@@ -4728,8 +4542,8 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
     {
      "at": "2026-11-02T00:00:00Z",
      "by": "admin",
-     "en": "Status: {{noAnswerStatus}}\nAttempt {{attempt}}: {{date}} {{startTime}}, rang {{ring}} sec (minimum 30).\nNext: second attempt after at least 1 hour, within 9:00 AM – 8:00 PM, on the official line.",
-     "ar": "الحالة: {{noAnswerStatus}}\nالمحاولة {{attempt}}: {{date}} {{startTime}}، مدة الرنين {{ring}} ثانية (الحد الأدنى 30).\nالتالي: محاولة ثانية بعد ساعة على الأقل، خلال الفترة من 9:00 صباحاً إلى 8:00 مساءً، عبر الخط الرسمي.",
+     "en": "[CALL] {{date}} {{time}} – Status: {{callStatus}} – Attempt {{attempt}}\nCalled: {{contactName}}\nAction taken: {{action}}\nAdditional comments: {{notes}}",
+     "ar": "[مكالمة] {{date}} {{time}} – الحالة: {{callStatus}} – المحاولة {{attempt}}\nتم الاتصال بـ: {{contactName}}\nالإجراء المتخذ: {{action}}\nملاحظات إضافية: {{notes}}",
      "cond": null,
      "kind": "internal",
      "status": "published",
@@ -4737,26 +4551,27 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
       "not answered",
       "busy",
       "switched off",
-      "single attempt"
+      "refused",
+      "wrong number",
+      "attempt"
      ]
     }
    ]
   },
   {
-   "id": "call-06",
+   "id": "call-03",
    "s": "call-log",
-   "ss": "call-noanswer",
+   "ss": "call-rec",
    "kind": "internal",
-   "en": "Status: {{noAnswerStatus}}\nAttempt 1 of 2: {{attempt1At}}, rang {{ring1}} sec (minimum 30).\nAttempt 2 of 2: {{attempt2At}}, rang {{ring2}} sec. Gap since attempt 1: {{gap}} (minimum 1:00).\nOutcome after 2 attempts: NO CONTACT\nWritten follow-up: return request issued {{returnAt}} with {{itemCount}} items | SMS (not-answered variant) sent: {{sms}}\nTeam Leader approval of No Contact: {{tlName}}, {{tlDate}}\nNext step: CONFIRMATION call mandatory at the next return of this application.",
-   "ar": "الحالة: {{noAnswerStatus}}\nالمحاولة 1 من 2: {{attempt1At}}، مدة الرنين {{ring1}} ثانية (الحد الأدنى 30).\nالمحاولة 2 من 2: {{attempt2At}}، مدة الرنين {{ring2}} ثانية. الفاصل منذ المحاولة الأولى: {{gap}} (الحد الأدنى ساعة).\nالنتيجة بعد محاولتين: تعذّر التواصل\nالمتابعة الخطية: صدر طلب الإعادة بتاريخ {{returnAt}} متضمناً {{itemCount}} بنداً | الرسالة النصية (صيغة عدم الرد): {{sms}}\nاعتماد رئيس الفريق لحالة تعذّر التواصل: {{tlName}}، {{tlDate}}\nالخطوة التالية: مكالمة التأكيد إلزامية عند الإعادة التالية لهذا الطلب.",
+   "en": "[CALL] No contact after two attempts – Status: {{callStatus}}\nAttempt 1: {{attempt1At}} – Attempt 2: {{attempt2At}}\nCalled: {{contactName}}\nAction taken: {{action}}\nAdditional comments: {{notes}}",
+   "ar": "[مكالمة] تعذّر التواصل بعد محاولتين – الحالة: {{callStatus}}\nالمحاولة 1: {{attempt1At}} – المحاولة 2: {{attempt2At}}\nتم الاتصال بـ: {{contactName}}\nالإجراء المتخذ: {{action}}\nملاحظات إضافية: {{notes}}",
    "tags": [
     "call",
     "outbound",
     "audit trail",
     "no contact",
     "two attempts",
-    "not answered",
-    "team leader"
+    "not answered"
    ],
    "status": "published",
    "updatedAt": "2026-11-02T00:00:00Z",
@@ -4765,156 +4580,15 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
     {
      "at": "2026-11-02T00:00:00Z",
      "by": "admin",
-     "en": "Status: {{noAnswerStatus}}\nAttempt 1 of 2: {{attempt1At}}, rang {{ring1}} sec (minimum 30).\nAttempt 2 of 2: {{attempt2At}}, rang {{ring2}} sec. Gap since attempt 1: {{gap}} (minimum 1:00).\nOutcome after 2 attempts: NO CONTACT\nWritten follow-up: return request issued {{returnAt}} with {{itemCount}} items | SMS (not-answered variant) sent: {{sms}}\nTeam Leader approval of No Contact: {{tlName}}, {{tlDate}}\nNext step: CONFIRMATION call mandatory at the next return of this application.",
-     "ar": "الحالة: {{noAnswerStatus}}\nالمحاولة 1 من 2: {{attempt1At}}، مدة الرنين {{ring1}} ثانية (الحد الأدنى 30).\nالمحاولة 2 من 2: {{attempt2At}}، مدة الرنين {{ring2}} ثانية. الفاصل منذ المحاولة الأولى: {{gap}} (الحد الأدنى ساعة).\nالنتيجة بعد محاولتين: تعذّر التواصل\nالمتابعة الخطية: صدر طلب الإعادة بتاريخ {{returnAt}} متضمناً {{itemCount}} بنداً | الرسالة النصية (صيغة عدم الرد): {{sms}}\nاعتماد رئيس الفريق لحالة تعذّر التواصل: {{tlName}}، {{tlDate}}\nالخطوة التالية: مكالمة التأكيد إلزامية عند الإعادة التالية لهذا الطلب.",
+     "en": "[CALL] No contact after two attempts – Status: {{callStatus}}\nAttempt 1: {{attempt1At}} – Attempt 2: {{attempt2At}}\nCalled: {{contactName}}\nAction taken: {{action}}\nAdditional comments: {{notes}}",
+     "ar": "[مكالمة] تعذّر التواصل بعد محاولتين – الحالة: {{callStatus}}\nالمحاولة 1: {{attempt1At}} – المحاولة 2: {{attempt2At}}\nتم الاتصال بـ: {{contactName}}\nالإجراء المتخذ: {{action}}\nملاحظات إضافية: {{notes}}",
      "cond": null,
      "kind": "internal",
      "status": "published",
      "tags": [
       "no contact",
       "two attempts",
-      "not answered",
-      "team leader"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "call-07",
-   "s": "call-log",
-   "ss": "call-other",
-   "kind": "internal",
-   "en": "Status: {{otherStatus}}\nDetails: {{details}} (no personal data of third parties recorded)\nNo application details were disclosed.\nAction: written return request issued {{returnAt}} with {{itemCount}} items | SMS sent: {{sms}}\nAlternative registered number dialled: {{altNumber}}\nReported to the Team Leader on the daily exception list: YES",
-   "ar": "الحالة: {{otherStatus}}\nالتفاصيل: {{details}} (دون تسجيل بيانات شخصية لأطراف ثالثة)\nلم يتم الإفصاح عن أي تفاصيل للطلب.\nالإجراء: صدر طلب الإعادة الخطي بتاريخ {{returnAt}} متضمناً {{itemCount}} بنداً | الرسالة النصية: {{sms}}\nتم الاتصال برقم مسجل بديل: {{altNumber}}\nتم الإبلاغ لرئيس الفريق ضمن قائمة الاستثناءات اليومية: نعم",
-   "tags": [
-    "call",
-    "outbound",
-    "audit trail",
-    "refused",
-    "not the concerned person",
-    "wrong number",
-    "invalid number",
-    "third party"
-   ],
-   "status": "published",
-   "updatedAt": "2026-11-02T00:00:00Z",
-   "updatedBy": "admin",
-   "history": [
-    {
-     "at": "2026-11-02T00:00:00Z",
-     "by": "admin",
-     "en": "Status: {{otherStatus}}\nDetails: {{details}} (no personal data of third parties recorded)\nNo application details were disclosed.\nAction: written return request issued {{returnAt}} with {{itemCount}} items | SMS sent: {{sms}}\nAlternative registered number dialled: {{altNumber}}\nReported to the Team Leader on the daily exception list: YES",
-     "ar": "الحالة: {{otherStatus}}\nالتفاصيل: {{details}} (دون تسجيل بيانات شخصية لأطراف ثالثة)\nلم يتم الإفصاح عن أي تفاصيل للطلب.\nالإجراء: صدر طلب الإعادة الخطي بتاريخ {{returnAt}} متضمناً {{itemCount}} بنداً | الرسالة النصية: {{sms}}\nتم الاتصال برقم مسجل بديل: {{altNumber}}\nتم الإبلاغ لرئيس الفريق ضمن قائمة الاستثناءات اليومية: نعم",
-     "cond": null,
-     "kind": "internal",
-     "status": "published",
-     "tags": [
-      "refused",
-      "not the concerned person",
-      "wrong number",
-      "invalid number",
-      "third party"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "call-08",
-   "s": "call-log",
-   "ss": "call-other",
-   "kind": "internal",
-   "en": "Status: NO VALID NUMBER\nRegistered mobile number in EmaraTax: {{mobile}} – reason: {{reason}}\nAlternative registered number: {{altNumber}}\nAction: written return request issued {{returnAt}} with {{itemCount}} items.\nReported to the Team Leader on the daily exception list: YES",
-   "ar": "الحالة: لا يوجد رقم صالح\nرقم الهاتف المسجل في إمارات تاكس: {{mobile}} – السبب: {{reason}}\nالرقم المسجل البديل: {{altNumber}}\nالإجراء: صدر طلب الإعادة الخطي بتاريخ {{returnAt}} متضمناً {{itemCount}} بنداً.\nتم الإبلاغ لرئيس الفريق ضمن قائمة الاستثناءات اليومية: نعم",
-   "tags": [
-    "call",
-    "outbound",
-    "audit trail",
-    "no valid number",
-    "invalid",
-    "missing number"
-   ],
-   "status": "published",
-   "updatedAt": "2026-11-02T00:00:00Z",
-   "updatedBy": "admin",
-   "history": [
-    {
-     "at": "2026-11-02T00:00:00Z",
-     "by": "admin",
-     "en": "Status: NO VALID NUMBER\nRegistered mobile number in EmaraTax: {{mobile}} – reason: {{reason}}\nAlternative registered number: {{altNumber}}\nAction: written return request issued {{returnAt}} with {{itemCount}} items.\nReported to the Team Leader on the daily exception list: YES",
-     "ar": "الحالة: لا يوجد رقم صالح\nرقم الهاتف المسجل في إمارات تاكس: {{mobile}} – السبب: {{reason}}\nالرقم المسجل البديل: {{altNumber}}\nالإجراء: صدر طلب الإعادة الخطي بتاريخ {{returnAt}} متضمناً {{itemCount}} بنداً.\nتم الإبلاغ لرئيس الفريق ضمن قائمة الاستثناءات اليومية: نعم",
-     "cond": null,
-     "kind": "internal",
-     "status": "published",
-     "tags": [
-      "no valid number",
-      "invalid",
-      "missing number"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "call-09",
-   "s": "call-log",
-   "ss": "call-back",
-   "kind": "internal",
-   "en": "Status: CALL BACK REQUESTED – agreed time {{agreedAt}} (within 9:00 AM – 8:00 PM, same or next working day).\nThe agreed call counts as attempt 3 and will be recorded in a separate comment with the full script.",
-   "ar": "الحالة: طلب معاودة الاتصال – الموعد المتفق عليه {{agreedAt}} (خلال الفترة من 9:00 صباحاً إلى 8:00 مساءً، في اليوم نفسه أو يوم العمل التالي).\nتُحتسب المكالمة المتفق عليها محاولة ثالثة وستُسجل في تعليق منفصل مع النص الكامل.",
-   "tags": [
-    "call",
-    "outbound",
-    "audit trail",
-    "call back requested",
-    "agreed time"
-   ],
-   "status": "published",
-   "updatedAt": "2026-11-02T00:00:00Z",
-   "updatedBy": "admin",
-   "history": [
-    {
-     "at": "2026-11-02T00:00:00Z",
-     "by": "admin",
-     "en": "Status: CALL BACK REQUESTED – agreed time {{agreedAt}} (within 9:00 AM – 8:00 PM, same or next working day).\nThe agreed call counts as attempt 3 and will be recorded in a separate comment with the full script.",
-     "ar": "الحالة: طلب معاودة الاتصال – الموعد المتفق عليه {{agreedAt}} (خلال الفترة من 9:00 صباحاً إلى 8:00 مساءً، في اليوم نفسه أو يوم العمل التالي).\nتُحتسب المكالمة المتفق عليها محاولة ثالثة وستُسجل في تعليق منفصل مع النص الكامل.",
-     "cond": null,
-     "kind": "internal",
-     "status": "published",
-     "tags": [
-      "call back requested",
-      "agreed time"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "call-10",
-   "s": "call-log",
-   "ss": "call-back",
-   "kind": "internal",
-   "en": "Status: CALL-BACK RECEIVED on the official line at {{startTime}} on {{date}} – full script completed – see the items and confirmation recorded in the following comment.",
-   "ar": "الحالة: تم استلام معاودة الاتصال عبر الخط الرسمي في {{startTime}} بتاريخ {{date}} – اكتمل النص الكامل – انظر البنود والتأكيد المسجلين في التعليق التالي.",
-   "tags": [
-    "call",
-    "outbound",
-    "audit trail",
-    "call-back received",
-    "official line"
-   ],
-   "status": "published",
-   "updatedAt": "2026-11-02T00:00:00Z",
-   "updatedBy": "admin",
-   "history": [
-    {
-     "at": "2026-11-02T00:00:00Z",
-     "by": "admin",
-     "en": "Status: CALL-BACK RECEIVED on the official line at {{startTime}} on {{date}} – full script completed – see the items and confirmation recorded in the following comment.",
-     "ar": "الحالة: تم استلام معاودة الاتصال عبر الخط الرسمي في {{startTime}} بتاريخ {{date}} – اكتمل النص الكامل – انظر البنود والتأكيد المسجلين في التعليق التالي.",
-     "cond": null,
-     "kind": "internal",
-     "status": "published",
-     "tags": [
-      "call-back received",
-      "official line"
+      "not answered"
      ]
     }
    ]
@@ -4922,87 +4596,10 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
   {
    "id": "call-11",
    "s": "call-log",
-   "ss": "call-tl",
-   "kind": "internal",
-   "en": "[CALL WAIVER] Resubmission {{resub}} | Reason: {{reason}}\nApproved by: {{tlName}} on {{tlDate}}. Written return request issued with {{itemCount}} items.",
-   "ar": "[إعفاء من المكالمة] إعادة التقديم رقم {{resub}} | السبب: {{reason}}\nاعتمده: {{tlName}} بتاريخ {{tlDate}}. صدر طلب الإعادة الخطي متضمناً {{itemCount}} بنداً.",
-   "tags": [
-    "call",
-    "outbound",
-    "audit trail",
-    "waiver",
-    "team leader",
-    "exception"
-   ],
-   "status": "published",
-   "updatedAt": "2026-11-02T00:00:00Z",
-   "updatedBy": "admin",
-   "history": [
-    {
-     "at": "2026-11-02T00:00:00Z",
-     "by": "admin",
-     "en": "[CALL WAIVER] Resubmission {{resub}} | Reason: {{reason}}\nApproved by: {{tlName}} on {{tlDate}}. Written return request issued with {{itemCount}} items.",
-     "ar": "[إعفاء من المكالمة] إعادة التقديم رقم {{resub}} | السبب: {{reason}}\nاعتمده: {{tlName}} بتاريخ {{tlDate}}. صدر طلب الإعادة الخطي متضمناً {{itemCount}} بنداً.",
-     "cond": {
-      "en": "Team Leader only – written-contact request by the taxpayer, or registered number confirmed invalid.",
-      "ar": "لرئيس الفريق فقط – طلب الخاضع للضريبة التواصل الخطي، أو ثبوت عدم صلاحية الرقم المسجل."
-     },
-     "kind": "internal",
-     "status": "published",
-     "tags": [
-      "waiver",
-      "team leader",
-      "exception"
-     ]
-    }
-   ],
-   "cond": {
-    "en": "Team Leader only – written-contact request by the taxpayer, or registered number confirmed invalid.",
-    "ar": "لرئيس الفريق فقط – طلب الخاضع للضريبة التواصل الخطي، أو ثبوت عدم صلاحية الرقم المسجل."
-   }
-  },
-  {
-   "id": "call-12",
-   "s": "call-log",
-   "ss": "call-tl",
-   "kind": "internal",
-   "en": "[CALL REASSIGNMENT] Resubmission {{resub}} | Call reassigned from {{officer}} to {{assignee}} by Team Leader {{tlName}} on {{tlDate}} – reason: {{reason}}. The assigned officer records the call comment under their own name.",
-   "ar": "[إعادة إسناد المكالمة] إعادة التقديم رقم {{resub}} | أُعيد إسناد المكالمة من {{officer}} إلى {{assignee}} بواسطة رئيس الفريق {{tlName}} بتاريخ {{tlDate}} – السبب: {{reason}}. يسجل الموظف المكلف تعليق المكالمة باسمه.",
-   "tags": [
-    "call",
-    "outbound",
-    "audit trail",
-    "reassignment",
-    "language",
-    "team leader"
-   ],
-   "status": "published",
-   "updatedAt": "2026-11-02T00:00:00Z",
-   "updatedBy": "admin",
-   "history": [
-    {
-     "at": "2026-11-02T00:00:00Z",
-     "by": "admin",
-     "en": "[CALL REASSIGNMENT] Resubmission {{resub}} | Call reassigned from {{officer}} to {{assignee}} by Team Leader {{tlName}} on {{tlDate}} – reason: {{reason}}. The assigned officer records the call comment under their own name.",
-     "ar": "[إعادة إسناد المكالمة] إعادة التقديم رقم {{resub}} | أُعيد إسناد المكالمة من {{officer}} إلى {{assignee}} بواسطة رئيس الفريق {{tlName}} بتاريخ {{tlDate}} – السبب: {{reason}}. يسجل الموظف المكلف تعليق المكالمة باسمه.",
-     "cond": null,
-     "kind": "internal",
-     "status": "published",
-     "tags": [
-      "reassignment",
-      "language",
-      "team leader"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "call-13",
-   "s": "call-log",
    "ss": "call-tp",
    "kind": "notice",
-   "en": "As discussed in our call on {{date}} at {{startTime}}, kindly find below the complete list of items required to continue processing your application. The same list was communicated to you during the call.",
-   "ar": "كما تمت مناقشته في مكالمتنا بتاريخ {{date}} الساعة {{startTime}}، تجدون أدناه القائمة الكاملة بالبنود المطلوبة لمتابعة معالجة طلبكم، وهي القائمة نفسها التي تم إبلاغكم بها أثناء المكالمة.",
+   "en": "As discussed in our call on {{date}} at {{time}}, kindly find below the complete list of items required to continue processing your application.",
+   "ar": "كما تمت مناقشته في مكالمتنا بتاريخ {{date}} الساعة {{time}}، تجدون أدناه القائمة الكاملة بالبنود المطلوبة لمتابعة معالجة طلبكم.",
    "tags": [
     "call",
     "outbound",
@@ -5018,8 +4615,8 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
     {
      "at": "2026-11-02T00:00:00Z",
      "by": "admin",
-     "en": "As discussed in our call on {{date}} at {{startTime}}, kindly find below the complete list of items required to continue processing your application. The same list was communicated to you during the call.",
-     "ar": "كما تمت مناقشته في مكالمتنا بتاريخ {{date}} الساعة {{startTime}}، تجدون أدناه القائمة الكاملة بالبنود المطلوبة لمتابعة معالجة طلبكم، وهي القائمة نفسها التي تم إبلاغكم بها أثناء المكالمة.",
+     "en": "As discussed in our call on {{date}} at {{time}}, kindly find below the complete list of items required to continue processing your application.",
+     "ar": "كما تمت مناقشته في مكالمتنا بتاريخ {{date}} الساعة {{time}}، تجدون أدناه القائمة الكاملة بالبنود المطلوبة لمتابعة معالجة طلبكم.",
      "cond": null,
      "kind": "notice",
      "status": "published",
@@ -5032,12 +4629,12 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    ]
   },
   {
-   "id": "call-14",
+   "id": "call-12",
    "s": "call-log",
    "ss": "call-tp",
    "kind": "notice",
-   "en": "We tried to call you on {{date}} at {{attempt1At}} and {{attempt2At}} regarding your application, without success. Kindly find below the complete list of items required to continue processing your application.",
-   "ar": "حاولنا الاتصال بكم بتاريخ {{date}} في {{attempt1At}} و{{attempt2At}} بشأن طلبكم دون جدوى. تجدون أدناه القائمة الكاملة بالبنود المطلوبة لمتابعة معالجة طلبكم.",
+   "en": "We tried to call you on {{date}} regarding your application, without success. Kindly find below the complete list of items required to continue processing your application.",
+   "ar": "حاولنا الاتصال بكم بتاريخ {{date}} بشأن طلبكم دون جدوى. تجدون أدناه القائمة الكاملة بالبنود المطلوبة لمتابعة معالجة طلبكم.",
    "tags": [
     "call",
     "outbound",
@@ -5053,8 +4650,8 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
     {
      "at": "2026-11-02T00:00:00Z",
      "by": "admin",
-     "en": "We tried to call you on {{date}} at {{attempt1At}} and {{attempt2At}} regarding your application, without success. Kindly find below the complete list of items required to continue processing your application.",
-     "ar": "حاولنا الاتصال بكم بتاريخ {{date}} في {{attempt1At}} و{{attempt2At}} بشأن طلبكم دون جدوى. تجدون أدناه القائمة الكاملة بالبنود المطلوبة لمتابعة معالجة طلبكم.",
+     "en": "We tried to call you on {{date}} regarding your application, without success. Kindly find below the complete list of items required to continue processing your application.",
+     "ar": "حاولنا الاتصال بكم بتاريخ {{date}} بشأن طلبكم دون جدوى. تجدون أدناه القائمة الكاملة بالبنود المطلوبة لمتابعة معالجة طلبكم.",
      "cond": null,
      "kind": "notice",
      "status": "published",
@@ -5062,76 +4659,6 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
       "return request",
       "no contact",
       "taxpayer"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "call-15",
-   "s": "call-log",
-   "ss": "call-tp",
-   "kind": "notice",
-   "en": "FTA: We called you today at {{startTime}} regarding application {{appRef}}. {{itemCount}} item(s) are required to continue processing. The full list is in your EmaraTax inbox. Help: 800 TAXAE (800 82923).",
-   "ar": "الهيئة الاتحادية للضرائب: اتصلنا بكم اليوم الساعة {{startTime}} بشأن الطلب {{appRef}}. مطلوب {{itemCount}} بنداً لمتابعة المعالجة. القائمة الكاملة في صندوق الوارد لديكم في إمارات تاكس. للمساعدة: 800 82923.",
-   "tags": [
-    "call",
-    "outbound",
-    "audit trail",
-    "sms",
-    "text message",
-    "answered"
-   ],
-   "status": "published",
-   "updatedAt": "2026-11-02T00:00:00Z",
-   "updatedBy": "admin",
-   "history": [
-    {
-     "at": "2026-11-02T00:00:00Z",
-     "by": "admin",
-     "en": "FTA: We called you today at {{startTime}} regarding application {{appRef}}. {{itemCount}} item(s) are required to continue processing. The full list is in your EmaraTax inbox. Help: 800 TAXAE (800 82923).",
-     "ar": "الهيئة الاتحادية للضرائب: اتصلنا بكم اليوم الساعة {{startTime}} بشأن الطلب {{appRef}}. مطلوب {{itemCount}} بنداً لمتابعة المعالجة. القائمة الكاملة في صندوق الوارد لديكم في إمارات تاكس. للمساعدة: 800 82923.",
-     "cond": null,
-     "kind": "notice",
-     "status": "published",
-     "tags": [
-      "sms",
-      "text message",
-      "answered"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "call-16",
-   "s": "call-log",
-   "ss": "call-tp",
-   "kind": "notice",
-   "en": "FTA: We tried to call you today at {{attempt1At}} and {{attempt2At}} regarding application {{appRef}}. {{itemCount}} item(s) are required to continue processing. The full list is in your EmaraTax inbox. Help: 800 TAXAE (800 82923).",
-   "ar": "الهيئة الاتحادية للضرائب: حاولنا الاتصال بكم اليوم في {{attempt1At}} و{{attempt2At}} بشأن الطلب {{appRef}}. مطلوب {{itemCount}} بنداً لمتابعة المعالجة. القائمة الكاملة في صندوق الوارد لديكم في إمارات تاكس. للمساعدة: 800 82923.",
-   "tags": [
-    "call",
-    "outbound",
-    "audit trail",
-    "sms",
-    "text message",
-    "not answered"
-   ],
-   "status": "published",
-   "updatedAt": "2026-11-02T00:00:00Z",
-   "updatedBy": "admin",
-   "history": [
-    {
-     "at": "2026-11-02T00:00:00Z",
-     "by": "admin",
-     "en": "FTA: We tried to call you today at {{attempt1At}} and {{attempt2At}} regarding application {{appRef}}. {{itemCount}} item(s) are required to continue processing. The full list is in your EmaraTax inbox. Help: 800 TAXAE (800 82923).",
-     "ar": "الهيئة الاتحادية للضرائب: حاولنا الاتصال بكم اليوم في {{attempt1At}} و{{attempt2At}} بشأن الطلب {{appRef}}. مطلوب {{itemCount}} بنداً لمتابعة المعالجة. القائمة الكاملة في صندوق الوارد لديكم في إمارات تاكس. للمساعدة: 800 82923.",
-     "cond": null,
-     "kind": "notice",
-     "status": "published",
-     "tags": [
-      "sms",
-      "text message",
-      "not answered"
      ]
     }
    ]
@@ -5169,41 +4696,62 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "en": "Other / duplicated TRN",
    "ar": "رقم التسجيل الضريبي الآخر / المكرر"
   },
-  "resub": {
+  "callStatus": {
    "type": "select",
-   "en": "Resubmission number",
-   "ar": "رقم إعادة التقديم",
+   "en": "Call status",
+   "ar": "حالة المكالمة",
    "options": [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5+"
+    "Answered – Informed",
+    "Answered – Confirmed",
+    "Answered – Partially Confirmed",
+    "Answered – Clarified",
+    "Clarification – Return Required",
+    "Not Answered",
+    "Busy / Line Engaged",
+    "Switched Off / Unreachable",
+    "Refused to Take the Call",
+    "Not the Concerned Person",
+    "Wrong Number / Invalid Number",
+    "Call Back Requested",
+    "Call-back Received",
+    "No Contact (after two attempts)"
    ],
    "optionsAr": [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5+"
+    "تمت الإجابة – تم الإبلاغ",
+    "تمت الإجابة – تم التأكيد",
+    "تمت الإجابة – تأكيد جزئي",
+    "تمت الإجابة – تم التوضيح",
+    "توضيح – يلزم إعادة الطلب",
+    "لم يتم الرد",
+    "مشغول",
+    "مغلق / لا يمكن الوصول إليه",
+    "رفض استقبال المكالمة",
+    "ليس الشخص المعني",
+    "رقم خاطئ / غير صالح",
+    "طلب معاودة الاتصال",
+    "تم استلام معاودة الاتصال",
+    "تعذّر التواصل (بعد محاولتين)"
    ]
   },
-  "callType": {
-   "type": "select",
-   "en": "Call type",
-   "ar": "نوع المكالمة",
-   "options": [
-    "CLARIFICATION",
-    "INFORMATIVE",
-    "CONFIRMATION",
-    "OPTIONAL"
-   ],
-   "optionsAr": [
-    "توضيحية",
-    "إعلامية",
-    "تأكيدية",
-    "اختيارية"
-   ]
+  "time": {
+   "type": "text",
+   "en": "Time (HH:MM)",
+   "ar": "الوقت (س:د)"
+  },
+  "contactName": {
+   "type": "text",
+   "en": "Taxpayer / contact name",
+   "ar": "اسم الخاضع للضريبة / جهة الاتصال"
+  },
+  "action": {
+   "type": "textarea",
+   "en": "Action taken with the taxpayer (what was communicated / agreed / sent)",
+   "ar": "الإجراء المتخذ مع الخاضع للضريبة (ما تم إبلاغه / الاتفاق عليه / إرساله)"
+  },
+  "notes": {
+   "type": "textarea",
+   "en": "Additional comments (write “None” if nothing)",
+   "ar": "ملاحظات إضافية (اكتب «لا يوجد» إن لم يكن هناك شيء)"
   },
   "attempt": {
    "type": "select",
@@ -5212,194 +4760,12 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "options": [
     "1 of 2",
     "2 of 2",
-    "3 (call-back)",
-    "1 of 1"
+    "3 (call-back)"
    ],
    "optionsAr": [
     "1 من 2",
     "2 من 2",
-    "3 (معاودة اتصال)",
-    "1 من 1"
-   ]
-  },
-  "appRef": {
-   "type": "text",
-   "en": "Application reference",
-   "ar": "الرقم المرجعي للطلب"
-  },
-  "contactName": {
-   "type": "text",
-   "en": "Taxpayer / contact name (as registered)",
-   "ar": "اسم الخاضع للضريبة / جهة الاتصال (كما هو مسجل)"
-  },
-  "role": {
-   "type": "select",
-   "en": "Role",
-   "ar": "الصفة",
-   "options": [
-    "Taxpayer",
-    "Authorised signatory"
-   ],
-   "optionsAr": [
-    "الخاضع للضريبة",
-    "المفوض بالتوقيع"
-   ]
-  },
-  "mobile": {
-   "type": "text",
-   "en": "Mobile number dialled",
-   "ar": "رقم الهاتف المتصل به"
-  },
-  "regNumber": {
-   "type": "select",
-   "en": "Registered number?",
-   "ar": "هل هو الرقم المسجل؟",
-   "options": [
-    "YES",
-    "NO"
-   ],
-   "optionsAr": [
-    "نعم",
-    "لا"
-   ]
-  },
-  "startTime": {
-   "type": "text",
-   "en": "Start time (HH:MM)",
-   "ar": "وقت البداية (س:د)"
-  },
-  "ring": {
-   "type": "text",
-   "en": "Ring duration (seconds)",
-   "ar": "مدة الرنين (ثانية)"
-  },
-  "talk": {
-   "type": "text",
-   "en": "Talk duration (mm:ss)",
-   "ar": "مدة المكالمة (د:ث)"
-  },
-  "officer": {
-   "type": "text",
-   "en": "Officer name",
-   "ar": "اسم الموظف"
-  },
-  "idVia": {
-   "type": "select",
-   "en": "Identity confirmed via",
-   "ar": "تم التحقق من الهوية عبر",
-   "options": [
-    "TRN",
-    "Registered email",
-    "Trade licence number"
-   ],
-   "optionsAr": [
-    "رقم التسجيل الضريبي",
-    "البريد الإلكتروني المسجل",
-    "رقم الرخصة التجارية"
-   ]
-  },
-  "items": {
-   "type": "textarea",
-   "en": "Items communicated (one per line: item – reason – where to upload)",
-   "ar": "البنود المبلغ عنها (بند في كل سطر: البند – السبب – مكان التحميل)"
-  },
-  "response": {
-   "type": "textarea",
-   "en": "Taxpayer response (understood / questions asked)",
-   "ar": "رد الخاضع للضريبة (فهم / أسئلة طُرحت)"
-  },
-  "returnAt": {
-   "type": "text",
-   "en": "Return request issued (DD/MM/YYYY HH:MM)",
-   "ar": "صدور طلب الإعادة (يوم/شهر/سنة س:د)"
-  },
-  "sms": {
-   "type": "select",
-   "en": "SMS sent",
-   "ar": "الرسالة النصية",
-   "options": [
-    "YES",
-    "NO – channel not available"
-   ],
-   "optionsAr": [
-    "نعم",
-    "لا – القناة غير متاحة"
-   ]
-  },
-  "needed": {
-   "type": "textarea",
-   "en": "Document / entry in question",
-   "ar": "المستند / البند محل الاستفسار"
-  },
-  "question": {
-   "type": "textarea",
-   "en": "Question asked (verbatim)",
-   "ar": "السؤال المطروح (نصاً)"
-  },
-  "answer": {
-   "type": "textarea",
-   "en": "Taxpayer answer (verbatim)",
-   "ar": "إجابة الخاضع للضريبة (نصاً)"
-  },
-  "effect": {
-   "type": "select",
-   "en": "Effect on the review",
-   "ar": "الأثر على المراجعة",
-   "options": [
-    "No change – review continues",
-    "Application data changes – written confirmation requested in EmaraTax"
-   ],
-   "optionsAr": [
-    "لا تغيير – تستمر المراجعة",
-    "تتغير بيانات الطلب – طُلب تأكيد خطي عبر إمارات تاكس"
-   ]
-  },
-  "nextCall": {
-   "type": "select",
-   "en": "Next call rule",
-   "ar": "قاعدة المكالمة التالية",
-   "options": [
-    "No mandatory call",
-    "INFORMATIVE call",
-    "CONFIRMATION call"
-   ],
-   "optionsAr": [
-    "لا مكالمة إلزامية",
-    "مكالمة إعلامية",
-    "مكالمة تأكيدية"
-   ]
-  },
-  "confirmStatus": {
-   "type": "select",
-   "en": "Confirmation outcome",
-   "ar": "نتيجة التأكيد",
-   "options": [
-    "CONFIRMED",
-    "PARTIALLY CONFIRMED"
-   ],
-   "optionsAr": [
-    "مؤكد",
-    "مؤكد جزئياً"
-   ]
-  },
-  "prevDates": {
-   "type": "text",
-   "en": "Previously communicated on (dates)",
-   "ar": "تواريخ الإبلاغ السابقة"
-  },
-  "noAnswerStatus": {
-   "type": "select",
-   "en": "Status",
-   "ar": "الحالة",
-   "options": [
-    "NOT ANSWERED",
-    "BUSY / LINE ENGAGED",
-    "SWITCHED OFF / UNREACHABLE"
-   ],
-   "optionsAr": [
-    "لم يتم الرد",
-    "مشغول",
-    "مغلق / لا يمكن الوصول إليه"
+    "3 (معاودة اتصال)"
    ]
   },
   "attempt1At": {
@@ -5407,88 +4773,10 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "en": "Attempt 1 (DD/MM/YYYY HH:MM)",
    "ar": "المحاولة 1 (يوم/شهر/سنة س:د)"
   },
-  "ring1": {
-   "type": "text",
-   "en": "Attempt 1 ring (seconds)",
-   "ar": "رنين المحاولة 1 (ثانية)"
-  },
   "attempt2At": {
    "type": "text",
    "en": "Attempt 2 (DD/MM/YYYY HH:MM)",
    "ar": "المحاولة 2 (يوم/شهر/سنة س:د)"
-  },
-  "ring2": {
-   "type": "text",
-   "en": "Attempt 2 ring (seconds)",
-   "ar": "رنين المحاولة 2 (ثانية)"
-  },
-  "gap": {
-   "type": "text",
-   "en": "Gap between attempts (h:mm)",
-   "ar": "الفاصل بين المحاولتين (س:د)"
-  },
-  "itemCount": {
-   "type": "text",
-   "en": "Number of items",
-   "ar": "عدد البنود"
-  },
-  "tlName": {
-   "type": "text",
-   "en": "Team Leader name",
-   "ar": "اسم رئيس الفريق"
-  },
-  "tlDate": {
-   "type": "text",
-   "en": "Team Leader approval date",
-   "ar": "تاريخ اعتماد رئيس الفريق"
-  },
-  "otherStatus": {
-   "type": "select",
-   "en": "Status",
-   "ar": "الحالة",
-   "options": [
-    "REFUSED TO TAKE THE CALL",
-    "NOT THE CONCERNED PERSON",
-    "WRONG NUMBER / INVALID NUMBER"
-   ],
-   "optionsAr": [
-    "رفض استقبال المكالمة",
-    "ليس الشخص المعني",
-    "رقم خاطئ / غير صالح"
-   ]
-  },
-  "details": {
-   "type": "textarea",
-   "en": "Details (who answered / what the taxpayer stated / number not in service)",
-   "ar": "التفاصيل (من أجاب / ما صرّح به الخاضع للضريبة / الرقم خارج الخدمة)"
-  },
-  "altNumber": {
-   "type": "select",
-   "en": "Alternative registered number dialled",
-   "ar": "الاتصال برقم مسجل بديل",
-   "options": [
-    "YES – see separate attempt comment",
-    "NO – none registered"
-   ],
-   "optionsAr": [
-    "نعم – انظر تعليق المحاولة المنفصل",
-    "لا – لا يوجد رقم مسجل"
-   ]
-  },
-  "reason": {
-   "type": "text",
-   "en": "Reason",
-   "ar": "السبب"
-  },
-  "agreedAt": {
-   "type": "text",
-   "en": "Agreed call-back time (DD/MM/YYYY HH:MM)",
-   "ar": "موعد معاودة الاتصال المتفق عليه"
-  },
-  "assignee": {
-   "type": "text",
-   "en": "Assigned officer",
-   "ar": "الموظف المكلف"
   }
  },
  "synonyms": {
@@ -7001,66 +6289,40 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    ]
   },
   {
-   "id": "call-sc-informative",
-   "en": "Call — informative (resubmission 2), answered",
-   "ar": "مكالمة — إعلامية (إعادة التقديم 2)، تمت الإجابة",
+   "id": "call-sc-answered",
+   "en": "Call — answered",
+   "ar": "مكالمة — تمت الإجابة",
    "ids": [
-    "call-00",
     "call-01"
    ],
    "svc": "*",
    "basis": {
-    "en": "Mandatory call",
-    "ar": "مكالمة إلزامية"
+    "en": "Record within 15 minutes",
+    "ar": "يُسجَّل خلال 15 دقيقة"
    },
    "checks": [
     {
-     "en": "Ring ≥ 30 s · official line · 9:00 AM – 8:00 PM · comment within 15 minutes · item list identical to the written return",
-     "ar": "رنين ≥ 30 ث · الخط الرسمي · 9 ص – 8 م · التعليق خلال 15 دقيقة · قائمة البنود مطابقة لطلب الإعادة الخطي"
-    },
-    {
-     "en": "Add the taxpayer-facing “As discussed in our call” line to the return request",
-     "ar": "أضف سطر «كما تمت مناقشته في مكالمتنا» إلى طلب الإعادة"
+     "en": "Official line · 9:00 AM – 8:00 PM · say in “Action taken” the items communicated; the written return must list the same items",
+     "ar": "الخط الرسمي · 9 ص – 8 م · اذكر في «الإجراء المتخذ» البنود المبلغ عنها؛ ويجب أن يتضمن طلب الإعادة الخطي البنود نفسها"
     }
    ]
   },
   {
-   "id": "call-sc-confirmation",
-   "en": "Call — confirmation (resubmission 3+), answered",
-   "ar": "مكالمة — تأكيدية (إعادة التقديم 3+)، تمت الإجابة",
+   "id": "call-sc-noanswer",
+   "en": "Call — not answered (one attempt)",
+   "ar": "مكالمة — لم يتم الرد (محاولة واحدة)",
    "ids": [
-    "call-00",
-    "call-04"
-   ],
-   "svc": "*",
-   "basis": {
-    "en": "Mandatory call",
-    "ar": "مكالمة إلزامية"
-   },
-   "checks": [
-    {
-     "en": "Record CONFIRMED / NOT CLEAR per item; name the unclear item and the guidance given",
-     "ar": "سجّل مؤكد / غير واضح لكل بند؛ سمِّ البند غير الواضح والإرشاد المقدم"
-    }
-   ]
-  },
-  {
-   "id": "call-sc-clarify",
-   "en": "Call — clarification (no return)",
-   "ar": "مكالمة — توضيحية (دون إعادة)",
-   "ids": [
-    "call-00",
     "call-02"
    ],
    "svc": "*",
    "basis": {
-    "en": "Optional call",
-    "ar": "مكالمة اختيارية"
+    "en": "Record each attempt",
+    "ar": "تُسجَّل كل محاولة"
    },
    "checks": [
     {
-     "en": "Only when nothing needs uploading or amending; question and answer verbatim; if a document is needed use “Clarification – return required”",
-     "ar": "فقط عندما لا يلزم تحميل أو تعديل؛ السؤال والإجابة نصاً؛ إذا لزم مستند استخدم «توضيح – يلزم إعادة الطلب»"
+     "en": "Ring ≥ 30 s; second attempt after ≥ 1 hour within the window",
+     "ar": "رنين ≥ 30 ث؛ المحاولة الثانية بعد ساعة على الأقل ضمن الفترة"
     }
    ]
   },
@@ -7069,54 +6331,19 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "en": "Call — no contact after two attempts",
    "ar": "مكالمة — تعذّر التواصل بعد محاولتين",
    "ids": [
-    "call-00",
-    "call-06"
+    "call-03"
    ],
    "svc": "*",
    "basis": {
-    "en": "No Contact – Team Leader approval",
-    "ar": "تعذّر التواصل – اعتماد رئيس الفريق"
+    "en": "Proceed with the written return",
+    "ar": "المتابعة بطلب الإعادة الخطي"
    },
    "checks": [
     {
-     "en": "Two attempts ≥ 30 s each, ≥ 1 hour apart, both within the window; SMS not-answered variant; next return needs a confirmation call",
-     "ar": "محاولتان ≥ 30 ث لكل منهما وبفاصل ≥ ساعة وضمن الفترة؛ الرسالة النصية بصيغة عدم الرد؛ الإعادة التالية تتطلب مكالمة تأكيد"
+     "en": "Two attempts ≥ 1 hour apart; the next return of this application requires a confirmation call",
+     "ar": "محاولتان بفاصل ≥ ساعة؛ الإعادة التالية لهذا الطلب تتطلب مكالمة تأكيد"
     }
    ]
-  },
-  {
-   "id": "call-sc-refused",
-   "en": "Call — refused / third party / wrong number",
-   "ar": "مكالمة — رفض / طرف ثالث / رقم خاطئ",
-   "ids": [
-    "call-00",
-    "call-07"
-   ],
-   "svc": "*",
-   "basis": {
-    "en": "Exception – daily list",
-    "ar": "استثناء – القائمة اليومية"
-   },
-   "checks": [
-    {
-     "en": "Never disclose application details before identity is confirmed",
-     "ar": "لا تُفصح عن تفاصيل الطلب قبل التحقق من الهوية"
-    }
-   ]
-  },
-  {
-   "id": "call-sc-callback",
-   "en": "Call — call back requested",
-   "ar": "مكالمة — طلب معاودة الاتصال",
-   "ids": [
-    "call-00",
-    "call-09"
-   ],
-   "svc": "*",
-   "basis": {
-    "en": "Agreed time within the window",
-    "ar": "موعد متفق عليه ضمن الفترة"
-   }
   }
  ],
  "conflicts": [
@@ -7183,7 +6410,7 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "cm-01",
    "cm-02"
   ],
-  "total": 108,
+  "total": 96,
   "services": 5,
   "counts": {
    "financial": 1,
