@@ -306,6 +306,13 @@ html[dir="rtl"] .audbar .lbl{letter-spacing:0}
 .seg.aud button.on.ext{color:var(--green-ink)}
 .seg.aud button.on.ext .n{background:var(--green-soft);color:var(--green-ink)}
 .seg.aud button.on.int{color:var(--amber)}
+.seg.aud button.on.call{color:var(--blue)}
+.seg.aud button.on.call .n{background:var(--blue-soft);color:var(--blue)}
+.audnote.call{color:var(--blue);background:var(--blue-soft)}
+.card.k-internal.shared{--k:var(--blue)}
+.card.shared .kpill{color:var(--blue);background:var(--blue-soft)}
+.tray textarea[data-tok]{width:100%;min-height:92px;resize:vertical;font:inherit;font-size:12.5px;line-height:1.5;padding:8px 10px;border:1px solid var(--line2);border-radius:9px;background:var(--surface);color:var(--ink)}
+.tray textarea[data-tok].miss{border-color:var(--amber)}
 .seg.aud button.on.int .n{background:var(--amber-soft);color:var(--amber)}
 .audnote{font-size:12px;color:var(--amber);background:var(--amber-soft);border-radius:8px;padding:6px 10px;display:inline-flex;align-items:center;gap:6px}
 .audnote svg{width:14px;height:14px}
@@ -872,6 +879,49 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
      "id": "form-copy",
      "en": "Additional Copy",
      "ar": "نسخة إضافية"
+    }
+   ]
+  },
+  {
+   "id": "call-log",
+   "en": "Taxpayer Call Log (Audit Trail)",
+   "ar": "سجل مكالمات الخاضع للضريبة (سجل التدقيق)",
+   "svc": "*",
+   "subsections": [
+    {
+     "id": "call-head",
+     "en": "Fixed Header (every attempt)",
+     "ar": "الترويسة الثابتة (لكل محاولة)"
+    },
+    {
+     "id": "call-answered",
+     "en": "Answered",
+     "ar": "تمت الإجابة"
+    },
+    {
+     "id": "call-noanswer",
+     "en": "Not Answered / No Contact",
+     "ar": "لم يتم الرد / تعذّر التواصل"
+    },
+    {
+     "id": "call-other",
+     "en": "Refused / Wrong Person / No Valid Number",
+     "ar": "رفض / شخص غير معني / لا يوجد رقم صالح"
+    },
+    {
+     "id": "call-back",
+     "en": "Call Back",
+     "ar": "معاودة الاتصال"
+    },
+    {
+     "id": "call-tl",
+     "en": "Team Leader Waiver & Reassignment",
+     "ar": "إعفاء رئيس الفريق وإعادة الإسناد"
+    },
+    {
+     "id": "call-tp",
+     "en": "Lines to the Taxpayer (return request & SMS)",
+     "ar": "نصوص موجهة للخاضع للضريبة (طلب الإعادة والرسالة النصية)"
     }
    ]
   }
@@ -2253,6 +2303,639 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
      ]
     }
    ]
+  },
+  {
+   "id": "call-00",
+   "s": "call-log",
+   "ss": "call-head",
+   "kind": "internal",
+   "en": "[OUTBOUND CALL] Resubmission {{resub}} | Call type: {{callType}} | Attempt {{attempt}}\nApplication: {{appRef}}\nTaxpayer / contact name: {{contactName}} – Role: {{role}}\nMobile dialled: {{mobile}} (registered number: {{regNumber}})\nDate: {{date}} – Start: {{startTime}} – Ring: {{ring}} sec – Talk: {{talk}} – Line: official – Officer: {{officer}}",
+   "ar": "[مكالمة صادرة] إعادة التقديم رقم {{resub}} | نوع المكالمة: {{callType}} | المحاولة {{attempt}}\nالطلب: {{appRef}}\nاسم الخاضع للضريبة / جهة الاتصال: {{contactName}} – الصفة: {{role}}\nرقم الهاتف المتصل به: {{mobile}} (الرقم المسجل: {{regNumber}})\nالتاريخ: {{date}} – البداية: {{startTime}} – مدة الرنين: {{ring}} ثانية – مدة المكالمة: {{talk}} – الخط: الرسمي – الموظف: {{officer}}",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "header",
+    "fixed header",
+    "every attempt"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "[OUTBOUND CALL] Resubmission {{resub}} | Call type: {{callType}} | Attempt {{attempt}}\nApplication: {{appRef}}\nTaxpayer / contact name: {{contactName}} – Role: {{role}}\nMobile dialled: {{mobile}} (registered number: {{regNumber}})\nDate: {{date}} – Start: {{startTime}} – Ring: {{ring}} sec – Talk: {{talk}} – Line: official – Officer: {{officer}}",
+     "ar": "[مكالمة صادرة] إعادة التقديم رقم {{resub}} | نوع المكالمة: {{callType}} | المحاولة {{attempt}}\nالطلب: {{appRef}}\nاسم الخاضع للضريبة / جهة الاتصال: {{contactName}} – الصفة: {{role}}\nرقم الهاتف المتصل به: {{mobile}} (الرقم المسجل: {{regNumber}})\nالتاريخ: {{date}} – البداية: {{startTime}} – مدة الرنين: {{ring}} ثانية – مدة المكالمة: {{talk}} – الخط: الرسمي – الموظف: {{officer}}",
+     "cond": null,
+     "kind": "internal",
+     "status": "published",
+     "tags": [
+      "header",
+      "fixed header",
+      "every attempt"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "call-01",
+   "s": "call-log",
+   "ss": "call-answered",
+   "kind": "internal",
+   "en": "Status: ANSWERED – INFORMED\nIdentity confirmed via: {{idVia}}\nTaxpayer was informed of ALL items required for resubmission {{resub}}:\n{{items}}\nTaxpayer response: {{response}}\nWritten follow-up: return request issued {{returnAt}} with the same items | SMS sent: {{sms}}\nNext step: await resubmission. If returned again, a CONFIRMATION call is mandatory.",
+   "ar": "الحالة: تمت الإجابة – تم الإبلاغ\nتم التحقق من الهوية عبر: {{idVia}}\nتم إبلاغ الخاضع للضريبة بجميع البنود المطلوبة لإعادة التقديم رقم {{resub}}:\n{{items}}\nرد الخاضع للضريبة: {{response}}\nالمتابعة الخطية: صدر طلب الإعادة بتاريخ {{returnAt}} بالبنود نفسها | الرسالة النصية: {{sms}}\nالخطوة التالية: انتظار إعادة التقديم. وفي حال الإعادة مرة أخرى تكون مكالمة التأكيد إلزامية.",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "answered",
+    "informed",
+    "informative call",
+    "resubmission 2"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "Status: ANSWERED – INFORMED\nIdentity confirmed via: {{idVia}}\nTaxpayer was informed of ALL items required for resubmission {{resub}}:\n{{items}}\nTaxpayer response: {{response}}\nWritten follow-up: return request issued {{returnAt}} with the same items | SMS sent: {{sms}}\nNext step: await resubmission. If returned again, a CONFIRMATION call is mandatory.",
+     "ar": "الحالة: تمت الإجابة – تم الإبلاغ\nتم التحقق من الهوية عبر: {{idVia}}\nتم إبلاغ الخاضع للضريبة بجميع البنود المطلوبة لإعادة التقديم رقم {{resub}}:\n{{items}}\nرد الخاضع للضريبة: {{response}}\nالمتابعة الخطية: صدر طلب الإعادة بتاريخ {{returnAt}} بالبنود نفسها | الرسالة النصية: {{sms}}\nالخطوة التالية: انتظار إعادة التقديم. وفي حال الإعادة مرة أخرى تكون مكالمة التأكيد إلزامية.",
+     "cond": {
+      "en": "Informative call – second return of the same application.",
+      "ar": "المكالمة الإعلامية – الإعادة الثانية للطلب نفسه."
+     },
+     "kind": "internal",
+     "status": "published",
+     "tags": [
+      "answered",
+      "informed",
+      "informative call",
+      "resubmission 2"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Informative call – second return of the same application.",
+    "ar": "المكالمة الإعلامية – الإعادة الثانية للطلب نفسه."
+   }
+  },
+  {
+   "id": "call-02",
+   "s": "call-log",
+   "ss": "call-answered",
+   "kind": "internal",
+   "en": "Status: ANSWERED – CLARIFIED\nCall type: CLARIFICATION (optional) | Resubmission count at time of call: {{resub}}\nIdentity confirmed via: {{idVia}}\nDocument / entry in question: {{needed}}\nQuestion asked (verbatim): \"{{question}}\"\nTaxpayer answer (verbatim): \"{{answer}}\" – read back and confirmed by the taxpayer: YES\nEffect on the review: {{effect}}",
+   "ar": "الحالة: تمت الإجابة – تم التوضيح\nنوع المكالمة: توضيحية (اختيارية) | عدد مرات إعادة التقديم وقت المكالمة: {{resub}}\nتم التحقق من الهوية عبر: {{idVia}}\nالمستند / البند محل الاستفسار: {{needed}}\nالسؤال المطروح (نصاً): «{{question}}»\nإجابة الخاضع للضريبة (نصاً): «{{answer}}» – تمت إعادة قراءتها وتأكيدها من الخاضع للضريبة: نعم\nالأثر على المراجعة: {{effect}}",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "clarified",
+    "clarification call",
+    "no return",
+    "verbatim"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "Status: ANSWERED – CLARIFIED\nCall type: CLARIFICATION (optional) | Resubmission count at time of call: {{resub}}\nIdentity confirmed via: {{idVia}}\nDocument / entry in question: {{needed}}\nQuestion asked (verbatim): \"{{question}}\"\nTaxpayer answer (verbatim): \"{{answer}}\" – read back and confirmed by the taxpayer: YES\nEffect on the review: {{effect}}",
+     "ar": "الحالة: تمت الإجابة – تم التوضيح\nنوع المكالمة: توضيحية (اختيارية) | عدد مرات إعادة التقديم وقت المكالمة: {{resub}}\nتم التحقق من الهوية عبر: {{idVia}}\nالمستند / البند محل الاستفسار: {{needed}}\nالسؤال المطروح (نصاً): «{{question}}»\nإجابة الخاضع للضريبة (نصاً): «{{answer}}» – تمت إعادة قراءتها وتأكيدها من الخاضع للضريبة: نعم\nالأثر على المراجعة: {{effect}}",
+     "cond": {
+      "en": "Clarification call – nothing needs to be uploaded, amended or resubmitted.",
+      "ar": "المكالمة التوضيحية – لا يلزم تحميل أو تعديل أو إعادة تقديم."
+     },
+     "kind": "internal",
+     "status": "published",
+     "tags": [
+      "clarified",
+      "clarification call",
+      "no return",
+      "verbatim"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Clarification call – nothing needs to be uploaded, amended or resubmitted.",
+    "ar": "المكالمة التوضيحية – لا يلزم تحميل أو تعديل أو إعادة تقديم."
+   }
+  },
+  {
+   "id": "call-03",
+   "s": "call-log",
+   "ss": "call-answered",
+   "kind": "internal",
+   "en": "Status: CLARIFICATION – RETURN REQUIRED\nIdentity confirmed via: {{idVia}}\nQuestion asked (verbatim): \"{{question}}\" – Taxpayer answer (verbatim): \"{{answer}}\"\nThe answer shows that a document or correction is needed: {{needed}}\nNo list of requirements was given on the call; written return request issued {{returnAt}}.\nReturn rule applied: resubmission {{resub}} → {{nextCall}}",
+   "ar": "الحالة: توضيح – يلزم إعادة الطلب\nتم التحقق من الهوية عبر: {{idVia}}\nالسؤال المطروح (نصاً): «{{question}}» – إجابة الخاضع للضريبة (نصاً): «{{answer}}»\nتبيّن من الإجابة الحاجة إلى مستند أو تصحيح: {{needed}}\nلم تُذكر قائمة متطلبات أثناء المكالمة؛ صدر طلب الإعادة الخطي بتاريخ {{returnAt}}.\nقاعدة الإعادة المطبقة: إعادة التقديم رقم {{resub}} ← {{nextCall}}",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "clarification",
+    "return required",
+    "written request"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "Status: CLARIFICATION – RETURN REQUIRED\nIdentity confirmed via: {{idVia}}\nQuestion asked (verbatim): \"{{question}}\" – Taxpayer answer (verbatim): \"{{answer}}\"\nThe answer shows that a document or correction is needed: {{needed}}\nNo list of requirements was given on the call; written return request issued {{returnAt}}.\nReturn rule applied: resubmission {{resub}} → {{nextCall}}",
+     "ar": "الحالة: توضيح – يلزم إعادة الطلب\nتم التحقق من الهوية عبر: {{idVia}}\nالسؤال المطروح (نصاً): «{{question}}» – إجابة الخاضع للضريبة (نصاً): «{{answer}}»\nتبيّن من الإجابة الحاجة إلى مستند أو تصحيح: {{needed}}\nلم تُذكر قائمة متطلبات أثناء المكالمة؛ صدر طلب الإعادة الخطي بتاريخ {{returnAt}}.\nقاعدة الإعادة المطبقة: إعادة التقديم رقم {{resub}} ← {{nextCall}}",
+     "cond": null,
+     "kind": "internal",
+     "status": "published",
+     "tags": [
+      "clarification",
+      "return required",
+      "written request"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "call-04",
+   "s": "call-log",
+   "ss": "call-answered",
+   "kind": "internal",
+   "en": "Status: ANSWERED – {{confirmStatus}}\nIdentity confirmed via: {{idVia}}\nItems reviewed with the taxpayer, with confirmation per item (CONFIRMED / NOT CLEAR – guidance given):\n{{items}}\nPreviously communicated on: {{prevDates}}\nWritten follow-up: return request issued {{returnAt}} with the same items | SMS sent: {{sms}}",
+   "ar": "الحالة: تمت الإجابة – {{confirmStatus}}\nتم التحقق من الهوية عبر: {{idVia}}\nالبنود التي تمت مراجعتها مع الخاضع للضريبة مع التأكيد لكل بند (مؤكد / غير واضح – تم تقديم الإرشاد):\n{{items}}\nسبق إبلاغه بتاريخ: {{prevDates}}\nالمتابعة الخطية: صدر طلب الإعادة بتاريخ {{returnAt}} بالبنود نفسها | الرسالة النصية: {{sms}}",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "confirmed",
+    "partially confirmed",
+    "confirmation call",
+    "resubmission 3"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "Status: ANSWERED – {{confirmStatus}}\nIdentity confirmed via: {{idVia}}\nItems reviewed with the taxpayer, with confirmation per item (CONFIRMED / NOT CLEAR – guidance given):\n{{items}}\nPreviously communicated on: {{prevDates}}\nWritten follow-up: return request issued {{returnAt}} with the same items | SMS sent: {{sms}}",
+     "ar": "الحالة: تمت الإجابة – {{confirmStatus}}\nتم التحقق من الهوية عبر: {{idVia}}\nالبنود التي تمت مراجعتها مع الخاضع للضريبة مع التأكيد لكل بند (مؤكد / غير واضح – تم تقديم الإرشاد):\n{{items}}\nسبق إبلاغه بتاريخ: {{prevDates}}\nالمتابعة الخطية: صدر طلب الإعادة بتاريخ {{returnAt}} بالبنود نفسها | الرسالة النصية: {{sms}}",
+     "cond": {
+      "en": "Confirmation call – third and later returns of the same application.",
+      "ar": "مكالمة التأكيد – الإعادة الثالثة وما بعدها للطلب نفسه."
+     },
+     "kind": "internal",
+     "status": "published",
+     "tags": [
+      "confirmed",
+      "partially confirmed",
+      "confirmation call",
+      "resubmission 3"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Confirmation call – third and later returns of the same application.",
+    "ar": "مكالمة التأكيد – الإعادة الثالثة وما بعدها للطلب نفسه."
+   }
+  },
+  {
+   "id": "call-05",
+   "s": "call-log",
+   "ss": "call-noanswer",
+   "kind": "internal",
+   "en": "Status: {{noAnswerStatus}}\nAttempt {{attempt}}: {{date}} {{startTime}}, rang {{ring}} sec (minimum 30).\nNext: second attempt after at least 1 hour, within 9:00 AM – 8:00 PM, on the official line.",
+   "ar": "الحالة: {{noAnswerStatus}}\nالمحاولة {{attempt}}: {{date}} {{startTime}}، مدة الرنين {{ring}} ثانية (الحد الأدنى 30).\nالتالي: محاولة ثانية بعد ساعة على الأقل، خلال الفترة من 9:00 صباحاً إلى 8:00 مساءً، عبر الخط الرسمي.",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "not answered",
+    "busy",
+    "switched off",
+    "single attempt"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "Status: {{noAnswerStatus}}\nAttempt {{attempt}}: {{date}} {{startTime}}, rang {{ring}} sec (minimum 30).\nNext: second attempt after at least 1 hour, within 9:00 AM – 8:00 PM, on the official line.",
+     "ar": "الحالة: {{noAnswerStatus}}\nالمحاولة {{attempt}}: {{date}} {{startTime}}، مدة الرنين {{ring}} ثانية (الحد الأدنى 30).\nالتالي: محاولة ثانية بعد ساعة على الأقل، خلال الفترة من 9:00 صباحاً إلى 8:00 مساءً، عبر الخط الرسمي.",
+     "cond": null,
+     "kind": "internal",
+     "status": "published",
+     "tags": [
+      "not answered",
+      "busy",
+      "switched off",
+      "single attempt"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "call-06",
+   "s": "call-log",
+   "ss": "call-noanswer",
+   "kind": "internal",
+   "en": "Status: {{noAnswerStatus}}\nAttempt 1 of 2: {{attempt1At}}, rang {{ring1}} sec (minimum 30).\nAttempt 2 of 2: {{attempt2At}}, rang {{ring2}} sec. Gap since attempt 1: {{gap}} (minimum 1:00).\nOutcome after 2 attempts: NO CONTACT\nWritten follow-up: return request issued {{returnAt}} with {{itemCount}} items | SMS (not-answered variant) sent: {{sms}}\nTeam Leader approval of No Contact: {{tlName}}, {{tlDate}}\nNext step: CONFIRMATION call mandatory at the next return of this application.",
+   "ar": "الحالة: {{noAnswerStatus}}\nالمحاولة 1 من 2: {{attempt1At}}، مدة الرنين {{ring1}} ثانية (الحد الأدنى 30).\nالمحاولة 2 من 2: {{attempt2At}}، مدة الرنين {{ring2}} ثانية. الفاصل منذ المحاولة الأولى: {{gap}} (الحد الأدنى ساعة).\nالنتيجة بعد محاولتين: تعذّر التواصل\nالمتابعة الخطية: صدر طلب الإعادة بتاريخ {{returnAt}} متضمناً {{itemCount}} بنداً | الرسالة النصية (صيغة عدم الرد): {{sms}}\nاعتماد رئيس الفريق لحالة تعذّر التواصل: {{tlName}}، {{tlDate}}\nالخطوة التالية: مكالمة التأكيد إلزامية عند الإعادة التالية لهذا الطلب.",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "no contact",
+    "two attempts",
+    "not answered",
+    "team leader"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "Status: {{noAnswerStatus}}\nAttempt 1 of 2: {{attempt1At}}, rang {{ring1}} sec (minimum 30).\nAttempt 2 of 2: {{attempt2At}}, rang {{ring2}} sec. Gap since attempt 1: {{gap}} (minimum 1:00).\nOutcome after 2 attempts: NO CONTACT\nWritten follow-up: return request issued {{returnAt}} with {{itemCount}} items | SMS (not-answered variant) sent: {{sms}}\nTeam Leader approval of No Contact: {{tlName}}, {{tlDate}}\nNext step: CONFIRMATION call mandatory at the next return of this application.",
+     "ar": "الحالة: {{noAnswerStatus}}\nالمحاولة 1 من 2: {{attempt1At}}، مدة الرنين {{ring1}} ثانية (الحد الأدنى 30).\nالمحاولة 2 من 2: {{attempt2At}}، مدة الرنين {{ring2}} ثانية. الفاصل منذ المحاولة الأولى: {{gap}} (الحد الأدنى ساعة).\nالنتيجة بعد محاولتين: تعذّر التواصل\nالمتابعة الخطية: صدر طلب الإعادة بتاريخ {{returnAt}} متضمناً {{itemCount}} بنداً | الرسالة النصية (صيغة عدم الرد): {{sms}}\nاعتماد رئيس الفريق لحالة تعذّر التواصل: {{tlName}}، {{tlDate}}\nالخطوة التالية: مكالمة التأكيد إلزامية عند الإعادة التالية لهذا الطلب.",
+     "cond": null,
+     "kind": "internal",
+     "status": "published",
+     "tags": [
+      "no contact",
+      "two attempts",
+      "not answered",
+      "team leader"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "call-07",
+   "s": "call-log",
+   "ss": "call-other",
+   "kind": "internal",
+   "en": "Status: {{otherStatus}}\nDetails: {{details}} (no personal data of third parties recorded)\nNo application details were disclosed.\nAction: written return request issued {{returnAt}} with {{itemCount}} items | SMS sent: {{sms}}\nAlternative registered number dialled: {{altNumber}}\nReported to the Team Leader on the daily exception list: YES",
+   "ar": "الحالة: {{otherStatus}}\nالتفاصيل: {{details}} (دون تسجيل بيانات شخصية لأطراف ثالثة)\nلم يتم الإفصاح عن أي تفاصيل للطلب.\nالإجراء: صدر طلب الإعادة الخطي بتاريخ {{returnAt}} متضمناً {{itemCount}} بنداً | الرسالة النصية: {{sms}}\nتم الاتصال برقم مسجل بديل: {{altNumber}}\nتم الإبلاغ لرئيس الفريق ضمن قائمة الاستثناءات اليومية: نعم",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "refused",
+    "not the concerned person",
+    "wrong number",
+    "invalid number",
+    "third party"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "Status: {{otherStatus}}\nDetails: {{details}} (no personal data of third parties recorded)\nNo application details were disclosed.\nAction: written return request issued {{returnAt}} with {{itemCount}} items | SMS sent: {{sms}}\nAlternative registered number dialled: {{altNumber}}\nReported to the Team Leader on the daily exception list: YES",
+     "ar": "الحالة: {{otherStatus}}\nالتفاصيل: {{details}} (دون تسجيل بيانات شخصية لأطراف ثالثة)\nلم يتم الإفصاح عن أي تفاصيل للطلب.\nالإجراء: صدر طلب الإعادة الخطي بتاريخ {{returnAt}} متضمناً {{itemCount}} بنداً | الرسالة النصية: {{sms}}\nتم الاتصال برقم مسجل بديل: {{altNumber}}\nتم الإبلاغ لرئيس الفريق ضمن قائمة الاستثناءات اليومية: نعم",
+     "cond": null,
+     "kind": "internal",
+     "status": "published",
+     "tags": [
+      "refused",
+      "not the concerned person",
+      "wrong number",
+      "invalid number",
+      "third party"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "call-08",
+   "s": "call-log",
+   "ss": "call-other",
+   "kind": "internal",
+   "en": "Status: NO VALID NUMBER\nRegistered mobile number in EmaraTax: {{mobile}} – reason: {{reason}}\nAlternative registered number: {{altNumber}}\nAction: written return request issued {{returnAt}} with {{itemCount}} items.\nReported to the Team Leader on the daily exception list: YES",
+   "ar": "الحالة: لا يوجد رقم صالح\nرقم الهاتف المسجل في إمارات تاكس: {{mobile}} – السبب: {{reason}}\nالرقم المسجل البديل: {{altNumber}}\nالإجراء: صدر طلب الإعادة الخطي بتاريخ {{returnAt}} متضمناً {{itemCount}} بنداً.\nتم الإبلاغ لرئيس الفريق ضمن قائمة الاستثناءات اليومية: نعم",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "no valid number",
+    "invalid",
+    "missing number"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "Status: NO VALID NUMBER\nRegistered mobile number in EmaraTax: {{mobile}} – reason: {{reason}}\nAlternative registered number: {{altNumber}}\nAction: written return request issued {{returnAt}} with {{itemCount}} items.\nReported to the Team Leader on the daily exception list: YES",
+     "ar": "الحالة: لا يوجد رقم صالح\nرقم الهاتف المسجل في إمارات تاكس: {{mobile}} – السبب: {{reason}}\nالرقم المسجل البديل: {{altNumber}}\nالإجراء: صدر طلب الإعادة الخطي بتاريخ {{returnAt}} متضمناً {{itemCount}} بنداً.\nتم الإبلاغ لرئيس الفريق ضمن قائمة الاستثناءات اليومية: نعم",
+     "cond": null,
+     "kind": "internal",
+     "status": "published",
+     "tags": [
+      "no valid number",
+      "invalid",
+      "missing number"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "call-09",
+   "s": "call-log",
+   "ss": "call-back",
+   "kind": "internal",
+   "en": "Status: CALL BACK REQUESTED – agreed time {{agreedAt}} (within 9:00 AM – 8:00 PM, same or next working day).\nThe agreed call counts as attempt 3 and will be recorded in a separate comment with the full script.",
+   "ar": "الحالة: طلب معاودة الاتصال – الموعد المتفق عليه {{agreedAt}} (خلال الفترة من 9:00 صباحاً إلى 8:00 مساءً، في اليوم نفسه أو يوم العمل التالي).\nتُحتسب المكالمة المتفق عليها محاولة ثالثة وستُسجل في تعليق منفصل مع النص الكامل.",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "call back requested",
+    "agreed time"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "Status: CALL BACK REQUESTED – agreed time {{agreedAt}} (within 9:00 AM – 8:00 PM, same or next working day).\nThe agreed call counts as attempt 3 and will be recorded in a separate comment with the full script.",
+     "ar": "الحالة: طلب معاودة الاتصال – الموعد المتفق عليه {{agreedAt}} (خلال الفترة من 9:00 صباحاً إلى 8:00 مساءً، في اليوم نفسه أو يوم العمل التالي).\nتُحتسب المكالمة المتفق عليها محاولة ثالثة وستُسجل في تعليق منفصل مع النص الكامل.",
+     "cond": null,
+     "kind": "internal",
+     "status": "published",
+     "tags": [
+      "call back requested",
+      "agreed time"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "call-10",
+   "s": "call-log",
+   "ss": "call-back",
+   "kind": "internal",
+   "en": "Status: CALL-BACK RECEIVED on the official line at {{startTime}} on {{date}} – full script completed – see the items and confirmation recorded in the following comment.",
+   "ar": "الحالة: تم استلام معاودة الاتصال عبر الخط الرسمي في {{startTime}} بتاريخ {{date}} – اكتمل النص الكامل – انظر البنود والتأكيد المسجلين في التعليق التالي.",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "call-back received",
+    "official line"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "Status: CALL-BACK RECEIVED on the official line at {{startTime}} on {{date}} – full script completed – see the items and confirmation recorded in the following comment.",
+     "ar": "الحالة: تم استلام معاودة الاتصال عبر الخط الرسمي في {{startTime}} بتاريخ {{date}} – اكتمل النص الكامل – انظر البنود والتأكيد المسجلين في التعليق التالي.",
+     "cond": null,
+     "kind": "internal",
+     "status": "published",
+     "tags": [
+      "call-back received",
+      "official line"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "call-11",
+   "s": "call-log",
+   "ss": "call-tl",
+   "kind": "internal",
+   "en": "[CALL WAIVER] Resubmission {{resub}} | Reason: {{reason}}\nApproved by: {{tlName}} on {{tlDate}}. Written return request issued with {{itemCount}} items.",
+   "ar": "[إعفاء من المكالمة] إعادة التقديم رقم {{resub}} | السبب: {{reason}}\nاعتمده: {{tlName}} بتاريخ {{tlDate}}. صدر طلب الإعادة الخطي متضمناً {{itemCount}} بنداً.",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "waiver",
+    "team leader",
+    "exception"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "[CALL WAIVER] Resubmission {{resub}} | Reason: {{reason}}\nApproved by: {{tlName}} on {{tlDate}}. Written return request issued with {{itemCount}} items.",
+     "ar": "[إعفاء من المكالمة] إعادة التقديم رقم {{resub}} | السبب: {{reason}}\nاعتمده: {{tlName}} بتاريخ {{tlDate}}. صدر طلب الإعادة الخطي متضمناً {{itemCount}} بنداً.",
+     "cond": {
+      "en": "Team Leader only – written-contact request by the taxpayer, or registered number confirmed invalid.",
+      "ar": "لرئيس الفريق فقط – طلب الخاضع للضريبة التواصل الخطي، أو ثبوت عدم صلاحية الرقم المسجل."
+     },
+     "kind": "internal",
+     "status": "published",
+     "tags": [
+      "waiver",
+      "team leader",
+      "exception"
+     ]
+    }
+   ],
+   "cond": {
+    "en": "Team Leader only – written-contact request by the taxpayer, or registered number confirmed invalid.",
+    "ar": "لرئيس الفريق فقط – طلب الخاضع للضريبة التواصل الخطي، أو ثبوت عدم صلاحية الرقم المسجل."
+   }
+  },
+  {
+   "id": "call-12",
+   "s": "call-log",
+   "ss": "call-tl",
+   "kind": "internal",
+   "en": "[CALL REASSIGNMENT] Resubmission {{resub}} | Call reassigned from {{officer}} to {{assignee}} by Team Leader {{tlName}} on {{tlDate}} – reason: {{reason}}. The assigned officer records the call comment under their own name.",
+   "ar": "[إعادة إسناد المكالمة] إعادة التقديم رقم {{resub}} | أُعيد إسناد المكالمة من {{officer}} إلى {{assignee}} بواسطة رئيس الفريق {{tlName}} بتاريخ {{tlDate}} – السبب: {{reason}}. يسجل الموظف المكلف تعليق المكالمة باسمه.",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "reassignment",
+    "language",
+    "team leader"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "[CALL REASSIGNMENT] Resubmission {{resub}} | Call reassigned from {{officer}} to {{assignee}} by Team Leader {{tlName}} on {{tlDate}} – reason: {{reason}}. The assigned officer records the call comment under their own name.",
+     "ar": "[إعادة إسناد المكالمة] إعادة التقديم رقم {{resub}} | أُعيد إسناد المكالمة من {{officer}} إلى {{assignee}} بواسطة رئيس الفريق {{tlName}} بتاريخ {{tlDate}} – السبب: {{reason}}. يسجل الموظف المكلف تعليق المكالمة باسمه.",
+     "cond": null,
+     "kind": "internal",
+     "status": "published",
+     "tags": [
+      "reassignment",
+      "language",
+      "team leader"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "call-13",
+   "s": "call-log",
+   "ss": "call-tp",
+   "kind": "notice",
+   "en": "As discussed in our call on {{date}} at {{startTime}}, kindly find below the complete list of items required to continue processing your application. The same list was communicated to you during the call.",
+   "ar": "كما تمت مناقشته في مكالمتنا بتاريخ {{date}} الساعة {{startTime}}، تجدون أدناه القائمة الكاملة بالبنود المطلوبة لمتابعة معالجة طلبكم، وهي القائمة نفسها التي تم إبلاغكم بها أثناء المكالمة.",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "return request",
+    "reference to call",
+    "taxpayer"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "As discussed in our call on {{date}} at {{startTime}}, kindly find below the complete list of items required to continue processing your application. The same list was communicated to you during the call.",
+     "ar": "كما تمت مناقشته في مكالمتنا بتاريخ {{date}} الساعة {{startTime}}، تجدون أدناه القائمة الكاملة بالبنود المطلوبة لمتابعة معالجة طلبكم، وهي القائمة نفسها التي تم إبلاغكم بها أثناء المكالمة.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "return request",
+      "reference to call",
+      "taxpayer"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "call-14",
+   "s": "call-log",
+   "ss": "call-tp",
+   "kind": "notice",
+   "en": "We tried to call you on {{date}} at {{attempt1At}} and {{attempt2At}} regarding your application, without success. Kindly find below the complete list of items required to continue processing your application.",
+   "ar": "حاولنا الاتصال بكم بتاريخ {{date}} في {{attempt1At}} و{{attempt2At}} بشأن طلبكم دون جدوى. تجدون أدناه القائمة الكاملة بالبنود المطلوبة لمتابعة معالجة طلبكم.",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "return request",
+    "no contact",
+    "taxpayer"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "We tried to call you on {{date}} at {{attempt1At}} and {{attempt2At}} regarding your application, without success. Kindly find below the complete list of items required to continue processing your application.",
+     "ar": "حاولنا الاتصال بكم بتاريخ {{date}} في {{attempt1At}} و{{attempt2At}} بشأن طلبكم دون جدوى. تجدون أدناه القائمة الكاملة بالبنود المطلوبة لمتابعة معالجة طلبكم.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "return request",
+      "no contact",
+      "taxpayer"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "call-15",
+   "s": "call-log",
+   "ss": "call-tp",
+   "kind": "notice",
+   "en": "FTA: We called you today at {{startTime}} regarding application {{appRef}}. {{itemCount}} item(s) are required to continue processing. The full list is in your EmaraTax inbox. Help: 800 TAXAE (800 82923).",
+   "ar": "الهيئة الاتحادية للضرائب: اتصلنا بكم اليوم الساعة {{startTime}} بشأن الطلب {{appRef}}. مطلوب {{itemCount}} بنداً لمتابعة المعالجة. القائمة الكاملة في صندوق الوارد لديكم في إمارات تاكس. للمساعدة: 800 82923.",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "sms",
+    "text message",
+    "answered"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "FTA: We called you today at {{startTime}} regarding application {{appRef}}. {{itemCount}} item(s) are required to continue processing. The full list is in your EmaraTax inbox. Help: 800 TAXAE (800 82923).",
+     "ar": "الهيئة الاتحادية للضرائب: اتصلنا بكم اليوم الساعة {{startTime}} بشأن الطلب {{appRef}}. مطلوب {{itemCount}} بنداً لمتابعة المعالجة. القائمة الكاملة في صندوق الوارد لديكم في إمارات تاكس. للمساعدة: 800 82923.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "sms",
+      "text message",
+      "answered"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "call-16",
+   "s": "call-log",
+   "ss": "call-tp",
+   "kind": "notice",
+   "en": "FTA: We tried to call you today at {{attempt1At}} and {{attempt2At}} regarding application {{appRef}}. {{itemCount}} item(s) are required to continue processing. The full list is in your EmaraTax inbox. Help: 800 TAXAE (800 82923).",
+   "ar": "الهيئة الاتحادية للضرائب: حاولنا الاتصال بكم اليوم في {{attempt1At}} و{{attempt2At}} بشأن الطلب {{appRef}}. مطلوب {{itemCount}} بنداً لمتابعة المعالجة. القائمة الكاملة في صندوق الوارد لديكم في إمارات تاكس. للمساعدة: 800 82923.",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "sms",
+    "text message",
+    "not answered"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "FTA: We tried to call you today at {{attempt1At}} and {{attempt2At}} regarding application {{appRef}}. {{itemCount}} item(s) are required to continue processing. The full list is in your EmaraTax inbox. Help: 800 TAXAE (800 82923).",
+     "ar": "الهيئة الاتحادية للضرائب: حاولنا الاتصال بكم اليوم في {{attempt1At}} و{{attempt2At}} بشأن الطلب {{appRef}}. مطلوب {{itemCount}} بنداً لمتابعة المعالجة. القائمة الكاملة في صندوق الوارد لديكم في إمارات تاكس. للمساعدة: 800 82923.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "sms",
+      "text message",
+      "not answered"
+     ]
+    }
+   ]
   }
  ],
  "reviewItems": [],
@@ -2271,6 +2954,327 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "type": "text",
    "en": "Treaty country",
    "ar": "دولة الاتفاقية"
+  },
+  "resub": {
+   "type": "select",
+   "en": "Resubmission number",
+   "ar": "رقم إعادة التقديم",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5+"
+   ],
+   "optionsAr": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5+"
+   ]
+  },
+  "callType": {
+   "type": "select",
+   "en": "Call type",
+   "ar": "نوع المكالمة",
+   "options": [
+    "CLARIFICATION",
+    "INFORMATIVE",
+    "CONFIRMATION",
+    "OPTIONAL"
+   ],
+   "optionsAr": [
+    "توضيحية",
+    "إعلامية",
+    "تأكيدية",
+    "اختيارية"
+   ]
+  },
+  "attempt": {
+   "type": "select",
+   "en": "Attempt",
+   "ar": "المحاولة",
+   "options": [
+    "1 of 2",
+    "2 of 2",
+    "3 (call-back)",
+    "1 of 1"
+   ],
+   "optionsAr": [
+    "1 من 2",
+    "2 من 2",
+    "3 (معاودة اتصال)",
+    "1 من 1"
+   ]
+  },
+  "appRef": {
+   "type": "text",
+   "en": "Application reference",
+   "ar": "الرقم المرجعي للطلب"
+  },
+  "contactName": {
+   "type": "text",
+   "en": "Taxpayer / contact name (as registered)",
+   "ar": "اسم الخاضع للضريبة / جهة الاتصال (كما هو مسجل)"
+  },
+  "role": {
+   "type": "select",
+   "en": "Role",
+   "ar": "الصفة",
+   "options": [
+    "Taxpayer",
+    "Authorised signatory"
+   ],
+   "optionsAr": [
+    "الخاضع للضريبة",
+    "المفوض بالتوقيع"
+   ]
+  },
+  "mobile": {
+   "type": "text",
+   "en": "Mobile number dialled",
+   "ar": "رقم الهاتف المتصل به"
+  },
+  "regNumber": {
+   "type": "select",
+   "en": "Registered number?",
+   "ar": "هل هو الرقم المسجل؟",
+   "options": [
+    "YES",
+    "NO"
+   ],
+   "optionsAr": [
+    "نعم",
+    "لا"
+   ]
+  },
+  "startTime": {
+   "type": "text",
+   "en": "Start time (HH:MM)",
+   "ar": "وقت البداية (س:د)"
+  },
+  "ring": {
+   "type": "text",
+   "en": "Ring duration (seconds)",
+   "ar": "مدة الرنين (ثانية)"
+  },
+  "talk": {
+   "type": "text",
+   "en": "Talk duration (mm:ss)",
+   "ar": "مدة المكالمة (د:ث)"
+  },
+  "officer": {
+   "type": "text",
+   "en": "Officer name",
+   "ar": "اسم الموظف"
+  },
+  "idVia": {
+   "type": "select",
+   "en": "Identity confirmed via",
+   "ar": "تم التحقق من الهوية عبر",
+   "options": [
+    "TRN",
+    "Registered email",
+    "Trade licence number"
+   ],
+   "optionsAr": [
+    "رقم التسجيل الضريبي",
+    "البريد الإلكتروني المسجل",
+    "رقم الرخصة التجارية"
+   ]
+  },
+  "items": {
+   "type": "textarea",
+   "en": "Items communicated (one per line: item – reason – where to upload)",
+   "ar": "البنود المبلغ عنها (بند في كل سطر: البند – السبب – مكان التحميل)"
+  },
+  "response": {
+   "type": "textarea",
+   "en": "Taxpayer response (understood / questions asked)",
+   "ar": "رد الخاضع للضريبة (فهم / أسئلة طُرحت)"
+  },
+  "returnAt": {
+   "type": "text",
+   "en": "Return request issued (DD/MM/YYYY HH:MM)",
+   "ar": "صدور طلب الإعادة (يوم/شهر/سنة س:د)"
+  },
+  "sms": {
+   "type": "select",
+   "en": "SMS sent",
+   "ar": "الرسالة النصية",
+   "options": [
+    "YES",
+    "NO – channel not available"
+   ],
+   "optionsAr": [
+    "نعم",
+    "لا – القناة غير متاحة"
+   ]
+  },
+  "needed": {
+   "type": "textarea",
+   "en": "Document / entry in question",
+   "ar": "المستند / البند محل الاستفسار"
+  },
+  "question": {
+   "type": "textarea",
+   "en": "Question asked (verbatim)",
+   "ar": "السؤال المطروح (نصاً)"
+  },
+  "answer": {
+   "type": "textarea",
+   "en": "Taxpayer answer (verbatim)",
+   "ar": "إجابة الخاضع للضريبة (نصاً)"
+  },
+  "effect": {
+   "type": "select",
+   "en": "Effect on the review",
+   "ar": "الأثر على المراجعة",
+   "options": [
+    "No change – review continues",
+    "Application data changes – written confirmation requested in EmaraTax"
+   ],
+   "optionsAr": [
+    "لا تغيير – تستمر المراجعة",
+    "تتغير بيانات الطلب – طُلب تأكيد خطي عبر إمارات تاكس"
+   ]
+  },
+  "nextCall": {
+   "type": "select",
+   "en": "Next call rule",
+   "ar": "قاعدة المكالمة التالية",
+   "options": [
+    "No mandatory call",
+    "INFORMATIVE call",
+    "CONFIRMATION call"
+   ],
+   "optionsAr": [
+    "لا مكالمة إلزامية",
+    "مكالمة إعلامية",
+    "مكالمة تأكيدية"
+   ]
+  },
+  "confirmStatus": {
+   "type": "select",
+   "en": "Confirmation outcome",
+   "ar": "نتيجة التأكيد",
+   "options": [
+    "CONFIRMED",
+    "PARTIALLY CONFIRMED"
+   ],
+   "optionsAr": [
+    "مؤكد",
+    "مؤكد جزئياً"
+   ]
+  },
+  "prevDates": {
+   "type": "text",
+   "en": "Previously communicated on (dates)",
+   "ar": "تواريخ الإبلاغ السابقة"
+  },
+  "noAnswerStatus": {
+   "type": "select",
+   "en": "Status",
+   "ar": "الحالة",
+   "options": [
+    "NOT ANSWERED",
+    "BUSY / LINE ENGAGED",
+    "SWITCHED OFF / UNREACHABLE"
+   ],
+   "optionsAr": [
+    "لم يتم الرد",
+    "مشغول",
+    "مغلق / لا يمكن الوصول إليه"
+   ]
+  },
+  "attempt1At": {
+   "type": "text",
+   "en": "Attempt 1 (DD/MM/YYYY HH:MM)",
+   "ar": "المحاولة 1 (يوم/شهر/سنة س:د)"
+  },
+  "ring1": {
+   "type": "text",
+   "en": "Attempt 1 ring (seconds)",
+   "ar": "رنين المحاولة 1 (ثانية)"
+  },
+  "attempt2At": {
+   "type": "text",
+   "en": "Attempt 2 (DD/MM/YYYY HH:MM)",
+   "ar": "المحاولة 2 (يوم/شهر/سنة س:د)"
+  },
+  "ring2": {
+   "type": "text",
+   "en": "Attempt 2 ring (seconds)",
+   "ar": "رنين المحاولة 2 (ثانية)"
+  },
+  "gap": {
+   "type": "text",
+   "en": "Gap between attempts (h:mm)",
+   "ar": "الفاصل بين المحاولتين (س:د)"
+  },
+  "itemCount": {
+   "type": "text",
+   "en": "Number of items",
+   "ar": "عدد البنود"
+  },
+  "tlName": {
+   "type": "text",
+   "en": "Team Leader name",
+   "ar": "اسم رئيس الفريق"
+  },
+  "tlDate": {
+   "type": "text",
+   "en": "Team Leader approval date",
+   "ar": "تاريخ اعتماد رئيس الفريق"
+  },
+  "otherStatus": {
+   "type": "select",
+   "en": "Status",
+   "ar": "الحالة",
+   "options": [
+    "REFUSED TO TAKE THE CALL",
+    "NOT THE CONCERNED PERSON",
+    "WRONG NUMBER / INVALID NUMBER"
+   ],
+   "optionsAr": [
+    "رفض استقبال المكالمة",
+    "ليس الشخص المعني",
+    "رقم خاطئ / غير صالح"
+   ]
+  },
+  "details": {
+   "type": "textarea",
+   "en": "Details (who answered / what the taxpayer stated / number not in service)",
+   "ar": "التفاصيل (من أجاب / ما صرّح به الخاضع للضريبة / الرقم خارج الخدمة)"
+  },
+  "altNumber": {
+   "type": "select",
+   "en": "Alternative registered number dialled",
+   "ar": "الاتصال برقم مسجل بديل",
+   "options": [
+    "YES – see separate attempt comment",
+    "NO – none registered"
+   ],
+   "optionsAr": [
+    "نعم – انظر تعليق المحاولة المنفصل",
+    "لا – لا يوجد رقم مسجل"
+   ]
+  },
+  "reason": {
+   "type": "text",
+   "en": "Reason",
+   "ar": "السبب"
+  },
+  "agreedAt": {
+   "type": "text",
+   "en": "Agreed call-back time (DD/MM/YYYY HH:MM)",
+   "ar": "موعد معاودة الاتصال المتفق عليه"
+  },
+  "assignee": {
+   "type": "text",
+   "en": "Assigned officer",
+   "ar": "الموظف المكلف"
   }
  },
  "synonyms": {
@@ -2719,6 +3723,124 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
      "ar": "تعليق داخلي: تم إرسال الإشعار، لم يُقدَّم نموذج خاص؛ 30 يوم عمل للتقديم"
     }
    ]
+  },
+  {
+   "id": "call-sc-informative",
+   "en": "Call — informative (resubmission 2), answered",
+   "ar": "مكالمة — إعلامية (إعادة التقديم 2)، تمت الإجابة",
+   "ids": [
+    "call-00",
+    "call-01"
+   ],
+   "svc": "*",
+   "basis": {
+    "en": "Mandatory call",
+    "ar": "مكالمة إلزامية"
+   },
+   "checks": [
+    {
+     "en": "Ring ≥ 30 s · official line · 9:00 AM – 8:00 PM · comment within 15 minutes · item list identical to the written return",
+     "ar": "رنين ≥ 30 ث · الخط الرسمي · 9 ص – 8 م · التعليق خلال 15 دقيقة · قائمة البنود مطابقة لطلب الإعادة الخطي"
+    },
+    {
+     "en": "Add the taxpayer-facing “As discussed in our call” line to the return request",
+     "ar": "أضف سطر «كما تمت مناقشته في مكالمتنا» إلى طلب الإعادة"
+    }
+   ]
+  },
+  {
+   "id": "call-sc-confirmation",
+   "en": "Call — confirmation (resubmission 3+), answered",
+   "ar": "مكالمة — تأكيدية (إعادة التقديم 3+)، تمت الإجابة",
+   "ids": [
+    "call-00",
+    "call-04"
+   ],
+   "svc": "*",
+   "basis": {
+    "en": "Mandatory call",
+    "ar": "مكالمة إلزامية"
+   },
+   "checks": [
+    {
+     "en": "Record CONFIRMED / NOT CLEAR per item; name the unclear item and the guidance given",
+     "ar": "سجّل مؤكد / غير واضح لكل بند؛ سمِّ البند غير الواضح والإرشاد المقدم"
+    }
+   ]
+  },
+  {
+   "id": "call-sc-clarify",
+   "en": "Call — clarification (no return)",
+   "ar": "مكالمة — توضيحية (دون إعادة)",
+   "ids": [
+    "call-00",
+    "call-02"
+   ],
+   "svc": "*",
+   "basis": {
+    "en": "Optional call",
+    "ar": "مكالمة اختيارية"
+   },
+   "checks": [
+    {
+     "en": "Only when nothing needs uploading or amending; question and answer verbatim; if a document is needed use “Clarification – return required”",
+     "ar": "فقط عندما لا يلزم تحميل أو تعديل؛ السؤال والإجابة نصاً؛ إذا لزم مستند استخدم «توضيح – يلزم إعادة الطلب»"
+    }
+   ]
+  },
+  {
+   "id": "call-sc-nocontact",
+   "en": "Call — no contact after two attempts",
+   "ar": "مكالمة — تعذّر التواصل بعد محاولتين",
+   "ids": [
+    "call-00",
+    "call-06"
+   ],
+   "svc": "*",
+   "basis": {
+    "en": "No Contact – Team Leader approval",
+    "ar": "تعذّر التواصل – اعتماد رئيس الفريق"
+   },
+   "checks": [
+    {
+     "en": "Two attempts ≥ 30 s each, ≥ 1 hour apart, both within the window; SMS not-answered variant; next return needs a confirmation call",
+     "ar": "محاولتان ≥ 30 ث لكل منهما وبفاصل ≥ ساعة وضمن الفترة؛ الرسالة النصية بصيغة عدم الرد؛ الإعادة التالية تتطلب مكالمة تأكيد"
+    }
+   ]
+  },
+  {
+   "id": "call-sc-refused",
+   "en": "Call — refused / third party / wrong number",
+   "ar": "مكالمة — رفض / طرف ثالث / رقم خاطئ",
+   "ids": [
+    "call-00",
+    "call-07"
+   ],
+   "svc": "*",
+   "basis": {
+    "en": "Exception – daily list",
+    "ar": "استثناء – القائمة اليومية"
+   },
+   "checks": [
+    {
+     "en": "Never disclose application details before identity is confirmed",
+     "ar": "لا تُفصح عن تفاصيل الطلب قبل التحقق من الهوية"
+    }
+   ]
+  },
+  {
+   "id": "call-sc-callback",
+   "en": "Call — call back requested",
+   "ar": "مكالمة — طلب معاودة الاتصال",
+   "ids": [
+    "call-00",
+    "call-09"
+   ],
+   "svc": "*",
+   "basis": {
+    "en": "Agreed time within the window",
+    "ar": "موعد متفق عليه ضمن الفترة"
+   }
   }
  ],
  "conflicts": [
@@ -2765,7 +3887,7 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "tn-02",
    "tn-04"
   ],
-  "total": 35,
+  "total": 52,
   "services": 3,
   "counts": {
    "identity": 3,
@@ -2816,8 +3938,7 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
   "exclusive": [
    "rj-01",
    "rj-02"
-  ],
-  "mainSvc": "tax-residency-certificate"
+  ]
  }
 }
 </script>
@@ -2891,6 +4012,7 @@ const I = {
   grid: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>',
   send: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>',
   lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+  phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>',
   down: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 10 6 6 6-6"/></svg>',
   eye: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
   save: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 4h11l3 3v13H5z M8 4v5h7V4 M8 20v-6h8v6"/></svg>',
@@ -2907,7 +4029,7 @@ const T = {
   en: {
     search_ph: 'Search comments… e.g. expired eid, moa, jafza, هوية',
     all: 'All', sections: 'Sections', favorites: 'Favourites', recents: 'Recently used', presets: 'Case presets',
-    kind_request: 'Request', kind_attachment: 'Attachment', kind_rejection: 'Rejection', kind_notice: 'Notice', kind_internal: 'Internal note', density: 'Density', d_comfort: 'Comfortable', d_compact: 'Compact', fav: 'Favourite', aud_lbl: 'Show', aud_ext: 'To the taxpayer', aud_int: 'Internal notes', aud_all: 'All', aud_note: 'Internal notes are for the internal comment field and the Level 2 reviewer — they are never sent to the taxpayer.', aud_field: 'Audience', aud_ext_h: 'Sent to the taxpayer through the portal', aud_int_h: 'Internal review note (Level 1 → Level 2), never sent', w_internal: 'Internal review note included — paste it in the internal comment field only, never to the taxpayer.',
+    kind_request: 'Request', kind_attachment: 'Attachment', kind_rejection: 'Rejection', kind_notice: 'Notice', kind_internal: 'Internal note', kind_call: 'Call log', aud_call: 'Call log', aud_call_note: 'Audit-trail templates for taxpayer calls (SOP: Contact the Taxpayer by Phone). One comment per attempt; paste into the internal comment field.', density: 'Density', d_comfort: 'Comfortable', d_compact: 'Compact', fav: 'Favourite', aud_lbl: 'Show', aud_ext: 'To the taxpayer', aud_int: 'Internal notes', aud_all: 'All', aud_note: 'Internal notes are for the internal comment field and the Level 2 reviewer — they are never sent to the taxpayer.', aud_field: 'Audience', aud_ext_h: 'Sent to the taxpayer through the portal', aud_int_h: 'Internal review note (Level 1 → Level 2), never sent', w_internal: 'Internal review note included — paste it in the internal comment field only, never to the taxpayer.',
     f_all: 'All kinds', f_cond: 'Has condition', f_ar: 'Has Arabic', f_ph: 'Has blanks',
     composer: 'Composer', add: 'Add', added: 'Added', copy_en: 'Copy EN', copy_ar: 'Copy AR', copy_both: 'Copy both', copied: 'Copied', copy_failed: 'Copy failed — select the preview and press Ctrl+C',
     results: 'results', no_results: 'No comments match', no_results_hint: 'Try fewer words, an abbreviation (MOA, EID, TL) or Arabic. Press Esc to clear.',
@@ -2946,7 +4068,7 @@ const T = {
   ar: {
     search_ph: 'ابحث في التعليقات… مثال: هوية منتهية، عقد التأسيس، جافزا، eid',
     all: 'الكل', sections: 'الأقسام', favorites: 'المفضلة', recents: 'المستخدمة مؤخراً', presets: 'قوالب الحالات',
-    kind_request: 'طلب تعديل', kind_attachment: 'مرفق', kind_rejection: 'رفض', kind_notice: 'إشعار', kind_internal: 'ملاحظة داخلية', density: 'الكثافة', d_comfort: 'مريح', d_compact: 'مضغوط', fav: 'مفضلة', aud_lbl: 'عرض', aud_ext: 'إلى الخاضع للضريبة', aud_int: 'ملاحظات داخلية', aud_all: 'الكل', aud_note: 'الملاحظات الداخلية مخصصة لحقل التعليق الداخلي ومراجع المستوى الثاني — ولا تُرسل إلى الخاضع للضريبة أبداً.', aud_field: 'الجهة المستهدفة', aud_ext_h: 'يُرسل إلى الخاضع للضريبة عبر البوابة', aud_int_h: 'ملاحظة مراجعة داخلية (المستوى 1 ← 2)، لا تُرسل', w_internal: 'يتضمن الرد ملاحظة مراجعة داخلية — تُلصق في حقل التعليق الداخلي فقط ولا تُرسل للخاضع للضريبة.',
+    kind_request: 'طلب تعديل', kind_attachment: 'مرفق', kind_rejection: 'رفض', kind_notice: 'إشعار', kind_internal: 'ملاحظة داخلية', kind_call: 'سجل المكالمات', aud_call: 'سجل المكالمات', aud_call_note: 'قوالب سجل التدقيق لمكالمات الخاضع للضريبة (إجراء الاتصال الهاتفي). تعليق لكل محاولة؛ يُلصق في حقل التعليق الداخلي.', density: 'الكثافة', d_comfort: 'مريح', d_compact: 'مضغوط', fav: 'مفضلة', aud_lbl: 'عرض', aud_ext: 'إلى الخاضع للضريبة', aud_int: 'ملاحظات داخلية', aud_all: 'الكل', aud_note: 'الملاحظات الداخلية مخصصة لحقل التعليق الداخلي ومراجع المستوى الثاني — ولا تُرسل إلى الخاضع للضريبة أبداً.', aud_field: 'الجهة المستهدفة', aud_ext_h: 'يُرسل إلى الخاضع للضريبة عبر البوابة', aud_int_h: 'ملاحظة مراجعة داخلية (المستوى 1 ← 2)، لا تُرسل', w_internal: 'يتضمن الرد ملاحظة مراجعة داخلية — تُلصق في حقل التعليق الداخلي فقط ولا تُرسل للخاضع للضريبة.',
     f_all: 'كل الأنواع', f_cond: 'له شرط', f_ar: 'له نص عربي', f_ph: 'به فراغات',
     composer: 'المنشئ', add: 'إضافة', added: 'مضاف', copy_en: 'نسخ EN', copy_ar: 'نسخ AR', copy_both: 'نسخ الاثنين', copied: 'تم النسخ', copy_failed: 'تعذر النسخ — حدد المعاينة واضغط Ctrl+C',
     results: 'نتيجة', no_results: 'لا توجد تعليقات مطابقة', no_results_hint: 'جرّب كلمات أقل أو اختصاراً (MOA, EID, TL) أو بالإنجليزية. اضغط Esc للمسح.',
@@ -3034,9 +4156,10 @@ const Store = {
   comment(id) { return this.bank.comments.find(c => c.id === id); },
   service(id) { return this.bank.services.find(x => x.id === id); },
   servicesSorted() { return [...this.bank.services].sort((a, b) => L(a).localeCompare(L(b), LANG === 'ar' ? 'ar' : 'en')); },
-  svcOf(c) { return c ? this.section(c.s)?.svc : null; },
-  sectionsOf(svc) { return this.bank.sections.filter(x => x.svc === svc); },
-  svcCount(svc) { const secs = new Set(this.sectionsOf(svc).map(x => x.id)); return this.published().filter(c => secs.has(c.s)).length; },
+  svcOf(c) { if (!c) return null; const sv = this.section(c.s)?.svc; return sv === '*' ? this.user.svc : sv; },
+  sectionsOf(svc) { return this.bank.sections.filter(x => x.svc === svc || x.svc === '*'); },
+  svcCount(svc) { const secs = new Set(this.bank.sections.filter(x => x.svc === svc).map(x => x.id)); return this.published().filter(c => secs.has(c.s)).length; },
+  isShared(c) { return this.section(c.s)?.svc === '*'; },
   section(id) { return this.bank.sections.find(s => s.id === id); },
   sub(sid, ssid) { return (this.section(sid)?.subsections || []).find(x => x.id === ssid); },
   published() { return this.bank.comments.filter(c => c.status === 'published'); },
@@ -3316,6 +4439,7 @@ const Composer = {
     if (rej > 1) w.push({ c: 'red', m: t('w_multi_rej') });
     if (rej && rej < kinds.length) w.push({ c: 'red', m: t('w_mix') });
     const intl = kinds.filter(k => k === 'internal').length; if (intl && intl < kinds.length) w.push({ c: 'red', m: t('w_internal') });
+    const sh = this.items.filter(id => Store.isShared(Store.comment(id))).length; if (sh && sh < this.items.length) w.push({ c: 'red', m: t('w_internal') });
     if (this.items.some(id => Store.comment(id)?.cond)) w.push({ c: 'amber', m: t('w_cond') });
     return w;
   },
@@ -3387,6 +4511,7 @@ const Composer = {
           let input;
           if (p.type === 'date') input = `<input type="date" class="${miss}" data-tok="${k}" value="${h(v)}">`;
           else if (p.type === 'select') input = `<select data-tok="${k}" class="${miss}"><option value="">—</option>${(p.options || []).map((o, i) => `<option value="${h(o)}" ${o === v ? 'selected' : ''}>${h(LANG === 'ar' && p.optionsAr?.[i] ? p.optionsAr[i] : o)}${p.optionsAr?.[i] ? ` · ${h(LANG === 'ar' ? o : p.optionsAr[i])}` : ''}</option>`).join('')}</select>`;
+          else if (p.type === 'textarea') input = `<textarea data-tok="${k}" class="${miss}" placeholder="…" rows="4">${h(v)}</textarea>`;
           else if (p.type === 'authority') input = `<input list="dl-auth" class="${miss}" data-tok="${k}" value="${h(v)}" placeholder="…"><datalist id="dl-auth">${auths.map(a => `<option value="${h(a)}">`).join('')}</datalist>`;
           else { const rv = (Store.user.recentValues[k] || []); input = `<input type="text" class="${miss}" data-tok="${k}" value="${h(v)}" ${/Ar$/.test(k) ? 'dir="rtl" lang="ar"' : ''} placeholder="…" ${rv.length ? `list="dl-${k}"` : ''}>${rv.length ? `<datalist id="dl-${k}">${rv.map(x => `<option value="${h(x)}">`).join('')}</datalist>` : ''}`; }
           return `<div class="field"><label>${h(L(p))} <span class="vtag">{{${k}}}</span></label>${input}</div>`;
@@ -3491,7 +4616,7 @@ function renderSidebar() {
     ${favs.length ? `<h4>${t('favorites')}</h4><div class="mini">${favs.map(c => `<button data-act="jump" data-id="${c.id}" title="${h(c.en)}">${h((c.en || c.ar).slice(0, 34))}…</button>`).join('')}</div>` : ''}
     ${rec.length ? `<h4>${t('recents')}</h4><div class="mini">${rec.map(c => `<button data-act="jump" data-id="${c.id}" title="${h(c.en)}">${h((c.en || c.ar).slice(0, 34))}…</button>`).join('')}</div>` : ''}
     ${Store.user.presets.length ? `<h4>${t('presets')}</h4><div class="mini">${Store.user.presets.map(p => `<button data-act="preset-load" data-pid="${p.id}">${h(p.name)}</button>`).join('')}</div>` : ''}
-    ${Store.bank.scenarios.filter(x => x.svc === sv.id).length ? `<h4>${t('scenarios')}</h4><div class="mini">${Store.bank.scenarios.filter(x => x.svc === sv.id).map(sc => `<button data-act="scen-load" data-sid="${sc.id}" title="${h(sc.en)}">${h(L(sc))}</button>`).join('')}</div>` : ''}`;
+    ${Store.bank.scenarios.filter(x => x.svc === sv.id || x.svc === '*').length ? `<h4>${t('scenarios')}</h4><div class="mini">${Store.bank.scenarios.filter(x => x.svc === sv.id || x.svc === '*').map(sc => `<button data-act="scen-load" data-sid="${sc.id}" title="${h(sc.en)}">${h(L(sc))}</button>`).join('')}</div>` : ''}`;
 }
 function releaseBanner() {
   if (Store.user.seenRelease === Store.bank.version) return '';
@@ -3514,7 +4639,8 @@ function sysBanners() {
 }
 function inSvc(c) { return Store.svcOf(c) === Store.user.svc; }
 function hasInternal() { return Store.published().some(c => c.kind === 'internal'); }
-function inAudience(c) { if (!hasInternal() || UI.audience === 'all') return true; return UI.audience === 'internal' ? c.kind === 'internal' : c.kind !== 'internal'; }
+function hasCalls() { return Store.published().some(c => Store.isShared(c)); }
+function inAudience(c) { if (UI.audience === 'call') return Store.isShared(c); if (Store.isShared(c)) return UI.audience === 'all'; if (!hasInternal() || UI.audience === 'all') return true; return UI.audience === 'internal' ? c.kind === 'internal' : c.kind !== 'internal'; }
 function passesFilter(c) {
   const f = UI.filter;
   if (!inAudience(c)) return false;
@@ -3531,9 +4657,10 @@ function cardHtml(c, terms, hl = true) {
   const expanded = UI.expanded.has(c.id);
   const fav = Store.user.favs.includes(c.id);
   const pos = Composer.items.indexOf(c.id) + 1; const used = Store.user.usage[c.id] || 0; const dense = Store.user.density === 'compact';
-  return `<article class="card k-${c.kind} ${Composer.has(c.id) ? 'in' : ''} ${long && !expanded && !dense ? 'clamp' : ''} ${dense ? 'dense' : ''}" data-id="${c.id}" tabindex="0" title="${dense ? h((c.en || '').slice(0, 300)) : ''}">
+  const shared = Store.isShared(c);
+  return `<article class="card k-${c.kind} ${shared ? 'shared' : ''} ${Composer.has(c.id) ? 'in' : ''} ${long && !expanded && !dense ? 'clamp' : ''} ${dense ? 'dense' : ''}" data-id="${c.id}" tabindex="0" title="${dense ? h((c.en || '').slice(0, 300)) : ''}">
     <div class="card-h">
-      <span class="kpill"><i></i>${c.kind === 'internal' ? I.lock : ''}${t('kind_' + c.kind)}</span>
+      <span class="kpill"><i></i>${shared ? I.phone + t('kind_call') : (c.kind === 'internal' ? I.lock : '') + t('kind_' + c.kind)}</span>
       <span class="crumb">${UI.q && UI.scope === 'all' ? `<span class="svc">${h(L(Store.service(sec?.svc)))}</span> › ` : ''}<b>${h(L(sec))}</b> › ${h(L(sub))}</span>
       <span class="quick">
         <button class="star ${fav ? 'on' : ''}" data-act="fav" data-id="${c.id}" aria-label="favourite" title="${t('fav')}">${fav ? I.star : I.starO}</button>
@@ -3564,8 +4691,8 @@ function cardHtml(c, terms, hl = true) {
 }
 function chipsHtml() {
   const f = UI.filter;
-  const aud = hasInternal() ? (() => { const all = Store.published().filter(UI.q.trim() ? () => true : inSvc); const ne = all.filter(c => c.kind !== 'internal').length, ni = all.length - ne; const B = (v, cls, ic, lab, n) => `<button data-aud="${v}" class="${cls} ${UI.audience === v ? 'on' : ''}" aria-pressed="${UI.audience === v}">${ic}${lab}<span class="n">${n}</span></button>`;
-    return `<div class="audbar"><span class="lbl">${t('aud_lbl')}</span><div class="seg aud" role="group" aria-label="${t('aud_field')}">${B('external', 'ext', I.send, t('aud_ext'), ne)}${B('internal', 'int', I.lock, t('aud_int'), ni)}${B('all', 'all', '', t('aud_all'), all.length)}</div>${UI.audience !== 'external' ? `<span class="audnote">${I.lock}${t('aud_note')}</span>` : ''}</div>`; })() : '';
+  const aud = (hasInternal() || hasCalls()) ? (() => { const all = Store.published().filter(UI.q.trim() ? () => true : inSvc); const nc = all.filter(Store.isShared.bind(Store)).length; const ne = all.filter(c => c.kind !== 'internal' && !Store.isShared(c)).length, ni = all.length - ne - nc; const B = (v, cls, ic, lab, n) => `<button data-aud="${v}" class="${cls} ${UI.audience === v ? 'on' : ''}" aria-pressed="${UI.audience === v}">${ic}${lab}<span class="n">${n}</span></button>`;
+    return `<div class="audbar"><span class="lbl">${t('aud_lbl')}</span><div class="seg aud" role="group" aria-label="${t('aud_field')}">${B('external', 'ext', I.send, t('aud_ext'), ne)}${hasInternal() ? B('internal', 'int', I.lock, t('aud_int'), ni) : ''}${hasCalls() ? B('call', 'call', I.phone, t('aud_call'), nc) : ''}${B('all', 'all', '', t('aud_all'), all.length)}</div>${UI.audience === 'call' ? `<span class="audnote call">${I.phone}${t('aud_call_note')}</span>` : UI.audience !== 'external' ? `<span class="audnote">${I.lock}${t('aud_note')}</span>` : ''}</div>`; })() : '';
   return aud + `<div class="chips">
     ${[['all', 'f_all'], ['request', 'kind_request'], ['attachment', 'kind_attachment'], ['rejection', 'kind_rejection'], ['notice', 'kind_notice']].filter(([v]) => UI.audience !== 'internal' || v === 'all').map(([v, k]) => `<button class="chip ${f.kind === v ? 'on' : ''}" data-chip="kind" data-v="${v}">${t(k)}</button>`).join('')}
     <span style="width:8px"></span>
@@ -3851,7 +4978,7 @@ const Services = {
 /* ---------------- Scenarios ---------------- */
 const Scenarios = {
   dialog() {
-    const sc = (Store.bank.scenarios || []).filter(x => x.svc === Store.user.svc);
+    const sc = (Store.bank.scenarios || []).filter(x => x.svc === Store.user.svc || x.svc === '*');
     openDialog(`<div class="dlg-h"><h3>${t('start_scenario')}</h3><span class="vtag">${h(L(Store.service(Store.user.svc)))}</span><span class="sp"></span><button class="ib" data-close>${I.x}</button></div>
       <div class="dlg-b">${sc.length ? `<div class="scen ${sc.some(x => x.basis || x.eligible || x.docs || x.checks) ? 'guide' : ''}">${sc.map(x => `<div class="sc"><b>${h(LANG === 'ar' && x.ar ? x.ar : x.en)}</b><span class="ar" lang="${LANG === 'ar' ? 'en' : 'ar'}" dir="${LANG === 'ar' ? 'ltr' : 'rtl'}">${h(LANG === 'ar' ? x.en : x.ar)}</span>${x.basis ? `<span class="basis" title="${t('sc_basis')}">${h(L(x.basis))}</span>` : ''}<span class="n">${x.ids.filter(id => Store.comment(id)).length} · ${x.ids.map(id => Store.comment(id)).filter(Boolean).map(c => t('kind_' + c.kind)).filter((v, i, a) => a.indexOf(v) === i).join(', ')}</span>
         ${Scenarios.guideHtml(x)}
@@ -3897,7 +5024,7 @@ const Palette = {
       { k: t('pal_actions'), tx: t('act_tour'), run: () => Tour.start() },
       { k: t('pal_actions'), tx: t('act_admin'), run: () => Admin.enter() },
     ];
-    Store.bank.scenarios.filter(x => x.svc === Store.user.svc).forEach(sc => a.push({ k: t('pal_scen'), tx: L(sc), run: () => Scenarios.load(sc.id) }));
+    Store.bank.scenarios.filter(x => x.svc === Store.user.svc || x.svc === '*').forEach(sc => a.push({ k: t('pal_scen'), tx: L(sc), run: () => Scenarios.load(sc.id) }));
     Store.servicesSorted().forEach(sv => a.push({ k: t('service'), tx: L(sv) + (Store.svcCount(sv.id) ? ` · ${Store.svcCount(sv.id)}` : ' · —'), run: () => Services.set(sv.id) }));
     Store.user.presets.forEach(p => a.push({ k: t('pal_preset'), tx: p.name, run: () => Composer.loadPreset(p.id) }));
     return a;
@@ -4600,8 +5727,8 @@ function selfTest(silent) {
   ok('field: frame time under 16.7 ms', (() => { if (!Field.gl) return true; const t0 = performance.now(); for (let i = 0; i < 30; i++) Field.draw(i / 60); Field.gl.finish?.(); return (performance.now() - t0) / 30 < 16.7; })());
   ok('home: at most 9 elements', (() => { Splash.render(); const n = $$('#splash .stage > *, #splash .col > *').filter(x => !x.classList.contains('col')).length; return n <= 9; })(), String($$('#splash .stage > *, #splash .col > *').length - 1));
   if (F.services) ok(`services: ${F.services} unique in ${EMBED.area.en} file`, EMBED.services.length === F.services && new Set(EMBED.services.map(x => x.id)).size === F.services);
-  ok('services: every section belongs to a service', EMBED.sections.every(x => EMBED.services.some(sv => sv.id === x.svc)));
-  ok('services: scenarios carry a valid service', EMBED.scenarios.every(x => EMBED.services.some(sv => sv.id === x.svc)));
+  ok('services: every section belongs to a service', EMBED.sections.every(x => x.svc === '*' || EMBED.services.some(sv => sv.id === x.svc)));
+  ok('services: scenarios carry a valid service', EMBED.scenarios.every(x => x.svc === '*' || EMBED.services.some(sv => sv.id === x.svc)));
   if (F.mainSvc) ok(`services: bank under ${F.mainSvc}`, Store.svcCount(F.mainSvc) === Store.published().length);
   ok('scenarios: all ids resolve', EMBED.scenarios.length >= 8 && EMBED.scenarios.every(sc => sc.ids.every(id => EMBED.comments.some(c => c.id === id))));
   ok('scenarios: guide fields are bilingual', EMBED.scenarios.every(sc => (!sc.basis || (sc.basis.en && sc.basis.ar)) && (!sc.eligible || (sc.eligible.en && sc.eligible.ar)) && (sc.docs || []).every(d => d.en && d.ar) && (sc.checks || []).every(d => d.en && d.ar)));
@@ -4631,6 +5758,7 @@ function selfTest(silent) {
   ok('arabic: no English words inside Arabic comments (links allowed)', EMBED.comments.every(c => !/[A-Za-z]/.test(noUrl(c.ar))), EMBED.comments.filter(c => /[A-Za-z]/.test(noUrl(c.ar))).map(c => c.id).join(','));
   ok('render: English comments show only English, Arabic only Arabic (both UI languages)', (() => { const prev = LANG; let bad = []; for (const l of ['en', 'ar']) { LANG = l; EMBED.comments.forEach(c => { const tx = html => { const d = document.createElement('div'); d.innerHTML = html; return d.textContent; }; const en = tx(renderText(c.en)), ar = tx(renderText(c.ar)).replace(/https?:\/\/\S+/g, '').replace(/\b(VAT|CT|EXC)\d{3}\b/g, ''); if (/[\u0600-\u06FF]/.test(en) || /[A-Za-z]/.test(ar)) bad.push(l + ':' + c.id); }); } LANG = prev; return !bad.length; })());
   ok('copy: formatted copy marks English ltr/left and Arabic rtl/right', (() => { const h2 = linesToHtml([{ d: 'ltr', s: '\u200E1. Kindly' }, { d: 'ltr', s: '' }, { d: 'rtl', s: '\u200F1. يرجى' }]); return h2.includes('dir="ltr" lang="en" style="margin:0;direction:ltr;text-align:left') && h2.includes('dir="rtl" lang="ar" style="margin:0;direction:rtl;text-align:right') && !/[\u200E\u200F]/.test(h2); })());
+  ok('call log: shared section visible under every service and only in the Call log view', (() => { if (!hasCalls()) return true; const keep = UI.audience; UI.audience = 'call'; const a = Store.published().filter(inAudience).every(c => Store.isShared(c)); UI.audience = 'external'; const b2 = Store.published().filter(inAudience).every(c => !Store.isShared(c)); UI.audience = keep; const sv = EMBED.services[0].id; return a && b2 && Store.sectionsOf(sv).some(x => x.svc === '*'); })());
   ok('cards: kind stripe, quick actions and single Add button', (() => { const d = document.createElement('div'); d.innerHTML = cardHtml(Store.published()[0], null); const a = d.firstElementChild; return a.classList.contains('k-' + Store.published()[0].kind) && a.querySelectorAll('.quick .ib, .quick .star').length >= 3 && a.querySelectorAll('.addbtn').length === 1 && !!a.querySelector('.kpill'); })());
   ok('audience: switch filters internal notes and sidebar counts', (() => { if (!hasInternal()) return true; const keep = UI.audience; UI.audience = 'external'; const e = Store.published().filter(inAudience).every(c => c.kind !== 'internal'); UI.audience = 'internal'; const i = Store.published().filter(inAudience).every(c => c.kind === 'internal'); UI.audience = 'all'; const a = Store.published().filter(inAudience).length === Store.published().length; UI.audience = keep; return e && i && a; })());
   ok('layout: two draggable gutters, width persists and resets', (() => { const gs = $$('.gutter'); if (gs.length !== 2) return false; const keep = Store.user.layout; Resizer.set('side', 320); const w1 = $('.side').getBoundingClientRect().width; const ok1 = Math.abs(w1 - 320) < 2 && (Store.user.layout || {}).side === 320; Resizer.reset('side'); const ok2 = !(Store.user.layout || {}).side; Store.user.layout = keep; Resizer.apply(); return ok1 && ok2; })());
@@ -4650,7 +5778,7 @@ window.addEventListener('afterprint', () => { $('#print').innerHTML = ''; });
 
 /* ---------------- Boot ---------------- */
 Store.load(); LANG = Store.user.lang; (() => { const l = $('link[rel="icon"]'); if (l) l.href = FTA_WHEEL; })(); document.documentElement.lang = LANG; document.documentElement.dir = LANG === 'ar' ? 'rtl' : 'ltr'; applyTheme();
-Search.build(); UI.audience = ['external', 'internal', 'all'].includes(Store.user.audience) ? Store.user.audience : 'external'; const restored = Composer.restore(); renderShell(); if (restored) setTimeout(() => toast(t('draft_restored')), 600);
+Search.build(); UI.audience = ['external', 'internal', 'call', 'all'].includes(Store.user.audience) ? Store.user.audience : 'external'; const restored = Composer.restore(); renderShell(); if (restored) setTimeout(() => toast(t('draft_restored')), 600);
 $('#main').addEventListener('scroll', debounce(spy, 60));
 if (!Store.user.skipSplash && location.hash !== '#selftest') Splash.show(); else $('#q').focus();
 if (location.hash === '#selftest') setTimeout(selfTest, 50);
