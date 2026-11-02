@@ -39,15 +39,15 @@
   --bg:#050A18; --surface:#0F1A35; --surface2:#142144; --surface3:#1B2A52;
   --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.16);
   --ink:#F2F4F8; --ink2:#A9B2C6; --ink3:#7C869C;
-  --green:#D9B45A; --green-ink:#F0CE7A; --green-soft:rgba(217,180,90,.13);
+  --green:#E9B384; --green-ink:#F3CFA8; --green-soft:rgba(233,179,132,.13);
   --red:#F0555A; --red-soft:rgba(240,85,90,.14);
-  --gold:#D9B45A; --gold-soft:rgba(217,180,90,.12);
+  --gold:#E9B384; --gold-soft:rgba(233,179,132,.12);
   --amber:#F4C542; --amber-soft:rgba(244,197,66,.13);
   --blue:#7FA7FF; --blue-soft:rgba(127,167,255,.14);
-  --sel:rgba(217,180,90,.22); --accent-ink:#1A1405;
+  --sel:rgba(233,179,132,.22); --accent-ink:#1A1405;
   --shadow:inset 0 1px 0 rgba(255,255,255,.04),0 10px 30px -18px rgba(0,0,0,.6);
   --shadow-lg:inset 0 1px 0 rgba(255,255,255,.06),0 28px 60px -24px rgba(0,0,0,.75);
-  --e2:inset 0 1px 0 rgba(255,255,255,.05),0 14px 34px -18px rgba(0,0,0,.7); --e3:0 28px 60px -24px rgba(0,0,0,.8),0 0 0 1px rgba(217,180,90,.18);
+  --e2:inset 0 1px 0 rgba(255,255,255,.05),0 14px 34px -18px rgba(0,0,0,.7); --e3:0 28px 60px -24px rgba(0,0,0,.8),0 0 0 1px rgba(233,179,132,.18);
   --glass:rgba(16,26,52,.62);
   color-scheme:dark;
 }
@@ -407,7 +407,7 @@ html[dir="rtl"] .scen .sc .g b{letter-spacing:0}
 #tour .tcard h4{margin:0 0 6px;font-size:16px;font-weight:600}
 #tour .tcard p{margin:0 0 14px;font-size:13.5px;color:var(--ink2);line-height:1.7}
 #tour .tcard .acts{display:flex;gap:6px;align-items:center}
-:root[data-theme="dark"] #tour .tcard{background:#0F1A35;border-color:rgba(217,180,90,.25)}
+:root[data-theme="dark"] #tour .tcard{background:#0F1A35;border-color:rgba(233,179,132,.25)}
 :root[data-theme="dark"] #tour .dim{background:rgba(2,5,14,.62)}
 #tour .spot{position:absolute;border-radius:12px;box-shadow:0 0 0 3px var(--green),0 0 30px -4px color-mix(in srgb,var(--green) 60%,transparent);transition:all 320ms var(--ease);pointer-events:none}
 #tour .card{position:absolute;width:320px;background:var(--surface);border-radius:14px;box-shadow:var(--e3);padding:16px 18px;pointer-events:auto;transition:all 320ms var(--ease)}
@@ -494,9 +494,9 @@ html[dir="rtl"] .svcbtn{padding:12px 16px 10px 14px}
 .svcbtn .chg svg{width:13px;height:13px;color:inherit;margin:0}
 .svcbtn.pulse{animation:svcpulse 1.6s ease-out 2}
 @keyframes svcpulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--green) 55%,transparent)}70%{box-shadow:0 0 0 12px color-mix(in srgb,var(--green) 0%,transparent)}100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--green) 0%,transparent)}}
-:root[data-theme="dark"] .svcbtn{background:linear-gradient(135deg,rgba(217,180,90,.16),rgba(15,26,53,.9) 70%);border-color:rgba(217,180,90,.45)}
-:root[data-theme="dark"] .svcbtn::before{background:linear-gradient(180deg,#F0CE7A,#A8842F)}
-:root[data-theme="dark"] .svcbtn .svc-ico{background:linear-gradient(135deg,#A8842F,#F0CE7A)}
+:root[data-theme="dark"] .svcbtn{background:linear-gradient(135deg,rgba(233,179,132,.16),rgba(15,26,53,.9) 70%);border-color:rgba(233,179,132,.45)}
+:root[data-theme="dark"] .svcbtn::before{background:linear-gradient(180deg,#F3CFA8,#B9783F)}
+:root[data-theme="dark"] .svcbtn .svc-ico{background:linear-gradient(135deg,#B9783F,#F3CFA8)}
 :root[data-theme="dark"] .svcbtn .chg{background:rgba(5,10,24,.5)}
 .svclist{display:grid;gap:4px}
 .svclist button{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center;text-align:start;padding:9px 12px;border-radius:10px;border:1px solid transparent;transition:all var(--dur) var(--ease)}
@@ -530,28 +530,28 @@ html[dir="rtl"] .svcbtn{padding:12px 16px 10px 14px}
 :root[data-theme="dark"] .side{background:rgba(5,10,24,.45);backdrop-filter:blur(18px) saturate(140%)}
 :root[data-theme="dark"] .tray,:root[data-theme="dark"] .tray-f{background:var(--glass);backdrop-filter:blur(18px) saturate(140%)}
 :root[data-theme="dark"] .card,:root[data-theme="dark"] .release,:root[data-theme="dark"] .rv,:root[data-theme="dark"] .stat div,:root[data-theme="dark"] .tbl,:root[data-theme="dark"] .cov,:root[data-theme="dark"] .scen .sc{background:var(--glass);backdrop-filter:blur(18px) saturate(140%)}
-:root[data-theme="dark"] .card:hover{border-color:rgba(217,180,90,.35)}
-:root[data-theme="dark"] .card.active{border-color:var(--green);box-shadow:0 0 0 1.5px var(--green),0 0 40px -8px rgba(217,180,90,.45)}
+:root[data-theme="dark"] .card:hover{border-color:rgba(233,179,132,.35)}
+:root[data-theme="dark"] .card.active{border-color:var(--green);box-shadow:0 0 0 1.5px var(--green),0 0 40px -8px rgba(233,179,132,.45)}
 :root[data-theme="dark"] .sec-h{background:linear-gradient(rgba(5,10,24,.92) 80%,transparent)}
-:root[data-theme="dark"] .nav a.on{background:rgba(217,180,90,.12);color:var(--green-ink);box-shadow:inset 0 0 0 1px rgba(217,180,90,.35)}
+:root[data-theme="dark"] .nav a.on{background:rgba(233,179,132,.12);color:var(--green-ink);box-shadow:inset 0 0 0 1px rgba(233,179,132,.35)}
 :root[data-theme="dark"] .chip.on,:root[data-theme="dark"] .seg button.on{color:var(--green-ink)}
-:root[data-theme="dark"] .chip.on{border-color:rgba(217,180,90,.5)}
+:root[data-theme="dark"] .chip.on{border-color:rgba(233,179,132,.5)}
 :root[data-theme="dark"] .seg button.on{background:var(--surface3)}
-:root[data-theme="dark"] .btn.pri,:root[data-theme="dark"] #splash .start,:root[data-theme="dark"] .tray-h .mini-copy,:root[data-theme="dark"] .tray-h .n{background:linear-gradient(90deg,#A8842F,#F0CE7A);color:var(--accent-ink)}
+:root[data-theme="dark"] .btn.pri,:root[data-theme="dark"] #splash .start,:root[data-theme="dark"] .tray-h .mini-copy,:root[data-theme="dark"] .tray-h .n{background:linear-gradient(90deg,#B9783F,#F3CFA8);color:var(--accent-ink)}
 :root[data-theme="dark"] .btn.pri:hover,:root[data-theme="dark"] #splash .start:hover{background:linear-gradient(90deg,#B8923A,#F6D98E)}
-:root[data-theme="dark"] .copybtn::after{background:#F0CE7A}
-:root[data-theme="dark"] .qm.g .bar i{background:linear-gradient(90deg,#A8842F,#F0CE7A)}
-:root[data-theme="dark"] dialog,:root[data-theme="dark"] #palette .box,:root[data-theme="dark"] #tour .card,:root[data-theme="dark"] .selftest,:root[data-theme="dark"] .autoc{background:#0F1A35;border:1px solid rgba(217,180,90,.18)}
+:root[data-theme="dark"] .copybtn::after{background:#F3CFA8}
+:root[data-theme="dark"] .qm.g .bar i{background:linear-gradient(90deg,#B9783F,#F3CFA8)}
+:root[data-theme="dark"] dialog,:root[data-theme="dark"] #palette .box,:root[data-theme="dark"] #tour .card,:root[data-theme="dark"] .selftest,:root[data-theme="dark"] .autoc{background:#0F1A35;border:1px solid rgba(233,179,132,.18)}
 :root[data-theme="dark"] .dlg-f{background:#0B1530}
 :root[data-theme="dark"] .preview,:root[data-theme="dark"] .citem,:root[data-theme="dark"] .qm{background:rgba(0,0,0,.25)}
-:root[data-theme="dark"] mark{background:rgba(217,180,90,.35)}
+:root[data-theme="dark"] mark{background:rgba(233,179,132,.35)}
 :root[data-theme="dark"] #splash{background:radial-gradient(900px 600px at 15% 0%,rgba(40,70,160,.28),transparent 65%),radial-gradient(800px 700px at 90% 100%,rgba(70,40,140,.22),transparent 65%),radial-gradient(700px 500px at 60% 40%,rgba(20,40,110,.18),transparent 65%),#050A18}
 :root[data-theme="dark"] #splash::before{content:"";position:absolute;inset:0;pointer-events:none;animation:twinkle 6s ease-in-out infinite alternate;
   background:radial-gradient(1.2px 1.2px at 12% 18%,rgba(255,255,255,.55),transparent 60%),radial-gradient(1px 1px at 33% 72%,rgba(255,255,255,.4),transparent 60%),radial-gradient(1.5px 1.5px at 58% 25%,rgba(255,255,255,.6),transparent 60%),radial-gradient(1px 1px at 76% 63%,rgba(255,255,255,.4),transparent 60%),radial-gradient(1.2px 1.2px at 88% 12%,rgba(255,255,255,.5),transparent 60%),radial-gradient(1px 1px at 22% 48%,rgba(255,255,255,.35),transparent 60%),radial-gradient(1.4px 1.4px at 45% 88%,rgba(255,255,255,.45),transparent 60%),radial-gradient(1px 1px at 66% 45%,rgba(255,255,255,.3),transparent 60%),radial-gradient(1px 1px at 94% 82%,rgba(255,255,255,.4),transparent 60%),radial-gradient(1.2px 1.2px at 8% 90%,rgba(255,255,255,.4),transparent 60%),radial-gradient(1px 1px at 50% 8%,rgba(255,255,255,.35),transparent 60%),radial-gradient(1px 1px at 82% 38%,rgba(255,255,255,.3),transparent 60%);
   background-size:520px 520px,640px 640px,700px 700px,560px 560px,610px 610px,480px 480px,730px 730px,590px 590px,660px 660px,540px 540px,620px 620px,500px 500px}
 :root[data-theme="dark"] #splash .veil{background:radial-gradient(ellipse 46% 58% at 50% 52%,rgba(5,10,24,.55),transparent 70%)}
-:root[data-theme="dark"] #splash .rule{background:linear-gradient(90deg,#A8842F,#F0CE7A)}
-:root[data-theme="dark"] #splash h1{text-shadow:0 0 40px rgba(217,180,90,.18)}
+:root[data-theme="dark"] #splash .rule{background:linear-gradient(90deg,#B9783F,#F3CFA8)}
+:root[data-theme="dark"] #splash h1{text-shadow:0 0 40px rgba(233,179,132,.18)}
 /* two logo variants: full colour on light, reverse (white) on dark — Brand Manual 1.2 */
 .lg-dk{display:none!important}
 :root[data-theme="dark"] .lg-lt{display:none!important}
@@ -758,7 +758,7 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
   },
   "accent": {
    "light": "#8a6d3b",
-   "dark": "#d9b45a"
+   "dark": "#e9b384"
   },
   "searchHint": {
    "en": "Search comments… e.g. entry exit report, domicile, special form, india",
