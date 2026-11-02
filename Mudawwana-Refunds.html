@@ -7452,7 +7452,8 @@ html[dir="rtl"] #splash .foot .meta{letter-spacing:.02em}
    "hb-05",
    "hb-06"
   ]
- }
+ },
+ "buildHash": "065b0f3c75a615a3"
 }
 </script>
 
@@ -7638,7 +7639,8 @@ const Store = {
   load() {
     let stored = null;
     try { stored = JSON.parse(localStorage.getItem(KEY.bank) || 'null'); } catch (e) {}
-    if (stored && stored.base === EMBED.version) { this.bank = stored.bank; }
+    const sameBuild = stored && stored.base === EMBED.version && (!EMBED.buildHash || stored.hash === EMBED.buildHash || (stored.edited && !stored.hash));
+    if (sameBuild) { this.bank = stored.bank; this.mergeShared(); }
     else {
       this.bank = clone(EMBED);
       if (stored) {
@@ -7662,7 +7664,15 @@ const Store = {
     this.versionConflict = stored && cmpVer(stored.base, EMBED.version) > 0 ? stored.base : null;
     if (this.versionConflict) this.updateInfo = null;
   },
-  save() { try { localStorage.setItem(KEY.bank, JSON.stringify({ base: EMBED.version, bank: this.bank })); } catch (e) { toast(t('storage_blocked'), 'err', 4000); } },
+  mergeShared() {
+    const b = this.bank; const sids = new Set(b.sections.map(x => x.id)); const cids = new Set(b.comments.map(x => x.id)); const scids = new Set((b.scenarios || []).map(x => x.id));
+    EMBED.sections.filter(x => x.svc === '*' && !sids.has(x.id)).forEach(x => b.sections.push(clone(x)));
+    const shared = new Set(EMBED.sections.filter(x => x.svc === '*').map(x => x.id));
+    EMBED.comments.filter(c => shared.has(c.s) && !cids.has(c.id)).forEach(c => b.comments.push(clone(c)));
+    (EMBED.scenarios || []).filter(x => x.svc === '*' && !scids.has(x.id)).forEach(x => (b.scenarios ||= []).push(clone(x)));
+    Object.entries(EMBED.placeholders || {}).forEach(([k, v]) => { b.placeholders ||= {}; if (!b.placeholders[k]) b.placeholders[k] = clone(v); });
+  },
+  save() { try { localStorage.setItem(KEY.bank, JSON.stringify({ base: EMBED.version, hash: EMBED.buildHash || '', edited: true, bank: this.bank })); } catch (e) { toast(t('storage_blocked'), 'err', 4000); } },
   newSinceLast() { if (!this.user.lastSeenIds) return []; const seen = new Set(this.user.lastSeenIds); return this.published().filter(c => !seen.has(c.id)); },
   markSeen() { this.user.lastSeenIds = this.published().map(c => c.id); this.saveUser(); },
   saveUser() { try { localStorage.setItem(KEY.user, JSON.stringify(this.user)); } catch (e) {} },
@@ -9271,6 +9281,7 @@ function selfTest(silent) {
   ok('arabic: no English words inside Arabic comments (links allowed)', EMBED.comments.every(c => !/[A-Za-z]/.test(noUrl(c.ar))), EMBED.comments.filter(c => /[A-Za-z]/.test(noUrl(c.ar))).map(c => c.id).join(','));
   ok('render: English comments show only English, Arabic only Arabic (both UI languages)', (() => { const prev = LANG; let bad = []; for (const l of ['en', 'ar']) { LANG = l; EMBED.comments.forEach(c => { const tx = html => { const d = document.createElement('div'); d.innerHTML = html; return d.textContent; }; const en = tx(renderText(c.en)), ar = tx(renderText(c.ar)).replace(/https?:\/\/\S+/g, '').replace(/\b(VAT|CT|EXC)\d{3}\b/g, ''); if (/[\u0600-\u06FF]/.test(en) || /[A-Za-z]/.test(ar)) bad.push(l + ':' + c.id); }); } LANG = prev; return !bad.length; })());
   ok('copy: formatted copy marks English ltr/left and Arabic rtl/right', (() => { const h2 = linesToHtml([{ d: 'ltr', s: '\u200E1. Kindly' }, { d: 'ltr', s: '' }, { d: 'rtl', s: '\u200F1. يرجى' }]); return h2.includes('dir="ltr" lang="en" style="margin:0;direction:ltr;text-align:left') && h2.includes('dir="rtl" lang="ar" style="margin:0;direction:rtl;text-align:right') && !/[\u200E\u200F]/.test(h2); })());
+  ok('build: embedded bank carries a build hash so new builds replace stale browser copies', !!EMBED.buildHash);
   ok('call log: shared section visible under every service and only in the Call log view', (() => { if (!hasCalls()) return true; const keep = UI.audience; UI.audience = 'call'; const a = Store.published().filter(inAudience).every(c => Store.isShared(c)); UI.audience = 'external'; const b2 = Store.published().filter(inAudience).every(c => !Store.isShared(c)); UI.audience = keep; const sv = EMBED.services[0].id; return a && b2 && Store.sectionsOf(sv).some(x => x.svc === '*'); })());
   ok('cards: kind stripe, quick actions and single Add button', (() => { const d = document.createElement('div'); d.innerHTML = cardHtml(Store.published()[0], null); const a = d.firstElementChild; return a.classList.contains('k-' + Store.published()[0].kind) && a.querySelectorAll('.quick .ib, .quick .star').length >= 3 && a.querySelectorAll('.addbtn').length === 1 && !!a.querySelector('.kpill'); })());
   ok('audience: switch filters internal notes and sidebar counts', (() => { if (!hasInternal()) return true; const keep = UI.audience; UI.audience = 'external'; const e = Store.published().filter(inAudience).every(c => c.kind !== 'internal'); UI.audience = 'internal'; const i = Store.published().filter(inAudience).every(c => c.kind === 'internal'); UI.audience = 'all'; const a = Store.published().filter(inAudience).length === Store.published().length; UI.audience = keep; return e && i && a; })());
