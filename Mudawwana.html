@@ -6029,8 +6029,8 @@ function renderMain() {
   } else {
     const sv = Store.service(Store.user.svc) || Store.bank.services[0];
     const pub = Store.published().filter(inSvc).filter(passesFilter); const total = Store.svcCount(sv.id);
-    main.innerHTML = sysBanners() + banner + `<div class="hero"><div><div class="svc-crumb">${h(L(Store.bank.area || {}))} › ${t('service')}</div><h1>${h(L(sv))}<span class="svc-ar" lang="${LANG === 'en' ? 'ar' : 'en'}" dir="${LANG === 'en' ? 'rtl' : 'ltr'}">${h(LANG === 'en' ? sv.ar : sv.en)}</span></h1><p>${t('browse_sub')}</p></div><div style="display:flex;gap:8px;align-items:center"><button class="btn sec" data-act="svc-pick">${I.menu} ${t('services')}</button>${total ? `<button class="btn sec" data-act="scenarios">${I.bulb} ${t('start_scenario')}</button>` : ''}<span class="vtag">${pub.length} · v${h(Store.bank.version)}</span></div></div>${total ? chipsHtml() : ''}<div class="gold-rule"></div>
-      ${!total ? `<div class="svc-empty"><b>${t('no_comments_yet')}</b><p>${t('no_comments_hint')}</p><div style="display:flex;gap:8px;justify-content:center"><button class="btn pri" data-act="suggest">${I.bulb} ${t('suggest')}</button><button class="btn sec" data-act="svc-pick">${t('choose_service')}</button></div></div>` : ''}
+    main.innerHTML = sysBanners() + banner + `<div class="hero"><div><div class="svc-crumb">${h(L(Store.bank.area || {}))} › ${t('service')}</div><h1>${h(L(sv))}<span class="svc-ar" lang="${LANG === 'en' ? 'ar' : 'en'}" dir="${LANG === 'en' ? 'rtl' : 'ltr'}">${h(LANG === 'en' ? sv.ar : sv.en)}</span></h1><p>${t('browse_sub')}</p></div><div style="display:flex;gap:8px;align-items:center"><button class="btn sec" data-act="svc-pick">${I.menu} ${t('services')}</button>${total ? `<button class="btn sec" data-act="scenarios">${I.bulb} ${t('start_scenario')}</button>` : ''}<span class="vtag">${pub.length} · v${h(Store.bank.version)}</span></div></div>${(total || hasCalls()) ? chipsHtml() : ''}<div class="gold-rule"></div>
+      ${!total && UI.audience !== 'call' ? `<div class="svc-empty"><b>${t('no_comments_yet')}</b><p>${t('no_comments_hint')}</p><div style="display:flex;gap:8px;justify-content:center"><button class="btn pri" data-act="suggest">${I.bulb} ${t('suggest')}</button><button class="btn sec" data-act="svc-pick">${t('choose_service')}</button></div></div>` : ''}
       ${Store.sectionsOf(sv.id).map(s => {
         const inSec = pub.filter(c => c.s === s.id); if (!inSec.length) return '';
         return `<div class="sec-h" id="sec-${s.id}"><h2>${h(s.en)}</h2><span class="ar-t" lang="ar">${h(s.ar)}</span><span class="cnt">${inSec.length}</span></div>
@@ -6302,7 +6302,7 @@ const Scenarios = {
   },
   load(sid, append) {
     const sc = Store.bank.scenarios.find(x => x.id === sid); if (!sc) return;
-    if (sc.svc && sc.svc !== Store.user.svc) { Store.user.svc = sc.svc; Store.saveUser(); renderSidebar(); renderMain(); }
+    if (sc.svc && sc.svc !== '*' && sc.svc !== Store.user.svc) { Store.user.svc = sc.svc; Store.saveUser(); renderSidebar(); renderMain(); }
     const ids = sc.ids.filter(id => Store.comment(id)?.status === 'published');
     Composer.items = append ? [...Composer.items, ...ids.filter(id => !Composer.items.includes(id))] : [...ids];
     Composer.render(); Composer.persist(); updateCardStates(); toast(`${h(L(sc))} · ${ids.length}`);
