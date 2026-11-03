@@ -655,7 +655,7 @@ dialog.wide{width:min(980px,calc(100vw - 32px))}
 .update-banner .sp{flex:1}
 
 /* ---------- Splash / home (Seven Threads) ---------- */
-#splash{position:fixed;inset:0;z-index:300;display:grid;grid-template-rows:1fr auto;background:radial-gradient(1100px 700px at 12% 8%,rgba(196,181,253,.22),transparent 60%),radial-gradient(900px 600px at 88% 92%,rgba(128,233,229,.20),transparent 60%),radial-gradient(800px 600px at 70% 20%,rgba(247,184,221,.16),transparent 60%),#F8FAFF;color:var(--ink);transition:opacity 420ms var(--ease),visibility 420ms;overflow:hidden;--sease:cubic-bezier(.16,1,.3,1)}
+#splash{position:fixed;inset:0;z-index:300;display:grid;grid-template-rows:1fr auto;background:var(--bg);color:var(--ink);transition:opacity 420ms var(--ease),visibility 420ms;overflow:hidden;--sease:cubic-bezier(.16,1,.3,1)}
 #splash.hide{opacity:0;visibility:hidden;pointer-events:none}
 #splash .field{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;transition:opacity 900ms ease}
 #splash .field.on{opacity:1}
@@ -8451,18 +8451,17 @@ void main(){
   vec2 wq=rot*vec2((WH.x-0.5)*asp,WH.y-0.5); float wd=length(q-wq); float bend=exp(-wd*wd*60.)*0.02;
   vec3 col=vec3(0.); float acc=0.;
   vec3 pal[7];
-  pal[0]=vec3(0.655,0.545,0.980); pal[1]=vec3(0.369,0.918,0.831); pal[2]=vec3(0.976,0.659,0.831); pal[3]=vec3(0.576,0.773,0.992); pal[4]=vec3(0.655,0.545,0.980); pal[5]=vec3(0.369,0.918,0.831); pal[6]=vec3(0.976,0.659,0.831);
-  vec3 hi[7]; hi[0]=vec3(0.769,0.710,0.992); hi[1]=vec3(0.502,0.914,0.898); hi[2]=vec3(0.969,0.722,0.867); hi[3]=vec3(0.663,0.780,1.000); hi[4]=vec3(0.769,0.710,0.992); hi[5]=vec3(0.502,0.914,0.898); hi[6]=vec3(0.969,0.722,0.867);
+  pal[0]=vec3(0.714,0.541,0.208); pal[1]=vec3(0.0,0.518,0.239); pal[2]=vec3(0.20,0.20,0.20); pal[3]=vec3(0.784,0.063,0.180); pal[4]=vec3(0.188,0.380,0.565); pal[5]=vec3(0.776,0.776,0.776); pal[6]=vec3(0.0,0.518,0.239);
   for(int i=0;i<7;i++){
     float fi=float(i); float ph=fi*1.7; float base=-0.42+fi*0.14;
     float y=base+0.08*sin(q.x*1.6+T*0.045+ph)+0.045*sin(q.x*3.1-T*0.03+ph*2.3)+0.02*noise(vec2(q.x*2.+fi,T*0.02));
     y+=push*sign(q.y-y)+bend*sign(q.y-y); y=mix(y,0.0,CONV*CONV);
     float w=0.012+0.009*sin(q.x*2.2+T*0.05+ph)+0.004*noise(vec2(q.x*5.+fi*3.,T*0.03)); w*=1.0-0.7*CONV;
     float d=abs(q.y-y); float body=1.0-smoothstep(w*0.55,w,d);
-    float sh=sqrt(max(0.,1.0-pow(d/max(w,1e-4),2.))); float light=mix(1.0,0.55+0.45*sh*(0.6+0.4*sign(q.y-y)),DARK);
-    float a=body*mix(0.38+0.16*sin(q.x*0.9+T*0.02+ph),(0.11+0.07*sin(q.x*0.9+T*0.02+ph))*1.55,DARK)*(1.0-CONV*0.9);
+    float sh=sqrt(max(0.,1.0-pow(d/max(w,1e-4),2.))); float light=0.55+0.45*sh*(0.6+0.4*sign(q.y-y));
+    float a=body*(0.11+0.07*sin(q.x*0.9+T*0.02+ph))*(1.0+DARK*0.55)*(1.0-CONV*0.9);
     vec3 dk=(i==0||i==5)?vec3(0.80,0.70,0.48):(i==1||i==4)?vec3(0.52,0.62,0.88):vec3(0.78,0.80,0.88);
-    vec3 lc=mix(pal[i],hi[i],sh*(0.65+0.35*sign(q.y-y))); vec3 c=mix(lc,dk,DARK)*light;
+    vec3 c=mix(pal[i],dk,DARK)*light;
     col=col*(1.0-a)+c*a; acc=acc+a*(1.0-acc);
   }
   float g=(hash(gl_FragCoord.xy+fract(T))-0.5)*0.03; float vig=smoothstep(1.3,0.35,length(uv-0.5))*smoothstep(0.03,0.24,uv.y)*smoothstep(1.0,0.9,uv.y);

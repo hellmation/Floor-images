@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mudawwana · vein colour previewer</title>
+<style>
+:root{--ink:#1c1c1e;--mut:#6b6f76;--line:#e6e8ec}
+*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font:14px/1.45 system-ui,Segoe UI,Inter,sans-serif;overflow:hidden}
+canvas{position:fixed;inset:0;width:100vw;height:100vh;display:block;background:#fff}
+#panel{position:fixed;top:16px;left:16px;width:300px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.08);z-index:5}
+#panel h1{font-size:14px;margin:0 0 2px}#panel p{margin:0 0 10px;color:var(--mut);font-size:12px}
+.opt{display:flex;align-items:center;gap:8px;padding:7px 8px;border:1px solid var(--line);border-radius:10px;margin-bottom:6px;cursor:pointer}
+.opt.on{border-color:#1c1c1e;background:#fafafa}.opt b{font-weight:600;font-size:13px}.opt small{color:var(--mut);display:block;font-size:11px}
+.sw{display:flex;gap:3px;margin-inline-start:auto}.sw i{width:11px;height:11px;border-radius:50%;display:block;border:1px solid rgba(0,0,0,.08)}
+label.r{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mut);margin-top:8px}label.r input{flex:1}label.r output{width:34px;text-align:right;color:var(--ink)}
+.row{display:flex;gap:6px;margin-top:10px}.row button{flex:1;border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px;font:inherit;font-size:12px;cursor:pointer}.row button.on{background:#1c1c1e;color:#fff;border-color:#1c1c1e}
+#center{position:fixed;inset:0;display:grid;place-items:center;pointer-events:none;z-index:2}
+#center .btn{pointer-events:auto;padding:12px 28px;border-radius:999px;background:#007A3D;color:#fff;font-weight:600;letter-spacing:.02em;box-shadow:0 10px 30px rgba(0,122,61,.25);font-size:15px}
+#center .t{font-size:30px;font-weight:600;margin-bottom:6px;letter-spacing:-.01em}#center .s{color:var(--mut);margin-bottom:22px}
+#tag{position:fixed;right:16px;bottom:14px;font-size:12px;color:var(--mut);background:rgba(255,255,255,.8);padding:4px 10px;border-radius:999px;z-index:5}
+</style></head><body>
+<canvas id="c"></canvas>
+<div id="center"><div style="text-align:center"><div class="t">مدوّنة · Mudawwana</div><div class="s">Preview of vein colours only — background is plain white, shader and motion unchanged</div><div class="btn">Start</div></div></div>
+<div id="panel"><h1>Vein colour previewer</h1><p>Nothing here is applied to the real files. Pick a variant and tell me which one.</p><div id="opts"></div>
+<label class="r">Strength <input id="gain" type="range" min="0.6" max="3" step="0.05" value="1"><output id="go">1.00</output></label>
+<label class="r">Holographic shading <input id="core" type="range" min="0" max="1.6" step="0.05" value="1"><output id="co">1.00</output></label>
+<div class="row"><button data-mode="light" class="on">Light shader</button><button data-mode="dark">Dark shader on white</button></div>
+<div class="row"><button data-pure="1" class="on">Pure colour</button><button data-pure="0">Grey mix (today)</button></div><div class="row"><button id="hideui">Hide text</button></div></div>
+<div id="tag"></div>
+<script>
+const hex=h=>{h=h.replace('#','');return [0,2,4].map(i=>parseInt(h.substr(i,2),16)/255)};
+const P={lav:'#C4B5FD',aqua:'#80E9E5',pink:'#F7B8DD',blue:'#A9C7FF'};
+const VARIANTS=[
+ {id:'current',name:'Current (UAE colours)',note:'what the light mode shows today',cols:['#B68A35','#007A3D','#333333','#C8102E','#30618F','#C6C6C6','#007A3D']},
+ {id:'pearl',name:'Pearl Aurora – as given',note:'your 4 pastels, exactly, repeated across the 7 veins',cols:[P.lav,P.aqua,P.pink,P.blue,P.lav,P.aqua,P.pink]},
+ {id:'pearl2',name:'Pearl Aurora – deeper cores',note:'same hues ~15% richer so they read on white',cols:['#AE9BF7','#5EDDD8','#F39FCF','#8FB4FF','#AE9BF7','#5EDDD8','#F39FCF']},
+ {id:'pearl3',name:'Pearl Aurora – blue/aqua led',note:'cool order: blue, aqua, lavender, pink',cols:[P.blue,P.aqua,P.lav,P.pink,P.blue,P.aqua,P.lav]},
+ {id:'holo',name:'Pearl Aurora – holographic sheen',note:'richer core of each hue, your pastel as the light edge (like the dark mode sheen)',cols:['#8B6CF6','#2ED3CC','#F07FC0','#5B95FF','#8B6CF6','#2ED3CC','#F07FC0'],hi:[P.lav,P.aqua,P.pink,P.blue,P.lav,P.aqua,P.pink]},
+ {id:'holo2',name:'Holographic – softer',note:'same sheen, cores halfway to the pastels',cols:['#A48AF9','#55DFD9','#F39BCE','#7FAAFF','#A48AF9','#55DFD9','#F39BCE'],hi:[P.lav,P.aqua,P.pink,P.blue,P.lav,P.aqua,P.pink]},
+ {id:'pearl4',name:'Pearl + grey anchor',note:'one silver thread keeps the original balance',cols:[P.lav,P.aqua,'#C6C6C6',P.pink,P.blue,P.aqua,P.lav]},
+];
+let pure=1;let cur=VARIANTS.find(v=>v.id==="holo"), gain=1, core=1, dark=0;
+const cv=document.getElementById('c'); const gl=cv.getContext('webgl',{antialias:false,alpha:true,premultipliedAlpha:true});
+const VS='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+const FS=`precision highp float;
+uniform vec2 R;uniform float T;uniform vec2 M;uniform float MS;uniform float CONV;uniform float DARK;uniform vec2 WH;uniform vec3 PAL[7];uniform vec3 HI[7];uniform float GAIN;uniform float CORE;uniform float SHEEN;uniform float PURE;
+float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);}
+void main(){
+  vec2 uv=gl_FragCoord.xy/R; float asp=R.x/R.y;
+  float ang=-0.32; mat2 rot=mat2(cos(ang),-sin(ang),sin(ang),cos(ang));
+  vec2 q=rot*vec2((uv.x-0.5)*asp,uv.y-0.5);
+  vec2 mq=rot*vec2((M.x-0.5)*asp,M.y-0.5); float md=length(q-mq); float push=exp(-md*md*22.)*0.035*MS;
+  vec2 wq=rot*vec2((WH.x-0.5)*asp,WH.y-0.5); float wd=length(q-wq); float bend=exp(-wd*wd*60.)*0.02;
+  vec3 col=vec3(0.); float acc=0.;
+  vec3 pal[7]; for(int k=0;k<7;k++){pal[k]=PAL[k];}
+  for(int i=0;i<7;i++){
+    float fi=float(i); float ph=fi*1.7; float base=-0.42+fi*0.14;
+    float y=base+0.08*sin(q.x*1.6+T*0.045+ph)+0.045*sin(q.x*3.1-T*0.03+ph*2.3)+0.02*noise(vec2(q.x*2.+fi,T*0.02));
+    y+=push*sign(q.y-y)+bend*sign(q.y-y); y=mix(y,0.0,CONV*CONV);
+    float w=0.012+0.009*sin(q.x*2.2+T*0.05+ph)+0.004*noise(vec2(q.x*5.+fi*3.,T*0.03)); w*=1.0-0.7*CONV;
+    float d=abs(q.y-y); float body=1.0-smoothstep(w*0.55,w,d);
+    float sh=sqrt(max(0.,1.0-pow(d/max(w,1e-4),2.))); float light=0.55+0.45*sh*(0.6+0.4*sign(q.y-y));
+    float a=body*(0.11+0.07*sin(q.x*0.9+T*0.02+ph))*GAIN*(1.0+DARK*0.55)*(1.0-CONV*0.9);
+    vec3 dk=(i==0||i==5)?vec3(0.80,0.70,0.48):(i==1||i==4)?vec3(0.52,0.62,0.88):vec3(0.78,0.80,0.88);
+    vec3 lc=mix(pal[i],HI[i],SHEEN*sh*(0.65+0.35*sign(q.y-y))); vec3 c=mix(lc,dk,DARK)*mix(1.0,light,CORE);
+    col=col*(1.0-a)+c*a; acc=acc+a*(1.0-acc);
+  }
+  float g=(hash(gl_FragCoord.xy+fract(T))-0.5)*0.03; float vig=smoothstep(1.3,0.35,length(uv-0.5))*smoothstep(0.03,0.24,uv.y)*smoothstep(1.0,0.9,uv.y);
+  float alpha=clamp(acc*vig+abs(g),0.,1.); vec3 oc=mix(col,col/max(acc,1e-4),PURE); gl_FragColor=vec4((oc+g)*alpha,alpha);
+}`;
+const sh=(t,src)=>{const x=gl.createShader(t);gl.shaderSource(x,src);gl.compileShader(x);if(!gl.getShaderParameter(x,gl.COMPILE_STATUS))console.error(gl.getShaderInfoLog(x));return x};
+const prog=gl.createProgram();gl.attachShader(prog,sh(gl.VERTEX_SHADER,VS));gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(prog);gl.useProgram(prog);
+const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+const loc=gl.getAttribLocation(prog,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+const u={};['R','T','M','MS','CONV','DARK','WH','PAL','HI','GAIN','CORE','SHEEN','PURE'].forEach(n=>u[n]=gl.getUniformLocation(prog,n));
+gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
+function resize(){const d=Math.min(devicePixelRatio||1,1.5);cv.width=innerWidth*d;cv.height=innerHeight*d;gl.viewport(0,0,cv.width,cv.height)}resize();addEventListener('resize',resize);
+let mouse=[.5,.5],target=[.5,.5],ms=0;addEventListener('pointermove',e=>{target=[e.clientX/innerWidth,1-e.clientY/innerHeight];ms=1},{passive:true});
+const t0=performance.now();
+function draw(now){const t=(now-t0)/1000*60/1;mouse[0]+=(target[0]-mouse[0])*.08;mouse[1]+=(target[1]-mouse[1])*.08;ms*=.97;
+ gl.uniform2f(u.R,cv.width,cv.height);gl.uniform1f(u.T,t*0.5);gl.uniform2f(u.M,mouse[0],mouse[1]);gl.uniform1f(u.MS,ms);gl.uniform1f(u.CONV,0);gl.uniform1f(u.DARK,dark);
+ const b=document.querySelector('#center .btn').getBoundingClientRect();gl.uniform2f(u.WH,(b.left+b.width/2)/innerWidth,1-(b.top+b.height/2)/innerHeight);
+ gl.uniform3fv(u.PAL,new Float32Array(cur.cols.flatMap(hex)));gl.uniform3fv(u.HI,new Float32Array((cur.hi||cur.cols).flatMap(hex)));gl.uniform1f(u.SHEEN,cur.hi?1:0);gl.uniform1f(u.PURE,pure);gl.uniform1f(u.GAIN,gain);gl.uniform1f(u.CORE,core);
+ gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);requestAnimationFrame(draw)}
+requestAnimationFrame(draw);
+const opts=document.getElementById('opts');
+function render(){opts.innerHTML=VARIANTS.map(v=>`<div class="opt ${v.id===cur.id?'on':''}" data-id="${v.id}"><div><b>${v.name}</b><small>${v.note}</small></div><span class="sw">${[...new Set(v.cols)].map(c=>`<i style="background:${c}"></i>`).join('')}</span></div>`).join('');
+ document.getElementById('tag').textContent=`${cur.name} · strength ${gain.toFixed(2)} · shading ${core.toFixed(2)} · ${pure?'pure colour':'grey mix'}`}
+render();opts.onclick=e=>{const o=e.target.closest('.opt');if(!o)return;cur=VARIANTS.find(v=>v.id===o.dataset.id);render()};
+gain=+new URLSearchParams(location.search).get("gain")||1.6;core=+new URLSearchParams(location.search).get("core")||0.5;const vq=new URLSearchParams(location.search).get('v');if(vq)cur=VARIANTS.find(v=>v.id===vq)||cur;
+document.getElementById('gain').value=gain;document.getElementById('core').value=core;
+document.getElementById('gain').oninput=e=>{gain=+e.target.value;document.getElementById('go').value=gain.toFixed(2);render()};
+document.getElementById('core').oninput=e=>{core=+e.target.value;document.getElementById('co').value=core.toFixed(2);render()};
+document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{dark=b.dataset.mode==='dark'?1:0;document.querySelectorAll('[data-mode]').forEach(x=>x.classList.toggle('on',x===b))});
+document.querySelectorAll('[data-pure]').forEach(b=>b.onclick=()=>{pure=+b.dataset.pure;document.querySelectorAll('[data-pure]').forEach(x=>x.classList.toggle('on',x===b))});const pq=new URLSearchParams(location.search).get('pure');if(pq!==null){pure=+pq;document.querySelectorAll('[data-pure]').forEach(x=>x.classList.toggle('on',+x.dataset.pure===pure))}
+document.getElementById('hideui').onclick=()=>{const c=document.getElementById('center');c.style.display=c.style.display==='none'?'':'none'};
+if(location.hash==='#bare'){document.getElementById('panel').style.display='none';document.getElementById('tag').style.display='none'}
+render();
+</script></body></html>
