@@ -5481,8 +5481,8 @@ void main(){
     float w=0.012+0.009*sin(q.x*2.2+T*0.05+ph)+0.004*noise(vec2(q.x*5.+fi*3.,T*0.03)); w*=1.0-0.7*CONV;
     float d=abs(q.y-y); float body=1.0-smoothstep(w*0.55,w,d);
     float sh=sqrt(max(0.,1.0-pow(d/max(w,1e-4),2.))); float light=mix(1.0,0.55+0.45*sh*(0.6+0.4*sign(q.y-y)),mix(0.5,1.0,DARK));
-    float a=body*(0.11+0.07*sin(q.x*0.9+T*0.02+ph))*mix(1.6,1.55,DARK)*(1.0-CONV*0.9);
-    vec3 dk=(i==0||i==5)?vec3(0.80,0.70,0.48):(i==1||i==4)?vec3(0.52,0.62,0.88):vec3(0.78,0.80,0.88);
+    float a=body*(0.11+0.07*sin(q.x*0.9+T*0.02+ph))*mix(1.6,2.4,DARK)*(1.0-CONV*0.9);
+    vec3 dk=(i==0||i==3||i==5)?vec3(0.87,0.70,0.34):(i==1||i==4)?vec3(0.82,0.76,0.60):vec3(0.93,0.84,0.58);
     vec3 lc=mix(pal[i],hi[i],sh*(0.65+0.35*sign(q.y-y))); vec3 c=mix(lc,dk,DARK)*light;
     col=col*(1.0-a)+c*a; acc=acc+a*(1.0-acc);
   }
