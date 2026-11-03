@@ -81,6 +81,21 @@ export function rollup(snap: Snapshot, cycleId: string, codes: Code[], approvedO
   return { total: codes.length, answered, submitted, approved, scored, score: wtot ? wsum / wtot : null, weight: wtot, gaps, clarifications: clar }
 }
 
+export interface Standing { userId: string; rank: number; points: number; approvedPct: number; score: number | null; total: number; approved: number; answered: number }
+/** Championship standings: evaluators ranked by points = 0.5 × approval rate + 0.5 × compliance on answered codes. */
+export function standings(snap: Snapshot, cycleId: string): Standing[] {
+  const cfg = snap.config
+  const rows = cfg.users.filter(u => u.active && u.role !== 'viewer').map(u => {
+    const codes = master.codes.filter(c => assigneeOf(c.id, cycleId, cfg) === u.id)
+    const r = rollup(snap, cycleId, codes, false)
+    const approvedPct = r.total ? (r.approved / r.total) * 100 : 0
+    const points = r.total ? 0.5 * approvedPct + 0.5 * (r.score ?? 0) : 0
+    return { userId: u.id, rank: 0, points, approvedPct, score: r.score, total: r.total, approved: r.approved, answered: r.answered }
+  }).filter(s => s.total > 0).sort((a, b) => b.points - a.points || b.approved - a.approved)
+  rows.forEach((s, i) => { s.rank = i + 1 })
+  return rows
+}
+
 export function sortIds(a: string, b: string) {
   const ka = a.replace(/b$/, '').split('.').map(Number), kb = b.replace(/b$/, '').split('.').map(Number)
   for (let i = 0; i < 3; i++) if (ka[i] !== kb[i]) return ka[i] - kb[i]

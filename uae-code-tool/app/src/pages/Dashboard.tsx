@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useApp } from '../store/state'
-import { master, rollup, effective, codeScore, effectiveImpact, assigneeOf, sortIds } from '../store/scoring'
+import { master, rollup, effective, codeScore, effectiveImpact, standings, sortIds } from '../store/scoring'
 import { pick, pickDesc } from '../i18n'
 import { Bar, ImpactPill, Tile, fmtPct } from '../components/ui'
 
@@ -14,7 +14,7 @@ export default function Dashboard() {
   const all = useMemo(() => rollup(snap!, cy, master.codes, approvedOnly), [snap, cy, approvedOnly])
   const byPillar = useMemo(() => master.pillars.map(p => ({ p, r: rollup(snap!, cy, master.codes.filter(c => c.pillar === p.id), approvedOnly), c: cmp ? rollup(snap!, cmp, master.codes.filter(c => c.pillar === p.id), approvedOnly) : null })), [snap, cy, cmp, approvedOnly])
   const bySub = useMemo(() => master.subpillars.map(s => ({ s, r: rollup(snap!, cy, master.codes.filter(c => c.sub === s.id), approvedOnly) })), [snap, cy, approvedOnly])
-  const byUser = useMemo(() => cfg.users.filter(u => u.active).map(u => ({ u, r: rollup(snap!, cy, master.codes.filter(c => assigneeOf(c.id, cy, cfg) === u.id), approvedOnly) })).filter(x => x.r.total), [snap, cy, cfg, approvedOnly])
+  const table = useMemo(() => standings(snap!, cy), [snap, cy])
   const byProject = useMemo(() => cfg.projects.filter(p => p.active).map(p => ({ p, r: rollup(snap!, cy, master.codes.filter(c => (cfg.mapping[c.id] || []).includes(p.id)), approvedOnly) })).filter(x => x.r.total).sort((a, b) => b.r.total - a.r.total), [snap, cy, cfg, approvedOnly])
   const gaps = useMemo(() => master.codes.map(c => ({ c, e: effective(snap!, cy, c.id) })).map(x => ({ ...x, s: codeScore(x.e.answer, x.c, cfg) })).filter(x => x.s !== null && x.s < 100 && (!approvedOnly || x.e.state === 'approved'))
     .sort((a, b) => { const w = cfg.settings.weights; const d = w[effectiveImpact(b.c, cfg)] - w[effectiveImpact(a.c, cfg)]; return d || (a.s! - b.s!) || sortIds(a.c.id, b.c.id) }), [snap, cy, cfg, approvedOnly])
@@ -39,8 +39,8 @@ export default function Dashboard() {
       <section className="card p-4"><h2 className="text-base font-semibold m-0 mb-3">{t('subpillar')}</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">{bySub.map(({ s, r }) => <div key={s.id} className="rounded p-2 text-xs" style={{ background: heat(r.score) }}><div className="flex justify-between"><span className="code-id">{s.id}</span><span className={`num font-semibold ${tone(r.score)}`}>{fmtPct(r.score)}</span></div><div className="truncate" title={pick(lang, s)}>{pick(lang, s)}</div><div className="text-muted num">{r.approved}/{r.total} {t('approved')}</div></div>)}</div></section>
       <div className="grid md:grid-cols-2 gap-4">
-        <section className="card p-4"><h2 className="text-base font-semibold m-0 mb-2">{t('byEvaluator')}</h2><table className="tbl"><thead><tr><th></th><th>{t('codes')}</th><th>{t('answered')}</th><th>{t('approved')}</th><th>{t('clarificationShort')}</th><th>{t('compliance')}</th></tr></thead><tbody>
-          {byUser.map(({ u, r }) => <tr key={u.id}><td>{lang === 'ar' ? u.name_ar : u.name_en}</td><td className="num">{r.total}</td><td className="num">{r.answered}</td><td className="num">{r.approved}</td><td className="num">{r.clarifications || ''}</td><td className={`num ${tone(r.score)}`}>{fmtPct(r.score)}</td></tr>)}</tbody></table></section>
+        <section className="card p-4"><h2 className="text-base font-semibold m-0 mb-1">🏆 {t('standings')}</h2><p className="m-0 mb-2 text-xs text-muted">{t('standingsHint')}</p><table className="tbl"><thead><tr><th>{t('rank')}</th><th></th><th>{t('codes')}</th><th>{t('approved')}</th><th>{t('compliance')}</th><th>{t('points')}</th></tr></thead><tbody>
+          {table.map(s => { const u = cfg.users.find(x => x.id === s.userId)!; return <tr key={s.userId}><td className="num font-semibold">{s.rank <= 3 ? ['🥇', '🥈', '🥉'][s.rank - 1] : s.rank}</td><td>{lang === 'ar' ? u.name_ar : u.name_en}</td><td className="num">{s.total}</td><td className="num">{s.approved} <span className="text-muted">({Math.round(s.approvedPct)}%)</span></td><td className={`num ${tone(s.score)}`}>{fmtPct(s.score)}</td><td className="num font-semibold">{Math.round(s.points)}</td></tr> })}</tbody></table></section>
         <section className="card p-4"><h2 className="text-base font-semibold m-0 mb-2">{t('byProject')}</h2><table className="tbl"><thead><tr><th></th><th>{t('codes')}</th><th>{t('approved')}</th><th>{t('compliance')}</th></tr></thead><tbody>
           {byProject.map(({ p, r }) => <tr key={p.id}><td>{pick(lang, p)}</td><td className="num">{r.total}</td><td className="num">{r.approved}</td><td className={`num ${tone(r.score)}`}>{fmtPct(r.score)}</td></tr>)}</tbody></table></section>
       </div>

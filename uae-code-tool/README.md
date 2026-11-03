@@ -1,4 +1,4 @@
-# Meyar — مِعيار · UAE Code Self-Assessment Tool
+# UAE Code Championship — بطولة كود الإمارات
 
 Collects the Federal Tax Authority's self-assessment against the UAE Code for Government Services and Zero Bureaucracy
 (371 codes, 8 pillars), generates the Excel workbook, and shows readiness, compliance and analytics.
@@ -6,10 +6,10 @@ Collects the Federal Tax Authority's self-assessment against the UAE Code for Go
 ## Layout
 - `data/` — bilingual master dataset extracted from the official PDF, project list, extraction scripts. See `data/README.md`.
 - `app/` — the tool. Vite + React + TypeScript, Tailwind, ExcelJS. Builds to one self-contained HTML file.
-- `release/Meyar.html` — the built single file to drop in the shared folder.
+- `release/UAE-Code-Championship.html` — the built single file to drop in the shared folder.
 
 ## Shared-folder edition (until the tool is hosted on the internal portal)
-1. Copy `release/Meyar.html` into a shared folder every evaluator can reach.
+1. Copy `release/UAE-Code-Championship.html` into a shared folder every evaluator can reach.
 2. Each evaluator opens the file in **Chrome or Edge**, clicks *Choose the shared folder* and picks that same folder (once; the browser remembers it and asks for a one-click reconnect on later visits).
 3. The tool creates `data/` inside the folder:
    - `data/config.json` — users, projects, project-to-code mapping, cycles, settings (admins write it)

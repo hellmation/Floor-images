@@ -1,7 +1,8 @@
 import type { Lang } from './types'
 
 const dict = {
-  appName: ['مِعيار', 'Meyar'],
+  appName: ['بطولة كود الإمارات', 'UAE Code Championship'],
+  standings: ['الترتيب', 'Standings'], points: ['النقاط', 'Points'], rank: ['المركز', 'Rank'], standingsHint: ['النقاط = نصف نسبة الاعتماد + نصف نسبة الامتثال على ما أُجيب عنه', 'Points = half the approval rate + half the compliance rate on answered codes'], leader: ['المتصدر', 'Leader'],
   appTagline: ['التقييم الذاتي لكود الإمارات للخدمات الحكومية وتصفير البيروقراطية', 'Self-assessment against the UAE Code for Government Services and Zero Bureaucracy'],
   home: ['الرئيسية', 'Home'],
   homeIntro: ['منصة داخلية لتقييم مدى التزام الهيئة بكود الإمارات للخدمات الحكومية، على مستوى كل متطلب، مع الأدلة والمراجعة، وتوليد ملف Excel ولوحة متابعة للجاهزية والامتثال.', 'An internal workspace to assess the Authority against the UAE Code for Government Services, requirement by requirement, with evidence and review, producing the Excel workbook and a dashboard of readiness and compliance.'],

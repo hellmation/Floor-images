@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { useApp } from '../store/state'
-import { master, rollup, assigneeOf } from '../store/scoring'
+import { master, rollup, assigneeOf, standings } from '../store/scoring'
 import { pick } from '../i18n'
 import { Bar, Tile, fmtPct } from '../components/ui'
 
@@ -10,6 +10,7 @@ export default function Home() {
   const all = useMemo(() => rollup(snap!, cy, master.codes, true), [snap, cy])
   const mine = useMemo(() => rollup(snap!, cy, master.codes.filter(c => assigneeOf(c.id, cy, cfg) === user!.id), false), [snap, cy, cfg, user])
   const byPillar = useMemo(() => master.pillars.map(p => ({ p, r: rollup(snap!, cy, master.codes.filter(c => c.pillar === p.id), true), subs: master.subpillars.filter(s => s.pillar === p.id).length })), [snap, cy])
+  const table = useMemo(() => standings(snap!, cy), [snap, cy])
   const daysLeft = cycle ? Math.ceil((new Date(cycle.due).getTime() - Date.now()) / 86400000) : null
   const cycleName = cycle ? (lang === 'ar' ? cycle.name : (cycle.name_en || cycle.name)) : ''
   const links: [string, string][] = [['my', t('myWork')], ['browse', t('browse')], ['dashboard', t('dashboard')], ...(isAdmin ? [['review', t('review')], ['mapping', t('mapping')], ['cycles', t('cycles')], ['admin', t('admin')]] as [string, string][] : [])]
@@ -46,8 +47,14 @@ export default function Home() {
       <div className="grid md:grid-cols-[2fr_1fr] gap-4">
         <section className="card p-4"><h2 className="m-0 mb-3 text-base font-semibold">{t('howItWorks')}</h2>
           <ol className="m-0 ps-5 flex flex-col gap-2 leading-relaxed">{(['step1', 'step2', 'step3', 'step4'] as const).map(k => <li key={k}>{t(k)}</li>)}</ol></section>
-        <section className="card p-4"><h2 className="m-0 mb-3 text-base font-semibold">{t('quickLinks')}</h2>
-          <div className="nav flex flex-col gap-1">{links.map(([k, l]) => <a key={k} href={'#/' + k}>{l}</a>)}</div></section>
+        <div className="flex flex-col gap-4">
+          <section className="card p-4"><h2 className="m-0 mb-2 text-base font-semibold">🏆 {t('standings')}</h2>
+            {table.length === 0 ? <p className="m-0 text-sm text-muted">—</p> : <ol className="m-0 p-0 list-none flex flex-col gap-1">{table.slice(0, 6).map(s => { const u = cfg.users.find(x => x.id === s.userId)!; const me = s.userId === user!.id
+              return <li key={s.userId} className={`flex items-center gap-2 text-sm rounded px-2 py-1 ${me ? 'bg-accent-soft' : ''}`}><span className="num w-6 text-center font-semibold">{s.rank <= 3 ? ['🥇', '🥈', '🥉'][s.rank - 1] : s.rank}</span><span className="flex-1 min-w-0 truncate">{lang === 'ar' ? u.name_ar : u.name_en}</span><span className="num text-muted">{s.approved}/{s.total}</span><span className="num font-semibold w-10 text-end">{Math.round(s.points)}</span></li> })}</ol>}
+            <a href="#/dashboard" className="text-xs text-muted">{t('standingsHint')}</a></section>
+          <section className="card p-4"><h2 className="m-0 mb-3 text-base font-semibold">{t('quickLinks')}</h2>
+            <div className="nav flex flex-col gap-1">{links.map(([k, l]) => <a key={k} href={'#/' + k}>{l}</a>)}</div></section>
+        </div>
       </div>
     </div>
   )
