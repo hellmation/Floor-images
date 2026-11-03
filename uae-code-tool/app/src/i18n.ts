@@ -2,7 +2,17 @@ import type { Lang } from './types'
 
 const dict = {
   appName: ['بطولة كود الإمارات', 'UAE Code Championship'],
-  standings: ['الترتيب', 'Standings'], points: ['النقاط', 'Points'], rank: ['المركز', 'Rank'], standingsHint: ['النقاط = نصف نسبة الاعتماد + نصف نسبة الامتثال على ما أُجيب عنه', 'Points = half the approval rate + half the compliance rate on answered codes'], leader: ['المتصدر', 'Leader'],
+  standings: ['الترتيب', 'Standings'], work: ['العمل', 'Work'], insights: ['المؤشرات', 'Insights'], administration: ['الإدارة', 'Administration'],
+  searchHint: ['ابحث عن كود أو صفحة…', 'Search a code or a page…'], exportDone: ['تم إنشاء ملف Excel', 'Excel workbook generated'], refreshed: ['تم التحديث', 'Refreshed'],
+  developedBy: ['تطوير فريق تطوير الخدمات · 2026', 'Developed by the Service Development Team · 2026'], internalTool: ['أداة داخلية · فريق تطوير الخدمات', 'Internal tool · Service Development Team'],
+  landingLine: ['تقييم واضح. أدلة موثقة. ترتيب شفاف.', 'Clear assessment. Documented evidence. Transparent standings.'],
+  start: ['ابدأ', 'Start'], orPressEnter: ['أو اضغط Enter', 'or press Enter'], version: ['الإصدار', 'Version'],
+  podium: ['منصة التتويج', 'Podium'], nextActions: ['الخطوات التالية', 'Next actions'], viewAll: ['عرض الكل', 'View all'], submitChecklist: ['متطلبات الإرسال', 'Submission checklist'],
+  requirementsNav: ['المتطلبات', 'Requirements'], shortcuts: ['اختصارات', 'Shortcuts'], prevCode: ['الكود السابق', 'Previous code'], nextCode: ['الكود التالي', 'Next code'],
+  trend: ['الاتجاه عبر الدورات', 'Trend across cycles'], noClosedCycles: ['تظهر المقارنة بعد إغلاق أول دورة', 'The trend appears once a cycle is closed'],
+  evaluatorsCount: ['مقيّمين', 'evaluators'], projectsCount: ['مشروع', 'projects'], overview: ['نظرة عامة', 'Overview'], daysLeft: ['يوم متبقٍ', 'days left'],
+  returnedToYou: ['مُعاد إليك', 'Returned to you'], continueDraft: ['أكمل المسودة', 'Continue draft'], awaitingYourReply: ['بانتظار ردك', 'Awaiting your reply'], allCaughtUp: ['لا توجد مهام عاجلة. أحسنت!', 'Nothing urgent. Well done!'],
+  mappedTo: ['مرتبط بـ', 'Linked to'], toggleLink: ['ربط / فك الربط', 'Link / unlink'], points: ['النقاط', 'Points'], rank: ['المركز', 'Rank'], standingsHint: ['النقاط = نصف نسبة الاعتماد + نصف نسبة الامتثال على ما أُجيب عنه', 'Points = half the approval rate + half the compliance rate on answered codes'], leader: ['المتصدر', 'Leader'],
   appTagline: ['التقييم الذاتي لكود الإمارات للخدمات الحكومية وتصفير البيروقراطية', 'Self-assessment against the UAE Code for Government Services and Zero Bureaucracy'],
   home: ['الرئيسية', 'Home'],
   homeIntro: ['منصة داخلية لتقييم مدى التزام الهيئة بكود الإمارات للخدمات الحكومية، على مستوى كل متطلب، مع الأدلة والمراجعة، وتوليد ملف Excel ولوحة متابعة للجاهزية والامتثال.', 'An internal workspace to assess the Authority against the UAE Code for Government Services, requirement by requirement, with evidence and review, producing the Excel workbook and a dashboard of readiness and compliance.'],

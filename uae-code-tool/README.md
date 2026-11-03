@@ -5,7 +5,7 @@ Collects the Federal Tax Authority's self-assessment against the UAE Code for Go
 
 ## Layout
 - `data/` — bilingual master dataset extracted from the official PDF, project list, extraction scripts. See `data/README.md`.
-- `app/` — the tool. Vite + React + TypeScript, Tailwind, ExcelJS. Builds to one self-contained HTML file.
+- `app/` — the tool. Vite + React + TypeScript, Tailwind, ExcelJS. Builds to one self-contained HTML file with the FTA brand assets and the IBM Plex Sans / IBM Plex Sans Arabic / Noto Kufi Arabic fonts embedded, so it works offline.
 - `release/UAE-Code-Championship.html` — the built single file to drop in the shared folder.
 
 ## Shared-folder edition (until the tool is hosted on the internal portal)
@@ -21,6 +21,14 @@ Collects the Federal Tax Authority's self-assessment against the UAE Code for Go
 
 Browsers without folder access (Firefox, Safari) fall back to a local mode with manual backup export/import; use Chrome or Edge for shared work.
 When the tool moves to a server, only the storage adapter in `app/src/store/storage.ts` changes.
+
+## Interface
+- Landing screen with brand, shared-folder connection and user picker; side rail navigation; global search and command palette (Ctrl+K) over pages and all 371 codes.
+- Home: next actions for the signed-in person, cycle countdown, readiness and compliance rings, pillar cards, standings preview.
+- Evaluate: requirement stepper, submission checklist, keyboard navigation between codes (Alt + arrows), confirm dialog, toasts.
+- Dashboard: readiness and compliance rings, pillar bars, sub-pillar heatmap, trend across cycles, by project, gaps ranked by impact.
+- Standings: podium and full table with points, movement versus the previous closed cycle.
+- Arabic and English, light and dark, phone to desktop.
 
 ## How work flows
 - Codes are assigned through projects: a code linked to a project is evaluated by the project owner; unmapped codes go to the core-team default assignee set in Admin → Settings. Admins can override any assignment per cycle.
