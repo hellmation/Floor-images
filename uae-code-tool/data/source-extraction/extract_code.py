@@ -90,7 +90,7 @@ for pi in range(11,74):
         body=[c for c in body_all if not is_bullet(c)]
         imp_white=[c for c in allc if c['x0']>=split and is_white(c)]
         highlights=[(l['top'],l['text']) for l in lines_from(imp_white) if l['text'] in LEVELS]
-        first_id_top=min([l['top'] for l in lines_from(body) if re.fullmatch(r'(?:رقم الكود:\s*)?[1-8]\.\d+\.\d+',l['text'])] or [9999])
+        first_id_top=min([l['top'] for l in lines_from(body) if re.fullmatch(r'(?:رقم\s*الكود\s*:\s*)?[1-8]\.\d+\.\d+',l['text'])] or [9999])
         if pending is not None and highlights and sorted(highlights)[0][0]<first_id_top-10:
             pending['impact']=LEVELS[sorted(highlights)[0][1]]; pending['impact_note']='impact box on following page'; highlights=sorted(highlights)[1:]
         pending=None
@@ -99,7 +99,7 @@ for pi in range(11,74):
             t=l['text']
             l['bullet']=any(l['top']-10<=bt<=l['top']-1 for bt in bullet_tops)
             while hdr_tops and hdr_tops[0]<l['top']: hdr_tops.pop(0); cur=None; section=None
-            m=re.fullmatch(r'(?:رقم الكود:\s*)?([1-8]\.\d+\.\d+)',t)
+            m=re.fullmatch(r'(?:رقم\s*الكود\s*:\s*)?([1-8]\.\d+\.\d+)',t)
             if m:
                 cid=m.group(1); lev=None
                 for top,txt in sorted(highlights):

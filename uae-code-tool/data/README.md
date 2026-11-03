@@ -4,7 +4,7 @@ Source: كود الإمارات للخدمات الحكومية وتصفير ا�
 Extracted 2026-11-03 with `source-extraction/extract_code.py` (pdfplumber), assembled with `build_master.py`, English added with `merge_master.py`.
 
 ## Files
-- `master.json` — bilingual master: 8 pillars, 60 sub-pillars, 370 codes, 787 requirements, 778 monitoring criteria.
+- `master.json` — bilingual master: 8 pillars, 60 sub-pillars, 371 codes, 787 requirements, 778 monitoring criteria.
 - `projects.json` — service development team projects and owners (39 projects, 6 owners), used to seed the project-to-code mapping.
 - `source-extraction/` — the scripts and translation glossary, kept so the extraction can be re-run if a new PDF edition is issued.
 

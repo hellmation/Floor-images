@@ -1,0 +1,1712 @@
+{
+ "pillar": {
+  "id": "4",
+  "name_ar": "اتساق التجربة عبر مختلف قنوات الخدمة",
+  "desc_ar": "تمكين المتعامل من الحصول على تجربة متسقة وسلسة عبر جميع قنوات الخدمة، مع حرية الانتقال بينها دون انقطاع أو إعادة المراحل.",
+  "name_en": "Consistency of Experience Across Service Channels",
+  "desc_en": "Enable the customer to receive a consistent and seamless experience across all service channels, with the freedom to move between them without interruption or repeating stages."
+ },
+ "subpillars": [
+  {
+   "id": "4.1",
+   "pillar": "4",
+   "name_ar": "تناسق قنوات الخدمة",
+   "name_en": "Consistency of service channels"
+  },
+  {
+   "id": "4.2",
+   "pillar": "4",
+   "name_ar": "الاستمرارية عند التنقل بين القنوات",
+   "name_en": "Continuity when moving between channels"
+  },
+  {
+   "id": "4.3",
+   "pillar": "4",
+   "name_ar": "ترابط قنوات الدعم",
+   "name_en": "Interconnection of support channels"
+  },
+  {
+   "id": "4.4",
+   "pillar": "4",
+   "name_ar": "رقم معاملة موحد وتطابق البيانات",
+   "name_en": "Unified transaction number and data consistency"
+  },
+  {
+   "id": "4.5",
+   "pillar": "4",
+   "name_ar": "حالة الطلب والإشعارات في كافة القنوات",
+   "name_en": "Application status and notifications across all channels"
+  },
+  {
+   "id": "4.6",
+   "pillar": "4",
+   "name_ar": "الوصول الشامل في كافة القنوات",
+   "name_en": "Inclusive access across all channels"
+  },
+  {
+   "id": "4.7",
+   "pillar": "4",
+   "name_ar": "تكامل الخدمات الحضورية ونظام المواعيد",
+   "name_en": "Integration of in-person services and the appointment system"
+  },
+  {
+   "id": "4.8",
+   "pillar": "4",
+   "name_ar": "دليل الخدمات والإرشادات",
+   "name_en": "Service guide and instructions"
+  }
+ ],
+ "codes": [
+  {
+   "id": "4.1.1",
+   "desc_ar": "استخدام المكونات المرئية والصياغات اللغوية والوظائف الأساسية ذاتها عبر جميع القنوات (الموقع الإلكتروني، التطبيق الذكي، مراكز الخدمة الحضورية، مراكز الاتصال) لضمان الاتساق التام في التجربة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استخدام نفس المكونات المرئية عبر جميع القنوات",
+     "text_en": "Use the same visual components across all channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "استخدام نفس الصياغات اللغوية عبر جميع القنوات",
+     "text_en": "Use the same wording across all channels"
+    },
+    {
+     "n": 3,
+     "text_ar": "استخدام نفس الوظائف الأساسية عبر جميع القنوات",
+     "text_en": "Use the same core functions across all channels"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مقارنة المكونات المرئية (أزرار، نماذج، تنبيهات) عبر القنوات المختلفة",
+     "text_en": "Comparison of visual components (buttons, forms, alerts) across the different channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "مقارنة النصوص والتسميات عبر القنوات المختلفة",
+     "text_en": "Comparison of texts and labels across the different channels"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار تطابق سلوك الوظائف الأساسية عبر القنوات",
+     "text_en": "Test that core functions behave identically across channels"
+    }
+   ],
+   "desc_en": "Use the same visual components, wording and core functions across all channels (website, smart application, service centres, contact centres) to ensure complete consistency of experience."
+  },
+  {
+   "id": "4.1.2",
+   "desc_ar": "تمكين المتعامل من إنجاز الخدمة بالكامل في كل قناة من البداية حتى النهاية، بما في ذلك حالات التمكين الرقمي (مثل طلب إرشادات الخدمة عبر مراكز الاتصال أو مراكز الخدمة)، دون إلزام المتعامل بالانتقال إلى قناة أخرى.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة إنجاز الخدمة بالكامل من خلال أي قناة",
+     "text_en": "Allow the service to be completed in full through any channel"
+    },
+    {
+     "n": 2,
+     "text_ar": "دعم حالات التمكين الرقمي عبر القنوات غير الرقمية",
+     "text_en": "Support digital-enablement cases through non-digital channels"
+    },
+    {
+     "n": 3,
+     "text_ar": "عدم إجبار المتعامل على الانتقال لقناة أخرى",
+     "text_en": "Do not force the customer to move to another channel"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إنجاز الخدمة كاملة من خلال كل قناة على حدة",
+     "text_en": "Test completing the full service through each channel separately"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار تقديم الدعم الرقمي عبر مراكز الاتصال ومراكز الخدمة",
+     "text_en": "Test the provision of digital support through contact centres and service centres"
+    },
+    {
+     "n": 3,
+     "text_ar": "التحقق من عدم وجود خطوات تتطلب الانتقال لقناة مختلفة",
+     "text_en": "Verify that no steps require moving to a different channel"
+    }
+   ],
+   "desc_en": "Enable the customer to complete the service in full within each channel from start to finish, including digital-enablement cases (such as requesting service guidance through contact centres or service centres), without obliging the customer to move to another channel."
+  },
+  {
+   "id": "4.1.3",
+   "desc_ar": "ضمان تطابق الشعارات والألوان والخطوط والمحتوى مع معايير الهوية والأسلوب التحريري المعتمد عبر جميع القنوات والتوافق مع نظام تصميم المواقع الإلكترونية (DLS).",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تطابق الشعارات والألوان والخطوط والمحتوى مع معايير الهوية والأسلوب التحريري المعتمد",
+     "text_en": "Logos, colours, fonts and content match the approved brand identity and editorial style standards"
+    },
+    {
+     "n": 2,
+     "text_ar": "التوافق مع نظام تصميم المواقع الإلكترونية (DLS).",
+     "text_en": "Compliance with the website design language system (DLS)."
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة تطابق العناصر عبر القنوات المختلفة",
+     "text_en": "Review of element consistency across the different channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة التوافق عبر القنوات المختلفة",
+     "text_en": "Review of compliance across the different channels"
+    }
+   ],
+   "desc_en": "Ensure that logos, colours, fonts and content match the approved brand identity and editorial style standards across all channels, and comply with the website design language system (DLS)."
+  },
+  {
+   "id": "4.1.4",
+   "desc_ar": "الحفاظ على استمرارية الهوية الرقمية المعتمدة ذاتها (مثل UAE PASS) طوال رحلة المتعامل بالكامل، بما يشمل الانتقال بين الجهات الشريكة، بغض النظر عن عدد الأطراف المشاركة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استمرارية الهوية الرقمية المعتمدة طوال الرحلة",
+     "text_en": "Continuity of the approved digital identity throughout the journey"
+    },
+    {
+     "n": 2,
+     "text_ar": "الحفاظ على الهوية عند الانتقال بين الجهات الشريكة",
+     "text_en": "Identity is maintained when moving between partner entities"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار استخدام نفس الهوية الرقمية عبر جميع نقاط الرحلة",
+     "text_en": "Test use of the same digital identity across all points of the journey"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار عدم طلب إعادة المصادقة عند الانتقال بين الجهات",
+     "text_en": "Test that re-authentication is not requested when moving between entities"
+    }
+   ],
+   "desc_en": "Maintain continuity of the same approved digital identity (such as UAE PASS) throughout the entire customer journey, including transitions between partner entities, regardless of the number of parties involved."
+  },
+  {
+   "id": "4.1.5",
+   "desc_ar": "توحيد تسميات الحقول وتنسيقاتها عبر جميع القنوات لضمان عدم مطالبة المتعاملين بإدخال نفس البيانات بصيغ مختلفة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توحيد تسميات الحقول عبر جميع القنوات",
+     "text_en": "Standardise field labels across all channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "توحيد تنسيقات الحقول عبر جميع القنوات",
+     "text_en": "Standardise field formats across all channels"
+    },
+    {
+     "n": 3,
+     "text_ar": "عدم مطالبة المتعاملين بصيغ مختلفة لنفس البيانات",
+     "text_en": "Do not ask customers for different formats of the same data"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مقارنة تسميات الحقول عبر القنوات المختلفة",
+     "text_en": "Comparison of field labels across the different channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "مقارنة تنسيقات الحقول عبر القنوات",
+     "text_en": "Comparison of field formats across channels"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار قبول نفس الصيغة عبر جميع القنوات",
+     "text_en": "Test that the same format is accepted across all channels"
+    }
+   ],
+   "desc_en": "Standardise field labels and formats across all channels to ensure customers are not asked to enter the same data in different formats."
+  },
+  {
+   "id": "4.1.6",
+   "desc_ar": "ضمان أن تكون حالة المعاملة مرئية ومتسقة عبر جميع القنوات باستخدام الرقم المرجعي الموحد.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "رؤية حالة المعاملة عبر جميع القنوات",
+     "text_en": "Transaction status is visible across all channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "اتساق حالة المعاملة عبر جميع القنوات",
+     "text_en": "Transaction status is consistent across all channels"
+    },
+    {
+     "n": 3,
+     "text_ar": "استخدام الرقم المرجعي الموحد",
+     "text_en": "Use of the unified reference number"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار عرض حالة المعاملة عبر القنوات المختلفة",
+     "text_en": "Test display of the transaction status across the different channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من تطابق الحالة المعروضة عبر القنوات",
+     "text_en": "Verify that the status displayed matches across channels"
+    },
+    {
+     "n": 3,
+     "text_ar": "التحقق من استخدام نفس الرقم المرجعي عبر جميع القنوات",
+     "text_en": "Verify that the same reference number is used across all channels"
+    }
+   ],
+   "desc_en": "Ensure that the transaction status is visible and consistent across all channels using the unified reference number."
+  },
+  {
+   "id": "4.1.7",
+   "desc_ar": "الالتزام بتقييم مستوى الطلب والقدرة الاستيعابية قبل فتح أو إغلاق أي قناة لتقديم الخدمة (رقمية، هاتفية، أو حضورية)، والحصول على موافقة رسمية مسبقة لضمان تلبية احتياجات المتعاملين وتعزيز الكفاءة وإمكانية الوصول دون تعطيل الخدمة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إجراء تقييم لمستوى الطلب والقدرة الاستيعابية قبل فتح أو إغلاق أي قناة",
+     "text_en": "Conduct an assessment of demand levels and capacity before opening or closing any channel"
+    },
+    {
+     "n": 2,
+     "text_ar": "الحصول على موافقة رسمية مسبقة",
+     "text_en": "Obtain prior formal approval"
+    },
+    {
+     "n": 3,
+     "text_ar": "ضمان عدم تعطيل الخدمة وتلبية احتياجات المتعاملين والكفاءة وإمكانية الوصول",
+     "text_en": "Ensure the service is not disrupted and that customer needs, efficiency and accessibility are met"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق التقييم المنجز قبل أي قرار بالفتح أو الإغلاق",
+     "text_en": "Documentation of the assessment completed before any decision to open or close"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود موافقة رسمية موثقة قبل تنفيذ الفتح أو الإغلاق",
+     "text_en": "Documented formal approval in place before the opening or closure is implemented"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود خطة انتقالية تضمن استمرارية الخدمة",
+     "text_en": "A transition plan in place that ensures service continuity"
+    }
+   ],
+   "desc_en": "Commit to assessing demand levels and capacity before opening or closing any service delivery channel (digital, telephone or in-person), and obtain prior formal approval to ensure customer needs are met and efficiency and accessibility are enhanced without disrupting the service."
+  },
+  {
+   "id": "4.2.1",
+   "desc_ar": "عند انتقال المتعامل من قناة إلى أخرى أثناء رحلة الخدمة، لا بد من الاحتفاظ بجميع البيانات المُدخلة مسبقًا وإظهارها تلقائيًا دون الحاجة لإعادة إدخالها.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الاحتفاظ بجميع البيانات المُدخلة مسبقًا عند الانتقال بين القنوات",
+     "text_en": "Retain all previously entered data when moving between channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "إظهار البيانات تلقائيًا في القناة الجديدة",
+     "text_en": "Display the data automatically in the new channel"
+    },
+    {
+     "n": 3,
+     "text_ar": "عدم مطالبة المتعامل بإعادة إدخال البيانات",
+     "text_en": "Do not ask the customer to re-enter data"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار الانتقال من قناة لأخرى والتحقق من عدم فقدان أي بيانات",
+     "text_en": "Test moving from one channel to another and verify that no data is lost"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار ظهور جميع البيانات المُدخلة في القناة الجديدة",
+     "text_en": "Test that all entered data appears in the new channel"
+    },
+    {
+     "n": 3,
+     "text_ar": "التحقق من عدم وجود حقول فارغة لبيانات سبق إدخالها",
+     "text_en": "Verify there are no empty fields for data already entered"
+    }
+   ],
+   "desc_en": "When the customer moves from one channel to another during the service journey, all previously entered data must be retained and displayed automatically without the need to re-enter it."
+  },
+  {
+   "id": "4.2.2",
+   "desc_ar": "إتاحة استئناف الرحلة من آخر خطوة تم إنجازها عند الانتقال بين القنوات، مع الحفاظ على موقع المتعامل ضمن أي نموذج متعدد الصفحات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استئناف الرحلة من آخر خطوة ُمكتملة بالضبط",
+     "text_en": "Resume the journey from exactly the last completed step"
+    },
+    {
+     "n": 2,
+     "text_ar": "الحفاظ على موقع المتعامل في النماذج متعددة الصفحات",
+     "text_en": "Preserve the customer's position in multi-page forms"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار الانتقال بين القنوات والتحقق من العودة للخطوة الصحيحة",
+     "text_en": "Test moving between channels and verify return to the correct step"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار الانتقال أثناء ملء نموذج والتحقق من الموقع المحفوظ",
+     "text_en": "Test moving while completing a form and verify the saved position"
+    }
+   ],
+   "desc_en": "Allow the journey to be resumed from the last completed step when moving between channels, while preserving the customer's position within any multi-page form."
+  },
+  {
+   "id": "4.2.3",
+   "desc_ar": "تمكين المتعامل من الانتقال بين القنوات والاستمرار في الرحلة بسلاسة ضمن الجلسة النشطة، دون الحاجة لإعادة المصادقة، وذلك وفقًا لقواعد إدارة المخاطر المعتمدة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الانتقال بين القنوات دون إعادة المصادقة ضمن الجلسة النشطة",
+     "text_en": "Move between channels without re-authentication within the active session"
+    },
+    {
+     "n": 2,
+     "text_ar": "تطبيق قواعد إدارة المخاطر المعتمدة",
+     "text_en": "Apply the approved risk management rules"
+    },
+    {
+     "n": 3,
+     "text_ar": "الاستمرار في الرحلة بسلاسة",
+     "text_en": "Continue the journey seamlessly"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار الانتقال والتحقق من عدم طلب إعادة المصادقة",
+     "text_en": "Test the transition and verify that re-authentication is not requested"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود قواعد واضحة للحالات التي تتطلب إعادة المصادقة",
+     "text_en": "Clear rules in place for cases that require re-authentication"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار عدم وجود انقطاع أو تأخير عند الانتقال",
+     "text_en": "Test that there is no interruption or delay when moving between channels"
+    }
+   ],
+   "desc_en": "Enable the customer to move between channels and continue the journey seamlessly within the active session, without the need to re-authenticate, in accordance with the approved risk management rules."
+  },
+  {
+   "id": "4.2.4",
+   "desc_ar": "تتعامل جميع القنوات مع سجل المعاملة ذاته للقراءة والتحديث، بما يضمن اتساق التقدم والحالة عبر جميع القنوات بشكل فوري.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استخدام سجل معاملة موحد لجميع القنوات",
+     "text_en": "Use a single transaction record for all channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "الاتساق الفوري للتقدم والحالة عبر القنوات",
+     "text_en": "Real-time consistency of progress and status across channels"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من أن جميع القنوات تقرأ وتكتب إلى نفس قاعدة البيانات",
+     "text_en": "Verify that all channels read from and write to the same database"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار تحديث الحالة في قناة والتحقق من انعكاسها فورًا في القنوات الأخرى",
+     "text_en": "Test updating the status in one channel and verify it is reflected immediately in the other channels"
+    }
+   ],
+   "desc_en": "All channels work on the same transaction record for reading and updating, ensuring that progress and status are consistent across all channels in real time."
+  },
+  {
+   "id": "4.2.5",
+   "desc_ar": "ضمان تنبيه النظام للمتعامل، في حال لم تكن ميزة معينة متاحة في القناة الجديدة، وتقديم بديل مدعوم له.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تنبيه المتعامل عند عدم توفر ميزة في القناة الجديدة",
+     "text_en": "Alert the customer when a feature is not available in the new channel"
+    },
+    {
+     "n": 2,
+     "text_ar": "تقديم بديل مدعوم في القناة الجديدة",
+     "text_en": "Offer a supported alternative in the new channel"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار الانتقال لقناة لا تدعم ميزة معينة والتحقق من ظهور تنبيه",
+     "text_en": "Test moving to a channel that does not support a particular feature and verify that an alert appears"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود بديل واضح ومدعوم يُعرض للمتعامل",
+     "text_en": "A clear, supported alternative is presented to the customer"
+    }
+   ],
+   "desc_en": "Ensure the system alerts the customer if a particular feature is not available in the new channel, and offers a supported alternative."
+  },
+  {
+   "id": "4.2.6",
+   "desc_ar": "الالتزام بمراجعة سجلات عمليات الانتقال بين القنوات مرة واحدة على الأقل كل ثلاثة أشهر لتحديد حالات الفشل وتحسين الاستمرارية.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "المراجعة الفصلية لسجلات الانتقال بين القنوات",
+     "text_en": "Quarterly review of channel-transition logs"
+    },
+    {
+     "n": 2,
+     "text_ar": "تحديد حالات الفشل في عمليات الانتقال",
+     "text_en": "Identify failures in channel transitions"
+    },
+    {
+     "n": 3,
+     "text_ar": "اتخاذ إجراءات لتحسين الاستمرارية",
+     "text_en": "Take action to improve continuity"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المراجعة الدورية (مرة واحدة على الأقل كل 3 أشهر)",
+     "text_en": "Documentation of the periodic review (at least once every 3 months)"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود تقرير يحدد حالات الفشل المكتشفة",
+     "text_en": "A report in place identifying the failures detected"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق الإجراءات التصحيحية المتخذة بناءً على المراجعة",
+     "text_en": "Documentation of the corrective actions taken based on the review"
+    }
+   ],
+   "desc_en": "Commit to reviewing the logs of channel transitions at least once every three months to identify failures and improve continuity."
+  },
+  {
+   "id": "4.3.1",
+   "desc_ar": "تمكين موظفي الدعم المباشر من الوصول إلى بيانات المعاملة وبيانات المتعامل المتاحة عبر جميع القنوات (الرقمية، مراكز الاتصال، مراكز الخدمة) لضمان تزامن الإجراءات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "وصول موظفي الدعم المباشر إلى بيانات المعاملة والمتعامل ذاتها",
+     "text_en": "Front-line support staff have access to the same transaction and customer data"
+    },
+    {
+     "n": 2,
+     "text_ar": "تزامن الإجراءات عبر جميع القنوات",
+     "text_en": "Synchronisation of actions across all channels"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من أن جميع القنوات تستخدم نفس قاعدة البيانات",
+     "text_en": "Verify that all channels use the same database"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار تحديث البيانات من قناة مساندة والتحقق من انعكاسها في القنوات الأخرى",
+     "text_en": "Test updating data from an assisted channel and verify it is reflected in the other channels"
+    }
+   ],
+   "desc_en": "Enable front-line support staff to access the transaction data and customer data available across all channels (digital, contact centres, service centres) to ensure actions are synchronised."
+  },
+  {
+   "id": "4.3.2",
+   "desc_ar": "ضمان إكمال موظفي الدعم المباشر لطلب المتعامل عبر النظام المساند، مع إصدار تأكيد وإيصال مطابقين لما هو معتمد في القناة الرقمية.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إكمال الطلب من خلال النظام المساند",
+     "text_en": "Complete the application through the assisted-service system"
+    },
+    {
+     "n": 2,
+     "text_ar": "إصدار تأكيد وإيصال مطابقين لما هو معتمد في القناة الرقمية",
+     "text_en": "Issue a confirmation and receipt identical to those approved in the digital channel"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من استخدام النظام المساند لإكمال الطلبات",
+     "text_en": "Verify that the assisted-service system is used to complete applications"
+    },
+    {
+     "n": 2,
+     "text_ar": "مقارنة رسائل التأكيد والإيصالات من القنوات المختلفة",
+     "text_en": "Comparison of confirmation messages and receipts from the different channels"
+    }
+   ],
+   "desc_en": "Ensure that front-line support staff complete the customer's application through the assisted-service system, issuing a confirmation and receipt identical to those approved in the digital channel."
+  },
+  {
+   "id": "4.3.3",
+   "desc_ar": "إصدار ايصال للمعاملات المنجزة عبر الدعم المباشر (مثل مركز الخدمة، الموظف، أو الاتصال الهاتفي ) يكون مطابقًا في محتواه للنموذج الرقمي، يتضمن الرقم المرجعي وتفصيل الرسوم.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إصدار إيصال مطابق للنموذج الرقمي",
+     "text_en": "Issue a receipt matching the digital template"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين الرقم المرجعي في الإيصال",
+     "text_en": "Include the reference number in the receipt"
+    },
+    {
+     "n": 3,
+     "text_ar": "تضمين تفصيل الرسوم في الإيصال",
+     "text_en": "Include a breakdown of fees in the receipt"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مقارنة إيصالات القنوات المساندة بالنموذج الرقمي",
+     "text_en": "Comparison of receipts from assisted channels with the digital template"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة الإيصالات للتأكد من وجود الرقم المرجعي",
+     "text_en": "Review of receipts to confirm the reference number is present"
+    },
+    {
+     "n": 3,
+     "text_ar": "مراجعة الإيصالات للتأكد من وجود جميع بنود الرسوم",
+     "text_en": "Review of receipts to confirm all fee items are present"
+    }
+   ],
+   "desc_en": "Issue a receipt for transactions completed through front-line support (such as a service centre, an employee or a telephone call) whose content matches the digital template, including the reference number and a breakdown of fees."
+  },
+  {
+   "id": "4.3.4",
+   "desc_ar": "إتاحة الدعم المباشر باللغتين العربية والإنجليزية مع نفس نطاق الخدمة ومستوى التوثيق.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة الدعم المباشر باللغتين العربية والإنجليزية",
+     "text_en": "Provide front-line support in both Arabic and English"
+    },
+    {
+     "n": 2,
+     "text_ar": "تطابق نطاق الخدمة بين اللغتين",
+     "text_en": "The scope of service is the same in both languages"
+    },
+    {
+     "n": 3,
+     "text_ar": "تماثل مستوى التوثيق بين اللغتين",
+     "text_en": "The level of documentation is equivalent in both languages"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من توفر الدعم بكلتا اللغتين",
+     "text_en": "Verify that support is available in both languages"
+    },
+    {
+     "n": 2,
+     "text_ar": "مقارنة الخدمات المقدمة بالعربية والإنجليزية",
+     "text_en": "Comparison of the services provided in Arabic and English"
+    },
+    {
+     "n": 3,
+     "text_ar": "مقارنة التوثيق المتاح بكلتا اللغتين",
+     "text_en": "Comparison of the documentation available in both languages"
+    }
+   ],
+   "desc_en": "Provide front-line support in both Arabic and English with the same scope of service and level of documentation."
+  },
+  {
+   "id": "4.3.5",
+   "desc_ar": "ضمان تسجيل جميع الإجراءات المقدمة عبر الدعم المباشر في النظام الأساسي للمعاملات، مع رقم تعريف الموظف والختم الزمني وملخص الإجراء.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تسجيل جميع الإجراءات المقدمة عبر الدعم المباشر",
+     "text_en": "Record all actions carried out through front-line support"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين البيانات المطلوبة في كل سجل",
+     "text_en": "Include the required data in every record"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة سجلات النظام للتأكد من تسجيل جميع الإجراءات",
+     "text_en": "Review of system logs to confirm that all actions are recorded"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من وجود: رقم تعريف الموظف، الختم الزمني، ملخص الإجراء",
+     "text_en": "Verify the presence of: employee ID, timestamp, summary of the action"
+    }
+   ],
+   "desc_en": "Ensure that all actions carried out through front-line support are recorded in the core transaction system, with the employee ID, timestamp and a summary of the action."
+  },
+  {
+   "id": "4.3.6",
+   "desc_ar": "إتمام موظفي الدعم المباشر التدريب على الرحلات الرقمية ومتطلبات الأمن الالكتروني قبل التعامل مع طلبات المتعاملين.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتمام التدريب على الرحلات الرقمية قبل التعامل مع الطلبات",
+     "text_en": "Complete training on digital journeys before handling applications"
+    },
+    {
+     "n": 2,
+     "text_ar": "إتمام التدريب على متطلبات الأمن قبل التعامل مع الطلبات",
+     "text_en": "Complete training on security requirements before handling applications"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق إتمام التدريب لكل موظف قبل بدء العمل",
+     "text_en": "Documentation of training completion for each employee before starting work"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق إتمام التدريب الأمني لكل موظف",
+     "text_en": "Documentation of security training completion for each employee"
+    }
+   ],
+   "desc_en": "Front-line support staff complete training on digital journeys and cybersecurity requirements before handling customer applications."
+  },
+  {
+   "id": "4.4.1",
+   "desc_ar": "إنشاء رقم مرجعي عند أول اتصال واستخدامه في جميع التفاعلات اللاحقة عبر جميع القنوات. وفي حال بقيت المعاملة دون حل أو لم يتم الوصول إلى المعلومات المطلوبة، يجب بدء تواصل استباقي لتوجيه المتعامل نحو الحل أو التصعيد.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إنشاء رقم مرجعي مميز عند أول اتصال",
+     "text_en": "Create a unique reference number at first contact"
+    },
+    {
+     "n": 2,
+     "text_ar": "استخدام نفس الرقم المرجعي في جميع التفاعلات اللاحقة",
+     "text_en": "Use the same reference number in all subsequent interactions"
+    },
+    {
+     "n": 3,
+     "text_ar": "بدء تواصل استباقي عند عدم الحل أو عدم الوصول للمعلومات",
+     "text_en": "Initiate proactive communication when the matter is unresolved or the information has not been reached"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إنشاء رقم مرجعي تلقائيًا عند بدء أي معاملة",
+     "text_en": "Test automatic creation of a reference number when any transaction is started"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من استمرارية الرقم المرجعي عبر القنوات المختلفة",
+     "text_en": "Verify continuity of the reference number across the different channels"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار إرسال إشعارات استباقية للمعاملات المتوقفة",
+     "text_en": "Test the sending of proactive notifications for stalled transactions"
+    }
+   ],
+   "desc_en": "Create a reference number at first contact and use it in all subsequent interactions across all channels. If the transaction remains unresolved or the required information has not been reached, proactive communication must be initiated to guide the customer towards a resolution or escalation."
+  },
+  {
+   "id": "4.4.2",
+   "desc_ar": "يجب مزامنة التغييرات على بيانات المعاملة بشكل شبه فوري، بما يضمن عرض الحالة نفسها عبر جميع القنوات .",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مزامنة التغييرات بشكل شبه فوري",
+     "text_en": "Synchronise changes in near real time"
+    },
+    {
+     "n": 2,
+     "text_ar": "عرض الحالة نفسها عبر جميع القنوات",
+     "text_en": "Display the same status across all channels"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين تحديث البيانات وظهورها في القنوات الأخرى",
+     "text_en": "Measure the time between a data update and its appearance in the other channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار تطابق الحالة المعروضة عبر القنوات المختلفة",
+     "text_en": "Test that the status displayed matches across the different channels"
+    }
+   ],
+   "desc_en": "Changes to transaction data must be synchronised in near real time, ensuring the same status is displayed across all channels."
+  },
+  {
+   "id": "4.4.3",
+   "desc_ar": "تمكين المتعاملين من البحث عن أية معاملة وتتبعها عبر جميع قنوات الخدمة (الموقع الإلكتروني، التطبيق الذكي، مراكز الخدمة الحضورية، مراكز الاتصال) باستخدام الرقم المرجعي الموحد.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة البحث عن المعاملات باستخدام الرقم المرجعي عبر جميع القنوات",
+     "text_en": "Allow transactions to be searched using the reference number across all channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "إتاحة تتبع المعاملات عبر جميع القنوات",
+     "text_en": "Allow transactions to be tracked across all channels"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار البحث عبر كل قناة باستخدام الرقم المرجعي",
+     "text_en": "Test searching through each channel using the reference number"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار عرض حالة المعاملة وتاريخها عبر القنوات المختلفة",
+     "text_en": "Test display of the transaction status and history across the different channels"
+    }
+   ],
+   "desc_en": "Enable customers to search for and track any transaction across all service channels (website, smart application, service centres, contact centres) using the unified reference number."
+  },
+  {
+   "id": "4.4.4",
+   "desc_ar": "ضمان عرض واجهات الموظفين للمرجع المعتمد الموحد للمعاملة بغض النظر عن القناة التي تم استخدامها لبدء المعاملة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "عرض السجل الموحد المعتمد للمعاملة في واجهات الموظفين",
+     "text_en": "Display the single authoritative transaction record in staff interfaces"
+    },
+    {
+     "n": 2,
+     "text_ar": "عرض السجل بغض النظر عن قناة البدء",
+     "text_en": "Display the record regardless of the initiating channel"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من أن جميع واجهات الموظفين تعرض نفس البيانات",
+     "text_en": "Verify that all staff interfaces display the same data"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار الوصول لمعاملات بدأت من قنوات مختلفة",
+     "text_en": "Test access to transactions initiated from different channels"
+    }
+   ],
+   "desc_en": "Ensure that staff interfaces display the single authoritative record of the transaction, regardless of the channel used to initiate it."
+  },
+  {
+   "id": "4.4.5",
+   "desc_ar": "تفعيل تنبيهات التشغيل فوًرا، في حالة حدوث أعطال في المزامنة، على أن تُعالج بسرعة، مع إخطار المتعاملين المتأثرين عند الحاجة لضمان الشفافية واستمرارية الخدمة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تفعيل تنبيهات فورية عند حدوث أخطاء في المزامنة",
+     "text_en": "Activate immediate alerts when synchronisation errors occur"
+    },
+    {
+     "n": 2,
+     "text_ar": "المعالجة السريعة لأخطاء المزامنة",
+     "text_en": "Prompt resolution of synchronisation errors"
+    },
+    {
+     "n": 3,
+     "text_ar": "إخطار المتعاملين المتأثرين عند الاقتضاء",
+     "text_en": "Notify affected customers where necessary"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود آلية لكشف أخطاء المزامنة وإرسال التنبيهات",
+     "text_en": "A mechanism in place to detect synchronisation errors and send alerts"
+    },
+    {
+     "n": 2,
+     "text_ar": "قياس الوقت بين اكتشاف الخطأ ومعالجته",
+     "text_en": "Measure the time between detecting and resolving the error"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار إرسال إشعارات للمتعاملين المتأثرين بأخطاء المزامنة",
+     "text_en": "Test the sending of notifications to customers affected by synchronisation errors"
+    }
+   ],
+   "desc_en": "Activate operational alerts immediately in the event of synchronisation failures, which must be resolved promptly, and notify affected customers where necessary to ensure transparency and service continuity."
+  },
+  {
+   "id": "4.4.6",
+   "desc_ar": "إجراء اختبار دوري لتوافق البيانات، للتأكد من تطابق بيانات جميع القنوات مع السجل الأساسي للمعاملات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إجراء اختبار شهري لتوافق البيانات",
+     "text_en": "Conduct monthly data-consistency testing"
+    },
+    {
+     "n": 2,
+     "text_ar": "التأكد من تطابق بيانات جميع القنوات مع السجل الأساسي",
+     "text_en": "Confirm that the data in all channels matches the core record"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق إجراء الاختبار بشكل دوري",
+     "text_en": "Documentation that the test is carried out periodically"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق نتائج الاختبار وأي اختلافات مكتشفة",
+     "text_en": "Documentation of the test results and any discrepancies detected"
+    }
+   ],
+   "desc_en": "Conduct periodic data-consistency testing to confirm that the data in all channels matches the core transaction record."
+  },
+  {
+   "id": "4.5.1",
+   "desc_ar": "عرض جميع تحديثات حالة الخدمة في صندوق الوارد الخاص بحساب المتعامل، وأن تُرسل أيضًا عبر الرسائل النصية أو البريد الإلكتروني بحسب تفضيلات المتعامل، باللغة التي يفضلها.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "ظهور جميع تحديثات الحالة في صندوق الوارد الخاص بالحساب",
+     "text_en": "All status updates appear in the account inbox"
+    },
+    {
+     "n": 2,
+     "text_ar": "إرسال التحديثات عبر وسائل التواصل بحسب تفضيلات المتعامل",
+     "text_en": "Send updates through communication channels according to the customer's preferences"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من وجود جميع التحديثات في صندوق الوارد",
+     "text_en": "Verify that all updates are present in the inbox"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار إرسال التحديثات وفق التفضيلات المحددة",
+     "text_en": "Test the sending of updates according to the specified preferences"
+    }
+   ],
+   "desc_en": "Display all service status updates in the inbox of the customer's account, and also send them by SMS or email according to the customer's preferences, in their preferred language."
+  },
+  {
+   "id": "4.5.2",
+   "desc_ar": "ضمان أن يشمل كل تحديث الرقم المرجعي ورابطًا لعرض تفاصيل المعاملة كاملة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تضمين الرقم المرجعي في كل تحديث",
+     "text_en": "Include the reference number in every update"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين رابط لعرض تفاصيل المعاملة كاملة",
+     "text_en": "Include a link to view the full transaction details"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة التحديثات للتأكد من وجود الرقم المرجعي",
+     "text_en": "Review of updates to confirm the reference number is present"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة التحديثات للتأكد من وجود رابط فّعال",
+     "text_en": "Review of updates to confirm a working link is present"
+    }
+   ],
+   "desc_en": "Ensure that every update includes the reference number and a link to view the full transaction details."
+  },
+  {
+   "id": "4.5.3",
+   "desc_ar": "تطابق حالة المعاملة والختم الزمني في الموقع الإلكتروني والتطبيقات الذكية ومراكز الاتصال والخدمة الحضورية.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "عرض نفس حالة المعاملة عبر جميع القنوات",
+     "text_en": "Display the same transaction status across all channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "عرض نفس الختم الزمني عبر جميع القنوات",
+     "text_en": "Display the same timestamp across all channels"
+    },
+    {
+     "n": 3,
+     "text_ar": "التزامن الفوري في العرض",
+     "text_en": "Real-time synchronisation of what is displayed"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار تطابق الحالة المعروضة عبر الأنظمة المختلفة",
+     "text_en": "Test that the status displayed matches across the different systems"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار تطابق الختم الزمني المعروض عبر الأنظمة المختلفة",
+     "text_en": "Test that the timestamp displayed matches across the different systems"
+    },
+    {
+     "n": 3,
+     "text_ar": "قياس فرق التوقيت في عرض التحديثات (≤ دقيقة واحدة)",
+     "text_en": "Measure the time difference in displaying updates (≤ 1 minute)"
+    }
+   ],
+   "desc_en": "The transaction status and timestamp match across the website, smart applications, contact centres and in-person service."
+  },
+  {
+   "id": "4.5.4",
+   "desc_ar": "تمكين المتعاملين من اختيار قنوات الإشعارات أو تغييرها من إعدادات الملف الشخصي مع تطبيق التغيير فورًا.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة اختيار وتغيير قنوات الإشعارات من إعدادات الملف الشخصي",
+     "text_en": "Allow notification channels to be selected and changed from profile settings"
+    },
+    {
+     "n": 2,
+     "text_ar": "التطبيق الفوري للتغييرات",
+     "text_en": "Immediate application of changes"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود خيارات واضحة لتحديد القنوات في الإعدادات",
+     "text_en": "Clear options in place for selecting channels in the settings"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار تطبيق التغييرات فورًا على الإشعارات اللاحقة",
+     "text_en": "Test that changes are applied immediately to subsequent notifications"
+    }
+   ],
+   "desc_en": "Enable customers to select or change their notification channels from their profile settings, with the change applied immediately."
+  },
+  {
+   "id": "4.5.5",
+   "desc_ar": "توثيق كل إشعار بما يشمل المحتوى المستخدم والقناة المستخدمة ونتيجة التسليم ووقت الإرسال، وذلك لأغراض التدقيق.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تسجيل جميع الإشعارات مع البيانات المطلوبة",
+     "text_en": "Record all notifications with the required data"
+    },
+    {
+     "n": 2,
+     "text_ar": "إتاحة السجلات لأغراض التدقيق",
+     "text_en": "Make the records available for audit purposes"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة سجلات النظام للتأكد من تسجيل: قالب المحتوى، القناة، نتيجة التسليم، وقت الإرسال",
+     "text_en": "Review of system logs to confirm the following are recorded: content template, channel, delivery outcome, time sent"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود آلية للوصول إلى سجلات الإشعارات عند الحاجة",
+     "text_en": "A mechanism in place to access notification records when needed"
+    }
+   ],
+   "desc_en": "Record every notification, including the content used, the channel used, the delivery outcome and the time sent, for audit purposes."
+  },
+  {
+   "id": "4.5.6",
+   "desc_ar": "تضمين رابط لإلغاء الاشتراك ضمن الإشعارات غير الإلزامية، مع ضمان تحديث التفضيلات فورًا.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تضمين رابط لإلغاء الاشتراك في كل إشعار غير إلزامي",
+     "text_en": "Include an unsubscribe link in every non-mandatory notification"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحديث الفوري للتفضيلات عند استخدام الرابط",
+     "text_en": "Immediate update of preferences when the link is used"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة الإشعارات غير الإلزامية للتأكد من وجود الرابط",
+     "text_en": "Review of non-mandatory notifications to confirm the link is present"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار إلغاء الاشتراك والتحقق من السريان الفوري",
+     "text_en": "Test unsubscribing and verify it takes effect immediately"
+    }
+   ],
+   "desc_en": "Include an unsubscribe link in non-mandatory notifications, ensuring that preferences are updated immediately."
+  },
+  {
+   "id": "4.5.7",
+   "desc_ar": "إشعار المتعامل بشكل واضح عند تعذر إكمال الخدمة بواسطة الذكاء الاصطناعي المساعد مع توضيح الخطوات التالية",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إرسال إشعار عند الفشل أو التعذر",
+     "text_en": "Send a notification upon failure or inability to complete"
+    },
+    {
+     "n": 2,
+     "text_ar": "تزويد المتعامل برقم الحالة والمدة المتوقعة للمعالجة",
+     "text_en": "Provide the customer with a case number and the expected processing time"
+    },
+    {
+     "n": 3,
+     "text_ar": "توفير قناة متابعة واضحة",
+     "text_en": "Provide a clear follow-up channel"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس سرعة الإشعار بعد الفشل",
+     "text_en": "Measure the speed of notification after failure"
+    },
+    {
+     "n": 2,
+     "text_ar": "اكتمال المعلومات المقدمة للمتعامل",
+     "text_en": "Completeness of the information provided to the customer"
+    },
+    {
+     "n": 3,
+     "text_ar": "توفر قناة متابعة فعالة",
+     "text_en": "Availability of an effective follow-up channel"
+    }
+   ],
+   "desc_en": "Notify the customer clearly when the service cannot be completed by the assistive AI, explaining the next steps"
+  },
+  {
+   "id": "4.6.1",
+   "desc_ar": "الالتزام بتوفير مرافق ميسرة عبر جميع القنوات، وإتاحة إمكانية وصول رقمية لجميع فئات المتعاملين، بما في ذلك أصحاب الهمم وكبار المواطنين، لضمان استخدام الخدمات بشكل مستقل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير مرافق ميسرة عبر جميع القنوات",
+     "text_en": "Provide accessible facilities across all channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "ضمان إمكانية وصول رقمية عبر جميع القنوات",
+     "text_en": "Ensure digital accessibility across all channels"
+    },
+    {
+     "n": 3,
+     "text_ar": "تمكين جميع الفئات من الاستخدام المستقل",
+     "text_en": "Enable all groups to use services independently"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة المرافق المادية للتأكد من توفر خيارات الوصول",
+     "text_en": "Review of physical facilities to confirm accessibility options are available"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار الخدمات الرقمية بأدوات إمكانية الوصول",
+     "text_en": "Test digital services with accessibility tools"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار الخدمات مع مستخدمين من فئات مختلفة",
+     "text_en": "Test services with users from different groups"
+    }
+   ],
+   "desc_en": "Commit to providing accessible facilities across all channels and digital accessibility for all customer groups, including People of Determination and senior citizens, to ensure services can be used independently."
+  },
+  {
+   "id": "4.6.2",
+   "desc_ar": "توفير المحتوى والدعم باللغتين العربية والإنجليزية بنفس النطاق والجودة عبر كافة القنوات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير المحتوى بنفس النطاق في كلتا اللغتين",
+     "text_en": "Provide content with the same scope in both languages"
+    },
+    {
+     "n": 2,
+     "text_ar": "توفير الدعم بنفس الجودة في كلتا اللغتين",
+     "text_en": "Provide support with the same quality in both languages"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مقارنة المحتوى المتاح بالعربية والإنجليزية",
+     "text_en": "Comparison of the content available in Arabic and English"
+    },
+    {
+     "n": 2,
+     "text_ar": "تقييم جودة الدعم المقدم بكلتا اللغتين",
+     "text_en": "Assessment of the quality of support provided in both languages"
+    }
+   ],
+   "desc_en": "Provide content and support in both Arabic and English with the same scope and quality across all channels."
+  },
+  {
+   "id": "4.6.3",
+   "desc_ar": "ضمان إمكانية الوصول لمستخدمي الكراسي المتحركة في مراكز الخدمة وتوفير مقاعد الانتظار ومسارات ذات أولوية، وعرض التسهيلات المتاحة بوضوح.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير إمكانية الوصول لمستخدمي الكراسي المتحركة",
+     "text_en": "Provide accessibility for wheelchair users"
+    },
+    {
+     "n": 2,
+     "text_ar": "توفير مقاعد للانتظار",
+     "text_en": "Provide waiting seats"
+    },
+    {
+     "n": 3,
+     "text_ar": "توفير مسارات ذات أولوية",
+     "text_en": "Provide priority lanes"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود مداخل ومسارات ومرافق مناسبة للكراسي المتحركة",
+     "text_en": "Entrances, pathways and facilities suitable for wheelchairs in place"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود مقاعد كافية في مناطق الانتظار",
+     "text_en": "Sufficient seating in waiting areas"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود مسارات مخصصة لأصحاب الهمم وكبار المواطنين",
+     "text_en": "Dedicated lanes in place for People of Determination and senior citizens"
+    }
+   ],
+   "desc_en": "Ensure accessibility for wheelchair users in service centres, provide waiting seats and priority lanes, and clearly display the facilities available."
+  },
+  {
+   "id": "4.6.4",
+   "desc_ar": "امتثال الخدمات الرقمية لمعايير WCAG 2.2 AA على أجهزة الحاسوب والجوال، بحيث يمكن إنجاز نفس الخطوات على أي من الجهازين.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الامتثال لمعايير WCAG 2.2 AA على أجهزة الحاسوب",
+     "text_en": "Compliance with WCAG 2.2 AA standards on desktop devices"
+    },
+    {
+     "n": 2,
+     "text_ar": "الامتثال لمعايير WCAG 2.2 AA على الجوال",
+     "text_en": "Compliance with WCAG 2.2 AA standards on mobile"
+    },
+    {
+     "n": 3,
+     "text_ar": "إمكانية إنجاز نفس الخطوات على الجهازين",
+     "text_en": "The same steps can be completed on both devices"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار الخدمات الرقمية على الحاسوب بأدوات تقييم WCAG",
+     "text_en": "Test digital services on desktop with WCAG assessment tools"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار الخدمات الرقمية على الجوال بأدوات تقييم WCAG",
+     "text_en": "Test digital services on mobile with WCAG assessment tools"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار إنجاز جميع الخطوات الأساسية على كلاً الجهازين",
+     "text_en": "Test completion of all core steps on both devices"
+    }
+   ],
+   "desc_en": "Digital services comply with WCAG 2.2 AA standards on desktop and mobile devices, so that the same steps can be completed on either device."
+  },
+  {
+   "id": "4.6.5",
+   "desc_ar": "ضمان توفير مراكز الاتصال لبدائل تواصل عبر وسيط أو بدائل نصية، وأن تنشر إرشادات واضحة حول كيفية استخدامها من قبل المتعاملين من أصحاب الهمم.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير وسيط للتواصل أو البدائل النصية",
+     "text_en": "Provide a communication relay service or text-based alternatives"
+    },
+    {
+     "n": 2,
+     "text_ar": "نشر إرشادات واضحة حول كيفية الاستخدام",
+     "text_en": "Publish clear instructions on how to use them"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة خدمات وسيط للتواصل أو بدائل نصية للمتعاملين",
+     "text_en": "Communication relay services or text-based alternatives available to customers"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود إرشادات منشورة وواضحة على الموقع وفي المراكز",
+     "text_en": "Clear instructions published on the website and in the centres"
+    }
+   ],
+   "desc_en": "Ensure that contact centres provide relay-based or text-based communication alternatives, and publish clear instructions on how customers who are People of Determination can use them."
+  },
+  {
+   "id": "4.6.6",
+   "desc_ar": "إجراء تدقيق سنوي لإمكانية الوصول، يختبر جميع الرحلات الأساسية، مع نشر خطة لمعالجة المشاكل والتحديات تتضمن المواعيد المحددة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إجراء تدقيق سنوي لإمكانية الوصول",
+     "text_en": "Conduct an annual accessibility audit"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار جميع الرحلات الأساسية",
+     "text_en": "Test all core journeys"
+    },
+    {
+     "n": 3,
+     "text_ar": "نشر خطة معالجة مع المواعيد المحددة",
+     "text_en": "Publish a remediation plan with set deadlines"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق التدقيق السنوي (مرة واحدة على الأقل كل 12 شهرًا)",
+     "text_en": "Documentation of the annual audit (at least once every 12 months)"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق اختبار جميع رحلات الخدمة الأساسية",
+     "text_en": "Documentation of testing of all core service journeys"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود خطة معالجة منشورة تتضمن مواعيد محددة للتنفيذ",
+     "text_en": "A published remediation plan in place with set implementation deadlines"
+    }
+   ],
+   "desc_en": "Conduct an annual accessibility audit that tests all core journeys, and publish a remediation plan for the issues and challenges identified, with set deadlines."
+  },
+  {
+   "id": "4.7.1",
+   "desc_ar": "تمكين خدمة المواعيد للمتعاملين من اختيار مركز الخدمة والتاريخ والوقت، وتزويدهم بتأكيد فوري.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة اختيار مركز الخدمة والتاريخ والوقت",
+     "text_en": "Allow selection of the service centre, date and time"
+    },
+    {
+     "n": 2,
+     "text_ar": "توفير تأكيد فوري بعد الحجز",
+     "text_en": "Provide immediate confirmation after booking"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود واجهة حجز تتيح اختيار هذه العناصر",
+     "text_en": "A booking interface in place that allows these elements to be selected"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار استلام التأكيد فورًا بعد إتمام الحجز",
+     "text_en": "Test receipt of confirmation immediately after the booking is completed"
+    }
+   ],
+   "desc_en": "The appointment service enables customers to select the service centre, date and time, and provides them with immediate confirmation."
+  },
+  {
+   "id": "4.7.2",
+   "desc_ar": "تمكين المتعاملين من إعادة جدولة المواعيد إلكترونيًا إلى حين الموعد النهائي المعلن دون رسوم، مع استلام تأكيد جديد.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة إعادة الجدولة إلكترونيًا الى حين الموعد النهائي",
+     "text_en": "Allow online rescheduling up to the deadline"
+    },
+    {
+     "n": 2,
+     "text_ar": "عدم فرض رسوم على إعادة الجدولة",
+     "text_en": "No charge for rescheduling"
+    },
+    {
+     "n": 3,
+     "text_ar": "استلام تأكيد جديد بعد إعادة الجدولة",
+     "text_en": "Receive a new confirmation after rescheduling"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود خيار إعادة الجدولة متاح",
+     "text_en": "A rescheduling option is available"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من عدم وجود رسوم على إعادة الجدولة",
+     "text_en": "Verify that there is no charge for rescheduling"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار استلام تأكيد جديد بعد إعادة الجدولة",
+     "text_en": "Test receipt of a new confirmation after rescheduling"
+    }
+   ],
+   "desc_en": "Enable customers to reschedule appointments online up to the published deadline without charge, and receive a new confirmation."
+  },
+  {
+   "id": "4.7.3",
+   "desc_ar": "إرسال التأكيد عبر القناة المفضلة وإظهاره في صندوق الوارد الخاص بالحساب، متضمنًا تفاصيل الموعد والمستندات المطلوبة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إرسال التأكيد عبر القناة المفضلة",
+     "text_en": "Send the confirmation through the preferred channel"
+    },
+    {
+     "n": 2,
+     "text_ar": "إظهار التأكيد في صندوق الوارد",
+     "text_en": "Display the confirmation in the inbox"
+    },
+    {
+     "n": 3,
+     "text_ar": "تضمين تفاصيل الموعد والمستندات المطلوبة",
+     "text_en": "Include the appointment details and the required documents"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إرسال التأكيد وفق القناة المحددة في التفضيلات",
+     "text_en": "Test sending the confirmation through the channel specified in the preferences"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من وجود التأكيد في صندوق الوارد",
+     "text_en": "Verify that the confirmation is present in the inbox"
+    },
+    {
+     "n": 3,
+     "text_ar": "مراجعة التأكيد للتأكد من اشتماله على هذه المعلومات",
+     "text_en": "Review of the confirmation to confirm it includes this information"
+    }
+   ],
+   "desc_en": "Send the confirmation through the preferred channel and display it in the account inbox, including the appointment details and the required documents."
+  },
+  {
+   "id": "4.7.4",
+   "desc_ar": "ضمان ألا يتجاوز متوسط وقت الانتظار 30 دقيقة للمواعيد المحجوزة مسبقًا، على أن يؤدي أي تجاوز في الوقت إلى تعديل القدرة الاستيعابية للخدمة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "متوسط وقت الانتظار لا يتجاوز 30 دقيقة للمواعيد المحجوزة",
+     "text_en": "Average waiting time does not exceed 30 minutes for booked appointments"
+    },
+    {
+     "n": 2,
+     "text_ar": "تعديل القدرة الاستيعابية عند التجاوز",
+     "text_en": "Adjust capacity when the limit is exceeded"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس متوسط وقت الانتظار الفعلي (≤ 30 دقيقة)",
+     "text_en": "Measure the actual average waiting time (≤ 30 minutes)"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق الإجراءات المتخذة عند تجاوز الحد",
+     "text_en": "Documentation of the actions taken when the limit is exceeded"
+    }
+   ],
+   "desc_en": "Ensure the average waiting time does not exceed 30 minutes for pre-booked appointments, and that any time overrun leads to an adjustment of service capacity."
+  },
+  {
+   "id": "4.7.5",
+   "desc_ar": "ضمان عرض أنظمة الدخول المباشر أوقات الانتظار المتوقعة، واقتراح أوقات بديلة أو قنوات أخرى إذا تجاوز الانتظار الحد المحدد.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "عرض أوقات الانتظار المتوقعة",
+     "text_en": "Display expected waiting times"
+    },
+    {
+     "n": 2,
+     "text_ar": "تقديم أوقات بديلة أو قنوات أخرى عند التجاوز",
+     "text_en": "Offer alternative times or other channels when the limit is exceeded"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود شاشة أو نظام يعرض أوقات الانتظار",
+     "text_en": "A screen or system in place that displays waiting times"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار ظهور البدائل عند تجاوز الحد المحدد",
+     "text_en": "Test that alternatives appear when the set limit is exceeded"
+    }
+   ],
+   "desc_en": "Ensure that walk-in systems display expected waiting times and suggest alternative times or other channels if the wait exceeds the set limit."
+  },
+  {
+   "id": "4.7.6",
+   "desc_ar": "تسجيل معدلات عدم الحضور والتأخر ومراجعتها كل ثلاثة أشهر لتحسين جدولة المواعيد.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تسجيل معدلات عدم الحضور والتأخر",
+     "text_en": "Record no-show and late-arrival rates"
+    },
+    {
+     "n": 2,
+     "text_ar": "المراجعة الفصلية (كل 3 أشهر)",
+     "text_en": "Quarterly review (every 3 months)"
+    },
+    {
+     "n": 3,
+     "text_ar": "استخدام النتائج لتحسين الجدولة",
+     "text_en": "Use the results to improve scheduling"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود آلية لتسجيل هذه المعدلات",
+     "text_en": "A mechanism in place to record these rates"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق المراجعة مرة واحدة على الأقل كل 3 أشهر",
+     "text_en": "Documentation of the review at least once every 3 months"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق التحسينات المطبقة بناءً على المراجعة",
+     "text_en": "Documentation of the improvements implemented based on the review"
+    }
+   ],
+   "desc_en": "Record no-show and late-arrival rates and review them every three months to improve appointment scheduling."
+  },
+  {
+   "id": "4.8.1",
+   "desc_ar": "يعكس دليل الخدمات دائمًا القائمة الكاملة والمحدثة لخدمات الجهة ويتم ربطها مع نظام خدماتي، متضمنًا الوصف والقواعد والمتطلبات والمستندات المطلوبة والرسوم ومدة المعالجة، على أن يدعم الدليل خاصية البحث.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "عرض القائمة الكاملة والمحدثة للخدمات",
+     "text_en": "Display the complete and up-to-date list of services"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين العناصر الأساسية لكل خدمة (الوصف، القواعد والمتطلبات، المستندات، الرسوم، مدة المعالجة)",
+     "text_en": "Include the core elements for each service (description, rules and requirements, documents, fees, processing time)"
+    },
+    {
+     "n": 3,
+     "text_ar": "قابلية البحث",
+     "text_en": "Searchability"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مقارنة الدليل بقائمة الخدمات الفعلية للجهة",
+     "text_en": "Comparison of the guide with the entity's actual list of services"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة الدليل للتأكد من وجود العناصر الأساسية",
+     "text_en": "Review of the guide to confirm the core elements are present"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود وظيفة بحث فّعالة في الدليل",
+     "text_en": "An effective search function in place in the guide"
+    }
+   ],
+   "desc_en": "The service guide always reflects the complete and up-to-date list of the entity's services and is linked to the Khadamati system, including the description, rules, requirements, required documents, fees and processing time, and the guide must support search functionality."
+  },
+  {
+   "id": "4.8.2",
+   "desc_ar": "تحديث دليل الخدمات بشكل فوري عند حدوث أي تغيير في خدمات الجهة وربطها مع نظام خدماتي.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "التحديث الفوري للدليل عند أي تغيير",
+     "text_en": "Immediate update of the guide upon any change"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين اعتماد التغيير وتحديث الدليل (≤ 24 ساعة)",
+     "text_en": "Measure the time between approval of the change and the update of the guide (≤ 24 hours)"
+    }
+   ],
+   "desc_en": "Update the service guide immediately upon any change to the entity's services, and link it to the Khadamati system."
+  },
+  {
+   "id": "4.8.3",
+   "desc_ar": "تحديد الفئات المؤهلة والمتطلبات المسبقة والمستندات المطلوبة في كل إضافة لخدمة جديدة في الدليل وربطها مع نظام خدماتي.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تحديد الفئات المؤهلة لكل خدمة",
+     "text_en": "Specify the eligible groups for each service"
+    },
+    {
+     "n": 2,
+     "text_ar": "توضيح المتطلبات المسبقة",
+     "text_en": "Set out the prerequisites"
+    },
+    {
+     "n": 3,
+     "text_ar": "توضيح المستندات المطلوبة",
+     "text_en": "Set out the required documents"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود قائمة واضحة بالفئات المؤهلة",
+     "text_en": "A clear list of eligible groups in place"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود قائمة بالمتطلبات المسبقة",
+     "text_en": "A list of prerequisites in place"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود قائمة كاملة بالمستندات",
+     "text_en": "A complete list of documents in place"
+    }
+   ],
+   "desc_en": "Specify the eligible groups, prerequisites and required documents for every new service added to the guide, and link them to the Khadamati system."
+  },
+  {
+   "id": "4.8.4",
+   "desc_ar": "توفير كل إضافة على دليل الخدمات لشرح تفصيلي للرحلة الكاملة في دليل الخدمة، مع وجود شرح تفصيلي للخدمة من البداية إلى النهاية، وربطها مع نظام خدماتي.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير دليل واضح للرحلة الكاملة",
+     "text_en": "Provide a clear guide to the complete journey"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين روابط مباشرة للتقديم",
+     "text_en": "Include direct links to apply"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود دليل يغطي جميع خطوات الخدمة",
+     "text_en": "A guide in place covering all steps of the service"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود روابط فّعالة تؤدي لصفحة التقديم",
+     "text_en": "Working links in place leading to the application page"
+    }
+   ],
+   "desc_en": "Provide, for every entry in the service guide, a detailed explanation of the complete journey, with a detailed description of the service from start to finish, and link it to the Khadamati system."
+  },
+  {
+   "id": "4.8.5",
+   "desc_ar": "عرض جدول رسوم مفصل لكل إضافة جديدة في الدليل، بما يشمل بنود الرسوم والإجمالي والإعفاءات، وربطها مع نظام خدماتي.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "عرض جدول رسوم مفصل لكل خدمة",
+     "text_en": "Display a detailed fee schedule for each service"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين الإجمالي",
+     "text_en": "Include the total"
+    },
+    {
+     "n": 3,
+     "text_ar": "توضيح الإعفاءات",
+     "text_en": "Set out the exemptions"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود جدول يوضح جميع بنود الرسوم",
+     "text_en": "A schedule in place showing all fee items"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود إجمالي الرسوم في الجدول",
+     "text_en": "The total fees shown in the schedule"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود معلومات عن الإعفاءات المتاحة",
+     "text_en": "Information in place on the exemptions available"
+    }
+   ],
+   "desc_en": "Display a detailed fee schedule for every new entry in the guide, including fee items, the total and exemptions, and link it to the Khadamati system."
+  }
+ ]
+}

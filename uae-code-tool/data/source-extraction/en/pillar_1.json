@@ -1,0 +1,1683 @@
+{
+ "pillar": {
+  "id": "1",
+  "name_ar": "تجربة أبسط.. أسهل.. أسرع",
+  "desc_ar": "تقديم خدمات حكومية مبسطة وسلسة يسهل الوصول إليها واستخدامها من قبل جميع فئات المتعاملين، ورقمنتها مع إزالة التعقيدات وضمان إنجازها بسرعة وكفاءة.",
+  "name_en": "A Simpler, Easier, Faster Experience",
+  "desc_en": "Delivering simplified, seamless government services that are easy for all customer groups to access and use, digitising them while removing complexity, and ensuring they are completed quickly and efficiently."
+ },
+ "subpillars": [
+  {
+   "id": "1.1",
+   "pillar": "1",
+   "name_ar": "معايير الوصول",
+   "name_en": "Accessibility standards"
+  },
+  {
+   "id": "1.2",
+   "pillar": "1",
+   "name_ar": "جودة النماذج وخصائص التحقق",
+   "name_en": "Form quality and validation features"
+  },
+  {
+   "id": "1.3",
+   "pillar": "1",
+   "name_ar": "توافق اللغات في رحلة المستخدم",
+   "name_en": "Language parity across the user journey"
+  },
+  {
+   "id": "1.4",
+   "pillar": "1",
+   "name_ar": "الإلمام الرقمي ومحتوى المساعدة",
+   "name_en": "Digital literacy and help content"
+  },
+  {
+   "id": "1.5",
+   "pillar": "1",
+   "name_ar": "تبسيط رحلة المتعامل وطلب المعلومات",
+   "name_en": "Simplifying the customer journey and information requests"
+  },
+  {
+   "id": "1.6",
+   "pillar": "1",
+   "name_ar": "وضوح الرسوم والدفع والإيصال",
+   "name_en": "Clarity of fees, payment and receipts"
+  },
+  {
+   "id": "1.7",
+   "pillar": "1",
+   "name_ar": "الدعم الرقمي الفوري ضمن قناة الخدمة",
+   "name_en": "Instant digital support within the service channel"
+  },
+  {
+   "id": "1.8",
+   "pillar": "1",
+   "name_ar": "فعالية القنوات في بيئة الاتصال الضعيفة",
+   "name_en": "Channel effectiveness in low-connectivity environments"
+  },
+  {
+   "id": "1.9",
+   "pillar": "1",
+   "name_ar": "تناسق المحتوى ونظام التصميم الوطني",
+   "name_en": "Content consistency and the national design system"
+  }
+ ],
+ "codes": [
+  {
+   "id": "1.1.1",
+   "desc_ar": "ضرورة استيفاء جميع خطوات مصادقة المتعامل، بما في ذلك تسجيل الدخول وإعادة تعيين كلمة المرور وإدخال رمز التحقق، لمعايير إمكانية الوصول WCAG 2.2 AA، وأن توفر رسائل خطأ واضحة، وتتيح وقتًا كافيًا للإتمام الخطوات وتعيد المتعامل إلى الخدمة الأصلية بعد المصادقة الناجحة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استيفاء معايير WCAG 2.2 AA لجميع خطوات المصادقة",
+     "text_en": "Meet WCAG 2.2 AA standards for all authentication steps"
+    },
+    {
+     "n": 2,
+     "text_ar": "إظهار رسائل خطأ واضحة",
+     "text_en": "Display clear error messages"
+    },
+    {
+     "n": 3,
+     "text_ar": "إتاحة وقت كافٍ لإتمام الخطوات وإعادة المتعامل للخدمة الأصلية",
+     "text_en": "Allow sufficient time to complete the steps and return the customer to the original service"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إمكانية الوصول لواجهات المصادقة",
+     "text_en": "Accessibility testing of authentication interfaces"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة رسائل الخطأ للتأكد من وضوحها",
+     "text_en": "Review of error messages to confirm their clarity"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار تجربة المستخدم الكاملة",
+     "text_en": "End-to-end user experience testing"
+    }
+   ],
+   "desc_en": "All customer authentication steps, including login, password reset and verification-code entry, must meet the WCAG 2.2 AA accessibility standards, provide clear error messages, allow sufficient time to complete the steps, and return the customer to the original service after successful authentication."
+  },
+  {
+   "id": "1.1.2",
+   "desc_ar": "أن يكون كل عنصر تفاعلي على صفحات الموقع الإلكتروني قابلاً للتشغيل الكامل بواسطة لوحة المفاتيح فقط، مع ترتيب تبويب منطقي وتركيز مرئي واضح على العنصر النشط، لضمان إتمام المهام من قبل المستخدمين غير القادرين على استخدام الفأرة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "جميع العناصر التفاعلية قابلة للتشغيل الكامل بواسطة لوحة المفاتيح فقط",
+     "text_en": "All interactive elements are fully operable using the keyboard alone"
+    },
+    {
+     "n": 2,
+     "text_ar": "ترتيب تبويب منطقي وتركيز مرئي واضح على العنصر النشط",
+     "text_en": "Logical tab order and clearly visible focus on the active element"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة العناصر التفاعلية التي يمكن الوصول لها بواسطة لوحة المفاتيح فقط",
+     "text_en": "Percentage of interactive elements reachable using the keyboard alone"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار الصفحات",
+     "text_en": "Page testing"
+    }
+   ],
+   "desc_en": "Every interactive element on the website's pages must be fully operable using the keyboard alone, with a logical tab order and a clearly visible focus on the active element, to ensure that users who cannot use a mouse can complete their tasks."
+  },
+  {
+   "id": "1.1.3",
+   "desc_ar": "ضمان احتواء جميع الصور الرمزية على نص بديل موجز يذكر وظيفة الصورة أو معناها لضمان تلقي قارئ الشاشة نفس المعلومات التي يتلقاها المستخدم الذي يرى الصورة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تتضمن جميع الصور الرمزية لنص بديل (alt text) موجز يذكر وظيفة الصورة أو معناها",
+     "text_en": "All meaningful images include concise alt text stating the image's function or meaning"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة الصور الرمزية التي تحتوي على نص بديل مناسب",
+     "text_en": "Percentage of meaningful images with appropriate alt text"
+    }
+   ],
+   "desc_en": "Ensure that all meaningful images carry concise alt text stating the image's function or meaning, so that screen-reader users receive the same information as users who can see the image."
+  },
+  {
+   "id": "1.1.4",
+   "desc_ar": "ضمان توفير جميع المحتويات الصوتية والمرئية ترجمات متزامنة ونسخة كاملة باللغتين العربية والإنجليزية حتى يتمكن المتعاملين من أصحاب الهمم من الوصول إلى المحتوى.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير ترجمات متزامنة (captions) لجميع المحتويات الصوتية والمرئية",
+     "text_en": "Provide synchronised captions for all audio and video content"
+    },
+    {
+     "n": 2,
+     "text_ar": "توفير نسخة نصية كاملة (transcript) باللغتين العربية والإنجليزية",
+     "text_en": "Provide a full transcript in both Arabic and English"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة المحتويات الصوتية/المرئية التي تحتوي على ترجمات متزامنة",
+     "text_en": "Percentage of audio/video content with synchronised captions"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة المحتويات التي تحتوي على نسخة نصية كاملة بكلاً اللغتين",
+     "text_en": "Percentage of content with a full transcript in both languages"
+    }
+   ],
+   "desc_en": "Ensure that all audio and video content is provided with synchronised captions and a full transcript in both Arabic and English, so that customers who are People of Determination can access the content."
+  },
+  {
+   "id": "1.1.5",
+   "desc_ar": "توفير مؤشرات نصية أو رمزية، إلى جانب ألوان محددة، في رسائل الخطأ والتحذير والحالة، بما يتيح للمستخدمين الذين يعانون من صعوبة في رؤية الألوان تفسير ردود فعل النظام بشكل دقيق.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "رسائل الخطأ والتحذير والحالة تشمل مؤشرات نصية أو رمزية بالإضافة إلى ألوان محددة",
+     "text_en": "Error, warning and status messages include text or icon indicators in addition to specific colours"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة الرسائل التي تحتوي على مؤشرات غير لونية (نص أو أيقونة)",
+     "text_en": "Percentage of messages with non-colour indicators (text or icon)"
+    }
+   ],
+   "desc_en": "Provide text or icon indicators, in addition to specific colours, in error, warning and status messages, so that users with colour-vision difficulties can accurately interpret system feedback."
+  },
+  {
+   "id": "1.1.6",
+   "desc_ar": "توفير خيار “تخطي إلى المحتوى” بوضوح للمتعاملين في كل صفحة، لينقل التركيز مباشرة إلى المحتوى الرئيسي، يما يحد من التنقل غير الضروري.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير رابط “تخطي إلى المحتوى” في كل صفحة",
+     "text_en": "Provide a “Skip to content” link on every page"
+    },
+    {
+     "n": 2,
+     "text_ar": "يظهر الرابط بوضوح عند التركيز وينقل المستخدم مباشرة إلى المحتوى الرئيسي",
+     "text_en": "The link is clearly visible on focus and takes the user directly to the main content"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توفر رابط التخطي في جميع الصفحات",
+     "text_en": "Skip link available on all pages"
+    },
+    {
+     "n": 2,
+     "text_ar": "ظهور الرابط عند التركيز + الانتقال الصحيح إلى المحتوى الرئيسي",
+     "text_en": "Link appears on focus + correctly moves to the main content"
+    }
+   ],
+   "desc_en": "Provide a clearly visible “Skip to content” option for customers on every page, moving focus directly to the main content and reducing unnecessary navigation."
+  },
+  {
+   "id": "1.2.1",
+   "desc_ar": "صياغة محتوى الصفحة بأسلوب مختصر مع التركيز على إنجاز المهام، وذلك باستخدام لغة واضحة والإظهار التدريجي للمحتوى لتقليل التشتت. فيما يجب ألا تعيق النصوص غير الضرورية أو الوسائط الزخرفية أو الروابط الثانوية سير العمل الأساسي، وأن تضمن وضع الإجراءات المهمة للخدمة في مكان بارز.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "صياغة المحتوى بأسلوب مختصر مع التركيز على إنجاز المهام، باستخدام لغة واضحة وإظهار تدريجي للمحتوى",
+     "text_en": "Write content concisely with a focus on task completion, using plain language and progressive disclosure of content"
+    },
+    {
+     "n": 2,
+     "text_ar": "ألا تعيق النصوص غير الضرورية أو الوسائط الزخرفية أو الروابط الثانوية سير العمل الأساسي",
+     "text_en": "Unnecessary text, decorative media and secondary links must not obstruct the core workflow"
+    },
+    {
+     "n": 3,
+     "text_ar": "وضع الإجراءات المهمة في موضع بارز",
+     "text_en": "Place key actions in a prominent position"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار قابلية الاستخدام + مراجعة المحتوى",
+     "text_en": "Usability test + content review"
+    },
+    {
+     "n": 2,
+     "text_ar": "تحليل مسارات المستخدم + اختبار قابلية الإنجاز",
+     "text_en": "User-path analysis + task-completion test"
+    },
+    {
+     "n": 3,
+     "text_ar": "مراجعة التصميم + اختبار وضوح الإجراءات الرئيسية",
+     "text_en": "Design review + test of the clarity of key actions"
+    }
+   ],
+   "desc_en": "Write page content concisely with a focus on task completion, using plain language and progressive disclosure of content to reduce distraction. Unnecessary text, decorative media and secondary links must not obstruct the core workflow, and key service actions must be placed prominently."
+  },
+  {
+   "id": "1.2.2",
+   "desc_ar": "ضمان توفير خاصية التحقق الفوري من المدخلات في كافة النماذج الرقمية وحقولها أثناء إدخال البيانات، بحيث يتم تنبيه المستخدم مباشرةً عند وجود خطأ، مع توضيح الحقل المعني والقاعدة غير المستوفاة وطريقة التصحيح، قبل إتاحة تقديم النموذج.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من المدخلات أثناء الكتابة (real-time validation)",
+     "text_en": "Validate input as it is typed (real-time validation)"
+    },
+    {
+     "n": 2,
+     "text_ar": "عرض رسائل فورية تحدد: اسم الحقل، القاعدة المخالفة، طريقة التصحيح",
+     "text_en": "Display immediate messages that identify: the field name, the violated rule, and how to correct it"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة الحقول التي تتحقق فوريًا من المدخلات",
+     "text_en": "Percentage of fields with real-time validation of input"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة رسائل الخطأ المستوفية للعناصر الثلاثة",
+     "text_en": "Percentage of error messages meeting all three elements"
+    }
+   ],
+   "desc_en": "Ensure real-time validation of input is provided in all digital forms and their fields during data entry, so that the user is alerted immediately when an error occurs, with the relevant field, the unmet rule and how to correct it made clear before the form can be submitted."
+  },
+  {
+   "id": "1.2.3",
+   "desc_ar": "إتاحة رفع الملفات في النماذج الرقمية بحجم أدنى 10 ميجابايت، مع تنبيه المستخدم فورًا عند تعذر رفع الملف أو رفضه، وبيان سبب الرفض.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تقييد اختيار الملفات بصيغ محددة وحجم أدنى يبلغ 10 ميجا بايت",
+     "text_en": "Restrict file selection to specified formats and a minimum size of 10 MB"
+    },
+    {
+     "n": 2,
+     "text_ar": "عرض تحذير واضح على الشاشة عند رفض ملف",
+     "text_en": "Display a clear on-screen warning when a file is rejected"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة عن اصر التحميل التي تطبق قيود الصيغة والحجم",
+     "text_en": "Percentage of upload elements that enforce format and size restrictions"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة حالات الرفض التي يظهر فيها تحذير واضح",
+     "text_en": "Percentage of rejections where a clear warning is shown"
+    }
+   ],
+   "desc_en": "Allow file uploads in digital forms with a minimum size of 10 MB, alerting the user immediately when a file cannot be uploaded or is rejected, and stating the reason for rejection."
+  },
+  {
+   "id": "1.2.4",
+   "desc_ar": "ضمان دعم حقول الاسم والعنوان إدخالاً كاملاً للبيانات دون اقتطاع، مع عرض عداد يوضح عدد الأحرف المتبقية للمستخدم أثناء الكتابة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إدخال وحفظ عدد كافٍ من الأحرف دون اقتطاع",
+     "text_en": "Enter and save a sufficient number of characters without truncation"
+    },
+    {
+     "n": 2,
+     "text_ar": "عرض عدد الأحرف المتبقية للمستخدم",
+     "text_en": "Show the user the number of characters remaining"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "سعة الحقول + اختبار عدم حدوث اقتطاع للإحرف",
+     "text_en": "Field capacity + test that no character truncation occurs"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود عداد أحرف ظاهر في جميع حقول الاسم والعنوان",
+     "text_en": "A visible character counter in all name and address fields"
+    }
+   ],
+   "desc_en": "Ensure that name and address fields support full data entry without truncation, with a counter showing the user the number of characters remaining while typing."
+  },
+  {
+   "id": "1.2.5",
+   "desc_ar": "حفظ النماذج لمدخلات المستخدم تلقائيًا وبشكل دوري لمنع فقدان البيانات، ومن دون الحاجة إلى تدخل المستخدم او تمديد الجلسة",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الحفظ التلقائي للمدخلات بشكل دوري",
+     "text_en": "Automatic periodic saving of input"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود آلية حفظ تلقائي + فترة الحفظ المحددة",
+     "text_en": "Presence of an auto-save mechanism + the defined save interval"
+    }
+   ],
+   "desc_en": "Forms save the user's input automatically and periodically to prevent data loss, without requiring user intervention or extending the session."
+  },
+  {
+   "id": "1.2.6",
+   "desc_ar": "ضرورة إشارة رسائل الخطأ إلى اسم الحقل والقاعدة المخالفة بدقة، مثل: ”يجب أن يتكون رقم الهاتف المحمول من 10 أرقام ويبدأ ب 05“، مع وضع التركيز على الحقل المخالف.",
+   "desc_en": "Error messages must precisely identify the field name and the violated rule, for example: “The mobile number must consist of 10 digits and start with 05”, with focus placed on the field in error.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إشارة رسائل الخطأ إلى اسم الحقل والقاعدة المخالفة بدقة",
+     "text_en": "Error messages identify the field name and the violated rule precisely"
+    },
+    {
+     "n": 2,
+     "text_ar": "وضع التركيز تلقائيًا على الحقل المخالف",
+     "text_en": "Focus is placed automatically on the field in error"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة رسائل الخطأ المستوفية للعنصرين",
+     "text_en": "Percentage of error messages that satisfy both elements"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة الحالات التي ينتقل فيها التركيز للحقل الصحيح",
+     "text_en": "Percentage of cases where focus moves to the correct field"
+    }
+   ]
+  },
+  {
+   "id": "1.2.7",
+   "desc_ar": "توفير وسيلة تحقق بشرية بديلة، غير معتمدة على الصوت أو الصورة، تُمكّن مستخدمي التقنيات المساعدة من متابعة الخطوة وإتمام الإجراء.",
+   "desc_en": "Provide an alternative human verification method, not reliant on audio or image, that enables users of assistive technologies to proceed with the step and complete the procedure.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير خيار تحقق لا يعتمد على الصوت أو العرض البصري",
+     "text_en": "Provide a verification option that does not depend on audio or visual display"
+    },
+    {
+     "n": 2,
+     "text_ar": "إمكانية إكمال التحقق لمستخدمي التقنيات المساندة",
+     "text_en": "Users of assistive technologies can complete the verification"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود خيار بديل (مثل: التحقق عبر الجهاز أو سؤال نصي بسيط)",
+     "text_en": "An alternative option exists (e.g. device-based verification or a simple text question)"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار إمكانية الوصول + نجاح الإكمال",
+     "text_en": "Accessibility test + successful completion"
+    }
+   ]
+  },
+  {
+   "id": "1.3.1",
+   "desc_ar": "ضمان تماثل رحلة الخدمة بين اللغتين العربية والإنجليزية، بحيث تكون الخصائص والمحتوى وآليات معالجة الأخطاء متاحة بنفس المستوى في كلتا اللغتين عند إطلاق الخدمة",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توافر الخصائص والمحتوى في اللغتين العربية والإنجليزية",
+     "text_en": "Features and content are available in both Arabic and English"
+    },
+    {
+     "n": 2,
+     "text_ar": "تماثل معالجة الأخطاء في اللغتين",
+     "text_en": "Error handling is identical in both languages"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مقارنة شاملة بين النسختين (الخصائص + محتوى)",
+     "text_en": "Comprehensive comparison of the two versions (features + content)"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة رسائل الخطأ في كلاً اللغتين",
+     "text_en": "Review of error messages in both languages"
+    }
+   ],
+   "desc_en": "Ensure parity of the service journey between Arabic and English, so that features, content and error-handling mechanisms are available to the same standard in both languages at service launch."
+  },
+  {
+   "id": "1.3.2",
+   "desc_ar": "تمكين المتعاملين من تبديل اللغة في أي خطوة خلال التقديم على الخدمة ومتابعة الرحلة من نفس الموضع مع الاحتفاظ بجميع البيانات المُدخلة، دون الحاجة إلى إعادة التحميل أو فقدان أية بيانات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إمكانية تبديل اللغة في أي خطوة ضمن رحلة الخدمة",
+     "text_en": "Ability to switch language at any step within the service journey"
+    },
+    {
+     "n": 2,
+     "text_ar": "الاحتفاظ بالبيانات المُدخلة والموضع الحالي بعد تبديل اللغة",
+     "text_en": "Entered data and the current position are retained after switching language"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار التبديل في جميع نقاط الرحلة",
+     "text_en": "Test switching at all points in the journey"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار عدم فقدان البيانات + استمرار من نفس الخطوة",
+     "text_en": "Test that no data is lost + continuation from the same step"
+    }
+   ],
+   "desc_en": "Enable customers to switch language at any step while applying for the service and continue the journey from the same point, retaining all entered data, without reloading or losing any data."
+  },
+  {
+   "id": "1.3.3",
+   "desc_ar": "تكون اللغة العربية هي اللغة الافتراضية للصفحات الموجهة لمتعاملي دولة الإمارات، مع إتاحة خيار دائم ومرئي للتبديل إلى الإنجليزية في رأس الصفحة، ما لم يحدد المتعامل لغة افتراضية مختلفة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "عرض الصفحات باللغة العربية تلقائًيا للمتعاملين في دولة الإمارات",
+     "text_en": "Pages are displayed in Arabic automatically for customers in the UAE"
+    },
+    {
+     "n": 2,
+     "text_ar": "توفير خيار واضح ودائم في رأس الصفحة لتبديل اللغة",
+     "text_en": "Provide a clear, permanent language-switch option in the page header"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اللغة التلقائية عند الوصول من الدول العربية",
+     "text_en": "Default language when accessed from Arab countries"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود خيار تبديل اللغة في رأس جميع الصفحات",
+     "text_en": "Language-switch option present in the header of all pages"
+    }
+   ],
+   "desc_en": "Arabic is the default language for pages aimed at customers in the UAE, with a permanent, visible option in the page header to switch to English, unless the customer has set a different default language."
+  },
+  {
+   "id": "1.3.4",
+   "desc_ar": "ضمان إرسال جميع الإشعارات الخاصة بالمعاملات باللغة المسجلة في ملف المتعامل، مع تضمين رابط يتيح تعديل تفضيلات اللغة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إرسال الإشعارات الخاصة بالمعاملات باللغة المسجلة في ملف المتعامل",
+     "text_en": "Send transaction notifications in the language recorded in the customer profile"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين رابط لتعديل تفضيلات اللغة في كل إشعار",
+     "text_en": "Include a link to change the language preference in every notification"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة تطابق لغة الإشعار مع تفضيلات الملف الشخصي",
+     "text_en": "Percentage match between notification language and profile preference"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود رابط التعديل في جميع الإشعارات المعاملات",
+     "text_en": "Change link present in all transaction notifications"
+    }
+   ],
+   "desc_en": "Ensure that all transaction notifications are sent in the language recorded in the customer profile, with a link included that allows the language preference to be changed."
+  },
+  {
+   "id": "1.3.5",
+   "desc_ar": "خضوع جميع القوالب العامة لمراجعة لغوية بشرية للتأكد من دقة اللغة وملائمة الأسلوب قبل النشر، وعند كل تحديث.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة لغوية بشرية لجميع القوالب العامة قبل النشر",
+     "text_en": "Human linguistic review of all public templates before publication"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة لغوية عند كل تحديث للقوالب",
+     "text_en": "Linguistic review at every template update"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المراجعة اللغوية قبل نشر أي قالب جديد",
+     "text_en": "Documentation of linguistic review before any new template is published"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق المراجعة اللغوية لجميع التحديثات",
+     "text_en": "Documentation of linguistic review for all updates"
+    }
+   ],
+   "desc_en": "All public templates undergo human linguistic review to confirm language accuracy and appropriateness of style before publication, and at every update."
+  },
+  {
+   "id": "1.3.6",
+   "desc_ar": "ضمان تماثل النصوص في اللغتين العربية والإنجليزية عبر كافة قنوات تقديم الخدمة، وتحديثهما بشكل متزامن عند اعتماد أية تغييرات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تماثل النصوص في اللغتين العربية والإنجليزية عبر قنوات الخدمة",
+     "text_en": "Arabic and English texts are identical across service channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحديث المتزامن للنصوص عند اعتماد التغييرات",
+     "text_en": "Simultaneous updating of texts when changes are approved"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مقارنة دورية للمحتوى بين النسختين",
+     "text_en": "Periodic content comparison between the two versions"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق تاريخ التحديث لكلاً النسختين (يجب أن يكون متطابقًا)",
+     "text_en": "Documentation of the update date for both versions (must be identical)"
+    }
+   ],
+   "desc_en": "Ensure that Arabic and English texts are identical across all service delivery channels, and that both are updated simultaneously whenever changes are approved."
+  },
+  {
+   "id": "1.4.1",
+   "desc_ar": "ضمان إتاحة إرشادات توضيحية للحقول ذات المتطلبات المعقدة أو غير البديهية، تبين قواعد الإدخال، مع تقديم مثال لمدخل صحيح عند الحاجة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إظهار نصائح مساعدة سياقية بجانب الحقول ذات القواعد غير الواضحة",
+     "text_en": "Show contextual help tips next to fields with unclear rules"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين مثال لمدخل صحيح يجتاز التحقق",
+     "text_en": "Include an example of a valid entry that passes validation"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود tooltips سياقية للحقول المعقدة",
+     "text_en": "Contextual tooltips present for complex fields"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود أمثلة صحيحة في جميع النصائح الإرشادية",
+     "text_en": "Valid examples present in all guidance tips"
+    }
+   ],
+   "desc_en": "Ensure that explanatory guidance is available for fields with complex or non-obvious requirements, setting out the input rules and giving an example of a valid entry where needed."
+  },
+  {
+   "id": "1.4.2",
+   "desc_ar": "ضمان مراجعة الأسئلة الشائعة سنويًا، أو عند الحاجة، بناءً على أكثر الاستفسارات تكرارًا ونتائج التحليلات، مع حذف الإجابات غير الدقيقة وإضافة إجابات جديدة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة الأسئلة الشائعة سنويًا أو عند الحاجة",
+     "text_en": "Review the FAQs annually or as needed"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحديث بناءً على أكثر الاستفسارات تكرارًا ونتائج التحليلات",
+     "text_en": "Update based on the most frequent enquiries and analytics results"
+    },
+    {
+     "n": 3,
+     "text_ar": "حذف الإجابات غير الدقيقة وإضافة إجابات جديدة",
+     "text_en": "Remove inaccurate answers and add new ones"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق تاريخ آخر مراجعة (يجب ألا يتجاوز 12 شهرًا)",
+     "text_en": "Documentation of the last review date (must not exceed 12 months)"
+    },
+    {
+     "n": 2,
+     "text_ar": "استخدام بيانات الاستفسارات والتحليلات في التحديث",
+     "text_en": "Use of enquiry and analytics data in the update"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق التغييرات (حذف/إضافة) مع كل مراجعة",
+     "text_en": "Documentation of changes (removals/additions) with each review"
+    }
+   ],
+   "desc_en": "Ensure that the FAQs are reviewed annually, or as needed, based on the most frequent enquiries and analytics results, removing inaccurate answers and adding new ones."
+  },
+  {
+   "id": "1.4.3",
+   "desc_ar": "توفير المحتوى الإرشادي المرئي والمكتوب باللغتين العربية والإنجليزية بشكل متزامن، وعند الحاجة، مع الحفاظ على تماثل المحتوى عند التحديث.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "النشر المتزامن للمحتوى الإرشادي المرئي والمكتوب بكلاً اللغتين",
+     "text_en": "Simultaneous publication of visual and written guidance content in both languages"
+    },
+    {
+     "n": 2,
+     "text_ar": "الحفاظ على تماثل المحتوى عند التحديث",
+     "text_en": "Maintain content parity when updated"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "تطابق تاريخ النشر للنسختين العربية والإنجليزية",
+     "text_en": "Matching publication date for the Arabic and English versions"
+    },
+    {
+     "n": 2,
+     "text_ar": "مقارنة دورية للمحتوى + تطابق تواريخ التحديث",
+     "text_en": "Periodic content comparison + matching update dates"
+    }
+   ],
+   "desc_en": "Provide visual and written guidance content in both Arabic and English simultaneously, and as needed, maintaining content parity when updated."
+  },
+  {
+   "id": "1.5.1",
+   "desc_ar": "استخدام البيانات المتاحة في السجلات الحكومية الموثقة وربط الأنظمة ذات العلاقة لتعبئة الحقول تلقائيًا، بما يضمن تطبيق مبدأ طلب البيانات مرة واحدة وعدم إعادة طلب البيانات من المتعامل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "ملء الخانات بشكل تلقائي بالبيانات المعتمدة",
+     "text_en": "Pre-fill fields automatically with authoritative data"
+    },
+    {
+     "n": 2,
+     "text_ar": "الربط مع السجلات الرقمية المعتمدة",
+     "text_en": "Link with approved digital registries"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة الخانات المحدثة مسبقًا من مصادر معتمدة",
+     "text_en": "Percentage of fields pre-populated from authoritative sources"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود مؤشر واضح لمصدر البيانات (مثال: “من ملفك الشخصي” أو “من الهوية الرقمية”)",
+     "text_en": "Clear indicator of the data source (e.g. “from your profile” or “from your digital identity”)"
+    }
+   ],
+   "desc_en": "Use data available in verified government registries and link the relevant systems to pre-fill fields automatically, ensuring the once-only principle is applied and data is not requested from the customer again."
+  },
+  {
+   "id": "1.5.2",
+   "desc_ar": "إتاحة تعديل البيانات المعبأة مسبقًا، مع تحديث السجلات وتوثيق التغييرات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة تعديل جميع الحقول المعبأة مسبقًا",
+     "text_en": "Allow all pre-filled fields to be edited"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحديث التلقائي للبيانات المُخزنة في بيانات المتعامل",
+     "text_en": "Automatic update of the data stored in the customer's data"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق جميع التغييرات",
+     "text_en": "Document all changes"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة الحقول المُملوءة مسبقًا القابلة للتعديل",
+     "text_en": "Percentage of pre-filled fields that can be edited"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار تحديث بيانات المتعامل بعد التعديل",
+     "text_en": "Test that customer data is updated after editing"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود سجل للتغييرات",
+     "text_en": "Presence of a change log"
+    }
+   ],
+   "desc_en": "Allow pre-filled data to be edited, with the records updated and the changes documented."
+  },
+  {
+   "id": "1.5.3",
+   "desc_ar": "توثيق خطوات كل خدمة بشكل واضح، وإلغاء أي طلبات غير ضرورية لبيانات أو مستندات تتوفر عبر الأنظمة الحكومية، وقبول جميع المستندات المطلوبة بصيغ رقمية قابلة للمعالجة الآلية، بما يمنع التكرار أو إعادة الإدخال أو النسخ اليدوي.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توثيق جميع خطوات الخدمة",
+     "text_en": "Document all service steps"
+    },
+    {
+     "n": 2,
+     "text_ar": "إلغاء طلبات البيانات/المستندات المتوفرة عبر الأنظمة الحكومية",
+     "text_en": "Remove requests for data/documents available through government systems"
+    },
+    {
+     "n": 3,
+     "text_ar": "قبول المستندات بصيغ رقمية قابلة للمعالجة الآلية",
+     "text_en": "Accept documents in machine-processable digital formats"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود توثيق شامل ومحّدث لكل خدمة",
+     "text_en": "Comprehensive, up-to-date documentation for each service"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة دورية لإزالة الطلبات المكررة",
+     "text_en": "Periodic review to remove duplicate requests"
+    },
+    {
+     "n": 3,
+     "text_ar": "نسبة المستندات المقبولة بتنسيقات رقمية قابلة للمعالجة",
+     "text_en": "Percentage of documents accepted in processable digital formats"
+    }
+   ],
+   "desc_en": "Clearly document the steps of each service, remove any unnecessary requests for data or documents that are available through government systems, and accept all required documents in machine-processable digital formats, preventing duplication, re-entry or manual copying."
+  },
+  {
+   "id": "1.5.4",
+   "desc_ar": "تبسيط رحلات المتعامل لتشمل الحد الأدنى من الخطوات الممكنة، ومقارنتها سنويًا بالمعايير المرجعية لضمان استمرار التحسين وتقليل الجهد على المتعامل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تبسيط الرحلات إلى الحد الأدنى من الخطوات",
+     "text_en": "Simplify journeys to the minimum number of steps"
+    },
+    {
+     "n": 2,
+     "text_ar": "المقارنة السنوية بالمعايير المرجعية",
+     "text_en": "Annual benchmarking against reference standards"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس عدد الخطوات في كل خدمة",
+     "text_en": "Measure the number of steps in each service"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق المقارنة للخدمات التي تم تبسيطها",
+     "text_en": "Documentation of the benchmarking for simplified services"
+    }
+   ],
+   "desc_en": "Simplify customer journeys to the minimum number of steps possible, and benchmark them annually against reference standards to ensure continuous improvement and reduce customer effort."
+  },
+  {
+   "id": "1.5.5",
+   "desc_ar": "إصدار رقم مرجعي موّحد للحالة من الخطوة الأولى، واستخدامه طوال رحلة المتعامل وعبر جميع القنوات، لتمكين المتعامل من تتّبع حالة طلبه بشكل مستمر",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إصدار رقم مرجعي موّحد من الخطوة الأولى",
+     "text_en": "Issue a unified reference number from the first step"
+    },
+    {
+     "n": 2,
+     "text_ar": "استخدام نفس الرقم المرجعي طوال رحلة المتعامل عبر جميع القنوات",
+     "text_en": "Use the same reference number throughout the customer journey across all channels"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة الحالات التي تحصل على رقم مرجعي فوري",
+     "text_en": "Percentage of cases that receive an immediate reference number"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار التتبع عبر القنوات المختلفة بنفس الرقم",
+     "text_en": "Test tracking across different channels using the same number"
+    }
+   ],
+   "desc_en": "Issue a unified case reference number from the first step and use it throughout the customer journey and across all channels, enabling the customer to track the status of their request continuously."
+  },
+  {
+   "id": "1.5.6",
+   "desc_ar": "تُسّمى الخدمات بمسميات واضحة ومبسطة تعكس احتياج المتعامل والغرض من الخدمة، بحيث يتمكن المتعامل من إيجاد الخدمة بسهولة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تسمية الخدمات بمسميات واضحة تعكس احتياج المتعامل",
+     "text_en": "Name services clearly in a way that reflects the customer's need"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "سهولة إيجاد الخدمة عبر المتسوق السري",
+     "text_en": "Ease of finding the service via mystery shopper"
+    }
+   ],
+   "desc_en": "Services are given clear, simple names that reflect the customer's need and the purpose of the service, so that the customer can find the service easily."
+  },
+  {
+   "id": "1.6.1",
+   "desc_ar": "توفير تفاصيل الرسوم المستحقة، مع إظهار القيمة الإجمالية قبل تأكيد الدفع، ودمج جميع إجراءات الدفع ضمن خطوة واحدة، بما يمنع تجزئة عملية الدفع أو تكرار طلبها خلال رحلة المتعامل الواحدة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "عرض تفصيلي للرسوم مع عرض الإجمالي النهائي قبل التأكيد",
+     "text_en": "Itemised display of fees with the final total shown before confirmation"
+    },
+    {
+     "n": 2,
+     "text_ar": "دمج جميع إجراءات الدفع في خطوة واحدة",
+     "text_en": "Consolidate all payment actions into a single step"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود تفاصيل كاملة للرسوم + عرض الإجمالي قبل التأكيد",
+     "text_en": "Full fee details present + total shown before confirmation"
+    },
+    {
+     "n": 2,
+     "text_ar": "عدد خطوات الدفع في رحلة المتعامل (يجب ألا يتجاوز 1)",
+     "text_en": "Number of payment steps in the customer journey (must not exceed 1)"
+    }
+   ],
+   "desc_en": "Provide details of the fees due, showing the total amount before payment is confirmed, and consolidate all payment actions into a single step, preventing fragmented payment or repeated payment requests within a single customer journey."
+  },
+  {
+   "id": "1.6.2",
+   "desc_ar": "إتاحة نظام الدفع سداد الإمارات “UAE Pay” كأحد خيارات الدفع المتوفرة للمتعاملين في كافة الخدمات",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة نظام الدفع سداد الإمارات “UAE Pay” كأحد خيارات الدفع",
+     "text_en": "Make the UAE Pay payment system available as one of the payment options"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود نظام الدفع سداد الإمارات “UAE Pay” عند الدفع",
+     "text_en": "UAE Pay payment system present at checkout"
+    }
+   ],
+   "desc_en": "Make the UAE Pay payment system available as one of the payment options for customers across all services."
+  },
+  {
+   "id": "1.6.3",
+   "desc_ar": "يجب أن تتضمن الإيصالات رقم المعاملة وتاريخها وطريقة الدفع وتفاصيل الرسوم والرقم المرجعي للخدمة، وأن تُرسل للمتعامل عبر القناة التي يختارها، مثل البريد الإلكتروني أو الرسائل النصية أو تطبيقات المراسلة المعتمدة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تتضمن الإيصال على رقم المعاملة والتاريخ وطريقة الدفع وتفاصيل الرسوم والرقم المرجعي",
+     "text_en": "The receipt includes the transaction number, date, payment method, fee details and reference number"
+    },
+    {
+     "n": 2,
+     "text_ar": "إرسال الإيصال عبر القناة المفضلة للمتعامل (بريد إلكتروني/رسائل نصية/واتساب)",
+     "text_en": "Send the receipt via the customer's preferred channel (email/SMS/WhatsApp)"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود جميع العناصر في كل إيصال",
+     "text_en": "All elements present in every receipt"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة الإيصالات المُرسلة عبر القناة المفضلة",
+     "text_en": "Percentage of receipts sent via the preferred channel"
+    }
+   ],
+   "desc_en": "Receipts must include the transaction number, date, payment method, fee details and the service reference number, and must be sent to the customer via the channel they choose, such as email, SMS or approved messaging apps."
+  },
+  {
+   "id": "1.6.4",
+   "desc_ar": "ضمان وجود رابط واضح لسياسة استرداد المبالغ المدفوعة المرتبطة بالإيصال على صفحة الدفع، بما يوضح القواعد والمتطلبات والمدة الزمنية وإجراءات تقديم طلب الاسترداد",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "وجود رابط لسياسة الاسترداد في صفحة الدفع",
+     "text_en": "Link to the refund policy present on the payment page"
+    },
+    {
+     "n": 2,
+     "text_ar": "اشتمال السياسة على القواعد والمتطلبات والمدة الزمنية وإجراءات الطلب",
+     "text_en": "The policy covers the rules, requirements, timeframe and request procedure"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود رابط واضح في جميع صفحات الدفع",
+     "text_en": "Clear link present on all payment pages"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى السياسة للتأكد من اكتمال العناصر الثلاثة",
+     "text_en": "Review of the policy content to confirm all three elements are complete"
+    }
+   ],
+   "desc_en": "Ensure a clear link to the refund policy associated with the receipt is present on the payment page, setting out the rules, requirements, timeframe and procedure for submitting a refund request."
+  },
+  {
+   "id": "1.6.5",
+   "desc_ar": "إتاحة الإيصال للتحميل ضمن ملف المتعامل خلال أقل من 24 ساعة من إتمام المعاملة، مع ضمان إمكانية الوصول إليه والاحتفاظ به للرجوع إليه في أي وقت مستقبلاً.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة الإيصال للتحميل خلال أقل من 24 ساعة من إتمام المعاملة",
+     "text_en": "Make the receipt available for download within less than 24 hours of completing the transaction"
+    },
+    {
+     "n": 2,
+     "text_ar": "الاحتفاظ بالإيصال لضمان الوصول المستقبلي",
+     "text_en": "Retain the receipt to ensure future access"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "الوقت المنقض بين إتمام المعاملة وإتاحة الإيصال",
+     "text_en": "Time elapsed between transaction completion and receipt availability"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود جميع الإيصالات في ملف المتعامل قابلة للوصول",
+     "text_en": "All receipts present and accessible in the customer profile"
+    }
+   ],
+   "desc_en": "Make the receipt available for download in the customer profile within less than 24 hours of completing the transaction, ensuring it can be accessed and retained for future reference at any time."
+  },
+  {
+   "id": "1.6.6",
+   "desc_ar": "توفير جميع إيصالات الدفع باللغتين العربية والإنجليزية بمحتوى متماثل",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير إيصالات الدفع",
+     "text_en": "Provide payment receipts"
+    },
+    {
+     "n": 2,
+     "text_ar": "تماثل المحتوى بين اللغتين",
+     "text_en": "Identical content in both languages"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود نسختين (عربية وإنجليزية) لجميع الإيصالات والتأكيدات",
+     "text_en": "Two versions (Arabic and English) present for all receipts and confirmations"
+    },
+    {
+     "n": 2,
+     "text_ar": "مقارنة دورية للتأكد من تماثل المحتوى",
+     "text_en": "Periodic comparison to confirm content parity"
+    }
+   ],
+   "desc_en": "Provide all payment receipts in both Arabic and English with identical content."
+  },
+  {
+   "id": "1.7.1",
+   "desc_ar": "إتاحة خدمات الدعم المباشر، مثل المحادثة الفورية أو إعادة الاتصال، ضمن رحلة المتعامل نفسها، دون إعادة توجيه المتعامل إلى قناة أخرى.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة الدعم المباشر (المحادثة الفورية/إعادة اتصال) ضمن رحلة المتعامل",
+     "text_en": "Provide live support (live chat/call-back) within the customer journey"
+    },
+    {
+     "n": 2,
+     "text_ar": "تفادي إعادة توجيه المتعامل إلى قناة خارجية",
+     "text_en": "Avoid redirecting the customer to an external channel"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود خيارات الدعم المباشر في جميع صفحات الخدمة",
+     "text_en": "Live support options present on all service pages"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار استمرارية الرحلة عند طلب الدعم",
+     "text_en": "Test journey continuity when support is requested"
+    }
+   ],
+   "desc_en": "Make live support services, such as live chat or call-back, available within the customer journey itself, without redirecting the customer to another channel."
+  },
+  {
+   "id": "1.7.2",
+   "desc_ar": "معالجة جميع شكاوى وملاحظات المتعاملين ضمن نفس قناة التواصل (الموقع الإلكتروني، التطبيق الذكي، مراكز الخدمة الحضورية، مراكز الاتصال)، أو تصعيدها داخليًا دون تحويل المتعامل إلى جهات خارجية، واستخدام نفس رقم الحالة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "معالجة الشكاوى والملاحظات ضمن نفس القناة أو التصعيد الداخلي",
+     "text_en": "Handle complaints and feedback within the same channel or escalate internally"
+    },
+    {
+     "n": 2,
+     "text_ar": "عدم تحويل المتعامل إلى جهات خارجية",
+     "text_en": "Do not refer the customer to external parties"
+    },
+    {
+     "n": 3,
+     "text_ar": "ربط التصعيد برقم الحالة",
+     "text_en": "Link the escalation to the case number"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة الحالات المحلولة في نفس القناة أو المصّعدة داخليًا",
+     "text_en": "Percentage of cases resolved in the same channel or escalated internally"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة التحويلات الخارجية",
+     "text_en": "Percentage of external referrals"
+    },
+    {
+     "n": 3,
+     "text_ar": "التحقق من استمرار ربط الحالة بعملية التصعيد",
+     "text_en": "Verify that the case remains linked throughout the escalation process"
+    }
+   ],
+   "desc_en": "Handle all customer complaints and feedback within the same communication channel (website, smart app, service centres, contact centres), or escalate them internally without referring the customer to external parties, using the same case number."
+  },
+  {
+   "id": "1.7.3",
+   "desc_ar": "إتاحة خدمات الدعم الرقمي المباشر على مدار الساعة طوال أيام الأسبوع متى ما دعت الحاجة، مع عرض واضح لحالة الخدمة ووقت الاستجابة المتوقع.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة الدعم الرقمي المباشر على مدار الساعة (24/7)",
+     "text_en": "Provide live digital support around the clock (24/7)"
+    },
+    {
+     "n": 2,
+     "text_ar": "عرض واضح لحالة الخدمة ووقت الاستجابة المتوقع",
+     "text_en": "Clear display of the service status and expected response time"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة توفر الخدمة (uptime)",
+     "text_en": "Service availability rate (uptime)"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود مؤشر واضح للحالة والوقت المتوقع",
+     "text_en": "Clear status and expected-time indicator present"
+    }
+   ],
+   "desc_en": "Make live digital support services available 24/7 whenever needed, with a clear display of the service status and expected response time."
+  },
+  {
+   "id": "1.7.4",
+   "desc_ar": "تقديم الدعم المباشر باللغة المفضلة للمتعامل حسب الملف الشخصي، مع إمكانية تبديل اللغة عند الطلب دون الحاجة إلى إعادة الخطوات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تقديم الدعم باللغة المفضلة للمتعامل حسب الملف الشخصي",
+     "text_en": "Provide support in the customer's preferred language as per their profile"
+    },
+    {
+     "n": 2,
+     "text_ar": "إمكانية تبديل اللغة دون الحاجة إلى إعادة الخطوات",
+     "text_en": "Ability to switch language without having to repeat the steps"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة تطابق لغة الدعم مع اللغة المفضلة",
+     "text_en": "Percentage match between support language and preferred language"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار تبديل اللغة واستمرار الجلسة",
+     "text_en": "Test language switching and session continuity"
+    }
+   ],
+   "desc_en": "Provide live support in the customer's preferred language as per their profile, with the ability to switch language on request without having to repeat the steps."
+  },
+  {
+   "id": "1.7.5",
+   "desc_ar": "توفير دعم مباشر وفوري للمتعاملين خلال تعبئة النماذج ورفع المستندات لمعالجة أي تحديات تشغيلية تعيق استكمال الإجراءات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تقديم المساعدة في تعبئة النماذج ورفع المستندات ومعالجة التحديات",
+     "text_en": "Provide assistance with completing forms, uploading documents and resolving challenges"
+    },
+    {
+     "n": 2,
+     "text_ar": "تمكين المتعامل من متابعة الخطوات بعد الدعم",
+     "text_en": "Enable the customer to continue the steps after support"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "تغطية الدعم لكافة مراحل تجربة المتعامل",
+     "text_en": "Support coverage across all stages of the customer experience"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة الحالات التي تم حلها وتمكين المتعامل من المتابعة",
+     "text_en": "Percentage of cases resolved with the customer enabled to continue"
+    }
+   ],
+   "desc_en": "Provide live, immediate support to customers while completing forms and uploading documents, to address any operational challenges that prevent the procedure from being completed."
+  },
+  {
+   "id": "1.7.6",
+   "desc_ar": "ضمان حصول جميع حالات الدعم المباشر على رقم مرجعي موّحد، ومعالجتها وفقًا لمؤشرات الأداء المعتمدة (مثل: عاجل: 24 ساعة، عادي: 5 أيام، معقد: 15 يومًا)، وتزويد المتعاملين بتحديثات استباقية حتى إغلاق الحالة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إصدار رقم مرجعي موّحد لكل حالة دعم",
+     "text_en": "Issue a unified reference number for every support case"
+    },
+    {
+     "n": 2,
+     "text_ar": "المعالجة وفقًا لمؤشرات الأداء المعتمدة",
+     "text_en": "Handle cases in line with the approved performance indicators"
+    },
+    {
+     "n": 3,
+     "text_ar": "تزويد المتعاملين بتحديثات استباقية حتى إغلاق الحالة",
+     "text_en": "Provide customers with proactive updates until the case is closed"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة الحالات التي حصلت على رقم مرجعي",
+     "text_en": "Percentage of cases that received a reference number"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة الحالات المحلولة ضمن المدة المحددة حسب النوع",
+     "text_en": "Percentage of cases resolved within the timeframe set for their type"
+    },
+    {
+     "n": 3,
+     "text_ar": "عدد التحديثات المُرسلة لكل حالة + توقيتها",
+     "text_en": "Number of updates sent per case + their timing"
+    }
+   ],
+   "desc_en": "Ensure that all live support cases receive a unified reference number, are handled in line with the approved performance indicators (e.g. urgent: 24 hours; standard: 5 days; complex: 15 days), and that customers are given proactive updates until the case is closed."
+  },
+  {
+   "id": "1.7.7",
+   "desc_ar": "في حال عجز المحادثة الفورية عن تقديم رد مناسب، تُصّعد الحالة تلقائيًا إلى موظف مختص مع الاحتفاظ بسياق المحادثة كاملاً دون الحاجة إلى إعادة الشرح من قبل المتعامل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تصعيد الحالة تلقائيًا إلى موظف مختص مع الاحتفاظ بسياق المحادثة",
+     "text_en": "Escalate the case automatically to a specialist staff member while retaining the conversation context"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من التصعيد التلقائي واستمرارية السياق عبر المتسوق السري",
+     "text_en": "Verify automatic escalation and context continuity via mystery shopper"
+    }
+   ],
+   "desc_en": "If the live chat is unable to provide a suitable response, the case is escalated automatically to a specialist staff member with the full conversation context retained, so the customer does not need to explain again."
+  },
+  {
+   "id": "1.8.1",
+   "desc_ar": "ضمان عمل الخدمات بكفاءة على النطاق الترددي المنخفض وسرعات الاتصال البطيئة، من خلال ضغط الوسائط وتقليل النصوص البرمجية الثقيلة، لتمكين المتعاملين ذوي الاتصال البطيء من إتمام الخطوات او الخدمة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "ضغط الوسائط لتحسين الأداء على الاتصال البطيء",
+     "text_en": "Compress media to improve performance on slow connections"
+    },
+    {
+     "n": 2,
+     "text_ar": "تقليل النصوص البرمجية الثقيلة",
+     "text_en": "Reduce heavy scripts"
+    },
+    {
+     "n": 3,
+     "text_ar": "إمكانية إتمام الخدمة على اتصال بطيء",
+     "text_en": "Ability to complete the service on a slow connection"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "حجم ملفات الوسائط المضغوطة",
+     "text_en": "Size of compressed media files"
+    },
+    {
+     "n": 2,
+     "text_ar": "حجم ملفات + وقت التحميل على سرعات منخفضة",
+     "text_en": "File sizes + load time at low speeds"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار الأداء على سرعات منخفضة",
+     "text_en": "Performance testing at low speeds"
+    }
+   ],
+   "desc_en": "Ensure services work efficiently on low bandwidth and slow connection speeds, by compressing media and reducing heavy scripts, so that customers with slow connections can complete the steps or the service."
+  },
+  {
+   "id": "1.8.2",
+   "desc_ar": "تحسين صفحات الخدمة الرئيسية لضمان تحميل سريع عبر جميع الأجهزة، مع الامتثال التام لنظام تصميم المواقع الإلكترونية (DLS) لدولة الإمارات والمعايير العالمية لإمكانية الوصول WCAG 2.2 AA.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تحسين صفحات الخدمة الرئيسية لضمان التحميل السريع",
+     "text_en": "Optimise the main service pages to ensure fast loading"
+    },
+    {
+     "n": 2,
+     "text_ar": "الامتثال لنظام تصميم المواقع الإلكترونية (DLS)",
+     "text_en": "Compliance with the website Design Language System (DLS)"
+    },
+    {
+     "n": 3,
+     "text_ar": "الامتثال لمعايير WCAG 2.2 AA",
+     "text_en": "Compliance with WCAG 2.2 AA standards"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وقت التحميل عبر الأجهزة المختلفة",
+     "text_en": "Load time across different devices"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة الامتثال لمعايير DLS",
+     "text_en": "Review of compliance with DLS standards"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار إمكانية الوصول وفقًا ل WCAG 2.2 AA",
+     "text_en": "Accessibility testing against WCAG 2.2 AA"
+    }
+   ],
+   "desc_en": "Optimise the main service pages to ensure fast loading across all devices, with full compliance with the UAE website Design Language System (DLS) and the international WCAG 2.2 AA accessibility standards."
+  },
+  {
+   "id": "1.8.3",
+   "desc_ar": "عرض جميع النماذج بتصميم سلس، يدعم لوحات مفاتيح الأجهزة الذكية حسب أنواع المدخلات، مع إتاحة استكمال تعبئة النموذج دون الحاجة إلى تمرير أفقي.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "عرض النماذج بتصميم سلس عبر جميع الأجهزة",
+     "text_en": "Display forms with a responsive design across all devices"
+    },
+    {
+     "n": 2,
+     "text_ar": "دعم لوحات مفاتيح الأجهزة الذكية المناسبة لأنواع المدخلات",
+     "text_en": "Support smart-device keyboards appropriate to the input types"
+    },
+    {
+     "n": 3,
+     "text_ar": "عدم الحاجة للتمرير الأفقي",
+     "text_en": "No horizontal scrolling required"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار التجاوب على أحجام شاشات مختلفة",
+     "text_en": "Responsiveness testing on different screen sizes"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة الحقول التي تفتح لوحة المفاتيح الصحيحة (رقمية/بريد/إلخ)",
+     "text_en": "Percentage of fields that open the correct keyboard (numeric/email/etc.)"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار عدم وجود تمرير أفقي على الأجهزة المحمولة",
+     "text_en": "Test that there is no horizontal scrolling on mobile devices"
+    }
+   ],
+   "desc_en": "Display all forms with a responsive design that supports smart-device keyboards according to input type, allowing the form to be completed without horizontal scrolling."
+  },
+  {
+   "id": "1.8.4",
+   "desc_ar": "توفير قناة بديلة واضحة وُمعلن عنها، في حال تعذر الاتصال، مثل مركز الاتصال أو مركز الخدمة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير قناة بديلة عند عدم تعذر الاتصال",
+     "text_en": "Provide an alternative channel when connectivity fails"
+    },
+    {
+     "n": 2,
+     "text_ar": "الإعلان الواضح عن القنوات البديلة",
+     "text_en": "Clearly publicise the alternative channels"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود قنوات بديلة",
+     "text_en": "Alternative channels available"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود إشارات واضحة للقنوات البديلة في المواقع والمواد",
+     "text_en": "Clear references to the alternative channels on websites and in materials"
+    }
+   ],
+   "desc_en": "Provide a clear, publicised alternative channel in the event of connectivity failure, such as the contact centre or the service centre."
+  },
+  {
+   "id": "1.8.5",
+   "desc_ar": "توافق الخدمات مع المتصفحات الأكثر استخدامًا في الإمارات، عبر الأجهزة المحمولة ونوافذ الخدمة الذاتية وأجهزة الحاسوب.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "التوافق مع المتصفحات الأكثر استخدامًا في دولة الإمارات",
+     "text_en": "Compatibility with the browsers most commonly used in the UAE"
+    },
+    {
+     "n": 2,
+     "text_ar": "التوافق عبر الأجهزة المختلفة (محمول/مكتبي)",
+     "text_en": "Compatibility across different devices (mobile/desktop)"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار التوافق مع أهم المتصفحات (Chrome, Safari, Edge, Firefox)",
+     "text_en": "Compatibility testing with the main browsers (Chrome, Safari, Edge, Firefox)"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار الأداء والعرض على جميع أنواع الأجهزة",
+     "text_en": "Performance and display testing on all device types"
+    }
+   ],
+   "desc_en": "Services are compatible with the browsers most commonly used in the UAE, across mobile devices, self-service kiosks and computers."
+  },
+  {
+   "id": "1.8.6",
+   "desc_ar": "ضمان حفظ الطلبات قيد الإنجاز بشكل آمن وإتاحة استرجاعها في أي وقت، وإخطار المتعاملين مسبقًا قبل أي حذف، حيث يمكن حذف المسودات بموافقة المتعامل أو بعد انتهاء فترة الاحتفاظ المعلن عنها.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الحفظ الآمن للطلبات قيد الإنجاز",
+     "text_en": "Secure saving of in-progress applications"
+    },
+    {
+     "n": 2,
+     "text_ar": "إمكانية استرجاع الطلبات في أي وقت",
+     "text_en": "Ability to retrieve applications at any time"
+    },
+    {
+     "n": 3,
+     "text_ar": "الإخطار المسبق قبل أي حذف",
+     "text_en": "Advance notification before any deletion"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود آلية حفظ آمنة + اختبار الأمان",
+     "text_en": "Secure save mechanism present + security testing"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار الاسترجاع من أجهزة مختلفة",
+     "text_en": "Retrieval testing from different devices"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود آلية إخطار تلقائية قبل الحذف + وضوح فترة الاحتفاظ",
+     "text_en": "Automatic pre-deletion notification mechanism present + clearly stated retention period"
+    }
+   ],
+   "desc_en": "Ensure that in-progress applications are saved securely and can be retrieved at any time, and that customers are notified in advance before any deletion; drafts may be deleted with the customer's consent or after the published retention period has expired."
+  },
+  {
+   "id": "1.9.1",
+   "desc_ar": "اعتماد مكّونات نظام التصميم الوطني وقواعد التباعد المعتمدة في جميع الخدمات، واستبدال أي واجهات مخصصة بما يقابلها من مكّونات النظام.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "اعتماد مكّونات نظام التصميم الوطني وقواعد التباعد",
+     "text_en": "Adopt the national design system components and spacing rules"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة المكّونات أو العناصر المستخدمة من النظام الوطني",
+     "text_en": "Percentage of components or elements used from the national system"
+    }
+   ],
+   "desc_en": "Adopt the national design system components and approved spacing rules across all services, and replace any custom interfaces with their equivalent system components."
+  },
+  {
+   "id": "1.9.2",
+   "desc_ar": "ضمان توافق الشعارات والألوان والخطوط وأسلوب كتابة المحتوى مع إرشادات الهوية المعتمدة عبر جميع قنوات الخدمة، بما يشمل المواقع الإلكترونية وتطبيقات الهاتف المحمول والمطبوعات واللافتات في مراكز الخدمة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "التوافق مع إرشادات الهوية (شعارات، ألوان، خطوط، أسلوب)",
+     "text_en": "Compliance with the brand identity guidelines (logos, colours, fonts, style)"
+    },
+    {
+     "n": 2,
+     "text_ar": "الالتزام عبر جميع القنوات",
+     "text_en": "Adherence across all channels"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة دورية للتوافق عبر جميع القنوات",
+     "text_en": "Periodic compliance review across all channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة القنوات الملتزمة بالإرشادات",
+     "text_en": "Percentage of channels adhering to the guidelines"
+    }
+   ],
+   "desc_en": "Ensure that logos, colours, fonts and content writing style comply with the approved brand identity guidelines across all service channels, including websites, mobile apps, printed materials and signage in service centres."
+  },
+  {
+   "id": "1.9.3",
+   "desc_ar": "التزام المحتوى بمعايير دليل الأسلوب المعتمد، بما يشمل مبادئ المحتوى ونبرة وأسلوب الكتابة والقواعد اللغوية والمصطلحات المعتمدة ونصوص واجهة المستخدم (النصوص القصيرة).",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الالتزام بمعايير دليل الأسلوب المعتمد",
+     "text_en": "Compliance with the standards of the approved style guide"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة المحتوى للتأكد من الالتزام بالمعايير",
+     "text_en": "Content review to confirm compliance with the standards"
+    }
+   ],
+   "desc_en": "Content complies with the standards of the approved style guide, including content principles, tone and writing style, grammar, approved terminology and user-interface text (microcopy)."
+  },
+  {
+   "id": "1.9.4",
+   "desc_ar": "التزام قوالب الصفحات والمستندات بنظام التصميم الوطني وإرشادات الهوية المؤسسية، وتحديثها عند أي تعديل على المعايير المعتمدة أو المحتوى.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "التزام القوالب بنظام التصميم الوطني وإرشادات الهوية المؤسسية",
+     "text_en": "Templates comply with the national design system and corporate identity guidelines"
+    },
+    {
+     "n": 2,
+     "text_ar": "تحديث القوالب عند أي تعديل على المعايير",
+     "text_en": "Update templates whenever the standards change"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة جميع القوالب للتأكد من الالتزام",
+     "text_en": "Review of all templates to confirm compliance"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق تحديث القوالب بعد كل تعديل على المعايير",
+     "text_en": "Documentation of template updates after every change to the standards"
+    }
+   ],
+   "desc_en": "Page and document templates comply with the national design system and corporate identity guidelines, and are updated whenever the approved standards or content change."
+  },
+  {
+   "id": "1.9.5",
+   "desc_ar": "حرص فرق العمل على إعادة استخدام المكّونات المعتمدة بدلاً من إنشاء مكّونات جديدة، مع توثيق أية استثناءات واعتمادها من قبل مسؤولي حوكمة التصميم.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إعادة استخدام المكّونات المعتمدة بدلاً من إنشاء مكّونات جديدة",
+     "text_en": "Reuse approved components rather than creating new ones"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق واعتماد أي استثناءات من حوكمة التصميم",
+     "text_en": "Document any exceptions and have them approved by design governance"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة المكّونات المُعاد استخدامها من المكّونات المعتمدة",
+     "text_en": "Percentage of components reused from the approved components"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود توثيق واعتماد رسمي لجميع الاستثناءات",
+     "text_en": "Formal documentation and approval present for all exceptions"
+    }
+   ],
+   "desc_en": "Teams reuse approved components rather than creating new ones, with any exceptions documented and approved by the design governance owners."
+  },
+  {
+   "id": "1.9.6",
+   "desc_ar": "التزام الجهات بإجراء مراجعات تحريرية دورية (ربع سنوية على الأقل) للتحقق من الامتثال المستمر لأسلوب ومصطلحات ومعايير سهولة الوصول المعتمدة، ومعالجة أية تناقضات يتم رصدها.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إجراء مراجعات تحريرية ربع سنوية على الأقل",
+     "text_en": "Conduct editorial reviews at least quarterly"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من الامتثال لأسلوب ومصطلحات ومعايير إمكانية الوصول",
+     "text_en": "Verify compliance with style, terminology and accessibility standards"
+    },
+    {
+     "n": 3,
+     "text_ar": "معالجة أية تناقضات",
+     "text_en": "Address any inconsistencies"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "تكرار المراجعات (يجب ألا يقل عن 4 مراجعات سنويًا)",
+     "text_en": "Review frequency (must be no fewer than 4 reviews per year)"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق نتائج المراجعة لكل عنصر",
+     "text_en": "Documentation of review results for each item"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق التناقضات المكتشفة والإجراءات التصحيحية",
+     "text_en": "Documentation of inconsistencies found and corrective actions"
+    }
+   ],
+   "desc_en": "Entities conduct periodic editorial reviews (at least quarterly) to verify ongoing compliance with the approved style, terminology and accessibility standards, and address any inconsistencies identified."
+  },
+  {
+   "id": "1.9.7",
+   "desc_ar": "التزام جميع الواجهات الرقمية، بما يشمل الصفحات والنماذج وعناصر التفاعل، بنظام لغة التصميم المعتمد لضمان التماثل البصري والسلوكي عبر الخدمات، وذلك وفقًا لإرشادات سهولة الوصول والاستخدام.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "التزام جميع الواجهات الرقمية بنظام لغة التصميم",
+     "text_en": "All digital interfaces comply with the design language system"
+    },
+    {
+     "n": 2,
+     "text_ar": "تحقيق التماثل البصري والسلوكي عبر الخدمات",
+     "text_en": "Achieve visual and behavioural consistency across services"
+    },
+    {
+     "n": 3,
+     "text_ar": "التوافق مع إرشادات إمكانية الوصول وسهولة الاستخدام",
+     "text_en": "Compliance with the accessibility and usability guidelines"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة الواجهات الملتزمة بالنظام",
+     "text_en": "Percentage of interfaces complying with the system"
+    },
+    {
+     "n": 2,
+     "text_ar": "تقييم الاتساق البصري والسلوكي عبر الخدمات المختلفة",
+     "text_en": "Assessment of visual and behavioural consistency across different services"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار التوافق مع معايير WCAG وإرشادات سهولة الاستخدام",
+     "text_en": "Test compliance with WCAG standards and usability guidelines"
+    }
+   ],
+   "desc_en": "All digital interfaces, including pages, forms and interaction elements, comply with the approved design language system to ensure visual and behavioural consistency across services, in line with the accessibility and usability guidelines."
+  }
+ ]
+}

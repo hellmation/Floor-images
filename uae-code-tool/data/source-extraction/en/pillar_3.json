@@ -1,0 +1,1552 @@
+{
+ "pillar": {
+  "id": "3",
+  "name_ar": "أنسنة الخدمات",
+  "desc_ar": "تصميم خدمات تتناسب مع تصنيف المتعامل واحتياجاته في مختلف الأحداث الحياتية، مع تقديم خدمات استباقية ومخصصة بناءً على موافقته المسبقة.",
+  "name_en": "Humanising Services",
+  "desc_en": "Designing services that suit the customer's category and needs across different life events, and delivering proactive and personalised services based on the customer's prior consent."
+ },
+ "subpillars": [
+  {
+   "id": "3.1",
+   "pillar": "3",
+   "name_ar": "باقات خدمات الأحداث الحياتية",
+   "name_en": "Life-event service bundles"
+  },
+  {
+   "id": "3.2",
+   "pillar": "3",
+   "name_ar": "تقديم الخدمات بشكل استباقي",
+   "name_en": "Proactive service delivery"
+  },
+  {
+   "id": "3.3",
+   "pillar": "3",
+   "name_ar": "إدارة موافقة المتعامل على التخصيص",
+   "name_en": "Managing customer consent to personalisation"
+  },
+  {
+   "id": "3.4",
+   "pillar": "3",
+   "name_ar": "ملف المتعامل الموحد",
+   "name_en": "Unified customer profile"
+  },
+  {
+   "id": "3.5",
+   "pillar": "3",
+   "name_ar": "واجهات ونماذج قابلة للتكيف التلقائي",
+   "name_en": "Self-adapting interfaces and forms"
+  },
+  {
+   "id": "3.6",
+   "pillar": "3",
+   "name_ar": "الإشعارات والتنبيهات المخصصة",
+   "name_en": "Personalised notifications and alerts"
+  },
+  {
+   "id": "3.7",
+   "pillar": "3",
+   "name_ar": "عرض إرشادات حسب تصنيف المتعامل",
+   "name_en": "Displaying guidance by customer category"
+  }
+ ],
+ "codes": [
+  {
+   "id": "3.1.1",
+   "desc_ar": "إتاحة الخدمات المرتبطة بالحدث الحياتي نفسه من خلال نقطة دخول موحدة، مع توفير تسلسل واضح للخطوات وإتاحة مشاركة البيانات بين الجهات المعنية حيثما يسمح الإطار القانوني بذلك.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة جميع الخدمات المرتبطة بالحدث الحياتي نفسه من خلال نقطة دخول موحدة",
+     "text_en": "All services linked to the same life event are made available through a single unified entry point"
+    },
+    {
+     "n": 2,
+     "text_ar": "توفير تسلسل واضح للخطوات المطلوبة لإكمال الحدث الحياتي",
+     "text_en": "A clear sequence of the steps required to complete the life event is provided"
+    },
+    {
+     "n": 3,
+     "text_ar": "إتاحة مشاركة البيانات بين الجهات المعنية ضمن الإطار القانوني",
+     "text_en": "Data sharing between the entities concerned is enabled within the legal framework"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود صفحة أو بوابة موحدة تجمع جميع الخدمات المرتبطة بكل حدث حياتي",
+     "text_en": "A unified page or portal exists that brings together all services linked to each life event"
+    },
+    {
+     "n": 2,
+     "text_ar": "وضوح ترتيب الخطوات وعرضها بشكل منطقي ومتسلسل للمتعامل",
+     "text_en": "The order of steps is clear and presented to the customer in a logical, sequential manner"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود آليات تقنية وقانونية معتمدة لمشاركة البيانات بين الجهات",
+     "text_en": "Approved technical and legal mechanisms exist for data sharing between entities"
+    }
+   ],
+   "desc_en": "Making all services linked to the same life event available through a single unified entry point, with a clear sequence of steps and data sharing between the entities concerned wherever the legal framework permits."
+  },
+  {
+   "id": "3.1.2",
+   "desc_ar": "تقديم باقات خدمات الأحداث الحياتية للمتعامل عبر صفحة رئيسية رقمية موّحدة، تتضمن عرًضا واضًحا للخدمات المتاحة، والمستندات المطلوبة، والرسوم، والمدة الزمنية المتوقعة لإنجازها",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير صفحة بدء رقمية موحدة لكل باقة حدث حياتي",
+     "text_en": "A unified digital start page is provided for each life-event bundle"
+    },
+    {
+     "n": 2,
+     "text_ar": "عرض قائمة كاملة بجميع العناصر الأساسية",
+     "text_en": "A complete list of all the essential elements is displayed"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود صفحة بدء واحدة موحدة لكل باقة حدث حياتي",
+     "text_en": "A single unified start page exists for each life-event bundle"
+    },
+    {
+     "n": 2,
+     "text_ar": "اشتمال الصفحة على: الخدمات المشمولة، المستندات المطلوبة، الرسوم، المدة المتوقعة",
+     "text_en": "The page includes: the services covered, the required documents, the fees, the expected completion time"
+    }
+   ],
+   "desc_en": "Delivering life-event service bundles to the customer through a unified digital landing page that clearly presents the available services, the required documents, the fees, and the expected time to complete them."
+  },
+  {
+   "id": "3.1.3",
+   "desc_ar": "توفير استمارة واحدة متعددة الخدمات، حيثما يسمح الإطار القانوني، لجمع البيانات المشتركة مرة واحدة فقط، وتوجيهها تلقائيًا إلى كل خدمة من الخدمات المشاركة في الباقة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير استمارة واحدة متعددة الخدمات لكل باقة حدث حياتي",
+     "text_en": "A single multi-service form is provided for each life-event bundle"
+    },
+    {
+     "n": 2,
+     "text_ar": "جمع البيانات المشتركة مرة واحدة فقط دون تكرار",
+     "text_en": "Shared data is collected only once, without repetition"
+    },
+    {
+     "n": 3,
+     "text_ar": "التوجيه التلقائي للبيانات إلى كل خدمة مشاركة",
+     "text_en": "Data is routed automatically to each participating service"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود استمارة موحدة لكل باقة تجمع البيانات لجميع الخدمات المشاركة",
+     "text_en": "A unified form exists for each bundle that collects data for all participating services"
+    },
+    {
+     "n": 2,
+     "text_ar": "عدم طلب نفس البيانات من المتعامل أكثر من مرة ضمن الباقة",
+     "text_en": "The customer is not asked for the same data more than once within the bundle"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار تدفق البيانات التلقائي من الاستمارة إلى جميع الخدمات المشاركة",
+     "text_en": "Testing of the automatic data flow from the form to all participating services"
+    }
+   ],
+   "desc_en": "Providing a single multi-service form, wherever the legal framework permits, to collect shared data only once and route it automatically to each of the services participating in the bundle."
+  },
+  {
+   "id": "3.1.4",
+   "desc_ar": "مراجعة كل باقة حدث حياتي بشكل سنوي لإضافة أو إيقاف أية خدمات حسب الحاجة، وتحديث الخطوات والمستندات المطلوبة بما يعكس التغييرات في السياسات المعتمدة",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إجراء مراجعة سنوية لكل باقة حدث حياتي",
+     "text_en": "An annual review is carried out for each life-event bundle"
+    },
+    {
+     "n": 2,
+     "text_ar": "إضافة أو إيقاف الخدمات المشمولة بناءً على المراجعة",
+     "text_en": "Services covered are added or discontinued based on the review"
+    },
+    {
+     "n": 3,
+     "text_ar": "تحديث الخطوات والمستندات لتعكس تغييرات السياسات",
+     "text_en": "Steps and documents are updated to reflect policy changes"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المراجعة السنوية لكل باقة (مرة واحدة على الأقل كل 12 شهرًا)",
+     "text_en": "Documentation of the annual review of each bundle (at least once every 12 months)"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق أي تغييرات في الخدمات المشمولة في الباقة",
+     "text_en": "Documentation of any changes to the services covered in the bundle"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق التحديثات على الخطوات والمستندات بعد كل تغيير في السياسات",
+     "text_en": "Documentation of updates to the steps and documents after each policy change"
+    }
+   ],
+   "desc_en": "Reviewing each life-event bundle annually to add or discontinue any services as needed, and updating the steps and required documents to reflect changes in the approved policies."
+  },
+  {
+   "id": "3.1.5",
+   "desc_ar": "رصد النظام لأهلية المتعامل للخدمات المرتبطة بالحدث الحياتي، وذلك بناءً على بيانات المتعامل، وإرسال إشعار استباقي بالباقة ذات الصلة يتضمن رابطًا للبدء بالخدمة وقائمة بالمستندات والرسوم المطلوبة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "رصد أهلية المتعامل للحدث الحياتي بناءً على البيانات المتوفرة",
+     "text_en": "Customer eligibility for the life event is detected based on the available data"
+    },
+    {
+     "n": 2,
+     "text_ar": "إرسال إشعار استباقي للمتعامل المؤهل",
+     "text_en": "A proactive notification is sent to the eligible customer"
+    },
+    {
+     "n": 3,
+     "text_ar": "تضمين رابط البدء وقائمة المستندات والرسوم في الإشعار",
+     "text_en": "The start link and the list of documents and fees are included in the notification"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود آلية تقنية آلية تكتشف الأهلية من البيانات المقدمة من المتعامل",
+     "text_en": "An automated technical mechanism exists that detects eligibility from the data provided by the customer"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة المتعاملين المؤهلين الذين تم إشعارهم استباقيًا",
+     "text_en": "Percentage of eligible customers who were notified proactively"
+    },
+    {
+     "n": 3,
+     "text_ar": "اشتمال كل إشعار على: رابط مباشر للبدء، قائمة كاملة بالمستندات، تفاصيل الرسوم",
+     "text_en": "Each notification includes: a direct link to start, a complete list of documents, fee details"
+    }
+   ],
+   "desc_en": "The system detects the customer's eligibility for services linked to the life event based on the customer's data, and sends a proactive notification about the relevant bundle that includes a link to start the service and a list of the required documents and fees."
+  },
+  {
+   "id": "3.1.6",
+   "desc_ar": "تقديم كل باقة حدث حياتي خطوات ومحتوى ودعمًا متماثلاً باللغتين العربية والإنجليزية، على أن تكون النسختان متاحتان في نفس تاريخ الإصدار، مع ضمان تحديثهما بشكل مستمر.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تماثل الخطوات والمحتوى والدعم بين اللغتين",
+     "text_en": "Steps, content and support are identical in both languages"
+    },
+    {
+     "n": 2,
+     "text_ar": "إتاحة النسختين في نفس تاريخ الإصدار",
+     "text_en": "Both versions are made available on the same release date"
+    },
+    {
+     "n": 3,
+     "text_ar": "التحديث المستمر باللغتين",
+     "text_en": "Continuous updating in both languages"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مقارنة شاملة بين النسختين للتأكد من التطابق الكامل في جميع العناصر",
+     "text_en": "Comprehensive comparison of the two versions to confirm full correspondence across all elements"
+    },
+    {
+     "n": 2,
+     "text_ar": "تطابق تاريخ ووقت إطلاق النسخة العربية والإنجليزية",
+     "text_en": "The launch date and time of the Arabic and English versions match"
+    },
+    {
+     "n": 3,
+     "text_ar": "تطابق تواريخ ومحتوى جميع التحديثات بين النسختين",
+     "text_en": "The dates and content of all updates match across both versions"
+    }
+   ],
+   "desc_en": "Each life-event bundle provides identical steps, content and support in both Arabic and English, with both versions made available on the same release date and kept continuously updated."
+  },
+  {
+   "id": "3.2.1",
+   "desc_ar": "ضمان استخدام الأنظمة للبيانات المتوفرة، حيثما يسمح الإطار القانوني، للكشف عن أهلية المتعامل وإرسال إشعار له يوضح الأساس الذي بُنيت عليه الأهلية والخطوات المطلوبة للتقديم.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استخدام البيانات المتوفرة للكشف الآلي عن أهلية المتعامل للخدمات",
+     "text_en": "Available data is used to automatically detect the customer's eligibility for services"
+    },
+    {
+     "n": 2,
+     "text_ar": "إرسال إشعار يوضح المعايير الذي بُنيت عليه الأهلية",
+     "text_en": "A notification is sent explaining the criteria on which eligibility was determined"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود آلية آلية تحلل البيانات وتكتشف الأهلية",
+     "text_en": "An automated mechanism exists that analyses data and detects eligibility"
+    },
+    {
+     "n": 2,
+     "text_ar": "اشتمال الإشعار على شرح واضح للمعايير",
+     "text_en": "The notification includes a clear explanation of the criteria"
+    }
+   ],
+   "desc_en": "Ensuring that systems use the available data, wherever the legal framework permits, to detect the customer's eligibility and send the customer a notification explaining the basis on which eligibility was determined and the steps required to apply."
+  },
+  {
+   "id": "3.2.2",
+   "desc_ar": "ضمان تلقي المتعامل لتذكير آلي للإجراءات المرتبطة بمواعيد نهائية، وذلك قبل انتهاء الموعد بسبعة أيام على الأقل، ثم قبله بيوم واحد، على أن يتضمن كل تذكير رابطًا مباشرًا لإكمال الإجراء المطلوب.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إرسال تذكير آلي قبل الموعد النهائي بسبعة أيام على الأقل وبيوم واحد",
+     "text_en": "An automated reminder is sent at least seven days and one day before the deadline"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين رابط مباشر لإكمال الإجراء في كل تذكير",
+     "text_en": "A direct link to complete the action is included in each reminder"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "سجلات النظام تؤكد إرسال التذكير",
+     "text_en": "System logs confirm that the reminder was sent"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود رابط فّعال في محتوى كل تذكير",
+     "text_en": "A working link is present in the content of each reminder"
+    }
+   ],
+   "desc_en": "Ensuring the customer receives an automated reminder for actions tied to deadlines, at least seven days before the deadline and again one day before it, with each reminder including a direct link to complete the required action."
+  },
+  {
+   "id": "3.2.3",
+   "desc_ar": "تحديد الإشعارات الاستباقية للإجراء المطلوب والموعد النهائي لإتمامه وقناة التواصل المتاحة للحصول على دعم إضافي، والحفاظ على تواصل استباقي مستمر مع المتعاملين عبر جميع مراحل الخدمة لضمان تزويدهم بالتحديثات في الوقت المناسب من بدء الخدمة حتى إنجازها.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تحديد الإجراء المطلوب والموعد النهائي وقناة الدعم في كل إشعار استباقي",
+     "text_en": "The required action, deadline and support channel are specified in each proactive notification"
+    },
+    {
+     "n": 2,
+     "text_ar": "الحفاظ على تواصل استباقي مستمر عبر جميع مراحل رحلة الخدمة",
+     "text_en": "Continuous proactive communication is maintained across all stages of the service journey"
+    },
+    {
+     "n": 3,
+     "text_ar": "تزويد المتعاملين بالتحديثات في الوقت المناسب",
+     "text_en": "Customers are provided with timely updates"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة نماذج الإشعارات للتأكد من اشتمالها على العناصر الثلاثة",
+     "text_en": "Review of notification templates to confirm they include the three elements"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار إرسال إشعارات في مراحل مختلفة من رحلة الخدمة",
+     "text_en": "Testing of notification sending at different stages of the service journey"
+    },
+    {
+     "n": 3,
+     "text_ar": "قياس فترة التأخير بين تغيير الحالة وإرسال التحديث",
+     "text_en": "Measurement of the delay between a status change and the sending of the update"
+    }
+   ],
+   "desc_en": "Proactive notifications specify the required action, the deadline for completing it and the communication channel available for additional support, and continuous proactive communication is maintained with customers across all service stages to ensure they receive timely updates from the start of the service until its completion."
+  },
+  {
+   "id": "3.2.4",
+   "desc_ar": "إرسال الإشعارات الاستباقية عبر القناة المفضلة المسجلة في ملف المتعامل، مع حفظ نسخة منها في صندوق الوارد الخاص بحسابه لأغراض التتبع والتدقيق.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إرسال الإشعارات عبر القناة المفضلة المسجلة في ملف المتعامل",
+     "text_en": "Notifications are sent through the preferred channel recorded in the customer profile"
+    },
+    {
+     "n": 2,
+     "text_ar": "حفظ نسخة من كل إشعار في صندوق الوارد الخاص بالحساب",
+     "text_en": "A copy of each notification is saved in the account's inbox"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إرسال الإشعارات عبر القنوات المختلفة حسب التفضيل المسجل",
+     "text_en": "Testing of notification sending across the different channels according to the recorded preference"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من وجود نسخة من كل إشعار ُمرسل في صندوق الوارد",
+     "text_en": "Verification that a copy of each sent notification is present in the inbox"
+    }
+   ],
+   "desc_en": "Sending proactive notifications through the preferred channel recorded in the customer profile, with a copy saved in the account's inbox for tracking and audit purposes."
+  },
+  {
+   "id": "3.2.5",
+   "desc_ar": "تسجيل جميع الإشعارات الاستباقية مع البيانات اللازمة لتمكين فرق المسؤولة من مراجعة سجلات التسليم، بما في ذلك وقت الارسال والقناة وهوية المستلم ورقم النموذج المستخدم للإشعارات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تسجيل جميع الإشعارات الاستباقية مع البيانات اللازمة",
+     "text_en": "All proactive notifications are logged with the necessary data"
+    },
+    {
+     "n": 2,
+     "text_ar": "إتاحة السجلات للفرق المسؤولة للمراجعة والتحقق",
+     "text_en": "Logs are made available to the responsible teams for review and verification"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة سجلات النظام للتأكد من تسجيل البيانات المطلوبة",
+     "text_en": "Review of system logs to confirm the required data is recorded"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود واجهة أو تقرير يتيح لفرق الامتثال الوصول إلى السجلات",
+     "text_en": "An interface or report exists that gives compliance teams access to the logs"
+    }
+   ],
+   "desc_en": "Logging all proactive notifications with the data needed to enable the responsible teams to review delivery records, including the sending time, the channel, the recipient's identity and the template number used for the notifications."
+  },
+  {
+   "id": "3.2.6",
+   "desc_ar": "في حال لم يستجب المتعامل للإشعار الاستباقي، يقوم النظام بمتابعة الحالة أو التصعيد عبر قنوات الدعم المباشر لتقليل احتمالية ترك المتعامل للخدمة دون إكمالها.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إجراء المتابعة أو التصعيد عند عدم استجابة المتعامل للإشعار",
+     "text_en": "Follow-up or escalation is carried out when the customer does not respond to the notification"
+    },
+    {
+     "n": 2,
+     "text_ar": "استخدام قنوات الدعم المباشر في المتابعة أو التصعيد",
+     "text_en": "Direct support channels are used for follow-up or escalation"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود آلية تكتشف عدم الاستجابة وتُطلق المتابعة",
+     "text_en": "A mechanism exists that detects non-response and triggers follow-up"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار عملية التصعيد",
+     "text_en": "Testing of the escalation process"
+    }
+   ],
+   "desc_en": "If the customer does not respond to the proactive notification, the system follows up on the case or escalates it through direct support channels to reduce the likelihood of the customer abandoning the service before completing it."
+  },
+  {
+   "id": "3.2.7",
+   "desc_ar": "ضمان إنجاز الخدمات الاستباقية للمعاملة بشكل تلقائي دون الحاجة إلى قيام المتعامل ببدء الطلب، مع إبلاغه بنتيجة المعاملة بشكل واضح، في حال كان ذلك ممكنًا وقانونيًا.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الإنجاز التلقائي الكامل للمعاملة دون تدخل من المتعامل",
+     "text_en": "Full automatic completion of the transaction without customer intervention"
+    },
+    {
+     "n": 2,
+     "text_ar": "إبلاغ المتعامل بنتيجة المعاملة بشكل واضح",
+     "text_en": "The customer is clearly informed of the transaction outcome"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إنجاز المعاملة تلقائيًا دون أي إجراء من المتعامل",
+     "text_en": "Testing of automatic transaction completion without any action by the customer"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود إشعار واضح يوضح نتيجة المعاملة والإجراءات المتخذة",
+     "text_en": "A clear notification exists that explains the transaction outcome and the actions taken"
+    }
+   ],
+   "desc_en": "Ensuring that proactive services complete the transaction automatically without the customer needing to initiate the request, and that the customer is clearly informed of the transaction outcome, where this is possible and lawful."
+  },
+  {
+   "id": "3.3.1",
+   "desc_ar": "الحصول على موافقة صريحة من المتعاملين، قبل تطبيق أي عملية تخصيص، تُحدد بوضوح فئات البيانات التي سيتم استخدامها والغرض من هذا الاستخدام.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الحصول على موافقة صريحة من المتعامل قبل تطبيق أي تخصيص",
+     "text_en": "Explicit consent is obtained from the customer before any personalisation is applied"
+    },
+    {
+     "n": 2,
+     "text_ar": "تحديد فئات البيانات المستخدمة في نص الموافقة",
+     "text_en": "The categories of data used are specified in the consent text"
+    },
+    {
+     "n": 3,
+     "text_ar": "توضيح الغرض من استخدام البيانات في نص الموافقة",
+     "text_en": "The purpose of using the data is explained in the consent text"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "عدم تفعيل أي تخصيص قبل تسجيل موافقة المتعامل",
+     "text_en": "No personalisation is activated before the customer's consent is recorded"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة نص الموافقة للتأكد من ذكر جميع فئات البيانات",
+     "text_en": "Review of the consent text to confirm all data categories are stated"
+    },
+    {
+     "n": 3,
+     "text_ar": "مراجعة نص الموافقة للتأكد من وضوح الغرض",
+     "text_en": "Review of the consent text to confirm the purpose is clear"
+    }
+   ],
+   "desc_en": "Obtaining explicit consent from customers, before applying any personalisation, that clearly specifies the categories of data that will be used and the purpose of that use."
+  },
+  {
+   "id": "3.3.2",
+   "desc_ar": "تسجيل كل موافقة مع الختم الزمني الخاص بها وربطها بهوية المتعامل وحفظها في سجل تدقيق غير قابل للتعديل، مع ضمان إمكانية استخراجها لتقديمها كدليل عند الحاجة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تسجيل كل موافقة مع الختم الزمني وهوية المتعامل",
+     "text_en": "Each consent is recorded with its timestamp and the customer's identity"
+    },
+    {
+     "n": 2,
+     "text_ar": "حفظ الموافقة في سجل تدقيق غير قابل للتعديل",
+     "text_en": "Consent is stored in a tamper-proof audit log"
+    },
+    {
+     "n": 3,
+     "text_ar": "إمكانية استخراج سجلات الموافقة كدليل",
+     "text_en": "Consent records can be retrieved as evidence"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة سجل التدقيق للتأكد من تسجيل: الختم الزمني، هوية المتعامل لكل حدث موافقة",
+     "text_en": "Review of the audit log to confirm that the timestamp and the customer's identity are recorded for each consent event"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار عدم إمكانية تعديل أو حذف سجلات الموافقة",
+     "text_en": "Testing that consent records cannot be modified or deleted"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار استرجاع سجلات الموافقة لمتعامل محدد في أي وقت",
+     "text_en": "Testing retrieval of the consent records of a specific customer at any time"
+    }
+   ],
+   "desc_en": "Recording each consent with its timestamp, linking it to the customer's identity and storing it in a tamper-proof audit log, while ensuring it can be retrieved and presented as evidence when needed."
+  },
+  {
+   "id": "3.3.3",
+   "desc_ar": "يحق للمتعاملين إلغاء موافقتهم على التخصيص في أي وقت من خلال تعديل إعدادات الحساب، على أن يسري مفعول الإلغاء فورًا على جميع عمليات التخصيص.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة خيار إلغاء الموافقة من خلال إعدادات الحساب",
+     "text_en": "An option to withdraw consent is provided through the account settings"
+    },
+    {
+     "n": 2,
+     "text_ar": "السريان الفوري لإلغاء الموافقة على جميع عمليات التخصيص",
+     "text_en": "Withdrawal of consent takes effect immediately across all personalisation processes"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود خيار واضح وسهل الوصول لإلغاء الموافقة في إعدادات الحساب",
+     "text_en": "A clear and easily accessible option to withdraw consent exists in the account settings"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار إيقاف جميع عمليات التخصيص فورًا بعد الإلغاء",
+     "text_en": "Testing that all personalisation processes stop immediately after withdrawal"
+    }
+   ],
+   "desc_en": "Customers have the right to withdraw their consent to personalisation at any time by changing their account settings, with the withdrawal taking effect immediately across all personalisation processes."
+  },
+  {
+   "id": "3.3.4",
+   "desc_ar": "ضمان تحقق النظام من موافقة المتعامل على التخصيص أثناء تشغيل الخدمة. وفي حال عدم منح المتعامل الموافقة أو عند سحب الموافقة، يجب على النظام التوقف عن استخدام البيانات الشخصية لأغراض التخصيص، وعرض مسار الخدمة غير المخصص بدلاً من ذلك.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من حالة موافقة المستخدم على التخصيص أثناء تشغيل الخدمة",
+     "text_en": "The user's personalisation consent status is verified while the service is running"
+    },
+    {
+     "n": 2,
+     "text_ar": "عرض مسار الخدمة غير المخصص عند عدم وجود موافقة فّعالة",
+     "text_en": "The non-personalised service pathway is displayed when no valid consent exists"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار استعلام النظام عن حالة الموافقة قبل تطبيق التخصيص",
+     "text_en": "Testing that the system queries the consent status before applying personalisation"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار عرض المسار غير المخصص لمتعامل بدون موافقة أو بموافقة مسحوبة",
+     "text_en": "Testing that the non-personalised pathway is displayed for a customer without consent or with withdrawn consent"
+    }
+   ],
+   "desc_en": "Ensuring the system verifies the customer's consent to personalisation while the service is running. Where the customer has not granted consent or has withdrawn it, the system must stop using personal data for personalisation purposes and display the non-personalised service pathway instead."
+  },
+  {
+   "id": "3.3.5",
+   "desc_ar": "استخدام لغة واضحة وبسيطة، عند عرض طلبات الموافقة، وتحديد البيانات التي سيتم استخدامها والغرض من الاستخدام وكيفية سحب الموافقة، وذلك دون تفعيل أي خانات اختيار مسبقًا.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استخدام لغة واضحة وبسيطة عند عرض طلبات الموافقة",
+     "text_en": "Clear and simple language is used when presenting consent requests"
+    },
+    {
+     "n": 2,
+     "text_ar": "تحديد البيانات والغرض وكيفية السحب في طلب الموافقة",
+     "text_en": "The data, the purpose and the method of withdrawal are specified in the consent request"
+    },
+    {
+     "n": 3,
+     "text_ar": "عدم تفعيل أي خانات اختيار مسبقًا",
+     "text_en": "No checkboxes are pre-ticked"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة نصوص الموافقة للتأكد من وضوحها وبساطتها",
+     "text_en": "Review of consent texts to confirm they are clear and simple"
+    },
+    {
+     "n": 2,
+     "text_ar": "اشتمال كل طلب موافقة على: البيانات المحددة، الغرض، كيفية السحب",
+     "text_en": "Each consent request includes: the specific data, the purpose, how to withdraw"
+    },
+    {
+     "n": 3,
+     "text_ar": "مراجعة واجهة طلب الموافقة للتأكد من عدم وجود خانات ُمفّعلة افتراضيًا",
+     "text_en": "Review of the consent request interface to confirm no boxes are ticked by default"
+    }
+   ],
+   "desc_en": "Using clear and simple language when presenting consent requests, specifying the data that will be used, the purpose of the use and how to withdraw consent, without any pre-ticked checkboxes."
+  },
+  {
+   "id": "3.3.6",
+   "desc_ar": "عند تغيير شروط الموافقة، لا بد من إخطار المتعاملين بلغة واضحة ومفهومة ومطالبتهم بإعادة تأكيد موافقتهم لضمان فهمهم التام للتبعات المترتبة على الموافقة، قبل بدء أية معالجة جديدة للبيانات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إخطار المتعاملين بلغة واضحة ومفهومة عند تغيير شروط الموافقة",
+     "text_en": "Customers are notified in clear and understandable language when the terms of consent change"
+    },
+    {
+     "n": 2,
+     "text_ar": "مطالبة المتعاملين بإعادة تأكيد موافقتهم قبل تطبيق الشروط الجديدة",
+     "text_en": "Customers are asked to re-confirm their consent before the new terms are applied"
+    },
+    {
+     "n": 3,
+     "text_ar": "ضمان فهم المتعاملين للتبعات قبل بدء المعالجة الجديدة",
+     "text_en": "Customers' understanding of the implications is ensured before the new processing begins"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة نص الإخطار للتأكد من وضوحه وسهولة فهمه",
+     "text_en": "Review of the notice text to confirm it is clear and easy to understand"
+    },
+    {
+     "n": 2,
+     "text_ar": "عدم تطبيق الشروط الجديدة إلا بعد الحصول على موافقة جديدة",
+     "text_en": "The new terms are not applied until new consent has been obtained"
+    },
+    {
+     "n": 3,
+     "text_ar": "توضيح التبعات بشكل صريح في نص طلب إعادة التأكيد",
+     "text_en": "The implications are explained explicitly in the re-confirmation request text"
+    }
+   ],
+   "desc_en": "When the terms of consent change, customers must be notified in clear and understandable language and asked to re-confirm their consent, to ensure they fully understand the implications of consenting, before any new data processing begins."
+  },
+  {
+   "id": "3.4.1",
+   "desc_ar": "توفير سجل موحد وشامل لكل متعامل يعرض المعّرفات الرئيسية وتفاصيل الاتصال والحالات والمدفوعات وسجل الاتصالات عبر جميع الخدمات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير سجل موحد شامل لكل متعامل",
+     "text_en": "A unified, comprehensive record is provided for each customer"
+    },
+    {
+     "n": 2,
+     "text_ar": "عرض جميع العناصر الأساسية في السجل الموحد",
+     "text_en": "All the essential elements are displayed in the unified record"
+    },
+    {
+     "n": 3,
+     "text_ar": "تغطية جميع الخدمات في السجل الموحد",
+     "text_en": "All services are covered in the unified record"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود سجل واحد يجمع بيانات المتعامل من جميع الخدمات",
+     "text_en": "A single record exists that brings together the customer's data from all services"
+    },
+    {
+     "n": 2,
+     "text_ar": "اشتمال السجل على: المعّرفات الرئيسية، تفاصيل الاتصال، الحالات، المدفوعات، سجل الاتصالات",
+     "text_en": "The record includes: key identifiers, contact details, cases, payments, communication history"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار عرض البيانات من جميع الخدمات التي تعامل معها المتعامل",
+     "text_en": "Testing that data is displayed from all services the customer has dealt with"
+    }
+   ],
+   "desc_en": "Providing a unified and comprehensive record for each customer that displays the key identifiers, contact details, cases, payments and communication history across all services."
+  },
+  {
+   "id": "3.4.2",
+   "desc_ar": "ضمان أن تنعكس أية تغييرات على سمات المتعامل في السجل الموحد خلال دقيقة واحدة كحد أقصى، بحيث تعرض جميع القنوات نفس المعلومات المحّدثة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "انعكاس التغييرات على السجل الموحد خلال دقيقة واحدة كحد أقصى",
+     "text_en": "Changes are reflected in the unified record within one minute at most"
+    },
+    {
+     "n": 2,
+     "text_ar": "عرض نفس المعلومات المحّدثة عبر جميع القنوات",
+     "text_en": "The same updated information is displayed across all channels"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين إجراء التغيير وظهوره في السجل الموحد",
+     "text_en": "Measurement of the time between making the change and its appearance in the unified record"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار عرض البيانات المحّدثة بشكل متطابق عبر القنوات المختلفة",
+     "text_en": "Testing that updated data is displayed identically across the different channels"
+    }
+   ],
+   "desc_en": "Ensuring that any changes to customer attributes are reflected in the unified record within one minute at most, so that all channels display the same updated information."
+  },
+  {
+   "id": "3.4.3",
+   "desc_ar": "عندما يحتوي السجل الموحد على سمة موثّقة، يتم تعبئة الحقل المقابل لهذه السمة في النماذج مسبقًا، والاكتفاء بطلب التأكيد أو التصحيح من المتعامل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "التعبئة المسبقة للحقول التي تحتوي على سمات موثّقة في السجل الموحد",
+     "text_en": "Fields that have verified attributes in the unified record are pre-filled"
+    },
+    {
+     "n": 2,
+     "text_ar": "الاكتفاء بطلب التأكيد أو التصحيح من المتعامل",
+     "text_en": "The customer is only asked to confirm or correct"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار تعبئة النماذج تلقائيًا من البيانات الموثّقة",
+     "text_en": "Testing that forms are pre-filled automatically from verified data"
+    },
+    {
+     "n": 2,
+     "text_ar": "عدم مطالبة المتعامل بإعادة إدخال البيانات الموثّقة المتوفرة",
+     "text_en": "The customer is not asked to re-enter verified data that is already available"
+    }
+   ],
+   "desc_en": "When the unified record contains a verified attribute, the corresponding field in forms is pre-filled and the customer is only asked to confirm or correct it."
+  },
+  {
+   "id": "3.4.4",
+   "desc_ar": "التأكد من أن جميع السمات في السجل الموحد تتضمن حالة التحقق منها والختم الزمني لآخر تحديث، بحيث يتم استمدادها حصريًا من أنظمة السجل الموثوقة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إرفاق حالة التحقق والختم الزمني لكل سمة في السجل الموحد",
+     "text_en": "A verification status and timestamp are attached to each attribute in the unified record"
+    },
+    {
+     "n": 2,
+     "text_ar": "الاستمداد الحصري من أنظمة السجل الموثوقة",
+     "text_en": "Attributes are sourced exclusively from trusted systems of record"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة بنية البيانات للتأكد من وجود حقول: حالة التحقق، الختم الزمني لكل سمة",
+     "text_en": "Review of the data structure to confirm the fields exist: verification status, timestamp for each attribute"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق مصادر البيانات والتأكد من موثوقيتها واعتمادها",
+     "text_en": "Documentation of data sources and confirmation that they are trusted and approved"
+    }
+   ],
+   "desc_en": "Ensuring that all attributes in the unified record carry their verification status and the timestamp of the last update, and that they are sourced exclusively from trusted systems of record."
+  },
+  {
+   "id": "3.4.5",
+   "desc_ar": "تمكين الموظفين المخّولين من الاطلاع على السجل الموحد للمتعامل ضمن حدود صلاحيات أدوارهم الوظيفية دون الحاجة لاستخدام تطبيقات منفصلة، سواء داخل الجهة أو من خلال صلاحيات وصول معتمدة للجهات المشاركة في نفس باقة الخدمة، وذلك عندما تقتضي الحاجة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة الاطلاع على السجل الموحد للموظفين المخّولين ضمن صلاحياتهم",
+     "text_en": "Authorised staff can view the unified record within their permissions"
+    },
+    {
+     "n": 2,
+     "text_ar": "عدم الحاجة لاستخدام تطبيقات منفصلة",
+     "text_en": "No separate applications are needed"
+    },
+    {
+     "n": 3,
+     "text_ar": "إتاحة الوصول المعتمد للجهات المشاركة في نفس باقة الخدمة",
+     "text_en": "Approved access is provided to the entities participating in the same service bundle"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار الوصول للموظفين وفق صلاحيات أدوارهم",
+     "text_en": "Testing of staff access according to their role permissions"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود واجهة موحدة للاطلاع على السجل الموحد",
+     "text_en": "A unified interface exists for viewing the unified record"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار وصول الجهات المشاركة وفق الصلاحيات المعتمدة",
+     "text_en": "Testing of participating entities' access according to the approved permissions"
+    }
+   ],
+   "desc_en": "Enabling authorised staff to view the customer's unified record within the limits of their role permissions without needing separate applications, whether within the entity or through approved access rights for the entities participating in the same service bundle, when the need arises."
+  },
+  {
+   "id": "3.4.6",
+   "desc_ar": "تمكين المتعاملين من الاطلاع بشكل آمن على البيانات الرئيسية المخزنة عنهم من خلال واجهة الخدمة الذاتية، ومنحهم إمكانية طلب تصحيح هذه البيانات والموافقة الصريحة على مشاركتها مع جهات أخرى أو رفض ذلك.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة الاطلاع الآمن على البيانات الرئيسية من خلال واجهة الخدمة الذاتية",
+     "text_en": "Secure viewing of key data is provided through the self-service interface"
+    },
+    {
+     "n": 2,
+     "text_ar": "توفير إمكانية طلب تصحيح البيانات",
+     "text_en": "The ability to request data correction is provided"
+    },
+    {
+     "n": 3,
+     "text_ar": "توفير إمكانية الموافقة الصريحة على المشاركة أو رفضها",
+     "text_en": "The ability to explicitly consent to or refuse sharing is provided"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود واجهة آمنة تتيح للمتعامل الاطلاع على بياناته",
+     "text_en": "A secure interface exists that allows the customer to view their data"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود آلية تمكن المتعامل من طلب تصحيح بياناته",
+     "text_en": "A mechanism exists that enables the customer to request correction of their data"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود خيارات واضحة للموافقة على مشاركة البيانات مع جهات محددة أو رفض ذلك",
+     "text_en": "Clear options exist to consent to or refuse sharing data with specific entities"
+    }
+   ],
+   "desc_en": "Enabling customers to securely view the key data held about them through the self-service interface, and giving them the ability to request correction of this data and to explicitly consent to or refuse its sharing with other entities."
+  },
+  {
+   "id": "3.5.1",
+   "desc_ar": "ضمان دعم طلبات الخدمات الإلكترونية خاصية الحفظ التلقائي لتقدم المتعامل، وتمكين المتعامل من استئناف الخدمة من نفس الخطوة مع الاحتفاظ بجميع البيانات المدخلة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الحفظ التلقائي لتقدم المتعامل في الطلب الخاص بالخدمة",
+     "text_en": "Automatic saving of the customer's progress in the service application"
+    },
+    {
+     "n": 2,
+     "text_ar": "إتاحة استئناف الطلب من الخطوة ذاتها التي توقف عندها المتعامل",
+     "text_en": "The application can be resumed from the same step at which the customer stopped"
+    },
+    {
+     "n": 3,
+     "text_ar": "الاحتفاظ بجميع البيانات المدخلة دون فقدان أية منها",
+     "text_en": "All entered data is retained without any loss"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار حفظ البيانات تلقائيًا أثناء التنقل بين الخطوات",
+     "text_en": "Testing that data is saved automatically while moving between steps"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار العودة للطلب والتأكد من استئنافه من آخر خطوة",
+     "text_en": "Testing return to the application and confirmation that it resumes from the last step"
+    },
+    {
+     "n": 3,
+     "text_ar": "التحقق من عدم فقدان أي بيانات بعد الاستئناف",
+     "text_en": "Verification that no data is lost after resuming"
+    }
+   ],
+   "desc_en": "Ensuring that digital service applications support automatic saving of the customer's progress, and enabling the customer to resume the service from the same step with all entered data retained."
+  },
+  {
+   "id": "3.5.2",
+   "desc_ar": "تفعيل خاصية الحفظ التلقائي عند الانتقال بين الخطوات، لتخزين الإجابات الحالية في سجل المعاملة، وضمان عدم فقدان البيانات في حال حدوث انقطاع في الاتصال أو عطل في الجهاز.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تفعيل خاصية الحفظ التلقائي بعد كل خطوة",
+     "text_en": "The auto-save feature is activated after each step"
+    },
+    {
+     "n": 2,
+     "text_ar": "تسجيل الإجابات الحالية في سجل المعاملة",
+     "text_en": "Current answers are recorded in the transaction record"
+    },
+    {
+     "n": 3,
+     "text_ar": "حماية البيانات من الفقدان عند انقطاع الاتصال أو عطل الجهاز",
+     "text_en": "Data is protected from loss in the event of a connection interruption or device failure"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار تسجيل البيانات تلقائيًا بعد كل خطوة",
+     "text_en": "Testing that data is recorded automatically after each step"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من حفظ البيانات في قاعدة البيانات بعد كل خطوة",
+     "text_en": "Verification that data is saved in the database after each step"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار استرجاع البيانات بعد محاكاة انقطاع الاتصال أو إغلاق الجهاز",
+     "text_en": "Testing data recovery after simulating a connection interruption or device shutdown"
+    }
+   ],
+   "desc_en": "Activating the auto-save feature when moving between steps, so that current answers are stored in the transaction record and data is not lost in the event of a connection interruption or device failure."
+  },
+  {
+   "id": "3.5.3",
+   "desc_ar": "إتاحة مسودات الطلبات لمدة محددة كحد أدنى، مع عرض تاريخ انتهاء صلاحية كل مسودة بوضوح ضمن لوحة المتعامل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الاحتفاظ بمسودات الطلبات لمدة محددة كحد أدنى",
+     "text_en": "Application drafts are retained for a specified minimum period"
+    },
+    {
+     "n": 2,
+     "text_ar": "عرض تاريخ انتهاء صلاحية كل مسودة بوضوح في لوحة المتعامل",
+     "text_en": "The expiry date of each draft is clearly displayed in the customer dashboard"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المدة الدنيا للاحتفاظ بالمسودات (مثلاً: 30 يومًا)",
+     "text_en": "Documentation of the minimum draft retention period (for example, 30 days)"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من ظهور تاريخ الانتهاء بوضوح بجانب كل مسودة",
+     "text_en": "Verification that the expiry date is clearly shown next to each draft"
+    }
+   ],
+   "desc_en": "Keeping application drafts available for a specified minimum period, with the expiry date of each draft clearly displayed in the customer dashboard."
+  },
+  {
+   "id": "3.5.4",
+   "desc_ar": "تمكين المتعاملين من تعديل أية إجابة محفوظة قبل إرسال الطلب، ومن الاطلاع على ملخص التغييرات في خطوة المراجعة النهائية.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة تعديل أية إجابة محفوظة قبل إرسال الطلب",
+     "text_en": "Any saved answer can be edited before the application is submitted"
+    },
+    {
+     "n": 2,
+     "text_ar": "عرض ملخص التغييرات في خطوة المراجعة النهائية",
+     "text_en": "A summary of changes is displayed at the final review step"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار القدرة على تعديل جميع الحقول المحفوظة",
+     "text_en": "Testing the ability to edit all saved fields"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من وجود ملخص يعرض التغييرات المُجراة على البيانات",
+     "text_en": "Verification that a summary exists showing the changes made to the data"
+    }
+   ],
+   "desc_en": "Enabling customers to edit any saved answer before submitting the application, and to view a summary of the changes at the final review step."
+  },
+  {
+   "id": "3.5.5",
+   "desc_ar": "ضمان تطابق تسميات عناصر التنقل وتسلسل الخطوات وأزرار الإجراءات عبر مختلف الأجهزة الالكترونية، للحفاظ على استمرارية رحلة المتعامل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تطابق تسميات عناصر التنقل عبر جميع الأجهزة",
+     "text_en": "Navigation labels are consistent across all devices"
+    },
+    {
+     "n": 2,
+     "text_ar": "تطابق تسلسل الخطوات عبر جميع الأجهزة",
+     "text_en": "The sequence of steps is consistent across all devices"
+    },
+    {
+     "n": 3,
+     "text_ar": "تطابق أزرار الإجراءات عبر جميع الأجهزة",
+     "text_en": "Action buttons are consistent across all devices"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مقارنة تسميات التنقل بين الاجهزة",
+     "text_en": "Comparison of navigation labels across devices"
+    },
+    {
+     "n": 2,
+     "text_ar": "مقارنة تسلسل الخطوات بين الاجهزة",
+     "text_en": "Comparison of the sequence of steps across devices"
+    },
+    {
+     "n": 3,
+     "text_ar": "مقارنة نصوص ومواقع الأزرار الاجهزة",
+     "text_en": "Comparison of button text and placement across devices"
+    }
+   ],
+   "desc_en": "Ensuring that navigation labels, the sequence of steps and action buttons are consistent across different electronic devices, to maintain continuity of the customer journey."
+  },
+  {
+   "id": "3.5.6",
+   "desc_ar": "يلتزم النظام بإرسال تذكير مسبق قبل انتهاء صلاحية المسودة، ويوفر للمتعاملين خيارًا فوريًا لتمديد صلاحية المسودة أو الاحتفاظ بها أو حذفها بنقرة واحدة، فيما تتاح للمتعاملين أيضًا إمكانية حذف المسودات فورًا في أي وقت.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إرسال تذكير بوقت كافٍ قبل انتهاء صلاحية المسودة",
+     "text_en": "A reminder is sent sufficiently in advance of the draft's expiry"
+    },
+    {
+     "n": 2,
+     "text_ar": "توفير خيارات تمديد أو الاحتفاظ أو الحذف بنقرة واحدة",
+     "text_en": "Options to extend, keep or delete with a single click are provided"
+    },
+    {
+     "n": 3,
+     "text_ar": "إتاحة حذف المسودات فورًا في أي وقت",
+     "text_en": "Drafts can be deleted immediately at any time"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المدة قبل الانتهاء (مثلاً: 7 أيام) واختبار إرسال التذكير",
+     "text_en": "Documentation of the period before expiry (for example, 7 days) and testing that the reminder is sent"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود أزرار واضحة للخيارات الثلاثة في التذكير",
+     "text_en": "Clear buttons for the three options are present in the reminder"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود خيار حذف فوري متاح للمتعامل في لوحته",
+     "text_en": "An immediate delete option is available to the customer in their dashboard"
+    }
+   ],
+   "desc_en": "The system sends an advance reminder before a draft expires and gives customers an immediate option to extend, keep or delete the draft with a single click, while customers can also delete drafts immediately at any time."
+  },
+  {
+   "id": "3.6.1",
+   "desc_ar": "ضمان توافق موضوعات الإشعارات وتكرارها ولغتها وقنوات إرسالها مع التفضيلات المسجلة في الملف الشخصي للمتعامل، وتمكين المتعامل من تعديلها في أي وقت.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توافق موضوعات الإشعارات وتكرارها ولغتها وقنواتها مع تفضيلات المتعامل المسجلة",
+     "text_en": "Notification topics, frequency, language and channels match the customer's recorded preferences"
+    },
+    {
+     "n": 2,
+     "text_ar": "إتاحة تعديل التفضيلات في أي وقت",
+     "text_en": "Preferences can be changed at any time"
+    },
+    {
+     "n": 3,
+     "text_ar": "السريان الفوري للتعديلات على التفضيلات",
+     "text_en": "Changes to preferences take effect immediately"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إرسال الإشعارات وفق التفضيلات المحددة لكل متعامل",
+     "text_en": "Testing that notifications are sent according to the preferences set by each customer"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود واجهة تمكن المتعامل من تعديل تفضيلات الإشعارات بسهولة",
+     "text_en": "An interface exists that enables the customer to easily change their notification preferences"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار تطبيق التعديلات فورًا على الإشعارات اللاحقة",
+     "text_en": "Testing that changes are applied immediately to subsequent notifications"
+    }
+   ],
+   "desc_en": "Ensuring that the topics, frequency, language and delivery channels of notifications match the preferences recorded in the customer's profile, and enabling the customer to change them at any time."
+  },
+  {
+   "id": "3.6.2",
+   "desc_ar": "إرسال التنبيهات عبر القناة المفضلة المسجلة في الملف الشخصي للمتعامل، مع حفظ نسخة منها تلقائيًا في مركز الرسائل الخاص بحسابه.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إرسال التنبيهات عبر القناة المفضلة المسجلة",
+     "text_en": "Alerts are sent through the recorded preferred channel"
+    },
+    {
+     "n": 2,
+     "text_ar": "حفظ نسخة من كل تنبيه في مركز الرسائل الخاص بالحساب",
+     "text_en": "A copy of each alert is saved in the account's message centre"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إرسال التنبيهات عبر القناة المحددة في تفضيلات المتعامل",
+     "text_en": "Testing that alerts are sent through the channel set in the customer's preferences"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من وجود نسخة من كل تنبيه ُمرسل في مركز الرسائل",
+     "text_en": "Verification that a copy of each sent alert is present in the message centre"
+    }
+   ],
+   "desc_en": "Sending alerts through the preferred channel recorded in the customer's profile, with a copy saved automatically in the account's message centre."
+  },
+  {
+   "id": "3.6.3",
+   "desc_ar": "تضمين رابط مباشر لإلغاء الاشتراك، ضمن التنبيهات غير الإلزامية، بحيث يتم تحديث التفضيلات فورًا دون الحاجة إلى إعادة تسجيل الدخول أو المصادقة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تضمين رابط مباشر لإلغاء الاشتراك في كل تنبيه غير إلزامي",
+     "text_en": "A direct unsubscribe link is included in every non-mandatory alert"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحديث الفوري للتفضيلات عند استخدام الرابط",
+     "text_en": "Preferences are updated immediately when the link is used"
+    },
+    {
+     "n": 3,
+     "text_ar": "عدم طلب إعادة تسجيل الدخول أو المصادقة",
+     "text_en": "No re-login or re-authentication is required"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة نماذج التنبيهات غير الإلزامية للتأكد من وجود الرابط",
+     "text_en": "Review of non-mandatory alert templates to confirm the link is present"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار إلغاء الاشتراك والتحقق من السريان الفوري",
+     "text_en": "Testing of unsubscribing and verification that it takes effect immediately"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار استخدام رابط الإلغاء دون الحاجة لتسجيل الدخول",
+     "text_en": "Testing use of the unsubscribe link without needing to log in"
+    }
+   ],
+   "desc_en": "Including a direct unsubscribe link in non-mandatory alerts, so that preferences are updated immediately without needing to log in or authenticate again."
+  },
+  {
+   "id": "3.6.4",
+   "desc_ar": "تسجيل جميع الإشعارات مع توثيق محتوى الرسالة وهوية المستلم والقناة المستخدمة وحالة الإرسال والختم الزمني، وذلك لأغراض التدقيق وحل النزاعات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تسجيل جميع الإشعارات مع البيانات المطلوبة",
+     "text_en": "All notifications are logged with the required data"
+    },
+    {
+     "n": 2,
+     "text_ar": "إتاحة السجلات لأغراض التدقيق وحل النزاعات",
+     "text_en": "Logs are made available for audit and dispute-resolution purposes"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة سجل الإشعارات للتأكد من تسجيل: القالب، هوية المستلم، القناة، الحالة، الختم الزمني",
+     "text_en": "Review of the notification log to confirm the following are recorded: template, recipient identity, channel, status, timestamp"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود آلية للوصول إلى سجلات الإشعارات عند الحاجة",
+     "text_en": "A mechanism exists for accessing notification logs when needed"
+    }
+   ],
+   "desc_en": "Logging all notifications with a record of the message content, the recipient's identity, the channel used, the delivery status and the timestamp, for audit and dispute-resolution purposes."
+  },
+  {
+   "id": "3.6.5",
+   "desc_ar": "إرسال التنبيهات عالية الأولوية فورًا بعد وقوع الحدث، مع إعادة المحاولة تلقائيًا في حال فشل الارسال الأول.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "التسليم الفوري للتنبيهات عالية الأولوية بعد وقوع الحدث",
+     "text_en": "Immediate delivery of high-priority alerts after the event occurs"
+    },
+    {
+     "n": 2,
+     "text_ar": "إعادة المحاولة تلقائيًا في حال فشل التسليم الأول",
+     "text_en": "Automatic retry if the first delivery attempt fails"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين الحدث المُطلق والتسليم (≤ دقيقة واحدة مثلاً)",
+     "text_en": "Measurement of the time between the triggering event and delivery (for example, ≤ one minute)"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار آلية إعادة المحاولة بعد محاكاة فشل التسليم",
+     "text_en": "Testing of the retry mechanism after simulating a delivery failure"
+    }
+   ],
+   "desc_en": "Sending high-priority alerts immediately after the event occurs, with automatic retry if the first delivery attempt fails."
+  },
+  {
+   "id": "3.6.6",
+   "desc_ar": "ضمان تلقي المتعامل رسالة تأكيد، عند اكتمال أي إجراء حاسم، تتضمن الرقم المرجعي للمعاملة والخطوة التالية إن ُوجدت.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إرسال رسالة تأكيد فورًا عند اكتمال أي إجراء حاسم",
+     "text_en": "A confirmation message is sent immediately upon completion of any critical action"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين الرقم المرجعي للمعاملة في رسالة التأكيد",
+     "text_en": "The transaction reference number is included in the confirmation message"
+    },
+    {
+     "n": 3,
+     "text_ar": "تضمين الخطوة التالية في رسالة التأكيد (إن ُوجدت)",
+     "text_en": "The next step is included in the confirmation message (if any)"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إرسال رسالة التأكيد بعد كل إجراء حاسم",
+     "text_en": "Testing that the confirmation message is sent after every critical action"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى رسالة التأكيد للتأكد من وجود الرقم المرجعي",
+     "text_en": "Review of the confirmation message content to confirm the reference number is present"
+    },
+    {
+     "n": 3,
+     "text_ar": "مراجعة محتوى رسالة التأكيد للتأكد من توضيح الخطوة التالية عند الاقتضاء",
+     "text_en": "Review of the confirmation message content to confirm the next step is stated where applicable"
+    }
+   ],
+   "desc_en": "Ensuring the customer receives a confirmation message upon completion of any critical action, including the transaction reference number and the next step, if any."
+  },
+  {
+   "id": "3.7.1",
+   "desc_ar": "عرض جداول الرسوم المعدل الصحيح حسب فئة المتعامل مع والإعفاءات إن ُوجدت.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "عرض المعدل الصحيح للرسوم حسب فئة المتعامل",
+     "text_en": "The correct fee rate is displayed according to the customer's category"
+    },
+    {
+     "n": 2,
+     "text_ar": "توضيح أسس احتساب الرسوم",
+     "text_en": "The basis for calculating fees is explained"
+    },
+    {
+     "n": 3,
+     "text_ar": "توضيح الإعفاءات (إن ُوجدت)",
+     "text_en": "Exemptions are explained (if any)"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار عرض معدلات مختلفة لمتعاملين من فئات مختلفة",
+     "text_en": "Testing that different rates are displayed for customers from different categories"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود شرح واضح لكيفية احتساب الرسوم لكل فئة",
+     "text_en": "A clear explanation exists of how fees are calculated for each category"
+    },
+    {
+     "n": 3,
+     "text_ar": "عرض الإعفاءات المتاحة لكل فئة بوضوح",
+     "text_en": "The exemptions available to each category are clearly displayed"
+    }
+   ],
+   "desc_en": "Displaying fee schedules with the correct rate according to the customer's category, together with any applicable exemptions."
+  },
+  {
+   "id": "3.7.2",
+   "desc_ar": "عرض صفحات الإرشادات للقواعد والمتطلبات والمستندات المطلوبة الخاصة بكل فئة، وذلك لتمكين المتعاملين من فهم المتطلبات بشكل كامل قبل التقديم.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توضيح القواعد والمتطلبات الخاصة بكل فئة",
+     "text_en": "The rules and requirements specific to each category are explained"
+    },
+    {
+     "n": 2,
+     "text_ar": "توضيح المستندات المطلوبة الخاصة بكل فئة",
+     "text_en": "The required documents specific to each category are explained"
+    },
+    {
+     "n": 3,
+     "text_ar": "وضوح وشمولية المتطلبات قبل التقديم",
+     "text_en": "Requirements are clear and comprehensive before applying"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود معايير أهلية محددة ومفصلة لكل فئة في صفحات الإرشادات",
+     "text_en": "Specific and detailed eligibility criteria exist for each category on the guidance pages"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود قائمة كاملة بالمستندات المطلوبة لكل فئة",
+     "text_en": "A complete list of the required documents exists for each category"
+    },
+    {
+     "n": 3,
+     "text_ar": "مراجعة صفحات الإرشادات للتأكد من وضوح جميع المتطلبات",
+     "text_en": "Review of the guidance pages to confirm all requirements are clear"
+    }
+   ],
+   "desc_en": "Displaying guidance pages on the rules, requirements and required documents specific to each category, to enable customers to fully understand the requirements before applying."
+  },
+  {
+   "id": "3.7.3",
+   "desc_ar": "عند تغيير القواعد والمتطلبات أو الرسوم، لا بد من تحديث الإرشادات فورًا مع توضيح تاريخ سريان التغيير بشكل واضح.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "التحديث الفوري للإرشادات عند تغيير القواعد والمتطلبات أو الرسوم",
+     "text_en": "Guidance is updated immediately when rules, requirements or fees change"
+    },
+    {
+     "n": 2,
+     "text_ar": "توضيح تاريخ سريان التغيير بشكل واضح",
+     "text_en": "The effective date of the change is clearly stated"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين اعتماد التغيير ونشر الإرشادات المحدثة",
+     "text_en": "Measurement of the time between approval of the change and publication of the updated guidance"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود تاريخ سريان واضح في صفحات الإرشادات المحدثة",
+     "text_en": "A clear effective date is present on the updated guidance pages"
+    }
+   ],
+   "desc_en": "When rules, requirements or fees change, the guidance must be updated immediately, with the effective date of the change clearly stated."
+  },
+  {
+   "id": "3.7.4",
+   "desc_ar": "ضمان تلقي المتعاملين الذين وافقوا على تلقي الإشعارات رسالة تلخص التغيير وتتضمن رابطًا مباشرًا للإرشادات المحدثة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إرسال رسالة للمتعاملين الذين وافقوا على تلقي الإشعارات",
+     "text_en": "A message is sent to customers who have opted in to receive notifications"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين ملخص للتغيير في الرسالة",
+     "text_en": "A summary of the change is included in the message"
+    },
+    {
+     "n": 3,
+     "text_ar": "تضمين رابط مباشر للإرشادات المحدثة",
+     "text_en": "A direct link to the updated guidance is included"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إرسال الرسالة للمتعاملين المشتركين فقط",
+     "text_en": "Testing that the message is sent only to subscribed customers"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى الرسالة للتأكد من وضوح التغيير",
+     "text_en": "Review of the message content to confirm the change is clearly explained"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود رابط فّعال يوجه للصفحة المحدثة",
+     "text_en": "A working link exists that directs to the updated page"
+    }
+   ],
+   "desc_en": "Ensuring that customers who have opted in to receive notifications receive a message summarising the change and including a direct link to the updated guidance."
+  },
+  {
+   "id": "3.7.5",
+   "desc_ar": "إظهار شاشة المراجعة النهائية لعرض واضح ومفصل لجميع بنود الرسوم والمبلغ الإجمالي قبل تأكيد المتعامل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "عرض جميع بنود الرسوم في شاشة المراجعة النهائية",
+     "text_en": "All fee items are displayed on the final review screen"
+    },
+    {
+     "n": 2,
+     "text_ar": "عرض المبلغ الإجمالي بوضوح",
+     "text_en": "The total amount is clearly displayed"
+    },
+    {
+     "n": 3,
+     "text_ar": "عرض التفصيل قبل تأكيد المتعامل",
+     "text_en": "The breakdown is displayed before the customer confirms"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة شاشة المراجعة النهائية للتأكد من عرض كل بند من بنود الرسوم",
+     "text_en": "Review of the final review screen to confirm every fee item is displayed"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود المجموع الإجمالي واضحًا ومميزًا بصريًا",
+     "text_en": "The grand total is clear and visually distinct"
+    },
+    {
+     "n": 3,
+     "text_ar": "التأكد من أن شاشة المراجعة تسبق خطوة التأكيد النهائي",
+     "text_en": "Confirmation that the review screen precedes the final confirmation step"
+    }
+   ],
+   "desc_en": "Displaying a final review screen that gives a clear and detailed presentation of all fee items and the total amount before the customer confirms."
+  },
+  {
+   "id": "3.7.6",
+   "desc_ar": "تطوير قسم للأسئلة الشائعة لكل فئة، حيث يغطي القواعد والمتطلبات والرسوم والتحديات الشائعة، على أن تتم مراجعته مرة واحدة على الأقل كل سنة لضمان دقته وتحديثه.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تطوير قسم للأسئلة الشائعة لكل فئة",
+     "text_en": "A FAQ section is developed for each category"
+    },
+    {
+     "n": 2,
+     "text_ar": "تغطية القواعد والمتطلبات والرسوم والتحديات الشائعة",
+     "text_en": "The rules, requirements, fees and common challenges are covered"
+    },
+    {
+     "n": 3,
+     "text_ar": "المراجعة الفصلية (كل سنة على الأقل)",
+     "text_en": "Periodic review (at least once a year)"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود قسم مخصص للأسئلة الشائعة لكل فئة من فئات المتعاملين",
+     "text_en": "A dedicated FAQ section exists for each customer category"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى الأسئلة الشائعة للتأكد من تغطية المواضيع الثلاثة",
+     "text_en": "Review of the FAQ content to confirm the three topics are covered"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق المراجعة الدورية",
+     "text_en": "Documentation of the periodic review"
+    }
+   ],
+   "desc_en": "Developing a FAQ section for each category covering the rules, requirements, fees and common challenges, to be reviewed at least once a year to ensure it is accurate and up to date."
+  }
+ ]
+}

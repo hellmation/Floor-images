@@ -1,0 +1,1301 @@
+{
+ "pillar": {
+  "id": "8",
+  "name_ar": "كفاءة الخدمة والأنظمة",
+  "desc_ar": "ضمان استمرارية الخدمات وموثوقيتها في جميع الظروف من خلال بنية تقنية مرنة وخطط استباقية للتعافي السريع، مع التواصل الشفاف والمستمر مع المتعاملين.",
+  "name_en": "Service and Systems Efficiency",
+  "desc_en": "Ensuring the continuity and reliability of services under all circumstances through a resilient technical infrastructure and proactive plans for rapid recovery, with transparent and continuous communication with customers."
+ },
+ "subpillars": [
+  {
+   "id": "8.1",
+   "pillar": "8",
+   "name_ar": "التواصل في حالات انقطاع الخدمة",
+   "name_en": "Communication during Service Outages"
+  },
+  {
+   "id": "8.2",
+   "pillar": "8",
+   "name_ar": "المسارات البديلة",
+   "name_en": "Alternative Pathways"
+  },
+  {
+   "id": "8.3",
+   "pillar": "8",
+   "name_ar": "استرجاع البيانات",
+   "name_en": "Data Recovery"
+  },
+  {
+   "id": "8.4",
+   "pillar": "8",
+   "name_ar": "مرونة الدفع",
+   "name_en": "Payment Resilience"
+  },
+  {
+   "id": "8.5",
+   "pillar": "8",
+   "name_ar": "حوادث الأمنية والإشعارات",
+   "name_en": "Security Incidents and Notifications"
+  },
+  {
+   "id": "8.6",
+   "pillar": "8",
+   "name_ar": "استمرارية الأعمال للخدمات الحضورية",
+   "name_en": "Business Continuity for In-person Services"
+  },
+  {
+   "id": "8.7",
+   "pillar": "8",
+   "name_ar": "استمرارية الخدمات في حال تعطل خدمات الموردين",
+   "name_en": "Service Continuity in the Event of Supplier Service Failure"
+  },
+  {
+   "id": "8.8",
+   "pillar": "8",
+   "name_ar": "اختبارات جاهزية الأنظمة",
+   "name_en": "Systems Readiness Testing"
+  }
+ ],
+ "codes": [
+  {
+   "id": "8.1.1",
+   "desc_ar": "يتعين إشعار المتعاملين خلال ساعة واحدة من حدوث أي خلل جسيم يؤثر على الخدمات، وذلك عبر قنوات التواصل الرسمية المعتمدة والمحددة في ملف الخدمة الخاص بالمتعامل",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إرسال الإشعار خلال ساعة واحدة من حدوث الخلل الجسيم",
+     "text_en": "Send the notification within one hour of the major fault occurring"
+    },
+    {
+     "n": 2,
+     "text_ar": "إرسال الإشعار عبر قنوات التواصل الرسمية المعتمدة",
+     "text_en": "Send the notification via the approved official communication channels"
+    },
+    {
+     "n": 3,
+     "text_ar": "استخدام القنوات المحددة في ملف الخدمة الخاص بالمتعامل",
+     "text_en": "Use the channels specified in the customer's service profile"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "الوقت المنقض بين حدوث الخلل وإرسال الإشعار (≥ 60دقيقة)",
+     "text_en": "Time elapsed between the fault occurring and the notification being sent (≥ 60 minutes)"
+    },
+    {
+     "n": 2,
+     "text_ar": "استخدام القنوات الرسمية المعتمدة",
+     "text_en": "Use of the approved official channels"
+    },
+    {
+     "n": 3,
+     "text_ar": "نسبة مطابقة القنوات المستخدمة مع ملف المتعامل",
+     "text_en": "Percentage of channels used that match the customer profile"
+    }
+   ],
+   "desc_en": "Customers must be notified within one hour of any major fault affecting services, via the approved official communication channels specified in the customer's service profile."
+  },
+  {
+   "id": "8.1.2",
+   "desc_ar": "إصدار تحديثات دورية عن الحوادث الكبرى كل أربع ساعات على الأقل حتى يتم حل المشكلة بشكل كامل",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إصدار تحديثات كل 4 ساعات على الأقل حتى الحل الكامل",
+     "text_en": "Issue updates at least every 4 hours until full resolution"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الفترة بين التحديثات (≤ 4 ساعات)",
+     "text_en": "Measure the interval between updates (≤ 4 hours)"
+    }
+   ],
+   "desc_en": "Issue periodic updates on major incidents at least every four hours until the issue is fully resolved."
+  },
+  {
+   "id": "8.1.3",
+   "desc_ar": "إبلاغ المتعاملين خلال ساعة واحدة عند حل الخلل بالكامل واستعادة الخدمات",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إبلاغ المتعاملين خلال ساعة واحدة عند حل الخلل",
+     "text_en": "Inform customers within one hour once the fault is resolved"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين الحل والإشعار (≤ ساعة واحدة)",
+     "text_en": "Measure the time between resolution and notification (≤ 1 hour)"
+    }
+   ],
+   "desc_en": "Inform customers within one hour once the fault is fully resolved and services are restored."
+  },
+  {
+   "id": "8.1.4",
+   "desc_ar": "يتعين أن تتضمن جميع مراسلات الأعطال أو الخلل التشغيلي الوقت المتوقع للحل أو موعد التحديث التالي.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تضمين الوقت المتوقع للحل أو موعد التحديث التالي في جميع المراسلات",
+     "text_en": "Include the expected resolution time or the time of the next update in all communications"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة عينة من مراسلات الحوادث",
+     "text_en": "Review a sample of incident communications"
+    }
+   ],
+   "desc_en": "All communications regarding faults or operational disruptions must include the expected resolution time or the time of the next update."
+  },
+  {
+   "id": "8.1.5",
+   "desc_ar": "تسجيل كل عطل أو انقطاع في الخدمة ضمن نظام مركزي وتتبعه حتى حل العطل بالكامل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تسجيل جميع الأعطال والانقطاعات في نظام مركزي",
+     "text_en": "Record all faults and outages in a central system"
+    },
+    {
+     "n": 2,
+     "text_ar": "تتبع الحادث حتى الحل الكامل",
+     "text_en": "Track the incident until full resolution"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من تسجيل جميع الحوادث",
+     "text_en": "Verify that all incidents are recorded"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة سجلات التتبع للتأكد من إغلاق الحوادث",
+     "text_en": "Review tracking records to confirm that incidents are closed"
+    }
+   ],
+   "desc_en": "Record every fault or service outage in a central system and track it until the fault is fully resolved."
+  },
+  {
+   "id": "8.1.6",
+   "desc_ar": "مشاركة تقرير ما بعد العطل أو الخلل التشغيلي، يوضح الأسباب والحلول والدروس المستفادة، وذلك خلال عشرة أيام عمل من تاريخ إغلاق العطل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مشاركة تقرير شامل خلال 10 أيام عمل من الإغلاق",
+     "text_en": "Share a comprehensive report within 10 working days of closure"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين الأسباب والحلول والدروس المستفادة",
+     "text_en": "Include the causes, solutions and lessons learned"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين الإغلاق ونشر التقرير (≤ 10 أيام عمل)",
+     "text_en": "Measure the time between closure and publication of the report (≤ 10 working days)"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى التقارير",
+     "text_en": "Review the content of the reports"
+    }
+   ],
+   "desc_en": "Share a post-incident report on the fault or operational disruption, setting out the causes, solutions and lessons learned, within ten working days of the date the fault is closed."
+  },
+  {
+   "id": "8.1.7",
+   "desc_ar": "ضمان وجود مسار واضح للتحويل إلى تدخل بشري عند تعذر إكمال الخدمة من خلال الذكاء الاصطناعي المساعد",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تعريف الحالات غير القياسية ضمن منطق التنفيذ.",
+     "text_en": "Define non-standard cases within the execution logic."
+    },
+    {
+     "n": 2,
+     "text_ar": "تحديد آلية واضحة لمعالجة الاستثناءات.",
+     "text_en": "Define a clear mechanism for handling exceptions."
+    },
+    {
+     "n": 3,
+     "text_ar": "تحديد حالات التحويل للتدخل البشري.",
+     "text_en": "Define the cases requiring handover to human intervention."
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "انخفاض حالات الفشل في معالجة الاستثناءات",
+     "text_en": "Reduction in failed exception-handling cases"
+    },
+    {
+     "n": 2,
+     "text_ar": "وضوح تعريف الحالات الاستثنائية وآلية التعامل معها",
+     "text_en": "Clarity of the definition of exceptional cases and the mechanism for handling them"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق المعالجة والتحويلات البشرية",
+     "text_en": "Documentation of exception handling and handovers to humans"
+    }
+   ],
+   "desc_en": "Ensure a clear pathway exists for handover to human intervention when the service cannot be completed through assistive AI."
+  },
+  {
+   "id": "8.2.1",
+   "desc_ar": "توفير مسارات بديلة أو خيارات احتياطية تمكّن المتعاملين من مواصلة استخدام الخدمات الحرجة أثناء الانقطاعات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير مسارات بديلة أو خيارات احتياطية للخدمات الحرجة",
+     "text_en": "Provide alternative pathways or fallback options for critical services"
+    },
+    {
+     "n": 2,
+     "text_ar": "تمكين المتعامل من مواصلة استخدام الخدمة أثناء الانقطاع",
+     "text_en": "Enable the customer to continue using the service during an outage"
+    },
+    {
+     "n": 3,
+     "text_ar": "ضمان استمرارية الخدمة عند تعذر تنفيذها عبر وكيل الذكاء الاصطناعي",
+     "text_en": "Ensure service continuity when the service cannot be delivered via the AI agent"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المسارات البديلة",
+     "text_en": "Documentation of alternative pathways"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار إمكانية استخدام البدائل أثناء الانقطاع",
+     "text_en": "Testing the usability of the alternatives during an outage"
+    }
+   ],
+   "desc_en": "Provide alternative pathways or fallback options that enable customers to continue using critical services during outages."
+  },
+  {
+   "id": "8.2.2",
+   "desc_ar": "يتعين أن تمكّن الآليات الاحتياطية المتعاملين من إتمام المعاملات الحرجة دون بذل جهد إضافي يتجاوز متطلبات الطلب الأصلي",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتمام المعاملات الحرجة دون جهد إضافي يتجاوز الطلب الأصلي",
+     "text_en": "Complete critical transactions without additional effort beyond the original request"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار تجربة المستخدم عبر المسارات البديلة",
+     "text_en": "User experience testing via the alternative pathways"
+    }
+   ],
+   "desc_en": "Fallback mechanisms must enable customers to complete critical transactions without additional effort beyond the requirements of the original request."
+  },
+  {
+   "id": "8.2.3",
+   "desc_ar": "يتعين اختبار جميع الخيارات الاحتياطية مرة واحدة على الأقل على أساس ربع سنوي للتأكد من سلامتها وموثوقيتها",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "اختبار جميع الخيارات الاحتياطية فصليًا",
+     "text_en": "Test all fallback options quarterly"
+    },
+    {
+     "n": 2,
+     "text_ar": "التأكد من السلامة والموثوقية",
+     "text_en": "Confirm integrity and reliability"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق الاختبار مرة واحدة على الأقل كل 3 أشهر",
+     "text_en": "Documentation of testing at least once every 3 months"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق نتائج الاختبارات",
+     "text_en": "Documentation of test results"
+    }
+   ],
+   "desc_en": "All fallback options must be tested at least once a quarter to confirm their integrity and reliability."
+  },
+  {
+   "id": "8.2.4",
+   "desc_ar": "الالتزام بإشعار المتعاملين فورًا عند تفعيل الخيارات الاحتياطية أثناء انقطاع الخدمة",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إشعار المتعاملين فورًا عند تفعيل الخيارات الاحتياطية",
+     "text_en": "Notify customers immediately when fallback options are activated"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إرسال الإشعار التلقائي عند التفعيل",
+     "text_en": "Test the sending of the automatic notification upon activation"
+    }
+   ],
+   "desc_en": "Commitment to notifying customers immediately when fallback options are activated during a service outage."
+  },
+  {
+   "id": "8.2.5",
+   "desc_ar": "الالتزام برصد نسبة إتمام المعاملات عبر الخيارات الاحتياطية بشكل مستمر وتقديم تقرير ربع سنوي عنها",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الرصد المستمر لنسبة إتمام المعاملات عبر البدائل",
+     "text_en": "Continuous monitoring of the transaction completion rate via the alternatives"
+    },
+    {
+     "n": 2,
+     "text_ar": "تقديم تقرير فصلي",
+     "text_en": "Submit a quarterly report"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود نظام رصد فّعال",
+     "text_en": "Existence of an effective monitoring system"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق نشر التقرير مرة واحدة على الأقل كل 3 أشهر",
+     "text_en": "Documentation of the report's publication at least once every 3 months"
+    }
+   ],
+   "desc_en": "Commitment to continuously monitoring the transaction completion rate via fallback options and reporting on it quarterly."
+  },
+  {
+   "id": "8.2.6",
+   "desc_ar": "مراجعة فعالية الخيارات الاحتياطية سنويًا، مع إجراء التعديلات اللازمة لمعالجة نقاط الضعف المحددة",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة فعالية الخيارات الاحتياطية سنويًا",
+     "text_en": "Review the effectiveness of fallback options annually"
+    },
+    {
+     "n": 2,
+     "text_ar": "إجراء التعديلات اللازمة",
+     "text_en": "Make the necessary adjustments"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المراجعة السنوية",
+     "text_en": "Documentation of the annual review"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق التحسينات المطبقة بناءً على المراجعة",
+     "text_en": "Documentation of improvements implemented based on the review"
+    }
+   ],
+   "desc_en": "Review the effectiveness of fallback options annually and make the necessary adjustments to address identified weaknesses."
+  },
+  {
+   "id": "8.3.1",
+   "desc_ar": "نسخ جميع بيانات المتعاملين والحالات احتياطيًا مرة واحدة على الأقل كل 24 ساعة باستخدام أنظمة تخزين آمنة ومشفرة",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "نسخ جميع بيانات المتعاملين والحالات احتياطيًا كل 24 ساعة",
+     "text_en": "Back up all customer and case data every 24 hours"
+    },
+    {
+     "n": 2,
+     "text_ar": "استخدام أنظمة تخزين آمنة ومشفرة",
+     "text_en": "Use secure, encrypted storage systems"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق النسخ الاحتياطي اليومي",
+     "text_en": "Documentation of daily backups"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار التشفير والأمان",
+     "text_en": "Testing of encryption and security"
+    }
+   ],
+   "desc_en": "Back up all customer and case data at least once every 24 hours using secure, encrypted storage systems."
+  },
+  {
+   "id": "8.3.2",
+   "desc_ar": "إجراء اختبارات استرداد كاملة لبيانات المتعاملين والحالات على أساس ربع سنوي، مع توثيق النتائج ومراجعتها من قبل الإدارة العليا لتقنية المعلومات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إجراء اختبارات استرداد كاملة فصليًا",
+     "text_en": "Conduct full recovery tests quarterly"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق النتائج ومراجعتها من قبل الإدارة العليا",
+     "text_en": "Document the results and have them reviewed by senior management"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق الاختبار مرة واحدة على الأقل كل 3 أشهر",
+     "text_en": "Documentation of testing at least once every 3 months"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود تقارير موقعة من الإدارة العليا",
+     "text_en": "Existence of reports signed off by senior management"
+    }
+   ],
+   "desc_en": "Conduct full recovery tests of customer and case data on a quarterly basis, with the results documented and reviewed by senior IT management."
+  },
+  {
+   "id": "8.3.3",
+   "desc_ar": "ضمان عدم فقدان الأنظمة لأية بيانات مقدمة من قبل المتعاملين أثناء الأعطال، وذلك من خلال آليات احتياطية لرصد البيانات في الوقت الفعلي.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "ضمان عدم فقدان البيانات المقدمة أثناء الأعطال",
+     "text_en": "Ensure no loss of data submitted during faults"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار الآليات الاحتياطية",
+     "text_en": "Test the fallback mechanisms"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود آليات احتياطية في الوقت الفعلي",
+     "text_en": "Existence of real-time fallback mechanisms"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق نتائج الاختبارات",
+     "text_en": "Documentation of test results"
+    }
+   ],
+   "desc_en": "Ensure that systems do not lose any data submitted by customers during faults, through fallback mechanisms that capture data in real time."
+  },
+  {
+   "id": "8.3.4",
+   "desc_ar": "استعادة سجلات المعاملات وإتاحة الوصول إليها للمتعاملين والموظفين خلال مدة لا تتجاوز 24 ساعة بعد أي انقطاع في الخدمة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استعادة وإتاحة سجلات المعاملات خلال 24 ساعة بعد الانقطاع",
+     "text_en": "Restore and make transaction records available within 24 hours after an outage"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس وقت الاستعادة (≤ 24 ساعة)",
+     "text_en": "Measure the recovery time (≤ 24 hours)"
+    }
+   ],
+   "desc_en": "Restore transaction records and make them accessible to customers and staff within no more than 24 hours after any service outage."
+  },
+  {
+   "id": "8.3.5",
+   "desc_ar": "توثيق إجراءات الاسترداد رسميًا واختبارها وفق سيناريوهات تشغيلية وتحديثها سنويًا على الأقل",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توثيق إجراءات الاسترداد رسميًا",
+     "text_en": "Formally document recovery procedures"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار الإجراءات وفق سيناريوهات تشغيلية",
+     "text_en": "Test the procedures against operational scenarios"
+    },
+    {
+     "n": 3,
+     "text_ar": "التحديث السنوي",
+     "text_en": "Annual update"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود وثائق شاملة ومحدثة",
+     "text_en": "Existence of comprehensive, up-to-date documentation"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق الاختبارات",
+     "text_en": "Documentation of tests"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق التحديث مرة واحدة على الأقل سنويًا",
+     "text_en": "Documentation of the update at least once a year"
+    }
+   ],
+   "desc_en": "Formally document recovery procedures, test them against operational scenarios and update them at least annually."
+  },
+  {
+   "id": "8.3.6",
+   "desc_ar": "إشعار المتعاملين خلال 24 ساعة في حال تم استعادة بيانات معاملاتهم بعد أية انقطاع أو فقدان للبيانات",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إشعار المتعاملين خلال 24 ساعة عند استعادة بياناتهم",
+     "text_en": "Notify customers within 24 hours when their data is restored"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين الاستعادة والإشعار (≤ 24 ساعة)",
+     "text_en": "Measure the time between restoration and notification (≤ 24 hours)"
+    }
+   ],
+   "desc_en": "Notify customers within 24 hours when their transaction data has been restored following any outage or data loss."
+  },
+  {
+   "id": "8.4.1",
+   "desc_ar": "إتاحة خدمات الدفع بشكل مستمر أثناء الانقطاعات من خلال التحويل التلقائي إلى بنية تحتية احتياطية",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الإتاحة المستمرة لخدمات الدفع أثناء الانقطاعات",
+     "text_en": "Continuous availability of payment services during outages"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار التحويل التلقائي للبنية الاحتياطية",
+     "text_en": "Test automatic failover to the backup infrastructure"
+    }
+   ],
+   "desc_en": "Keep payment services continuously available during outages through automatic failover to backup infrastructure."
+  },
+  {
+   "id": "8.4.2",
+   "desc_ar": "يتعين إعادة محاولة الدفعات الفاشلة تلقائيًا خلال ساعة واحدة، على ألا تتجاوز المحاولات ثلاث مرات قبل بدء إجراءات التصعيد.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إعادة المحاولة التلقائية خلال ساعة واحدة",
+     "text_en": "Automatic retry within one hour"
+    },
+    {
+     "n": 2,
+     "text_ar": "حد أقصى 3 محاولات قبل التصعيد",
+     "text_en": "Maximum of 3 attempts before escalation"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار آلية إعادة المحاولة",
+     "text_en": "Test the retry mechanism"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار التوقف بعد 3 محاولات",
+     "text_en": "Test that retries stop after 3 attempts"
+    }
+   ],
+   "desc_en": "Failed payments must be retried automatically within one hour, with no more than three attempts before escalation procedures begin."
+  },
+  {
+   "id": "8.4.3",
+   "desc_ar": "الالتزام بإشعار المتعاملين خلال 15 دقيقة في حال فشل محاولة الدفع، مع توضيح الخطوات التالية للحل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إشعار المتعاملين خلال 15 دقيقة عند فشل الدفع",
+     "text_en": "Notify customers within 15 minutes of a payment failure"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين الخطوات التالية",
+     "text_en": "Include the next steps"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين الفشل والإشعار (≤ 15 دقيقة)",
+     "text_en": "Measure the time between failure and notification (≤ 15 minutes)"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى الإشعارات",
+     "text_en": "Review the content of the notifications"
+    }
+   ],
+   "desc_en": "Commitment to notifying customers within 15 minutes if a payment attempt fails, with an explanation of the next steps for resolution."
+  },
+  {
+   "id": "8.4.4",
+   "desc_ar": "ضمان احتفاظ أنظمة الدفع بجميع بيانات المعاملات وتسويتها بشكل صحيح أثناء الانقطاعات، بما يضمن عدم حدوث خسائر مالية أو تكرار للمعاملات",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الاحتفاظ بجميع بيانات المعاملات وتسويتها أثناء الانقطاعات",
+     "text_en": "Retain and reconcile all transaction data during outages"
+    },
+    {
+     "n": 2,
+     "text_ar": "منع الخسائر المالية والتكرار",
+     "text_en": "Prevent financial losses and duplication"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار التسوية بعد انقطاع محاكى",
+     "text_en": "Reconciliation test following a simulated outage"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة سجلات المعاملات",
+     "text_en": "Review of transaction records"
+    }
+   ],
+   "desc_en": "Ensure that payment systems retain all transaction data and reconcile it correctly during outages, so that no financial losses or duplicate transactions occur."
+  },
+  {
+   "id": "8.4.5",
+   "desc_ar": "توفير قناة دفع احتياطية آمنة واحدة على الأقل تكون متاحة دائمًا في حال تعّذر عمل القناة الأساسية",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفر قناة دفع احتياطية آمنة دائمًا",
+     "text_en": "A secure backup payment channel is always available"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إتاحة القناة الاحتياطية عند تعطل الأساسية",
+     "text_en": "Test the availability of the backup channel when the primary channel fails"
+    }
+   ],
+   "desc_en": "Provide at least one secure backup payment channel that is always available in the event that the primary channel fails."
+  },
+  {
+   "id": "8.4.6",
+   "desc_ar": "إجراء اختبار سنوي للمرونة، وذلك للتحقق من قدرة أنظمة الدفع على الاستمرار في معالجة المعاملات خلال الانقطاعات المحاكاة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إجراء اختبار سنوي للمرونة أثناء انقطاعات محاكاة",
+     "text_en": "Conduct an annual resilience test during simulated outages"
+    },
+    {
+     "n": 2,
+     "text_ar": "تأكيد القدرة على معالجة المعاملات",
+     "text_en": "Confirm the ability to process transactions"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق الاختبار السنوي",
+     "text_en": "Documentation of the annual test"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق نجاح الاختبار",
+     "text_en": "Documentation of the test's success"
+    }
+   ],
+   "desc_en": "Conduct an annual resilience test to verify the ability of payment systems to continue processing transactions during simulated outages."
+  },
+  {
+   "id": "8.5.1",
+   "desc_ar": "الالتزام بضرورة إشعار المتعاملين حول أية حادث أمني مؤكد يؤثر على بياناتهم أو خدماتهم، وذلك خلال 24 ساعة من اكتشافه.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إشعار المتعاملين خلال 24 ساعة من اكتشاف حادث أمني مؤثر",
+     "text_en": "Notify customers within 24 hours of detecting a security incident that affects them"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين الاكتشاف والإشعار (≤ 24 ساعة)",
+     "text_en": "Measure the time between detection and notification (≤ 24 hours)"
+    }
+   ],
+   "desc_en": "Commitment to notifying customers of any confirmed security incident affecting their data or services within 24 hours of its detection."
+  },
+  {
+   "id": "8.5.2",
+   "desc_ar": "ضمان توضيح نوع الاختراق والأنظمة المتضررة ونطاق تأثير البيانات أو الخدمة والإجراءات المتخذة في إشعارات الحوادث.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تضمين جميع العناصر المطلوبة",
+     "text_en": "Include all required elements"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة الإشعارات للتأكد من وجود: نوع الاختراق، الأنظمة المتضررة، نطاق التأثير، الإجراءات المتخذة",
+     "text_en": "Review notifications to confirm they contain: type of breach, systems affected, scope of impact, actions taken"
+    }
+   ],
+   "desc_en": "Ensure that incident notifications set out the type of breach, the systems affected, the scope of impact on data or services, and the actions taken."
+  },
+  {
+   "id": "8.5.3",
+   "desc_ar": "الالتزام بتزويد المتعاملين بإجراءات وقائية واضحة لتقليل المخاطر بعد أي حادث أمني.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تزويد المتعاملين بإجراءات وقائية واضحة",
+     "text_en": "Provide customers with clear preventive measures"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة محتوى الإرشادات المقدمة",
+     "text_en": "Review the content of the guidance provided"
+    }
+   ],
+   "desc_en": "Commitment to providing customers with clear preventive measures to reduce risks following any security incident."
+  },
+  {
+   "id": "8.5.4",
+   "desc_ar": "تسجيل جميع الحوادث الأمنية ضمن نظام مركزي لإدارة الحوادث يتتبع الحل من البداية إلى النهاية.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تسجيل جميع الحوادث الأمنية في نظام مركزي",
+     "text_en": "Record all security incidents in a central system"
+    },
+    {
+     "n": 2,
+     "text_ar": "التتبع من البداية إلى النهاية",
+     "text_en": "Track from start to finish"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من تسجيل جميع الحوادث",
+     "text_en": "Verify that all incidents are recorded"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة سجلات التتبع",
+     "text_en": "Review tracking records"
+    }
+   ],
+   "desc_en": "Record all security incidents in a central incident management system that tracks resolution from start to finish."
+  },
+  {
+   "id": "8.5.5",
+   "desc_ar": "إصدار تقرير نهائي للحادث الأمني خلال 30 يومًا تقويميًا من إغلاق الحادث.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إصدار تقرير نهائي خلال 30 يومًا من الإغلاق",
+     "text_en": "Issue a final report within 30 days of closure"
+    },
+    {
+     "n": 2,
+     "text_ar": "إصدار تقرير نهائي خلال 30 يومًا من الإغلاق",
+     "text_en": "Issue a final report within 30 days of closure"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين الإغلاق والتقرير (≤ 30 يومًا)",
+     "text_en": "Measure the time between closure and the report (≤ 30 days)"
+    },
+    {
+     "n": 2,
+     "text_ar": "قياس الوقت بين الإغلاق والتقرير (≤ 30 يومًا)",
+     "text_en": "Measure the time between closure and the report (≤ 30 days)"
+    }
+   ],
+   "desc_en": "Issue a final report on the security incident within 30 calendar days of the incident's closure."
+  },
+  {
+   "id": "8.5.6",
+   "desc_ar": "مراجعة واختبار خطط الاستجابة للحوادث الأمنية سنويًا على الأقل، لضمان الجاهزية",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "المراجعة والاختبار السنوي لخطط الاستجابة",
+     "text_en": "Annual review and testing of response plans"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المراجعة والاختبار مرة واحدة على الأقل سنويًا",
+     "text_en": "Documentation of the review and testing at least once a year"
+    }
+   ],
+   "desc_en": "Review and test security incident response plans at least annually to ensure readiness."
+  },
+  {
+   "id": "8.6.1",
+   "desc_ar": "إتاحة جميع الخدمات الحضورية للمتعاملين وضمان فعاليتها أثناء تعطل الأنظمة الرقمية، دون أية تقليص في نطاق الخدمات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "بقاء الخدمات الحضورية فّعالة أثناء الأعطال الرقمية دون تقليص",
+     "text_en": "In-person services remain effective during digital failures without any reduction"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار استمرارية الخدمة الكاملة أثناء عطل محاكى",
+     "text_en": "Test full service continuity during a simulated failure"
+    }
+   ],
+   "desc_en": "Make all in-person services available to customers and ensure they remain effective during digital system failures, without any reduction in the scope of services."
+  },
+  {
+   "id": "8.6.2",
+   "desc_ar": "توفير بدائل ورقية أو يدوية للموظفين والمتعاملين في حال تعطل الأنظمة الرقمية",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير بدائل ورقية أو يدوية عند تعطل الأنظمة",
+     "text_en": "Provide paper-based or manual alternatives when systems fail"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من جاهزية البدائل",
+     "text_en": "Verify the readiness of the alternatives"
+    }
+   ],
+   "desc_en": "Provide paper-based or manual alternatives for staff and customers in the event of digital system failure."
+  },
+  {
+   "id": "8.6.3",
+   "desc_ar": "اختبار خطط استمرارية الخدمات الحضورية مرة واحدة سنويًا على الأقل مع توثيق النتائج.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "اختبار خطط استمرارية الخدمات الحضورية سنويًا",
+     "text_en": "Test in-person service continuity plans annually"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق الاختبار السنوي مع النتائج",
+     "text_en": "Documentation of the annual test with results"
+    }
+   ],
+   "desc_en": "Test in-person service continuity plans at least once a year and document the results."
+  },
+  {
+   "id": "8.6.4",
+   "desc_ar": "تدريب موظفي الصفوف الأمامية سنويًا على تقديم الخدمات بالطرق اليدوية في حال تعطل الأنظمة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تدريب موظفي الصفوف الأمامية سنويًا على الطرق اليدوية",
+     "text_en": "Train front-line staff annually on manual methods"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق التدريب السنوي لجميع الموظفين المعنيين",
+     "text_en": "Documentation of annual training for all relevant staff"
+    }
+   ],
+   "desc_en": "Train front-line staff annually on delivering services by manual methods in the event of system failure."
+  },
+  {
+   "id": "8.6.5",
+   "desc_ar": "إشعار المتعاملين فورًا عند تفعيل إجراءات استمرارية الأعمال للخدمات الحضورية.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إشعار المتعاملين فورًا عند التفعيل",
+     "text_en": "Notify customers immediately upon activation"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إرسال الإشعار التلقائي",
+     "text_en": "Test the sending of the automatic notification"
+    }
+   ],
+   "desc_en": "Notify customers immediately when business continuity procedures for in-person services are activated."
+  },
+  {
+   "id": "8.6.6",
+   "desc_ar": "تحديث خطط الاستمرارية بعد كل حادث لتوثيق الدروس المستفادة وتعزيز المرونة المستقبلية.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تحديث خطط الاستمرارية بعد كل حادث",
+     "text_en": "Update continuity plans after every incident"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق التحديثات والدروس المستفادة",
+     "text_en": "Documentation of updates and lessons learned"
+    }
+   ],
+   "desc_en": "Update continuity plans after every incident to document lessons learned and strengthen future resilience."
+  },
+  {
+   "id": "8.7.1",
+   "desc_ar": "إجراء تقييم سنوي للمخاطر لجميع الموّردين ذوي الأهمية لقياس احتمالات التعطّل وتأثيره على الخدمات المعتمدة عليهم.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إجراء تقييم سنوي للمخاطر لجميع الموردين الحرجين",
+     "text_en": "Conduct an annual risk assessment of all critical suppliers"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق التقييم السنوي",
+     "text_en": "Documentation of the annual assessment"
+    }
+   ],
+   "desc_en": "Conduct an annual risk assessment of all critical suppliers to measure the likelihood of failure and its impact on the services that depend on them."
+  },
+  {
+   "id": "8.7.2",
+   "desc_ar": "التأكد من وجود موّردين احتياطيين بعقود مبرمة مسبقًا، مع ضمان قدرتهم على استلام وتقديم الخدمات الحرجة خلال 24 ساعة في حال توقف الموّرد الأساسي.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "وجود موردين احتياطيين بعقود مسبقة",
+     "text_en": "Backup suppliers in place under pre-agreed contracts"
+    },
+    {
+     "n": 2,
+     "text_ar": "القدرة على تقديم الخدمات خلال 24 ساعة",
+     "text_en": "Ability to deliver services within 24 hours"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من وجود عقود سارية",
+     "text_en": "Verify that valid contracts are in place"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار جاهزية الموردين الاحتياطيين",
+     "text_en": "Test the readiness of backup suppliers"
+    }
+   ],
+   "desc_en": "Confirm that backup suppliers are in place under pre-agreed contracts, and that they are able to take over and deliver critical services within 24 hours if the primary supplier fails."
+  },
+  {
+   "id": "8.7.3",
+   "desc_ar": "تضمين بنود صريحة بشأن استمرارية الخدمة وحماية البيانات والاستجابة للحوادث في جميع عقود الموردين.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تضمين بنود صريحة للاستمرارية وحماية البيانات والاستجابة",
+     "text_en": "Include explicit clauses on continuity, data protection and response"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة جميع عقود الموردين",
+     "text_en": "Review all supplier contracts"
+    }
+   ],
+   "desc_en": "Include explicit clauses on service continuity, data protection and incident response in all supplier contracts."
+  },
+  {
+   "id": "8.7.4",
+   "desc_ar": "مراجعة أداء الموّردين ومدى التزامهم بمتطلبات استمرارية الأعمال ربع سنويًا على الأقل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة أداء والتزام الموردين فصليًا",
+     "text_en": "Review supplier performance and compliance quarterly"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المراجعة مرة واحدة على الأقل كل 3 أشهر",
+     "text_en": "Documentation of the review at least once every 3 months"
+    }
+   ],
+   "desc_en": "Review supplier performance and compliance with business continuity requirements at least quarterly."
+  },
+  {
+   "id": "8.7.5",
+   "desc_ar": "التزام الموردين بالإبلاغ عن أي انقطاع أو ُعطل يؤثر على الخدمات الحكومية وذلك خلال ساعة من اكتشافه.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إبلاغ الموردين خلال ساعة من اكتشاف أي عطل مؤثر",
+     "text_en": "Suppliers report within one hour of detecting any fault with an impact"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق متطلبات الإبلاغ في العقود واختبارها",
+     "text_en": "Document reporting requirements in contracts and test them"
+    }
+   ],
+   "desc_en": "Suppliers are required to report any outage or fault affecting government services within one hour of its detection."
+  },
+  {
+   "id": "8.7.6",
+   "desc_ar": "اختبار خطط استمرارية الموردين والاستجابة للأعطال سنويًا، مع ضمان رصد الإجراءات التصحيحية.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "اختبار خطط استمرارية الموردين سنويًا",
+     "text_en": "Test supplier continuity plans annually"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق الاختبار السنوي مع الإجراءات التصحيحية",
+     "text_en": "Documentation of the annual test with corrective actions"
+    }
+   ],
+   "desc_en": "Test supplier continuity and fault response plans annually, ensuring that corrective actions are monitored."
+  },
+  {
+   "id": "8.8.1",
+   "desc_ar": "ضمان محاكاة اختبارات سيناريوهات تجربة المتعامل عند التعامل مع وكيل ذكاء اصطناعي، بما في ذلك الاستخدام خلال أوقات الذروة وعبر مختلف قنوات الخدمة، وبما يعكس مستويات المخاطر وطبيعة الأثر التشغيلي للخدمة",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مراعاة سيناريوهات الاستخدام التي تتضمن قرارات أو إجراءات مؤتمتة ،بما في ذلك وكيل الذكاء الاصطناعي ضمن نطاق الاختبارات",
+     "text_en": "Take account of usage scenarios involving automated decisions or actions, including the AI agent, within the scope of testing"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة محتوى الإشعارات للتأكد من الشفافية",
+     "text_en": "Review the content of notifications to confirm transparency"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق الإشعارات المرسلة",
+     "text_en": "Documentation of notifications sent"
+    }
+   ],
+   "desc_en": "Ensure that customer experience scenarios involving an AI agent are simulated and tested, including use during peak times and across the various service channels, in a manner that reflects the risk levels and the nature of the service's operational impact."
+  },
+  {
+   "id": "8.8.2",
+   "desc_ar": "توثيق كافة نتائج اختبارات الاسترجاع ومراجعتها من قبل القيادة ونشرها داخليًا خلال 30 يومًا.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توثيق نتائج جميع الاختبارات",
+     "text_en": "Document the results of all tests"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة القيادة ونشر داخلي خلال 30 يومًا",
+     "text_en": "Leadership review and internal publication within 30 days"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود تقارير شاملة",
+     "text_en": "Existence of comprehensive reports"
+    },
+    {
+     "n": 2,
+     "text_ar": "قياس الوقت بين الاختبار والنشر (≤ 30 يومًا)",
+     "text_en": "Measure the time between testing and publication (≤ 30 days)"
+    }
+   ],
+   "desc_en": "Document all recovery test results, have them reviewed by leadership and publish them internally within 30 days."
+  },
+  {
+   "id": "8.8.3",
+   "desc_ar": "ضمان عدم مواجهة المتعاملين أية صعوبة في الوصول إلى الخدمات أثناء اختبارات التعافي المخطط لها، والإعلان مسبقًا عن فترات إجراء هذه الاختبارات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "عدم فقدان الوصول أثناء الاختبارات المخططة",
+     "text_en": "No loss of access during planned tests"
+    },
+    {
+     "n": 2,
+     "text_ar": "الإعلان المسبق عن فترات الاختبار",
+     "text_en": "Advance announcement of testing periods"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار استمرارية الخدمة أثناء الاختبار",
+     "text_en": "Test service continuity during testing"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق الإعلانات",
+     "text_en": "Documentation of announcements"
+    }
+   ],
+   "desc_en": "Ensure that customers experience no difficulty accessing services during planned recovery tests, and announce the periods of these tests in advance."
+  },
+  {
+   "id": "8.8.4",
+   "desc_ar": "ضرورة التنسيق مع الموردين الخارجيين، ضمن اختبارات التعافي، للتحقق من قابلية استرجاع الخدمة بشكل متكامل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تضمين الموردين الخارجيين في الاختبارات",
+     "text_en": "Include external suppliers in the tests"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من قابلية استرجاع الخدمة بشكل متكامل",
+     "text_en": "Verify that the service can be fully restored end to end"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق مشاركة الموردين",
+     "text_en": "Documentation of supplier participation"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق نتائج الاختبار الشامل",
+     "text_en": "Documentation of the results of the comprehensive test"
+    }
+   ],
+   "desc_en": "Coordination with external suppliers is required as part of recovery testing, to verify that the service can be fully restored end to end."
+  },
+  {
+   "id": "8.8.5",
+   "desc_ar": "إجراء اختبارات تعافي شاملة سنويًا تضم جميع الأنظمة الحرجة وخدمات المتعاملين.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إجراء اختبارات شاملة سنويًا لجميع الأنظمة الحرجة",
+     "text_en": "Conduct comprehensive tests annually for all critical systems"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق الاختبار الشامل السنوي",
+     "text_en": "Documentation of the annual comprehensive test"
+    }
+   ],
+   "desc_en": "Conduct comprehensive recovery tests annually covering all critical systems and customer services."
+  },
+  {
+   "id": "8.8.6",
+   "desc_ar": "الالتزام بتوثيق الدروس المستفادة من كل اختبار تعافي رسميًا، وتطبيق الإجراءات التصحيحية خلال ثلاثة أشهر.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توثيق الدروس المستفادة رسميًا",
+     "text_en": "Formally document lessons learned"
+    },
+    {
+     "n": 2,
+     "text_ar": "تطبيق الإجراءات التصحيحية خلال 3 أشهر",
+     "text_en": "Implement corrective actions within 3 months"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود تقرير بالدروس المستفادة",
+     "text_en": "Existence of a lessons-learned report"
+    },
+    {
+     "n": 2,
+     "text_ar": "قياس الوقت حتى التطبيق (≤ 3 أشهر)",
+     "text_en": "Measure the time to implementation (≤ 3 months)"
+    }
+   ],
+   "desc_en": "Commitment to formally documenting the lessons learned from every recovery test, and implementing corrective actions within three months."
+  },
+  {
+   "id": "8.8.7",
+   "desc_ar": "ضمان تقديم الخدمة من خلال الذكاء الاصطناعي المساعد بشكل موثوق ومتسق، بحيث لا ينتج عنه أخطاء أو قرارات غير صحيحة أو نتائج غير متوقعة قد تؤثر على جودة الخدمة أو تجربة المتعامل",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تنفيذ اختبارات تشغيلية وسيناريوهات قرار وتكامل قبل الإطلاق",
+     "text_en": "Conduct operational tests, decision scenarios and integration tests before launch"
+    },
+    {
+     "n": 2,
+     "text_ar": "اعتماد نتائج الاختبارات قبل التشغيل الفعلي ومنع التفعيل دون استيفائها",
+     "text_en": "Approve test results before go-live and prevent activation until they are met"
+    },
+    {
+     "n": 3,
+     "text_ar": "إعادة الاختبار بعد أي تغيير في النماذج أو القواعد أو التكاملات",
+     "text_en": "Re-test after any change to models, rules or integrations"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود تقارير اختبار واعتماد موثقة قبل التشغيل",
+     "text_en": "Existence of documented test and approval reports before go-live"
+    },
+    {
+     "n": 2,
+     "text_ar": "عدم وجود تشغيل فعلي دون استكمال الاعتماد",
+     "text_en": "No go-live without completed approval"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود تقارير إعادة اختبار بعد التغييرات الجوهرية",
+     "text_en": "Existence of re-test reports following material changes"
+    }
+   ],
+   "desc_en": "Ensure that services delivered through assistive AI are reliable and consistent, such that they do not produce errors, incorrect decisions or unexpected outcomes that could affect service quality or the customer experience."
+  }
+ ]
+}

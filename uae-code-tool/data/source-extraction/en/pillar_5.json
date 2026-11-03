@@ -1,0 +1,1868 @@
+{
+ "pillar": {
+  "id": "5",
+  "name_ar": "أنظمة رقمية مرنة وآمنة",
+  "desc_ar": "بناء منظومة رقمية آمنة ومتكاملة تضمن حماية بيانات المتعاملين وخصوصيتهم، وتمكن الأنظمة من التواصل بأمان وكفاءة، مع الحفاظ على الشفافية والمساءلة.",
+  "name_en": "Resilient and Secure Digital Systems",
+  "desc_en": "Building a secure and integrated digital ecosystem that safeguards customers' data and privacy, enables systems to communicate securely and efficiently, and upholds transparency and accountability."
+ },
+ "subpillars": [
+  {
+   "id": "5.1",
+   "pillar": "5",
+   "name_ar": "الهوية والوصول",
+   "name_en": "Identity and Access"
+  },
+  {
+   "id": "5.2",
+   "pillar": "5",
+   "name_ar": "شفافية البيانات والموافقات",
+   "name_en": "Data Transparency and Consent"
+  },
+  {
+   "id": "5.3",
+   "pillar": "5",
+   "name_ar": "صحة ودقة البيانات",
+   "name_en": "Data Validity and Accuracy"
+  },
+  {
+   "id": "5.4",
+   "pillar": "5",
+   "name_ar": "التكامل بين الأنظمة والبيانات",
+   "name_en": "Integration between Systems and Data"
+  },
+  {
+   "id": "5.5",
+   "pillar": "5",
+   "name_ar": "أمن المعلومات والحماية من الاحتيال",
+   "name_en": "Information Security and Fraud Protection"
+  },
+  {
+   "id": "5.6",
+   "pillar": "5",
+   "name_ar": "سجلات قابلة للتدقيق ومتاحة للمتعاملين",
+   "name_en": "Auditable Records Accessible to Customers"
+  },
+  {
+   "id": "5.7",
+   "pillar": "5",
+   "name_ar": "إدارة البيانات والخصوصية",
+   "name_en": "Data Management and Privacy"
+  },
+  {
+   "id": "5.8",
+   "pillar": "5",
+   "name_ar": "قنوات دفع آمنة وموثوقة",
+   "name_en": "Secure and Trusted Payment Channels"
+  },
+  {
+   "id": "5.9",
+   "pillar": "5",
+   "name_ar": "سجلات البيانات والمشاركة",
+   "name_en": "Data Registers and Sharing"
+  }
+ ],
+ "codes": [
+  {
+   "id": "5.1.1",
+   "desc_ar": "ضمان اعتماد مصادقة المتعاملين على أساليب آمنة ومعتمدة وطنيًا، تشمل تطبيق قواعد الحد الأدنى لقوة كلمة المرور وآليات الإقفال التلقائي للحساب، ودعم المصادقة متعددة العوامل (MFA).",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تطبيق قواعد قوة كلمة المرور وآليات الإقفال",
+     "text_en": "Apply password-strength rules and lock-out mechanisms"
+    },
+    {
+     "n": 2,
+     "text_ar": "دعم المصادقة متعددة العوامل",
+     "text_en": "Support multi-factor authentication"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار متطلبات الطول والتعقيد والإقفال بعد المحاولات الفاشلة",
+     "text_en": "Test length and complexity requirements and lock-out after failed attempts"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من توفر خيار MFA",
+     "text_en": "Verify that an MFA option is available"
+    }
+   ],
+   "desc_en": "Ensure that customer authentication relies on secure and nationally approved methods, including the application of minimum password-strength rules and automatic account lock-out mechanisms, and support for multi-factor authentication (MFA)."
+  },
+  {
+   "id": "5.1.2",
+   "desc_ar": "ضمان تكامل جميع الخدمات الرقمية الحكومية مع نظام الهوية الرقمية الموحد UAE Pass للمصادقة، وعرضه كخيار أساسي لتسجيل الدخول.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "التكامل مع UAE PASS للمصادقة في جميع الخدمات الرقمية",
+     "text_en": "Integration with UAE PASS for authentication across all digital services"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من هوية المستخدم وصلاحياته قبل تنفيذ الإجراءات المؤتمتة، بما في ذلك الإجراءات المنفذة عبر وكيل الذكاء الاصطناعي",
+     "text_en": "Verify the user's identity and permissions before executing automated actions, including actions executed via an AI agent"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إمكانية تسجيل الدخول عبر UAE PASS",
+     "text_en": "Test the ability to sign in via UAE PASS"
+    }
+   ],
+   "desc_en": "Ensure that all government digital services are integrated with the unified digital identity system UAE PASS for authentication, and that it is presented as a primary sign-in option."
+  },
+  {
+   "id": "5.1.3",
+   "desc_ar": "مراجعة صلاحيات الوصول المعتمدة على الأدوار بشكل دوري على الأقل، والتحقق من توافقها مع المهام الوظيفية الحالية، وإزالة أي صلاحيات لم تعد ضرورية.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة صلاحيات الوصول المعتمدة على الأدوار بشكل دوري",
+     "text_en": "Review role-based access permissions periodically"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من توافقها مع المهام الوظيفية الحالية",
+     "text_en": "Verify their alignment with current job duties"
+    },
+    {
+     "n": 3,
+     "text_ar": "إزالة أي صلاحيات لم تعد ضرورية",
+     "text_en": "Remove any permissions that are no longer necessary"
+    },
+    {
+     "n": 4,
+     "text_ar": "الالتزام بتقييد تنفيذ الإجراءات ضمن الصلاحيات المعتمدة، بما في ذلك عند تشغيل وكيل الذكاء الاصطناعي",
+     "text_en": "Commit to restricting the execution of actions to approved permissions, including when an AI agent is in operation"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المراجعة مرة واحدة على الأقل كل 3 أشهر",
+     "text_en": "Document the review at least once every 3 months"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق الصلاحيات التي تم إزالتها بناءً على المراجعة",
+     "text_en": "Document the permissions removed as a result of the review"
+    }
+   ],
+   "desc_en": "Review role-based access permissions at least periodically, verify that they are aligned with current job duties, and remove any permissions that are no longer necessary."
+  },
+  {
+   "id": "5.1.4",
+   "desc_ar": "إرسال تنبيه للمتعامل عند تسجيل الدخول من جهاز أو موقع جديد، متضمنًا إرشادات واضحة لحماية الحساب.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إرسال تنبيه عند تسجيل الدخول من جهاز أو موقع جديد",
+     "text_en": "Send an alert when a sign-in occurs from a new device or location"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين إرشادات واضحة لحماية الحساب في التنبيه",
+     "text_en": "Include clear account-protection guidance in the alert"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إرسال التنبيه عند الدخول من جهاز جديد",
+     "text_en": "Test that the alert is sent on sign-in from a new device"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى التنبيه للتأكد من وجود الإرشادات",
+     "text_en": "Review the alert content to confirm the guidance is included"
+    }
+   ],
+   "desc_en": "Send an alert to the customer when a sign-in occurs from a new device or location, including clear guidance on protecting the account."
+  },
+  {
+   "id": "5.2.1",
+   "desc_ar": "ضمان توضيح صفحة جمع البيانات للبيانات الشخصية التي يتم جمعها والغرض من جمعها والأساس القانوني وفترة الاحتفاظ بها، وذلك عند كل نقطة يتم فيها جمع البيانات، وأن تتضمن الصفحة رابطًا لنص سياسة الخصوصية الكامل",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توضيح البيانات الشخصية التي يتم جمعها والغرض منها والأساس القانوني وفترة الاحتفاظ بها",
+     "text_en": "State the personal data being collected, its purpose, the legal basis and the retention period"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين رابط لنص سياسة الخصوصية الكامل",
+     "text_en": "Include a link to the full text of the privacy policy"
+    },
+    {
+     "n": 3,
+     "text_ar": "توضيح مصادر البيانات المستخدمة في تقديم الخدمة عند الاعتماد على وكيل الذكاء الاصطناعي",
+     "text_en": "State the data sources used in delivering the service when relying on an AI agent"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة صفحات جمع البيانات للتأكد من وجود جميع العناصر",
+     "text_en": "Review data-collection pages to confirm all elements are present"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من وجود رابط فعال في كل نقطة جمع بيانات",
+     "text_en": "Verify that a working link exists at every data-collection point"
+    }
+   ],
+   "desc_en": "Ensure that the data-collection page clearly states the personal data being collected, the purpose of collection, the legal basis and the retention period, at every point where data is collected, and that the page includes a link to the full text of the privacy policy."
+  },
+  {
+   "id": "5.2.2",
+   "desc_ar": "الالتزام بعدم استخدام أو مشاركة البيانات الشخصية لأي أغراض غير منصوص عليها قانونًا، إلا بعد الحصول على موافقة صريحة من المتعامل، يتم توثيقها زمنيًا وحفظها ضمن ملفه الشخصي بما يضمن قابليتها للتدقيق",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الحصول على موافقة صريحة قبل استخدام أو مشاركة البيانات الشخصية خارج الأغراض المنصوص عليها قانونًا",
+     "text_en": "Obtain explicit consent before using or sharing personal data beyond the purposes provided for by law"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق الموافقة زمنيًا وحفظها ضمن ملف المتعامل",
+     "text_en": "Time-stamp the consent and store it in the customer profile"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق الأساس النظامي أو الموافقة المعتمدة عند التوسع في استخدام البيانات أو عند استخدامها من قبل وكيل الذكاء الاصطناعي",
+     "text_en": "Document the legal basis or the approved consent when expanding the use of data or when it is used by an AI agent"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار عدم استخدام البيانات دون موافقة صريحة",
+     "text_en": "Test that data is not used without explicit consent"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة سجلات الموافقات",
+     "text_en": "Review consent records"
+    },
+    {
+     "n": 3,
+     "text_ar": "التحقق من وجود ختم زمني وسجل محفوظ",
+     "text_en": "Verify the presence of a timestamp and a stored record"
+    }
+   ],
+   "desc_en": "Commit to not using or sharing personal data for any purposes not provided for by law, except after obtaining the customer's explicit consent, which is time-stamped and stored in the customer's profile in a manner that ensures auditability."
+  },
+  {
+   "id": "5.2.3",
+   "desc_ar": "تمكين المتعامل من سحب أي موافقة سبق منحها من خلال إعدادات حسابه بخطوة واحدة، مع تطبيق السحب فورًا على جميع عمليات المعالجة، وإرسال تأكيد تلقائي عبر القناة المفضلة لديه.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة سحب الموافقة من إعدادات الحساب بخطوة واحدة",
+     "text_en": "Enable consent withdrawal from account settings in a single step"
+    },
+    {
+     "n": 2,
+     "text_ar": "التطبيق الفوري للسحب على جميع عمليات المعالجة",
+     "text_en": "Apply the withdrawal immediately to all processing operations"
+    },
+    {
+     "n": 3,
+     "text_ar": "إرسال تأكيد تلقائي عبر القناة المفضلة",
+     "text_en": "Send an automatic confirmation via the preferred channel"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار سحب الموافقة من الإعدادات بسهولة",
+     "text_en": "Test that consent can be withdrawn easily from the settings"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار إيقاف المعالجة فورًا بعد السحب",
+     "text_en": "Test that processing stops immediately after withdrawal"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار استلام التأكيد عبر القناة المحددة",
+     "text_en": "Test receipt of the confirmation via the specified channel"
+    }
+   ],
+   "desc_en": "Enable the customer to withdraw any previously granted consent through their account settings in a single step, apply the withdrawal immediately to all processing operations, and send an automatic confirmation via the customer's preferred channel."
+  },
+  {
+   "id": "5.2.4",
+   "desc_ar": "التزام الجهة بنشر سياسة خصوصية واضحة توضح فئات البيانات وأغراض المعالجة والجهات المستلمة وفترات الاحتفاظ وضوابط الأمن وبيانات التواصل، على أن تكون السياسة مربوطة بجميع النماذج.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "نشر سياسة خصوصية شاملة تتضمن جميع العناصر المطلوبة (فئات البيانات، أغراض المعالجة، الجهات المستلمة، فترات الاحتفاظ، ضوابط الأمن، بيانات التواصل)",
+     "text_en": "Publish a comprehensive privacy policy covering all required elements (data categories, processing purposes, recipient entities, retention periods, security controls, contact details)"
+    },
+    {
+     "n": 2,
+     "text_ar": "ربط السياسة بجميع النماذج",
+     "text_en": "Link the policy to all forms"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة السياسة للتأكد من اشتمالها العناصر المطلوبة",
+     "text_en": "Review the policy to confirm it covers the required elements"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة جميع النماذج للتأكد من وجود رابط للسياسة",
+     "text_en": "Review all forms to confirm a link to the policy is present"
+    }
+   ],
+   "desc_en": "The entity commits to publishing a clear privacy policy that sets out data categories, processing purposes, recipient entities, retention periods, security controls and contact details, with the policy linked to all forms."
+  },
+  {
+   "id": "5.2.5",
+   "desc_ar": "احتفاظ سجل الموافقات بجميع عمليات الموافقة أو السحب لمدة لا تقل عن سبع سنوات، متضمنًا رقم تعريف المتعامل ونص الموافقة والغرض والتاريخ والوقت والقناة المستخدمة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الاحتفاظ بجميع عمليات الموافقة والسحب لمدة 7 سنوات على الأقل",
+     "text_en": "Retain all consent and withdrawal operations for at least 7 years"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين جميع البيانات المطلوبة في السجل",
+     "text_en": "Include all required data in the register"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة سياسة الاحتفاظ بالسجلات",
+     "text_en": "Review the records-retention policy"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة السجل للتأكد من وجود: رقم التعريف، نص الموافقة، الغرض، التاريخ والوقت، القناة",
+     "text_en": "Review the register to confirm it contains: identifier, consent text, purpose, date and time, channel"
+    }
+   ],
+   "desc_en": "The consent register retains all consent and withdrawal operations for a period of not less than seven years, including the customer identifier, the consent text, the purpose, the date and time, and the channel used."
+  },
+  {
+   "id": "5.2.6",
+   "desc_ar": "إشعار المتعاملين خلال خمسة أيام عمل عند تغيير نص الموافقة أو أغراض المعالجة، ومطالبتهم بإعادة التأكيد قبل تنفيذ أي معالجة جديدة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إشعار المتعاملين خلال 5 أيام عمل من تغيير نص الموافقة أو الأغراض",
+     "text_en": "Notify customers within 5 working days of a change to the consent text or purposes"
+    },
+    {
+     "n": 2,
+     "text_ar": "مطالبة المتعاملين بإعادة التأكيد قبل المعالجة الجديدة",
+     "text_en": "Require customers to re-confirm before new processing"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الفترة بين التغيير وإرسال الإشعار (≤ 5 أيام عمل)",
+     "text_en": "Measure the period between the change and the sending of the notification (≤ 5 working days)"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار عدم تنفيذ المعالجة الجديدة دون إعادة التأكيد",
+     "text_en": "Test that new processing is not carried out without re-confirmation"
+    }
+   ],
+   "desc_en": "Notify customers within five working days when the consent text or processing purposes change, and require them to re-confirm before any new processing is carried out."
+  },
+  {
+   "id": "5.2.7",
+   "desc_ar": "ضمان الحصول على الموافقة من المتعامل أو الجهة المعنية قبل قيام وكيل الذكاء الاصطناعي بتنفيذ أي قرار أو إجراء ذي أثر مالي أو قانوني أو غير قابل للرجوع",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تحديد الحالات التي تتطلب موافقة مستنيرة قبل التنفيذ",
+     "text_en": "Identify the cases that require informed consent before execution"
+    },
+    {
+     "n": 2,
+     "text_ar": "تمكين الموافقة أو الرفض بشكل صريح قبل تنفيذ القرار",
+     "text_en": "Enable explicit approval or refusal before the decision is executed"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق جميع قرارات الموافقة أو الرفض المرتبطة بالحالات الحرجة",
+     "text_en": "Document all approval or refusal decisions relating to critical cases"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "عدم تنفيذ قرارات حرجة دون موافقة موثقة",
+     "text_en": "No critical decisions executed without documented consent"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود سجل للموافقات والرفض لكل حالة",
+     "text_en": "A record of approvals and refusals exists for each case"
+    },
+    {
+     "n": 3,
+     "text_ar": "وضوح آلية طلب الموافقة وإتاحتها",
+     "text_en": "The consent-request mechanism is clear and available"
+    }
+   ],
+   "desc_en": "Ensure that consent is obtained from the customer or the relevant entity before an AI agent executes any decision or action that has a financial or legal impact or is irreversible."
+  },
+  {
+   "id": "5.3.1",
+   "desc_ar": "ضمان قيام الأنظمة بالتحقق الآلي من صحة بيانات المتعاملين عند إدخالها، بما يشمل التحقق من الصيغة والمعلومات المقبولة والتناسق المنطقي بين الحقول، وعدم السماح بحفظ البيانات قبل تصحيح جميع الأخطاء.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من صحة البيانات باستخدام فحوصات التنسيق والمدى والتناسق المنطقي",
+     "text_en": "Validate data using format, range and logical-consistency checks"
+    },
+    {
+     "n": 2,
+     "text_ar": "منع حفظ البيانات قبل تصحيح جميع الأخطاء",
+     "text_en": "Prevent data from being saved until all errors have been corrected"
+    },
+    {
+     "n": 3,
+     "text_ar": "التحقق من استخدام بيانات دقيقة ومكتملة عند تنفيذ القرارات المؤتمتة، بما في ذلك عبر وكيل الذكاء الاصطناعي",
+     "text_en": "Verify that accurate and complete data is used when executing automated decisions, including via an AI agent"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار تطبيق فحوصات التحقق على جميع حقول الإدخال",
+     "text_en": "Test that validation checks are applied to all input fields"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار عدم إمكانية حفظ البيانات مع وجود أخطاء",
+     "text_en": "Test that data cannot be saved while errors are present"
+    }
+   ],
+   "desc_en": "Ensure that systems automatically validate customer data at the point of entry, including checks of format, accepted values and logical consistency between fields, and do not allow data to be saved until all errors have been corrected."
+  },
+  {
+   "id": "5.3.2",
+   "desc_ar": "تصحيح الأخطاء المكتشفة في بيانات النظام خلال مدة لا تتجاوز 48 ساعة من تاريخ اكتشافها، مع تسجيل عملية التصحيح في سجل تدقيق يبّين طبيعة الخطأ، وسبب التعديل، وهوية المستخدم، وتاريخ ووقت الإجراء.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تصحيح الأخطاء المكتشفة في النظام خلال 48 ساعة",
+     "text_en": "Correct errors detected in the system within 48 hours"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق التصحيح في سجل التدقيق مع السبب ومعّرف المستخدم",
+     "text_en": "Document the correction in the audit log with the reason and the user ID"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين اكتشاف الخطأ وتصحيحه (≤ 48 ساعة)",
+     "text_en": "Measure the time between error detection and correction (≤ 48 hours)"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة سجل التدقيق للتأكد من توثيق جميع العناصر",
+     "text_en": "Review the audit log to confirm all elements are documented"
+    }
+   ],
+   "desc_en": "Correct errors detected in system data within no more than 48 hours of their detection, and record the correction in an audit log that shows the nature of the error, the reason for the change, the identity of the user, and the date and time of the action."
+  },
+  {
+   "id": "5.3.3",
+   "desc_ar": "إجراء مراجعة سنوية شاملة لجودة البيانات، تشمل عّينة من السجلات النشطة للتحقق من دقة البيانات واكتمالها، وإعداد خطة إجراءات تصحيحية تتضمن الجداول الزمنية والمسؤوليات المحددة",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إجراء مراجعة سنوية لجودة البيانات على عينة من السجلات النشطة",
+     "text_en": "Conduct an annual data-quality review on a sample of active records"
+    },
+    {
+     "n": 2,
+     "text_ar": "إعداد خطة إجراءات تصحيحية مع الجداول الزمنية والمسؤوليات المحددة",
+     "text_en": "Prepare a corrective-action plan with timelines and defined responsibilities"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المراجعة السنوية مع حجم العينة المختبرة",
+     "text_en": "Document the annual review together with the size of the sample tested"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود خطة موثقة تتضمن إجراءات وجداول زمنية ومسؤولين محددين",
+     "text_en": "A documented plan exists that includes actions, timelines and designated owners"
+    }
+   ],
+   "desc_en": "Conduct a comprehensive annual data-quality review, covering a sample of active records to verify data accuracy and completeness, and prepare a corrective-action plan that includes timelines and defined responsibilities."
+  },
+  {
+   "id": "5.3.4",
+   "desc_ar": "تشغيل قواعد كشف السجلات المكررة يوميًا، لرصد أي حالات تكرار محتملة وتحويلها للدمج أو المعالجة من قبل جهة معتمدة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تشغيل قواعد كشف التكرار يوميًا",
+     "text_en": "Run duplicate-detection rules daily"
+    },
+    {
+     "n": 2,
+     "text_ar": "تحويل السجلات المكررة للمعالجة من جهة معتمدة",
+     "text_en": "Refer duplicate records for handling by an authorised party"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق التشغيل اليومي لقواعد كشف التكرار",
+     "text_en": "Document the daily running of duplicate-detection rules"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود آلية لتحويل الحالات المكتشفة لجهة مسؤولة",
+     "text_en": "A mechanism exists to refer detected cases to a responsible party"
+    }
+   ],
+   "desc_en": "Run duplicate-record detection rules daily to identify any potential duplicates and refer them for merging or handling by an authorised party."
+  },
+  {
+   "id": "5.3.5",
+   "desc_ar": "تمكين المتعاملين من طلب تحديث بياناتهم الشخصية غير الدقيقة من خلال آلية مبّسطة، على أن يتم تطبيق التصحيحات المعتمدة خلال خمسة أيام عمل مع إرسال إشعار تأكيد للمتعامل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة آلية مبسطة لطلب تحديث البيانات الشخصية",
+     "text_en": "Provide a simplified mechanism for requesting personal-data updates"
+    },
+    {
+     "n": 2,
+     "text_ar": "تطبيق التصحيحات المعتمدة خلال 5 أيام عمل",
+     "text_en": "Apply approved corrections within 5 working days"
+    },
+    {
+     "n": 3,
+     "text_ar": "إرسال تأكيد للمتعامل بعد التطبيق",
+     "text_en": "Send a confirmation to the customer after the correction is applied"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود خيار واضح وسهل لطلب التحديث",
+     "text_en": "A clear and easy option exists for requesting an update"
+    },
+    {
+     "n": 2,
+     "text_ar": "قياس الوقت بين الموافقة على التصحيح وتطبيقه (≤ 5 أيام عمل)",
+     "text_en": "Measure the time between approval of the correction and its application (≤ 5 working days)"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار إرسال إشعار التأكيد بعد كل تصحيح",
+     "text_en": "Test that a confirmation notification is sent after every correction"
+    }
+   ],
+   "desc_en": "Enable customers to request an update to their inaccurate personal data through a simplified mechanism, with approved corrections applied within five working days and a confirmation notification sent to the customer."
+  },
+  {
+   "id": "5.3.6",
+   "desc_ar": "عرض تقارير جودة البيانات الشهرية لمعدلات الأخطاء والسجلات المكررة والحقول الناقصة لكل نظام، ومراجعتها من قبل الجهات المسؤولة عن الخدمات",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إصدار تقارير شهرية تعرض معدلات الأخطاء والتكرار والحقول الناقصة",
+     "text_en": "Issue monthly reports showing error rates, duplicates and missing fields"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة التقارير من قبل الجهات المسؤولة عن الخدمات",
+     "text_en": "Reports are reviewed by the parties responsible for the services"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق إصدار التقرير شهريًا مع البيانات المطلوبة",
+     "text_en": "Document the monthly issuance of the report with the required data"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق مراجعة الجهات المسؤولة عن الخدمات للتقارير",
+     "text_en": "Document the review of the reports by the parties responsible for the services"
+    }
+   ],
+   "desc_en": "Present monthly data-quality reports on error rates, duplicate records and missing fields for each system, to be reviewed by the parties responsible for the services."
+  },
+  {
+   "id": "5.4.1",
+   "desc_ar": "ضمان قابلية التشغيل البيني للمعايير الوطنية المعتمدة واستخدام واجهات برمجة تطبيقات آمنة، مع تشفير البيانات أثناء النقل وتطبيق مصادقة صارمة لكل نظام مستهلك (الأنظمة المستخدمة لواجهات التكامل).",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استخدام واجهات برمجة تطبيقات آمنة وفق المعايير الوطنية المعتمدة",
+     "text_en": "Use secure APIs in accordance with approved national standards"
+    },
+    {
+     "n": 2,
+     "text_ar": "تطبيق التشفير أثناء نقل البيانات",
+     "text_en": "Apply encryption to data in transit"
+    },
+    {
+     "n": 3,
+     "text_ar": "تطبيق مصادقة صارمة لكل نظام مستهلك",
+     "text_en": "Apply strict authentication for every consuming system"
+    },
+    {
+     "n": 4,
+     "text_ar": "ضمان تكامل وتنفيذ الإجراءات عبر الأنظمة الحكومية بشكل موثوق عند الاعتماد على وكيل الذكاء الاصطناعي",
+     "text_en": "Ensure the reliable integration and execution of actions across government systems when relying on an AI agent"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار متطلبات المصادقة لجميع الأنظمة المستهلكة",
+     "text_en": "Test authentication requirements for all consuming systems"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار تطبيق التشفير على جميع عمليات نقل البيانات",
+     "text_en": "Test that encryption is applied to all data transfers"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق استخدام المعايير المعتمدة فقط",
+     "text_en": "Document the use of approved standards only"
+    }
+   ],
+   "desc_en": "Ensure interoperability in accordance with approved national standards and the use of secure APIs, with data encrypted in transit and strict authentication applied for every consuming system (systems that use the integration interfaces)."
+  },
+  {
+   "id": "5.4.2",
+   "desc_ar": "بمجرد جمع مجموعة بيانات والتحقق منها من قبل أي جهة، يتعين على الجهات المخّولة الأخرى استرجاعها وإعادة استخدامها بدلاً من مطالبة المتعامل بتقديمها مرة أخرى.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استرجاع البيانات الموثقة من الجهات الأخرى بدلاً من مطالبة المتعامل",
+     "text_en": "Retrieve verified data from other entities rather than asking the customer"
+    },
+    {
+     "n": 2,
+     "text_ar": "اقتصار الطلب على الجهات المخّولة فقط",
+     "text_en": "Restrict requests to authorised entities only"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار عدم طلب بيانات متوفرة لدى جهات أخرى",
+     "text_en": "Test that data already available with other entities is not requested"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق صلاحيات الوصول للجهات المخّولة",
+     "text_en": "Document the access permissions of authorised entities"
+    }
+   ],
+   "desc_en": "Once a dataset has been collected and verified by any entity, other authorised entities must retrieve and reuse it rather than asking the customer to provide it again."
+  },
+  {
+   "id": "5.4.3",
+   "desc_ar": "ضمان تبادل البيانات المطلوبة بين الأنظمة المخّولة في الوقت الفعلي أو شبه الفعلي، بما يضمن إتاحة أحدث البيانات الموثقة للموظفين والمتعاملين.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تبادل البيانات في الوقت الفعلي أو شبه الفعلي",
+     "text_en": "Exchange data in real time or near real time"
+    },
+    {
+     "n": 2,
+     "text_ar": "إظهار أحدث البيانات الموثقة للموظفين والمتعاملين",
+     "text_en": "Display the latest verified data to employees and customers"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس زمن الاستجابة لتبادل البيانات (≤ دقيقة واحدة)",
+     "text_en": "Measure the response time of data exchange (≤ one minute)"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار عرض البيانات المحدثة فور تحديثها في النظام المصدر",
+     "text_en": "Test that updated data is displayed as soon as it is updated in the source system"
+    }
+   ],
+   "desc_en": "Ensure that the required data is exchanged between authorised systems in real time or near real time, so that the latest verified data is available to employees and customers."
+  },
+  {
+   "id": "5.4.4",
+   "desc_ar": "ضمان اجتياز جميع واجهات البرمجة المكشوفة اختبارات الأمان والأداء وإجراءات التحكم في التغييرات قبل الإطلاق وبعد أي تغيير جوهري.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "اجتياز اختبارات الأمان قبل الإطلاق وبعد التغييرات الجوهرية",
+     "text_en": "Pass security testing before launch and after material changes"
+    },
+    {
+     "n": 2,
+     "text_ar": "اجتياز اختبارات الأداء قبل الإطلاق وبعد التغييرات الجوهرية",
+     "text_en": "Pass performance testing before launch and after material changes"
+    },
+    {
+     "n": 3,
+     "text_ar": "إجراءات التحكم في التغييرات",
+     "text_en": "Change-control procedures"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق نتائج اختبارات الأمان",
+     "text_en": "Document security test results"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق نتائج اختبارات الأداء",
+     "text_en": "Document performance test results"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق الموافقات على التغييرات وفق الإجراءات المعتمدة",
+     "text_en": "Document change approvals in accordance with the approved procedures"
+    }
+   ],
+   "desc_en": "Ensure that all exposed APIs pass security and performance testing and change-control procedures before launch and after any material change."
+  },
+  {
+   "id": "5.4.5",
+   "desc_ar": "تلتزم نماذج البيانات المشتركة بتطابق الحقول عبر الأنظمة المختلفة بشكل متسق، وذلك وفق مخطط معياري موحد ومنشور مع استخدام آليات معتمدة لتحويل بيانات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مطابقة الحقول عبر الأنظمة باستخدام مخطط معياري ومنشور",
+     "text_en": "Match fields across systems using a published standard schema"
+    },
+    {
+     "n": 2,
+     "text_ar": "استخدام آليات معتمدة لتحويل بيانات",
+     "text_en": "Use approved data-transformation mechanisms"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود مخطط قياسي موثق ومنشور",
+     "text_en": "A documented and published standard schema exists"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق جميع التحويلات المستخدمة واعتمادها",
+     "text_en": "Document and approve all transformations used"
+    }
+   ],
+   "desc_en": "Shared data models shall consistently match fields across the various systems, in accordance with a unified, published standard schema, using approved data-transformation mechanisms."
+  },
+  {
+   "id": "5.4.6",
+   "desc_ar": "تمكين المتعامل من الاطلاع على سجل وصول الجهات إلى بياناته وفقًا لسياسات الحوكمة المعتمدة، بما يشمل تاريخ الوصول والجهة المعنية، وحيثما أمكن الغرض من الاستخدام",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تمكين المتعامل من الاطلاع على سجل وصول الجهات إلى بياناته",
+     "text_en": "Enable the customer to view the log of entities' access to their data"
+    },
+    {
+     "n": 2,
+     "text_ar": "عرض الجهات التي وصلت للبيانات وتاريخ ونوع الوصول والغرض",
+     "text_en": "Display the entities that accessed the data, together with the date, type of access and purpose"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود واجهة واضحة يمكن للمتعامل الوصول إليها",
+     "text_en": "A clear interface exists that the customer can access"
+    },
+    {
+     "n": 2,
+     "text_ar": "اشتمال السجل على جميع العناصر المطلوبة بوضوح",
+     "text_en": "The log clearly covers all required elements"
+    }
+   ],
+   "desc_en": "Enable the customer to view the log of entities' access to their data, in accordance with the approved governance policies, including the date of access and the entity concerned and, where possible, the purpose of use."
+  },
+  {
+   "id": "5.4.7",
+   "desc_ar": "توثيق نطاق عمل كل وكيل ذكاء اصطناعي يعمل بشكل مستقل أو شبه مستقل ضمن وثيقة معتمدة، بحيث يحدد بدقة الخدمات المصرح له بتنفيذها وحدود صلاحياته وأنواع القرارات التي يمكنه اتخاذها، بما يضمن عدم تشغيله أو استخدامه خارج هذا النطاق",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تحديد نطاق الخدمات والحالات التي يجوز للوكيل التعامل معها وربطها بالغرض التشغيلي المعتمد",
+     "text_en": "Define the scope of services and cases the agent may handle and link them to the approved operational purpose"
+    },
+    {
+     "n": 2,
+     "text_ar": "تحديد الصلاحيات وحدود الوصول وأنواع القرارات المستقلة والقرارات التي تتطلب تدخلاً بشرًيا",
+     "text_en": "Define permissions, access limits, the types of autonomous decisions, and the decisions that require human intervention"
+    },
+    {
+     "n": 3,
+     "text_ar": "تحديث نطاق الذكاء الاصطناعي المساعد واعتماده عند أي تغيير جوهري ومنع تشغيله خارج النطاق المعتمد",
+     "text_en": "Update and approve the scope of the assistive AI upon any material change, and prevent its operation outside the approved scope"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود وثيقة نطاق معتمدة ومحدثة لكل وكيل",
+     "text_en": "An approved and up-to-date scope document exists for each agent"
+    },
+    {
+     "n": 2,
+     "text_ar": "مطابقة التشغيل الفعلي للنطاق والصلاحيات المحددة",
+     "text_en": "Actual operation matches the defined scope and permissions"
+    },
+    {
+     "n": 3,
+     "text_ar": "رصد وتوثيق أي حالات تشغيل خارج النطاق والإجراءات المتخذة بشأنها",
+     "text_en": "Monitor and document any instances of operation outside the scope and the actions taken in response"
+    }
+   ],
+   "desc_en": "Document the scope of operation of every AI agent that operates autonomously or semi-autonomously in an approved document that precisely defines the services it is authorised to perform, the limits of its permissions and the types of decisions it may take, ensuring it is not operated or used outside this scope."
+  },
+  {
+   "id": "5.5.1",
+   "desc_ar": "مراقبة ضوابط مكافحة الاحتيال لعمليات تسجيل الدخول والمعاملات، وذلك لرصد الأنماط غير الاعتيادية، وحظر الأنشطة أو التحقق منها، تلقائيًا، عند تجاوز الحدود المسموح بها.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مراقبة عمليات تسجيل الدخول والمعاملات لرصد الأنماط غير الاعتيادية",
+     "text_en": "Monitor sign-in operations and transactions to detect unusual patterns"
+    },
+    {
+     "n": 2,
+     "text_ar": "الحظر أو التحقق التلقائي عند تجاوز الحدود المحددة",
+     "text_en": "Automatic blocking or verification when the defined thresholds are exceeded"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود نظام آلي يراقب الأنشطة ويحلل الأنماط",
+     "text_en": "An automated system exists that monitors activities and analyses patterns"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار حظر أو تحدي الأنشطة المشبوهة تلقائيًا",
+     "text_en": "Test that suspicious activities are automatically blocked or challenged"
+    }
+   ],
+   "desc_en": "Monitor anti-fraud controls for sign-in operations and transactions in order to detect unusual patterns, and automatically block or verify activities when the permitted thresholds are exceeded."
+  },
+  {
+   "id": "5.5.2",
+   "desc_ar": "عند الاشتباه بوجود احتيال يؤثر على المتعامل، يتعين على الجهة إرسال تنبيه خلال 24 ساعة يتضمن تعليمات واضحة حول كيفية تأمين الحساب.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إرسال تنبيه خلال 24 ساعة عند الاشتباه بالاحتيال",
+     "text_en": "Send an alert within 24 hours when fraud is suspected"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين تعليمات واضحة لتأمين الحساب",
+     "text_en": "Include clear instructions for securing the account"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين اكتشاف الاشتباه وإرسال التنبيه (≤ 24 ساعة)",
+     "text_en": "Measure the time between detection of the suspicion and the sending of the alert (≤ 24 hours)"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى التنبيه للتأكد من وضوح التعليمات",
+     "text_en": "Review the alert content to confirm the instructions are clear"
+    }
+   ],
+   "desc_en": "Where fraud affecting the customer is suspected, the entity must send an alert within 24 hours containing clear instructions on how to secure the account."
+  },
+  {
+   "id": "5.5.3",
+   "desc_ar": "اختبار قواعد ونماذج كشف الاحتيال سنوًيا على الأقل باستخدام سيناريوهات افتراضية، ورفع النتائج إلى المسؤولين عن إدارة المخاطر.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "اختبار قواعد ونماذج كشف الاحتيال فصليًا على الأقل",
+     "text_en": "Test fraud-detection rules and models at least quarterly"
+    },
+    {
+     "n": 2,
+     "text_ar": "استخدام سيناريوهات افتراضية في الاختبار",
+     "text_en": "Use hypothetical scenarios in testing"
+    },
+    {
+     "n": 3,
+     "text_ar": "رفع النتائج إلى مسؤولي إدارة المخاطر",
+     "text_en": "Report the results to the risk-management officers"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق الاختبار مرة واحدة على الأقل كل 3 أشهر",
+     "text_en": "Document the testing at least once every 3 months"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق السيناريوهات المستخدمة وتنوعها",
+     "text_en": "Document the scenarios used and their diversity"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق تقديم تقرير النتائج لمسؤولي إدارة المخاطر",
+     "text_en": "Document the submission of the results report to the risk-management officers"
+    }
+   ],
+   "desc_en": "Test fraud-detection rules and models at least annually using hypothetical scenarios, and report the results to those responsible for risk management."
+  },
+  {
+   "id": "5.5.4",
+   "desc_ar": "وضع علامة تنبيه على المعاملات التي تتجاوز حدود القيمة أو السرعة المحددة، لإخضاعها لمراجعة يدوية قبل الإتمام، ما لم تسمح قواعد إدارة المخاطر بالإفراج التلقائي الآمن.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "وضع علامة على المعاملات التي تتجاوز حدود القيمة أو السرعة",
+     "text_en": "Flag transactions that exceed the value or velocity thresholds"
+    },
+    {
+     "n": 2,
+     "text_ar": "المراجعة اليدوية قبل الإتمام (ما لم تسمح قواعد المخاطر بالإفراج التلقائي)",
+     "text_en": "Manual review before completion (unless the risk rules permit automatic release)"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود قواعد محددة للحدود وآلية للوسم التلقائي",
+     "text_en": "Defined threshold rules and an automatic flagging mechanism exist"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار إيقاف المعاملات للمراجعة عند تجاوز الحدود",
+     "text_en": "Test that transactions are held for review when thresholds are exceeded"
+    }
+   ],
+   "desc_en": "Flag transactions that exceed the defined value or velocity thresholds for manual review before completion, unless the risk-management rules permit safe automatic release."
+  },
+  {
+   "id": "5.5.5",
+   "desc_ar": "توفير كل قناة لمسار واضح للإبلاغ عن حالات الاشتباه بالاحتيال، مع إصدار رقم حالة وتوضيح الخطوات التالية فورًا.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير مسار واضح للإبلاغ عن الاحتيال في كل قناة",
+     "text_en": "Provide a clear pathway for reporting fraud in every channel"
+    },
+    {
+     "n": 2,
+     "text_ar": "إصدار رقم حالة وتوضيح الخطوات التالية فورًا",
+     "text_en": "Issue a case number and explain the next steps immediately"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود خيار واضح ومرئي في جميع القنوات",
+     "text_en": "A clear and visible option exists in all channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار الحصول على رقم الحالة والخطوات فور الإبلاغ",
+     "text_en": "Test that a case number and the next steps are received immediately upon reporting"
+    }
+   ],
+   "desc_en": "Every channel provides a clear pathway for reporting suspected fraud, with a case number issued and the next steps explained immediately."
+  },
+  {
+   "id": "5.5.6",
+   "desc_ar": "إحالة حالات الاحتيال إلى محقق خلال 24 ساعة، وإجراء مراجعة أولية خلال خمسة أيام عمل، وحلها أو تصعيدها مع توثيق المبررات خلال 15 يوم عمل، مع إبقاء المتعامل على اطلاع حتى إغلاق الحالة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إحالة الحالة إلى محقق خلال 24 ساعة",
+     "text_en": "Refer the case to an investigator within 24 hours"
+    },
+    {
+     "n": 2,
+     "text_ar": "إجراء مراجعة أولية خلال 5 أيام عمل",
+     "text_en": "Conduct an initial review within 5 working days"
+    },
+    {
+     "n": 3,
+     "text_ar": "الحل أو التصعيد مع توثيق المبررات خلال 15 يوم عمل",
+     "text_en": "Resolve or escalate with documented justification within 15 working days"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين الإبلاغ والإحالة (≤ 24 ساعة)",
+     "text_en": "Measure the time between reporting and referral (≤ 24 hours)"
+    },
+    {
+     "n": 2,
+     "text_ar": "قياس الوقت بين الإحالة والمراجعة الأولية (≤ 5 أيام عمل)",
+     "text_en": "Measure the time between referral and initial review (≤ 5 working days)"
+    },
+    {
+     "n": 3,
+     "text_ar": "قياس الوقت حتى الحل أو التصعيد (≤ 15 يوم عمل)",
+     "text_en": "Measure the time to resolution or escalation (≤ 15 working days)"
+    }
+   ],
+   "desc_en": "Refer fraud cases to an investigator within 24 hours, conduct an initial review within five working days, and resolve or escalate them with documented justification within 15 working days, keeping the customer informed until the case is closed."
+  },
+  {
+   "id": "5.5.7",
+   "desc_ar": "توفير آلية إيقاف آمن وفوري للوكيل الذكي عند رصد سلوك غير طبيعي",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تحديد محفزات الإيقاف الآمن لكل وكيل",
+     "text_en": "Define the safe-stop triggers for each agent"
+    },
+    {
+     "n": 2,
+     "text_ar": "تمكين التعليق الفوري للتشغيل عند تحقق محفزات الخطر",
+     "text_en": "Enable immediate suspension of operation when risk triggers are met"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق أسباب الإيقاف والإجراءات المتخذة وشروط إعادة التفعيل",
+     "text_en": "Document the reasons for the stop, the actions taken and the conditions for reactivation"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار آلية الإيقاف الآمن",
+     "text_en": "Test the safe-stop mechanism"
+    },
+    {
+     "n": 2,
+     "text_ar": "قياس سرعة الاستجابة من لحظة الرصد إلى الإيقاف",
+     "text_en": "Measure the response speed from the moment of detection to the stop"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود سجل موثق لحالات الإيقاف وإعادة التفعيل",
+     "text_en": "A documented record of stop and reactivation cases exists"
+    }
+   ],
+   "desc_en": "Provide a safe and immediate stop mechanism for the AI agent when abnormal behaviour is detected."
+  },
+  {
+   "id": "5.6.1",
+   "desc_ar": "توثيق كل تفاعل للمتعامل وكل إجراء ينفذه النظام ضمن سجل تدقيق غير قابل للتغيير، يتضمن معّرف المستخدم أو النظام والختم الزمني والإجراء المتخذ والنتيجة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إنشاء سجل تدقيق غير قابل للتغيير لكل تفاعل وإجراء",
+     "text_en": "Create an immutable audit log for every interaction and action"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين: معّرف المستخدم أو النظام، الختم الزمني، الإجراء المتخذ، والنتيجة",
+     "text_en": "Include: user or system identifier, timestamp, action taken, and outcome"
+    },
+    {
+     "n": 3,
+     "text_ar": "تسجيل جميع الإجراءات والقرارات المنفذة عبر وكيل الذكاء الاصطناعي ضمن نفس سجلات التدقيق",
+     "text_en": "Record all actions and decisions executed via an AI agent in the same audit logs"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة سجلات التدقيق للتأكد من تسجيل جميع الأحداث",
+     "text_en": "Review audit logs to confirm all events are recorded"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من وجود: معّرف المستخدم/النظام، الختم الزمني، الإجراء، النتيجة",
+     "text_en": "Verify the presence of: user/system identifier, timestamp, action, outcome"
+    }
+   ],
+   "desc_en": "Record every customer interaction and every action executed by the system in an immutable audit log that includes the user or system identifier, the timestamp, the action taken and the outcome."
+  },
+  {
+   "id": "5.6.2",
+   "desc_ar": "تمكين المتعاملين من عرض سجل آمن لطلباتهم ومدفوعاتهم وتحديثات الحالة لمدة لا تقل عن 12 شهًرا.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة عرض سجل آمن للطلبات والمدفوعات والتحديثات",
+     "text_en": "Provide a secure history of requests, payments and updates"
+    },
+    {
+     "n": 2,
+     "text_ar": "الاحتفاظ بالسجل لمدة 12 شهرًا على الأقل",
+     "text_en": "Retain the history for at least 12 months"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود واجهة آمنة يمكن للمتعامل الوصول إليها",
+     "text_en": "A secure interface exists that the customer can access"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار إمكانية الوصول للسجلات الأقدم من 12 شهرًا",
+     "text_en": "Test that records older than 12 months can be accessed"
+    }
+   ],
+   "desc_en": "Enable customers to view a secure history of their requests, payments and status updates for a period of not less than 12 months."
+  },
+  {
+   "id": "5.6.3",
+   "desc_ar": "الاحتفاظ بسجلات التدقيق بشكل آمن باستخدام آلية تخزين تمنع التعديل أو الحذف، وفًقا للمتطلبات القانونية والتنظيمية المعمول بها.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استخدام تخزين يمنع التعديل أو الحذف",
+     "text_en": "Use storage that prevents modification or deletion"
+    },
+    {
+     "n": 2,
+     "text_ar": "الامتثال للمتطلبات القانونية والتنظيمية للاحتفاظ",
+     "text_en": "Comply with legal and regulatory retention requirements"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار عدم إمكانية تعديل أو حذف السجلات",
+     "text_en": "Test that records cannot be modified or deleted"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق سياسة الاحتفاظ وفقًا للمتطلبات المعمول بها",
+     "text_en": "Document the retention policy in accordance with the applicable requirements"
+    }
+   ],
+   "desc_en": "Retain audit logs securely using a storage mechanism that prevents modification or deletion, in accordance with the applicable legal and regulatory requirements."
+  },
+  {
+   "id": "5.6.4",
+   "desc_ar": "اقتصار الوصول إلى سجلات التدقيق على الأدوار المصرح لها فقط، وتسجيل ومراجعة جميع عمليات الوصول.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "اقتصار الوصول على الأدوار المصرح لها",
+     "text_en": "Restrict access to authorised roles"
+    },
+    {
+     "n": 2,
+     "text_ar": "تسجيل ومراجعة جميع عمليات الوصول",
+     "text_en": "Log and review all access operations"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار صلاحيات الوصول للأدوار المختلفة",
+     "text_en": "Test access permissions for the different roles"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة سجل الوصول للتأكد من تسجيل جميع العمليات",
+     "text_en": "Review the access log to confirm all operations are recorded"
+    }
+   ],
+   "desc_en": "Restrict access to audit logs to authorised roles only, and log and review all access operations."
+  },
+  {
+   "id": "5.6.5",
+   "desc_ar": "التزام الفرق المختصة بمراجعة سجلات التدقيق شهرًيا على الأقل، لرصد أي شذوذ أو خروقات محتملة وتوثيق إجراءات المتابعة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة فرق الامتثال لسجلات التدقيق شهريًا",
+     "text_en": "Compliance teams review audit logs monthly"
+    },
+    {
+     "n": 2,
+     "text_ar": "رصد الشذوذ أو الخروقات المحتملة",
+     "text_en": "Detect anomalies or potential breaches"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق إجراءات المتابعة",
+     "text_en": "Document follow-up actions"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المراجعة مرة واحدة على الأقل كل شهر",
+     "text_en": "Document the review at least once every month"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق الحالات المكتشفة والإجراءات المتخذة",
+     "text_en": "Document the cases detected and the actions taken"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود سجل بإجراءات المتابعة لكل حالة مكتشفة",
+     "text_en": "A record of follow-up actions exists for each detected case"
+    }
+   ],
+   "desc_en": "The competent teams commit to reviewing audit logs at least monthly to detect any anomalies or potential breaches and to document follow-up actions."
+  },
+  {
+   "id": "5.6.6",
+   "desc_ar": "إذا كشفت مراجعة التدقيق عن وصول غير مصرح به إلى بيانات أحد المتعاملين، لا بد من إخطار المتعامل خلال 48 ساعة، مع تقديم التفاصيل والخطوات الوقائية.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إخطار المتعامل خلال 48 ساعة عند اكتشاف وصول غير مصرح",
+     "text_en": "Notify the customer within 48 hours when unauthorised access is detected"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين التفاصيل والخطوات الوقائية في الإخطار",
+     "text_en": "Include the details and preventive steps in the notification"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين الاكتشاف والإخطار (≤ 48 ساعة)",
+     "text_en": "Measure the time between detection and notification (≤ 48 hours)"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى الإخطار للتأكد من اشتماله على جميع العناصر",
+     "text_en": "Review the notification content to confirm it covers all elements"
+    }
+   ],
+   "desc_en": "If an audit review reveals unauthorised access to a customer's data, the customer must be notified within 48 hours, with details and preventive steps provided."
+  },
+  {
+   "id": "5.6.7",
+   "desc_ar": "الإفصاح بوضوح للمتعامل عن استخدام وكيل ذكاء اصطناعي في تقديم الخدمة، بما يضمن شفافية التفاعل وعدم تضليل المتعامل",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إظهار إفصاح صريح في جميع واجهات وتفاعلات الذكاء الاصطناعي المساعد",
+     "text_en": "Display an explicit disclosure in all assistive AI interfaces and interactions"
+    },
+    {
+     "n": 2,
+     "text_ar": "توضيح دور الذكاء الاصطناعي المساعد في اتخاذ القرار أو تنفيذ الإجراء",
+     "text_en": "Explain the role of the assistive AI in taking the decision or executing the action"
+    },
+    {
+     "n": 3,
+     "text_ar": "عدم إخفاء استخدام الذكاء الاصطناعي المساعد في أي مرحلة من مراحل الخدمة",
+     "text_en": "Do not conceal the use of assistive AI at any stage of the service"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توفر مرحلة إفصاح في جميع نقاط التفاعل",
+     "text_en": "A disclosure step is present at all interaction points"
+    },
+    {
+     "n": 2,
+     "text_ar": "وضوح دور الذكاء الاصطناعي المساعد للمتعامل",
+     "text_en": "The role of the assistive AI is clear to the customer"
+    },
+    {
+     "n": 3,
+     "text_ar": "عدم وجود حالات استخدام غير مفصح عنها",
+     "text_en": "No undisclosed instances of use exist"
+    }
+   ],
+   "desc_en": "Clearly disclose to the customer the use of an AI agent in delivering the service, ensuring transparency of the interaction and that the customer is not misled."
+  },
+  {
+   "id": "5.6.8",
+   "desc_ar": "ضمان وضوح القرارات أو الإجراءات الناتجة عن الذكاء الاصطناعي المساعد، بحيث يمكن للمتعامل فهمها ومراجعتها عند الحاجة، خاصة في الحالات التي تؤثر على نتيجة الخدمة",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير تفسير مبسط وغير تقني للقرارات المؤثرة",
+     "text_en": "Provide a simplified, non-technical explanation of impactful decisions"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق العوامل الرئيسية المؤثرة في القرار",
+     "text_en": "Document the key factors influencing the decision"
+    },
+    {
+     "n": 3,
+     "text_ar": "إتاحة التفسير للمتعامل أو لجهات المراجعة عند الحاجة",
+     "text_en": "Make the explanation available to the customer or to review bodies when needed"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توفر تفسير واضح للقرارات المؤثرة",
+     "text_en": "A clear explanation is available for impactful decisions"
+    },
+    {
+     "n": 2,
+     "text_ar": "عدم وجود قرارات غير قابلة للتفسير",
+     "text_en": "No unexplainable decisions exist"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود سجل يوضح أسباب القرارات والعوامل المؤثرة فيها",
+     "text_en": "A record exists showing the reasons for decisions and the factors influencing them"
+    }
+   ],
+   "desc_en": "Ensure that decisions or actions resulting from assistive AI are clear, so that the customer can understand and review them when needed, particularly in cases that affect the outcome of the service."
+  },
+  {
+   "id": "5.6.9",
+   "desc_ar": "ضمان توفر صلاحيات تتبع القرارات والإجراءات الناتجة عن الذكاء الاصطناعي المساعد عند الحاجة للتحقق أو المراجعة",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تسجيل المدخلات ومنطق القرار والمخرجات والتوقيت",
+     "text_en": "Record inputs, decision logic, outputs and timing"
+    },
+    {
+     "n": 2,
+     "text_ar": "حفظ السجلات في بيئة آمنة وغير قابلة للتغيير غير المصرح به",
+     "text_en": "Store the records in a secure environment protected from unauthorised alteration"
+    },
+    {
+     "n": 3,
+     "text_ar": "إتاحة السجلات لفرق المراجعة والتدقيق عند الحاجة",
+     "text_en": "Make the records available to review and audit teams when needed"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود سجل تدقيق لكل عملية أو قرار",
+     "text_en": "An audit record exists for every operation or decision"
+    },
+    {
+     "n": 2,
+     "text_ar": "إمكانية تتبع مسار القرار بالكامل",
+     "text_en": "The full decision path can be traced"
+    },
+    {
+     "n": 3,
+     "text_ar": "سلامة السجلات وعدم تغييرها بشكل غير مصرح به",
+     "text_en": "Records are intact and have not been altered without authorisation"
+    }
+   ],
+   "desc_en": "Ensure that the ability to trace decisions and actions resulting from assistive AI is available when verification or review is required."
+  },
+  {
+   "id": "5.7.1",
+   "desc_ar": "ضمان طلب نماذج جمع البيانات للحد الأدنى فقط من البيانات الشخصية اللازمة لتقديم الخدمة، مع وضع تبرير لكل بند ضمن سجل التصميم.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "طلب الحد الأدنى فقط من البيانات الشخصية اللازمة للخدمة",
+     "text_en": "Request only the minimum personal data necessary for the service"
+    },
+    {
+     "n": 2,
+     "text_ar": "وضع مبرر لكل بند ضمن سجل التصميم",
+     "text_en": "Record a justification for each item in the design register"
+    },
+    {
+     "n": 3,
+     "text_ar": "الالتزام باستخدام البيانات ضمن الحدود اللازمة لتقديم الخدمة، بما في ذلك عند تشغيل وكيل الذكاء الاصطناعي",
+     "text_en": "Commit to using data within the limits necessary to deliver the service, including when an AI agent is in operation"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة النماذج للتأكد من عدم وجود حقول غير ضرورية",
+     "text_en": "Review forms to confirm there are no unnecessary fields"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود سجل تصميم موثق يشمل مبررات جميع حقول البيانات",
+     "text_en": "A documented design register exists that includes justifications for all data fields"
+    }
+   ],
+   "desc_en": "Ensure that data-collection forms request only the minimum personal data necessary to deliver the service, with a justification for each item recorded in the design register."
+  },
+  {
+   "id": "5.7.2",
+   "desc_ar": "تفادي إعادة استخدام البيانات الشخصية التي ُجمعت لغرض خدمة معينة في غرض آخر دون أساس قانوني جديد أو موافقة صريحة من المتعامل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تفادي إعادة استخدام البيانات لأغراض أخرى دون أساس قانوني جديد أو موافقة صريحة",
+     "text_en": "Avoid reusing data for other purposes without a new legal basis or explicit consent"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة سياسات استخدام البيانات والتحقق من وجود أساس قانوني أو موافقة لكل استخدام",
+     "text_en": "Review data-use policies and verify that a legal basis or consent exists for each use"
+    }
+   ],
+   "desc_en": "Avoid reusing personal data collected for a specific service purpose for another purpose without a new legal basis or the customer's explicit consent."
+  },
+  {
+   "id": "5.7.3",
+   "desc_ar": "قبل التقديم، لا بد أن يوضح النموذج للمتعامل سبب طلب كل فئة من البيانات الشخصية وكيفية استخدامها بشكل واضح ومفهوم.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توضيح سبب طلب كل فئة من البيانات الشخصية وكيفية استخدامها",
+     "text_en": "Explain why each category of personal data is requested and how it will be used"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة النماذج للتأكد من وجود توضيح واضح لكل فئة بيانات",
+     "text_en": "Review forms to confirm a clear explanation exists for each data category"
+    }
+   ],
+   "desc_en": "Before submission, the form must clearly and comprehensibly explain to the customer why each category of personal data is requested and how it will be used."
+  },
+  {
+   "id": "5.7.4",
+   "desc_ar": "ضمان تشفير البيانات الشخصية الحساسة أثناء التخزين والنقل باستخدام خوارزميات ومفاتيح معتمدة، مع تدوير المفاتيح وفًقا للسياسة المعتمدة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تشفير البيانات الحساسة أثناء التخزين والنقل باستخدام خوارزميات معتمدة",
+     "text_en": "Encrypt sensitive data at rest and in transit using approved algorithms"
+    },
+    {
+     "n": 2,
+     "text_ar": "تدوير المفاتيح وفقًا للسياسة المعتمدة",
+     "text_en": "Rotate keys in accordance with the approved policy"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار تطبيق التشفير وتوثيق الخوارزميات المستخدمة",
+     "text_en": "Test the application of encryption and document the algorithms used"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق عمليات تدوير المفاتيح وفق الجدول الزمني المحدد",
+     "text_en": "Document key-rotation operations in accordance with the defined schedule"
+    }
+   ],
+   "desc_en": "Ensure that sensitive personal data is encrypted at rest and in transit using approved algorithms and keys, with keys rotated in accordance with the approved policy."
+  },
+  {
+   "id": "5.7.5",
+   "desc_ar": "حذف البيانات الشخصية أو إخفاء هويتها بشكل غير قابل للعكس عند انتهاء فترة الاحتفاظ بها أو عند انتهاء الخدمة، أيهما يحدث أولاً.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "حذف أو إخفاء هوية البيانات عند انتهاء فترة الاحتفاظ أو انتهاء الخدمة",
+     "text_en": "Delete or anonymise data upon expiry of the retention period or termination of the service"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود آلية للحذف أو إخفاء الهوية وتوثيق تنفيذها",
+     "text_en": "A mechanism exists for deletion or anonymisation, with its execution documented"
+    }
+   ],
+   "desc_en": "Delete or irreversibly anonymise personal data upon expiry of its retention period or upon termination of the service, whichever occurs first."
+  },
+  {
+   "id": "5.7.6",
+   "desc_ar": "توفير خاصية رقمية مبّسطة للمتعاملين لطلب حذف بياناتهم الشخصية، مع إرسال تأكيد تلقائي عند اكتمال عملية الحذف.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير خاصية رقمية مبسطة لطلب حذف البيانات الشخصية",
+     "text_en": "Provide a simplified digital feature for requesting personal-data deletion"
+    },
+    {
+     "n": 2,
+     "text_ar": "إرسال تأكيد بعد اكتمال الحذف",
+     "text_en": "Send a confirmation once the deletion is complete"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود خيار واضح وسهل لطلب الحذف",
+     "text_en": "A clear and easy option exists for requesting deletion"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار إرسال التأكيد التلقائي بعد الحذف",
+     "text_en": "Test that the automatic confirmation is sent after deletion"
+    }
+   ],
+   "desc_en": "Provide a simplified digital feature for customers to request deletion of their personal data, with an automatic confirmation sent when the deletion is complete."
+  },
+  {
+   "id": "5.8.1",
+   "desc_ar": "استخدام جميع عمليات الدفع لبوابات وضوابط داخلية متوافقة مع معيار أمان بيانات صناعة بطاقات الدفع (PCI DSS) المعتمد، على أن تخضع لإجراءات اعتماد سنوي.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استخدام بوابات وضوابط متوافقة مع معيار أمان بيانات صناعة بطاقات الدفع (PCI DSS) المعتمد",
+     "text_en": "Use gateways and controls compliant with the approved Payment Card Industry Data Security Standard (PCI DSS)"
+    },
+    {
+     "n": 2,
+     "text_ar": "الخضوع لإجراءات اعتماد سنوي",
+     "text_en": "Undergo annual certification procedures"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق التوافق مع المعيار",
+     "text_en": "Document compliance with the standard"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود شهادة سارية المفعول",
+     "text_en": "A valid certificate exists"
+    }
+   ],
+   "desc_en": "All payment operations use gateways and internal controls compliant with the approved Payment Card Industry Data Security Standard (PCI DSS), subject to annual certification procedures."
+  },
+  {
+   "id": "5.8.2",
+   "desc_ar": "ضمان عرض صفحات الدفع لمؤشرات الأمان والنطاق الرسمي بوضوح، بما يمكّن المتعاملين من التحقق من موثوقية القناة قبل إدخال بياناتهم.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "عرض مؤشرات الأمان (مثل: بروتوكول HTTPS، رمز القفل، وختم الموقع الأمني) والنطاق الرسمي بوضوح",
+     "text_en": "Clearly display security indicators (e.g. HTTPS protocol, padlock icon, site security seal) and the official domain"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة صفحات الدفع للتأكد من وضوح المؤشرات",
+     "text_en": "Review payment pages to confirm the indicators are clearly visible"
+    }
+   ],
+   "desc_en": "Ensure that payment pages clearly display security indicators and the official domain, enabling customers to verify the trustworthiness of the channel before entering their details."
+  },
+  {
+   "id": "5.8.3",
+   "desc_ar": "تضمين الإيصالات للرقم المرجعي الخاص بمزّود عملية الدفع ورقم الحالة وتاريخ العملية والمبلغ ورابط تحقق آمن لتأكيد صحة المعاملة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تضمين جميع العناصر المطلوبة في الإيصال",
+     "text_en": "Include all required elements in the receipt"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة الإيصالات للتأكد من وجود: رقم مرجع المزود، رقم الحالة، التاريخ، المبلغ، رابط التحقق",
+     "text_en": "Review receipts to confirm they contain: provider reference number, case number, date, amount, verification link"
+    }
+   ],
+   "desc_en": "Receipts include the payment provider's reference number, the case number, the transaction date, the amount and a secure verification link to confirm the validity of the transaction."
+  },
+  {
+   "id": "5.8.4",
+   "desc_ar": "تشفير بيانات الدفع عند نقطة الإدخال وأثناء النقل وعند التخزين، وإنشاء مفاتيح التشفير وتخزينها وإدارتها بواسطة نظام او خدمة مخصصة لإدارة المفاتيح.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تشفير بيانات الدفع من نقطة الإدخال حتى التخزين",
+     "text_en": "Encrypt payment data from the point of entry through to storage"
+    },
+    {
+     "n": 2,
+     "text_ar": "إدارة مفاتيح التشفير بواسطة نظام مخصصة لإدارة المفاتيح",
+     "text_en": "Manage encryption keys using a dedicated key-management system"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار تطبيق التشفير في جميع المراحل",
+     "text_en": "Test the application of encryption at all stages"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق استخدام نظام إدارة مفاتيح معتمد",
+     "text_en": "Document the use of an approved key-management system"
+    }
+   ],
+   "desc_en": "Encrypt payment data at the point of entry, in transit and at rest, with encryption keys generated, stored and managed by a dedicated key-management system or service."
+  },
+  {
+   "id": "5.8.5",
+   "desc_ar": "في حال فشل عملية الدفع، يتعين إشعار المتعامل خلال أقل من 24 ساعة، مع توضيح السبب إن ُوجد، وتزويده بإرشادات لإعادة المحاولة أو استخدام وسيلة دفع بديلة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إشعار المتعامل خلال أقل من 24 ساعة عند فشل الدفع",
+     "text_en": "Notify the customer in less than 24 hours when a payment fails"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين السبب والإرشادات في الإشعار",
+     "text_en": "Include the reason and guidance in the notification"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين الفشل والإشعار (≤ 24 ساعة)",
+     "text_en": "Measure the time between the failure and the notification (≤ 24 hours)"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى الإشعار للتأكد من وجود السبب والإرشادات",
+     "text_en": "Review the notification content to confirm the reason and guidance are included"
+    }
+   ],
+   "desc_en": "If a payment fails, the customer must be notified in less than 24 hours, with the reason explained where available, and provided with guidance on retrying or using an alternative payment method."
+  },
+  {
+   "id": "5.8.6",
+   "desc_ar": "ضمان خضوع كل مسار من مسارات الدفع لاختبارات أمنية سنوية تشمل اختبارات الاختراق، مع معالجة جميع الثغرات المصّنفة عالية أو متوسطة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إجراء اختبارات أمنية سنوية تشمل اختبارات الاختراق",
+     "text_en": "Conduct annual security testing, including penetration testing"
+    },
+    {
+     "n": 2,
+     "text_ar": "معالجة جميع الثغرات عالية ومتوسطة الخطورة",
+     "text_en": "Remediate all high- and medium-severity vulnerabilities"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق إجراء الاختبارات سنويًا",
+     "text_en": "Document that testing is conducted annually"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق معالجة جميع الثغرات المكتشفة",
+     "text_en": "Document the remediation of all detected vulnerabilities"
+    }
+   ],
+   "desc_en": "Ensure that every payment pathway undergoes annual security testing, including penetration testing, with all vulnerabilities classified as high or medium remediated."
+  },
+  {
+   "id": "5.9.1",
+   "desc_ar": "توثيق سجل البيانات المركزي لجميع مجموعات البيانات التي تجمعها الجهة أو تعالجها أو تشاركها، بما في ذلك مالك البيانات والغرض من المعالجة والأساس القانوني وفترة الاحتفاظ.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تسجيل جميع مجموعات البيانات في السجل المركزي",
+     "text_en": "Record all datasets in the central register"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين جميع العناصر المطلوبة لكل مجموعة بيانات",
+     "text_en": "Include all required elements for each dataset"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود سجل شامل يغطي جميع مجموعات البيانات",
+     "text_en": "A comprehensive register exists covering all datasets"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة السجل للتأكد من وجود: المالك، الغرض، الأساس القانوني، فترة الاحتفاظ",
+     "text_en": "Review the register to confirm it contains: owner, purpose, legal basis, retention period"
+    }
+   ],
+   "desc_en": "The central data register documents all datasets that the entity collects, processes or shares, including the data owner, the purpose of processing, the legal basis and the retention period."
+  },
+  {
+   "id": "5.9.2",
+   "desc_ar": "مراجعة سجل البيانات وتحديثه مرة واحدة على الأقل كل ربع سنة لضمان اكتماله ودقته.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة وتحديث السجل فصليًا",
+     "text_en": "Review and update the register quarterly"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المراجعة مرة واحدة على الأقل كل 3 أشهر",
+     "text_en": "Document the review at least once every 3 months"
+    }
+   ],
+   "desc_en": "Review and update the data register at least once every quarter to ensure its completeness and accuracy."
+  },
+  {
+   "id": "5.9.3",
+   "desc_ar": "تسجيل جميع اتفاقيات مشاركة البيانات بين الجهات أو مع الأطراف الثالثة ضمن سجل البيانات، مع توضيح النطاق وضوابط الأمان والجهة المسؤولة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تسجيل جميع اتفاقيات مشاركة البيانات ضمن السجل",
+     "text_en": "Record all data-sharing agreements in the register"
+    },
+    {
+     "n": 2,
+     "text_ar": "توضيح النطاق وضوابط الأمان والجهة المسؤولة",
+     "text_en": "Specify the scope, security controls and the responsible entity"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة السجل للتأكد من تسجيل جميع الاتفاقيات",
+     "text_en": "Review the register to confirm all agreements are recorded"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من اشتمال كل اتفاقية على هذه العناصر",
+     "text_en": "Verify that each agreement covers these elements"
+    }
+   ],
+   "desc_en": "Record all data-sharing agreements between entities or with third parties in the data register, specifying the scope, security controls and the responsible entity."
+  },
+  {
+   "id": "5.9.4",
+   "desc_ar": "تمكين المتعاملين من الوصول إلى سجل واضح يبّين البيانات الشخصية المسّجلة عنهم والمشاركة، بما في ذلك الجهة المستلمة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة الوصول لسجل واضح بالبيانات المسجلة والمشاركة",
+     "text_en": "Provide access to a clear record of the data held and shared"
+    },
+    {
+     "n": 2,
+     "text_ar": "توضيح الجهات المستلمة",
+     "text_en": "Identify the recipient entities"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود واجهة واضحة للمتعامل",
+     "text_en": "A clear interface exists for the customer"
+    },
+    {
+     "n": 2,
+     "text_ar": "اشتمال السجل على معلومات الجهات المستلمة",
+     "text_en": "The record includes information on the recipient entities"
+    }
+   ],
+   "desc_en": "Enable customers to access a clear record showing the personal data held about them and the data shared, including the recipient entity."
+  },
+  {
+   "id": "5.9.5",
+   "desc_ar": "توثيق سجل البيانات لجميع أحداث الوصول والمشاركة، مع تفعيل تنبيهات تلقائية عند رصد أي نشاط غير مصرح به أو غير اعتيادي.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توثيق جميع أحداث الوصول والمشاركة",
+     "text_en": "Log all access and sharing events"
+    },
+    {
+     "n": 2,
+     "text_ar": "تفعيل تنبيهات تلقائية للنشاط غير المصرح أو الشاذ",
+     "text_en": "Activate automatic alerts for unauthorised or anomalous activity"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة السجل للتأكد من تسجيل جميع الأحداث",
+     "text_en": "Review the register to confirm all events are logged"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار إطلاق التنبيهات عند محاكاة نشاط مشبوه",
+     "text_en": "Test that alerts are triggered when suspicious activity is simulated"
+    }
+   ],
+   "desc_en": "The data register logs all access and sharing events, with automatic alerts activated upon detection of any unauthorised or unusual activity."
+  },
+  {
+   "id": "5.9.6",
+   "desc_ar": "تشفير مجموعات البيانات المشتركة أثناء النقل وعند التخزين، باستخدام حد أدنى من معيار التشفير المتقدم بطول مفتاح 256 بت (AES-256) أو معايير تشفير مكافئة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تشفير البيانات المشتركة أثناء النقل والتخزين بمعيار التشفير المتقدم بطول مفتاح 256 بت (AES-256) أو معايير تشفير مكافئة.",
+     "text_en": "Encrypt shared data in transit and at rest using the Advanced Encryption Standard with a 256-bit key (AES-256) or equivalent encryption standards."
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار وتوثيق استخدام معايير التشفير المطلوبة",
+     "text_en": "Test and document the use of the required encryption standards"
+    }
+   ],
+   "desc_en": "Encrypt shared datasets in transit and at rest using, at a minimum, the Advanced Encryption Standard with a 256-bit key (AES-256) or equivalent encryption standards."
+  },
+  {
+   "id": "5.9.7",
+   "desc_ar": "نشر ملخص سنوي لمجموعات البيانات المدرجة في السجل، بعد إزالة أي بيانات حساسة أو ُمعِرفات شخصية، بهدف تعزيز الشفافية وتمكين الاستفادة من البيانات المفتوحة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "نشر ملخص سنوي بعد إزالة أي بيانات حساسة أو ُمعِرفات شخصية",
+     "text_en": "Publish an annual summary after removing any sensitive data or personal identifiers"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق نشر الملخص سنويًا",
+     "text_en": "Document the annual publication of the summary"
+    }
+   ],
+   "desc_en": "Publish an annual summary of the datasets listed in the register, after removing any sensitive data or personal identifiers, in order to enhance transparency and enable the use of open data."
+  }
+ ]
+}

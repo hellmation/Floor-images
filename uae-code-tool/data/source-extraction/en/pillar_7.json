@@ -1,0 +1,1057 @@
+{
+ "pillar": {
+  "id": "7",
+  "name_ar": "التصميم التشاركي",
+  "name_en": "Participatory Design",
+  "desc_ar": "إشراك المتعاملين والشركاء وقطاع الأعمال بشكل مستمر وفعال في تصميم وتطوير الخدمات، مع الاستجابة الشفافة لملاحظاتهم وتوثيق أثرها.",
+  "desc_en": "Continuously and effectively involving customers, partners and the business sector in the design and development of services, while responding transparently to their feedback and documenting its impact."
+ },
+ "subpillars": [
+  {
+   "id": "7.1",
+   "pillar": "7",
+   "name_ar": "التفاعل المستمر",
+   "name_en": "Continuous Engagement"
+  },
+  {
+   "id": "7.2",
+   "pillar": "7",
+   "name_ar": "التصميم والاختبار التجريبي المشترك",
+   "name_en": "Co-design and Pilot Testing"
+  },
+  {
+   "id": "7.3",
+   "pillar": "7",
+   "name_ar": "شمولية المشاركة",
+   "name_en": "Inclusive Participation"
+  },
+  {
+   "id": "7.4",
+   "pillar": "7",
+   "name_ar": "أنت تتفاعل ونحن نطور",
+   "name_en": "You Engage, We Improve"
+  },
+  {
+   "id": "7.5",
+   "pillar": "7",
+   "name_ar": "مجالس المتعاملين",
+   "name_en": "Customer Councils"
+  },
+  {
+   "id": "7.6",
+   "pillar": "7",
+   "name_ar": "رصد صوت المجتمع",
+   "name_en": "Monitoring the Voice of the Community"
+  },
+  {
+   "id": "7.7",
+   "pillar": "7",
+   "name_ar": "قياس ورصد تفاعل المتعاملين",
+   "name_en": "Measuring and Monitoring Customer Engagement"
+  }
+ ],
+ "codes": [
+  {
+   "id": "7.1.1",
+   "desc_ar": "إتاحة طلبات الخدمة عبر المنصات الرقمية على مدار الساعة، مع عرض حالة الخدمة الحالية وأوقات الاستجابة المتوقعة.",
+   "desc_en": "Make service requests available through digital platforms 24/7, displaying the current service status and expected response times.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "قبول الطلبات على مدار الساعة",
+     "text_en": "Accept requests 24/7"
+    },
+    {
+     "n": 2,
+     "text_ar": "عرض حالة الخدمة الحالية وأوقات الاستجابة المتوقعة",
+     "text_en": "Display the current service status and expected response times"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إمكانية تقديم الطلبات في أي وقت",
+     "text_en": "Test that requests can be submitted at any time"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة المنصة للتأكد من وضوح هذه المعلومات",
+     "text_en": "Review the platform to confirm this information is clearly presented"
+    }
+   ]
+  },
+  {
+   "id": "7.1.2",
+   "desc_ar": "ضمان حصول جميع المدخلات المستلمة عبر المنصات الرقمية على رد جوهري خلال 24 ساعة، أو تزويد المتعامل بتفسير واضح في حال تأخر الرد.",
+   "desc_en": "Ensure that all input received through digital platforms receives a substantive response within 24 hours, or that the customer is given a clear explanation if the response is delayed.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تقديم رد جوهري على جميع المدخلات خلال 24 ساعة",
+     "text_en": "Provide a substantive response to all input within 24 hours"
+    },
+    {
+     "n": 2,
+     "text_ar": "تزويد المتعامل بتفسير واضح عند التأخير",
+     "text_en": "Provide the customer with a clear explanation in case of delay"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين الاستلام والرد (≤ 24 ساعة)",
+     "text_en": "Measure the time between receipt and response (≤ 24 hours)"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة عينة من حالات التأخير للتأكد من وجود تفسير",
+     "text_en": "Review a sample of delayed cases to confirm an explanation was given"
+    }
+   ]
+  },
+  {
+   "id": "7.1.3",
+   "desc_ar": "تشغيل المنصات الرقمية باللغتين العربية والإنجليزية وبمحتوى وتصميم ووظائف متماثلة، لضمان تجربة موحدة لجميع المتعاملين",
+   "desc_en": "Operate digital platforms in both Arabic and English with identical content, design and functionality, to ensure a consistent experience for all customers.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تشغيل المنصة باللغتين العربية والإنجليزية",
+     "text_en": "Operate the platform in both Arabic and English"
+    },
+    {
+     "n": 2,
+     "text_ar": "تطابق المحتوى والتصميم والوظائف",
+     "text_en": "Content, design and functionality are identical across both versions"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من توفر النسختين",
+     "text_en": "Verify that both language versions are available"
+    },
+    {
+     "n": 2,
+     "text_ar": "مقارنة النسختين للتأكد من التطابق الكامل",
+     "text_en": "Compare the two versions to confirm they match fully"
+    }
+   ]
+  },
+  {
+   "id": "7.1.4",
+   "desc_ar": "عند توفر بيانات الاتصال، يتعين إخطار المتعاملين إذا أّدت ملاحظاتهم إلى إحداث تغيير، مع توضيح طبيعة هذا التغيير.",
+   "desc_en": "Where contact details are available, customers must be notified when their feedback has led to a change, with an explanation of the nature of that change.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إخطار المتعاملين عند إحداث تغيير بناءً على ملاحظاتهم",
+     "text_en": "Notify customers when a change is made based on their feedback"
+    },
+    {
+     "n": 2,
+     "text_ar": "توضيح طبيعة التغيير في الإشعار",
+     "text_en": "Explain the nature of the change in the notification"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق الإشعارات المرسلة",
+     "text_en": "Document the notifications sent"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى الإشعارات",
+     "text_en": "Review the content of the notifications"
+    }
+   ]
+  },
+  {
+   "id": "7.1.5",
+   "desc_ar": "تصنيف المدخلات التي يتم جمعها عبر مرصد الخدمات ومراجعتها من قبل الجهات المسؤولة عن الخدمات مرة واحدة على الأقل شهرًيا، مع توثيق الإجراءات والقرارات المتخذة.",
+   "desc_en": "Categorise the input collected through the Government Services Observatory and have it reviewed by the entities responsible for the services at least once a month, documenting the actions and decisions taken.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تصنيف جميع المدخلات المستلمة",
+     "text_en": "Categorise all input received"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة مسؤولي الخدمات للمدخلات شهريًا",
+     "text_en": "Service owners review the input monthly"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق الإجراءات والقرارات",
+     "text_en": "Document the actions and decisions"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود تصنيف واضح",
+     "text_en": "A clear categorisation is in place"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق المراجعة مرة واحدة على الأقل كل شهر",
+     "text_en": "The review is documented at least once a month"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود سجل بالإجراءات المتخذة لكل فئة",
+     "text_en": "A record of the actions taken for each category exists"
+    }
+   ]
+  },
+  {
+   "id": "7.2.1",
+   "desc_ar": "التزام الجهات بدعوة المتعاملين والموظفين وأصحاب المصلحة المعنيين للمشاركة في تصميم وتحسين الخدمات.",
+   "desc_en": "Entities commit to inviting customers, employees and relevant stakeholders to participate in the design and improvement of services.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "دعوة المتعاملين والموظفين وأصحاب المصلحة للمشاركة في تصميم الخدمات",
+     "text_en": "Invite customers, employees and stakeholders to participate in service design"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق الدعوات والمشاركين في كل نشاط تصميم مشترك",
+     "text_en": "Document the invitations and participants for each co-design activity"
+    }
+   ]
+  },
+  {
+   "id": "7.2.2",
+   "desc_ar": "نشر ملخص عام ومختصر لكل مرحلة من مراحل التصميم المشترك، بما في ذلك تلك التي تتم عبر مجالس المتعاملين، خلال 30 يوًما، مع توضيح ما تم الاستماع إليه وما سيترتب عليه من تغييرات.",
+   "desc_en": "Publish a brief public summary of each co-design phase, including those conducted through customer councils, within 30 days, explaining what was heard and the changes that will follow.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "نشر ملخص عام لكل مرحلة من التصميم المشترك خلال 30 يومًا",
+     "text_en": "Publish a public summary of each co-design phase within 30 days"
+    },
+    {
+     "n": 2,
+     "text_ar": "توضيح ما تم الاستماع إليه والتغييرات المخططة",
+     "text_en": "Explain what was heard and the planned changes"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين انتهاء المرحلة والنشر (≤ 30 يومًا)",
+     "text_en": "Measure the time between the end of the phase and publication (≤ 30 days)"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى الملخصات",
+     "text_en": "Review the content of the summaries"
+    }
+   ]
+  },
+  {
+   "id": "7.2.3",
+   "desc_ar": "اختبار نماذج أولية مع أصحاب المصلحة للخدمات الجديدة أو المعاد تصميمها، مع توثيق الملاحظات وترتيبها حسب الأولوية وربطها بقرارات التصميم، بحسب الحاجة وبناءً على تعقيد الخدمة وأثرها على المستخدمين.",
+   "desc_en": "Test prototypes of new or redesigned services with stakeholders, documenting the feedback, prioritising it and linking it to design decisions, as needed and according to the complexity of the service and its impact on users.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "اختبار النماذج الأولية مع أصحاب المصلحة للخدمات الجديدة أو المعاد تصميمها",
+     "text_en": "Test prototypes of new or redesigned services with stakeholders"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق الملاحظات وترتيبها وربطها بقرارات التصميم",
+     "text_en": "Document, prioritise and link the feedback to design decisions"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق جلسات الاختبار والمشاركين",
+     "text_en": "Document the testing sessions and participants"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود سجل شامل بالملاحظات والقرارات المتخذة",
+     "text_en": "A comprehensive record of the feedback and decisions taken exists"
+    }
+   ]
+  },
+  {
+   "id": "7.2.4",
+   "desc_ar": "تمثيل موظفي الصفوف الأمامية في عملية التصميم التشاركي، بما يضمن استيعاب الرؤى التشغيلية والقيود العملية.",
+   "desc_en": "Represent front-line employees in the participatory design process, ensuring that operational insights and practical constraints are taken into account.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تضمين موظفي الصفوف الأمامية في أنشطة التصميم التشاركي",
+     "text_en": "Include front-line employees in participatory design activities"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق مشاركة موظفين من الصفوف الأمامية في كل نشاط",
+     "text_en": "Document the participation of front-line employees in each activity"
+    }
+   ]
+  },
+  {
+   "id": "7.2.5",
+   "desc_ar": "تفعيل مختبرات تجربة المستخدم “UX Lab” لتسهيل أنشطة التصميم المشترك والنماذج الأولية واختبارات قابلية الاستخدام وضمان التحقق من فعالية الخدمات مع مستخدمين حقيقيين قبل الإطلاق.",
+   "desc_en": "Activate user experience labs (UX Lab) to facilitate co-design activities, prototyping and usability testing, and to ensure that the effectiveness of services is validated with real users before launch.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تفعيل مختبرات تجربة المستخدم أو ما يعادله",
+     "text_en": "Activate a UX Lab or an equivalent"
+    },
+    {
+     "n": 2,
+     "text_ar": "استخدام المختبر للتصميم المشترك والنماذج الأولية والاختبار",
+     "text_en": "Use the lab for co-design, prototyping and testing"
+    },
+    {
+     "n": 3,
+     "text_ar": "التحقق من الخدمات مع مستخدمين حقيقيين قبل الإطلاق",
+     "text_en": "Validate services with real users before launch"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود مختبر فّعال ومجهز",
+     "text_en": "An operational and equipped lab is in place"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق الأنشطة المنجزة في المختبر",
+     "text_en": "Document the activities carried out in the lab"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق جلسات الاختبار لكل خدمة جديدة",
+     "text_en": "Document the testing sessions for each new service"
+    }
+   ]
+  },
+  {
+   "id": "7.2.6",
+   "desc_ar": "توثيق وتتبع نتائج جميع أنشطة التصميم المشترك لإظهار كيفية إسهام ملاحظات المتعاملين وأصحاب المصلحة في تصميم الخدمة، ولا يجوز إطلاق أية خدمة جديدة دون توفر دليل موثق على مشاركة المتعاملين عبر التصميم المشترك أو ملاحظات التجربة التجريبية، على أن يشكّل هذا الدليل جزءًا من عملية الاعتماد.",
+   "desc_en": "Document and track the outcomes of all co-design activities to show how customer and stakeholder feedback has contributed to the service design. No new service may be launched without documented evidence of customer participation through co-design or pilot feedback, and this evidence must form part of the approval process.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توثيق وتتبع نتائج جميع أنشطة التصميم المشترك",
+     "text_en": "Document and track the outcomes of all co-design activities"
+    },
+    {
+     "n": 2,
+     "text_ar": "إثبات تأثير مدخلات المتعاملين على تصميم الخدمة",
+     "text_en": "Demonstrate the impact of customer input on the service design"
+    },
+    {
+     "n": 3,
+     "text_ar": "عدم إطلاق خدمات جديدة دون دليل على مشاركة المتعاملين",
+     "text_en": "No new services are launched without evidence of customer participation"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود سجلات شاملة لكل نشاط",
+     "text_en": "Comprehensive records exist for each activity"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود وثائق تربط المدخلات بالقرارات",
+     "text_en": "Documents linking the input to the decisions exist"
+    },
+    {
+     "n": 3,
+     "text_ar": "مراجعة وثائق الاعتماد للتأكد من وجود دليل المشاركة",
+     "text_en": "Review the approval documents to confirm evidence of participation is included"
+    }
+   ]
+  },
+  {
+   "id": "7.3.1",
+   "desc_ar": "إشراك ممثلين عن مجموعات مجتمعية متنوعة في مجالس المتعاملين، بما يضمن تمثيل الخصائص الديموغرافية لكافة لفئات المستهدفة.",
+   "desc_en": "Involve representatives of diverse community groups in customer councils, ensuring that the demographic characteristics of all target groups are represented.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تضمين ممثلين عن مجموعات مجتمعية متنوعة في مجلس المتعاملين",
+     "text_en": "Include representatives of diverse community groups in the customer council"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة قوائم المشاركين للتأكد من التنوع الديموغرافي",
+     "text_en": "Review the participant lists to confirm demographic diversity"
+    }
+   ]
+  },
+  {
+   "id": "7.3.2",
+   "desc_ar": "توفير فرص مشاركة متكافئة للمتعاملين من أصحاب الهمم، بما يشمل منصات مناسبة ومواد ميّسرة ودعًما تواصليًا ملائمًا.",
+   "desc_en": "Provide equal participation opportunities for customers who are People of Determination, including suitable platforms, accessible materials and appropriate communication support.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير منصات مناسبة لأصحاب الهمم",
+     "text_en": "Provide suitable platforms for People of Determination"
+    },
+    {
+     "n": 2,
+     "text_ar": "توفير مواد ميّسرة ودعم تواصلي",
+     "text_en": "Provide accessible materials and communication support"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من إمكانية الوصول الفعلية للمنصات",
+     "text_en": "Verify the actual accessibility of the platforms"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة المواد المستخدمة وخدمات الدعم المقدمة",
+     "text_en": "Review the materials used and the support services provided"
+    }
+   ]
+  },
+  {
+   "id": "7.3.3",
+   "desc_ar": "تنفيذ جميع أنشطة مجالس المتعاملين باللغتين العربية والإنجليزية، وتوفير الترجمة لجميع المواد المكتوبة والمساهمات الشفوية.",
+   "desc_en": "Conduct all customer council activities in both Arabic and English, and provide translation for all written materials and spoken contributions.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تنفيذ جميع أنشطة مجالس المتعاملين باللغتين العربية والإنجليزية",
+     "text_en": "Conduct all customer council activities in both Arabic and English"
+    },
+    {
+     "n": 2,
+     "text_ar": "توفير خدمات الترجمة لجميع المواد والمساهمات",
+     "text_en": "Provide translation services for all materials and contributions"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق توفر النسختين في كل نشاط",
+     "text_en": "Document the availability of both language versions in each activity"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة المواد المستخدمة والتأكد من ترجمتها",
+     "text_en": "Review the materials used and confirm they have been translated"
+    }
+   ]
+  },
+  {
+   "id": "7.3.4",
+   "desc_ar": "جدولة مجالس المتعاملين في أوقات تحقق أعلى نسبة حضور ممكنة، بما في ذلك خارج ساعات العمل الرسمية إذا لزم الأمر.",
+   "desc_en": "Schedule customer councils at times that achieve the highest possible attendance, including outside official working hours where necessary.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "جدولة مجالس المتعاملين في أوقات تحقق أعلى نسبة حضور",
+     "text_en": "Schedule customer councils at times that achieve the highest attendance"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين أوقات خارج ساعات العمل إذا لزم الأمر",
+     "text_en": "Include times outside working hours where necessary"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة أوقات الجدولة ونسب الحضور",
+     "text_en": "Review the scheduled times and attendance rates"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق الجلسات المقامة خارج ساعات العمل",
+     "text_en": "Document the sessions held outside working hours"
+    }
+   ]
+  },
+  {
+   "id": "7.3.5",
+   "desc_ar": "الإعلان عن دعوات مجالس المتعاملين بشكل واسع عبر ثلاث قنوات تواصل على الأقل، لضمان الوصول إلى الفئات المستهدفة.",
+   "desc_en": "Publicise customer council invitations widely through at least three communication channels, to ensure the target groups are reached.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الإعلان عن الدعوات عبر 3 قنوات تواصل على الأقل",
+     "text_en": "Publicise invitations through at least 3 communication channels"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق قنوات الإعلان المستخدمة لكل نشاط",
+     "text_en": "Document the announcement channels used for each activity"
+    }
+   ]
+  },
+  {
+   "id": "7.3.6",
+   "desc_ar": "جمع البيانات الديموغرافية للمشاركين في مجالس المتعاملين، وإعداد تقرير إحصائي مجرد من البيانات الشخصية لقياس مستوى الشمولية والتمثيل المجتمعي.",
+   "desc_en": "Collect demographic data on customer council participants and prepare an anonymised statistical report to measure the level of inclusiveness and community representation.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "جمع البيانات الديموغرافية للمشاركين بالمجالس",
+     "text_en": "Collect demographic data on council participants"
+    },
+    {
+     "n": 2,
+     "text_ar": "إعداد تقرير مجرد من البيانات الشخصية",
+     "text_en": "Prepare an anonymised report free of personal data"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود آلية لجمع البيانات",
+     "text_en": "A data collection mechanism is in place"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق نشر التقارير بعد كل نشاط",
+     "text_en": "Document the publication of reports after each activity"
+    }
+   ]
+  },
+  {
+   "id": "7.4.1",
+   "desc_ar": "إبلاغ المتعاملين كلما أّدت ملاحظاتهم إلى إحداث تغيير فعلي في خدمة أو سياسة، مع توضيح أسباب القرار بشفافية.",
+   "desc_en": "Inform customers whenever their feedback has led to an actual change in a service or policy, explaining the reasons for the decision transparently.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إبلاغ المتعاملين عند إحداث تغيير فعلي بناءً على ملاحظاتهم",
+     "text_en": "Inform customers when an actual change is made based on their feedback"
+    },
+    {
+     "n": 2,
+     "text_ar": "توضيح أسباب القرار بشفافية",
+     "text_en": "Explain the reasons for the decision transparently"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق الإشعارات المرسلة",
+     "text_en": "Document the notifications sent"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى الإشعارات للتأكد من الشفافية",
+     "text_en": "Review the content of the notifications to confirm transparency"
+    }
+   ]
+  },
+  {
+   "id": "7.4.2",
+   "desc_ar": "التزام الجهات بالرد على ملاحظات المتعاملين مع تقديم شرح للإجراءات المتخذة أو أسباب عدم اتخاذ إجراء.",
+   "desc_en": "Entities commit to responding to customer feedback with an explanation of the actions taken or the reasons why no action was taken.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الرد على جميع الملاحظات العامة مع شرح الإجراءات أو أسباب عدم الاتخاذ",
+     "text_en": "Respond to all public feedback with an explanation of the actions taken or the reasons for not taking action"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة عينة من الردود للتأكد من الشمولية",
+     "text_en": "Review a sample of responses to confirm completeness"
+    }
+   ]
+  },
+  {
+   "id": "7.4.3",
+   "desc_ar": "نشر تحديثات منتظمة حول الالتزامات المعلنة، توضح الإنجازات المحققة والإجراءات المتبقية",
+   "desc_en": "Publish regular updates on announced commitments, setting out what has been achieved and the actions that remain.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "نشر تحديثات منتظمة حول الالتزامات المعلنة",
+     "text_en": "Publish regular updates on announced commitments"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين الإنجازات والإجراءات المتبقية",
+     "text_en": "Include achievements and remaining actions"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق نشر التحديثات بشكل دوري",
+     "text_en": "Document the periodic publication of updates"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى التحديثات",
+     "text_en": "Review the content of the updates"
+    }
+   ]
+  },
+  {
+   "id": "7.4.4",
+   "desc_ar": "صياغة جميع تقارير نتائج أنشطة مجالس المتعاملين المنشورة بلغة واضحة وبسيطة خالية من المصطلحات التقنية.",
+   "desc_en": "Write all published reports on the outcomes of customer council activities in clear, simple language free of technical jargon.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "صياغة التقارير بلغة واضحة وبسيطة خالية من المصطلحات التقنية",
+     "text_en": "Write reports in clear, simple language free of technical jargon"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة عينة من التقارير المنشورة",
+     "text_en": "Review a sample of published reports"
+    }
+   ]
+  },
+  {
+   "id": "7.4.5",
+   "desc_ar": "مراجعة آليات تلقي الملاحظات بشكل دوري، لضمان قدرة المتعاملين على معرفة أثر جهودهم المبذولة على جودة الخدمات والقرارات المتخذة.",
+   "desc_en": "Review feedback mechanisms periodically, to ensure customers can see the impact of their efforts on service quality and the decisions taken.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "المراجعة الدورية لآليات تلقي الملاحظات",
+     "text_en": "Periodic review of feedback mechanisms"
+    },
+    {
+     "n": 2,
+     "text_ar": "إتاحة معلومات واضحة للمتعاملين حول أثر ملاحظاتهم",
+     "text_en": "Provide customers with clear information on the impact of their feedback"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المراجعة الدورية",
+     "text_en": "Document the periodic review"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار وضوح آليات التتبع والتواصل",
+     "text_en": "Test the clarity of the tracking and communication mechanisms"
+    }
+   ]
+  },
+  {
+   "id": "7.5.1",
+   "desc_ar": "الإعلان عن جلسات اختبار الخدمات ومجالس المتعاملين قبل 30 يومًا على الأقل عبر المواقع الرسمية وقناة تواصل إضافية واحدة كحد أدنى.",
+   "desc_en": "Announce service testing sessions and customer councils at least 30 days in advance through official websites and at least one additional communication channel.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الإعلان قبل 30 يومًا على الأقل",
+     "text_en": "Announce at least 30 days in advance"
+    },
+    {
+     "n": 2,
+     "text_ar": "استخدام المواقع الرسمية وقناة إضافية",
+     "text_en": "Use official websites and one additional channel"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الفترة بين الإعلان وموعد الجلسة (≥ 30 يومًا)",
+     "text_en": "Measure the period between the announcement and the session date (≥ 30 days)"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق قنوات الإعلان المستخدمة",
+     "text_en": "Document the announcement channels used"
+    }
+   ]
+  },
+  {
+   "id": "7.5.2",
+   "desc_ar": "نشر جميع وثائق جلسات اختبار الخدمات ومجالس المتعاملين إلكترونيًا بصيغ ميّسرة وباللغتين العربية والإنجليزية.",
+   "desc_en": "Publish all documents from service testing sessions and customer councils electronically in accessible formats and in both Arabic and English.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "نشر الوثائق إلكترونيًا بصيغ ميّسرة",
+     "text_en": "Publish documents electronically in accessible formats"
+    },
+    {
+     "n": 2,
+     "text_ar": "توفر الوثائق باللغتين العربية والإنجليزية",
+     "text_en": "Documents are available in both Arabic and English"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من الصيغ المتاحة",
+     "text_en": "Verify the formats available"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة توفر النسختين",
+     "text_en": "Review the availability of both language versions"
+    }
+   ]
+  },
+  {
+   "id": "7.5.3",
+   "desc_ar": "إتاحة استقبال ملاحظات المتعاملين في جلسات اختبار الخدمات ومجالس المتعاملين عبر قنوات متعددة، تشمل القنوات الرقمية والقنوات التقليدية مثل البريد أو التقديم الحضوري.",
+   "desc_en": "Enable customer feedback for service testing sessions and customer councils to be received through multiple channels, including digital channels and traditional channels such as post or in-person submission.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "قبول الردود عبر القنوات الرقمية والتقليدية",
+     "text_en": "Accept responses through digital and traditional channels"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إمكانية التقديم عبر قنوات متعددة",
+     "text_en": "Test that submissions can be made through multiple channels"
+    }
+   ]
+  },
+  {
+   "id": "7.5.4",
+   "desc_ar": "ضمان استمرار فترات المشاورات العامة مع الجمهور في مجالس المتعاملين لمدة لا تقل عن ستة أسابيع، لإتاحة الوقت الكافي للردود المدروسة.",
+   "desc_en": "Ensure that public consultation periods in customer councils run for no less than six weeks, to allow sufficient time for considered responses.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استمرار فترة المشاورات لمدة 6 أسابيع على الأقل",
+     "text_en": "The consultation period runs for at least 6 weeks"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس مدة كل مشاورة (≥ 6 أسابيع)",
+     "text_en": "Measure the duration of each consultation (≥ 6 weeks)"
+    }
+   ]
+  },
+  {
+   "id": "7.5.5",
+   "desc_ar": "نشر نتائج مجالس المتعاملين خلال مدة لا تتجاوز ثلاثة أشهر من تاريخ الإغلاق، وأن تتضّمن ملخصًا واضحًا وشاملاً للمدخلات الواردة.",
+   "desc_en": "Publish the outcomes of customer councils within no more than three months of the closing date, including a clear and comprehensive summary of the input received.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "نشر النتائج خلال 3 أشهر من الإغلاق",
+     "text_en": "Publish the outcomes within 3 months of closure"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين ملخص واضح وشامل للمدخلات",
+     "text_en": "Include a clear and comprehensive summary of the input"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الفترة بين الإغلاق والنشر (≤ 3 أشهر)",
+     "text_en": "Measure the period between closure and publication (≤ 3 months)"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى النتائج المنشورة",
+     "text_en": "Review the content of the published outcomes"
+    }
+   ]
+  },
+  {
+   "id": "7.6.1",
+   "desc_ar": "استخدام حملات التواصل مع الجمهور لمزيج من القنوات الملائمة للفئات المستهدفة، بما يضمن وصول أوسع وإيصال الرسائل بكفاءة عالية.",
+   "desc_en": "Public outreach campaigns use a mix of channels suited to the target groups, ensuring wider reach and highly effective delivery of messages.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استخدام مزيج من القنوات الملائمة للجمهور المستهدف",
+     "text_en": "Use a mix of channels suited to the target audience"
+    },
+    {
+     "n": 2,
+     "text_ar": "ضمان الوصول الواسع وإيصال الرسائل بكفاءة",
+     "text_en": "Ensure wide reach and effective delivery of messages"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق القنوات المستخدمة في كل حملة",
+     "text_en": "Document the channels used in each campaign"
+    },
+    {
+     "n": 2,
+     "text_ar": "قياس مؤشرات الوصول والتفاعل",
+     "text_en": "Measure reach and engagement indicators"
+    }
+   ]
+  },
+  {
+   "id": "7.6.2",
+   "desc_ar": "كتابة جميع المواد التوعوية بلغة بسيطة وواضحة وخالية من المصطلحات التقنية.",
+   "desc_en": "Write all awareness materials in simple, clear language free of technical jargon.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "كتابة جميع المواد التوعوية بلغة بسيطة خالية من المصطلحات التقنية",
+     "text_en": "Write all awareness materials in simple language free of technical jargon"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة عينة من المواد لتقييم الوضوح",
+     "text_en": "Review a sample of materials to assess clarity"
+    }
+   ]
+  },
+  {
+   "id": "7.6.3",
+   "desc_ar": "اتخاذ حملات التوعية خطوات مدروسة للوصول إلى الجمهور في كافة المناطق، مع توثيق كيفية الوصول إليهم.",
+   "desc_en": "Awareness campaigns take deliberate steps to reach the public in all regions, documenting how they are reached.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تضمين إجراءات وخطوات مدروسة للوصول لكافة المناطق",
+     "text_en": "Include deliberate measures and steps to reach all regions"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق الإجراءات المستهدفة لكل فئة",
+     "text_en": "Document the targeted measures for each group"
+    }
+   ]
+  },
+  {
+   "id": "7.6.4",
+   "desc_ar": "قياس مدى وصول حملات التواصل بعد كل حملة والإبلاغ عن نتائجها باستخدام مؤشرات محددة مسبًقا.",
+   "desc_en": "Measure the reach of outreach campaigns after each campaign and report the results using predefined indicators.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "قياس مدى وصول كل حملة باستخدام مؤشرات محددة",
+     "text_en": "Measure the reach of each campaign using defined indicators"
+    },
+    {
+     "n": 2,
+     "text_ar": "الإبلاغ عن النتائج بعد كل حملة",
+     "text_en": "Report the results after each campaign"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود مؤشرات محددة مسبقًا",
+     "text_en": "Predefined indicators are in place"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق نشر تقرير الوصول لكل حملة",
+     "text_en": "Document the publication of a reach report for each campaign"
+    }
+   ]
+  },
+  {
+   "id": "7.6.5",
+   "desc_ar": "إشراك الموظفين في كافة أنشطة التواصل، باعتبارهم جزءًا أساسيًا في عملية المشاركة.",
+   "desc_en": "Involve employees in all outreach activities, as an essential part of the participation process.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إشراك الموظفين بوضوح في جميع أنشطة التواصل",
+     "text_en": "Clearly involve employees in all outreach activities"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة خطط التواصل للتأكد من استهداف الموظفين",
+     "text_en": "Review outreach plans to confirm employees are targeted"
+    }
+   ]
+  },
+  {
+   "id": "7.6.6",
+   "desc_ar": "مراجعة وتقييم فعالية حملات التواصل سنوًيا، والاستفادة من النتائج المستخلصة لتحسين الوصول للفئات المستهدفة في الحملات المستقبلية.",
+   "desc_en": "Review and evaluate the effectiveness of outreach campaigns annually, and use the findings to improve reach to the target groups in future campaigns.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة فعالية حملات التواصل سنويًا",
+     "text_en": "Review the effectiveness of outreach campaigns annually"
+    },
+    {
+     "n": 2,
+     "text_ar": "استخدام النتائج لتحسين الجهود المستقبلية",
+     "text_en": "Use the findings to improve future efforts"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المراجعة السنوية",
+     "text_en": "Document the annual review"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق التحسينات المطبقة بناءً على المراجعة",
+     "text_en": "Document the improvements implemented based on the review"
+    }
+   ]
+  },
+  {
+   "id": "7.7.1",
+   "desc_ar": "قياس جميع أنشطة المشاركة باستخدام مؤشرات أداء رئيسية محددة مسبًقا ومرتبطة بأهداف المشاركة.",
+   "desc_en": "Measure all participation activities using predefined key performance indicators linked to the participation objectives.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "قياس جميع أنشطة المشاركة باستخدام مؤشرات محددة مسبقًا",
+     "text_en": "Measure all participation activities using predefined indicators"
+    },
+    {
+     "n": 2,
+     "text_ar": "ارتباط المؤشرات بأهداف المشاركة",
+     "text_en": "Indicators are linked to the participation objectives"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود مؤشرات موثقة لكل نشاط مشاركة",
+     "text_en": "Documented indicators exist for each participation activity"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة توافق المؤشرات مع الأهداف",
+     "text_en": "Review the alignment of the indicators with the objectives"
+    }
+   ]
+  },
+  {
+   "id": "7.7.2",
+   "desc_ar": "جمع مقاييس المشاركة وإعداد تقارير ربع سنوية تُرفع إلى القيادة العليا.",
+   "desc_en": "Collect participation metrics and prepare quarterly reports submitted to senior leadership.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "جمع مقاييس المشاركة فصليًا",
+     "text_en": "Collect participation metrics quarterly"
+    },
+    {
+     "n": 2,
+     "text_ar": "رفع تقارير فصلية للقيادة العليا",
+     "text_en": "Submit quarterly reports to senior leadership"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق جمع البيانات كل 3 أشهر",
+     "text_en": "Document data collection every 3 months"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق تقديم التقارير مرة واحدة على الأقل كل 3 أشهر",
+     "text_en": "Document the submission of reports at least once every 3 months"
+    }
+   ]
+  },
+  {
+   "id": "7.7.3",
+   "desc_ar": "اشتمال تقارير أنشطة المشاركة على بيانات إحصائية مثل معدلات المشاركة ورؤى نوعية تشمل محاور الملاحظات المتكررة.",
+   "desc_en": "Participation activity reports include statistical data, such as participation rates, and qualitative insights, including recurring feedback themes.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تضمين البيانات الإحصائية والتحليلات النوعية",
+     "text_en": "Include statistical data and qualitative analysis"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة عينة من التقارير للتأكد من شموليتها",
+     "text_en": "Review a sample of reports to confirm their completeness"
+    }
+   ]
+  },
+  {
+   "id": "7.7.4",
+   "desc_ar": "إتاحة جميع تقارير المشاركة باللغتين العربية والإنجليزية، بصيغة يسهل الوصول إليها.",
+   "desc_en": "Make all participation reports available in both Arabic and English, in an accessible format.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة جميع تقارير المشاركة باللغتين العربية والإنجليزية",
+     "text_en": "Make all participation reports available in both Arabic and English"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من توفر النسختين لجميع التقارير",
+     "text_en": "Verify that both language versions are available for all reports"
+    }
+   ]
+  },
+  {
+   "id": "7.7.5",
+   "desc_ar": "التقييم السنوي لفعالية جهود إشراك الفئات المستهدفة مقارنة بالأهداف المعلنة",
+   "desc_en": "Annual evaluation of the effectiveness of efforts to engage the target groups against the announced objectives.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إجراء تقييم سنوي شامل لفعالية جهود إشراك الفئات المستهدفة",
+     "text_en": "Conduct a comprehensive annual evaluation of the effectiveness of efforts to engage the target groups"
+    },
+    {
+     "n": 2,
+     "text_ar": "قياس الفعالية مقارنة بالأهداف المعلنة",
+     "text_en": "Measure effectiveness against the announced objectives"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق التقييم السنوي",
+     "text_en": "Document the annual evaluation"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود تحليل مقارن بين النتائج والأهداف",
+     "text_en": "A comparative analysis of results against objectives exists"
+    }
+   ]
+  }
+ ]
+}

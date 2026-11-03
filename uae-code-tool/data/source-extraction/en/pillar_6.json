@@ -1,0 +1,1209 @@
+{
+ "pillar": {
+  "id": "6",
+  "name_ar": "ثقافة الخدمة المتميزة",
+  "desc_ar": "تمكين الموظفين بالمعرفة والأدوات والصلاحيات اللازمة لتقديم خدمة حكومية متميزة تضع احتياجات المتعامل في الأولوية.",
+  "name_en": "Culture of Service Excellence",
+  "desc_en": "Empowering employees with the knowledge, tools and authorities needed to deliver excellent government service that puts customer needs first."
+ },
+ "subpillars": [
+  {
+   "id": "6.1",
+   "pillar": "6",
+   "name_ar": "الوصول الى المعلومات والإرشادات",
+   "name_en": "Access to Information and Guidance"
+  },
+  {
+   "id": "6.2",
+   "pillar": "6",
+   "name_ar": "التدريب والشهادات",
+   "name_en": "Training and Certification"
+  },
+  {
+   "id": "6.3",
+   "pillar": "6",
+   "name_ar": "استلام الشكاوى والتصعيد",
+   "name_en": "Complaint Intake and Escalation"
+  },
+  {
+   "id": "6.4",
+   "pillar": "6",
+   "name_ar": "ثقافة الخدمة المتميزة",
+   "name_en": "Culture of Service Excellence"
+  },
+  {
+   "id": "6.5",
+   "pillar": "6",
+   "name_ar": "الوصول للأدوات والمعاملات",
+   "name_en": "Access to Tools and Transactions"
+  },
+  {
+   "id": "6.6",
+   "pillar": "6",
+   "name_ar": "التعاون بين الجهات",
+   "name_en": "Inter-entity Collaboration"
+  },
+  {
+   "id": "6.7",
+   "pillar": "6",
+   "name_ar": "تقييم الأداء والإرشاد المهني",
+   "name_en": "Performance Evaluation and Coaching"
+  }
+ ],
+ "codes": [
+  {
+   "id": "6.1.1",
+   "desc_ar": "تمكين الموظفين من الوصول إلى قاعدة معرفية مركزية تضم الإجراءات والسياسات والنصوص المعتمدة، على أن تخضع للمراجعة مرة واحدة على الأقل شهرًيا.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إتاحة الوصول لقاعدة معرفية مركزية تضم الإجراءات والسياسات والنصوص",
+     "text_en": "Provide access to a central knowledge base containing procedures, policies and scripts"
+    },
+    {
+     "n": 2,
+     "text_ar": "المراجعة الشهرية للمحتوى",
+     "text_en": "Monthly review of content"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود قاعدة معرفية شاملة يمكن لجميع الموظفين الوصول إليها",
+     "text_en": "A comprehensive knowledge base exists that all employees can access"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق المراجعة مرة واحدة على الأقل كل شهر",
+     "text_en": "Review documented at least once every month"
+    }
+   ],
+   "desc_en": "Enable employees to access a central knowledge base containing approved procedures, policies and scripts, reviewed at least once a month."
+  },
+  {
+   "id": "6.1.2",
+   "desc_ar": "ضمان دعم القاعدة المعرفية لخاصية البحث السريع باستخدام الكلمات المفتاحية، مع مرشحات للتاريخ والموضوع والخدمة، لتمكين الوصول السريع إلى الإرشادات الصحيحة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "دعم خاصية البحث السريع بالكلمات المفتاحية",
+     "text_en": "Support quick keyword search"
+    },
+    {
+     "n": 2,
+     "text_ar": "توفير مرشحات للتاريخ والموضوع والخدمة",
+     "text_en": "Provide filters for date, topic and service"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار وظيفة البحث وسرعة الاستجابة",
+     "text_en": "Test of search function and response speed"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود مرشحات فّعالة في واجهة البحث",
+     "text_en": "Effective filters exist in the search interface"
+    }
+   ],
+   "desc_en": "Ensure the knowledge base supports quick keyword search, with filters for date, topic and service, to enable fast access to the correct guidance."
+  },
+  {
+   "id": "6.1.3",
+   "desc_ar": "توفير أسئلة شائعة محدثة، وأخطاء شائعة مع إرشادات حل خطوة بخطوة لكل خدمة تقدمها الجهة أو من ينوب عنها",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تضمين أسئلة شائعة محدثة لكل خدمة",
+     "text_en": "Include up-to-date FAQs for every service"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين حالات الأخطاء الشائعة وإرشادات حل التحديات",
+     "text_en": "Include common error cases and guidance for resolving issues"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة إدخالات الخدمات للتأكد من وجود أسئلة شائعة",
+     "text_en": "Review of service entries to confirm FAQs are present"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة إدخالات الخدمات للتأكد من وجود هذه العناصر",
+     "text_en": "Review of service entries to confirm these elements are present"
+    }
+   ],
+   "desc_en": "Provide up-to-date FAQs and common errors with step-by-step resolution guidance for every service delivered by the entity or on its behalf."
+  },
+  {
+   "id": "6.1.4",
+   "desc_ar": "نشر مقالات معرفية باللغتين العربية والإنجليزية بالمحتوى نفسه، وتحديثهما في الوقت ذاته دون تفاوت.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "نشر المقالات بمحتوى متطابق باللغتين العربية والإنجليزية",
+     "text_en": "Publish articles with identical content in Arabic and English"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحديث المتزامن للنسختين",
+     "text_en": "Simultaneous update of both versions"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مقارنة المحتوى بين اللغتين",
+     "text_en": "Comparison of content across both languages"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من تطابق تواريخ التحديث",
+     "text_en": "Verification that update dates match"
+    }
+   ],
+   "desc_en": "Publish knowledge articles in Arabic and English with identical content, updated at the same time with no discrepancy."
+  },
+  {
+   "id": "6.1.5",
+   "desc_ar": "جمع التحليلات الخاصة باستخدام القاعدة المعرفية ومراجعتها بشكل دوري لتحديد الفجوات التشغيلية واحتياجات التدريب.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "جمع التحليلات الخاصة باستخدام القاعدة المعرفية",
+     "text_en": "Collect analytics on knowledge base usage"
+    },
+    {
+     "n": 2,
+     "text_ar": "المراجعة الشهرية لتحديد الفجوات والاحتياجات التدريبية",
+     "text_en": "Monthly review to identify gaps and training needs"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود نظام لتتبع الاستخدام",
+     "text_en": "A usage tracking system exists"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق المراجعة الشهرية وتوصياتها",
+     "text_en": "Monthly review and its recommendations documented"
+    }
+   ],
+   "desc_en": "Collect analytics on knowledge base usage and review them periodically to identify operational gaps and training needs."
+  },
+  {
+   "id": "6.2.1",
+   "desc_ar": "ضمان إكمال الموظفين الجدد لبرنامج التعريف الإلزامي واجتياز التقييم قبل التعامل مع المتعاملين أو معالجة الحالات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إكمال برنامج التعريف الإلزامي",
+     "text_en": "Completion of the mandatory induction programme"
+    },
+    {
+     "n": 2,
+     "text_ar": "اجتياز التقييم قبل التعامل مع المتعاملين أو معالجة الحالات",
+     "text_en": "Passing the assessment before dealing with customers or handling cases"
+    },
+    {
+     "n": 3,
+     "text_ar": "تأهيل الكوادر المعنية بالتصميم أو التشغيل أو المراجعة للخدمات التي تعتمد على وكيل الذكاء الاصطناعي",
+     "text_en": "Qualification of staff involved in designing, operating or reviewing services that rely on an AI agent"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق إكمال البرنامج لكل موظف",
+     "text_en": "Programme completion documented for each employee"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق نتائج التقييم",
+     "text_en": "Assessment results documented"
+    }
+   ],
+   "desc_en": "Ensure new employees complete the mandatory induction programme and pass the assessment before dealing with customers or handling cases."
+  },
+  {
+   "id": "6.2.2",
+   "desc_ar": "ضمان اجتياز الموظفين، الذين يشغلون أدوارًا تتطلب معالجة المعاملات، لتقييم الاعتماد المهني وإدراجهم كموظفين معتمدين في نظام الموارد البشرية قبل تشغيل النظام.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "اجتياز تقييم الاعتماد المهني للموظفين في الأدوار التي تتطلب معالجة المعاملات",
+     "text_en": "Passing the professional certification assessment for employees in roles that require transaction processing"
+    },
+    {
+     "n": 2,
+     "text_ar": "تسجيل الموظفين كمعتمدين في نظام الموارد البشرية",
+     "text_en": "Registration of employees as certified in the HR system"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق اجتياز التقييم لجميع الموظفين المعنيين",
+     "text_en": "Assessment pass documented for all relevant employees"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من وجود سجلات الاعتماد في النظام قبل التشغيل",
+     "text_en": "Verification that certification records exist in the system before operation"
+    }
+   ],
+   "desc_en": "Ensure employees in roles that require transaction processing pass the professional certification assessment and are recorded as certified employees in the HR system before being granted system operation."
+  },
+  {
+   "id": "6.2.3",
+   "desc_ar": "استكمال جميع الموظفين تدريبًا سنويًا تجديديًا يشمل تحديثات السياسات والأنظمة الجديدة ومعايير الخدمة المُحّدثة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استكمال تدريب سنوي تجديدي شامل",
+     "text_en": "Completion of comprehensive annual refresher training"
+    },
+    {
+     "n": 2,
+     "text_ar": "تغطية التحديثات في السياسات والأنظمة والمعايير",
+     "text_en": "Coverage of updates to policies, systems and standards"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق إكمال التدريب لجميع الموظفين سنويًا",
+     "text_en": "Training completion documented for all employees annually"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى التدريب للتأكد من شموليته",
+     "text_en": "Review of training content to confirm its comprehensiveness"
+    }
+   ],
+   "desc_en": "All employees complete annual refresher training covering policy updates, new systems and updated service standards."
+  },
+  {
+   "id": "6.2.4",
+   "desc_ar": "تتّبع إكمال برامج التدريب حسب كل دورة تدريبية، بما يشمل التدريب على خدمة المتعاملين، ومعايير جودة الخدمات، والسلوك المهني، مع إعداد تقارير شهرية تُرفع إلى المديرين توضح نسب الإنجاز.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تتبع إكمال التدريب حسب كل دورة تدريبية",
+     "text_en": "Track training completion by course"
+    },
+    {
+     "n": 2,
+     "text_ar": "إعداد تقارير شهرية بنسب الإنجاز للمديرين",
+     "text_en": "Prepare monthly reports on completion rates for managers"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود سجلات شاملة للتدريب",
+     "text_en": "Comprehensive training records exist"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق إصدار التقارير شهريًا",
+     "text_en": "Monthly issuance of reports documented"
+    }
+   ],
+   "desc_en": "Track completion of training programmes by course, including customer service training, service quality standards and professional conduct, with monthly reports submitted to managers showing completion rates."
+  },
+  {
+   "id": "6.2.5",
+   "desc_ar": "مراجعة جميع مواد التدريب وتحديثها مرة واحدة على الأقل سنوًيا، وكذلك عند حدوث أي تغيير جوهري في الخدمة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "المراجعة والتحديث السنوي لجميع مواد التدريب",
+     "text_en": "Annual review and update of all training materials"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحديث عند حدوث تغييرات جوهرية في الخدمة",
+     "text_en": "Update upon material changes in the service"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المراجعة مرة واحدة على الأقل سنويًا",
+     "text_en": "Review documented at least once a year"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق التحديثات بعد كل تغيير جوهري",
+     "text_en": "Updates documented after each material change"
+    }
+   ],
+   "desc_en": "Review and update all training materials at least once a year, and whenever a material change occurs in the service."
+  },
+  {
+   "id": "6.2.6",
+   "desc_ar": "إعادة اعتماد الموظفين في الأدوار التي تتطلب شهادات مهنية كل عامين من خلال تقييم رسمي، مع توثيق نتائج الاعتماد في نظام الموارد البشرية.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إعادة اعتماد الموظفين كل عامين من خلال تقييم رسمي",
+     "text_en": "Recertification of employees every two years through a formal assessment"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق النتائج في نظام الموارد البشرية",
+     "text_en": "Documentation of results in the HR system"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق إعادة الاعتماد كل عامين",
+     "text_en": "Recertification documented every two years"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود سجلات محدثة في النظام",
+     "text_en": "Up-to-date records exist in the system"
+    }
+   ],
+   "desc_en": "Recertify employees in roles that require professional certification every two years through a formal assessment, with certification results documented in the HR system."
+  },
+  {
+   "id": "6.3.1",
+   "desc_ar": "تصعيد أي حالة لا تحقق تقدمًا ضمن إطارها الزمني المعياري خلال 24 ساعة، وذلك وفق مؤشرات الأداء الموحدة للتصعيد (عاجلة = 24 ساعة، عادية = 5 أيام، معقدة = 15 يوًما).",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تصعيد الحالات التي لم تحقق تقدمًا خلال الإطار الزمني المعياري",
+     "text_en": "Escalation of cases that have made no progress within the standard timeframe"
+    },
+    {
+     "n": 2,
+     "text_ar": "الالتزام بمؤشرات الأداء الموحدة للتصعيد",
+     "text_en": "Adherence to the unified escalation performance indicators"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين تجاوز الإطار والتصعيد (≤ 24 ساعة)",
+     "text_en": "Measurement of the time between breach of the timeframe and escalation (≤ 24 hours)"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق تطبيق المؤشرات",
+     "text_en": "Application of the indicators documented"
+    }
+   ],
+   "desc_en": "Escalate any case that makes no progress within its standard timeframe within 24 hours, in line with the unified escalation performance indicators (urgent = 24 hours, standard = 5 days, complex = 15 days)."
+  },
+  {
+   "id": "6.3.2",
+   "desc_ar": "تحديد حالات التصعيد، والأطر الزمنية، والأدوار، ونقاط الاتصال بوضوح ضمن إجراءات التصعيد، على أن تكون متاحة لجميع الموظفين",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توثيق إجراءات التصعيد بوضوح",
+     "text_en": "Clear documentation of escalation procedures"
+    },
+    {
+     "n": 2,
+     "text_ar": "إتاحة الإجراءات لجميع الموظفين",
+     "text_en": "Availability of the procedures to all employees"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود وثيقة شاملة تحدد: الحالات، الأطر الزمنية، الأدوار، نقاط الاتصال",
+     "text_en": "A comprehensive document exists defining: cases, timeframes, roles, points of contact"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحقق من إمكانية وصول جميع الموظفين للإجراءات",
+     "text_en": "Verification that all employees can access the procedures"
+    }
+   ],
+   "desc_en": "Clearly define escalation cases, timeframes, roles and points of contact within the escalation procedures, which must be available to all employees."
+  },
+  {
+   "id": "6.3.3",
+   "desc_ar": "تعيين موظف مسؤول محدد بالاسم لكل حالة ُمصّعدة ليكون مسؤولاً عن حلها والتواصل مع المتعامل حتى الإغلاق.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تعيين موظف مسؤول محدد بالاسم لكل حالة ُمصّعدة",
+     "text_en": "Assignment of a named responsible employee to each escalated case"
+    },
+    {
+     "n": 2,
+     "text_ar": "مسؤولية الموظف عن الحل والتواصل حتى الإغلاق",
+     "text_en": "Employee accountability for resolution and communication until closure"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من تسجيل اسم المسؤول في النظام لكل حالة ُمصّعدة",
+     "text_en": "Verification that the responsible employee's name is recorded in the system for each escalated case"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق تفاعلات الموظف المسؤول مع المتعامل",
+     "text_en": "Interactions between the responsible employee and the customer documented"
+    }
+   ],
+   "desc_en": "Assign a named responsible employee to each escalated case to be accountable for resolving it and communicating with the customer until closure."
+  },
+  {
+   "id": "6.3.4",
+   "desc_ar": "عند تصعيد الحالة، لا بد أن يتلقى المتعامل رسالة تؤكد التصعيد، وتوضح صاحب الحالة الجديد وموعد التحديث التالي المتوقع.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إرسال رسالة تأكيد التصعيد للمتعامل",
+     "text_en": "Send an escalation confirmation message to the customer"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين المعلومات المطلوبة في الرسالة",
+     "text_en": "Include the required information in the message"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار إرسال الرسالة عند كل تصعيد",
+     "text_en": "Test that the message is sent on every escalation"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى الرسالة للتأكد من وجود: تأكيد التصعيد، المالك الجديد، موعد التحديث التالي",
+     "text_en": "Review of message content to confirm it includes: escalation confirmation, new owner, next update date"
+    }
+   ],
+   "desc_en": "When a case is escalated, the customer must receive a message confirming the escalation, stating the new case owner and the expected date of the next update."
+  },
+  {
+   "id": "6.3.5",
+   "desc_ar": "ضمان حل الحالات المُصّعدة ضمن الإطار الزمني المحدد، ووفق مؤشرات التصعيد الموحدة (مثل: العاجلة = 24 ساعة، العادية = 5 أيام، المعقدة = 15 يوًما)، أو الاتفاق على موعد جديد مع المتعامل وتوثيق أسباب التعديل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "حل الحالات ضمن الإطار الزمني المحدد في مؤشرات التصعيد الموحدة",
+     "text_en": "Resolution of cases within the timeframe defined in the unified escalation indicators"
+    },
+    {
+     "n": 2,
+     "text_ar": "الاتفاق مع المتعامل على موعد جديد عند التأخير",
+     "text_en": "Agreement of a new date with the customer in case of delay"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس نسبة الحالات المحلولة ضمن الإطار المحدد",
+     "text_en": "Measurement of the percentage of cases resolved within the defined timeframe"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق الاتفاق والأسباب في سجل الحالة",
+     "text_en": "Agreement and reasons documented in the case record"
+    }
+   ],
+   "desc_en": "Ensure escalated cases are resolved within the defined timeframe, in line with the unified escalation indicators (e.g. urgent = 24 hours, standard = 5 days, complex = 15 days), or agree a new date with the customer and document the reasons for the change."
+  },
+  {
+   "id": "6.3.6",
+   "desc_ar": "مراجعة حجم التصعيد وُعمر الحالات ونتائجها بشكل ربع سنوي من قبل المديرين، واتخاذ التحسينات اللازمة عند عدم تحقيق الأهداف.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "المراجعة الفصلية لحجم التصعيد وعمر الحالات والنتائج",
+     "text_en": "Quarterly review of escalation volume, case age and outcomes"
+    },
+    {
+     "n": 2,
+     "text_ar": "تنفيذ التحسينات عند عدم تحقيق الأهداف",
+     "text_en": "Implementation of improvements when targets are not met"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المراجعة مرة واحدة على الأقل كل 3 أشهر",
+     "text_en": "Review documented at least once every 3 months"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق الإجراءات التحسينية المتخذة",
+     "text_en": "Improvement actions taken documented"
+    }
+   ],
+   "desc_en": "Managers review escalation volume, case age and outcomes on a quarterly basis, and implement the necessary improvements when targets are not met."
+  },
+  {
+   "id": "6.4.1",
+   "desc_ar": "ضمان استقبال الموظفين للمتعاملين بلباقة ومخاطبتهم بأسلوب محترم ومناسب، والتواصل معهم باحترافية وبلغة مفهومة تتوافق مع معايير التجربة الحكومية المتميزة طوال التفاعل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استقبال المتعاملين بلباقة ومخاطبتهم بأسلوب محترم ومناسب",
+     "text_en": "Greet customers courteously and address them in a respectful and appropriate manner"
+    },
+    {
+     "n": 2,
+     "text_ar": "التواصل باحترافية وبلغة مفهومة تتوافق مع معايير التجربة الحكومية المتميزة",
+     "text_en": "Communicate professionally and in understandable language consistent with the standards of the excellent government experience"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة عينة من التفاعلات للتأكد من اللباقة والاحترام",
+     "text_en": "Review of a sample of interactions to confirm courtesy and respect"
+    },
+    {
+     "n": 2,
+     "text_ar": "تقييم جودة التواصل من خلال استبيانات رضا المتعاملين والمراقبة الدورية للتفاعلات",
+     "text_en": "Evaluation of communication quality through customer satisfaction surveys and periodic monitoring of interactions"
+    }
+   ],
+   "desc_en": "Ensure employees greet customers courteously, address them in a respectful and appropriate manner, and communicate with them professionally and in understandable language consistent with the standards of the excellent government experience throughout the interaction."
+  },
+  {
+   "id": "6.4.2",
+   "desc_ar": "ضمان شرح الموظفين لكل خطوة بلغة بسيطة وواضحة وخالية من المصطلحات التقنية، مع التأكد من فهم المتعامل قبل الانتقال إلى الخطوة التالية.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "شرح كل خطوة بلغة بسيطة خالية من المصطلحات التقنية",
+     "text_en": "Explain each step in simple language free of technical jargon"
+    },
+    {
+     "n": 2,
+     "text_ar": "التأكد من فهم المتعامل قبل المتابعة",
+     "text_en": "Confirm the customer's understanding before proceeding"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة عينة من التفاعلات",
+     "text_en": "Review of a sample of interactions"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة التفاعلات للتحقق من طلب التأكيد",
+     "text_en": "Review of interactions to verify that confirmation was requested"
+    }
+   ],
+   "desc_en": "Ensure employees explain each step in simple, clear language free of technical jargon, confirming the customer's understanding before moving to the next step."
+  },
+  {
+   "id": "6.4.3",
+   "desc_ar": "استخدام مصطلحات واضحة واستبدال أية مصطلحات داخلية بتفسيرات مبسطة يسهل على المتعامل استيعابها.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استخدام مصطلحات واضحة",
+     "text_en": "Use clear terminology"
+    },
+    {
+     "n": 2,
+     "text_ar": "استبدال المصطلحات الداخلية بتفسيرات مبسطة",
+     "text_en": "Replace internal terms with simplified explanations"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة عينة من التفاعلات والنصوص المستخدمة",
+     "text_en": "Review of a sample of interactions and scripts used"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة النصوص والتسجيلات",
+     "text_en": "Review of scripts and recordings"
+    }
+   ],
+   "desc_en": "Use clear terminology and replace any internal terms with simplified explanations the customer can easily understand."
+  },
+  {
+   "id": "6.4.4",
+   "desc_ar": "قبل تنفيذ أي إجراء يؤثر على الحالة، يتعين على الموظف توضيح الإجراء والنتيجة المتوقعة بلغة بسيطة والحصول على موافقة المتعامل قبل المتابعة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توضيح الإجراء والنتيجة المتوقعة قبل التنفيذ",
+     "text_en": "Explain the action and the expected outcome before execution"
+    },
+    {
+     "n": 2,
+     "text_ar": "الحصول على موافقة المتعامل",
+     "text_en": "Obtain the customer's consent"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة عينة من التفاعلات",
+     "text_en": "Review of a sample of interactions"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة التفاعلات للتحقق من طلب الموافقة",
+     "text_en": "Review of interactions to verify that consent was requested"
+    }
+   ],
+   "desc_en": "Before taking any action that affects the case, the employee must explain the action and the expected outcome in simple language and obtain the customer's consent before proceeding."
+  },
+  {
+   "id": "6.4.5",
+   "desc_ar": "يتعين على جميع الموظفين الذين يتعاملون مباشرة مع المتعاملين إكمال تدريب سنوي حول آداب الخدمة والتواصل، واجتياز التقييم والحصول على أو تجديد أي اعتماد أو ترخيص مطلوب لخدمة المتعاملين.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إكمال تدريب سنوي في آداب الخدمة والتواصل",
+     "text_en": "Completion of annual training in service etiquette and communication"
+    },
+    {
+     "n": 2,
+     "text_ar": "اجتياز التقييم",
+     "text_en": "Passing the assessment"
+    },
+    {
+     "n": 3,
+     "text_ar": "الحصول على أو تجديد الاعتماد المطلوب",
+     "text_en": "Obtaining or renewing the required certification"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق إكمال التدريب لجميع الموظفين المعنيين سنويًا",
+     "text_en": "Training completion documented for all relevant employees annually"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق اجتياز التقييم",
+     "text_en": "Assessment pass documented"
+    },
+    {
+     "n": 3,
+     "text_ar": "التحقق من وجود اعتمادات سارية في نظام الموارد البشرية",
+     "text_en": "Verification that valid certifications exist in the HR system"
+    }
+   ],
+   "desc_en": "All employees who deal directly with customers must complete annual training on service etiquette and communication, pass the assessment, and obtain or renew any certification or licence required to serve customers."
+  },
+  {
+   "id": "6.4.6",
+   "desc_ar": "التحقيق في أية شكوى تتعلق بسلوك الموظفين والرد عليها خلال خمسة أيام عمل، مع اتخاذ الإجراءات التصحيحية المناسبة عند الحاجة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "التحقيق والرد على شكاوى السلوك خلال 5 أيام عمل",
+     "text_en": "Investigate and respond to conduct complaints within 5 working days"
+    },
+    {
+     "n": 2,
+     "text_ar": "اتخاذ الإجراءات التصحيحية عند الحاجة",
+     "text_en": "Take corrective action where needed"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين استلام الشكوى والرد (≤ 5 أيام عمل)",
+     "text_en": "Measurement of the time between receipt of the complaint and the response (≤ 5 working days)"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق الإجراءات المتخذة لكل شكوى",
+     "text_en": "Actions taken documented for each complaint"
+    }
+   ],
+   "desc_en": "Investigate and respond to any complaint relating to employee conduct within five working days, taking appropriate corrective action where needed."
+  },
+  {
+   "id": "6.5.1",
+   "desc_ar": "تمكين الموظفين من استخدام نظام موّحد لإدارة علاقات المتعاملين، وتوفير الأدوات اللازمة لأداء مهامهم، مع منحهم الصلاحيات المطلوبة منذ اليوم الأول للعمل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تزويد الموظفين بنظام إدارة علاقات المتعاملين والأدوات المتخصصة اللازمة",
+     "text_en": "Provide employees with the customer relationship management system and the necessary specialised tools"
+    },
+    {
+     "n": 2,
+     "text_ar": "توفير صلاحيات الوصول منذ اليوم الأول",
+     "text_en": "Provide access authorities from the first day"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "التحقق من توفر جميع الأدوات المطلوبة",
+     "text_en": "Verification that all required tools are available"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار الوصول في اليوم الأول لعينة من الموظفين الجدد",
+     "text_en": "Test of first-day access for a sample of new employees"
+    }
+   ],
+   "desc_en": "Enable employees to use a unified customer relationship management system, provide the tools needed to perform their duties, and grant them the required authorities from the first day of work."
+  },
+  {
+   "id": "6.5.2",
+   "desc_ar": "ضمان عرض أدوات إدارة علاقات المتعاملين السجل الكامل للمتعامل، بما يشمل الطلبات والمدفوعات والمراسلات، لتمكين الموظفين من حل الشكاوى بكفاءة وسرعة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "عرض السجل الكامل للمتعامل في أدوات إدارة الحالات",
+     "text_en": "Display the customer's full history in the case management tools"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار عرض: الطلبات، المدفوعات، المراسلات",
+     "text_en": "Test display of: requests, payments, correspondence"
+    }
+   ],
+   "desc_en": "Ensure customer relationship management tools display the customer's full history, including requests, payments and correspondence, to enable employees to resolve complaints efficiently and quickly."
+  },
+  {
+   "id": "6.5.3",
+   "desc_ar": "تحديث الأدوات الأساسية التي يستخدمها الموظفون لخدمة أو دعم المتعاملين وفق جدول زمني مخطط لإدراج أية خدمات جديدة أو تغييرات في العمليات، مع نشر ملاحظات الإصدار الجديد للموظفين.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تحديث الأدوات الأساسية وفق جدول زمني مخطط",
+     "text_en": "Update core tools according to a planned schedule"
+    },
+    {
+     "n": 2,
+     "text_ar": "نشر ملاحظات الإصدار الجديد للموظفين",
+     "text_en": "Publish release notes for employees"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود جدول تحديث موثق ومتبع",
+     "text_en": "A documented and followed update schedule exists"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق نشر ملاحظات الإصدار لكل تحديث",
+     "text_en": "Publication of release notes documented for each update"
+    }
+   ],
+   "desc_en": "Update the core tools employees use to serve or support customers according to a planned schedule to incorporate any new services or process changes, and publish release notes for employees."
+  },
+  {
+   "id": "6.5.4",
+   "desc_ar": "الالتزام بتزويد الموظفين المعنيين بالتدريب والإرشاد اللازمين عند إطلاق أي أداة جديدة أو ميزة رئيسية في الأنظمة المعتمدة، خلال مدة لا تتجاوز ثلاثين يوًما من تاريخ الإطلاق.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تزويد الموظفين المعنيين بالتدريب خلال 30 يومًا من الإطلاق",
+     "text_en": "Provide relevant employees with training within 30 days of launch"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "قياس الوقت بين الإطلاق والتدريب (≤ 30 يومًا)",
+     "text_en": "Measurement of the time between launch and training (≤ 30 days)"
+    }
+   ],
+   "desc_en": "Commit to providing relevant employees with the necessary training and guidance when any new tool or major feature is launched in the approved systems, within no more than thirty days of the launch date."
+  },
+  {
+   "id": "6.5.5",
+   "desc_ar": "منح صلاحيات الوصول إلى الأدوات وفًقا للأدوار الوظيفية، بحيث يحصل كل موظف على الحد الأدنى من الصلاحيات اللازمة لأداء مهامه فقط.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "منح الصلاحيات وفق الأدوار الوظيفية بالحد الأدنى اللازم",
+     "text_en": "Grant authorities according to job roles at the minimum level necessary"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة صلاحيات عينة من الموظفين للتأكد من تطبيق مبدأ الحد الأدنى",
+     "text_en": "Review of authorities for a sample of employees to confirm the least-privilege principle is applied"
+    }
+   ],
+   "desc_en": "Grant access to tools according to job roles, so that each employee receives only the minimum authorities needed to perform their duties."
+  },
+  {
+   "id": "6.5.6",
+   "desc_ar": "ضمان إبلاغ الموظفين عن أية مشاكل حرجة تتعلق بالأدوات أو الميزات، وذلك خلال 24 ساعة عبر القنوات المعتمدة، مع إصدار رقم مرجعي للحالة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الإبلاغ عن الشكاوى الحرجة خلال 24 ساعة عبر القنوات المعتمدة",
+     "text_en": "Report critical issues within 24 hours through the approved channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "إصدار رقم مرجعي لكل حالة",
+     "text_en": "Issue a reference number for each case"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق آلية الإبلاغ ووجود إرشادات واضحة",
+     "text_en": "Reporting mechanism documented and clear guidance exists"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار إصدار الرقم المرجعي عند الإبلاغ",
+     "text_en": "Test that a reference number is issued upon reporting"
+    }
+   ],
+   "desc_en": "Ensure employees report any critical issues relating to tools or features within 24 hours through the approved channels, with a reference number issued for the case."
+  },
+  {
+   "id": "6.5.7",
+   "desc_ar": "ضمان أن تتميز الأدوات المستخدمة من قبل الموظفين بواجهات بسيطة وسهلة الاستخدام، وتكون مصممة لتقليل الخطوات والأخطاء وتمكين إنجاز المهام بكفاءة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "واجهات بسيطة وسهلة الاستخدام",
+     "text_en": "Simple and easy-to-use interfaces"
+    },
+    {
+     "n": 2,
+     "text_ar": "تقليل الخطوات والنقرات",
+     "text_en": "Reduced steps and clicks"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار قابلية الاستخدام مع عينة من الموظفين",
+     "text_en": "Usability test with a sample of employees"
+    },
+    {
+     "n": 2,
+     "text_ar": "قياس متوسط الخطوات لإنجاز المهام الرئيسية",
+     "text_en": "Measurement of the average number of steps to complete key tasks"
+    }
+   ],
+   "desc_en": "Ensure the tools used by employees have simple, easy-to-use interfaces designed to reduce steps and errors and enable tasks to be completed efficiently."
+  },
+  {
+   "id": "6.6.1",
+   "desc_ar": "عند تقديم الخدمة من قبل أكثر من جهة، يتعين مشاركة البيانات المعتمدة عبر قنوات تبادل آمنة، بما يمنع مطالبة المتعامل بتكرار تقديم المعلومات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مشاركة البيانات المعتمدة عبر قنوات آمنة عند تعدد الجهات المقدمة للخدمة",
+     "text_en": "Share verified data through secure channels when multiple entities deliver the service"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار عدم مطالبة المتعامل بتكرار المعلومات المتوفرة",
+     "text_en": "Test that the customer is not asked to repeat information already available"
+    }
+   ],
+   "desc_en": "When a service is delivered by more than one entity, verified data must be shared through secure exchange channels, so that the customer is not asked to provide information again."
+  },
+  {
+   "id": "6.6.2",
+   "desc_ar": "الالتزام بتنظيم التعاون بين الجهات بموجب اتفاقية مكتوبة تُحِدد الأدوار، وتدفقات البيانات وأهداف الخدمة، على أن تتم مراجعتها سنوًيا.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "وجود اتفاقية مكتوبة تحدد الأدوار وتدفقات البيانات والأهداف",
+     "text_en": "A written agreement exists defining roles, data flows and objectives"
+    },
+    {
+     "n": 2,
+     "text_ar": "المراجعة السنوية للاتفاقية",
+     "text_en": "Annual review of the agreement"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود اتفاقية موثقة وموقعة",
+     "text_en": "A documented and signed agreement exists"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق المراجعة مرة واحدة على الأقل سنويًا",
+     "text_en": "Review documented at least once a year"
+    }
+   ],
+   "desc_en": "Commit to governing collaboration between entities under a written agreement defining roles, data flows and service objectives, to be reviewed annually."
+  },
+  {
+   "id": "6.6.3",
+   "desc_ar": "التزام جميع الجهات المشاركة في الحالة المشتركة باستخدام رقم مرجعي موّحد، لتمكين المتعامل من تتّبع حالة الطلب بسهولة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استخدام رقم مرجعي موحد عبر جميع الجهات المشاركة في الحالة",
+     "text_en": "Use of a unified reference number across all entities involved in the case"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار استخدام نفس الرقم المرجعي عبر الجهات",
+     "text_en": "Test that the same reference number is used across entities"
+    }
+   ],
+   "desc_en": "All entities involved in a shared case commit to using a unified reference number, enabling the customer to easily track the status of the request."
+  },
+  {
+   "id": "6.6.4",
+   "desc_ar": "التزام الجهات الشريكة بعقد مراجعة ربع سنوية لأداء الخدمات المشتركة ونشر الإجراءات المتفق عليها، وتحديد المسؤولين عن تنفيذها.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "عقد مراجعة فصلية لأداء الخدمات المشتركة",
+     "text_en": "Hold a quarterly review of shared service performance"
+    },
+    {
+     "n": 2,
+     "text_ar": "نشر الإجراءات المتفق عليها وتحديد المسؤولين",
+     "text_en": "Publish the agreed actions and identify those responsible"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المراجعة مرة واحدة على الأقل كل 3 أشهر",
+     "text_en": "Review documented at least once every 3 months"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق الإجراءات والمسؤوليات المحددة",
+     "text_en": "Actions and assigned responsibilities documented"
+    }
+   ],
+   "desc_en": "Partner entities commit to holding a quarterly review of shared service performance, publishing the agreed actions, and identifying those responsible for implementing them."
+  },
+  {
+   "id": "6.6.5",
+   "desc_ar": "ضمان استكمال الموظفين العاملين في الخدمات المشتركة، للتدريب الخاص بقواعد مشاركة البيانات وتحديد الأدوار وآلية معالجة الحالات المشتركة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إكمال التدريب على قواعد مشاركة البيانات والأدوار والعمليات",
+     "text_en": "Completion of training on data-sharing rules, roles and processes"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق إكمال التدريب لجميع الموظفين المعنيين",
+     "text_en": "Training completion documented for all relevant employees"
+    }
+   ],
+   "desc_en": "Ensure employees working on shared services complete training on data-sharing rules, role definitions and the mechanism for handling shared cases."
+  },
+  {
+   "id": "6.6.6",
+   "desc_ar": "ضمان وجود مؤشرات أداء سنوية لكل خدمة مشتركة، مع تقديم ملخص بنتائج الأداء إلى القيادة المعنية.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "وجود مؤشرات أداء سنوية لكل خدمة مشتركة",
+     "text_en": "Annual performance indicators exist for each shared service"
+    },
+    {
+     "n": 2,
+     "text_ar": "تقديم ملخص النتائج إلى القيادة",
+     "text_en": "Submission of a summary of results to leadership"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود مؤشرات محددة وموثقة",
+     "text_en": "Defined and documented indicators exist"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق تقديم التقرير السنوي",
+     "text_en": "Submission of the annual report documented"
+    }
+   ],
+   "desc_en": "Ensure annual performance indicators exist for each shared service, with a summary of performance results submitted to the relevant leadership."
+  },
+  {
+   "id": "6.7.1",
+   "desc_ar": "تزويد كل موظف خدمة متعاملين بتغذية راجعة حول أدائه بشكل ربع سنوي على الأقل، بما يشمل جودة العمل والالتزام بالمواعيد ونتائج رضا المتعاملين.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تقديم تغذية راجعة فصلية لكل موظف خدمة متعاملين",
+     "text_en": "Provide quarterly feedback to each customer service employee"
+    },
+    {
+     "n": 2,
+     "text_ar": "تغطية جودة العمل والالتزام بالمواعيد ورضا المتعاملين",
+     "text_en": "Cover quality of work, adherence to deadlines and customer satisfaction"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق التغذية الراجعة مرة واحدة على الأقل كل 3 أشهر",
+     "text_en": "Feedback documented at least once every 3 months"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى التغذية الراجعة للتأكد من شموليتها",
+     "text_en": "Review of feedback content to confirm its comprehensiveness"
+    }
+   ],
+   "desc_en": "Provide each customer service employee with feedback on their performance at least quarterly, covering quality of work, adherence to deadlines and customer satisfaction results."
+  },
+  {
+   "id": "6.7.2",
+   "desc_ar": "عند انخفاض الأداء عن المستوى المستهدف، لا بد من الاتفاق على خطة تحسين محددة بزمن، تتضمن الإجراءات التصحيحية والدعم المطلوب، مع متابعتها بشكل منتظم.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إعداد خطة تحسين محددة بزمن عند انخفاض الأداء",
+     "text_en": "Prepare a time-bound improvement plan when performance declines"
+    },
+    {
+     "n": 2,
+     "text_ar": "المتابعة المنتظمة لتنفيذ الخطة",
+     "text_en": "Regular follow-up on implementation of the plan"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود خطة موثقة تتضمن: الإطار الزمني، الإجراءات، الدعم المطلوب",
+     "text_en": "A documented plan exists including: timeframe, actions, required support"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق اجتماعات المتابعة والتقدم المحرز",
+     "text_en": "Follow-up meetings and progress made documented"
+    }
+   ],
+   "desc_en": "When performance falls below the target level, a time-bound improvement plan must be agreed, including corrective actions and the required support, and followed up regularly."
+  },
+  {
+   "id": "6.7.3",
+   "desc_ar": "تضمين أمثلة محددة ومؤشرات الأداء المتأثرة والخطوات الدقيقة ضمن التغذية الراجعة، حيث يتعين على الموظف أخذها بعين الاعتبار لتحسين الأداء.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تضمين أمثلة محددة من الأداء الفعلي",
+     "text_en": "Include specific examples from actual performance"
+    },
+    {
+     "n": 2,
+     "text_ar": "توضيح المؤشر المتأثر",
+     "text_en": "State the indicator affected"
+    },
+    {
+     "n": 3,
+     "text_ar": "تحديد الخطوات الدقيقة للتحسين",
+     "text_en": "Define the precise steps for improvement"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة عينة من التغذية الراجعة للتأكد من وجود أمثلة ملموسة",
+     "text_en": "Review of a sample of feedback to confirm concrete examples are present"
+    },
+    {
+     "n": 2,
+     "text_ar": "ذكر المؤشر أو المؤشرات المحددة",
+     "text_en": "The specific indicator or indicators are named"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود خطوات عملية وقابلة للتنفيذ",
+     "text_en": "Practical and actionable steps exist"
+    }
+   ],
+   "desc_en": "Include specific examples, the performance indicators affected and the precise steps within the feedback, which the employee must take into account to improve performance."
+  },
+  {
+   "id": "6.7.4",
+   "desc_ar": "ضمان مراجعة المدراء لنتائج التدريب سنويًا، للتأكد من إسهام التدريب في تحسين المؤشرات وتعديل المنهجية عند الحاجة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة المدراء السنوية لنتائج التدريب",
+     "text_en": "Annual review of training results by managers"
+    },
+    {
+     "n": 2,
+     "text_ar": "التأكد من تحسين المؤشرات",
+     "text_en": "Confirmation that indicators have improved"
+    },
+    {
+     "n": 3,
+     "text_ar": "تعديل المنهجية عند الحاجة",
+     "text_en": "Adjustment of the methodology where needed"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المراجعة مرة واحدة على الأقل سنويًا",
+     "text_en": "Review documented at least once a year"
+    },
+    {
+     "n": 2,
+     "text_ar": "قياس التحسن في المؤشرات المستهدفة",
+     "text_en": "Measurement of improvement in the targeted indicators"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق التعديلات المطبقة بناءً على النتائج",
+     "text_en": "Adjustments applied based on the results documented"
+    }
+   ],
+   "desc_en": "Ensure managers review training results annually to confirm that training contributes to improving indicators, and adjust the methodology where needed."
+  },
+  {
+   "id": "6.7.5",
+   "desc_ar": "تأكيد الموظفين استلامهم لتقييم الأداء الرسمي في نظام الموارد البشرية، وذلك لإنشاء سجل قابل للتدقيق",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تأكيد الموظفين لاستلام تقييم الأداء الرسمي في نظام الموارد البشرية",
+     "text_en": "Employee confirmation of receipt of the formal performance evaluation in the HR system"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود تأكيد موثق في النظام لكل تقييم أداء رسمي",
+     "text_en": "A documented confirmation exists in the system for each formal performance evaluation"
+    }
+   ],
+   "desc_en": "Employees confirm receipt of their formal performance evaluation in the HR system, creating an auditable record."
+  }
+ ]
+}

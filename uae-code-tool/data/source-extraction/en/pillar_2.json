@@ -1,0 +1,1246 @@
+{
+ "pillar": {
+  "id": "2",
+  "name_ar": "المتعامل أولاً",
+  "desc_ar": "وضع المتعامل في صلب الأولويات عند تصميم وتطوير الخدمات من خلال الاستماع المستمر لصوته والاستجابة الفعالة لاحتياجاته وتوقعاته.",
+  "name_en": "Customer First",
+  "desc_en": "Placing the customer at the heart of priorities when designing and developing services, through continuous listening to the customer's voice and effective response to their needs and expectations."
+ },
+ "subpillars": [
+  {
+   "id": "2.1",
+   "pillar": "2",
+   "name_ar": "رصد أداء الخدمات",
+   "name_en": "Monitoring Service Performance"
+  },
+  {
+   "id": "2.2",
+   "pillar": "2",
+   "name_ar": "آليات جمع الملاحظات",
+   "name_en": "Feedback Collection Mechanisms"
+  },
+  {
+   "id": "2.3",
+   "pillar": "2",
+   "name_ar": "قياس الرضا واتخاذ الإجراءات",
+   "name_en": "Measuring Satisfaction and Taking Action"
+  },
+  {
+   "id": "2.4",
+   "pillar": "2",
+   "name_ar": "معالجة وحل الشكاوى",
+   "name_en": "Complaint Handling and Resolution"
+  },
+  {
+   "id": "2.5",
+   "pillar": "2",
+   "name_ar": "تصنيف المتعاملين",
+   "name_en": "Customer Segmentation"
+  }
+ ],
+ "codes": [
+  {
+   "id": "2.1.1",
+   "desc_ar": "نشر الجهات لمدة الإنجاز المعتمدة لكل خدمة، والالتزام بإنجاز الخدمة ضمن المدة المحددة في جميع الحالات ودون استثناء.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "نشر مدة الإنجاز المعتمدة لكل خدمة",
+     "text_en": "Publish the approved service completion time for each service"
+    },
+    {
+     "n": 2,
+     "text_ar": "إنجاز الخدمة ضمن المدة المحددة في جميع الحالات",
+     "text_en": "Complete the service within the specified time in all cases"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود مدة إنجاز معتمدة ومنشورة لجميع الخدمات",
+     "text_en": "Existence of an approved and published service completion time for all services"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة الخدمات المنجزة ضمن المدة المعتمدة",
+     "text_en": "Percentage of services completed within the approved time"
+    }
+   ],
+   "desc_en": "Entities publish the approved service completion time for each service and commit to completing the service within the specified time in all cases, without exception."
+  },
+  {
+   "id": "2.1.2",
+   "desc_ar": "عرض جميع الرسوم والشروط والمستندات المطلوبة بوضوح للمتعامل قبل بدء الخدمة، دون أية متطلبات إضافية في مراحل لاحقة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "عرض جميع الرسوم والشروط والمستندات المطلوبة قبل بدء الخدمة",
+     "text_en": "Display all fees, conditions and required documents before the service starts"
+    },
+    {
+     "n": 2,
+     "text_ar": "عدم وجود متطلبات إضافية لاحقًا",
+     "text_en": "No additional requirements at a later stage"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود قائمة كاملة بالمتطلبات في بداية كل خدمة",
+     "text_en": "Existence of a complete list of requirements at the start of each service"
+    },
+    {
+     "n": 2,
+     "text_ar": "اختبار عدم طلب أي متطلبات جديدة أثناء أو بعد بدء الخدمة",
+     "text_en": "Test that no new requirements are requested during or after the start of the service"
+    }
+   ],
+   "desc_en": "Display all fees, conditions and required documents clearly to the customer before the service starts, with no additional requirements at later stages."
+  },
+  {
+   "id": "2.1.3",
+   "desc_ar": "ضمان الحصول على جميع المعلومات والمستندات اللازمة من المتعامل ُمقدمًا ضمن طلب واحد، دون تكرار الطلبات لاحقًا، على ألا تكون المستندات ورقية، بل يجب أن يتم تقديم جميع المستندات رقميًا عبر قناة الخدمة أو الأنظمة الحكومية المتكاملة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "طلب جميع المعلومات والمستندات ُمقدمًا ضمن طلب واحد",
+     "text_en": "Request all information and documents up front in a single request"
+    },
+    {
+     "n": 2,
+     "text_ar": "عدم طلب مستندات ورقية",
+     "text_en": "Do not request paper documents"
+    },
+    {
+     "n": 3,
+     "text_ar": "تقديم المستندات رقميًا عبر قناة الخدمة أو الأنظمة المتكاملة",
+     "text_en": "Submit documents digitally via the service channel or integrated systems"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "عدم وجود طلبات متكررة أو لاحقة لنفس المعلومات/المستندات",
+     "text_en": "No repeated or subsequent requests for the same information/documents"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة الخدمات التي تقبل المستندات رقميًا فقط",
+     "text_en": "Percentage of services that accept documents digitally only"
+    },
+    {
+     "n": 3,
+     "text_ar": "نسبة المستندات المقبولة رقميًا",
+     "text_en": "Percentage of documents accepted digitally"
+    }
+   ],
+   "desc_en": "Ensure that all necessary information and documents are obtained from the customer up front in a single request, with no repeated requests later; documents must not be paper-based, and all documents must be submitted digitally via the service channel or integrated government systems."
+  },
+  {
+   "id": "2.1.4",
+   "desc_ar": "تقديم الخدمات بشكل متسق عبر جميع القنوات، بحيث تتطابق الخطوات والنتائج والرسوم في جميع قنوات الخدمة والدعم.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تطابق الخطوات عبر جميع القنوات",
+     "text_en": "Identical steps across all channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "تطابق النتائج والرسوم عبر جميع القنوات",
+     "text_en": "Identical outcomes and fees across all channels"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مقارنة مسارات الخدمة عبر القنوات المختلفة",
+     "text_en": "Comparison of service pathways across the different channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة اتساق النتائج والرسوم عبر القنوات",
+     "text_en": "Review of the consistency of outcomes and fees across channels"
+    }
+   ],
+   "desc_en": "Deliver services consistently across all channels, so that steps, outcomes and fees are identical across all service and support channels."
+  },
+  {
+   "id": "2.1.5",
+   "desc_ar": "ضمان حصول المتعاملين على إيصال أو تأكيد لكل خدمة ُمكتملة، مع توضيح التفاصيل والنتيجة والرسوم المالية للخدمة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إصدار إيصال أو تأكيد لكل خدمة ُمكتملة",
+     "text_en": "Issue a receipt or confirmation for every completed service"
+    },
+    {
+     "n": 2,
+     "text_ar": "توضيح القرار والنتيجة والرسوم ضمن الإيصال/التأكيد",
+     "text_en": "State the decision, outcome and fees within the receipt/confirmation"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة الخدمات المكتملة التي تم إصدار إيصال/تأكيد لها",
+     "text_en": "Percentage of completed services for which a receipt/confirmation was issued"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى الإيصالات للتأكد من اشتمالها على العناصر الثلاثة",
+     "text_en": "Review of receipt content to confirm it includes all three elements"
+    }
+   ],
+   "desc_en": "Ensure customers receive a receipt or confirmation for every completed service, setting out the details, the outcome and the fees paid for the service."
+  },
+  {
+   "id": "2.1.6",
+   "desc_ar": "إبلاغ المتعامل فورًا بأي اختلاف أو تغيير عن معايير الخدمة المعلنة (في الوقت أو التكلفة أو المتطلبات)، مع توضيح الأسباب والإطار الزمني المُحّدث وخيارات التصعيد المتاحة، وربطها مع نظام خدماتي.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الإبلاغ الفوري عن أي اختلاف او تغيير عن معايير الخدمة المعلنة",
+     "text_en": "Immediate notification of any deviation or change from the published service standards"
+    },
+    {
+     "n": 2,
+     "text_ar": "توضيح الأسباب والإطار الزمني المُحّدث وخيارات التصعيد",
+     "text_en": "Explain the reasons, the updated timeframe and the escalation options"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وقت الإبلاغ من لحظة حدوث الانحراف",
+     "text_en": "Time taken to notify from the moment the deviation occurs"
+    },
+    {
+     "n": 2,
+     "text_ar": "اشتمال الإبلاغ على الأسباب والإطار الزمني المُحّدث وخيارات التصعيد",
+     "text_en": "Notification includes the reasons, the updated timeframe and the escalation options"
+    }
+   ],
+   "desc_en": "Inform the customer immediately of any deviation or change from the published service standards (in time, cost or requirements), explaining the reasons, the updated timeframe and the available escalation options, and link this with the Khadamati system."
+  },
+  {
+   "id": "2.1.7",
+   "desc_ar": "تُوفر مراكز الخدمة بيئة تشغيلية نظيفة وآمنة ومريحة بشكل مستمر، تشمل مرافق الانتظار، ومواقف السيارات، والإضاءة، وتهيئة درجات الحرارة بما يضمن تجربة مريحة للمتعاملين.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير بيئة نظيفة وآمنة ومريحة",
+     "text_en": "Provide a clean, safe and comfortable environment"
+    },
+    {
+     "n": 2,
+     "text_ar": "توفير مواقف السيارات والمقاعد والإضاءة والتكييف المناسب",
+     "text_en": "Provide car parking, seating, lighting and suitable air conditioning"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "تقييم دوري لنظافة وأمان وراحة المراكز",
+     "text_en": "Periodic assessment of the cleanliness, safety and comfort of the centres"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود ومدى ملاءمة المرافق الأساسية",
+     "text_en": "Availability and adequacy of the basic facilities"
+    }
+   ],
+   "desc_en": "Service centres consistently provide a clean, safe and comfortable operating environment, including waiting facilities, car parking, lighting and temperature control, to ensure a comfortable experience for customers."
+  },
+  {
+   "id": "2.1.8",
+   "desc_ar": "ضمان إمكانية الوصول كاملة لأصحاب الهمم وكبار المواطنين لجميع مرافق مراكز الخدمات، تشمل المنحدرات واللافتات الإرشادية ودورات المياه المناسبة ومناطق الخدمة ذات الأولوية، وفقًا للسياسة الوطنية لتمكين أصحاب الهمم.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "ضمان إمكانية وصول كاملة لأصحاب الهمم وكبار المواطنين",
+     "text_en": "Ensure full accessibility for People of Determination and senior citizens"
+    },
+    {
+     "n": 2,
+     "text_ar": "الامتثال للمتطلبات الوطنية لإمكانية الوصول",
+     "text_en": "Comply with the national accessibility requirements"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود جميع التسهيلات المطلوبة (منحدرات، لافتات، دورات مياه، مناطق أولوية)",
+     "text_en": "Availability of all required facilities (ramps, signage, toilets, priority areas)"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة الامتثال للمعايير الوطنية",
+     "text_en": "Review of compliance with the national standards"
+    }
+   ],
+   "desc_en": "Ensure full accessibility for People of Determination and senior citizens to all service centre facilities, including ramps, directional signage, suitable toilets and priority service areas, in accordance with the National Policy for Empowering People of Determination."
+  },
+  {
+   "id": "2.1.9",
+   "desc_ar": "تصميم ساعات العمل وفقًا لأنماط طلب المتعاملين، بما يشمل فترة ممتدة واحدة على الأقل خلال أوقات الذروة (الورديات أو المواسم). كما يجب مراجعة ساعات العمل سنويًا ونشرها مسبقًا عبر جميع القنوات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تصميم ساعات العمل وفقًا لأنماط طلب المتعاملين",
+     "text_en": "Design working hours according to customer demand patterns"
+    },
+    {
+     "n": 2,
+     "text_ar": "توفير فترة ممتدة واحدة على الأقل خلال أوقات الذروة",
+     "text_en": "Provide at least one extended period during peak times"
+    },
+    {
+     "n": 3,
+     "text_ar": "المراجعة السنوية والنشر المسبق عبر جميع القنوات",
+     "text_en": "Annual review and advance publication across all channels"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "تحليل بيانات الطلب ومواءمة ساعات العمل",
+     "text_en": "Analysis of demand data and alignment of working hours"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود فترة عمل ممتدة في أوقات الذروة",
+     "text_en": "Existence of an extended working period during peak times"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق المراجعة + النشر قبل التطبيق",
+     "text_en": "Documentation of the review + publication before implementation"
+    }
+   ],
+   "desc_en": "Design working hours according to customer demand patterns, including at least one extended period during peak times (shifts or seasons). Working hours must also be reviewed annually and published in advance across all channels."
+  },
+  {
+   "id": "2.1.10",
+   "desc_ar": "تسجيل جميع الخدمات الحكومية وقنواتها في قاعدة بيانات «خدماتي» الوطنية مع إسناد رمز كتالوج رسمي لكل خدمة، واستخدام اسم الخدمة ومعّرفات القنوات كما هي معتمدة في «خدماتي» بشكل متسق عبر جميع المنصات والواجهات وقنوات الاتصال دون تعديل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تسجيل جميع الخدمات الحكومية وقنواتها في قاعدة بيانات «خدماتي»",
+     "text_en": "Register all government services and their channels in the Khadamati database"
+    },
+    {
+     "n": 2,
+     "text_ar": "إسناد رمز كتالوج رسمي لكل خدمة",
+     "text_en": "Assign an official catalogue code to each service"
+    },
+    {
+     "n": 3,
+     "text_ar": "استخدام الاسم والمعّرفات المنشورة في «خدماتي» بشكل متسق دون تعديل",
+     "text_en": "Use the name and identifiers published in Khadamati consistently and without modification"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة الخدمات المسجلة في «خدماتي»",
+     "text_en": "Percentage of services registered in Khadamati"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود رمز كتالوج لجميع الخدمات المسجلة",
+     "text_en": "Existence of a catalogue code for all registered services"
+    },
+    {
+     "n": 3,
+     "text_ar": "مطابقة الأسماء والمعّرفات عبر جميع المنصات",
+     "text_en": "Names and identifiers match across all platforms"
+    }
+   ],
+   "desc_en": "Register all government services and their channels in the national Khadamati database, assign an official catalogue code to each service, and use the service name and channel identifiers exactly as approved in Khadamati, consistently and without modification, across all platforms, interfaces and communication channels."
+  },
+  {
+   "id": "2.1.11",
+   "desc_ar": "تُقاس فعالية أدوات الذكاء الاصطناعي المستخدمة في الخدمات بشكل دوري من خلال مؤشرات أداء واضحة، مع اتخاذ إجراءات تصحيحية فورية عند انخفاض مستوى الأداء أو دقة الاستجابة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "قياس أداء أدوات الذكاء الاصطناعي بشكل دوري واتخاذ إجراءات تصحيحية عند انخفاض الأداء",
+     "text_en": "Measure the performance of AI tools periodically and take corrective action when performance declines"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود تقارير دورية موثقة لتقييم الأداء وإجراءات التصحيح",
+     "text_en": "Existence of documented periodic reports assessing performance and corrective actions"
+    }
+   ],
+   "desc_en": "The effectiveness of the AI tools used in services is measured periodically through clear performance indicators, with immediate corrective action taken when performance levels or response accuracy decline."
+  },
+  {
+   "id": "2.1.11b",
+   "desc_ar": "مراقبة أداء الذكاء الاصطناعي المساعد أثناء التشغيل من حيث زمن التنفيذ وكفاءة استخدام الموارد",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تحديد زمن مستهدف لكل إجراء أو خدمة",
+     "text_en": "Set a target time for each action or service"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراقبة الأداء واستخدام الموارد بشكل دوري",
+     "text_en": "Monitor performance and resource use periodically"
+    },
+    {
+     "n": 3,
+     "text_ar": "تنفيذ إجراءات تحسين عند وجود تأخير أو استهلاك غير مبرر",
+     "text_en": "Implement improvement actions where there is delay or unjustified consumption"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "الالتزام بزمن التنفيذ المستهدف",
+     "text_en": "Adherence to the target execution time"
+    },
+    {
+     "n": 2,
+     "text_ar": "انخفاض حالات التأخير غير المبرر",
+     "text_en": "Reduction in cases of unjustified delay"
+    },
+    {
+     "n": 3,
+     "text_ar": "استقرار الأداء وكفاءة استخدام الموارد",
+     "text_en": "Stability of performance and efficiency of resource use"
+    }
+   ],
+   "desc_en": "Monitor the performance of assistive AI during operation in terms of execution time and efficiency of resource use."
+  },
+  {
+   "id": "2.1.12",
+   "desc_ar": "مراجعة نتائج استخدام الذكاء الاصطناعي المساعد بشكل دوري، واتخاذ قرار واضح بالاستمرار أو التعديل أو الإيقاف بناءً على أثره الفعلي على جودة الخدمة وتجربة المتعامل",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إجراء مراجعة حوكمة قبل الإطلاق لكل وكيل",
+     "text_en": "Conduct a governance review before launch for each agent"
+    },
+    {
+     "n": 2,
+     "text_ar": "إجراء مراجعة عند أي تغيير يؤثر في النطاق أو الصلاحيات أو البيانات أو المخرجات",
+     "text_en": "Conduct a review upon any change affecting scope, permissions, data or outputs"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق قرار الاستمرار أو التعديل أو الإيقاف",
+     "text_en": "Document the decision to continue, modify or discontinue"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود سجل مراجعة لكل وكيل",
+     "text_en": "Existence of a review log for each agent"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود مراجعات موثقة بعد التغييرات الجوهرية",
+     "text_en": "Existence of documented reviews following substantive changes"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود قرارات معتمدة ناتجة عن كل مراجعة",
+     "text_en": "Existence of approved decisions resulting from each review"
+    }
+   ],
+   "desc_en": "Review the results of using assistive AI periodically, and take a clear decision to continue, modify or discontinue based on its actual impact on service quality and the customer experience."
+  },
+  {
+   "id": "2.1.13",
+   "desc_ar": "ضمان أن القرارات الناتجة عن الذكاء الاصطناعي المساعد متوافقة مع القواعد المعتمدة، ولا تؤثر سلبًا على نتائج الخدمة أو حقوق المتعامل",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مواءمة منطق القرار مع السياسات و الأنظمة المعتمدة",
+     "text_en": "Align decision logic with the approved policies and regulations"
+    },
+    {
+     "n": 2,
+     "text_ar": "تحديث قواعد اتخاذ القرار عند أي تغيير في السياسات أو الإجراءات",
+     "text_en": "Update decision-making rules upon any change in policies or procedures"
+    },
+    {
+     "n": 3,
+     "text_ar": "اعتماد وتوثيق التحديثات قبل تطبيقها تشغيلًيا",
+     "text_en": "Approve and document updates before putting them into operation"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "عدم وجود قرارات مخالفة للسياسات المعتمدة",
+     "text_en": "No decisions that contravene the approved policies"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود توافق بين السياسات والتنفيذ الفعلي",
+     "text_en": "Alignment between policies and actual implementation"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود سجل محدث لقواعد القرار والتعديلات",
+     "text_en": "Existence of an up-to-date log of decision rules and amendments"
+    }
+   ],
+   "desc_en": "Ensure that decisions produced by assistive AI comply with the approved rules and do not adversely affect service outcomes or customer rights."
+  },
+  {
+   "id": "2.2.1",
+   "desc_ar": "توفير أداة مختصة لجمع ملاحظات المتعاملين بعد إتمام الخدمة عبر جميع القنوات والخدمات، لقياس مستوى الرضا وجهد المتعامل، على أن الربط مع «نبض المتعامل».",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير أداة مختصة لجمع الملاحظات بعد إتمام الخدمة عبر جميع القنوات",
+     "text_en": "Provide a dedicated tool for collecting feedback after service completion across all channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "قياس مستوى الرضا والجهد المبذول",
+     "text_en": "Measure the level of satisfaction and effort expended"
+    },
+    {
+     "n": 3,
+     "text_ar": "الربط مع نظام «نبض المتعامل»",
+     "text_en": "Integrate with the Customer Pulse system"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود أداة جمع ملاحظات في جميع قنوات الخدمة",
+     "text_en": "Existence of a feedback collection tool in all service channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود مؤشرات الرضا والجهد في أداة الملاحظات",
+     "text_en": "Existence of satisfaction and effort indicators in the feedback tool"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود الربط وتدفق البيانات",
+     "text_en": "Existence of the integration and data flow"
+    }
+   ],
+   "desc_en": "Provide a dedicated tool for collecting customer feedback after service completion across all channels and services, to measure satisfaction and customer effort, with integration with Customer Pulse."
+  },
+  {
+   "id": "2.2.2",
+   "desc_ar": "التزام الجهات بجمع الملاحظات بشكل متسق عبر جميع القنوات، والاستفادة من مرصد الخدمات المعتمد للتحليل المركزي.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "جمع الملاحظات بشكل متسق عبر جميع القنوات",
+     "text_en": "Collect feedback consistently across all channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "الاستفادة من مرصد الخدمات المعتمد للتحليل المركزي",
+     "text_en": "Make use of the approved Government Services Observatory for central analysis"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اتساق منهجية وتوقيت جمع الملاحظات",
+     "text_en": "Consistency of the feedback collection methodology and timing"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة الملاحظات مرصد الخدمات المستفاد منها",
+     "text_en": "Percentage of Government Services Observatory feedback acted upon"
+    }
+   ],
+   "desc_en": "Entities commit to collecting feedback consistently across all channels and to making use of the approved Government Services Observatory for central analysis."
+  },
+  {
+   "id": "2.2.3",
+   "desc_ar": "ضمان تقديم جميع تفاعلات دعم المتعاملين استجابات دقيقة، وفي الوقت المناسب، وبأسلوب مهني عبر جميع القنوات، مع تتبع الأداء والإبلاغ عنه بانتظام. بالإضافة إلى إدارة نقطة الاتصال الأولى بواسطة موظفين مدّربين ومخّولين لضمان تقديم التوجيه الصحيح للمتعاملين منذ البداية.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير استجابات دقيقة ومهنية وفي الوقت المناسب عبر جميع القنوات",
+     "text_en": "Provide accurate, professional and timely responses across all channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "تتبع الأداء والإبلاغ عنه",
+     "text_en": "Track and report on performance"
+    },
+    {
+     "n": 3,
+     "text_ar": "إدارة نقطة الاتصال الأولى بواسطة موظفين مدّربين ومخّولين",
+     "text_en": "Manage the first point of contact through trained and empowered staff"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "تقييم جودة الاستجابات + وقت الاستجابة + الاحترافية",
+     "text_en": "Assessment of response quality + response time + professionalism"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود نظام تتبع + تقارير دورية",
+     "text_en": "Existence of a tracking system + periodic reports"
+    },
+    {
+     "n": 3,
+     "text_ar": "نسبة التفاعلات الأولى التي يديرها موظفون مدربون ومخولون",
+     "text_en": "Percentage of first interactions handled by trained and empowered staff"
+    }
+   ],
+   "desc_en": "Ensure that all customer support interactions deliver accurate, timely and professional responses across all channels, with performance tracked and reported regularly. In addition, the first point of contact must be managed by trained and empowered staff to ensure customers receive correct guidance from the outset."
+  },
+  {
+   "id": "2.2.4",
+   "desc_ar": "الحرص على دقة ووضوح واتساق جميع المعلومات المتعلقة بالخدمة عبر جميع القنوات، وتحديث المنصات بانتظام، وذلك لضمان حصول المتعاملين على إرشادات حديثة وموثوقة دائمًا.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "دقة ووضوح واتساق المعلومات عبر جميع القنوات",
+     "text_en": "Accuracy, clarity and consistency of information across all channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "التحديث المنتظم للمنصات بالمحتوى المحدث والمعتمد",
+     "text_en": "Regular updating of platforms with current, approved content"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة دورية لدقة ووضوح واتساق المحتوى",
+     "text_en": "Periodic review of the accuracy, clarity and consistency of content"
+    },
+    {
+     "n": 2,
+     "text_ar": "تكرار التحديث + توثيق تواريخ التحديث",
+     "text_en": "Update frequency + documentation of update dates"
+    }
+   ],
+   "desc_en": "Ensure the accuracy, clarity and consistency of all service-related information across all channels, and update platforms regularly, so that customers always receive current and reliable guidance."
+  },
+  {
+   "id": "2.2.5",
+   "desc_ar": "مراجعة ملاحظات المتعاملين واتخاذ الإجراءات اللازمة بشأنها في الوقت المعتمد، مع توثيق جميع الإجراءات وتحديد المالك المسؤول عن تنفيذها.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة الملاحظات واتخاذ الإجراءات في الوقت المناسب",
+     "text_en": "Review feedback and take action in a timely manner"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق الإجراءات وإسناد المسؤولية",
+     "text_en": "Document actions and assign responsibility"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "المدة الزمنية من استلام الملاحظة حتى اتخاذ الإجراء",
+     "text_en": "Time from receipt of the feedback to action being taken"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة الملاحظات الموثقة مع مسؤول محدد",
+     "text_en": "Percentage of documented feedback items with a designated owner"
+    }
+   ],
+   "desc_en": "Review customer feedback and take the necessary action on it within the approved time, documenting all actions and identifying the owner responsible for implementing them."
+  },
+  {
+   "id": "2.3.1",
+   "desc_ar": "إعداد خطة تحسين لأية خدمة تسجل نتائج رضا منخفضة، مع تحديد المسؤولين عن التنفيذ والمراحل الزمنية للإجراءات التصحيحية.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إعداد خطة تحسين للخدمات التي تسجل نتائج رضا منخفضة",
+     "text_en": "Prepare an improvement plan for services that record low satisfaction results"
+    },
+    {
+     "n": 2,
+     "text_ar": "تحديد المسؤولين والمراحل الزمنية للإجراءات التصحيحية",
+     "text_en": "Identify those responsible and the timelines for corrective actions"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود خطة تحسين موثقة لكل خدمة منخفضة الرضا",
+     "text_en": "Existence of a documented improvement plan for every low-satisfaction service"
+    },
+    {
+     "n": 2,
+     "text_ar": "اشتمال الخطة على مسؤولين محددين + مراحل زمنية واضحة",
+     "text_en": "Plan includes designated owners + clear timelines"
+    }
+   ],
+   "desc_en": "Prepare an improvement plan for any service that records low satisfaction results, identifying those responsible for implementation and the timelines for corrective actions."
+  },
+  {
+   "id": "2.3.2",
+   "desc_ar": "ضرورة اعتماد الجهات على مرصد الخدمات الحكومية لدولة الإمارات والاستبيانات المركزية الصادرة عن فريق الرصد الحكومي، والقيام بالأنشطة المناسبة للجهة فقط (مجالس المتعاملين، اختبارات تجربة المستخدم، التصميم المشترك)، وضمان مصداقية التقارير وشموليتها ووضوح منهجيتها.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الاعتماد على مرصد الخدمات الحكومية والاستبيانات المركزية",
+     "text_en": "Rely on the Government Services Observatory and the central surveys"
+    },
+    {
+     "n": 2,
+     "text_ar": "إجراء الأنشطة المناسبة للجهة فقط (مجالس، اختبارات، تصميم مشترك)",
+     "text_en": "Carry out only the activities appropriate to the entity (councils, testing, co-design)"
+    },
+    {
+     "n": 3,
+     "text_ar": "ضمان مصداقية التقارير وشموليتها ووضوح منهجيتها",
+     "text_en": "Ensure the credibility, comprehensiveness and methodological clarity of reports"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "استخدام البيانات من المصادر المركزية المعتمدة",
+     "text_en": "Use of data from the approved central sources"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق الأنشطة الخاصة بالجهة فقط",
+     "text_en": "Documentation of entity-specific activities only"
+    },
+    {
+     "n": 3,
+     "text_ar": "مراجعة التقارير للتأكد من المصداقية والشمولية والمنهجية الواضحة",
+     "text_en": "Review of reports to confirm credibility, comprehensiveness and a clear methodology"
+    }
+   ],
+   "desc_en": "Entities must rely on the UAE Government Services Observatory and the central surveys issued by the government monitoring team, carry out only the activities appropriate to the entity (customer councils, user experience testing, co-design), and ensure the credibility, comprehensiveness and methodological clarity of reports."
+  },
+  {
+   "id": "2.3.3",
+   "desc_ar": "تحليل نتائج الرضا حسب كل قناة خدمة، وذلك لتحديد ومعالجة الشكاوى والتحديات الخاصة بالخدمات الرقمية أو مراكز الاتصال أو الخدمات الحضورية، والتزام الجهة بمسؤولية تجميع النتائج وإعداد التقارير لضمان إمكانية المقارنة بين الجهات.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تحليل نتائج الرضا حسب كل قناة",
+     "text_en": "Analyse satisfaction results by each channel"
+    },
+    {
+     "n": 2,
+     "text_ar": "تحديد ومعالجة الشكاوى والتحديات الخاصة بكل قناة",
+     "text_en": "Identify and address the complaints and challenges specific to each channel"
+    },
+    {
+     "n": 3,
+     "text_ar": "تجميع وإعداد التقارير من قبل الجهة المركزية المعنية في مكتب رئاسة مجلس الوزراء",
+     "text_en": "Consolidation and reporting by the relevant central body in the Prime Minister's Office"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود تحليل منفصل لكل قناة (رقمية، مراكز اتصال، حضورية)",
+     "text_en": "Existence of a separate analysis for each channel (digital, contact centres, in-person)"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق الشكاوى المحددة والإجراءات التصحيحية لكل قناة",
+     "text_en": "Documentation of the identified complaints and corrective actions for each channel"
+    },
+    {
+     "n": 3,
+     "text_ar": "إرسال البيانات للجهة المركزية + وجود تقارير مقارنة",
+     "text_en": "Submission of data to the central body + existence of comparative reports"
+    }
+   ],
+   "desc_en": "Analyse satisfaction results by each service channel in order to identify and address complaints and challenges specific to digital services, contact centres or in-person services, with the entity committed to its responsibility for consolidating results and preparing reports to enable comparison between entities."
+  },
+  {
+   "id": "2.3.4",
+   "desc_ar": "مراجعة قيادة الجهة الحكومية لنتائج رضا المتعاملين بشكل دوري، والتأكد من توثيق جميع القرارات والإجراءات المتخذة ومتابعة تنفيذها.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة القيادة لنتائج رضا المتعاملين",
+     "text_en": "Leadership review of customer satisfaction results"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق القرارات والإجراءات ومتابعة تنفيذها",
+     "text_en": "Document decisions and actions and follow up on their implementation"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق اجتماعات المراجعة + تكرارها",
+     "text_en": "Documentation of review meetings + their frequency"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود محاضر موثقة + نظام متابعة للإجراءات",
+     "text_en": "Existence of documented minutes + an action follow-up system"
+    }
+   ],
+   "desc_en": "The government entity's leadership reviews customer satisfaction results periodically and ensures that all decisions and actions taken are documented and their implementation followed up."
+  },
+  {
+   "id": "2.3.4b",
+   "desc_ar": "تقييم أداء الذكاء الاصطناعي المساعد بشكل دوري وربطه بأثره على الخدمة وتجربة المتعامل واتخاذ قرار بالاستمرار أو التعديل أو الإيقاف",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تحديد مؤشرات أداء تشمل جودة القرارات والانحياز والأثر على الخدمة",
+     "text_en": "Define performance indicators covering decision quality, bias and impact on the service"
+    },
+    {
+     "n": 2,
+     "text_ar": "إجراء تقييم دوري وربطه بتجربة المتعامل ومؤشرات الرضا",
+     "text_en": "Conduct a periodic assessment and link it to the customer experience and satisfaction indicators"
+    },
+    {
+     "n": 3,
+     "text_ar": "اتخاذ قرار موثق بشأن الاستمرار أو التعديل أو الإيقاف بناءً على النتائج",
+     "text_en": "Take a documented decision on continuing, modifying or discontinuing based on the results"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود مؤشرات أداء شاملة لكل وكيل",
+     "text_en": "Existence of comprehensive performance indicators for each agent"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود تقارير تقييم دورية موثقة",
+     "text_en": "Existence of documented periodic assessment reports"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود قرارات معتمدة مرتبطة بنتائج التقييم",
+     "text_en": "Existence of approved decisions linked to the assessment results"
+    }
+   ],
+   "desc_en": "Assess the performance of assistive AI periodically, link it to its impact on the service and the customer experience, and take a decision to continue, modify or discontinue."
+  },
+  {
+   "id": "2.4.1",
+   "desc_ar": "ضمان حصول المتعامل على رقم مرجعي وإشعار باستلام الشكوى بشكل لحظي عبر القناة التي اختارها المتعامل في تفضيلات التواصل.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إصدار رقم مرجعي وإشعار باستلام الشكوى بشكل آني",
+     "text_en": "Issue a reference number and acknowledgement of receipt of the complaint instantly"
+    },
+    {
+     "n": 2,
+     "text_ar": "الإرسال عبر القناة التي اختارها المتعامل",
+     "text_en": "Send via the channel selected by the customer"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "الوقت المنقض من تقديم الشكوى حتى الإقرار بها",
+     "text_en": "Time elapsed from submission of the complaint to its acknowledgement"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة الإقرارات المُرسلة عبر القناة المطلوبة",
+     "text_en": "Percentage of acknowledgements sent via the requested channel"
+    }
+   ],
+   "desc_en": "Ensure the customer receives a reference number and an acknowledgement of receipt of the complaint in real time via the channel the customer selected in their communication preferences."
+  },
+  {
+   "id": "2.4.2",
+   "desc_ar": "معالجة جميع الشكاوى وفقًا لمؤشرات الأداء المعتمدة لمستوى الخدمة (مثال: عاجلة: 24 ساعة، عادية: 5 أيام، معقدة: 15 يومًا)، مع تتبع حالات عدم الالتزام للمدد المحددة والإبلاغ عنها.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "معالجة الشكاوى وفقًا للمدد المحددة حسب التصنيف",
+     "text_en": "Handle complaints within the timeframes specified for each category"
+    },
+    {
+     "n": 2,
+     "text_ar": "تتبع حالات عدم الالتزام للمدد والإبلاغ عنها",
+     "text_en": "Track and report cases of non-compliance with the timeframes"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة الشكاوى المعالجة ضمن المدة (عاجلة/عادية/معقدة)",
+     "text_en": "Percentage of complaints handled within the timeframe (urgent/standard/complex)"
+    },
+    {
+     "n": 2,
+     "text_ar": "عدد حالات التأخير + تقارير دورية",
+     "text_en": "Number of delayed cases + periodic reports"
+    }
+   ],
+   "desc_en": "Handle all complaints in accordance with the approved service-level performance indicators (for example: urgent: 24 hours; standard: 5 days; complex: 15 days), tracking and reporting cases of non-compliance with the specified timeframes."
+  },
+  {
+   "id": "2.4.3",
+   "desc_ar": "أن تتضمن رسائل حّل الشكوى شرًحا واضًحا للخطوات المتخذة، والنتيجة النهائية، وحق المتعامل في الاستئناف أو طلب المراجعة",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توضيح الخطوات المتخذة والنتيجة وحق الاستئناف/المراجعة",
+     "text_en": "Explain the steps taken, the outcome and the right to appeal/review"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "مراجعة رسائل الحل للتأكد من اشتمالها على العناصر الثلاثة",
+     "text_en": "Review of resolution messages to confirm they include all three elements"
+    }
+   ],
+   "desc_en": "Complaint resolution messages must include a clear explanation of the steps taken, the final outcome, and the customer's right to appeal or request a review."
+  },
+  {
+   "id": "2.4.4",
+   "desc_ar": "تصعيد الشكاوى غير المحلولة على المستوى الأول إلى مدير أول لمراجعتها ضمن الإطار الزمني المحدد لمؤشرات الأداء، مع توثيق أسباب التصعيد والقرارات المتخذة على المستوى الإداري الأعلى.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تصعيد الشكاوى غير المحلولة إلى مدير أول",
+     "text_en": "Escalate unresolved complaints to a senior manager"
+    },
+    {
+     "n": 2,
+     "text_ar": "المراجعة ضمن الإطار الزمني لمؤشرات الأداء",
+     "text_en": "Review within the timeframe set by the performance indicators"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق أسباب التصعيد والقرارات المتخذة",
+     "text_en": "Document the reasons for escalation and the decisions taken"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة الشكاوى المُصّعدة التي راجعها مدير أول",
+     "text_en": "Percentage of escalated complaints reviewed by a senior manager"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة الشكاوى المُصّعدة التي تمت مراجعتها ضمن المدة",
+     "text_en": "Percentage of escalated complaints reviewed within the timeframe"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود توثيق كامل لكل حالة تصعيد",
+     "text_en": "Existence of complete documentation for every escalation case"
+    }
+   ],
+   "desc_en": "Escalate complaints unresolved at the first level to a senior manager for review within the timeframe specified by the performance indicators, documenting the reasons for escalation and the decisions taken at the higher management level."
+  },
+  {
+   "id": "2.4.5",
+   "desc_ar": "قبول الشكاوى وطلبات الدعم عبر جميع قنوات الخدمة (الموقع الإلكتروني، التطبيق الذكي، مراكز الخدمة الحضورية، مراكز الاتصال)، مع ضمان معالجتها بشكلٍ متساوٍ. فيما يلتزم مزّودو الخدمة بنشر أرقام مراكز الاتصال وساعات العمل وخيارات التواصل البديلة (مثل المحادثة الفورية والبريد الإلكتروني) بوضوح على مواقعهم الإلكترونية، واختبار سهولة الوصول لهذه القنوات بشكل دوري ومعالجة أية تحديات فورًا.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "قبول الشكاوى عبر جميع قنوات الخدمة",
+     "text_en": "Accept complaints through all service channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "معالجة متساوية للشكاوى عبر جميع القنوات",
+     "text_en": "Equal handling of complaints across all channels"
+    },
+    {
+     "n": 3,
+     "text_ar": "نشر معلومات التواصل بوضوح على الموقع الإلكتروني",
+     "text_en": "Publish contact information clearly on the website"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود آليات قبول عبر جميع قنوات الخدمة",
+     "text_en": "Existence of acceptance mechanisms across all service channels"
+    },
+    {
+     "n": 2,
+     "text_ar": "مقارنة جودة ووقت المعالجة عبر القنوات",
+     "text_en": "Comparison of handling quality and time across channels"
+    },
+    {
+     "n": 3,
+     "text_ar": "وجود جميع معلومات التواصل واضحة على الموقع",
+     "text_en": "All contact information is clearly available on the website"
+    }
+   ],
+   "desc_en": "Accept complaints and support requests through all service channels (website, smart application, in-person service centres, contact centres), ensuring they are handled equally. Service providers must clearly publish contact centre numbers, working hours and alternative contact options (such as live chat and email) on their websites, test the accessibility of these channels periodically, and address any challenges immediately."
+  },
+  {
+   "id": "2.4.6",
+   "desc_ar": "تتحمل الجهة مسؤولية أي رسوم أو غرامات نتجت عن خطأ منها أو من موظفيها، ويُعاد للمتعامل أي مبلغ تم تحصيله نتيجة لذلك دون تأخير.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "عدم تحميل المتعامل تكلفة أخطاء الجهة أو موظفيها",
+     "text_en": "Do not charge the customer for the cost of errors by the entity or its employees"
+    },
+    {
+     "n": 2,
+     "text_ar": "الرد الفوري لأي مبالغ تم تحصيلها مسبقًا",
+     "text_en": "Immediate refund of any amounts previously collected"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة الحالات التي لم يُحّمل فيها المتعامل التكلفة",
+     "text_en": "Percentage of cases in which the customer was not charged the cost"
+    },
+    {
+     "n": 2,
+     "text_ar": "المدة الزمنية من اكتشاف الخطأ حتى الرد",
+     "text_en": "Time from discovery of the error to the refund"
+    }
+   ],
+   "desc_en": "The entity bears responsibility for any fees or fines resulting from an error on its part or by its employees, and any amount collected as a result is refunded to the customer without delay."
+  },
+  {
+   "id": "2.4.7",
+   "desc_ar": "على الجهات الربط مع منصة إدارة علاقات المتعاملين الوطنية وضمان تحديث الشكاوى والمقترحات وإغلاقها في الوقت المحدد.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الربط مع منصة إدارة علاقات المتعاملين الوطنية",
+     "text_en": "Integrate with the National CRM platform"
+    },
+    {
+     "n": 2,
+     "text_ar": "تحديث الشكاوى والمقترحات وإغلاقها في الوقت المحدد",
+     "text_en": "Update and close complaints and suggestions within the specified time"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "نسبة الجهات المرتبطة مع المنصة الوطنية",
+     "text_en": "Percentage of entities integrated with the national platform"
+    },
+    {
+     "n": 2,
+     "text_ar": "نسبة الشكاوى والمقترحات المغلقة ضمن الإطار الزمني المحدد",
+     "text_en": "Percentage of complaints and suggestions closed within the specified timeframe"
+    }
+   ],
+   "desc_en": "Entities must integrate with the National CRM platform and ensure that complaints and suggestions are updated and closed within the specified time."
+  },
+  {
+   "id": "2.4.8",
+   "desc_ar": "ضمان حق المتعامل في الاعتراض على القرارات الصادرة عن وكيل الذكاء الاصطناعي بشكل لحظي وإتاحة مراجعتها وتدقيقها بشرًيا",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "توفير مسار اعتراض واضح ومعلن",
+     "text_en": "Provide a clear and published objection pathway"
+    },
+    {
+     "n": 2,
+     "text_ar": "تحديد مدة زمنية لمعالجة الاعتراض",
+     "text_en": "Set a timeframe for handling the objection"
+    },
+    {
+     "n": 3,
+     "text_ar": "إشعار المتعامل بنتيجة المراجعة وأسبابها",
+     "text_en": "Notify the customer of the outcome of the review and the reasons"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود مسار اعتراض واضح ومتاح للمتعامل",
+     "text_en": "Existence of a clear objection pathway available to the customer"
+    },
+    {
+     "n": 2,
+     "text_ar": "الالتزام بالمدة المحددة للمعالجة",
+     "text_en": "Adherence to the specified handling timeframe"
+    },
+    {
+     "n": 3,
+     "text_ar": "توثيق نتائج المراجعات والإشعارات المرتبطة بها",
+     "text_en": "Documentation of review outcomes and the related notifications"
+    }
+   ],
+   "desc_en": "Guarantee the customer's right to object to decisions issued by the AI agent in real time, and make them available for human review and verification."
+  },
+  {
+   "id": "2.5.1",
+   "desc_ar": "تعتمد الجهات تصميم الخدمات والتجارب على تخصيصها وفق احتياجات المتعامل وسياقه، مع الاستفادة من البيانات المتاحة لتصنيف فئات المتعاملين وملاءمة الخدمة وتوجيهها بشكل أدق.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "تصنيف المتعاملين إلى فئات بناءً على السمات الديموغرافية والسلوكية المعتمدة",
+     "text_en": "Segment customers into categories based on the approved demographic and behavioural attributes"
+    },
+    {
+     "n": 2,
+     "text_ar": "حفظ الفئة المُحددة لكل متعامل في ملفه الشخصي",
+     "text_en": "Store the assigned category for each customer in their customer profile"
+    },
+    {
+     "n": 3,
+     "text_ar": "استخدام الفئة في عمليات الاستهداف والتخصيص",
+     "text_en": "Use the category in targeting and personalisation processes"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "وجود نموذج تصنيف معتمد يستخدم سمات ديموغرافية وسلوكية محددة",
+     "text_en": "Existence of an approved segmentation model using defined demographic and behavioural attributes"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود حقل الفئة في الملف الشخصي لكل متعامل",
+     "text_en": "Existence of a category field in every customer's profile"
+    },
+    {
+     "n": 3,
+     "text_ar": "اختبار استخدام بيانات الفئة في تخصيص المحتوى أو الاستهداف",
+     "text_en": "Test of the use of category data in content personalisation or targeting"
+    }
+   ],
+   "desc_en": "Entities base the design of services and experiences on tailoring them to the customer's needs and context, making use of available data to segment customer categories and to adapt and target the service more precisely."
+  },
+  {
+   "id": "2.5.2",
+   "desc_ar": "مراجعة تصنيفات المتعاملين مرة واحدة على الأقل سنويًا، وتعديلها في حال أظهرت البيانات تحولات جوهرية في سلوك المتعاملين أو احتياجاتهم.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "إجراء مراجعة سنوية لنموذج تجزئة المتعاملين",
+     "text_en": "Conduct an annual review of the customer segmentation model"
+    },
+    {
+     "n": 2,
+     "text_ar": "تعديل النموذج عند ظهور تحولات جوهرية في البيانات",
+     "text_en": "Amend the model when substantive shifts appear in the data"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق المراجعة السنوية (مرة واحدة على الأقل كل 12 شهرًا)",
+     "text_en": "Documentation of the annual review (at least once every 12 months)"
+    },
+    {
+     "n": 2,
+     "text_ar": "توثيق التعديلات على النموذج مع الإشارة إلى البيانات المُبررة للتعديل",
+     "text_en": "Documentation of amendments to the model with reference to the data justifying the amendment"
+    }
+   ],
+   "desc_en": "Review customer segmentations at least once a year and amend them where the data shows substantive shifts in customer behaviour or needs."
+  },
+  {
+   "id": "2.5.3",
+   "desc_ar": "ضمان موائمة مسارات الخدمة للمحتوى والإرشادات وعروض القنوات المتاحة بشكل تلقائي بناءً على فئة المتعامل، بحيث تحصل كل فئة على المسار الأنسب لخصائصها واحتياجاتها.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "الموائمة التلقائية للمحتوى والإرشادات وعروض القنوات بناءً على فئة المتعامل",
+     "text_en": "Automatic adaptation of content, guidance and channel offerings based on the customer's category"
+    },
+    {
+     "n": 2,
+     "text_ar": "توفير المسار الأنسب لكل فئة حسب خصائصها واحتياجاتها",
+     "text_en": "Provide the most suitable pathway for each category according to its characteristics and needs"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار عرض محتوى وإرشادات مختلفة لمتعاملين من فئات مختلفة",
+     "text_en": "Test that different content and guidance are displayed to customers from different categories"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة تصميم المسارات المُكّيفة لكل فئة للتأكد من ملاءمتها",
+     "text_en": "Review of the design of the adapted pathways for each category to confirm their suitability"
+    }
+   ],
+   "desc_en": "Ensure that service pathways automatically adapt content, guidance and the available channel offerings based on the customer's category, so that each category receives the pathway best suited to its characteristics and needs."
+  },
+  {
+   "id": "2.5.4",
+   "desc_ar": "عرض قائمة مخصصة بالخدمات ذات الصلة بفئة المتعامل، وذلك بعد تسجيل الدخول، مع توفير شرح موجز لكل خدمة يوضح سبب ملاءمتها له.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "عرض قائمة مخصصة بالخدمات ذات الصلة بفئة المتعامل بعد تسجيل الدخول",
+     "text_en": "Display a personalised list of services relevant to the customer's category after login"
+    },
+    {
+     "n": 2,
+     "text_ar": "توفير شرح موجز لكل خدمة يوضح سبب ملاءمتها للمتعامل",
+     "text_en": "Provide a brief explanation for each service of why it is relevant to the customer"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "اختبار عرض خدمات مختلفة لمتعاملين من فئات مختلفة",
+     "text_en": "Test that different services are displayed to customers from different categories"
+    },
+    {
+     "n": 2,
+     "text_ar": "وجود نص توضيحي مخصص لكل خدمة في القائمة المعروضة",
+     "text_en": "Existence of a tailored explanatory text for each service in the displayed list"
+    }
+   ],
+   "desc_en": "Display a personalised list of services relevant to the customer's category after login, with a brief explanation for each service of why it is relevant to the customer."
+  },
+  {
+   "id": "2.5.5",
+   "desc_ar": "ضمان استهداف الحملات التوعوية الصادرة لفئات محددة من المتعاملين، مع تضمين إشارة واضحة إلى الخدمات والمزايا المحددة ذات الصلة بكل فئة مستهدفة.",
+   "requirements": [
+    {
+     "n": 1,
+     "text_ar": "استهداف فئات محددة من المتعاملين في الحملات التوعوية",
+     "text_en": "Target specific customer categories in awareness campaigns"
+    },
+    {
+     "n": 2,
+     "text_ar": "تضمين إشارة واضحة للخدمات والمزايا ذات الصلة بكل فئة",
+     "text_en": "Include a clear reference to the services and benefits relevant to each category"
+    }
+   ],
+   "criteria": [
+    {
+     "n": 1,
+     "text_ar": "توثيق الفئات المستهدفة لكل حملة",
+     "text_en": "Documentation of the targeted categories for each campaign"
+    },
+    {
+     "n": 2,
+     "text_ar": "مراجعة محتوى الحملة للتأكد من وجود محتوى مخصص لكل فئة",
+     "text_en": "Review of campaign content to confirm there is tailored content for each category"
+    }
+   ],
+   "desc_en": "Ensure that awareness campaigns are targeted at specific customer categories, with a clear reference to the specific services and benefits relevant to each targeted category."
+  }
+ ]
+}
