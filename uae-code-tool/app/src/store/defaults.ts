@@ -1,6 +1,8 @@
 import type { Config, ReviewsFile, User, Project } from '../types'
 import projectsSeed from '../data/projects.json'
 import photos from '../data/photos.json'
+import mappingSeed from '../data/mapping-seed.json'
+import masterJson from '../data/master.json'
 
 const PROJECT_EN: Record<number, string> = {
   1: 'Service Development Strategy', 2: 'Pilot Services Observatory and Local Service Performance Management', 3: 'Service Cards', 4: 'Voice of the Customer (Customer Councils)',
@@ -31,12 +33,27 @@ export function seedUsersAndProjects(): { users: User[]; projects: Project[] } {
   return { users, projects }
 }
 
+/** Code-level mapping derived from the project -> sub-pillar seed. */
+export function seedMapping(): Record<string, string[]> {
+  const codes = (masterJson as unknown as { codes: { id: string; sub: string; desc_ar: string }[] }).codes
+  const excl = mappingSeed.excludeIfText
+  const m: Record<string, string[]> = {}
+  for (const [pid, p] of Object.entries(mappingSeed.projects as Record<string, { subs: string[] }>)) {
+    for (const c of codes) {
+      if (!p.subs.includes(c.sub)) continue
+      if (excl.some(x => c.desc_ar.includes(x))) continue
+      ;(m[c.id] = m[c.id] || []).push(pid)
+    }
+  }
+  return m
+}
+
 export function defaultConfig(): Config {
   const { users, projects } = seedUsersAndProjects()
   return {
-    version: 2,
+    version: 3,
     entity: { name_ar: 'الهيئة الاتحادية للضرائب', name_en: 'Federal Tax Authority' },
-    users, projects, mapping: {}, overrides: {},
+    users, projects, mapping: seedMapping(), overrides: {},
     cycles: [{ id: '2026-Q4', name: 'الربع الرابع 2026 — خط الأساس', name_en: '2026 Q4 — Baseline', start: '2026-10-01', end: '2026-12-31', due: '2026-12-15', status: 'open', prefillFrom: null }],
     currentCycleId: '2026-Q4',
     settings: { scores: { yes: 100, partial: 50, no: 0 }, weights: { high: 3, medium: 2, low: 1, none: 2 }, defaultAssigneeId: null, requireEvidence: true },
@@ -46,7 +63,8 @@ export function defaultConfig(): Config {
 }
 /** Upgrades a config.json written by an older release. */
 export function migrateConfig(c: Config): Config {
-  if ((c.version || 1) >= 2) return c
+  if ((c.version || 1) >= 3) return c
+  if ((c.version || 1) >= 2) { if (!Object.keys(c.mapping).length) c.mapping = seedMapping(); c.version = 3; return c }
   const { users } = seedUsersAndProjects()
   const renames: Record<string, { id: string; name_ar: string; name_en: string }> = {
     'u-mohammed-abdelkader': { id: 'u-mahmoud-abdelkader', name_ar: 'محمود عبد القادر', name_en: 'Mahmoud Abdelkader' },
@@ -61,7 +79,8 @@ export function migrateConfig(c: Config): Config {
   for (const cy of Object.keys(c.overrides)) for (const k of Object.keys(c.overrides[cy])) { if (c.overrides[cy][k] === 'u-mohammed-abdelkader') c.overrides[cy][k] = 'u-mahmoud-abdelkader'; if (c.overrides[cy][k] === 'u-mohammed-al-jughair') delete c.overrides[cy][k] }
   if (c.settings.defaultAssigneeId === 'u-mohammed-abdelkader') c.settings.defaultAssigneeId = 'u-mahmoud-abdelkader'
   if (c.settings.defaultAssigneeId === 'u-mohammed-al-jughair') c.settings.defaultAssigneeId = null
-  c.version = 2
+  if (!Object.keys(c.mapping).length) c.mapping = seedMapping()
+  c.version = 3
   return c
 }
 export const emptyReviews = (): ReviewsFile => ({ updatedAt: new Date().toISOString(), cycles: {}, clarifications: {} })

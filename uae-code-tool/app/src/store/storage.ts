@@ -56,7 +56,7 @@ export class FolderAdapter implements StorageAdapter {
     const d = await this.data()
     let config = await readJson<Config>(d, 'config.json')
     if (!config) { config = defaultConfig(); await writeJson(d, 'config.json', config) }
-    else if ((config.version || 1) < 2) { config = migrateConfig(config); await writeJson(d, 'config.json', config) }
+    else if ((config.version || 1) < 3) { config = migrateConfig(config); await writeJson(d, 'config.json', config) }
     const reviews = (await readJson<ReviewsFile>(d, 'reviews.json')) || emptyReviews()
     const audit = (await readJson<AuditEntry[]>(d, 'audit.json')) || []
     const answers: Record<string, AnswersFile> = {}

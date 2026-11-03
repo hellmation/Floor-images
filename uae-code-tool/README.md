@@ -31,6 +31,7 @@ When the tool moves to a server, only the storage adapter in `app/src/store/stor
 - Arabic and English, light and dark, phone to desktop.
 
 ## How work flows
+- A starting mapping is seeded from `app/src/data/mapping-seed.json` (project → sub-pillars, AI-agent codes excluded): 261 of 371 codes linked, 44 of 60 sub-pillars covered; pillar 5 (digital systems), 6.6 and 8.3–8.8 are left to the core team. Edit freely in the mapping workbench.
 - Codes are assigned through projects: a code linked to a project is evaluated by the project owner; unmapped codes go to the core-team default assignee set in Admin → Settings. Admins can override any assignment per cycle.
 - Everyone can read every code; only the assignee (or an admin) can edit it, and only while the cycle is open.
 - Answers are per requirement: Yes / Partial / No / Not applicable, evidence links, note, project, optional service tag, and a *needs clarification* flag with a question that the admin answers from Review → Clarification requests.

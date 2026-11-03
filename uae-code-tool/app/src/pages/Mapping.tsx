@@ -8,7 +8,7 @@ import { Icon } from '../components/icons'
 export default function Mapping() {
   const { t, lang, snap, saveConfig } = useApp(); const cfg = snap!.config
   const toast = useToast()
-  const [sel, setSel] = useState<string>(cfg.projects[0]?.id || '')
+  const [sel, setSel] = useState<string>(cfg.projects.find(p => p.active && p.ownerId)?.id || cfg.projects[0]?.id || '')
   const [p, setP] = useState(''); const [q, setQ] = useState(''); const [onlyUnmapped, setOnlyUnmapped] = useState(false)
   const unmapped = master.codes.filter(c => !(cfg.mapping[c.id] || []).length).length
   const list = useMemo(() => master.codes.filter(c => (!p || c.pillar === p) && (!onlyUnmapped || !(cfg.mapping[c.id] || []).length) && (!q || (c.id + ' ' + c.desc_ar + ' ' + c.desc_en).toLowerCase().includes(q.toLowerCase()))).sort((a, b) => sortIds(a.id, b.id)), [p, q, onlyUnmapped, cfg])
