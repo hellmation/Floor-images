@@ -28,6 +28,7 @@ When the tool moves to a server, only the storage adapter in `app/src/store/stor
 - Evaluate: requirement stepper, submission checklist, keyboard navigation between codes (Alt + arrows), confirm dialog, toasts.
 - Dashboard: readiness and compliance rings, pillar bars, sub-pillar heatmap, trend across cycles, by project, gaps ranked by impact.
 - Standings: podium and full table with points, movement versus the previous closed cycle.
+- Excel export (single language, right-to-left in Arabic), built for pivots and Power BI: every sheet is an Excel table with numeric scores, 0–1 percentages and real dates. Sheets: Summary, Codes (one row per code with counts, score, weighted points, state, evaluator, assignee, projects, evidence, review), Requirements (one row per requirement), Evidence, Pillars, Sub-pillars, Projects, Evaluators (standings), Gaps (with weighted gap), Clarifications, Cycles, Trend (readiness and compliance per cycle at total, pillar and sub-pillar level), Project mapping, Audit log, Dictionary.
 - Arabic and English, light and dark, phone to desktop.
 
 ## How work flows
