@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useApp } from '../store/state'
 import { master, effective, codeScore, sortIds, now } from '../store/scoring'
-import { pick, pickDesc, pickText } from '../i18n'
+import { pickDesc, pickText } from '../i18n'
 import { Empty, StatePill, StatusPill, fmtDate, fmtPct } from '../components/ui'
 
 export default function Review() {
@@ -31,7 +31,7 @@ export default function Review() {
       <div className="seg"><button aria-pressed={tab === 'queue'} onClick={() => setTab('queue')}>{t('pending')} ({queue.length})</button><button aria-pressed={tab === 'clar'} onClick={() => setTab('clar')}>{t('clarificationQueue')} ({clars.length})</button><button aria-pressed={tab === 'approved'} onClick={() => setTab('approved')}>{t('approved')} ({approved.length})</button></div>
       {tab === 'queue' && (queue.length === 0 ? <Empty /> : queue.map(({ c, e }) => (
         <div key={c.id} className="card p-4 flex flex-col gap-2">
-          <div className="flex flex-wrap items-center gap-2"><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a><span className="flex-1 min-w-0 text-sm">{pickDesc(lang, c).slice(0, 180)}</span><span className="text-xs text-muted">{userName(e.userId)} · {fmtDate(e.answer?.submittedAt)}</span><span className="num text-sm">{fmtPct(codeScore(e.answer, c, cfg))}</span>
+          <div className="flex flex-wrap items-center gap-2"><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a><span className="flex-1 min-w-0 text-sm">{pickDesc(lang, c).slice(0, 180)}</span><span className="text-xs text-muted">{userName(e.userId)} · {fmtDate(e.answer?.submittedAt, lang)}</span><span className="num text-sm">{fmtPct(codeScore(e.answer, c, cfg))}</span>
             <button className="btn btn-sm" onClick={() => { setOpen(open === c.id ? null : c.id); setComment('') }}>{open === c.id ? '▴' : '▾'}</button></div>
           {open === c.id && <div className="flex flex-col gap-2 border-t border-line pt-2">
             {c.requirements.map(r => { const it = e.answer!.items[String(r.n)]; return <div key={r.n} className="text-sm flex flex-col gap-0.5"><div className="flex items-start gap-2"><span className="code-id">{r.n}</span><span className="flex-1">{pickText(lang, r)}</span><StatusPill status={it?.status ?? null} /></div>
@@ -44,14 +44,13 @@ export default function Review() {
         </div>)))}
       {tab === 'clar' && (clars.length === 0 ? <Empty /> : clars.map(({ c, e, n, it, ans }) => (
         <div key={c.id + n} className="card p-4 flex flex-col gap-2 text-sm">
-          <div className="flex flex-wrap items-center gap-2"><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a><span className="code-id">{n}</span><span className="flex-1 min-w-0">{pickText(lang, c.requirements.find(r => String(r.n) === n)!)}</span><span className="text-xs text-muted">{userName(e.userId)} · {fmtDate(it.clarify?.raisedAt)}</span>{ans && <span className="pill pill-ok">{t('replied')}</span>}</div>
+          <div className="flex flex-wrap items-center gap-2"><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a><span className="code-id">{n}</span><span className="flex-1 min-w-0">{pickText(lang, c.requirements.find(r => String(r.n) === n)!)}</span><span className="text-xs text-muted">{userName(e.userId)} · {fmtDate(it.clarify?.raisedAt, lang)}</span>{ans && <span className="pill pill-ok">{t('replied')}</span>}</div>
           <div className="rounded bg-flag-soft p-2"><b>{t('needsClarification')}:</b> {it.clarify?.question || '—'}</div>
-          {ans && <div className="text-muted"><b>{t('clarificationAnswer')}</b> ({fmtDate(ans.answeredAt)}): {ans.answer}</div>}
+          {ans && <div className="text-muted"><b>{t('clarificationAnswer')}</b> ({fmtDate(ans.answeredAt, lang)}): {ans.answer}</div>}
           <div className="flex gap-2"><input className="input" placeholder={t('reply')} value={reply[c.id + n] || ''} onChange={e2 => setReply(s => ({ ...s, [c.id + n]: e2.target.value }))} /><button className="btn btn-sm" disabled={!(reply[c.id + n] || '').trim()} onClick={() => answer(c.id, n)}>{t('reply')}</button></div>
         </div>)))}
       {tab === 'approved' && (approved.length === 0 ? <Empty /> : <div className="card overflow-x-auto"><table className="tbl"><thead><tr><th>{t('code')}</th><th>{t('requirement')}</th><th>{t('submittedBy')}</th><th>{t('weightedScore')}</th><th>{t('status')}</th><th></th></tr></thead><tbody>
         {approved.map(({ c, e }) => <tr key={c.id}><td><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a></td><td>{pickDesc(lang, c).slice(0, 120)}</td><td>{userName(e.userId)}</td><td className="num">{fmtPct(codeScore(e.answer, c, cfg))}</td><td><StatePill state={e.state} /></td><td><button className="btn btn-sm" onClick={() => { setComment(t('reopen')); decide(c.id, 'returned', false) }}>{t('reopen')}</button></td></tr>)}</tbody></table></div>)}
-      <p className="text-xs text-muted m-0">{t('pillar')}: {master.pillars.map(p => p.id + ' ' + pick(lang, p)).join(' · ')}</p>
     </div>
   )
 }

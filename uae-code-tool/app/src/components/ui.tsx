@@ -29,5 +29,5 @@ export function Tile({ label, value, sub, tone }: { label: string; value: ReactN
   return <div className="card p-3"><div className="label">{label}</div><div className={`text-2xl font-semibold num ${tone ? `text-${tone}` : ''}`}>{value}</div>{sub && <div className="text-sm text-muted">{sub}</div>}</div>
 }
 export function Empty({ children }: { children?: ReactNode }) { const { t } = useApp(); return <div className="card p-6 text-center text-muted">{children || t('noItems')}</div> }
-export const fmtDate = (iso?: string | null) => iso ? new Date(iso).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }) : ''
+export const fmtDate = (iso?: string | null, lang: 'ar' | 'en' = (document.documentElement.lang as 'ar' | 'en') || 'ar') => iso ? new Date(iso).toLocaleString(lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-GB', { dateStyle: 'medium', timeStyle: 'short' }) : ''
 export const fmtPct = (v: number | null | undefined) => v === null || v === undefined ? '—' : Math.round(v) + '%'

@@ -9,6 +9,7 @@ import Cycles from './pages/Cycles'
 import Review from './pages/Review'
 import Dashboard from './pages/Dashboard'
 import Admin from './pages/Admin'
+import Home from './pages/Home'
 import { exportWorkbook } from './export/excel'
 import { fmtDate } from './components/ui'
 
@@ -26,9 +27,9 @@ export default function App() {
   if (!snap || !user) return <Setup />
 
   const route = hash.split('/')
-  const page = route[0] || 'my'
+  const page = route[0] || 'home'
   const nav: [string, string, boolean][] = [
-    ['my', t('myWork'), true], ['browse', t('browse'), true], ['dashboard', t('dashboard'), true],
+    ['home', t('home'), true], ['my', t('myWork'), true], ['browse', t('browse'), true], ['dashboard', t('dashboard'), true],
     ['review', t('review'), isAdmin], ['mapping', t('mapping'), isAdmin], ['cycles', t('cycles'), isAdmin], ['admin', t('admin'), isAdmin],
   ]
   const cycle = snap.config.cycles.find(c => c.id === cycleId)
@@ -43,29 +44,31 @@ export default function App() {
     case 'review': body = isAdmin ? <Review /> : <MyWork />; break
     case 'dashboard': body = <Dashboard />; break
     case 'admin': body = isAdmin ? <Admin /> : <MyWork />; break
-    default: body = <MyWork />
+    case 'my': body = <MyWork />; break
+    default: body = <Home />
   }
+  document.title = `${t('appName')} · ${t('appTagline')}`
 
   return (
     <div className="min-h-screen flex flex-col">
       <header className="border-b border-line bg-surface sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center gap-3">
-          <div className="font-semibold"><span className="text-accent">●</span> {t('appName')} <span className="text-muted font-normal text-sm">· {lang === 'ar' ? snap.config.entity.name_ar : snap.config.entity.name_en}</span></div>
+          <a href="#/home" className="font-semibold no-underline text-fg"><span className="text-accent">●</span> {t('appName')} <span className="text-muted font-normal text-sm">· {lang === 'ar' ? snap.config.entity.name_ar : snap.config.entity.name_en}</span></a>
           <div className="ms-auto flex flex-wrap items-center gap-2 text-sm">
             <label className="flex items-center gap-1"><span className="text-muted">{t('cycle')}</span>
-              <select className="select !w-auto !py-1" value={cycleId || ''} onChange={e => setCycleId(e.target.value)}>{snap.config.cycles.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}</select></label>
+              <select className="select !w-auto !py-1" value={cycleId || ''} onChange={e => setCycleId(e.target.value)}>{snap.config.cycles.map(c => <option key={c.id} value={c.id}>{lang === 'ar' ? c.name : (c.name_en || c.name)}</option>)}</select></label>
             <button className="btn btn-sm" onClick={doExport} disabled={busy}>{busy ? '…' : t('exportExcel')}</button>
             <div className="seg" role="group" aria-label={t('language')}><button aria-pressed={lang === 'ar'} onClick={() => setLang('ar')}>عربي</button><button aria-pressed={lang === 'en'} onClick={() => setLang('en')}>EN</button></div>
-            <div className="seg" role="group" aria-label={t('theme')}><button aria-pressed={theme === 'light'} onClick={() => setTheme('light')}>☀</button><button aria-pressed={theme === 'system'} onClick={() => setTheme('system')}>A</button><button aria-pressed={theme === 'dark'} onClick={() => setTheme('dark')}>☾</button></div>
+            <div className="seg" role="group" aria-label={t('theme')}><button aria-pressed={theme === 'light'} title={t('light')} onClick={() => setTheme('light')}>☀</button><button aria-pressed={theme === 'system'} title={t('system')} onClick={() => setTheme('system')}>◐</button><button aria-pressed={theme === 'dark'} title={t('dark')} onClick={() => setTheme('dark')}>☾</button></div>
             <button className="btn btn-sm" onClick={() => app.setUserId(null)} title={t('signOut')}>{lang === 'ar' ? user.name_ar : user.name_en} ▾</button>
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-4 pb-2 flex flex-wrap items-center gap-1 nav text-sm">
           {nav.filter(n => n[2]).map(([k, l]) => <a key={k} href={'#/' + k} aria-current={page === k || (page === 'code' && k === 'browse') ? 'page' : undefined}>{l}</a>)}
           <span className="ms-auto text-xs text-muted flex items-center gap-2">
-            {cycle && <span>{cycle.name} · {t(cycle.status === 'open' ? 'open' : cycle.status === 'closed' ? 'closed' : cycle.status === 'review' ? 'inReview' : 'planning')}</span>}
-            <span>{adapter?.kind === 'folder' ? '📁 ' + adapter.label : '💾 local'}</span>
-            <button className="btn btn-sm" onClick={refresh}>{t('refresh')}</button><span>{t('lastSync')}: {fmtDate(lastSync)}</span>
+            {cycle && <span>{lang === 'ar' ? cycle.name : (cycle.name_en || cycle.name)} · {t(cycle.status === 'open' ? 'open' : cycle.status === 'closed' ? 'closed' : cycle.status === 'review' ? 'inReview' : 'planning')}</span>}
+            <span>{adapter?.kind === 'folder' ? `${t('folderLabel')}: ${adapter.label}` : t('localModeLabel')}</span>
+            <button className="btn btn-sm" onClick={refresh}>{t('refresh')}</button><span>{t('lastSync')}: {fmtDate(lastSync, lang)}</span>
           </span>
         </div>
       </header>

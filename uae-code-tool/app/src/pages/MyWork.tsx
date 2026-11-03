@@ -32,7 +32,7 @@ export default function MyWork() {
     <div className="flex flex-col gap-4">
       <div className="flex flex-wrap items-end justify-between gap-2">
         <div><h1 className="text-xl font-semibold m-0">{t('welcome')}, {lang === 'ar' ? user!.name_ar : user!.name_en}</h1>
-          <div className="text-sm text-muted">{cycle?.name} · {t('dueDate')}: {cycle?.due} {daysLeft !== null && (daysLeft >= 0 ? `· ${t('dueIn')} ${daysLeft} ${t('days')}` : `· ${t('overdue')}`)}</div></div>
+          <div className="text-sm text-muted">{cycle && (lang === 'ar' ? cycle.name : (cycle.name_en || cycle.name))} · {t('dueDate')}: {cycle?.due} {daysLeft !== null && (daysLeft >= 0 ? `· ${t('dueIn')} ${daysLeft} ${t('days')}` : `· ${t('overdue')}`)}</div></div>
         <div className="w-full sm:w-72"><div className="flex justify-between text-sm"><span>{t('progress')}</span><span className="num">{done + sub} / {rows.length}</span></div><Bar value={done + sub} max={rows.length} /></div>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-5 gap-3">

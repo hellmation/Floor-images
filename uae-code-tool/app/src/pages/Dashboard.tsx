@@ -25,7 +25,7 @@ export default function Dashboard() {
       <div className="flex flex-wrap items-center gap-3">
         <h1 className="text-xl font-semibold m-0">{t('dashboard')}</h1>
         <div className="seg ms-auto"><button aria-pressed={!approvedOnly} onClick={() => setApprovedOnly(false)}>{t('allAnswered')}</button><button aria-pressed={approvedOnly} onClick={() => setApprovedOnly(true)}>{t('approvedOnly')}</button></div>
-        <select className="select !w-auto" value={cmp} onChange={e => setCmp(e.target.value)}><option value="">vs —</option>{cfg.cycles.filter(c => c.id !== cy).map(c => <option key={c.id} value={c.id}>vs {c.name}</option>)}</select>
+        <label className="flex items-center gap-1 text-sm"><span className="text-muted">{t('compareWith')}</span><select className="select !w-auto" value={cmp} onChange={e => setCmp(e.target.value)}><option value="">{t('none')}</option>{cfg.cycles.filter(c => c.id !== cy).map(c => <option key={c.id} value={c.id}>{lang === 'ar' ? c.name : (c.name_en || c.name)}</option>)}</select></label>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <Tile label={t('readiness')} value={fmtPct(all.total ? (all.approved / all.total) * 100 : 0)} sub={`${t('approved')} ${all.approved} / ${all.total}${cmpAll ? ` · ${delta((all.approved / all.total) * 100, (cmpAll.approved / cmpAll.total) * 100)}` : ''}`} tone="accent" />
@@ -39,7 +39,7 @@ export default function Dashboard() {
       <section className="card p-4"><h2 className="text-base font-semibold m-0 mb-3">{t('subpillar')}</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">{bySub.map(({ s, r }) => <div key={s.id} className="rounded p-2 text-xs" style={{ background: heat(r.score) }}><div className="flex justify-between"><span className="code-id">{s.id}</span><span className={`num font-semibold ${tone(r.score)}`}>{fmtPct(r.score)}</span></div><div className="truncate" title={pick(lang, s)}>{pick(lang, s)}</div><div className="text-muted num">{r.approved}/{r.total} {t('approved')}</div></div>)}</div></section>
       <div className="grid md:grid-cols-2 gap-4">
-        <section className="card p-4"><h2 className="text-base font-semibold m-0 mb-2">{t('byEvaluator')}</h2><table className="tbl"><thead><tr><th></th><th>{t('codes')}</th><th>{t('answered')}</th><th>{t('approved')}</th><th>?</th><th>{t('compliance')}</th></tr></thead><tbody>
+        <section className="card p-4"><h2 className="text-base font-semibold m-0 mb-2">{t('byEvaluator')}</h2><table className="tbl"><thead><tr><th></th><th>{t('codes')}</th><th>{t('answered')}</th><th>{t('approved')}</th><th>{t('clarificationShort')}</th><th>{t('compliance')}</th></tr></thead><tbody>
           {byUser.map(({ u, r }) => <tr key={u.id}><td>{lang === 'ar' ? u.name_ar : u.name_en}</td><td className="num">{r.total}</td><td className="num">{r.answered}</td><td className="num">{r.approved}</td><td className="num">{r.clarifications || ''}</td><td className={`num ${tone(r.score)}`}>{fmtPct(r.score)}</td></tr>)}</tbody></table></section>
         <section className="card p-4"><h2 className="text-base font-semibold m-0 mb-2">{t('byProject')}</h2><table className="tbl"><thead><tr><th></th><th>{t('codes')}</th><th>{t('approved')}</th><th>{t('compliance')}</th></tr></thead><tbody>
           {byProject.map(({ p, r }) => <tr key={p.id}><td>{pick(lang, p)}</td><td className="num">{r.total}</td><td className="num">{r.approved}</td><td className={`num ${tone(r.score)}`}>{fmtPct(r.score)}</td></tr>)}</tbody></table></section>

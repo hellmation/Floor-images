@@ -34,7 +34,7 @@ export default function CodeView({ id }: { id: string }) {
   }, [code, cy, myOwn, eff?.answer, cycle?.prefillFrom, snap])
 
   const ordered = useMemo(() => [...master.codes].sort((a, b) => sortIds(a.id, b.id)), [])
-  if (!code) return <div className="card p-6">Unknown code {id}</div>
+  if (!code) return <div className="card p-6">{t('unknownCode')}: {id}</div>
   const idx = ordered.findIndex(c => c.id === code.id)
   const prev = ordered[idx - 1], next = ordered[idx + 1]
   const sub = subById.get(code.sub)!, pil = pillarById.get(code.pillar)!
@@ -77,16 +77,15 @@ export default function CodeView({ id }: { id: string }) {
           <span className="ms-auto text-xs text-muted">{t('pdfPage')} {code.pdf_page}</span>
         </div>
         <p className="m-0 text-base leading-relaxed">{pickDesc(lang, code)}</p>
-        <p className="m-0 text-sm text-muted leading-relaxed" dir={lang === 'ar' ? 'ltr' : 'rtl'}>{lang === 'ar' ? code.desc_en : code.desc_ar}</p>
         <div className="flex flex-wrap gap-3 text-sm items-center">
           <span><span className="text-muted">{t('assignedTo')}:</span> <b>{userName(assignee)}</b>{cfg.overrides[cy]?.[code.id] && <span className="text-muted"> ({t('overrideAssignee')})</span>}</span>
-          {isAdmin && <select className="select !w-auto !py-1 text-xs" value={cfg.overrides[cy]?.[code.id] || ''} onChange={e => override(e.target.value)}><option value="">auto</option>{cfg.users.filter(u => u.active).map(u => <option key={u.id} value={u.id}>{lang === 'ar' ? u.name_ar : u.name_en}</option>)}</select>}
+          {isAdmin && <select className="select !w-auto !py-1 text-xs" value={cfg.overrides[cy]?.[code.id] || ''} onChange={e => override(e.target.value)}><option value="">{t('auto')}</option>{cfg.users.filter(u => u.active).map(u => <option key={u.id} value={u.id}>{lang === 'ar' ? u.name_ar : u.name_en}</option>)}</select>}
           <span><span className="text-muted">{t('mappedProjects')}:</span> {linked.length ? linked.map(p => <span key={p!.id} className="pill pill-accent me-1">{pick(lang, p!)}</span>) : <span className="text-muted">—</span>}</span>
-          {eff!.userId && <span className="text-muted">{t('submittedBy')}: {userName(eff!.userId)} · {fmtDate(eff!.answer?.updatedAt)}</span>}
+          {eff!.userId && <span className="text-muted">{t('submittedBy')}: {userName(eff!.userId)} · {fmtDate(eff!.answer?.updatedAt, lang)}</span>}
         </div>
         {!canEdit && cycle?.status === 'open' && !locked && <div className="text-sm text-warn">{t('readOnly')} · {t('requestChange')}</div>}
         {carried && <div className="text-sm px-3 py-2 rounded bg-warn-soft text-warn">{t('carried')} ({carried})</div>}
-        {eff!.review && (eff!.state === 'returned' || eff!.state === 'approved') && <div className={`text-sm px-3 py-2 rounded ${eff!.state === 'returned' ? 'bg-bad-soft text-bad' : 'bg-ok-soft text-ok'}`}><b>{t('reviewerComment')}</b> ({userName(eff!.review.reviewedBy)}, {fmtDate(eff!.review.reviewedAt)}): {eff!.review.comment || '—'}</div>}
+        {eff!.review && (eff!.state === 'returned' || eff!.state === 'approved') && <div className={`text-sm px-3 py-2 rounded ${eff!.state === 'returned' ? 'bg-bad-soft text-bad' : 'bg-ok-soft text-ok'}`}><b>{t('reviewerComment')}</b> ({userName(eff!.review.reviewedBy)}, {fmtDate(eff!.review.reviewedAt, lang)}): {eff!.review.comment || '—'}</div>}
       </div>
 
       {code.requirements.map((r, i) => {
@@ -96,7 +95,6 @@ export default function CodeView({ id }: { id: string }) {
           <section key={r.n} className="card p-4 flex flex-col gap-3">
             <div className="flex items-start gap-3"><span className="code-id">{r.n}</span><div className="flex-1 min-w-0">
               <div className="font-medium">{pickText(lang, r)}</div>
-              <div className="text-sm text-muted" dir={lang === 'ar' ? 'ltr' : 'rtl'}>{lang === 'ar' ? r.text_en : r.text_ar}</div>
               {paired && code.criteria[i] && <div className="text-sm mt-1"><span className="label">{t('criterion')}:</span> {pickText(lang, code.criteria[i])}</div>}
             </div>{!canEdit && <StatusPill status={it.status} />}</div>
             {canEdit ? (
@@ -105,7 +103,7 @@ export default function CodeView({ id }: { id: string }) {
                   <div className="seg" role="group" aria-label={t('status')}>{(['yes', 'partial', 'no', 'na'] as AnswerStatus[]).map(s => <button key={s} aria-pressed={it.status === s} onClick={() => upd(r.n, { status: s })}>{t(s)}</button>)}</div>
                   <label className="flex items-center gap-1 text-sm ms-auto"><input type="checkbox" checked={!!it.clarify?.flag} onChange={e => upd(r.n, { clarify: { flag: e.target.checked, question: it.clarify?.question || '', raisedAt: e.target.checked ? now() : it.clarify?.raisedAt } })} /> <span className="text-flag font-medium">{t('needsClarification')}</span></label>
                 </div>
-                {it.clarify?.flag && <div className="rounded bg-flag-soft p-2 flex flex-col gap-1"><label className="label">{t('clarificationQuestion')}</label><textarea className="textarea" rows={2} value={it.clarify.question} onChange={e => upd(r.n, { clarify: { ...it.clarify!, question: e.target.value } })} />{ca && <div className="text-sm"><b>{t('clarificationAnswer')}</b> ({fmtDate(ca.answeredAt)}): {ca.answer} <button className="btn btn-sm ms-2" onClick={() => upd(r.n, { clarify: { flag: false, question: it.clarify!.question } })}>{t('clearFlag')}</button></div>}</div>}
+                {it.clarify?.flag && <div className="rounded bg-flag-soft p-2 flex flex-col gap-1"><label className="label">{t('clarificationQuestion')}</label><textarea className="textarea" rows={2} value={it.clarify.question} onChange={e => upd(r.n, { clarify: { ...it.clarify!, question: e.target.value } })} />{ca && <div className="text-sm"><b>{t('clarificationAnswer')}</b> ({fmtDate(ca.answeredAt, lang)}): {ca.answer} <button className="btn btn-sm ms-2" onClick={() => upd(r.n, { clarify: { flag: false, question: it.clarify!.question } })}>{t('clearFlag')}</button></div>}</div>}
                 {!it.clarify?.flag && ca && <div className="text-sm text-muted"><b>{t('clarificationAnswer')}</b>: {ca.answer}</div>}
                 {it.status === 'na' && <div><label className="label">{t('justification')}</label><textarea className="textarea" rows={2} value={it.justification || ''} onChange={e => upd(r.n, { justification: e.target.value })} /></div>}
                 <div><div className="label">{t('evidence')}</div>
@@ -141,7 +139,7 @@ export default function CodeView({ id }: { id: string }) {
 
 function EvidenceAdd({ onAdd }: { onAdd: (title: string, url: string) => void }) {
   const { t } = useApp(); const [title, setTitle] = useState(''); const [url, setUrl] = useState('')
-  return <div className="flex flex-wrap gap-2 mt-1"><input className="input flex-1 min-w-32" placeholder="Title / العنوان" value={title} onChange={e => setTitle(e.target.value)} /><input className="input flex-[2] min-w-48" placeholder="https:// or \\\\server\\share\\…" value={url} onChange={e => setUrl(e.target.value)} />
+  return <div className="flex flex-wrap gap-2 mt-1"><input className="input flex-1 min-w-32" placeholder={t('evidenceTitle')} value={title} onChange={e => setTitle(e.target.value)} /><input className="input flex-[2] min-w-48" placeholder={t('evidenceUrl')} value={url} onChange={e => setUrl(e.target.value)} />
     <button className="btn btn-sm" disabled={!url.trim()} onClick={() => { onAdd(title.trim(), url.trim()); setTitle(''); setUrl('') }}>{t('addLink')}</button></div>
 }
 function ReadOnly({ it, ca, projName }: { it: ItemAnswer; ca?: { answer: string }; projName: string }) {

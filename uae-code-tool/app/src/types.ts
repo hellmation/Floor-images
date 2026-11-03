@@ -16,7 +16,7 @@ export interface Master { pillars: Pillar[]; subpillars: SubPillar[]; codes: Cod
 
 export interface User { id: string; name_ar: string; name_en: string; role: Role; email?: string; active: boolean }
 export interface Project { id: string; name_ar: string; name_en?: string; ownerId: string | null; active: boolean }
-export interface Cycle { id: string; name: string; start: string; end: string; due: string; status: CycleStatus; prefillFrom?: string | null }
+export interface Cycle { id: string; name: string; name_en?: string; start: string; end: string; due: string; status: CycleStatus; prefillFrom?: string | null }
 export interface Settings {
   scores: { yes: number; partial: number; no: number }
   weights: { high: number; medium: number; low: number; none: number }

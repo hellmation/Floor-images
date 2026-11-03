@@ -2,18 +2,23 @@ import ExcelJS from 'exceljs'
 import type { Lang, Snapshot } from '../types'
 import { master, effective, codeScore, effectiveImpact, assigneeOf, rollup, sortIds, subById, pillarById } from '../store/scoring'
 
-const H = (ar: string, en: string) => `${ar} / ${en}`
-const SN = (ar: string, en: string) => `${ar} - ${en}`.slice(0, 31)
-const STATUS: Record<string, string> = { yes: 'نعم / Yes', partial: 'جزئي / Partial', no: 'لا / No', na: 'لا ينطبق / N/A' }
-const STATE: Record<string, string> = { none: 'لم يبدأ / Not started', draft: 'مسودة / Draft', submitted: 'مُرسل / Submitted', returned: 'مُعاد / Returned', approved: 'معتمد / Approved' }
-const IMP: Record<string, string> = { high: 'عالي / High', medium: 'متوسط / Medium', low: 'منخفض / Low', none: 'غير محدد / Not specified' }
+let LANG: Lang = 'ar'
+const H = (ar: string, en: string) => LANG === 'ar' ? ar : en
+const SN = (ar: string, en: string) => H(ar, en).slice(0, 31)
+const STATUS_T: Record<string, [string, string]> = { yes: ['نعم', 'Yes'], partial: ['جزئي', 'Partial'], no: ['لا', 'No'], na: ['لا ينطبق', 'N/A'] }
+const STATE_T: Record<string, [string, string]> = { none: ['لم يبدأ', 'Not started'], draft: ['مسودة', 'Draft'], submitted: ['مُرسل', 'Submitted'], returned: ['مُعاد', 'Returned'], approved: ['معتمد', 'Approved'] }
+const IMP_T: Record<string, [string, string]> = { high: ['عالي', 'High'], medium: ['متوسط', 'Medium'], low: ['منخفض', 'Low'], none: ['غير محدد', 'Not specified'] }
+const STATUS = new Proxy({} as Record<string, string>, { get: (_, k: string) => H(...STATUS_T[k]) })
+const STATE = new Proxy({} as Record<string, string>, { get: (_, k: string) => H(...STATE_T[k]) })
+const IMP = new Proxy({} as Record<string, string>, { get: (_, k: string) => H(...IMP_T[k]) })
 
 export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang) {
+  LANG = lang
   const cfg = snap.config; const cycle = cfg.cycles.find(c => c.id === cycleId)
   const wb = new ExcelJS.Workbook(); wb.creator = 'UAE Code Self-Assessment Tool'; wb.created = new Date()
   const rtl = lang === 'ar'
-  const name = (id: string | null) => { const u = cfg.users.find(x => x.id === id); return u ? `${u.name_ar} / ${u.name_en}` : '' }
-  const proj = (id?: string | null) => { const p = cfg.projects.find(x => x.id === id); return p ? p.name_ar + (p.name_en ? ' / ' + p.name_en : '') : '' }
+  const name = (id: string | null) => { const u = cfg.users.find(x => x.id === id); return u ? (lang === 'ar' ? u.name_ar : u.name_en) : '' }
+  const proj = (id?: string | null) => { const p = cfg.projects.find(x => x.id === id); return p ? (lang === 'ar' ? p.name_ar : (p.name_en || p.name_ar)) : '' }
   const style = (ws: ExcelJS.Worksheet, widths: number[]) => {
     ws.views = [{ rightToLeft: rtl, state: 'frozen', ySplit: 1 }]
     ws.getRow(1).font = { bold: true, color: { argb: 'FFFFFFFF' } }; ws.getRow(1).fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFA7812D' } }
@@ -27,8 +32,8 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
   const s = wb.addWorksheet(SN('الملخص', 'Summary')); s.views = [{ rightToLeft: rtl }]
   s.columns = [{ width: 42 }, { width: 22 }, { width: 22 }]
   s.addRows([
-    [H('الجهة', 'Entity'), cfg.entity.name_ar, cfg.entity.name_en],
-    [H('الدورة', 'Cycle'), cycle?.name || cycleId, cycle?.status || ''],
+    [H('الجهة', 'Entity'), lang === 'ar' ? cfg.entity.name_ar : cfg.entity.name_en],
+    [H('الدورة', 'Cycle'), cycle ? (lang === 'ar' ? cycle.name : (cycle.name_en || cycle.name)) : cycleId, cycle ? H({ planning: 'تخطيط', open: 'مفتوحة', review: 'قيد المراجعة', closed: 'مغلقة' }[cycle.status], cycle.status) : ''],
     [H('تاريخ التصدير', 'Exported'), new Date().toISOString().slice(0, 16).replace('T', ' ')],
     [],
     ['', H('المعتمد فقط', 'Approved only'), H('كل ما أُجيب عنه', 'All answered')],
@@ -41,7 +46,7 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
     [H('الفجوات', 'Gaps'), all.gaps, allW.gaps],
     [H('طلبات التوضيح المفتوحة', 'Open clarification requests'), allW.clarifications, ''],
     [],
-    [H('قاعدة الاحتساب', 'Scoring rule'), `${H('نعم', 'Yes')}=${cfg.settings.scores.yes}, ${H('جزئي', 'Partial')}=${cfg.settings.scores.partial}, ${H('لا', 'No')}=${cfg.settings.scores.no}`, `${H('الأوزان', 'Weights')}: H=${cfg.settings.weights.high} M=${cfg.settings.weights.medium} L=${cfg.settings.weights.low}`],
+    [H('قاعدة الاحتساب', 'Scoring rule'), `${H('نعم', 'Yes')}=${cfg.settings.scores.yes}, ${H('جزئي', 'Partial')}=${cfg.settings.scores.partial}, ${H('لا', 'No')}=${cfg.settings.scores.no}`, `${H('الأوزان', 'Weights')}: ${H('عالي', 'High')}=${cfg.settings.weights.high}, ${H('متوسط', 'Medium')}=${cfg.settings.weights.medium}, ${H('منخفض', 'Low')}=${cfg.settings.weights.low}`],
   ])
   s.getColumn(1).font = { bold: true }
 
@@ -49,14 +54,14 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
   const p = wb.addWorksheet(SN('المحاور', 'Pillars'))
   p.addRow(['#', H('المحور', 'Pillar'), H('أكواد', 'Codes'), H('مُجاب', 'Answered'), H('معتمد', 'Approved'), H('الجاهزية', 'Readiness'), H('الامتثال (معتمد)', 'Compliance (approved)'), H('الامتثال (الكل)', 'Compliance (all)'), H('فجوات', 'Gaps')])
   for (const pl of master.pillars) { const r = rollup(snap, cycleId, master.codes.filter(c => c.pillar === pl.id), true), rw = rollup(snap, cycleId, master.codes.filter(c => c.pillar === pl.id), false)
-    p.addRow([pl.id, `${pl.name_ar} / ${pl.name_en}`, r.total, rw.answered, r.approved, r.total ? Math.round(r.approved / r.total * 100) / 100 : 0, r.score === null ? '' : Math.round(r.score) / 100, rw.score === null ? '' : Math.round(rw.score) / 100, rw.gaps]) }
+    p.addRow([pl.id, lang === 'ar' ? pl.name_ar : pl.name_en, r.total, rw.answered, r.approved, r.total ? Math.round(r.approved / r.total * 100) / 100 : 0, r.score === null ? '' : Math.round(r.score) / 100, rw.score === null ? '' : Math.round(rw.score) / 100, rw.gaps]) }
   style(p, [6, 50, 10, 10, 10, 12, 16, 16, 10]); ['F', 'G', 'H'].forEach(c => { p.getColumn(c).numFmt = '0%' })
 
   // Sub-pillars
   const sp = wb.addWorksheet(SN('المحاور الفرعية', 'Sub-pillars'))
   sp.addRow(['#', H('المحور', 'Pillar'), H('المحور الفرعي', 'Sub-pillar'), H('أكواد', 'Codes'), H('مُجاب', 'Answered'), H('معتمد', 'Approved'), H('الامتثال (معتمد)', 'Compliance (approved)'), H('الامتثال (الكل)', 'Compliance (all)'), H('فجوات', 'Gaps')])
   for (const sb of master.subpillars) { const r = rollup(snap, cycleId, master.codes.filter(c => c.sub === sb.id), true), rw = rollup(snap, cycleId, master.codes.filter(c => c.sub === sb.id), false)
-    sp.addRow([sb.id, pillarById.get(sb.pillar)!.name_ar, `${sb.name_ar} / ${sb.name_en}`, r.total, rw.answered, r.approved, r.score === null ? '' : Math.round(r.score) / 100, rw.score === null ? '' : Math.round(rw.score) / 100, rw.gaps]) }
+    sp.addRow([sb.id, lang === 'ar' ? pillarById.get(sb.pillar)!.name_ar : pillarById.get(sb.pillar)!.name_en, lang === 'ar' ? sb.name_ar : sb.name_en, r.total, rw.answered, r.approved, r.score === null ? '' : Math.round(r.score) / 100, rw.score === null ? '' : Math.round(rw.score) / 100, rw.gaps]) }
   style(sp, [7, 28, 50, 10, 10, 10, 16, 16, 10]); ['G', 'H'].forEach(c => { sp.getColumn(c).numFmt = '0%' })
 
   // Codes (one row per requirement) — the spine of the original draft template, extended
@@ -98,14 +103,14 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
   // Mapping
   const m = wb.addWorksheet(SN('ربط المشاريع', 'Project mapping'))
   m.addRow([H('الكود', 'Code'), H('المحور الفرعي', 'Sub-pillar'), H('المشاريع المرتبطة', 'Linked projects'), H('المُسند إليه', 'Assignee'), H('إسناد يدوي', 'Manual override')])
-  for (const c of [...master.codes].sort((a, b) => sortIds(a.id, b.id))) m.addRow([c.id, subById.get(c.sub)!.name_ar, (cfg.mapping[c.id] || []).map(proj).join('\n'), name(assigneeOf(c.id, cycleId, cfg)), cfg.overrides[cycleId]?.[c.id] ? '✓' : ''])
+  for (const c of [...master.codes].sort((a, b) => sortIds(a.id, b.id))) m.addRow([c.id, lang === 'ar' ? subById.get(c.sub)!.name_ar : subById.get(c.sub)!.name_en, (cfg.mapping[c.id] || []).map(proj).join('\n'), name(assigneeOf(c.id, cycleId, cfg)), cfg.overrides[cycleId]?.[c.id] ? '✓' : ''])
   style(m, [8, 34, 50, 24, 10])
 
   // Users
   const u = wb.addWorksheet(SN('المستخدمون', 'Users'))
-  u.addRow([H('الاسم', 'Name'), 'Name', H('الدور', 'Role'), H('المشاريع', 'Projects'), H('أكواد مُسندة', 'Assigned codes')])
-  for (const us of cfg.users.filter(x => x.active)) u.addRow([us.name_ar, us.name_en, us.role, cfg.projects.filter(pr => pr.ownerId === us.id).map(pr => pr.name_ar).join('\n'), master.codes.filter(c => assigneeOf(c.id, cycleId, cfg) === us.id).length])
-  style(u, [24, 24, 12, 50, 12])
+  u.addRow([H('الاسم', 'Name'), H('الدور', 'Role'), H('المشاريع', 'Projects'), H('أكواد مُسندة', 'Assigned codes')])
+  for (const us of cfg.users.filter(x => x.active)) u.addRow([lang === 'ar' ? us.name_ar : us.name_en, H({ admin: 'مدير', evaluator: 'مقيّم', viewer: 'مطّلع' }[us.role], us.role), cfg.projects.filter(pr => pr.ownerId === us.id).map(pr => proj(pr.id)).join('\n'), master.codes.filter(c => assigneeOf(c.id, cycleId, cfg) === us.id).length])
+  style(u, [28, 12, 50, 12])
 
   const buf = await wb.xlsx.writeBuffer()
   const blob = new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' })
