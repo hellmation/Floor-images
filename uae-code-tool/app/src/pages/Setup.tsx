@@ -4,22 +4,7 @@ import { hasFolderApi, LocalAdapter } from '../store/storage'
 import { Icon } from '../components/icons'
 import { Avatar } from '../components/ui'
 import lockup from '../assets/brand/fta-lockup.png'
-
-function Ribbons() {
-  return <svg className="ribbons" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stopColor="var(--accent)" stopOpacity=".0" /><stop offset=".5" stopColor="var(--accent)" stopOpacity=".35" /><stop offset="1" stopColor="var(--accent)" stopOpacity="0" /></linearGradient>
-      <linearGradient id="g2" x1="0" x2="1"><stop offset="0" stopColor="var(--ok)" stopOpacity="0" /><stop offset=".5" stopColor="var(--ok)" stopOpacity=".22" /><stop offset="1" stopColor="var(--ok)" stopOpacity="0" /></linearGradient>
-      <linearGradient id="g3" x1="0" x2="1"><stop offset="0" stopColor="var(--bad)" stopOpacity="0" /><stop offset=".5" stopColor="var(--bad)" stopOpacity=".16" /><stop offset="1" stopColor="var(--bad)" stopOpacity="0" /></linearGradient>
-      <filter id="blur"><feGaussianBlur stdDeviation="18" /></filter>
-    </defs>
-    <g filter="url(#blur)" fill="none" strokeWidth="70" strokeLinecap="round">
-      <path d="M-100 650 C 300 400, 700 900, 1100 500 S 1700 300, 1800 450" stroke="url(#g1)" />
-      <path d="M-100 250 C 400 100, 600 600, 1000 300 S 1500 200, 1750 150" stroke="url(#g2)" />
-      <path d="M-50 820 C 500 700, 900 1000, 1300 700 S 1650 650, 1750 750" stroke="url(#g3)" />
-    </g>
-  </svg>
-}
+import { Field } from '../components/Field'
 
 export default function Setup() {
   const { t, lang, setLang, theme, setTheme, snap, loading, error, connectFolder, reconnect, useLocal, needsReconnect, setUserId, adapter, refresh } = useApp()
@@ -30,7 +15,8 @@ export default function Setup() {
   const doImport = async (f: File) => { if (adapter instanceof LocalAdapter) { adapter.importAll(await f.text()); await refresh() } }
   return (
     <div className="landing">
-      <Ribbons />
+      <Field intensity={0.75} />
+      <div className="veil" />
       <div className="absolute top-4 inset-inline-end-4 flex gap-2" style={{ insetInlineEnd: '1rem' }}>
         <div className="seg"><button aria-pressed={lang === 'ar'} onClick={() => setLang('ar')}>عربي</button><button aria-pressed={lang === 'en'} onClick={() => setLang('en')}>EN</button></div>
         <div className="seg"><button aria-pressed={theme === 'light'} onClick={() => setTheme('light')}><Icon name="sun" /></button><button aria-pressed={theme === 'dark'} onClick={() => setTheme('dark')}><Icon name="moon" /></button></div>

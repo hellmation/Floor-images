@@ -2,8 +2,9 @@ import { useMemo } from 'react'
 import { useApp } from '../store/state'
 import { master, rollup, assigneeOf, standings, effective } from '../store/scoring'
 import { pick } from '../i18n'
-import { Bar, Ring, PageHeader, Avatar, fmtPct, tone, ringTone } from '../components/ui'
+import { Bar, Ring, Avatar, fmtPct, tone, ringTone } from '../components/ui'
 import { Icon } from '../components/icons'
+import { Field } from '../components/Field'
 
 export default function Home() {
   const { t, lang, snap, user, cycleId } = useApp(); const cfg = snap!.config; const cy = cycleId!
@@ -29,7 +30,22 @@ export default function Home() {
     { n: acts.drafts, label: t('continueDraft'), href: '#/my?f=draft', icon: 'edit', kind: 'warn' }, { n: acts.unanswered, label: t('unanswered'), href: '#/my?f=none', icon: 'tasks', kind: 'muted' }] as Act[]).filter(a => a.n > 0)
   return (
     <div>
-      <PageHeader eyebrow={cname} title={`${t('welcome')}, ${lang === 'ar' ? user!.name_ar : user!.name_en}`} sub={t('appTagline')} actions={<a className="btn btn-primary no-underline" href="#/my"><Icon name="tasks" />{t('goToMyWork')} ({mine.total})</a>} />
+      <section className="hero mb-4">
+        <Field intensity={1} />
+        <div className="veil" />
+        <div className="hero-in">
+          <div className="min-w-0 flex-1">
+            <div className="eyebrow mb-1">{cname}</div>
+            <h1 className="page-title text-3xl md:text-4xl">{`${t('welcome')}, ${lang === 'ar' ? user!.name_ar : user!.name_en}`}</h1>
+            <p className="page-sub max-w-2xl">{t('appTagline')}</p>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="text-end text-sm hidden sm:block"><div className="text-muted">{t('readiness')}</div><div className="num font-bold text-lg">{fmtPct(all.total ? (all.approved / all.total) * 100 : 0)}</div></div>
+            <div className="text-end text-sm hidden sm:block"><div className="text-muted">{t('compliance')}</div><div className="num font-bold text-lg">{fmtPct(all.score)}</div></div>
+            <a className="btn btn-primary no-underline !py-2.5 !px-5" href="#/my"><Icon name="tasks" />{t('goToMyWork')} ({mine.total})</a>
+          </div>
+        </div>
+      </section>
       <div className="grid lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2 flex flex-col gap-4">
           <section className="card p-4">
