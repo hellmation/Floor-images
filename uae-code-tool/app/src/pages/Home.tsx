@@ -22,6 +22,7 @@ export default function Home() {
   const elapsed = cycle ? Math.min(100, Math.max(0, ((Date.now() - new Date(cycle.start).getTime()) / 86400000) / total * 100)) : 0
   const cname = cycle ? (lang === 'ar' ? cycle.name : (cycle.name_en || cycle.name)) : ''
   const uname = (id: string) => { const u = cfg.users.find(x => x.id === id)!; return lang === 'ar' ? u.name_ar : u.name_en }
+  const photo = (id: string) => cfg.users.find(x => x.id === id)?.photo
   type Act = { n: number; label: string; href: string; icon: 'alert' | 'edit' | 'question' | 'tasks'; kind: 'bad' | 'warn' | 'flag' | 'muted' }
   const actions: Act[] = ([
     { n: acts.returned, label: t('returnedToYou'), href: '#/my?f=returned', icon: 'alert', kind: 'bad' }, { n: acts.replies, label: t('awaitingYourReply'), href: '#/my?f=clarify', icon: 'question', kind: 'flag' },
@@ -54,7 +55,7 @@ export default function Home() {
           </section>
           <section className="card p-4">
             <div className="flex items-center justify-between mb-2"><h2 className="m-0 text-base font-semibold flex items-center gap-2"><Icon name="trophy" className="text-accent-ink" />{t('standings')}</h2><a href="#/standings" className="text-sm">{t('viewAll')}</a></div>
-            {table.length === 0 ? <div className="text-sm text-muted">—</div> : <ol className="m-0 p-0 list-none flex flex-col gap-1">{table.slice(0, 5).map(s => <li key={s.userId} className={`flex items-center gap-2 text-sm rounded-lg px-2 py-1.5 ${s.userId === user!.id ? 'bg-accent-soft' : ''}`}><span className="num w-6 text-center font-bold">{s.rank <= 3 ? ['🥇', '🥈', '🥉'][s.rank - 1] : s.rank}</span><Avatar name={uname(s.userId)} /><span className="flex-1 min-w-0 truncate font-medium">{uname(s.userId)}</span><span className="num text-muted text-xs">{s.approved}/{s.total}</span><span className="num font-bold w-8 text-end">{Math.round(s.points)}</span></li>)}</ol>}
+            {table.length === 0 ? <div className="text-sm text-muted">—</div> : <ol className="m-0 p-0 list-none flex flex-col gap-1">{table.slice(0, 5).map(s => <li key={s.userId} className={`flex items-center gap-2 text-sm rounded-lg px-2 py-1.5 ${s.userId === user!.id ? 'bg-accent-soft' : ''}`}><span className="num w-6 text-center font-bold">{s.rank <= 3 ? ['🥇', '🥈', '🥉'][s.rank - 1] : s.rank}</span><Avatar name={uname(s.userId)} photo={photo(s.userId)} /><span className="flex-1 min-w-0 truncate font-medium">{uname(s.userId)}</span><span className="num text-muted text-xs">{s.approved}/{s.total}</span><span className="num font-bold w-8 text-end">{Math.round(s.points)}</span></li>)}</ol>}
           </section>
         </div>
       </div>

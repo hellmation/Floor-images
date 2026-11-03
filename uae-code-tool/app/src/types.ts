@@ -14,7 +14,7 @@ export interface Code {
 }
 export interface Master { pillars: Pillar[]; subpillars: SubPillar[]; codes: Code[] }
 
-export interface User { id: string; name_ar: string; name_en: string; role: Role; email?: string; active: boolean }
+export interface User { id: string; name_ar: string; name_en: string; role: Role; email?: string; active: boolean; photo?: string }
 export interface Project { id: string; name_ar: string; name_en?: string; ownerId: string | null; active: boolean }
 export interface Cycle { id: string; name: string; name_en?: string; start: string; end: string; due: string; status: CycleStatus; prefillFrom?: string | null }
 export interface Settings {

@@ -50,8 +50,9 @@ export function Empty({ icon = 'sparkle', title, children }: { icon?: IconName; 
   const { t } = useApp()
   return <div className="card p-10 text-center flex flex-col items-center gap-2"><span className="inline-grid place-items-center w-14 h-14 rounded-full bg-accent-soft text-accent-ink"><Icon name={icon} style={{ width: 26, height: 26 }} /></span><div className="font-semibold">{title || t('noItems')}</div>{children && <div className="text-muted text-sm max-w-md">{children}</div>}</div>
 }
-export function Avatar({ name, size }: { name: string; size?: 'lg' }) {
+export function Avatar({ name, photo, size }: { name: string; photo?: string | null; size?: 'lg' | 'xl' }) {
   const parts = name.trim().split(/\s+/); const ini = (parts[0]?.[0] || '') + (parts[1]?.[0] || '')
+  if (photo) return <img src={photo} alt="" className={`avatar ${size || ''}`} style={{ objectFit: 'cover' }} />
   return <span className={`avatar ${size || ''}`} aria-hidden="true">{ini}</span>
 }
 export function Modal({ open, onClose, title, children, footer }: { open: boolean; onClose: () => void; title: ReactNode; children: ReactNode; footer?: ReactNode }) {

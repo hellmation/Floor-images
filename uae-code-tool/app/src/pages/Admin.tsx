@@ -2,10 +2,16 @@ import { useState } from 'react'
 import { useApp } from '../store/state'
 import { master, uid } from '../store/scoring'
 import { pick } from '../i18n'
-import { PageHeader, fmtDate, useToast } from '../components/ui'
+import { Avatar, PageHeader, fmtDate, useToast } from '../components/ui'
 import { Icon } from '../components/icons'
 import type { Impact, Project, Role, User } from '../types'
 
+function toDataUrl(file: File): Promise<string> {
+  return new Promise((res, rej) => { const img = new Image(); const url = URL.createObjectURL(file)
+    img.onload = () => { const s = 192, c = document.createElement('canvas'); c.width = s; c.height = s; const x = c.getContext('2d')!; const m = Math.min(img.width, img.height)
+      x.drawImage(img, (img.width - m) / 2, (img.height - m) / 2, m, m, 0, 0, s, s); URL.revokeObjectURL(url); res(c.toDataURL('image/jpeg', 0.82)) }
+    img.onerror = rej; img.src = url })
+}
 export default function Admin() {
   const { t, lang, snap, saveConfig } = useApp(); const cfg = snap!.config
   const toast = useToast()
@@ -20,10 +26,10 @@ export default function Admin() {
   return (
     <div>
       <PageHeader title={t('admin')} actions={<div className="seg">{(['users', 'projects', 'settings', 'audit'] as const).map(k => <button key={k} aria-pressed={tab === k} onClick={() => setTab(k)}><Icon name={k === 'users' ? 'users' : k === 'projects' ? 'map' : k === 'settings' ? 'settings' : 'clock'} />{k === 'users' ? t('users') : k === 'projects' ? t('projects') : k === 'settings' ? t('settings') : t('audit')}</button>)}</div>} />
-      {tab === 'users' && <div className="card overflow-x-auto"><table className="tbl"><thead><tr><th>{t('nameAr')}</th><th>{t('nameEn')}</th><th>{t('role')}</th><th>{t('active')}</th></tr></thead><tbody>
-        {cfg.users.map(u => <tr key={u.id}><td><input className="input" value={u.name_ar} onChange={e => updUser({ ...u, name_ar: e.target.value })} /></td><td><input className="input" dir="ltr" value={u.name_en} onChange={e => updUser({ ...u, name_en: e.target.value })} /></td>
+      {tab === 'users' && <div className="card overflow-x-auto"><table className="tbl"><thead><tr><th></th><th>{t('nameAr')}</th><th>{t('nameEn')}</th><th>{t('role')}</th><th>{t('active')}</th></tr></thead><tbody>
+        {cfg.users.map(u => <tr key={u.id}><td><label className="cursor-pointer inline-block" title={t('photo')}><Avatar name={lang === 'ar' ? u.name_ar : u.name_en} photo={u.photo} size="lg" /><input type="file" accept="image/*" hidden onChange={e => { const f = e.target.files?.[0]; if (f) toDataUrl(f).then(photo => updUser({ ...u, photo })) }} /></label></td><td><input className="input" value={u.name_ar} onChange={e => updUser({ ...u, name_ar: e.target.value })} /></td><td><input className="input" dir="ltr" value={u.name_en} onChange={e => updUser({ ...u, name_en: e.target.value })} /></td>
           <td><select className="select" value={u.role} onChange={e => updUser({ ...u, role: e.target.value as Role })}>{roleOpts}</select></td><td><input type="checkbox" checked={u.active} onChange={e => updUser({ ...u, active: e.target.checked })} /></td></tr>)}
-        <tr className="!bg-surface-2"><td><input className="input" placeholder={t('nameAr')} value={nu.name_ar} onChange={e => setNu({ ...nu, name_ar: e.target.value })} /></td><td><input className="input" dir="ltr" placeholder={t('nameEn')} value={nu.name_en} onChange={e => setNu({ ...nu, name_en: e.target.value })} /></td>
+        <tr className="!bg-surface-2"><td></td><td><input className="input" placeholder={t('nameAr')} value={nu.name_ar} onChange={e => setNu({ ...nu, name_ar: e.target.value })} /></td><td><input className="input" dir="ltr" placeholder={t('nameEn')} value={nu.name_en} onChange={e => setNu({ ...nu, name_en: e.target.value })} /></td>
           <td><select className="select" value={nu.role} onChange={e => setNu({ ...nu, role: e.target.value as Role })}>{roleOpts}</select></td>
           <td><button className="btn btn-primary btn-sm" disabled={!nu.name_ar.trim()} onClick={() => { commit({ ...cfg, users: [...cfg.users, { id: 'u-' + uid(), name_ar: nu.name_ar.trim(), name_en: nu.name_en.trim() || nu.name_ar.trim(), role: nu.role, active: true }] }, 'user add'); setNu({ name_ar: '', name_en: '', role: 'evaluator' }) }}><Icon name="plus" />{t('add')}</button></td></tr>
       </tbody></table></div>}

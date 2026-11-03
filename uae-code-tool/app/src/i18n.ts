@@ -2,7 +2,7 @@ import type { Lang } from './types'
 
 const dict = {
   appName: ['بطولة كود الإمارات', 'UAE Code Championship'],
-  standings: ['الترتيب', 'Standings'], work: ['العمل', 'Work'], insights: ['المؤشرات', 'Insights'], administration: ['الإدارة', 'Administration'],
+  standings: ['الترتيب', 'Standings'], photo: ['الصورة', 'Photo'], work: ['العمل', 'Work'], insights: ['المؤشرات', 'Insights'], administration: ['الإدارة', 'Administration'],
   searchHint: ['ابحث عن كود أو صفحة…', 'Search a code or a page…'], exportDone: ['تم إنشاء ملف Excel', 'Excel workbook generated'], refreshed: ['تم التحديث', 'Refreshed'],
   developedBy: ['تطوير فريق تطوير الخدمات · 2026', 'Developed by the Service Development Team · 2026'], internalTool: ['أداة داخلية · فريق تطوير الخدمات', 'Internal tool · Service Development Team'],
   landingLine: ['تقييم واضح. أدلة موثقة. ترتيب شفاف.', 'Clear assessment. Documented evidence. Transparent standings.'],
