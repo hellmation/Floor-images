@@ -56,7 +56,7 @@ export function defaultConfig(): Config {
     users, projects, mapping: seedMapping(), overrides: {},
     cycles: [{ id: '2026-Q4', name: 'الربع الرابع 2026 — خط الأساس', name_en: '2026 Q4 — Baseline', start: '2026-10-01', end: '2026-12-31', due: '2026-12-15', status: 'open', prefillFrom: null }],
     currentCycleId: '2026-Q4',
-    settings: { scores: { yes: 100, partial: 50, no: 0 }, weights: { high: 3, medium: 2, low: 1, none: 2 }, defaultAssigneeId: null, requireEvidence: true },
+    settings: { scores: { yes: 100, partial: 50, no: 0 }, weights: { high: 3, medium: 2, low: 1, none: 2 }, defaultAssigneeId: 'u-ahmed-helmy', requireEvidence: true },
     impactOverrides: {},
     updatedAt: new Date().toISOString(),
   }
@@ -67,7 +67,7 @@ export function migrateConfig(c: Config): Config {
   if ((c.version || 1) === 3) {
     const { projects } = seedUsersAndProjects()
     for (const sp of projects) { const cur = c.projects.find(x => x.id === sp.id); if (cur) { cur.name_ar = sp.name_ar; cur.name_en = sp.name_en } else c.projects.push(sp) }
-    c.mapping = seedMapping(); c.version = 4; return c
+    c.mapping = seedMapping(); if (!c.settings.defaultAssigneeId) c.settings.defaultAssigneeId = 'u-ahmed-helmy'; c.version = 4; return c
   }
   if ((c.version || 1) >= 2) { c.mapping = seedMapping(); c.version = 4; return migrateConfig(c) }
   const { users } = seedUsersAndProjects()
