@@ -50,6 +50,30 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
     return { c, e, a, imp, w, cnt, answered, score, links, primary, owner, evid, clar, assignee: assigneeOf(c.id, cycleId, cfg) }
   })
 
+  /* ---------- 0. Tracking sheet: the original template's columns plus management columns ---------- */
+  {
+    const ws = wb.addWorksheet(SN('المتابعة', 'Tracking')); ws.views = [{ rightToLeft: rtl, state: 'frozen', ySplit: 1 }]
+    const cols: { h: [string, string]; w: number; c?: boolean; fmt?: string }[] = [
+      { h: ['#', '#'], w: 4, c: true }, { h: ['المحور', 'Pillar'], w: 22 }, { h: ['#', '#'], w: 6, c: true }, { h: ['المحور الفرعي', 'Sub-pillar'], w: 24 }, { h: ['#', '#'], w: 7, c: true }, { h: ['المعيار', 'Code'], w: 55 }, { h: ['مستوى الأثر', 'Impact'], w: 10, c: true },
+      { h: ['#', '#'], w: 4, c: true }, { h: ['المتطلب', 'Requirement'], w: 45 }, { h: ['معيار الرصد', 'Monitoring criterion'], w: 40 }, { h: ['التقييم', 'Evaluation'], w: 11, c: true }, { h: ['نتائج الرصد / الدليل', 'Monitoring result / evidence'], w: 40 }, { h: ['عدد الأدلة', 'Evidence count'], w: 8, c: true },
+      { h: ['المسؤول عن التقييم', 'Responsible evaluator'], w: 20 }, { h: ['المشروع', 'Project'], w: 30 }, { h: ['مالك المشروع', 'Project owner'], w: 18 }, { h: ['حالة الكود', 'Code state'], w: 12, c: true }, { h: ['نتيجة الكود', 'Code score'], w: 9, c: true, fmt: NUM },
+      { h: ['المراجع', 'Reviewer'], w: 16 }, { h: ['تاريخ آخر تحديث', 'Last updated'], w: 16, c: true, fmt: DATE }, { h: ['يحتاج توضيح', 'Needs clarification'], w: 9, c: true }, { h: ['ملاحظات', 'Notes'], w: 30 },
+    ]
+    cols.forEach((c, i) => { const cell = ws.getCell(1, i + 1); cell.value = H(...c.h); cell.font = { bold: true, color: { argb: 'FFFFFFFF' } }; cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFA7812D' } }; cell.alignment = { vertical: 'middle', horizontal: 'center', wrapText: true }
+      const col = ws.getColumn(i + 1); col.width = c.w; col.alignment = { wrapText: true, vertical: 'top', horizontal: c.c ? 'center' : (rtl ? 'right' : 'left') }; if (c.fmt) col.numFmt = c.fmt })
+    ws.getRow(1).height = 32
+    for (const f of facts) { const sb = subById.get(f.c.sub)!, pl = pillarById.get(f.c.pillar)!; const paired = f.c.criteria.length === f.c.requirements.length
+      const owners = [...new Set(f.links.map(pid => cfg.projects.find(p => p.id === pid)?.ownerId).filter(Boolean))].map(id => uname(id as string)).join(' | ')
+      f.c.requirements.forEach((r, i) => { const it = f.a?.items[String(r.n)]; const crit = paired ? txt(f.c.criteria[i]) : (i === 0 ? f.c.criteria.map(x => '• ' + txt(x)).join('\n') : '')
+        ws.addRow([Number(pl.id), nm(pl), sb.id, nm(sb), f.c.id, desc(f.c), L(IMP_T, f.imp), r.n, txt(r), crit, L(STATUS_T, it?.status),
+          [(it?.evidence || []).map(ev => ev.title ? `${ev.title}: ${ev.url}` : ev.url).join('\n'), it?.status === 'na' && it.justification ? `${H('مبرر عدم الانطباق', 'N/A justification')}: ${it.justification}` : ''].filter(Boolean).join('\n'), it?.evidence?.length || 0,
+          uname(f.assignee) || H('الفريق الأساسي (غير مُسند بعد)', 'Core team (not assigned yet)'), f.links.map(pname).join(' | '), owners, L(STATE_T, f.e.state), i === 0 && f.score !== null ? Math.round(f.score * 10) / 10 : null,
+          uname(f.e.review?.reviewedBy), iso(f.a?.updatedAt), it?.clarify?.flag ? H('نعم', 'Yes') : '', [it?.note, it?.clarify?.flag ? `${H('سؤال', 'Question')}: ${it.clarify.question}` : '', f.e.review?.comment ? `${H('المراجع', 'Reviewer')}: ${f.e.review.comment}` : ''].filter(Boolean).join(' | ')]) }) }
+    const last = ws.rowCount
+    ws.autoFilter = { from: { row: 1, column: 1 }, to: { row: 1, column: cols.length } }
+    for (let r = 2; r <= last; r++) { ws.getCell(`K${r}`).dataValidation = { type: 'list', allowBlank: true, formulae: [`"${['yes', 'partial', 'no', 'na'].map(k => L(STATUS_T, k)).join(',')}"`] }; ws.getCell(`Q${r}`).dataValidation = { type: 'list', allowBlank: true, formulae: [`"${['none', 'draft', 'submitted', 'returned', 'approved'].map(k => L(STATE_T, k)).join(',')}"`] } }
+  }
+
   /* ---------- 1. Summary ---------- */
   const all = rollup(snap, cycleId, master.codes, true), allW = rollup(snap, cycleId, master.codes, false)
   const s = wb.addWorksheet(SN('الملخص', 'Summary')); s.views = [{ rightToLeft: rtl }]
