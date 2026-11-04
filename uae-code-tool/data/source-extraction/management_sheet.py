@@ -19,7 +19,7 @@ excl = S['excludeIfText']
 mapping = collections.defaultdict(list)
 for pid, p in S['projects'].items():
     for c in M['codes']:
-        if c['sub'] in p['subs'] and not any(x in c['desc_ar'] for x in excl): mapping[c['id']].append(pid)
+        if (c['sub'] in p['subs'] or c['id'] in p.get('codes', [])) and not any(x in c['desc_ar'] for x in excl): mapping[c['id']].append(pid)
 CORE = 'الفريق الأساسي (غير مُسند بعد)'
 def assignee(cid):
     for pid in mapping.get(cid, []):
