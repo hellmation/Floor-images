@@ -212,36 +212,18 @@
    "en": "Call status",
    "ar": "حالة المكالمة",
    "options": [
-    "Answered – Informed",
-    "Answered – Confirmed",
-    "Answered – Partially Confirmed",
-    "Answered – Clarified",
-    "Clarification – Return Required",
-    "Not Answered",
-    "Busy / Line Engaged",
-    "Switched Off / Unreachable",
-    "Refused to Take the Call",
-    "Not the Concerned Person",
-    "Wrong Number / Invalid Number",
-    "Call Back Requested",
-    "Call-back Received",
-    "No Contact (after two attempts)"
+    "Answered",
+    "Not answered",
+    "Busy / unreachable",
+    "Wrong number",
+    "Call back requested"
    ],
    "optionsAr": [
-    "تمت الإجابة – تم الإبلاغ",
-    "تمت الإجابة – تم التأكيد",
-    "تمت الإجابة – تأكيد جزئي",
-    "تمت الإجابة – تم التوضيح",
-    "توضيح – يلزم إعادة الطلب",
+    "تم الرد",
     "لم يتم الرد",
-    "مشغول",
-    "مغلق / لا يمكن الوصول إليه",
-    "رفض استقبال المكالمة",
-    "ليس الشخص المعني",
-    "رقم خاطئ / غير صالح",
-    "طلب معاودة الاتصال",
-    "تم استلام معاودة الاتصال",
-    "تعذّر التواصل (بعد محاولتين)"
+    "مشغول / لا يمكن الوصول",
+    "رقم خاطئ",
+    "طلب معاودة الاتصال"
    ]
   },
   "time": {
