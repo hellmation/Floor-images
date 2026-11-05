@@ -17,9 +17,12 @@ for o in P['owners']:
         pid = 'p%02d' % p['id']; pname[pid] = p['name_ar']; owner_of[pid] = None if o.get('removed') else o['name_ar']; active[pid] = not o.get('removed')
 excl = S['excludeIfText']
 mapping = collections.defaultdict(list)
-for pid, p in S['projects'].items():
-    for c in M['codes']:
-        if (c['sub'] in p['subs'] or c['id'] in p.get('codes', [])) and not any(x in c['desc_ar'] for x in excl): mapping[c['id']].append(pid)
+if S.get('assignments'):
+    for cid, ps in S['assignments'].items(): mapping[cid] = list(ps)
+else:
+    for pid, p in S['projects'].items():
+        for c in M['codes']:
+            if (c['sub'] in p['subs'] or c['id'] in p.get('codes', [])) and not any(x in c['desc_ar'] for x in excl): mapping[c['id']].append(pid)
 CORE = 'أحمد حلمي'  # project manager: unmapped codes are his
 def assignee(cid):
     for pid in mapping.get(cid, []):

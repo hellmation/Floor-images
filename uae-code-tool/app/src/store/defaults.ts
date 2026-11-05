@@ -35,15 +35,14 @@ export function seedUsersAndProjects(): { users: User[]; projects: Project[] } {
 
 /** Code-level mapping derived from the project -> sub-pillar seed. */
 export function seedMapping(): Record<string, string[]> {
+  const seed = mappingSeed as unknown as { assignments?: Record<string, string[]>; projects: Record<string, { subs: string[]; codes?: string[] }>; excludeIfText: string[] }
   const codes = (masterJson as unknown as { codes: { id: string; sub: string; desc_ar: string }[] }).codes
-  const excl = mappingSeed.excludeIfText
   const m: Record<string, string[]> = {}
-  for (const [pid, p] of Object.entries(mappingSeed.projects as Record<string, { subs: string[]; codes?: string[] }>)) {
-    for (const c of codes) {
-      if (!p.subs.includes(c.sub) && !(p.codes || []).includes(c.id)) continue
-      if (excl.some(x => c.desc_ar.includes(x))) continue
-      ;(m[c.id] = m[c.id] || []).push(pid)
-    }
+  if (seed.assignments) { for (const c of codes) { const ps = seed.assignments[c.id]; if (ps && ps.length) m[c.id] = [...ps] } return m }
+  for (const [pid, p] of Object.entries(seed.projects)) for (const c of codes) {
+    if (!p.subs.includes(c.sub) && !(p.codes || []).includes(c.id)) continue
+    if (seed.excludeIfText.some(x => c.desc_ar.includes(x))) continue
+    ;(m[c.id] = m[c.id] || []).push(pid)
   }
   return m
 }
@@ -51,7 +50,7 @@ export function seedMapping(): Record<string, string[]> {
 export function defaultConfig(): Config {
   const { users, projects } = seedUsersAndProjects()
   return {
-    version: 4,
+    version: 5,
     entity: { name_ar: 'الهيئة الاتحادية للضرائب', name_en: 'Federal Tax Authority' },
     users, projects, mapping: seedMapping(), overrides: {},
     cycles: [{ id: '2026-Q4', name: 'الربع الرابع 2026 — خط الأساس', name_en: '2026 Q4 — Baseline', start: '2026-10-01', end: '2026-12-31', due: '2026-12-15', status: 'open', prefillFrom: null }],
@@ -63,7 +62,8 @@ export function defaultConfig(): Config {
 }
 /** Upgrades a config.json written by an older release. */
 export function migrateConfig(c: Config): Config {
-  if ((c.version || 1) >= 4) return c
+  if ((c.version || 1) >= 5) return c
+  if ((c.version || 1) === 4) { c.mapping = seedMapping(); c.version = 5; return c }
   if ((c.version || 1) === 3) {
     const { projects } = seedUsersAndProjects()
     for (const sp of projects) { const cur = c.projects.find(x => x.id === sp.id); if (cur) { cur.name_ar = sp.name_ar; cur.name_en = sp.name_en } else c.projects.push(sp) }
