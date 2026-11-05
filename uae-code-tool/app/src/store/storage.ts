@@ -1,5 +1,5 @@
 import type { AnswersFile, Config, ReviewsFile, AuditEntry, Snapshot } from '../types'
-import { defaultConfig, emptyReviews, migrateConfig } from './defaults'
+import { defaultConfig, emptyReviews, migrateConfig, ensureAdmin } from './defaults'
 
 /** A storage adapter persists the shared state. Evaluators write only their own answers file;
  *  admins write config, reviews and audit. The folder adapter uses the File System Access API;
@@ -57,6 +57,7 @@ export class FolderAdapter implements StorageAdapter {
     let config = await readJson<Config>(d, 'config.json')
     if (!config) { config = defaultConfig(); await writeJson(d, 'config.json', config) }
     else if ((config.version || 1) < 5) { config = migrateConfig(config); await writeJson(d, 'config.json', config) }
+    if (!config.users.some(u => u.active && u.role === 'admin')) { config = ensureAdmin(config); await writeJson(d, 'config.json', config) }
     const reviews = (await readJson<ReviewsFile>(d, 'reviews.json')) || emptyReviews()
     const audit = (await readJson<AuditEntry[]>(d, 'audit.json')) || []
     const answers: Record<string, AnswersFile> = {}
@@ -81,7 +82,7 @@ export class LocalAdapter implements StorageAdapter {
   kind = 'local' as const
   label = 'local'
   private read(): Snapshot {
-    try { const s = localStorage.getItem(LS); if (s) { const snap = JSON.parse(s) as Snapshot; snap.config = migrateConfig(snap.config); return snap } } catch { /* ignore */ }
+    try { const s = localStorage.getItem(LS); if (s) { const snap = JSON.parse(s) as Snapshot; snap.config = ensureAdmin(migrateConfig(snap.config)); return snap } } catch { /* ignore */ }
     return { config: defaultConfig(), answers: {}, reviews: emptyReviews(), audit: [] }
   }
   private write(s: Snapshot) { try { localStorage.setItem(LS, JSON.stringify(s)) } catch { /* ignore */ } }

@@ -13,7 +13,9 @@ function toDataUrl(file: File): Promise<string> {
     img.onerror = rej; img.src = url })
 }
 export default function Admin() {
-  const { t, lang, snap, saveConfig } = useApp(); const cfg = snap!.config
+  const { t, lang, snap, saveConfig, user } = useApp(); const cfg = snap!.config
+  const admins = cfg.users.filter(u => u.active && u.role === 'admin').length
+  const lastAdmin = (u: User) => u.role === 'admin' && u.active && admins <= 1
   const toast = useToast()
   const [tab, setTab] = useState<'users' | 'projects' | 'settings' | 'audit'>('users')
   const [nu, setNu] = useState({ name_ar: '', name_en: '', role: 'evaluator' as Role })
@@ -28,7 +30,7 @@ export default function Admin() {
       <PageHeader title={t('admin')} actions={<div className="seg">{(['users', 'projects', 'settings', 'audit'] as const).map(k => <button key={k} aria-pressed={tab === k} onClick={() => setTab(k)}><Icon name={k === 'users' ? 'users' : k === 'projects' ? 'map' : k === 'settings' ? 'settings' : 'clock'} />{k === 'users' ? t('users') : k === 'projects' ? t('projects') : k === 'settings' ? t('settings') : t('audit')}</button>)}</div>} />
       {tab === 'users' && <div className="card overflow-x-auto"><table className="tbl"><thead><tr><th></th><th>{t('nameAr')}</th><th>{t('nameEn')}</th><th>{t('role')}</th><th>{t('active')}</th></tr></thead><tbody>
         {cfg.users.map(u => <tr key={u.id}><td><label className="cursor-pointer inline-block" title={t('photo')}><Avatar name={lang === 'ar' ? u.name_ar : u.name_en} photo={u.photo} size="lg" /><input type="file" accept="image/*" hidden onChange={e => { const f = e.target.files?.[0]; if (f) toDataUrl(f).then(photo => updUser({ ...u, photo })) }} /></label></td><td><input className="input" value={u.name_ar} onChange={e => updUser({ ...u, name_ar: e.target.value })} /></td><td><input className="input" dir="ltr" value={u.name_en} onChange={e => updUser({ ...u, name_en: e.target.value })} /></td>
-          <td><select className="select" value={u.role} onChange={e => updUser({ ...u, role: e.target.value as Role })}>{roleOpts}</select></td><td><input type="checkbox" checked={u.active} onChange={e => updUser({ ...u, active: e.target.checked })} /></td></tr>)}
+          <td><select className="select" value={u.role} disabled={lastAdmin(u)} title={lastAdmin(u) ? t('lastAdmin') : undefined} onChange={e => updUser({ ...u, role: e.target.value as Role })}>{roleOpts}</select>{u.id === user!.id && <div className="text-xs text-muted mt-1">{t('thisIsYou')}</div>}</td><td><input type="checkbox" checked={u.active} disabled={lastAdmin(u)} onChange={e => updUser({ ...u, active: e.target.checked })} /></td></tr>)}
         <tr className="!bg-surface-2"><td></td><td><input className="input" placeholder={t('nameAr')} value={nu.name_ar} onChange={e => setNu({ ...nu, name_ar: e.target.value })} /></td><td><input className="input" dir="ltr" placeholder={t('nameEn')} value={nu.name_en} onChange={e => setNu({ ...nu, name_en: e.target.value })} /></td>
           <td><select className="select" value={nu.role} onChange={e => setNu({ ...nu, role: e.target.value as Role })}>{roleOpts}</select></td>
           <td><button className="btn btn-primary btn-sm" disabled={!nu.name_ar.trim()} onClick={() => { commit({ ...cfg, users: [...cfg.users, { id: 'u-' + uid(), name_ar: nu.name_ar.trim(), name_en: nu.name_en.trim() || nu.name_ar.trim(), role: nu.role, active: true }] }, 'user add'); setNu({ name_ar: '', name_en: '', role: 'evaluator' }) }}><Icon name="plus" />{t('add')}</button></td></tr>

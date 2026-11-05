@@ -61,6 +61,13 @@ export function defaultConfig(): Config {
   }
 }
 /** Upgrades a config.json written by an older release. */
+/** Guarantees at least one active admin: restores the project manager, else promotes the first active user. */
+export function ensureAdmin(c: Config): Config {
+  if (c.users.some(u => u.active && u.role === 'admin')) return c
+  const pm = c.users.find(u => u.id === 'u-ahmed-helmy') || c.users.find(u => u.active) || c.users[0]
+  if (pm) { pm.role = 'admin'; pm.active = true }
+  return c
+}
 export function migrateConfig(c: Config): Config {
   if ((c.version || 1) >= 5) return c
   if ((c.version || 1) === 4) { c.mapping = seedMapping(); c.version = 5; return c }
