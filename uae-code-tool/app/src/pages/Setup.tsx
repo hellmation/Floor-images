@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useApp } from '../store/state'
 import { hasFolderApi, LocalAdapter } from '../store/storage'
 import { Icon } from '../components/icons'
@@ -9,20 +9,21 @@ import { Field } from '../components/Field'
 export default function Setup() {
   const { t, lang, setLang, theme, setTheme, snap, loading, error, connectFolder, reconnect, useLocal, needsReconnect, setUserId, adapter, refresh } = useApp()
   const [err, setErr] = useState<string | null>(null)
+  const logoRef = useRef<HTMLImageElement>(null); const cardRef = useRef<HTMLDivElement>(null)
   const api = hasFolderApi()
   const connect = async () => { setErr(null); try { await connectFolder() } catch (e) { if (!String(e).includes('Abort')) setErr(String(e)) } }
   useEffect(() => { if (snap) return; const f = (e: KeyboardEvent) => { if (e.key === 'Enter' && !loading) { if (api && needsReconnect) reconnect(); else if (api) connect() } }; addEventListener('keydown', f); return () => removeEventListener('keydown', f) }) // eslint-disable-line react-hooks/exhaustive-deps
   const doImport = async (f: File) => { if (adapter instanceof LocalAdapter) { adapter.importAll(await f.text()); await refresh() } }
   return (
     <div className="landing">
-      <Field intensity={0.75} />
+      <Field anchorRef={logoRef} parallaxRef={cardRef} />
       <div className="veil" />
       <div className="absolute top-4 inset-inline-end-4 flex gap-2" style={{ insetInlineEnd: '1rem' }}>
         <div className="seg"><button aria-pressed={lang === 'ar'} onClick={() => setLang('ar')}>عربي</button><button aria-pressed={lang === 'en'} onClick={() => setLang('en')}>EN</button></div>
         <div className="seg"><button aria-pressed={theme === 'light'} onClick={() => setTheme('light')}><Icon name="sun" /></button><button aria-pressed={theme === 'dark'} onClick={() => setTheme('dark')}><Icon name="moon" /></button></div>
       </div>
-      <div className="landing-card flex flex-col gap-4">
-        <img src={lockup} alt="Federal Tax Authority" className="h-14 w-auto self-center object-contain" style={{ maxWidth: 260 }} />
+      <div ref={cardRef} className="landing-card flex flex-col gap-4">
+        <img ref={logoRef} src={lockup} alt="Federal Tax Authority" className="h-14 w-auto self-center object-contain" style={{ maxWidth: 260 }} />
         <div className="text-center">
           <div className="eyebrow">{t('internalTool')}</div>
           <h1 className="display text-3xl md:text-4xl m-0 mt-1">{t('appName')}</h1>

@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <div>
       <section className="hero mb-4">
-        <Field intensity={1} />
+        <Field intensity={1.15} />
         <div className="veil" />
         <div className="hero-in">
           <div className="min-w-0 flex-1">
