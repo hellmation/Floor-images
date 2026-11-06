@@ -159,6 +159,7 @@ html[dir="rtl"] .eyebrow { letter-spacing: .02em; text-transform: none; font-siz
 .landing-card { position: relative; width: min(560px, calc(100% - 2rem)); background: color-mix(in srgb, var(--surface) 84%, transparent); will-change: transform; backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-3); padding: 2rem 2rem 1.5rem; animation: pop .35s var(--ease); }
 .landing-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; border-radius: var(--r-lg) var(--r-lg) 0 0; background: linear-gradient(90deg, var(--bad), var(--ok), var(--fg), var(--accent)); }
 .user-card { display: flex; align-items: center; gap: .75rem; padding: .6rem .75rem; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); cursor: pointer; text-align: start; font: inherit; color: var(--fg); transition: border-color var(--dur), background var(--dur), transform var(--dur); width: 100%; }
+.user-card-last { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
 .user-card:hover { border-color: var(--accent); background: var(--accent-soft); transform: translateY(-1px); }
 .brand-wordmark { height: 22px; width: auto; } .dark .brand-wordmark { filter: invert(1); }
 

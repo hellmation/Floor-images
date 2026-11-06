@@ -22,6 +22,8 @@ const C = createContext<Ctx>(null as unknown as Ctx)
 export const useApp = () => useContext(C)
 
 const ls = { get: (k: string) => { try { return localStorage.getItem(k) } catch { return null } }, set: (k: string, v: string) => { try { localStorage.setItem(k, v) } catch { /* ignore */ } } }
+/* The chosen person lives only for the current tab: every fresh open starts on the landing page. */
+const ss = { get: (k: string) => { try { return sessionStorage.getItem(k) } catch { return null } }, set: (k: string, v: string) => { try { sessionStorage.setItem(k, v) } catch { /* ignore */ } } }
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [lang, setLangS] = useState<Lang>((ls.get('lang') as Lang) || 'ar')
@@ -31,7 +33,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [lastSync, setLastSync] = useState<string | null>(null)
-  const [userId, setUserIdS] = useState<string | null>(ls.get('userId'))
+  const [userId, setUserIdS] = useState<string | null>(ss.get('userId'))
   const [cycleId, setCycleIdS] = useState<string | null>(ls.get('cycleId'))
   const [needsReconnect, setNeedsReconnect] = useState(false)
   const handleRef = useRef<FileSystemDirectoryHandle | null>(null)
@@ -105,7 +107,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const value: Ctx = {
     lang, setLang: setLangS, t: (k) => tr(lang, k), theme, setTheme: setThemeS,
-    adapter, snap, loading, error, lastSync, user, setUserId: (id) => { setUserIdS(id); ls.set('userId', id || '') },
+    adapter, snap, loading, error, lastSync, user, setUserId: (id) => { setUserIdS(id); ss.set('userId', id || ''); if (id) ls.set('lastUserId', id) },
     cycleId: effCycle, setCycleId: (id) => { setCycleIdS(id); ls.set('cycleId', id) }, isAdmin,
     connectFolder, reconnect, useLocal, refresh, needsReconnect, saveConfig, saveMyAnswer, saveReviews,
     myAnswers: userId && snap ? snap.answers[userId] || null : null,
