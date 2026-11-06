@@ -23,6 +23,7 @@ export default function CodeView({ id }: { id: string }) {
   const [carried, setCarried] = useState<string | null>(null)
   const [confirm, setConfirm] = useState(false)
   const [dirty, setDirty] = useState(false)
+  const initKey = `${code?.id}|${cy}|${myOwn?.updatedAt || ''}|${eff?.answer?.updatedAt || ''}|${eff?.userId || ''}|${cycle?.prefillFrom || ''}`
   useEffect(() => {
     if (!code) return
     const base = myOwn || eff?.answer || null
@@ -31,7 +32,9 @@ export default function CodeView({ id }: { id: string }) {
     const next: Record<string, ItemAnswer> = {}
     for (const r of code.requirements) next[String(r.n)] = src?.items[String(r.n)] ? { ...emptyItem(), ...JSON.parse(JSON.stringify(src.items[String(r.n)])) } : emptyItem()
     setItems(next); setCarried(carry || base?.carriedFrom || null); setConfirm(false); setDirty(false)
-  }, [code, cy, myOwn, eff?.answer, cycle?.prefillFrom, snap])
+    // Re-initialise only when the code, the cycle, or the stored answer itself changes. A background refresh
+    // or a note autosave replaces the snapshot object but must not discard edits in progress.
+  }, [initKey]) // eslint-disable-line react-hooks/exhaustive-deps
   const ordered = useMemo(() => [...master.codes].sort((a, b) => sortIds(a.id, b.id)), [])
   useEffect(() => { const f = (e: KeyboardEvent) => { if ((e.target as HTMLElement)?.tagName === 'INPUT' || (e.target as HTMLElement)?.tagName === 'TEXTAREA') return; const idx = ordered.findIndex(c => c.id === id); if (e.altKey && e.key === 'ArrowRight' && ordered[idx + 1]) location.hash = '#/code/' + ordered[idx + 1].id; if (e.altKey && e.key === 'ArrowLeft' && ordered[idx - 1]) location.hash = '#/code/' + ordered[idx - 1].id }; addEventListener('keydown', f); return () => removeEventListener('keydown', f) }, [id, ordered])
   if (!code) return <div className="card p-6">{t('unknownCode')}: {id}</div>

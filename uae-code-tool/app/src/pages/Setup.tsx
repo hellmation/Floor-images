@@ -12,7 +12,8 @@ export default function Setup() {
   const [err, setErr] = useState<string | null>(null)
   const logoRef = useRef<HTMLImageElement>(null); const cardRef = useRef<HTMLDivElement>(null)
   const api = hasFolderApi()
-  const connect = async () => { setErr(null); try { await connectFolder() } catch (e) { if (!String(e).includes('Abort')) setErr(String(e)) } }
+  const [moved, setMoved] = useState(false)
+  const connect = async () => { setErr(null); try { const m = await connectFolder(); setMoved(m) } catch (e) { if (!String(e).includes('Abort')) setErr(String(e)) } }
   useEffect(() => { if (snap) return; const f = (e: KeyboardEvent) => { if (e.key === 'Enter' && !loading) { if (api && needsReconnect) reconnect(); else if (api) connect() } }; addEventListener('keydown', f); return () => removeEventListener('keydown', f) }) // eslint-disable-line react-hooks/exhaustive-deps
   const doImport = async (f: File) => { if (adapter instanceof LocalAdapter) { adapter.importAll(await f.text()); await refresh() } }
   return (
@@ -48,6 +49,9 @@ export default function Setup() {
             <div><div className="font-semibold">{t('whoAreYou')}</div><div className="text-sm text-muted">{t('chooseUser')}</div></div>
             <div className="grid sm:grid-cols-2 gap-2 max-h-72 overflow-y-auto pe-1">{snap.config.users.filter(u => u.active).map(u => { const n = lang === 'ar' ? u.name_ar : u.name_en; const last = u.id === lastUserId
               return <button key={u.id} className={'user-card' + (last ? ' user-card-last' : '')} onClick={() => setUserId(u.id)}><Avatar name={n} photo={u.photo} size="lg" /><span className="min-w-0"><span className="block font-semibold truncate">{n}</span><span className="block text-xs text-muted">{t(u.role === 'admin' ? 'adminRole' : u.role === 'viewer' ? 'viewerRole' : 'evaluatorRole')}{last && <> · <span style={{ color: "var(--accent-ink)" }}>{t("lastSignIn")}</span></>}</span></span></button> })}</div>
+            {adapter instanceof LocalAdapter && api && <div className="rounded-lg bg-warn-soft text-warn-ink px-3 py-2 text-sm flex flex-wrap items-center gap-2"><Icon name="alert" className="shrink-0" /><span className="flex-1 min-w-48">{t('localWarning')}</span><button className="btn btn-sm btn-primary" onClick={connect}><Icon name="folder" />{t('switchToFolder')}</button></div>}
+            {moved && <div className="rounded-lg bg-ok-soft text-ok-ink px-3 py-2 text-sm flex items-center gap-2"><Icon name="checkCircle" />{t('migrated')}</div>}
+            {(err || error) && <p className="text-bad text-sm m-0">{err || error}</p>}
             <div className="flex items-center gap-2 text-xs text-muted"><Icon name={adapter?.kind === 'folder' ? 'folder' : 'monitor'} />{adapter?.kind === 'folder' ? `${t('folderLabel')}: ${adapter.label}` : t('localModeLabel')}
               {adapter instanceof LocalAdapter && <span className="ms-auto flex gap-2"><a className="btn btn-sm" download="uae-code-backup.json" href={'data:application/json;charset=utf-8,' + encodeURIComponent(adapter.exportAll())}>{t('exportJson')}</a><label className="btn btn-sm">{t('importJson')}<input type="file" accept=".json" hidden onChange={e => e.target.files?.[0] && doImport(e.target.files[0])} /></label></span>}</div>
           </div>

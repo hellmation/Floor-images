@@ -89,6 +89,13 @@ export class FolderAdapter implements StorageAdapter {
     await this.dailySnapshot(d, snap)
     return snap
   }
+  /** True when the folder has never been used by the tool (no data/config.json). */
+  async isEmpty() { try { const d = await this.dir.getDirectoryHandle('data'); return !(await exists(d, 'config.json')) } catch { return true } }
+  /** Writes a whole snapshot (e.g. local-mode data) into the folder. Used once when moving from local mode to an empty shared folder. */
+  async importSnapshot(snap: Snapshot) {
+    const d = await this.data(); await writeJson(d, 'config.json', snap.config); await writeJson(d, 'reviews.json', snap.reviews); await writeJson(d, 'audit.json', snap.audit)
+    const ad = await d.getDirectoryHandle('answers', { create: true }); for (const a of Object.values(snap.answers)) await writeJson(ad, `${a.userId}.json`, a)
+  }
   async saveConfig(c: Config) { await writeJson(await this.data(), 'config.json', c) }
   async saveReviews(r: ReviewsFile) { await writeJson(await this.data(), 'reviews.json', r) }
   async saveAnswers(a: AnswersFile) { const ad = await (await this.data()).getDirectoryHandle('answers', { create: true }); await writeJson(ad, `${a.userId}.json`, a) }

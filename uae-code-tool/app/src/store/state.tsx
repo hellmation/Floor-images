@@ -12,7 +12,7 @@ interface Ctx {
   user: User | null; setUserId: (id: string | null) => void
   cycleId: string | null; setCycleId: (id: string) => void
   isAdmin: boolean
-  connectFolder: () => Promise<void>; reconnect: () => Promise<boolean>; useLocal: () => void; refresh: () => Promise<void>; needsReconnect: boolean
+  connectFolder: () => Promise<boolean>; reconnect: () => Promise<boolean>; useLocal: () => void; refresh: () => Promise<void>; needsReconnect: boolean
   saveConfig: (c: Config, audit?: string) => Promise<void>
   saveMyAnswer: (cycleId: string, codeId: string, a: CodeAnswer) => Promise<void>
   saveMyNote: (codeId: string, text: string) => Promise<void>
@@ -64,11 +64,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
     })()
   }, [load])
 
+  /** Picks the shared folder. When called from local mode, local data is copied into the folder if the folder is still empty. Returns true when a copy happened. */
   const connectFolder = useCallback(async () => {
     const h = await (window as unknown as { showDirectoryPicker: (o: { mode: string }) => Promise<FileSystemDirectoryHandle> }).showDirectoryPicker({ mode: 'readwrite' })
+    const ad = new FolderAdapter(h)
+    let migrated = false
+    if (adapter instanceof LocalAdapter && snap && Object.keys(snap.answers).length && await ad.isEmpty()) { await ad.importSnapshot(snap); migrated = true }
     await storeHandle(h); handleRef.current = h; ls.set('mode', 'folder')
-    const ad = new FolderAdapter(h); setAdapter(ad); setNeedsReconnect(false); await load(ad)
-  }, [load])
+    setAdapter(ad); setNeedsReconnect(false); await load(ad)
+    return migrated
+  }, [load, adapter, snap])
   const reconnect = useCallback(async () => {
     const h = handleRef.current; if (!h) return false
     const p = await (h as unknown as { requestPermission: (o: { mode: string }) => Promise<string> }).requestPermission({ mode: 'readwrite' })
