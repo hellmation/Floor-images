@@ -208,6 +208,10 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
     [H('عام', 'General'), H('النسب', 'Percentages'), H('قيم رقمية بين 0 و1 منسقة كنسبة مئوية، صالحة للجداول المحورية.', 'Numeric 0–1 values formatted as percentages, pivot-ready.')],
   ]); d.getRow(1).font = { bold: true }; d.getColumn(1).font = { bold: true }
 
+  /* Excel decides paragraph direction per cell; force it so Arabic lines that start with "1." read right-to-left. */
+  const ro = rtl ? 'rtl' as const : 'ltr' as const
+  wb.eachSheet(ws => { ws.columns.forEach(col => { if (col.alignment) col.alignment = { ...col.alignment, readingOrder: ro } })
+    ws.eachRow({ includeEmpty: false }, row => row.eachCell({ includeEmpty: true }, cell => { cell.alignment = { ...(cell.alignment || {}), readingOrder: ro } })) })
   const buf = await wb.xlsx.writeBuffer()
   const blob = new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' })
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `UAE-Code-Championship_${cycleId}_${new Date().toISOString().slice(0, 10)}.xlsx`; a.click()

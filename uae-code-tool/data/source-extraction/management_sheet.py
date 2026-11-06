@@ -35,7 +35,7 @@ pillars = {p['id']: p for p in M['pillars']}; subs = {s['id']: s for s in M['sub
 GOLD = 'A7812D'; hdr_fill = PatternFill('solid', fgColor=GOLD); hdr_font = Font(bold=True, color='FFFFFF', name='Arial', size=10)
 body_font = Font(name='Arial', size=10); bold = Font(name='Arial', size=10, bold=True)
 thin = Side(style='thin', color='D9D2C3'); border = Border(left=thin, right=thin, top=thin, bottom=thin)
-wrap = Alignment(wrap_text=True, vertical='top', horizontal='right'); center = Alignment(horizontal='center', vertical='top', wrap_text=True)
+wrap = Alignment(wrap_text=True, vertical='top', horizontal='right', readingOrder=2); center = Alignment(horizontal='center', vertical='top', wrap_text=True, readingOrder=2)
 sub_fill = PatternFill('solid', fgColor='F3ECDD'); pil_fill = PatternFill('solid', fgColor='E6D7A2')
 def header(ws, cols, widths, row=1):
     for i, (h, w) in enumerate(zip(cols, widths), 1):
