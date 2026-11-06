@@ -189,7 +189,7 @@ export async function exportManagementPack(snap: Snapshot, cycleId: string, lang
     const best = ranked[0], worst = ranked[ranked.length - 1]
     const lines: string[] = [
       `${H('نطاق التقييم', 'Scope')}: 8 ${H('محاور', 'pillars')} · 60 ${H('محور فرعي', 'sub-pillars')} · ${total.n} ${H('كود', 'codes')} · ${total.reqs} ${H('متطلب', 'requirements')} — ${cname(cycle)}.`,
-      `${H('الإنجاز', 'Completion')}: ${H('أُجيب عن', 'answered')} ${total.rw.answered} ${H('من', 'of')} ${total.n} ${H('كود', 'codes')} (${p(pct1(total.rw.answered, total.n))})، ${H('اعتُمد منها', 'approved')} ${total.r.approved} (${H('جاهزية', 'readiness')} ${p(pct1(total.r.approved, total.n))}).`,
+      `${H('الإنجاز', 'Completion')}: ${H('أُجيب عن', 'answered')} ${total.rw.answered} ${H('من', 'of')} ${total.n} ${H('كود', 'codes')} (${p(pct1(total.rw.answered, total.n))})${H('،', ',')} ${H('اعتُمد منها', 'approved')} ${total.r.approved} (${H('جاهزية', 'readiness')} ${p(pct1(total.r.approved, total.n))}).`,
       total.rw.score === null ? H('لم تُحتسب نسبة امتثال بعد؛ لا توجد أكواد مُجابة بالكامل.', 'No compliance figure yet; no fully answered codes.') : `${H('الامتثال المرجح على ما أُجيب عنه', 'Weighted compliance on answered codes')}: ${p(total.rw.score / 100)}${total.r.score !== null ? ` — ${H('على المعتمد فقط', 'approved only')}: ${p(total.r.score / 100)}` : ''}.`,
       `${H('توزيع المتطلبات', 'Requirement outcomes')}: ${H('نعم', 'Yes')} ${total.cnt.yes} · ${H('جزئي', 'Partial')} ${total.cnt.partial} · ${H('لا', 'No')} ${total.cnt.no} · ${H('لا ينطبق', 'N/A')} ${total.cnt.na}.`,
       best ? `${H('أقوى محور', 'Strongest pillar')}: ${nm(best.pl)} (${p((scoreOf(best.a) ?? 0) / 100)}).` : '',
