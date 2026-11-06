@@ -11,38 +11,53 @@ export function effectiveImpact(code: Code, cfg: Config): Impact | 'none' {
   return cfg.impactOverrides[code.id] || code.impact || 'none'
 }
 
-/** Who evaluates a code in a cycle: manual override > owner of the first linked project with an owner > default assignee (core team). */
+/** Who evaluates a code in a cycle: frozen assignment of a closed cycle > manual override > owner of the first linked
+ *  active project > the project manager (settings.defaultAssigneeId). Inactive or unknown people are skipped. */
 export function assigneeOf(codeId: string, cycleId: string, cfg: Config): string | null {
-  const ov = cfg.overrides[cycleId]?.[codeId]
+  const active = (id?: string | null) => !!id && cfg.users.some(u => u.id === id && u.active) ? id as string : null
+  const frozen = cfg.cycles.find(c => c.id === cycleId)?.assignments?.[codeId]
+  if (frozen) return frozen
+  const ov = active(cfg.overrides[cycleId]?.[codeId])
   if (ov) return ov
   for (const pid of cfg.mapping[codeId] || []) {
     const p = cfg.projects.find(x => x.id === pid && x.active)
-    if (p?.ownerId) return p.ownerId
+    const o = active(p?.ownerId); if (o) return o
   }
-  return cfg.settings.defaultAssigneeId
+  return active(cfg.settings.defaultAssigneeId)
+}
+/** Snapshot of every code's assignee, stored on a cycle when it is closed. */
+export function freezeAssignments(cycleId: string, cfg: Config): Record<string, string> {
+  const out: Record<string, string> = {}
+  for (const c of master.codes) { const a = assigneeOf(c.id, cycleId, cfg); if (a) out[c.id] = a }
+  return out
+}
+/** Does this review belong to this exact submission? New reviews carry the submission identity; old ones fall back to time order. */
+export function reviewApplies(review: Review | null, answer: CodeAnswer | null, userId: string | null): boolean {
+  if (!review || !answer || answer.state !== 'submitted') return false
+  if (review.userId || review.submittedAt) return review.userId === userId && review.submittedAt === (answer.submittedAt || answer.updatedAt)
+  return review.reviewedAt >= (answer.submittedAt || answer.updatedAt)
 }
 
 export interface Effective { answer: CodeAnswer | null; userId: string | null; review: Review | null; state: WorkState }
 
-/** The answer that counts for a code in a cycle: the assignee's answer if present, else the most recently updated answer by anyone. */
+const RANK: Record<WorkState, number> = { approved: 4, submitted: 3, returned: 2, draft: 1, none: 0 }
+/** The answer that counts for a code in a cycle. Candidates are every known person's answer; the one in the most advanced
+ *  state wins (approved > submitted > returned > draft), then the assignee's, then the most recently updated. */
 export function effective(snap: Snapshot, cycleId: string, codeId: string): Effective {
-  const assignee = assigneeOf(codeId, cycleId, snap.config)
-  let answer: CodeAnswer | null = null, userId: string | null = null
-  const own = assignee ? snap.answers[assignee]?.cycles?.[cycleId]?.[codeId] : null
-  if (own) { answer = own; userId = assignee }
-  else {
-    for (const [uid, f] of Object.entries(snap.answers)) {
-      const a = f.cycles?.[cycleId]?.[codeId]
-      if (a && (!answer || a.updatedAt > answer.updatedAt)) { answer = a; userId = uid }
-    }
-  }
+  const cfg = snap.config
+  const assignee = assigneeOf(codeId, cycleId, cfg)
   const review = snap.reviews.cycles?.[cycleId]?.[codeId] || null
-  let state: WorkState = 'none'
-  if (answer) {
-    state = answer.state
-    if (answer.state === 'submitted' && review && review.reviewedAt >= (answer.submittedAt || answer.updatedAt)) state = review.state
+  const known = new Set(cfg.users.map(u => u.id))
+  let best: Effective | null = null
+  for (const [uid, f] of Object.entries(snap.answers)) {
+    const a = f.cycles?.[cycleId]?.[codeId]; if (!a || !known.has(uid)) continue
+    const state: WorkState = reviewApplies(review, a, uid) ? review!.state : a.state
+    const cand: Effective = { answer: a, userId: uid, review, state }
+    if (!best) { best = cand; continue }
+    const d = RANK[state] - RANK[best.state]
+    if (d > 0 || (d === 0 && (uid === assignee || (best.userId !== assignee && a.updatedAt > best.answer!.updatedAt)))) best = cand
   }
-  return { answer, userId, review, state }
+  return best || { answer: null, userId: null, review, state: 'none' }
 }
 
 export function itemScore(status: AnswerStatus | null, cfg: Config): number | null {
@@ -70,7 +85,7 @@ export function rollup(snap: Snapshot, cycleId: string, codes: Code[], approvedO
       if (isComplete(e.answer, c)) answered++
       if (e.state === 'submitted' || e.state === 'approved') submitted++
       if (e.state === 'approved') approved++
-      for (const it of Object.values(e.answer.items)) if (it.clarify?.flag) clar++
+      for (const r of c.requirements) if (e.answer.items[String(r.n)]?.clarify?.flag) clar++
     }
     const counts = approvedOnly ? e.state === 'approved' : isComplete(e.answer, c)
     if (counts) {
@@ -92,14 +107,15 @@ export function standings(snap: Snapshot, cycleId: string): Standing[] {
     const points = r.total ? 0.5 * approvedPct + 0.5 * (r.score ?? 0) : 0
     return { userId: u.id, rank: 0, points, approvedPct, score: r.score, total: r.total, approved: r.approved, answered: r.answered }
   }).filter(s => s.total > 0).sort((a, b) => b.points - a.points || b.approved - a.approved)
-  rows.forEach((s, i) => { s.rank = i + 1 })
+  // competition ranking: identical results share a rank
+  rows.forEach((s, i) => { const prev = rows[i - 1]; s.rank = prev && prev.points === s.points && prev.approved === s.approved ? prev.rank : i + 1 })
   return rows
 }
 
 export function sortIds(a: string, b: string) {
   const ka = a.replace(/b$/, '').split('.').map(Number), kb = b.replace(/b$/, '').split('.').map(Number)
-  for (let i = 0; i < 3; i++) if (ka[i] !== kb[i]) return ka[i] - kb[i]
-  return a.endsWith('b') ? 1 : -1
+  for (let i = 0; i < 3; i++) if (ka[i] !== kb[i]) return (ka[i] ?? -1) - (kb[i] ?? -1)
+  return a === b ? 0 : a.endsWith('b') ? 1 : -1
 }
 export const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36)
 export const now = () => new Date().toISOString()

@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useApp } from '../store/state'
 import { master, rollup, assigneeOf, standings, effective } from '../store/scoring'
 import { pick } from '../i18n'
-import { Bar, Ring, Avatar, fmtPct, tone, ringTone } from '../components/ui'
+import { Bar, Ring, Avatar, fmtPct, tone, ringTone, fmtDay } from '../components/ui'
 import { Icon } from '../components/icons'
 import { Field } from '../components/Field'
 
@@ -22,12 +22,12 @@ export default function Home() {
   const total = cycle ? Math.max(1, (new Date(cycle.end).getTime() - new Date(cycle.start).getTime()) / 86400000) : 1
   const elapsed = cycle ? Math.min(100, Math.max(0, ((Date.now() - new Date(cycle.start).getTime()) / 86400000) / total * 100)) : 0
   const cname = cycle ? (lang === 'ar' ? cycle.name : (cycle.name_en || cycle.name)) : ''
-  const uname = (id: string) => { const u = cfg.users.find(x => x.id === id)!; return lang === 'ar' ? u.name_ar : u.name_en }
+  const uname = (id: string) => { const u = cfg.users.find(x => x.id === id); return u ? (lang === 'ar' ? u.name_ar : u.name_en) : t('unassigned') }
   const photo = (id: string) => cfg.users.find(x => x.id === id)?.photo
   type Act = { n: number; label: string; href: string; icon: 'alert' | 'edit' | 'question' | 'tasks'; kind: 'bad' | 'warn' | 'flag' | 'muted' }
   const actions: Act[] = ([
     { n: acts.returned, label: t('returnedToYou'), href: '#/my?f=returned', icon: 'alert', kind: 'bad' }, { n: acts.replies, label: t('awaitingYourReply'), href: '#/my?f=clarify', icon: 'question', kind: 'flag' },
-    { n: acts.drafts, label: t('continueDraft'), href: '#/my?f=draft', icon: 'edit', kind: 'warn' }, { n: acts.unanswered, label: t('unanswered'), href: '#/my?f=none', icon: 'tasks', kind: 'muted' }] as Act[]).filter(a => a.n > 0)
+    { n: acts.drafts, label: t('continueDraft'), href: '#/my?f=draft', icon: 'edit', kind: 'warn' }, { n: acts.unanswered, label: t('notStarted'), href: '#/my?f=none', icon: 'tasks', kind: 'muted' }] as Act[]).filter(a => a.n > 0)
   return (
     <div>
       <section className="hero mb-4">
@@ -36,7 +36,7 @@ export default function Home() {
         <div className="hero-in">
           <div className="min-w-0 flex-1">
             <div className="eyebrow mb-1">{cname}</div>
-            <h1 className="page-title text-3xl md:text-4xl">{`${t('welcome')}, ${lang === 'ar' ? user!.name_ar : user!.name_en}`}</h1>
+            <h1 className="page-title text-3xl md:text-4xl">{`${t('welcome')}${lang === 'ar' ? '،' : ','} ${lang === 'ar' ? user!.name_ar : user!.name_en}`}</h1>
             <p className="page-sub max-w-2xl">{t('appTagline')}</p>
           </div>
           <div className="flex items-center gap-4">
@@ -63,7 +63,7 @@ export default function Home() {
         <div className="flex flex-col gap-4">
           <section className="card p-4">
             <div className="label">{t('currentCycle')}</div><div className="font-semibold text-lg leading-tight">{cname}</div>
-            <div className="flex items-center gap-4 mt-3"><Ring value={elapsed} size={76} stroke={8} tone="info" label={<span className="num">{daysLeft !== null && daysLeft >= 0 ? daysLeft : 0}</span>} sub={t('days')} /><div className="text-sm"><div className="text-muted">{t('dueDate')}</div><div className="font-semibold">{cycle?.due}</div><div className={`mt-1 ${daysLeft !== null && daysLeft < 0 ? 'text-bad' : 'text-muted'}`}>{daysLeft !== null && daysLeft >= 0 ? `${daysLeft} ${t('daysLeft')}` : t('overdue')}</div></div></div>
+            <div className="flex items-center gap-4 mt-3"><Ring value={elapsed} size={76} stroke={8} tone="info" label={<span className="num">{daysLeft !== null && daysLeft >= 0 ? daysLeft : 0}</span>} sub={t('days')} /><div className="text-sm"><div className="text-muted">{t('dueDate')}</div><div className="font-semibold"><bdi dir="ltr">{fmtDay(cycle?.due, lang)}</bdi></div><div className={`mt-1 ${daysLeft !== null && daysLeft < 0 ? 'text-bad' : 'text-muted'}`}>{daysLeft !== null && daysLeft >= 0 ? `${daysLeft} ${t('daysLeft')}` : t('overdue')}</div></div></div>
           </section>
           <section className="card p-4 flex items-center justify-around">
             <Ring value={all.total ? (all.approved / all.total) * 100 : 0} tone="accent" sub={t('readiness')} />

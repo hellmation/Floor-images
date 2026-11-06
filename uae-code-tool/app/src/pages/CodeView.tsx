@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useApp } from '../store/state'
 import { codeById, subById, pillarById, assigneeOf, effective, effectiveImpact, master, sortIds, uid, now } from '../store/scoring'
 import { pick, pickDesc, pickText } from '../i18n'
-import { ImpactPill, Pill, StatePill, StatusPill, Modal, useToast, fmtDate } from '../components/ui'
+import { ImpactPill, Pill, StatePill, StatusPill, Modal, Empty, useToast, fmtDate, errMsg } from '../components/ui'
 import { Icon } from '../components/icons'
 import type { AnswerStatus, CodeAnswer, ItemAnswer } from '../types'
 
@@ -23,6 +23,7 @@ export default function CodeView({ id }: { id: string }) {
   const [carried, setCarried] = useState<string | null>(null)
   const [confirm, setConfirm] = useState(false)
   const [dirty, setDirty] = useState(false)
+  const [busy, setBusy] = useState(false)
   const initKey = `${code?.id}|${cy}|${myOwn?.updatedAt || ''}|${eff?.answer?.updatedAt || ''}|${eff?.userId || ''}|${cycle?.prefillFrom || ''}`
   useEffect(() => {
     if (!code) return
@@ -30,14 +31,22 @@ export default function CodeView({ id }: { id: string }) {
     let src = base, carry: string | null = null
     if (!src && cycle?.prefillFrom) { const prev = effective(snap!, cycle.prefillFrom, code.id); if (prev.answer) { src = prev.answer; carry = cycle.prefillFrom } }
     const next: Record<string, ItemAnswer> = {}
-    for (const r of code.requirements) next[String(r.n)] = src?.items[String(r.n)] ? { ...emptyItem(), ...JSON.parse(JSON.stringify(src.items[String(r.n)])) } : emptyItem()
+    for (const r of code.requirements) { next[String(r.n)] = src?.items[String(r.n)] ? { ...emptyItem(), ...JSON.parse(JSON.stringify(src.items[String(r.n)])) } : emptyItem()
+      if (carry) next[String(r.n)].clarify = { flag: false, question: '' } } // a carried answer never carries an open clarification
     setItems(next); setCarried(carry || base?.carriedFrom || null); setConfirm(false); setDirty(false)
     // Re-initialise only when the code, the cycle, or the stored answer itself changes. A background refresh
     // or a note autosave replaces the snapshot object but must not discard edits in progress.
   }, [initKey]) // eslint-disable-line react-hooks/exhaustive-deps
   const ordered = useMemo(() => [...master.codes].sort((a, b) => sortIds(a.id, b.id)), [])
-  useEffect(() => { const f = (e: KeyboardEvent) => { if ((e.target as HTMLElement)?.tagName === 'INPUT' || (e.target as HTMLElement)?.tagName === 'TEXTAREA') return; const idx = ordered.findIndex(c => c.id === id); if (e.altKey && e.key === 'ArrowRight' && ordered[idx + 1]) location.hash = '#/code/' + ordered[idx + 1].id; if (e.altKey && e.key === 'ArrowLeft' && ordered[idx - 1]) location.hash = '#/code/' + ordered[idx - 1].id }; addEventListener('keydown', f); return () => removeEventListener('keydown', f) }, [id, ordered])
-  if (!code) return <div className="card p-6">{t('unknownCode')}: {id}</div>
+  // unsaved edits: warn before the tab closes and before any in-app navigation (App.useHash consults the guard)
+  const dirtyRef = useRef(false); dirtyRef.current = dirty
+  useEffect(() => {
+    window.__leaveGuard = () => !dirtyRef.current || window.confirm(t('unsavedLeave'))
+    const bu = (e: BeforeUnloadEvent) => { if (dirtyRef.current) { e.preventDefault(); e.returnValue = '' } }
+    addEventListener('beforeunload', bu); return () => { removeEventListener('beforeunload', bu); window.__leaveGuard = undefined }
+  }, [t])
+  useEffect(() => { const f = (e: KeyboardEvent) => { if ((e.target as HTMLElement)?.tagName === 'INPUT' || (e.target as HTMLElement)?.tagName === 'TEXTAREA') return; const idx = ordered.findIndex(c => c.id === id); const fwd = document.documentElement.dir === 'rtl' ? 'ArrowLeft' : 'ArrowRight', back = fwd === 'ArrowLeft' ? 'ArrowRight' : 'ArrowLeft'; if (e.altKey && e.key === fwd && ordered[idx + 1]) location.hash = '#/code/' + ordered[idx + 1].id; if (e.altKey && e.key === back && ordered[idx - 1]) location.hash = '#/code/' + ordered[idx - 1].id }; addEventListener('keydown', f); return () => removeEventListener('keydown', f) }, [id, ordered])
+  if (!code) return <Empty icon="search" title={`${t('unknownCode')}: ${id}`}><a className="btn btn-sm no-underline mt-2" href="#/browse"><Icon name="book" />{t('backToBrowse')}</a></Empty>
   const idx = ordered.findIndex(c => c.id === code.id); const prev = ordered[idx - 1], next = ordered[idx + 1]
   const sub = subById.get(code.sub)!, pil = pillarById.get(code.pillar)!
   const paired = code.criteria.length === code.requirements.length
@@ -54,10 +63,14 @@ export default function CodeView({ id }: { id: string }) {
   ]
   const ok = checks.every(c => c[0])
   const save = async (state: 'draft' | 'submitted') => {
+    if (busy) return; setBusy(true)
     const a: CodeAnswer = { state, updatedAt: now(), submittedAt: state === 'submitted' ? now() : myOwn?.submittedAt, items, carriedFrom: carried }
-    await saveMyAnswer(cy, code.id, a); setConfirm(false); setDirty(false); toast(state === 'submitted' ? t('submitted') : t('saved'), 'ok')
+    try { await saveMyAnswer(cy, code.id, a); setConfirm(false); setDirty(false); toast(state === 'submitted' ? t('submitted') : t('saved'), 'ok') }
+    catch (e) { toast(errMsg(e, t), 'bad') } finally { setBusy(false) }
   }
-  const override = async (uidv: string) => { const c = JSON.parse(JSON.stringify(cfg)); c.overrides[cy] = c.overrides[cy] || {}; if (uidv) c.overrides[cy][code.id] = uidv; else delete c.overrides[cy][code.id]; await saveConfig(c, `override ${code.id} -> ${uidv || 'auto'}`) }
+  const override = async (uidv: string) => { const c = JSON.parse(JSON.stringify(cfg)); c.overrides[cy] = c.overrides[cy] || {}; if (uidv) c.overrides[cy][code.id] = uidv; else delete c.overrides[cy][code.id]; try { await saveConfig(c, `override ${code.id} -> ${uidv || 'auto'}`) } catch (e) { toast(errMsg(e, t), 'bad') } }
+  const otherPending = !!myOwn && eff!.userId !== user!.id && (eff!.state === 'submitted' || eff!.state === 'approved')
+  const adminShadow = isAdmin && assignee !== user!.id && !locked && cycle?.status === 'open'
   const answered = vals.filter(v => v?.status).length
   return (
     <div>
@@ -68,34 +81,37 @@ export default function CodeView({ id }: { id: string }) {
       <div className="grid lg:grid-cols-[1fr_300px] gap-4 items-start">
         <div className="flex flex-col gap-4 min-w-0">
           <div className="card card-raised p-5 flex flex-col gap-3">
-            <div className="flex flex-wrap items-center gap-2"><span className="code-id text-lg !px-3">{code.id}</span><ImpactPill impact={effectiveImpact(code, cfg)} /><StatePill state={eff!.state} />{code.flags.map(f => <Pill key={f} kind="flag">{t(f === 'duplicate_id_in_pdf' ? 'flagDuplicate' : 'flagImpact')}</Pill>)}<span className="ms-auto text-xs text-muted">{t('pdfPage')} {code.pdf_page}</span></div>
+            <div className="flex flex-wrap items-center gap-2"><span className="code-id text-lg !px-3">{code.id}</span><ImpactPill impact={effectiveImpact(code, cfg)} /><StatePill state={eff!.state} />{code.flags.map(f => <Pill key={f} kind="flag">{t(f === 'duplicate_id_in_pdf' ? 'flagDuplicate' : f === 'duplicate_item_in_pdf' ? 'flagDupItem' : f === 'criteria_mismatch_in_pdf' ? 'flagCriteria' : 'flagImpact')}</Pill>)}<span className="ms-auto text-xs text-muted">{t('pdfPage')} {code.pdf_page}</span></div>
             <p className="m-0 text-base leading-relaxed">{pickDesc(lang, code)}</p>
+            {cycle && cycle.status !== 'open' && <div className="text-sm text-warn-ink bg-warn-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="clock" />{t(cycle.status === 'closed' ? 'cycleClosedNotice' : cycle.status === 'review' ? 'cycleReviewNotice' : 'cyclePlanningNotice')}</div>}
             {!canEdit && cycle?.status === 'open' && !locked && <div className="text-sm text-warn-ink bg-warn-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="eye" />{t('readOnly')} · {t('requestChange')}</div>}
-            {carried && <div className="text-sm text-info-ink bg-info-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="clock" />{t('carried')} ({carried})</div>}
-            {eff!.review && (eff!.state === 'returned' || eff!.state === 'approved') && <div className={`text-sm rounded-lg px-3 py-2 ${eff!.state === 'returned' ? 'bg-bad-soft text-bad-ink' : 'bg-ok-soft text-ok-ink'}`}><b>{t('reviewerComment')}</b> ({userName(eff!.review.reviewedBy)}, {fmtDate(eff!.review.reviewedAt, lang)}): {eff!.review.comment || '—'}</div>}
+            {otherPending && <div className="text-sm text-info-ink bg-info-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="info" />{t('pendingOther')} ({userName(eff!.userId)})</div>}
+            {adminShadow && <div className="text-sm text-info-ink bg-info-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="shield" />{t('adminShadow')}</div>}
+            {carried && <div className="text-sm text-info-ink bg-info-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="clock" />{t('carried')} (<bdi dir="ltr">{carried}</bdi>)</div>}
+            {eff!.review && (eff!.state === 'returned' || eff!.state === 'approved' || (eff!.state === 'draft' && eff!.review.state === 'returned')) && <div className={`text-sm rounded-lg px-3 py-2 ${eff!.state === 'approved' ? 'bg-ok-soft text-ok-ink' : 'bg-bad-soft text-bad-ink'}`}><b>{t('reviewerComment')}</b> ({userName(eff!.review.reviewedBy)}, {fmtDate(eff!.review.reviewedAt, lang)}): {eff!.review.comment === 'reopened' ? t('reopen') : (eff!.review.comment || '—')}</div>}
           </div>
           {code.requirements.map((r, i) => {
             const it = items[String(r.n)] || emptyItem(); const ca = clarAnswers[String(r.n)]
             const projOpts = [...linked.map(p => p!), ...cfg.projects.filter(p => p.active && !linked.some(l => l!.id === p.id))]
             return <section key={r.n} id={'req-' + r.n} className="card p-4 flex flex-col gap-3 scroll-mt-20">
-              <div className="flex items-start gap-3"><span className={`inline-grid place-items-center w-7 h-7 rounded-full text-xs font-bold shrink-0 ${it.status ? ({ yes: 'bg-ok text-white', partial: 'bg-warn text-white', no: 'bg-bad text-white', na: 'bg-fg-2 text-surface' } as Record<string, string>)[it.status] : 'bg-surface-3 text-fg-2'}`}>{r.n}</span>
+              <div className="flex items-start gap-3"><span className={`inline-grid place-items-center w-7 h-7 rounded-full text-xs font-bold shrink-0 ${it.status ? ({ yes: 'bg-ok text-[var(--on-status)]', partial: 'bg-warn text-[var(--on-status)]', no: 'bg-bad text-[var(--on-status)]', na: 'bg-fg-2 text-surface' } as Record<string, string>)[it.status] : 'bg-surface-3 text-fg-2'}`}>{r.n}</span>
                 <div className="flex-1 min-w-0"><div className="font-semibold leading-snug">{pickText(lang, r)}</div>{paired && code.criteria[i] && <div className="text-sm text-muted mt-1 flex gap-1.5"><Icon name="target" className="shrink-0 mt-0.5" style={{ width: 14, height: 14 }} /><span><span className="font-medium text-fg-2">{t('criterion')}:</span> {pickText(lang, code.criteria[i])}</span></div>}</div>{!canEdit && <StatusPill status={it.status} />}</div>
               {canEdit ? <>
                 <div className="flex flex-wrap gap-3 items-center">
-                  <div className="seg seg-status" role="group" aria-label={t('status')}>{(['yes', 'partial', 'no', 'na'] as AnswerStatus[]).map(s => <button key={s} data-v={s} aria-pressed={it.status === s} onClick={() => upd(r.n, { status: s })}>{t(s)}</button>)}</div>
+                  <div className="seg seg-status" role="group" aria-label={t('status')}>{(['yes', 'partial', 'no', 'na'] as AnswerStatus[]).map(s => <button key={s} data-v={s} aria-pressed={it.status === s} onClick={() => upd(r.n, s === 'na' ? { status: s } : { status: s, justification: '' })}>{t(s)}</button>)}</div>
                   <label className={`flex items-center gap-1.5 text-sm ms-auto cursor-pointer px-2 py-1 rounded-lg ${it.clarify?.flag ? 'bg-flag-soft text-flag-ink' : 'text-muted hover:text-fg'}`}><input type="checkbox" checked={!!it.clarify?.flag} onChange={e => upd(r.n, { clarify: { flag: e.target.checked, question: it.clarify?.question || '', raisedAt: e.target.checked ? now() : it.clarify?.raisedAt } })} /><Icon name="question" />{t('needsClarification')}</label>
                 </div>
-                {it.clarify?.flag && <div className="rounded-lg bg-flag-soft p-3 flex flex-col gap-1"><label className="label">{t('clarificationQuestion')}</label><textarea className="textarea" rows={2} value={it.clarify.question} onChange={e => upd(r.n, { clarify: { ...it.clarify!, question: e.target.value } })} />{ca && <div className="text-sm mt-1"><b>{t('clarificationAnswer')}</b> ({fmtDate(ca.answeredAt, lang)}): {ca.answer} <button className="btn btn-sm ms-2" onClick={() => upd(r.n, { clarify: { flag: false, question: it.clarify!.question } })}><Icon name="check" />{t('clearFlag')}</button></div>}</div>}
+                {it.clarify?.flag && <div className="rounded-lg bg-flag-soft p-3 flex flex-col gap-1"><label className="label" htmlFor={`req-${r.n}-q`}>{t('clarificationQuestion')}</label><textarea id={`req-${r.n}-q`} className="textarea" rows={2} value={it.clarify.question} onChange={e => upd(r.n, { clarify: { ...it.clarify!, question: e.target.value } })} />{ca && <div className="text-sm mt-1"><b>{t('clarificationAnswer')}</b> ({fmtDate(ca.answeredAt, lang)}): {ca.answer} <button className="btn btn-sm ms-2" onClick={() => upd(r.n, { clarify: { flag: false, question: it.clarify!.question } })}><Icon name="check" />{t('clearFlag')}</button></div>}</div>}
                 {!it.clarify?.flag && ca && <div className="text-sm text-muted"><b>{t('clarificationAnswer')}</b>: {ca.answer}</div>}
-                {it.status === 'na' && <div className="field"><label className="label">{t('justification')}</label><textarea className="textarea" rows={2} value={it.justification || ''} onChange={e => upd(r.n, { justification: e.target.value })} /></div>}
+                {it.status === 'na' && <div className="field"><label className="label" htmlFor={`req-${r.n}-j`}>{t('justification')}</label><textarea id={`req-${r.n}-j`} className="textarea" rows={2} value={it.justification || ''} onChange={e => upd(r.n, { justification: e.target.value })} /></div>}
                 <div><div className="label">{t('evidence')}</div>
                   {it.evidence.length > 0 && <ul className="m-0 mb-2 p-0 list-none flex flex-col gap-1">{it.evidence.map(ev => <li key={ev.id} className="flex items-center gap-2 text-sm panel px-2 py-1.5"><Icon name="link" className="text-muted" /><a href={ev.url} target="_blank" rel="noreferrer" className="truncate flex-1">{ev.title || ev.url}</a><button className="btn btn-ghost btn-sm" onClick={() => upd(r.n, { evidence: it.evidence.filter(x => x.id !== ev.id) })} aria-label={t('remove')}><Icon name="x" /></button></li>)}</ul>}
                   <EvidenceAdd onAdd={(title, url) => upd(r.n, { evidence: [...it.evidence, { id: uid(), type: 'link', title, url, addedAt: now(), addedBy: user!.id }] })} />
                 </div>
                 <div className="grid sm:grid-cols-3 gap-2">
-                  <div className="field"><label className="label">{t('project')}</label><select className="select" value={it.projectId || ''} onChange={e => upd(r.n, { projectId: e.target.value || null })}><option value="">—</option>{projOpts.map(p => <option key={p.id} value={p.id}>{pick(lang, p)}</option>)}</select></div>
-                  <div className="field"><label className="label">{t('service')}</label><input className="input" value={it.service || ''} onChange={e => upd(r.n, { service: e.target.value })} /></div>
-                  <div className="field"><label className="label">{t('note')}</label><input className="input" value={it.note || ''} onChange={e => upd(r.n, { note: e.target.value })} /></div>
+                  <div className="field"><label className="label" htmlFor={`req-${r.n}-p`}>{t('project')}</label><select id={`req-${r.n}-p`} className="select" value={it.projectId || ''} onChange={e => upd(r.n, { projectId: e.target.value || null })}><option value="">—</option>{projOpts.map(p => <option key={p.id} value={p.id}>{pick(lang, p)}</option>)}</select></div>
+                  <div className="field"><label className="label" htmlFor={`req-${r.n}-s`}>{t('service')}</label><input id={`req-${r.n}-s`} className="input" value={it.service || ''} onChange={e => upd(r.n, { service: e.target.value })} /></div>
+                  <div className="field"><label className="label" htmlFor={`req-${r.n}-n`}>{t('note')}</label><input id={`req-${r.n}-n`} className="input" value={it.note || ''} onChange={e => upd(r.n, { note: e.target.value })} /></div>
                 </div>
               </> : <ReadOnly it={it} ca={ca} projName={it.projectId ? pick(lang, cfg.projects.find(p => p.id === it.projectId) || { name_ar: it.projectId }) : ''} />}
             </section>
@@ -114,9 +130,9 @@ export default function CodeView({ id }: { id: string }) {
           {canEdit && <div className="card p-4 flex flex-col gap-3">
             <div className="flex items-center justify-between"><div className="label !mb-0">{t('submitChecklist')}</div><span className="text-xs text-muted num">{answered}/{code.requirements.length}</span></div>
             <ul className="checklist m-0 p-0 list-none">{checks.map(([done, label]) => <li key={label} className={done ? 'done' : 'todo'}><Icon name={done ? 'checkCircle' : 'clock'} className="shrink-0 mt-0.5" style={{ width: 15, height: 15 }} />{label}</li>)}</ul>
-            <button className="btn" onClick={() => save('draft')}><Icon name="edit" />{t('saveDraft')}{dirty && <span className="dot bg-warn w-2 h-2 rounded-full inline-block" />}</button>
-            <button className="btn btn-primary" disabled={!ok} onClick={() => setConfirm(true)}><Icon name="send" />{t('submit')}</button>
-            <div className="text-xs text-muted flex flex-wrap gap-2 items-center"><span className="kbd">Alt ←</span><span className="kbd">Alt →</span>{t('prevCode')} / {t('nextCode')}</div>
+            <button className="btn" disabled={busy} onClick={() => save('draft')}><Icon name="edit" />{t('saveDraft')}{dirty && <span className="dot bg-warn w-2 h-2 rounded-full inline-block" />}</button>
+            <button className="btn btn-primary" disabled={!ok || busy} onClick={() => setConfirm(true)}><Icon name="send" />{t('submit')}</button>
+            <div className="text-xs text-muted flex flex-wrap gap-2 items-center"><span className="kbd" dir="ltr">Alt {lang === 'ar' ? '→' : '←'}</span><span className="kbd" dir="ltr">Alt {lang === 'ar' ? '←' : '→'}</span>{t('prevCode')} / {t('nextCode')}</div>
           </div>}
         </aside>
       </div>
@@ -132,7 +148,9 @@ export function NoteCard({ codeId, value, onSave, compact }: { codeId: string; v
   const [v, setV] = useState(value); const [saved, setSaved] = useState(true); const last = useRef(value)
   useEffect(() => { if (value !== last.current) { last.current = value; setV(value); setSaved(true) } }, [value])
   const commit = async () => { const text = v; if (text === last.current) { setSaved(true); return } await onSave(codeId, text); last.current = text; setSaved(true); if (!compact) toast(t('noteSaved'), 'ok') }
+  const vRef = useRef(v); vRef.current = v
   useEffect(() => { if (v === last.current) return; setSaved(false); const id = setTimeout(commit, 1200); return () => clearTimeout(id) }, [v]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => () => { if (vRef.current !== last.current) onSave(codeId, vRef.current).catch(() => undefined) }, []) // flush a pending note when leaving the page // eslint-disable-line react-hooks/exhaustive-deps
   if (compact) return <textarea className="textarea !py-1.5 text-sm" rows={2} placeholder={t('personalNote')} value={v} onChange={e => setV(e.target.value)} onBlur={commit} aria-label={t('personalNote')} />
   return <div className="card p-4 flex flex-col gap-2" id="personal-note">
     <div className="flex items-center justify-between"><div className="label !mb-0 flex items-center gap-1.5"><Icon name="edit" style={{ width: 14, height: 14 }} />{t('personalNote')}</div><span className={`text-xs ${saved ? 'text-muted' : 'text-warn-ink'}`}>{saved ? (v ? t('saved') : '') : '…'}</span></div>
@@ -140,10 +158,19 @@ export function NoteCard({ codeId, value, onSave, compact }: { codeId: string; v
     <div className="text-xs text-muted">{t('personalNoteHint')}</div>
   </div>
 }
+/** Accepts http(s) links, file: links, UNC paths (\\\\server\\share\\…) and drive paths; UNC and drive paths are turned into file: links. */
+export function normaliseUrl(raw: string): string | null {
+  const u = raw.trim(); if (!u) return null
+  if (/^https?:\/\//i.test(u) || /^file:/i.test(u)) { try { new URL(u); return u } catch { return null } }
+  if (/^\\\\[^\\]+\\/.test(u)) return 'file://' + u.slice(2).replace(/\\/g, '/')
+  if (/^[a-zA-Z]:\\/.test(u)) return 'file:///' + u.replace(/\\/g, '/')
+  return null
+}
 function EvidenceAdd({ onAdd }: { onAdd: (title: string, url: string) => void }) {
-  const { t } = useApp(); const [title, setTitle] = useState(''); const [url, setUrl] = useState('')
-  return <div className="flex flex-wrap gap-2"><input className="input flex-1 min-w-32" placeholder={t('evidenceTitle')} value={title} onChange={e => setTitle(e.target.value)} /><input className="input flex-[2] min-w-48" dir="ltr" placeholder={t('evidenceUrl')} value={url} onChange={e => setUrl(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && url.trim()) { onAdd(title.trim(), url.trim()); setTitle(''); setUrl('') } }} />
-    <button className="btn btn-sm" disabled={!url.trim()} onClick={() => { onAdd(title.trim(), url.trim()); setTitle(''); setUrl('') }}><Icon name="plus" />{t('addLink')}</button></div>
+  const { t } = useApp(); const toast = useToast(); const [title, setTitle] = useState(''); const [url, setUrl] = useState('')
+  const add = () => { const n = normaliseUrl(url); if (!n) { toast(t('invalidUrl'), 'bad'); return } onAdd(title.trim(), n); setTitle(''); setUrl('') }
+  return <div className="flex flex-wrap gap-2"><input className="input flex-1 min-w-32" placeholder={t('evidenceTitle')} value={title} onChange={e => setTitle(e.target.value)} /><input className="input flex-[2] min-w-48" dir="ltr" placeholder={t('evidenceUrl')} value={url} onChange={e => setUrl(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && url.trim()) { e.preventDefault(); add() } }} />
+    <button className="btn btn-sm" disabled={!url.trim()} onClick={add}><Icon name="plus" />{t('addLink')}</button></div>
 }
 function ReadOnly({ it, ca, projName }: { it: ItemAnswer; ca?: { answer: string }; projName: string }) {
   const { t } = useApp()

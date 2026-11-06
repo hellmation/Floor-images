@@ -68,15 +68,21 @@ export function ensureAdmin(c: Config): Config {
   if (pm) { pm.role = 'admin'; pm.active = true }
   return c
 }
+/** Adds the reviewed seed mapping for codes that have no mapping yet; codes the admin already mapped are kept as they are. */
+function mergeSeedMapping(c: Config) {
+  const seed = seedMapping(); const out = { ...c.mapping }
+  for (const [code, pids] of Object.entries(seed)) if (!out[code]?.length) out[code] = pids
+  c.mapping = out
+}
 export function migrateConfig(c: Config): Config {
   if ((c.version || 1) >= 5) return c
-  if ((c.version || 1) === 4) { c.mapping = seedMapping(); c.version = 5; return c }
+  if ((c.version || 1) === 4) { mergeSeedMapping(c); c.version = 5; return c }
   if ((c.version || 1) === 3) {
     const { projects } = seedUsersAndProjects()
     for (const sp of projects) { const cur = c.projects.find(x => x.id === sp.id); if (cur) { cur.name_ar = sp.name_ar; cur.name_en = sp.name_en } else c.projects.push(sp) }
-    c.mapping = seedMapping(); if (!c.settings.defaultAssigneeId) c.settings.defaultAssigneeId = 'u-ahmed-helmy'; c.version = 4; return c
+    c.mapping = seedMapping(); if (!c.settings.defaultAssigneeId) c.settings.defaultAssigneeId = 'u-ahmed-helmy'; c.version = 4; return migrateConfig(c)
   }
-  if ((c.version || 1) >= 2) { c.mapping = seedMapping(); c.version = 4; return migrateConfig(c) }
+  if ((c.version || 1) === 2) { c.version = 3; return migrateConfig(c) }
   const { users } = seedUsersAndProjects()
   const renames: Record<string, { id: string; name_ar: string; name_en: string }> = {
     'u-mohammed-abdelkader': { id: 'u-mahmoud-abdelkader', name_ar: 'محمود عبد القادر', name_en: 'Mahmoud Abdelkader' },

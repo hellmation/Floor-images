@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
+import { createContext, useCallback, useContext, useEffect, useState, type ReactNode, useRef, useMemo } from 'react'
 import type { WorkState, AnswerStatus, Impact } from '../types'
 import { useApp } from '../store/state'
 import { Icon, type IconName } from './icons'
@@ -23,9 +23,9 @@ export function ImpactPill({ impact, short }: { impact: Impact | 'none' | null; 
   const map = { high: ['bad', t('high')], medium: ['warn', t('medium')], low: ['ok', t('low')], none: ['flag', t('notSpecified')] } as const
   const [k, l] = map[impact || 'none']; return <Pill kind={k}>{short ? l : `${t('impact')}: ${l}`}</Pill>
 }
-export function Bar({ value, max, tone, thin }: { value: number; max: number; tone?: 'ok' | 'bad' | 'warn'; thin?: boolean }) {
+export function Bar({ value, max, tone, thin, label }: { value: number; max: number; tone?: 'ok' | 'bad' | 'warn'; thin?: boolean; label?: string }) {
   const pct = max ? Math.round((value / max) * 100) : 0
-  return <div className={`bar ${thin ? 'thin' : ''}`} role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100}><i className={tone || ''} style={{ width: pct + '%' }} /></div>
+  return <div className={`bar ${thin ? 'thin' : ''}`} role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={label || `${value}/${max}`}><i className={tone || ''} style={{ width: pct + '%' }} /></div>
 }
 export function Ring({ value, size = 88, stroke = 9, tone = 'accent', label, sub }: { value: number | null; size?: number; stroke?: number; tone?: 'accent' | 'ok' | 'warn' | 'bad' | 'info'; label?: ReactNode; sub?: ReactNode }) {
   const r = (size - stroke) / 2, c = 2 * Math.PI * r, v = Math.max(0, Math.min(100, value ?? 0))
@@ -34,7 +34,7 @@ export function Ring({ value, size = 88, stroke = 9, tone = 'accent', label, sub
       <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="var(--surface-3)" strokeWidth={stroke} />
       <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={`var(--${tone})`} strokeWidth={stroke} strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - v / 100)} style={{ transition: 'stroke-dashoffset .8s var(--ease)' }} />
     </svg>
-    <div className="absolute inset-0 grid place-items-center text-center leading-none"><div className="font-bold num" style={{ fontSize: size * 0.24 }}>{label ?? (value === null ? '—' : Math.round(value) + '%')}</div>{sub && <div className="text-muted mt-1" style={{ fontSize: size * 0.11 }}>{sub}</div>}</div>
+    <div className="absolute inset-0 grid place-items-center text-center leading-none"><div className="font-bold num" style={{ fontSize: size * 0.24 }}>{label ?? fmtPct(value)}</div>{sub && <div className="text-muted mt-1" style={{ fontSize: size * 0.11 }}>{sub}</div>}</div>
   </div>
 }
 export function Stat({ label, value, sub, icon, tone }: { label: string; value: ReactNode; sub?: ReactNode; icon?: IconName; tone?: 'ok' | 'warn' | 'bad' | 'accent' | 'info' }) {
@@ -55,10 +55,25 @@ export function Avatar({ name, photo, size }: { name: string; photo?: string | n
   if (photo) return <img src={photo} alt="" className={`avatar ${size || ''}`} style={{ objectFit: 'cover' }} />
   return <span className={`avatar ${size || ''}`} aria-hidden="true">{ini}</span>
 }
+const FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]):not([type=hidden]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])'
+/** Accessible dialog: Escape closes, Tab is trapped inside, focus moves in on open and back to the opener on close. */
 export function Modal({ open, onClose, title, children, footer }: { open: boolean; onClose: () => void; title: ReactNode; children: ReactNode; footer?: ReactNode }) {
-  useEffect(() => { if (!open) return; const f = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }; addEventListener('keydown', f); return () => removeEventListener('keydown', f) }, [open, onClose])
+  const { t } = useApp(); const ref = useRef<HTMLDivElement>(null); const id = useMemo(() => 'dlg-' + Math.random().toString(36).slice(2, 8), [])
+  useEffect(() => {
+    if (!open) return
+    const opener = document.activeElement as HTMLElement | null
+    const first = ref.current?.querySelector<HTMLElement>('.modal-body ' + FOCUSABLE) || ref.current?.querySelector<HTMLElement>(FOCUSABLE); first?.focus()
+    const f = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { e.stopPropagation(); onClose(); return }
+      if (e.key !== 'Tab' || !ref.current) return
+      const els = [...ref.current.querySelectorAll<HTMLElement>(FOCUSABLE)]; if (!els.length) return
+      const a = els[0], z = els[els.length - 1]
+      if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus() } else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus() }
+    }
+    addEventListener('keydown', f, true); return () => { removeEventListener('keydown', f, true); opener?.focus?.() }
+  }, [open, onClose])
   if (!open) return null
-  return <><div className="backdrop" onClick={onClose} /><div className="modal" role="dialog" aria-modal="true"><div className="px-5 py-4 border-b border-line font-semibold text-lg flex items-center justify-between">{title}<button className="btn btn-ghost btn-icon" onClick={onClose} aria-label="close"><Icon name="x" /></button></div><div className="px-5 py-4">{children}</div>{footer && <div className="px-5 py-3 border-t border-line bg-surface-2 flex flex-wrap gap-2 justify-end">{footer}</div>}</div></>
+  return <><div className="backdrop" onClick={onClose} /><div ref={ref} className="modal" role="dialog" aria-modal="true" aria-labelledby={id}><div className="px-5 py-4 border-b border-line font-semibold text-lg flex items-center justify-between"><h2 id={id} className="m-0 text-lg font-semibold">{title}</h2><button className="btn btn-ghost btn-icon" onClick={onClose} aria-label={t('close')}><Icon name="x" /></button></div><div className="px-5 py-4 modal-body">{children}</div>{footer && <div className="px-5 py-3 border-t border-line bg-surface-2 flex flex-wrap gap-2 justify-end">{footer}</div>}</div></>
 }
 /* toasts */
 interface Toast { id: number; text: string; kind?: 'ok' | 'bad' }
@@ -66,11 +81,13 @@ const ToastCtx = createContext<(text: string, kind?: 'ok' | 'bad') => void>(() =
 export const useToast = () => useContext(ToastCtx)
 export function ToastProvider({ children }: { children: ReactNode }) {
   const [list, setList] = useState<Toast[]>([])
-  const push = useCallback((text: string, kind?: 'ok' | 'bad') => { const id = Date.now() + Math.random(); setList(l => [...l, { id, text, kind }]); setTimeout(() => setList(l => l.filter(x => x.id !== id)), 3200) }, [])
-  return <ToastCtx.Provider value={push}>{children}<div className="toast-wrap" aria-live="polite">{list.map(x => <div key={x.id} className={`toast ${x.kind || ''}`}><Icon name={x.kind === 'bad' ? 'alert' : 'checkCircle'} />{x.text}</div>)}</div></ToastCtx.Provider>
+  const push = useCallback((text: string, kind?: 'ok' | 'bad') => { const id = Date.now() + Math.random(); setList(l => [...l, { id, text, kind }]); setTimeout(() => setList(l => l.filter(x => x.id !== id)), kind === 'bad' ? 7000 : 3200) }, [])
+  return <ToastCtx.Provider value={push}>{children}<div className="toast-wrap" aria-live="polite">{list.map(x => <div key={x.id} className={`toast ${x.kind || ''}`} role={x.kind === 'bad' ? 'alert' : undefined}><Icon name={x.kind === 'bad' ? 'alert' : 'checkCircle'} />{x.text}</div>)}</div></ToastCtx.Provider>
 }
 export const fmtDate = (iso?: string | null, lang: 'ar' | 'en' = (document.documentElement.lang as 'ar' | 'en') || 'ar') => iso ? new Date(iso).toLocaleString(lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-GB', { dateStyle: 'medium', timeStyle: 'short' }) : ''
 export const fmtDay = (iso?: string | null, lang: 'ar' | 'en' = (document.documentElement.lang as 'ar' | 'en') || 'ar') => iso ? new Date(iso).toLocaleDateString(lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-GB', { dateStyle: 'medium' }) : ''
-export const fmtPct = (v: number | null | undefined) => v === null || v === undefined ? '—' : Math.round(v) + '%'
+export const fmtPct = (v: number | null | undefined) => v === null || v === undefined ? '—' : (v > 0 && v < 1 ? v.toFixed(1) : String(Math.round(v))) + '%'
+/** Human message for a storage error; the raw text goes to the console. */
+export function errMsg(e: unknown, t: (k: 'errNotAllowed' | 'errNotFound' | 'saveFailed') => string): string { const n = (e as DOMException)?.name; console.error(e); if (n === 'NotAllowedError' || n === 'SecurityError') return t('errNotAllowed'); if (n === 'NotFoundError') return t('errNotFound'); const m = (e as Error)?.message; return m && !/^[A-Za-z]+Error/.test(m) && m !== 'conflict' ? m : t('saveFailed') }
 export const ringTone = (v: number | null): 'accent' | 'ok' | 'warn' | 'bad' => v === null ? 'accent' : v >= 80 ? 'ok' : v >= 50 ? 'warn' : 'bad'
 export const tone = (v: number | null) => v === null ? 'muted' as const : v >= 80 ? 'ok' as const : v >= 50 ? 'warn' as const : 'bad' as const

@@ -12,7 +12,7 @@ export function Trend({ series, labels, height = 140 }: { series: { name: string
   const n = labels.length; if (n === 0) return null
   const x = (i: number) => padL + (n === 1 ? (w - padL - padR) / 2 : (i / (n - 1)) * (w - padL - padR))
   const y = (v: number) => padT + (1 - v / 100) * (h - padT - padB)
-  return <svg viewBox={`0 0 ${w} ${h}`} className="w-full h-auto" style={{ maxHeight: h }} role="img">
+  return <svg viewBox={`0 0 ${w} ${h}`} className="w-full h-auto" style={{ maxHeight: h, direction: 'ltr' }} role="img" aria-label={series.map(s => s.name).join(' · ')}><title>{series.map(s => s.name).join(' · ')}</title>
     {[0, 25, 50, 75, 100].map(g => <g key={g}><line x1={padL} x2={w - padR} y1={y(g)} y2={y(g)} stroke="var(--line)" strokeDasharray={g ? '2 4' : undefined} /><text x={padL - 6} y={y(g) + 4} fontSize="10" textAnchor="end" fill="var(--muted)">{g}%</text></g>)}
     {labels.map((l, i) => <text key={l} x={x(i)} y={h - 8} fontSize="10" textAnchor="middle" fill="var(--muted)">{l}</text>)}
     {series.map(s => { const pts = s.values.map((v, i) => v === null ? null : [x(i), y(v)] as [number, number]).filter(Boolean) as [number, number][]
@@ -23,5 +23,5 @@ export function Trend({ series, labels, height = 140 }: { series: { name: string
 export function Spark({ values, color = 'var(--accent)' }: { values: (number | null)[]; color?: string }) {
   const w = 80, h = 24; const pts = values.map((v, i) => v === null ? null : [(i / Math.max(1, values.length - 1)) * w, h - 2 - (v / 100) * (h - 4)] as [number, number]).filter(Boolean) as [number, number][]
   if (pts.length < 2) return <svg width={w} height={h} />
-  return <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`}><polyline points={pts.map(p => p.join(',')).join(' ')} fill="none" stroke={color} strokeWidth="2" strokeLinejoin="round" /><circle cx={pts[pts.length - 1][0]} cy={pts[pts.length - 1][1]} r="2.5" fill={color} /></svg>
+  return <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ direction: 'ltr' }} aria-hidden="true"><polyline points={pts.map(p => p.join(',')).join(' ')} fill="none" stroke={color} strokeWidth="2" strokeLinejoin="round" /><circle cx={pts[pts.length - 1][0]} cy={pts[pts.length - 1][1]} r="2.5" fill={color} /></svg>
 }

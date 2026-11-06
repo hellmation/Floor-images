@@ -16,7 +16,9 @@ export interface Master { pillars: Pillar[]; subpillars: SubPillar[]; codes: Cod
 
 export interface User { id: string; name_ar: string; name_en: string; role: Role; email?: string; active: boolean; photo?: string }
 export interface Project { id: string; name_ar: string; name_en?: string; ownerId: string | null; active: boolean }
-export interface Cycle { id: string; name: string; name_en?: string; start: string; end: string; due: string; status: CycleStatus; prefillFrom?: string | null }
+export interface Cycle { id: string; name: string; name_en?: string; start: string; end: string; due: string; status: CycleStatus; prefillFrom?: string | null
+  /** Assignee per code frozen when the cycle is closed, so later mapping edits never rewrite history. */
+  assignments?: Record<string, string> }
 export interface Settings {
   scores: { yes: number; partial: number; no: number }
   weights: { high: number; medium: number; low: number; none: number }
@@ -67,6 +69,9 @@ export interface Review {
   reviewedBy: string
   reviewedAt: string
   evidenceVerified?: boolean
+  /** Identity of the submission that was reviewed (who submitted and when). A review only applies to that exact submission. */
+  userId?: string
+  submittedAt?: string
 }
 export interface Clarification { answer: string; answeredBy: string; answeredAt: string }
 export interface ReviewsFile {

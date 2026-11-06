@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import type { AnswersFile, AuditEntry, CodeAnswer, Config, Lang, ReviewsFile, Snapshot, User } from '../types'
-import { FolderAdapter, LocalAdapter, hasFolderApi, loadHandle, storeHandle, type StorageAdapter } from './storage'
+import { FolderAdapter, LocalAdapter, ConflictError, hasFolderApi, loadHandle, storeHandle, type StorageAdapter } from './storage'
 import { now } from './scoring'
 import { t as tr, type Key } from '../i18n'
 
@@ -45,9 +45,17 @@ export function AppProvider({ children }: { children: ReactNode }) {
     document.documentElement.classList.toggle('dark', dark); ls.set('theme', theme)
   }, [theme])
 
+  /** All writes go through one queue so two quick saves (answer + note, or two admin edits) can never race each other. */
+  const queue = useRef<Promise<unknown>>(Promise.resolve())
+  const enqueue = useCallback(<T,>(fn: () => Promise<T>): Promise<T> => { const p = queue.current.then(fn, fn); queue.current = p.catch(() => undefined); return p }, [])
+  /** The authoritative copy of the current person's answers file (updated synchronously after every write). */
+  const myFileRef = useRef<AnswersFile | null>(null)
+
   const load = useCallback(async (ad: StorageAdapter) => {
     setLoading(true); setError(null)
-    try { const s = await ad.load(); setSnap(s); setLastSync(now()) } catch (e) { setError(String(e)) } finally { setLoading(false) }
+    try { const s = await ad.load(); setSnap(s); setLastSync(now()); myFileRef.current = null }
+    catch (e) { const name = (e as DOMException)?.name; if (name === 'NotAllowedError' || name === 'SecurityError') setNeedsReconnect(true); setError(String((e as Error)?.message || e)) }
+    finally { setLoading(false) }
   }, [])
 
   // boot: try the stored folder handle, else wait for user action
@@ -90,36 +98,42 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const isAdmin = user?.role === 'admin'
   const effCycle = cycleId && snap?.config.cycles.some(c => c.id === cycleId) ? cycleId : (snap?.config.currentCycleId || null)
 
-  const audit = useCallback(async (entries: AuditEntry[]) => { if (adapter) { await adapter.appendAudit(entries); setSnap(s => s ? { ...s, audit: [...s.audit, ...entries] } : s) } }, [adapter])
+  const audit = useCallback(async (entries: AuditEntry[]) => { if (!adapter) return; try { await enqueue(() => adapter.appendAudit(entries, userId || 'unknown')); setSnap(s => s ? { ...s, audit: [...s.audit, ...entries] } : s) } catch { /* the log is informational; never block a save */ } }, [adapter, userId, enqueue])
 
   const saveConfig = useCallback(async (c: Config, a?: string) => {
-    if (!adapter) return; c.updatedAt = now(); await adapter.saveConfig(c); setSnap(s => s ? { ...s, config: c } : s)
+    if (!adapter) return; const expected = snap?.config.updatedAt; c.updatedAt = now()
+    try { await enqueue(() => adapter.saveConfig(c, expected)) }
+    catch (e) { if (e instanceof ConflictError) { await load(adapter); throw new Error(tr(lang, 'configConflict')) } throw e }
+    setSnap(s => s ? { ...s, config: c } : s)
     if (a) await audit([{ at: now(), by: userId || '?', action: 'config', target: a }])
-  }, [adapter, audit, userId])
+  }, [adapter, audit, userId, snap?.config.updatedAt, enqueue, load, lang])
+
+  /** Write the current person's file: build from the latest known copy, merge on disk, then publish the merged result. */
+  const writeMine = useCallback(async (patch: (file: AnswersFile) => AnswersFile) => {
+    if (!adapter || !userId) throw new Error('not connected')
+    return enqueue(async () => {
+      const base: AnswersFile = myFileRef.current || snap?.answers[userId] || { userId, updatedAt: now(), cycles: {} }
+      const merged = await adapter.saveAnswers(patch(base))
+      myFileRef.current = merged
+      setSnap(s => s ? { ...s, answers: { ...s.answers, [userId]: merged } } : s)
+      return merged
+    })
+  }, [adapter, userId, snap, enqueue])
 
   const saveMyNote = useCallback(async (codeId: string, text: string) => {
-    if (!adapter || !userId || !snap) return
-    const file: AnswersFile = snap.answers[userId] || { userId, updatedAt: now(), cycles: {} }
-    const notes = { ...(file.notes || {}) }
-    if (text.trim()) notes[codeId] = { text, updatedAt: now() }; else delete notes[codeId]
-    const next: AnswersFile = { ...file, updatedAt: now(), notes }
-    await adapter.saveAnswers(next)
-    setSnap(s => s ? { ...s, answers: { ...s.answers, [userId]: next } } : s)
-  }, [adapter, userId, snap])
+    // an empty text is kept as a tombstone so a deletion also wins the merge with an older copy on disk
+    await writeMine(file => ({ ...file, updatedAt: now(), notes: { ...(file.notes || {}), [codeId]: { text, updatedAt: now() } } }))
+  }, [writeMine])
 
   const saveMyAnswer = useCallback(async (cy: string, codeId: string, a: CodeAnswer) => {
-    if (!adapter || !userId || !snap) return
-    const file: AnswersFile = snap.answers[userId] || { userId, updatedAt: now(), cycles: {} }
-    const next: AnswersFile = { ...file, updatedAt: now(), cycles: { ...file.cycles, [cy]: { ...(file.cycles[cy] || {}), [codeId]: a } } }
-    await adapter.saveAnswers(next)
-    setSnap(s => s ? { ...s, answers: { ...s.answers, [userId]: next } } : s)
-    await audit([{ at: now(), by: userId, action: a.state === 'submitted' ? 'submit' : 'save', target: `${cy}/${codeId}` }])
-  }, [adapter, audit, snap, userId])
+    await writeMine(file => ({ ...file, updatedAt: now(), cycles: { ...file.cycles, [cy]: { ...(file.cycles[cy] || {}), [codeId]: a } } }))
+    await audit([{ at: now(), by: userId || '?', action: a.state === 'submitted' ? 'submit' : 'save', target: `${cy}/${codeId}` }])
+  }, [writeMine, audit, userId])
 
   const saveReviews = useCallback(async (r: ReviewsFile, a?: string) => {
-    if (!adapter) return; r.updatedAt = now(); await adapter.saveReviews(r); setSnap(s => s ? { ...s, reviews: r } : s)
+    if (!adapter) return; r.updatedAt = now(); await enqueue(() => adapter.saveReviews(r)); setSnap(s => s ? { ...s, reviews: r } : s)
     if (a) await audit([{ at: now(), by: userId || '?', action: 'review', target: a }])
-  }, [adapter, audit, userId])
+  }, [adapter, audit, userId, enqueue])
 
   const value: Ctx = {
     lang, setLang: setLangS, t: (k) => tr(lang, k), theme, setTheme: setThemeS,

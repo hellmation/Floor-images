@@ -1,6 +1,7 @@
 import type { AnswersFile, Config, ReviewsFile, AuditEntry, Snapshot } from '../types'
 import { defaultConfig, emptyReviews, migrateConfig, ensureAdmin } from './defaults'
 
+
 /** A storage adapter persists the shared state. Evaluators write only their own answers file;
  *  admins write config, reviews and audit. The folder adapter uses the File System Access API;
  *  the local adapter keeps everything in localStorage for browsers without it (or demos). */
@@ -8,16 +9,38 @@ export interface StorageAdapter {
   kind: 'folder' | 'local'
   label: string
   load(): Promise<Snapshot>
-  saveConfig(c: Config): Promise<void>
-  saveAnswers(a: AnswersFile): Promise<void>
+  /** expectedUpdatedAt: the config.updatedAt the caller started from; throws ConflictError when the stored file moved on since. */
+  saveConfig(c: Config, expectedUpdatedAt?: string): Promise<void>
+  /** Merges with what is on disk (per code / per note, latest wins) so a stale in-memory copy can never drop data. Returns the merged file. */
+  saveAnswers(a: AnswersFile): Promise<AnswersFile>
   saveReviews(r: ReviewsFile): Promise<void>
-  appendAudit(entries: AuditEntry[]): Promise<void>
+  appendAudit(entries: AuditEntry[], userId: string): Promise<void>
+}
+export class ConflictError extends Error { constructor() { super('conflict'); this.name = 'ConflictError' } }
+export const APP_CONFIG_VERSION = 5
+
+/** Merge two copies of one person's answers file: per cycle/code and per note the newer updatedAt wins. */
+export function mergeAnswers(disk: AnswersFile | null, next: AnswersFile): AnswersFile {
+  if (!disk) return next
+  const cycles: AnswersFile['cycles'] = {}
+  for (const cy of new Set([...Object.keys(disk.cycles || {}), ...Object.keys(next.cycles || {})])) {
+    cycles[cy] = { ...(disk.cycles?.[cy] || {}) }
+    for (const [code, a] of Object.entries(next.cycles?.[cy] || {})) { const d = cycles[cy][code]; if (!d || (a.updatedAt || '') >= (d.updatedAt || '')) cycles[cy][code] = a }
+  }
+  const notes = { ...(disk.notes || {}) }
+  for (const [code, n] of Object.entries(next.notes || {})) { const d = notes[code]; if (!d || (n.updatedAt || '') >= (d.updatedAt || '')) notes[code] = n }
+  return { ...disk, ...next, cycles, notes, updatedAt: [disk.updatedAt, next.updatedAt].sort().pop() || next.updatedAt }
 }
 
 /* ---------- helpers ---------- */
+/** Returns null only when the file does not exist. Any other failure (lock, read error, bad JSON) is thrown so a
+ *  momentary problem on a network share can never be mistaken for "no data" and overwritten with defaults. */
 async function readJson<T>(dir: FileSystemDirectoryHandle, name: string): Promise<T | null> {
-  try { const fh = await dir.getFileHandle(name); const f = await fh.getFile(); const txt = await f.text(); return txt.trim() ? JSON.parse(txt) as T : null }
-  catch { return null }
+  let fh: FileSystemFileHandle
+  try { fh = await dir.getFileHandle(name) } catch (e) { if ((e as DOMException).name === 'NotFoundError') return null; throw e }
+  const f = await fh.getFile(); const txt = await f.text()
+  if (!txt.trim()) return null
+  try { return JSON.parse(txt) as T } catch { throw new Error(`Unreadable file: ${name}`) }
 }
 async function exists(dir: FileSystemDirectoryHandle, name: string) { try { await dir.getFileHandle(name); return true } catch { return false } }
 const stamp = () => new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-')
@@ -39,7 +62,7 @@ function idb(): Promise<IDBDatabase> {
 }
 export async function storeHandle(h: FileSystemDirectoryHandle) {
   const db = await idb(); const tx = db.transaction(STORE, 'readwrite'); tx.objectStore(STORE).put(h, 'dir')
-  await new Promise(r => { tx.oncomplete = r })
+  await new Promise((res, rej) => { tx.oncomplete = () => res(null); tx.onerror = () => rej(tx.error); tx.onabort = () => rej(tx.error) })
 }
 export async function loadHandle(): Promise<FileSystemDirectoryHandle | null> {
   try { const db = await idb(); const tx = db.transaction(STORE, 'readonly'); const req = tx.objectStore(STORE).get('dir')
@@ -73,10 +96,16 @@ export class FolderAdapter implements StorageAdapter {
     const d = await this.data()
     let config = await readJson<Config>(d, 'config.json')
     if (!config) { config = defaultConfig(); await writeJson(d, 'config.json', config) }
-    else if ((config.version || 1) < 5) { await this.backupConfig(d, config, 'before-migration'); config = migrateConfig(config); await writeJson(d, 'config.json', config) }
+    else if ((config.version || 1) > APP_CONFIG_VERSION) throw new Error(`This file is older than the data (config v${config.version}); open the newer UAE-Code-Championship.html`)
+    else if ((config.version || 1) < APP_CONFIG_VERSION) { await this.backupConfig(d, config, 'before-migration'); config = migrateConfig(config); await writeJson(d, 'config.json', config) }
     if (!config.users.some(u => u.active && u.role === 'admin')) { await this.backupConfig(d, config, 'before-admin-recovery'); config = ensureAdmin(config); await writeJson(d, 'config.json', config) }
     const reviews = (await readJson<ReviewsFile>(d, 'reviews.json')) || emptyReviews()
-    const audit = (await readJson<AuditEntry[]>(d, 'audit.json')) || []
+    // audit: one file per writer (data/audit/<userId>.json) plus the legacy shared audit.json, merged by time
+    const audit: AuditEntry[] = (await readJson<AuditEntry[]>(d, 'audit.json')) || []
+    try { const au = await d.getDirectoryHandle('audit', { create: true })
+      for await (const [name, h] of (au as unknown as AsyncIterable<[string, FileSystemHandle]>)) if (h.kind === 'file' && name.endsWith('.json')) audit.push(...((await readJson<AuditEntry[]>(au, name)) || []))
+    } catch { /* audit is informational */ }
+    audit.sort((a, b) => a.at.localeCompare(b.at))
     const answers: Record<string, AnswersFile> = {}
     const ad = await d.getDirectoryHandle('answers', { create: true })
     for await (const [name, h] of (ad as unknown as AsyncIterable<[string, FileSystemHandle]>)) {
@@ -96,10 +125,21 @@ export class FolderAdapter implements StorageAdapter {
     const d = await this.data(); await writeJson(d, 'config.json', snap.config); await writeJson(d, 'reviews.json', snap.reviews); await writeJson(d, 'audit.json', snap.audit)
     const ad = await d.getDirectoryHandle('answers', { create: true }); for (const a of Object.values(snap.answers)) await writeJson(ad, `${a.userId}.json`, a)
   }
-  async saveConfig(c: Config) { await writeJson(await this.data(), 'config.json', c) }
+  async saveConfig(c: Config, expectedUpdatedAt?: string) {
+    const d = await this.data()
+    if (expectedUpdatedAt) { const disk = await readJson<Config>(d, 'config.json'); if (disk?.updatedAt && disk.updatedAt !== expectedUpdatedAt) throw new ConflictError() }
+    await writeJson(d, 'config.json', c)
+  }
   async saveReviews(r: ReviewsFile) { await writeJson(await this.data(), 'reviews.json', r) }
-  async saveAnswers(a: AnswersFile) { const ad = await (await this.data()).getDirectoryHandle('answers', { create: true }); await writeJson(ad, `${a.userId}.json`, a) }
-  async appendAudit(entries: AuditEntry[]) { const d = await this.data(); const cur = (await readJson<AuditEntry[]>(d, 'audit.json')) || []; await writeJson(d, 'audit.json', [...cur, ...entries].slice(-5000)) }
+  async saveAnswers(a: AnswersFile) {
+    const ad = await (await this.data()).getDirectoryHandle('answers', { create: true })
+    const merged = mergeAnswers(await readJson<AnswersFile>(ad, `${a.userId}.json`), a)
+    await writeJson(ad, `${a.userId}.json`, merged); return merged
+  }
+  async appendAudit(entries: AuditEntry[], userId: string) {
+    const au = await (await this.data()).getDirectoryHandle('audit', { create: true }); const name = `${userId || 'unknown'}.json`
+    const cur = (await readJson<AuditEntry[]>(au, name)) || []; await writeJson(au, name, [...cur, ...entries].slice(-2000))
+  }
 }
 
 /* ---------- local adapter ---------- */
@@ -114,7 +154,7 @@ export class LocalAdapter implements StorageAdapter {
   private write(s: Snapshot) { try { localStorage.setItem(LS, JSON.stringify(s)) } catch { /* ignore */ } }
   async load() { return this.read() }
   async saveConfig(c: Config) { const s = this.read(); s.config = c; this.write(s) }
-  async saveAnswers(a: AnswersFile) { const s = this.read(); s.answers[a.userId] = a; this.write(s) }
+  async saveAnswers(a: AnswersFile) { const s = this.read(); const m = mergeAnswers(s.answers[a.userId] || null, a); s.answers[a.userId] = m; this.write(s); return m }
   async saveReviews(r: ReviewsFile) { const s = this.read(); s.reviews = r; this.write(s) }
   async appendAudit(e: AuditEntry[]) { const s = this.read(); s.audit = [...s.audit, ...e].slice(-5000); this.write(s) }
   exportAll(): string { return JSON.stringify(this.read(), null, 1) }
