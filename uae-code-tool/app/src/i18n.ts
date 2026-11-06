@@ -41,7 +41,7 @@ const dict = {
   entity: ['الهيئة الاتحادية للضرائب', 'Federal Tax Authority'],
   myWork: ['أعمالي', 'My work'], browse: ['تصفح الكود', 'Browse the code'], mapping: ['ربط المشاريع', 'Project mapping'],
   cycles: ['الدورات', 'Cycles'], review: ['المراجعة', 'Review'], dashboard: ['لوحة المتابعة', 'Dashboard'], admin: ['الإدارة', 'Admin'],
-  exportExcel: ['تصدير Excel', 'Export Excel'], setup: ['الإعداد', 'Setup'],
+  exportExcel: ['تصدير Excel', 'Export Excel'], exportExcelHint: ['ملف التحليل الكامل (16 ورقة)', 'Full analysis workbook (16 sheets)'], exportPack: ['حزمة العرض الإداري', 'Management pack'], exportPackHint: ['ورقة التقييمات بتنسيق الفريق + ملخصات جاهزة للعرض التقديمي', 'Team tracking layout + presentation-ready summaries'], setup: ['الإعداد', 'Setup'],
   pillar: ['المحور', 'Pillar'], subpillar: ['المحور الفرعي', 'Sub-pillar'], code: ['الكود', 'Code'], codes: ['الأكواد', 'Codes'],
   requirement: ['المتطلب', 'Requirement'], requirements: ['المتطلبات', 'Requirements'], criterion: ['معيار الرصد', 'Monitoring criterion'],
   criteria: ['معايير الرصد', 'Monitoring criteria'], impact: ['مستوى الأثر', 'Impact level'],
