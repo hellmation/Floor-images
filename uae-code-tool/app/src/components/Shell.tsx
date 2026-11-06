@@ -21,7 +21,7 @@ export function Shell({ page, children }: { page: string; children: ReactNode })
   useEffect(() => { const f = (e: KeyboardEvent) => { if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); setPal(p => !p) } }; addEventListener('keydown', f); return () => removeEventListener('keydown', f) }, [])
   useEffect(() => { setOpen(false) }, [page])
   const groups: { label: string; items: [string, string, IconName][] }[] = [
-    { label: t('work'), items: [['home', t('home'), 'home'], ['my', t('myWork'), 'tasks'], ['browse', t('browse'), 'book']] },
+    { label: t('work'), items: [['home', t('home'), 'home'], ['my', t('myWork'), 'tasks'], ['browse', t('browse'), 'book'], ['notes', t('notes'), 'edit']] },
     { label: t('insights'), items: [['dashboard', t('dashboard'), 'chart'], ['standings', t('standings'), 'trophy']] },
     ...(isAdmin ? [{ label: t('administration'), items: [['review', t('review'), 'shield'], ['mapping', t('mapping'), 'map'], ['cycles', t('cycles'), 'calendar'], ['admin', t('admin'), 'settings']] as [string, string, IconName][] }] : []),
   ]

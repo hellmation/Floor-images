@@ -58,7 +58,9 @@ export interface AnswersFile {
   userId: string
   updatedAt: string
   cycles: Record<string, Record<string, CodeAnswer>>   // cycleId -> codeId -> answer
+  notes?: Record<string, PersonalNote>                  // codeId -> private follow-up note (not cycle-bound, never exported)
 }
+export interface PersonalNote { text: string; updatedAt: string }
 export interface Review {
   state: 'approved' | 'returned'
   comment?: string

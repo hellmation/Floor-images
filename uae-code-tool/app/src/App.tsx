@@ -5,6 +5,7 @@ import Setup from './pages/Setup'
 import Home from './pages/Home'
 import MyWork from './pages/MyWork'
 import Browse from './pages/Browse'
+import Notes from './pages/Notes'
 import CodeView from './pages/CodeView'
 import Mapping from './pages/Mapping'
 import Cycles from './pages/Cycles'
@@ -30,6 +31,7 @@ export default function App() {
   switch (page) {
     case 'my': body = <MyWork />; break
     case 'browse': body = <Browse key={hash} />; break
+    case 'notes': body = <Notes />; break
     case 'code': body = <CodeView id={decodeURIComponent(route[1] || '')} />; break
     case 'dashboard': body = <Dashboard />; break
     case 'standings': body = <Standings />; break

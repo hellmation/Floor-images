@@ -3,7 +3,7 @@ import type { Lang } from './types'
 const dict = {
   appName: ['بطولة كود الإمارات', 'UAE Code Championship'],
   standings: ['الترتيب', 'Standings'], photo: ['الصورة', 'Photo'], lastAdmin: ['لا يمكن تغيير دور المدير الوحيد أو تعطيله', 'The only admin cannot be changed or deactivated'], thisIsYou: ['هذا أنت', 'This is you'],
-  lastSignIn: ['آخر دخول', 'Last signed in'], work: ['العمل', 'Work'], insights: ['المؤشرات', 'Insights'], administration: ['الإدارة', 'Administration'],
+  lastSignIn: ['آخر دخول', 'Last signed in'], notes: ['ملاحظاتي', 'My notes'], personalNote: ['ملاحظة شخصية (اختيارية)', 'Personal note (optional)'], personalNoteHint: ['خاصة بك: لا تظهر للآخرين ولا تُصدَّر، وتبقى عبر الدورات لمتابعة ما يلزم.', 'Private to you: not visible to others, never exported, and kept across cycles for your follow-ups.'], withNotesOnly: ['التي بها ملاحظات فقط', 'With notes only'], noNotesYet: ['لا توجد ملاحظات بعد. اكتب ملاحظتك الأولى من صفحة أي كود أو مباشرة هنا.', 'No notes yet. Write your first one from any code page or right here.'], notesCount: ['ملاحظة', 'notes'], noteSaved: ['حُفظت الملاحظة', 'Note saved'], work: ['العمل', 'Work'], insights: ['المؤشرات', 'Insights'], administration: ['الإدارة', 'Administration'],
   searchHint: ['ابحث عن كود أو صفحة…', 'Search a code or a page…'], exportDone: ['تم إنشاء ملف Excel', 'Excel workbook generated'], refreshed: ['تم التحديث', 'Refreshed'],
   developedBy: ['تطوير فريق تطوير الخدمات · 2026', 'Developed by the Service Development Team · 2026'], internalTool: ['أداة داخلية · فريق تطوير الخدمات', 'Internal tool · Service Development Team'],
   landingLine: ['تقييم واضح. أدلة موثقة. ترتيب شفاف.', 'Clear assessment. Documented evidence. Transparent standings.'],

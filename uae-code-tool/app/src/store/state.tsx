@@ -15,6 +15,7 @@ interface Ctx {
   connectFolder: () => Promise<void>; reconnect: () => Promise<boolean>; useLocal: () => void; refresh: () => Promise<void>; needsReconnect: boolean
   saveConfig: (c: Config, audit?: string) => Promise<void>
   saveMyAnswer: (cycleId: string, codeId: string, a: CodeAnswer) => Promise<void>
+  saveMyNote: (codeId: string, text: string) => Promise<void>
   saveReviews: (r: ReviewsFile, audit?: string) => Promise<void>
   myAnswers: AnswersFile | null
 }
@@ -91,6 +92,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (a) await audit([{ at: now(), by: userId || '?', action: 'config', target: a }])
   }, [adapter, audit, userId])
 
+  const saveMyNote = useCallback(async (codeId: string, text: string) => {
+    if (!adapter || !userId || !snap) return
+    const file: AnswersFile = snap.answers[userId] || { userId, updatedAt: now(), cycles: {} }
+    const notes = { ...(file.notes || {}) }
+    if (text.trim()) notes[codeId] = { text, updatedAt: now() }; else delete notes[codeId]
+    const next: AnswersFile = { ...file, updatedAt: now(), notes }
+    await adapter.saveAnswers(next)
+    setSnap(s => s ? { ...s, answers: { ...s.answers, [userId]: next } } : s)
+  }, [adapter, userId, snap])
+
   const saveMyAnswer = useCallback(async (cy: string, codeId: string, a: CodeAnswer) => {
     if (!adapter || !userId || !snap) return
     const file: AnswersFile = snap.answers[userId] || { userId, updatedAt: now(), cycles: {} }
@@ -109,7 +120,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     lang, setLang: setLangS, t: (k) => tr(lang, k), theme, setTheme: setThemeS,
     adapter, snap, loading, error, lastSync, user, setUserId: (id) => { setUserIdS(id); ss.set('userId', id || ''); if (id) ls.set('lastUserId', id) },
     cycleId: effCycle, setCycleId: (id) => { setCycleIdS(id); ls.set('cycleId', id) }, isAdmin,
-    connectFolder, reconnect, useLocal, refresh, needsReconnect, saveConfig, saveMyAnswer, saveReviews,
+    connectFolder, reconnect, useLocal, refresh, needsReconnect, saveConfig, saveMyAnswer, saveMyNote, saveReviews,
     myAnswers: userId && snap ? snap.answers[userId] || null : null,
   }
   return <C.Provider value={value}>{children}</C.Provider>

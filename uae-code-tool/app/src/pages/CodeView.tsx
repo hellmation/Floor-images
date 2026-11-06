@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useApp } from '../store/state'
 import { codeById, subById, pillarById, assigneeOf, effective, effectiveImpact, master, sortIds, uid, now } from '../store/scoring'
 import { pick, pickDesc, pickText } from '../i18n'
@@ -9,7 +9,7 @@ import type { AnswerStatus, CodeAnswer, ItemAnswer } from '../types'
 const emptyItem = (): ItemAnswer => ({ status: null, evidence: [], clarify: { flag: false, question: '' } })
 
 export default function CodeView({ id }: { id: string }) {
-  const { t, lang, snap, user, isAdmin, cycleId, saveMyAnswer, saveConfig } = useApp()
+  const { t, lang, snap, user, isAdmin, cycleId, saveMyAnswer, saveMyNote, saveConfig } = useApp()
   const toast = useToast()
   const code = codeById.get(id)
   const cfg = snap!.config; const cy = cycleId!
@@ -107,6 +107,7 @@ export default function CodeView({ id }: { id: string }) {
             <div className="text-sm"><div className="label">{t('mappedProjects')}</div>{linked.length ? <div className="flex flex-wrap gap-1">{linked.map(p => <Pill key={p!.id} kind="accent">{pick(lang, p!)}</Pill>)}</div> : <span className="text-muted">—</span>}</div>
             {eff!.userId && <div className="text-xs text-muted">{t('submittedBy')}: {userName(eff!.userId)} · {fmtDate(eff!.answer?.updatedAt, lang)}</div>}
           </div>
+          <NoteCard key={code.id} codeId={code.id} value={snap!.answers[user!.id]?.notes?.[code.id]?.text || ''} onSave={saveMyNote} />
           {canEdit && <div className="card p-4 flex flex-col gap-3">
             <div className="flex items-center justify-between"><div className="label !mb-0">{t('submitChecklist')}</div><span className="text-xs text-muted num">{answered}/{code.requirements.length}</span></div>
             <ul className="checklist m-0 p-0 list-none">{checks.map(([done, label]) => <li key={label} className={done ? 'done' : 'todo'}><Icon name={done ? 'checkCircle' : 'clock'} className="shrink-0 mt-0.5" style={{ width: 15, height: 15 }} />{label}</li>)}</ul>
@@ -122,6 +123,19 @@ export default function CodeView({ id }: { id: string }) {
       </Modal>
     </div>
   )
+}
+export function NoteCard({ codeId, value, onSave, compact }: { codeId: string; value: string; onSave: (codeId: string, text: string) => Promise<void>; compact?: boolean }) {
+  const { t } = useApp(); const toast = useToast()
+  const [v, setV] = useState(value); const [saved, setSaved] = useState(true); const last = useRef(value)
+  useEffect(() => { if (value !== last.current) { last.current = value; setV(value); setSaved(true) } }, [value])
+  const commit = async () => { const text = v; if (text === last.current) { setSaved(true); return } await onSave(codeId, text); last.current = text; setSaved(true); if (!compact) toast(t('noteSaved'), 'ok') }
+  useEffect(() => { if (v === last.current) return; setSaved(false); const id = setTimeout(commit, 1200); return () => clearTimeout(id) }, [v]) // eslint-disable-line react-hooks/exhaustive-deps
+  if (compact) return <textarea className="textarea !py-1.5 text-sm" rows={2} placeholder={t('personalNote')} value={v} onChange={e => setV(e.target.value)} onBlur={commit} aria-label={t('personalNote')} />
+  return <div className="card p-4 flex flex-col gap-2" id="personal-note">
+    <div className="flex items-center justify-between"><div className="label !mb-0 flex items-center gap-1.5"><Icon name="edit" style={{ width: 14, height: 14 }} />{t('personalNote')}</div><span className={`text-xs ${saved ? 'text-muted' : 'text-warn-ink'}`}>{saved ? (v ? t('saved') : '') : '…'}</span></div>
+    <textarea className="textarea" rows={4} value={v} onChange={e => setV(e.target.value)} onBlur={commit} placeholder={t('personalNote')} />
+    <div className="text-xs text-muted">{t('personalNoteHint')}</div>
+  </div>
 }
 function EvidenceAdd({ onAdd }: { onAdd: (title: string, url: string) => void }) {
   const { t } = useApp(); const [title, setTitle] = useState(''); const [url, setUrl] = useState('')
