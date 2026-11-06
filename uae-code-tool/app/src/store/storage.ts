@@ -19,6 +19,8 @@ async function readJson<T>(dir: FileSystemDirectoryHandle, name: string): Promis
   try { const fh = await dir.getFileHandle(name); const f = await fh.getFile(); const txt = await f.text(); return txt.trim() ? JSON.parse(txt) as T : null }
   catch { return null }
 }
+async function exists(dir: FileSystemDirectoryHandle, name: string) { try { await dir.getFileHandle(name); return true } catch { return false } }
+const stamp = () => new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-')
 async function writeJson(dir: FileSystemDirectoryHandle, name: string, data: unknown) {
   const fh = await dir.getFileHandle(name, { create: true })
   const w = await fh.createWritable()
@@ -52,12 +54,27 @@ export class FolderAdapter implements StorageAdapter {
   private dir: FileSystemDirectoryHandle
   constructor(dir: FileSystemDirectoryHandle) { this.dir = dir; this.label = dir.name }
   private async data() { return this.dir.getDirectoryHandle('data', { create: true }) }
+  /** Copies the current config aside before any automatic rewrite (migration, admin recovery). */
+  private async backupConfig(d: FileSystemDirectoryHandle, config: Config, why: string) {
+    try { const b = await d.getDirectoryHandle('backups', { create: true }); await writeJson(b, `config-${why}-v${config.version || 1}-${stamp()}.json`, config) } catch { /* backups never block loading */ }
+  }
+  /** One full snapshot per day in data/backups, keeping the last 14, so a deleted or corrupted file can be restored. */
+  private async dailySnapshot(d: FileSystemDirectoryHandle, snap: Snapshot) {
+    try {
+      const b = await d.getDirectoryHandle('backups', { create: true }); const name = `snapshot-${new Date().toISOString().slice(0, 10)}.json`
+      if (await exists(b, name)) return
+      await writeJson(b, name, snap)
+      const names: string[] = []
+      for await (const [n, h] of (b as unknown as AsyncIterable<[string, FileSystemHandle]>)) if (h.kind === 'file' && n.startsWith('snapshot-')) names.push(n)
+      for (const n of names.sort().slice(0, Math.max(0, names.length - 14))) await b.removeEntry(n)
+    } catch { /* ignore */ }
+  }
   async load(): Promise<Snapshot> {
     const d = await this.data()
     let config = await readJson<Config>(d, 'config.json')
     if (!config) { config = defaultConfig(); await writeJson(d, 'config.json', config) }
-    else if ((config.version || 1) < 5) { config = migrateConfig(config); await writeJson(d, 'config.json', config) }
-    if (!config.users.some(u => u.active && u.role === 'admin')) { config = ensureAdmin(config); await writeJson(d, 'config.json', config) }
+    else if ((config.version || 1) < 5) { await this.backupConfig(d, config, 'before-migration'); config = migrateConfig(config); await writeJson(d, 'config.json', config) }
+    if (!config.users.some(u => u.active && u.role === 'admin')) { await this.backupConfig(d, config, 'before-admin-recovery'); config = ensureAdmin(config); await writeJson(d, 'config.json', config) }
     const reviews = (await readJson<ReviewsFile>(d, 'reviews.json')) || emptyReviews()
     const audit = (await readJson<AuditEntry[]>(d, 'audit.json')) || []
     const answers: Record<string, AnswersFile> = {}
@@ -68,7 +85,9 @@ export class FolderAdapter implements StorageAdapter {
         if (a && a.userId) answers[a.userId] = a
       }
     }
-    return { config, answers, reviews, audit }
+    const snap = { config, answers, reviews, audit }
+    await this.dailySnapshot(d, snap)
+    return snap
   }
   async saveConfig(c: Config) { await writeJson(await this.data(), 'config.json', c) }
   async saveReviews(r: ReviewsFile) { await writeJson(await this.data(), 'reviews.json', r) }

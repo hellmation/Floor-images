@@ -51,7 +51,7 @@ export function Shell({ page, children }: { page: string; children: ReactNode })
           </div>
         </header>
         <main className="page flex-1">{children}</main>
-        <footer className="px-6 py-4 text-xs text-muted flex flex-wrap items-center gap-3 border-t border-line"><img src={wordmark} alt="Federal Tax Authority" className="brand-wordmark" /><span className="ms-auto">{adapter?.kind === 'folder' ? `${t('folderLabel')}: ${adapter.label}` : t('localModeLabel')} · {t('lastSync')}: {lastSync ? new Date(lastSync).toLocaleTimeString(lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-GB', { timeStyle: 'short' }) : '—'}</span><span>{t('developedBy')}</span></footer>
+        <footer className="px-6 py-4 text-xs text-muted flex flex-wrap items-center gap-3 border-t border-line"><img src={wordmark} alt="Federal Tax Authority" className="brand-wordmark" /><span className="ms-auto">{adapter?.kind === 'folder' ? `${t('folderLabel')}: ${adapter.label}` : t('localModeLabel')} · {t('lastSync')}: {lastSync ? new Date(lastSync).toLocaleTimeString(lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-GB', { timeStyle: 'short' }) : '—'}</span><span>{t('developedBy')} · {t('version')} {__APP_VERSION__} · {t('build')} {__BUILD__}</span></footer>
       </div>
       {pal && <Palette onClose={() => setPal(false)} />}
     </div>

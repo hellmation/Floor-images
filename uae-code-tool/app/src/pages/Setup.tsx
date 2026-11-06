@@ -52,7 +52,7 @@ export default function Setup() {
               {adapter instanceof LocalAdapter && <span className="ms-auto flex gap-2"><a className="btn btn-sm" download="uae-code-backup.json" href={'data:application/json;charset=utf-8,' + encodeURIComponent(adapter.exportAll())}>{t('exportJson')}</a><label className="btn btn-sm">{t('importJson')}<input type="file" accept=".json" hidden onChange={e => e.target.files?.[0] && doImport(e.target.files[0])} /></label></span>}</div>
           </div>
         )}
-        <div className="text-center text-xs text-muted pt-2 border-t border-line">{t('developedBy')} · {t('version')} 1.0</div>
+        <div className="text-center text-xs text-muted pt-2 border-t border-line">{t('developedBy')} · {t('version')} {__APP_VERSION__} · {t('build')} {__BUILD__}</div>
       </div>
     </div>
   )
