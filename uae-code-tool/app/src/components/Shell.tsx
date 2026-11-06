@@ -7,7 +7,6 @@ import { pickDesc } from '../i18n'
 import emblem from '../assets/brand/fta-emblem.png'
 import wordmark from '../assets/brand/fta-lockup-alt.png'
 import { exportWorkbook } from '../export/excel'
-import { exportManagementPack } from '../export/mgmt'
 
 export function Shell({ page, children }: { page: string; children: ReactNode }) {
   const app = useApp(); const { t, lang, setLang, theme, setTheme, snap, user, isAdmin, cycleId, setCycleId, refresh, adapter, lastSync } = app
@@ -26,7 +25,6 @@ export function Shell({ page, children }: { page: string; children: ReactNode })
     ...(isAdmin ? [{ label: t('administration'), items: [['review', t('review'), 'shield'], ['mapping', t('mapping'), 'map'], ['cycles', t('cycles'), 'calendar'], ['admin', t('admin'), 'settings']] as [string, string, IconName][] }] : []),
   ]
   const doExport = async () => { if (!cycleId) return; setBusy(true); try { await exportWorkbook(snap!, cycleId, lang); toast(t('exportDone'), 'ok') } catch (e) { toast(String(e), 'bad') } finally { setBusy(false) } }
-  const doPack = async () => { if (!cycleId) return; setBusy(true); try { await exportManagementPack(snap!, cycleId, lang); toast(t('exportDone'), 'ok') } catch (e) { toast(String(e), 'bad') } finally { setBusy(false) } }
   const uname = lang === 'ar' ? user!.name_ar : user!.name_en
   return (
     <div>
@@ -47,7 +45,6 @@ export function Shell({ page, children }: { page: string; children: ReactNode })
           <div className="ms-auto flex items-center gap-2">
             <select className="select !w-auto !py-1.5 text-sm hidden md:block" value={cycleId || ''} onChange={e => setCycleId(e.target.value)} aria-label={t('cycle')}>{cfg.cycles.map(c => <option key={c.id} value={c.id}>{cname(c)}</option>)}</select>
             <button className="btn btn-sm" onClick={doExport} disabled={busy} title={t('exportExcelHint')}><Icon name="download" /><span className="hidden sm:inline">{busy ? '…' : t('exportExcel')}</span></button>
-            <button className="btn btn-sm btn-primary hidden md:inline-flex" onClick={doPack} disabled={busy} title={t('exportPackHint')}><Icon name="chart" /><span>{busy ? '…' : t('exportPack')}</span></button>
             <button className="btn btn-ghost btn-icon hidden sm:inline-flex" title={t('refresh')} onClick={() => { refresh(); toast(t('refreshed'), 'ok') }}><Icon name="refresh" /></button>
             <div className="seg" role="group" aria-label={t('language')}><button aria-pressed={lang === 'ar'} onClick={() => setLang('ar')}>عربي</button><button aria-pressed={lang === 'en'} onClick={() => setLang('en')}>EN</button></div>
             <div className="seg hidden sm:inline-flex" role="group" aria-label={t('theme')}><button aria-pressed={theme === 'light'} title={t('light')} onClick={() => setTheme('light')}><Icon name="sun" /></button><button aria-pressed={theme === 'system'} title={t('system')} onClick={() => setTheme('system')}><Icon name="monitor" /></button><button aria-pressed={theme === 'dark'} title={t('dark')} onClick={() => setTheme('dark')}><Icon name="moon" /></button></div>
