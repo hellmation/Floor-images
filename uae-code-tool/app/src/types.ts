@@ -27,6 +27,8 @@ export interface Settings {
 }
 export interface Config {
   version: number
+  /** Cycle ids renamed by a migration (old -> new); load() moves any file still carrying the old key. */
+  renamedCycles?: Record<string, string>
   entity: { name_ar: string; name_en: string }
   users: User[]
   projects: Project[]

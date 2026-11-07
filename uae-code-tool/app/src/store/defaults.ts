@@ -50,11 +50,11 @@ export function seedMapping(): Record<string, string[]> {
 export function defaultConfig(): Config {
   const { users, projects } = seedUsersAndProjects()
   return {
-    version: 5,
+    version: 6,
     entity: { name_ar: 'الهيئة الاتحادية للضرائب', name_en: 'Federal Tax Authority' },
     users, projects, mapping: seedMapping(), overrides: {},
-    cycles: [{ id: '2026-Q4', name: 'الربع الرابع 2026 — خط الأساس', name_en: '2026 Q4 — Baseline', start: '2026-10-01', end: '2026-12-31', due: '2026-12-15', status: 'open', prefillFrom: null }],
-    currentCycleId: '2026-Q4',
+    cycles: [{ id: '2026-Q1-Q3', name: 'خط الأساس 2026 — الأرباع الأول إلى الثالث', name_en: '2026 Baseline — Q1 to Q3', start: '2026-01-01', end: '2026-09-30', due: '2026-12-15', status: 'open', prefillFrom: null }],
+    currentCycleId: '2026-Q1-Q3',
     settings: { scores: { yes: 100, partial: 50, no: 0 }, weights: { high: 3, medium: 2, low: 1, none: 2 }, defaultAssigneeId: 'u-ahmed-helmy', requireEvidence: true },
     impactOverrides: {},
     updatedAt: new Date().toISOString(),
@@ -74,15 +74,37 @@ function mergeSeedMapping(c: Config) {
   for (const [code, pids] of Object.entries(seed)) if (!out[code]?.length) out[code] = pids
   c.mapping = out
 }
+/** Renames a cycle id everywhere inside the config (cycles, current, prefill references, overrides). */
+export function renameCycleInConfig(c: Config, from: string, to: string) {
+  for (const cy of c.cycles) { if (cy.id === from) cy.id = to; if (cy.prefillFrom === from) cy.prefillFrom = to }
+  if (c.currentCycleId === from) c.currentCycleId = to
+  if (c.overrides[from] && !c.overrides[to]) { c.overrides[to] = c.overrides[from]; delete c.overrides[from] }
+  c.renamedCycles = { ...(c.renamedCycles || {}), [from]: to }
+}
 export function migrateConfig(c: Config): Config {
+  if ((c.version || 1) >= 6) return c
+  if ((c.version || 1) === 5) {
+    // the baseline assesses the first three quarters of 2026; the seeded '2026-Q4' cycle is renamed and re-dated
+    const cy = c.cycles.find(x => x.id === '2026-Q4' && x.name === 'الربع الرابع 2026 — خط الأساس')
+    if (cy && !c.cycles.some(x => x.id === '2026-Q1-Q3')) { cy.name = 'خط الأساس 2026 — الأرباع الأول إلى الثالث'; cy.name_en = '2026 Baseline — Q1 to Q3'; cy.start = '2026-01-01'; cy.end = '2026-09-30'; renameCycleInConfig(c, '2026-Q4', '2026-Q1-Q3') }
+    c.version = 6; return c
+  }
+  if ((c.version || 1) < 5) { c = migrateTo5(c); return migrateConfig(c) }
+  return c
+}
+function migrateTo5(c: Config): Config {
   if ((c.version || 1) >= 5) return c
   if ((c.version || 1) === 4) { mergeSeedMapping(c); c.version = 5; return c }
-  if ((c.version || 1) === 3) {
+  if ((c.version || 1) === 3) return migrateTo5(migrateV3(c))
+  if ((c.version || 1) === 2) { c.version = 3; return migrateTo5(c) }
+  return migrateTo5(migrateV1(c))
+}
+function migrateV3(c: Config): Config {
     const { projects } = seedUsersAndProjects()
     for (const sp of projects) { const cur = c.projects.find(x => x.id === sp.id); if (cur) { cur.name_ar = sp.name_ar; cur.name_en = sp.name_en } else c.projects.push(sp) }
-    c.mapping = seedMapping(); if (!c.settings.defaultAssigneeId) c.settings.defaultAssigneeId = 'u-ahmed-helmy'; c.version = 4; return migrateConfig(c)
-  }
-  if ((c.version || 1) === 2) { c.version = 3; return migrateConfig(c) }
+    c.mapping = seedMapping(); if (!c.settings.defaultAssigneeId) c.settings.defaultAssigneeId = 'u-ahmed-helmy'; c.version = 4; return c
+}
+function migrateV1(c: Config): Config {
   const { users } = seedUsersAndProjects()
   const renames: Record<string, { id: string; name_ar: string; name_en: string }> = {
     'u-mohammed-abdelkader': { id: 'u-mahmoud-abdelkader', name_ar: 'محمود عبد القادر', name_en: 'Mahmoud Abdelkader' },
@@ -99,6 +121,6 @@ export function migrateConfig(c: Config): Config {
   if (c.settings.defaultAssigneeId === 'u-mohammed-al-jughair') c.settings.defaultAssigneeId = null
   c.mapping = seedMapping()
   c.version = 3
-  return migrateConfig(c)
+  return c
 }
 export const emptyReviews = (): ReviewsFile => ({ updatedAt: new Date().toISOString(), cycles: {}, clarifications: {} })

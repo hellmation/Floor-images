@@ -12,7 +12,8 @@ export default function Cycles() {
   const save = async (c: Cycle & { isNew?: boolean }) => {
     const { isNew, ...cycle } = c; cycle.id = cycle.id.trim().replace(/[\s/\\]+/g, '-')
     if (isNew && cfg.cycles.some(x => x.id === cycle.id)) { toast(t('duplicateCycle'), 'bad'); return }
-    if (!(cycle.start <= cycle.due && cycle.due <= cycle.end)) { toast(t('badDates'), 'bad'); return }
+    // the assessed period (start–end) may end before the submission deadline (due)
+    if (!(cycle.start <= cycle.end && cycle.start <= cycle.due)) { toast(t('badDates'), 'bad'); return }
     const n = JSON.parse(JSON.stringify(cfg)) as typeof cfg; const i = n.cycles.findIndex(x => x.id === cycle.id)
     const was = i >= 0 ? n.cycles[i].status : null
     // closing freezes who owns each code so later mapping edits never rewrite history; reopening lifts the freeze

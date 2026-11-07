@@ -1,6 +1,15 @@
 import type { AnswersFile, Config, ReviewsFile, AuditEntry, Snapshot } from '../types'
 import { defaultConfig, emptyReviews, migrateConfig, ensureAdmin } from './defaults'
 
+/** Moves data stored under a renamed cycle id to the new id. Returns true when something changed. */
+export function applyCycleRenames<T extends { cycles?: Record<string, unknown>; clarifications?: Record<string, unknown> }>(file: T, renames?: Record<string, string>): boolean {
+  let changed = false
+  for (const [from, to] of Object.entries(renames || {})) for (const key of ['cycles', 'clarifications'] as const) {
+    const m = file[key] as Record<string, unknown> | undefined; if (m && m[from] !== undefined && m[to] === undefined) { m[to] = m[from]; delete m[from]; changed = true }
+  }
+  return changed
+}
+
 
 /** A storage adapter persists the shared state. Evaluators write only their own answers file;
  *  admins write config, reviews and audit. The folder adapter uses the File System Access API;
@@ -17,7 +26,7 @@ export interface StorageAdapter {
   appendAudit(entries: AuditEntry[], userId: string): Promise<void>
 }
 export class ConflictError extends Error { constructor() { super('conflict'); this.name = 'ConflictError' } }
-export const APP_CONFIG_VERSION = 5
+export const APP_CONFIG_VERSION = 6
 
 /** Merge two copies of one person's answers file: per cycle/code and per note the newer updatedAt wins. */
 export function mergeAnswers(disk: AnswersFile | null, next: AnswersFile): AnswersFile {
@@ -100,6 +109,7 @@ export class FolderAdapter implements StorageAdapter {
     else if ((config.version || 1) < APP_CONFIG_VERSION) { await this.backupConfig(d, config, 'before-migration'); config = migrateConfig(config); await writeJson(d, 'config.json', config) }
     if (!config.users.some(u => u.active && u.role === 'admin')) { await this.backupConfig(d, config, 'before-admin-recovery'); config = ensureAdmin(config); await writeJson(d, 'config.json', config) }
     const reviews = (await readJson<ReviewsFile>(d, 'reviews.json')) || emptyReviews()
+    if (applyCycleRenames(reviews, config.renamedCycles)) await writeJson(d, 'reviews.json', reviews)
     // audit: one file per writer (data/audit/<userId>.json) plus the legacy shared audit.json, merged by time
     const audit: AuditEntry[] = (await readJson<AuditEntry[]>(d, 'audit.json')) || []
     try { const au = await d.getDirectoryHandle('audit', { create: true })
@@ -111,7 +121,7 @@ export class FolderAdapter implements StorageAdapter {
     for await (const [name, h] of (ad as unknown as AsyncIterable<[string, FileSystemHandle]>)) {
       if (h.kind === 'file' && name.endsWith('.json')) {
         const a = await readJson<AnswersFile>(ad, name)
-        if (a && a.userId) answers[a.userId] = a
+        if (a && a.userId) { if (applyCycleRenames(a, config.renamedCycles)) await writeJson(ad, name, a); answers[a.userId] = a }
       }
     }
     const snap = { config, answers, reviews, audit }
@@ -148,7 +158,7 @@ export class LocalAdapter implements StorageAdapter {
   kind = 'local' as const
   label = 'local'
   private read(): Snapshot {
-    try { const s = localStorage.getItem(LS); if (s) { const snap = JSON.parse(s) as Snapshot; snap.config = ensureAdmin(migrateConfig(snap.config)); return snap } } catch { /* ignore */ }
+    try { const s = localStorage.getItem(LS); if (s) { const snap = JSON.parse(s) as Snapshot; snap.config = ensureAdmin(migrateConfig(snap.config)); applyCycleRenames(snap.reviews, snap.config.renamedCycles); for (const a of Object.values(snap.answers)) applyCycleRenames(a, snap.config.renamedCycles); return snap } } catch { /* ignore */ }
     return { config: defaultConfig(), answers: {}, reviews: emptyReviews(), audit: [] }
   }
   private write(s: Snapshot) { try { localStorage.setItem(LS, JSON.stringify(s)) } catch { /* ignore */ } }
