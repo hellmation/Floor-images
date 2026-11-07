@@ -24,7 +24,21 @@ export default function CodeView({ id }: { id: string }) {
   const [confirm, setConfirm] = useState(false)
   const [dirty, setDirty] = useState(false)
   const [busy, setBusy] = useState(false)
-  const initKey = `${code?.id}|${cy}|${myOwn?.updatedAt || ''}|${eff?.answer?.updatedAt || ''}|${eff?.userId || ''}|${cycle?.prefillFrom || ''}`
+  /* Form initialisation. The form is (re)built from the stored answer only when the code or cycle changes, or when the
+   * stored answer changes while there are NO unsaved edits. If it changes while the person is editing (someone else saved
+   * this code, or a refresh brought a newer copy), their edits are kept and a banner offers to load the newer version. */
+  const pageKey = `${code?.id}|${cy}`
+  const storedKey = `${myOwn?.updatedAt || ''}|${eff?.answer?.updatedAt || ''}|${eff?.userId || ''}|${cycle?.prefillFrom || ''}`
+  const [stale, setStale] = useState(false)
+  const seenStored = useRef(storedKey)
+  const [initTick, setInitTick] = useState(0)
+  useEffect(() => { seenStored.current = storedKey; setStale(false); setInitTick(t => t + 1) }, [pageKey]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (storedKey === seenStored.current) return
+    if (dirty) { setStale(true); return }
+    seenStored.current = storedKey; setInitTick(t => t + 1)
+  }, [storedKey]) // eslint-disable-line react-hooks/exhaustive-deps
+  const loadLatest = () => { seenStored.current = storedKey; setStale(false); setInitTick(t => t + 1) }
   useEffect(() => {
     if (!code) return
     const base = myOwn || eff?.answer || null
@@ -34,9 +48,7 @@ export default function CodeView({ id }: { id: string }) {
     for (const r of code.requirements) { next[String(r.n)] = src?.items[String(r.n)] ? { ...emptyItem(), ...JSON.parse(JSON.stringify(src.items[String(r.n)])) } : emptyItem()
       if (carry) next[String(r.n)].clarify = { flag: false, question: '' } } // a carried answer never carries an open clarification
     setItems(next); setCarried(carry || base?.carriedFrom || null); setConfirm(false); setDirty(false)
-    // Re-initialise only when the code, the cycle, or the stored answer itself changes. A background refresh
-    // or a note autosave replaces the snapshot object but must not discard edits in progress.
-  }, [initKey]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [initTick]) // eslint-disable-line react-hooks/exhaustive-deps
   const ordered = useMemo(() => [...master.codes].sort((a, b) => sortIds(a.id, b.id)), [])
   // unsaved edits: warn before the tab closes and before any in-app navigation (App.useHash consults the guard)
   const dirtyRef = useRef(false); dirtyRef.current = dirty
@@ -65,7 +77,7 @@ export default function CodeView({ id }: { id: string }) {
   const save = async (state: 'draft' | 'submitted') => {
     if (busy) return; setBusy(true)
     const a: CodeAnswer = { state, updatedAt: now(), submittedAt: state === 'submitted' ? now() : myOwn?.submittedAt, items, carriedFrom: carried }
-    try { await saveMyAnswer(cy, code.id, a); setConfirm(false); setDirty(false); toast(state === 'submitted' ? t('submitted') : t('saved'), 'ok') }
+    try { await saveMyAnswer(cy, code.id, a); setConfirm(false); setDirty(false); setStale(false); seenStored.current = `${a.updatedAt}|${a.updatedAt}|${user!.id}|${cycle?.prefillFrom || ''}`; toast(state === 'submitted' ? t('submitted') : t('saved'), 'ok') }
     catch (e) { toast(errMsg(e, t), 'bad') } finally { setBusy(false) }
   }
   const override = async (uidv: string) => { const c = JSON.parse(JSON.stringify(cfg)); c.overrides[cy] = c.overrides[cy] || {}; if (uidv) c.overrides[cy][code.id] = uidv; else delete c.overrides[cy][code.id]; try { await saveConfig(c, `override ${code.id} -> ${uidv || 'auto'}`) } catch (e) { toast(errMsg(e, t), 'bad') } }
@@ -85,6 +97,7 @@ export default function CodeView({ id }: { id: string }) {
             <p className="m-0 text-base leading-relaxed">{pickDesc(lang, code)}</p>
             {cycle && cycle.status !== 'open' && <div className="text-sm text-warn-ink bg-warn-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="clock" />{t(cycle.status === 'closed' ? 'cycleClosedNotice' : cycle.status === 'review' ? 'cycleReviewNotice' : 'cyclePlanningNotice')}</div>}
             {!canEdit && cycle?.status === 'open' && !locked && <div className="text-sm text-warn-ink bg-warn-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="eye" />{t('readOnly')} · {t('requestChange')}</div>}
+            {stale && <div className="text-sm text-warn-ink bg-warn-soft rounded-lg px-3 py-2 flex flex-wrap items-center gap-2" role="alert"><Icon name="alert" className="shrink-0" /><span className="flex-1 min-w-48">{t('staleEdit')}</span><button className="btn btn-sm" onClick={() => setStale(false)}>{t('keepMine')}</button><button className="btn btn-sm" onClick={loadLatest}>{t('loadLatest')}</button></div>}
             {otherPending && <div className="text-sm text-info-ink bg-info-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="info" />{t('pendingOther')} ({userName(eff!.userId)})</div>}
             {adminShadow && <div className="text-sm text-info-ink bg-info-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="shield" />{t('adminShadow')}</div>}
             {carried && <div className="text-sm text-info-ink bg-info-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="clock" />{t('carried')} (<bdi dir="ltr">{carried}</bdi>)</div>}
