@@ -68,6 +68,19 @@ Four independent audits (logic and storage, UI/i18n/accessibility, Excel export,
 | تصدير Excel وتحقق البنية والصيغ | ✓ |
 | الوضع الداكن والإنجليزية لكل الصفحات، وعرض الهاتف 390px بلا تمرير أفقي | ✓ |
 
+## الجولة الثانية (7 نوفمبر) — ثبات التحديد / Round 2 (7 Nov) — selection stability
+
+البلاغ: «أختار نعم فتُلغى وحدها». تم استنساخ الحالة آلياً وإغلاق كل مساراتها:
+- تحديث الخلفية (كل 90 ثانية) أو زر التحديث أثناء التحرير: التحديد يبقى. ✓
+- الحفظ التلقائي للملاحظة الشخصية أثناء التحرير: يبقى. ✓
+- شخص آخر يحفظ الكود نفسه أثناء تحريرك: تعديلاتك تبقى ويظهر شريط «الاحتفاظ بتعديلاتي / تحميل النسخة الأحدث». ✓ (كان هذا يستبدل تحديدك بتحديده ثم يحفظه باسمك.)
+- النقر أثناء حفظ جارٍ أو أثناء قراءة بطيئة من المجلد: لا يُفقد شيء ويبقى «غير محفوظ» حتى الحفظ التالي. ✓
+- تعديل المدير للإعدادات أثناء تحريرك: يبقى. ✓
+
+تحصينات إضافية في طبقة التخزين: دمج ثلاثي لا يتأثر بفروق الساعة بين الأجهزة؛ القراءة البطيئة لا تُرجع نسخة أقدم فوق ما حُفظ للتو؛ كل كتابة تُقرأ بعد حفظها للتأكد منها ويُعاد الدمج إن كتب غيرك في اللحظة نفسها؛ إعادة المحاولة مرة عند تعثر قراءة مؤقت على الشبكة؛ لا تُكتب الإعدادات الافتراضية أبداً فوق مجلد فيه بيانات؛ الملف الأقدم من البيانات يصبح للقراءة فقط؛ تعارض المراجعات بين مديرين يُكتشف؛ فقدان إذن المجلد يُطلب تجديده فوراً؛ تغيير الدورة أو التحديث يحترم تحذير التغييرات غير المحفوظة؛ الوضع المحلي يبلّغ عن أي فشل حفظ أو تلف بدل الصمت.
+
+Report: "I select Yes and it gets unselected." Reproduced and closed on every path (background refresh, note autosave, another person saving the same code, clicks during an in-flight save or slow read, admin settings changes). Storage additionally hardened: three-way merge immune to clock skew, slow reads never roll back fresh writes, every write is verified and re-merged if someone wrote meanwhile, transient read errors retried, defaults never written over existing data, older files become read-only against newer data, review conflicts detected, lost permission re-requested immediately, cycle switch and refresh honour the unsaved-changes guard, local mode surfaces save failures.
+
 ## ملاحظات معروفة / Known limits
 - سجل الأحداث للعرض فقط؛ لا يُستخدم في الاحتساب.
 - الشخص نفسه من جهازين في اللحظة نفسها: يُدمج بالأحدث لكل كود (لا يُفقد شيء، لكن قد يفوز آخر تعديل على الكود نفسه).

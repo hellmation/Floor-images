@@ -33,8 +33,10 @@ export default function CodeView({ id }: { id: string }) {
   const seenStored = useRef(storedKey)
   const [initTick, setInitTick] = useState(0)
   useEffect(() => { seenStored.current = storedKey; setStale(false); setInitTick(t => t + 1) }, [pageKey]) // eslint-disable-line react-hooks/exhaustive-deps
+  const justSaved = useRef(false); const itemsRef = useRef(items); itemsRef.current = items
   useEffect(() => {
     if (storedKey === seenStored.current) return
+    if (justSaved.current) { justSaved.current = false; seenStored.current = storedKey; return } // echo of my own save: keep the form as it is
     if (dirty) { setStale(true); return }
     seenStored.current = storedKey; setInitTick(t => t + 1)
   }, [storedKey]) // eslint-disable-line react-hooks/exhaustive-deps
@@ -76,9 +78,18 @@ export default function CodeView({ id }: { id: string }) {
   const ok = checks.every(c => c[0])
   const save = async (state: 'draft' | 'submitted') => {
     if (busy) return; setBusy(true)
-    const a: CodeAnswer = { state, updatedAt: now(), submittedAt: state === 'submitted' ? now() : myOwn?.submittedAt, items, carriedFrom: carried }
-    try { await saveMyAnswer(cy, code.id, a); setConfirm(false); setDirty(false); setStale(false); seenStored.current = `${a.updatedAt}|${a.updatedAt}|${user!.id}|${cycle?.prefillFrom || ''}`; toast(state === 'submitted' ? t('submitted') : t('saved'), 'ok') }
-    catch (e) { toast(errMsg(e, t), 'bad') } finally { setBusy(false) }
+    const snapshotItems = itemsRef.current
+    const a: CodeAnswer = { state, updatedAt: now(), submittedAt: state === 'submitted' ? now() : myOwn?.submittedAt, items: snapshotItems, carriedFrom: carried }
+    justSaved.current = true
+    try {
+      const stored = await saveMyAnswer(cy, code.id, a)
+      setConfirm(false); setStale(false)
+      // clicks made while the write was in flight stay unsaved (dirty) instead of being forgotten
+      setDirty(itemsRef.current !== snapshotItems)
+      if (stored && stored.updatedAt !== a.updatedAt) { justSaved.current = false; toast(t('savedSuperseded'), 'bad') }
+      else toast(state === 'submitted' ? t('submitted') : t('saved'), 'ok')
+    }
+    catch (e) { justSaved.current = false; toast(errMsg(e, t), 'bad') } finally { setBusy(false) }
   }
   const override = async (uidv: string) => { const c = JSON.parse(JSON.stringify(cfg)); c.overrides[cy] = c.overrides[cy] || {}; if (uidv) c.overrides[cy][code.id] = uidv; else delete c.overrides[cy][code.id]; try { await saveConfig(c, `override ${code.id} -> ${uidv || 'auto'}`) } catch (e) { toast(errMsg(e, t), 'bad') } }
   const otherPending = !!myOwn && eff!.userId !== user!.id && (eff!.state === 'submitted' || eff!.state === 'approved')
@@ -101,7 +112,7 @@ export default function CodeView({ id }: { id: string }) {
             {otherPending && <div className="text-sm text-info-ink bg-info-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="info" />{t('pendingOther')} ({userName(eff!.userId)})</div>}
             {adminShadow && <div className="text-sm text-info-ink bg-info-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="shield" />{t('adminShadow')}</div>}
             {carried && <div className="text-sm text-info-ink bg-info-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="clock" />{t('carried')} (<bdi dir="ltr">{carried}</bdi>)</div>}
-            {eff!.review && (eff!.state === 'returned' || eff!.state === 'approved' || (eff!.state === 'draft' && eff!.review.state === 'returned')) && <div className={`text-sm rounded-lg px-3 py-2 ${eff!.state === 'approved' ? 'bg-ok-soft text-ok-ink' : 'bg-bad-soft text-bad-ink'}`}><b>{t('reviewerComment')}</b> ({userName(eff!.review.reviewedBy)}, {fmtDate(eff!.review.reviewedAt, lang)}): {eff!.review.comment === 'reopened' ? t('reopen') : (eff!.review.comment || '—')}</div>}
+            {eff!.review && (eff!.state === 'returned' || eff!.state === 'approved' || (eff!.state === 'draft' && eff!.review.state === 'returned' && (!eff!.review.userId || eff!.review.userId === eff!.userId))) && <div className={`text-sm rounded-lg px-3 py-2 ${eff!.state === 'approved' ? 'bg-ok-soft text-ok-ink' : 'bg-bad-soft text-bad-ink'}`}><b>{t('reviewerComment')}</b> ({userName(eff!.review.reviewedBy)}, {fmtDate(eff!.review.reviewedAt, lang)}): {eff!.review.comment === 'reopened' ? t('reopen') : (eff!.review.comment || '—')}</div>}
           </div>
           {code.requirements.map((r, i) => {
             const it = items[String(r.n)] || emptyItem(); const ca = clarAnswers[String(r.n)]

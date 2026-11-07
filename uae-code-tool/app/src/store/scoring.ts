@@ -55,7 +55,7 @@ export function effective(snap: Snapshot, cycleId: string, codeId: string): Effe
     const cand: Effective = { answer: a, userId: uid, review, state }
     if (!best) { best = cand; continue }
     const d = RANK[state] - RANK[best.state]
-    if (d > 0 || (d === 0 && (uid === assignee || (best.userId !== assignee && a.updatedAt > best.answer!.updatedAt)))) best = cand
+    if (d > 0 || (d === 0 && (uid === assignee || (best.userId !== assignee && (a.updatedAt > best.answer!.updatedAt || (a.updatedAt === best.answer!.updatedAt && uid < (best.userId || ''))))))) best = cand
   }
   return best || { answer: null, userId: null, review, state: 'none' }
 }
