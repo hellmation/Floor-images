@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useApp } from '../store/state'
-import { master, rollup, effective, codeScore, effectiveImpact, sortIds, isComplete } from '../store/scoring'
+import { master, rollup, effective, codeScore, effectiveImpact, sortIds, isComplete, departmentOf } from '../store/scoring'
 import { pick, pickDesc } from '../i18n'
 import { ImpactPill, PageHeader, Ring, Stat, fmtPct, tone, ringTone } from '../components/ui'
 import { HBars, Trend } from '../components/charts'
@@ -17,6 +17,7 @@ export default function Dashboard() {
   const byPillar = useMemo(() => master.pillars.map(p => ({ p, r: rollup(snap!, cy, master.codes.filter(c => c.pillar === p.id), approvedOnly), c: cmp ? rollup(snap!, cmp, master.codes.filter(c => c.pillar === p.id), approvedOnly) : null })), [snap, cy, cmp, approvedOnly])
   const bySub = useMemo(() => master.subpillars.map(s => ({ s, r: rollup(snap!, cy, master.codes.filter(c => c.sub === s.id), approvedOnly) })), [snap, cy, approvedOnly])
   const byProject = useMemo(() => cfg.projects.filter(p => p.active).map(p => ({ p, r: rollup(snap!, cy, master.codes.filter(c => (cfg.mapping[c.id] || []).includes(p.id)), approvedOnly) })).filter(x => x.r.total).sort((a, b) => b.r.total - a.r.total), [snap, cy, cfg, approvedOnly])
+  const byDept = useMemo(() => cfg.departments.filter(d => d.active).map(d => ({ d, r: rollup(snap!, cy, master.codes.filter(c => departmentOf(snap!, cy, c.id) === d.id), approvedOnly) })).filter(x => x.r.total > 0).sort((a, b) => b.r.total - a.r.total), [cfg, cy, snap, approvedOnly])
   const gaps = useMemo(() => master.codes.map(c => ({ c, e: effective(snap!, cy, c.id) })).map(x => ({ ...x, s: codeScore(x.e.answer, x.c, cfg) })).filter(x => x.s !== null && x.s < 100 && (approvedOnly ? x.e.state === 'approved' : isComplete(x.e.answer, x.c)))
     .sort((a, b) => { const w = cfg.settings.weights; return (w[effectiveImpact(b.c, cfg)] - w[effectiveImpact(a.c, cfg)]) || (a.s! - b.s!) || sortIds(a.c.id, b.c.id) }), [snap, cy, cfg, approvedOnly])
   const trendCycles = useMemo(() => cfg.cycles.filter(c => c.status === 'closed' || c.id === cy).sort((a, b) => a.start.localeCompare(b.start)), [cfg, cy])
@@ -46,6 +47,8 @@ export default function Dashboard() {
       <section className="card p-4 mb-4"><h2 className="text-base font-semibold m-0 mb-1 flex items-center gap-2"><Icon name="grid" className="text-accent-ink" />{t('subpillar')}</h2><p className="text-xs text-muted m-0 mb-3">{t('scoreLegend')}</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-2">{bySub.map(({ s, r }) => <a key={s.id} href={'#/browse?p=' + s.pillar} className="heat text-xs" style={{ background: heat(r.score) }}><div className="flex justify-between items-center"><span className="code-id">{s.id}</span><span className={`num font-bold text-${tone(r.score)}-ink`}>{fmtPct(r.score)}</span></div><div className="truncate mt-1" title={pick(lang, s)}>{pick(lang, s)}</div><div className="text-muted num">{r.approved}/{r.total}</div></a>)}</div></section>
       <div className="grid lg:grid-cols-2 gap-4">
+        <section className="card p-4"><h2 className="text-base font-semibold m-0 mb-2 flex items-center gap-2"><Icon name="users" className="text-accent-ink" />{t('byDepartment')}</h2>
+          <HBars rows={byDept.map(({ d, r }) => ({ key: d.id, label: lang === 'ar' ? d.name_ar : d.name_en, value: r.approved, max: r.total, right: (<><b className={`text-${tone(r.score)}-ink`}>{fmtPct(r.score)}</b><span className="text-muted text-xs block">{r.approved}/{r.total}</span></>) }))} /></section>
         <section className="card p-4"><h2 className="text-base font-semibold m-0 mb-2 flex items-center gap-2"><Icon name="map" className="text-accent-ink" />{t('byProject')}</h2>
           {byProject.length === 0 ? <p className="text-sm text-muted m-0">{t('noItems')}</p> : <HBars rows={byProject.map(({ p, r }) => ({ key: p.id, label: pick(lang, p), value: r.approved, max: r.total, right: (<><b className={`text-${tone(r.score)}-ink`}>{fmtPct(r.score)}</b><span className="text-muted text-xs block">{r.approved}/{r.total}</span></>) }))} />}</section>
         <section className="card p-4 overflow-x-auto"><h2 className="text-base font-semibold m-0 mb-2 flex items-center gap-2"><Icon name="alert" className="text-warn-ink" />{t('gaps')} <span className="text-muted font-normal text-sm num">({gaps.length})</span></h2>

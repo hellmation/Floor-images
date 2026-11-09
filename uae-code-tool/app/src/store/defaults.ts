@@ -1,6 +1,7 @@
-import type { Config, ReviewsFile, User, Project } from '../types'
+import type { Config, ReviewsFile, User, Project, Department } from '../types'
 import projectsSeed from '../data/projects.json'
 import photos from '../data/photos.json'
+import departmentsSeed from '../data/departments-seed.json'
 import mappingSeed from '../data/mapping-seed.json'
 import masterJson from '../data/master.json'
 
@@ -33,6 +34,9 @@ export function seedUsersAndProjects(): { users: User[]; projects: Project[] } {
   return { users, projects }
 }
 
+/** Organisational units and the code -> department mapping derived from the FTA structure decree (18/2023). */
+export function seedDepartments(): Department[] { return (departmentsSeed as unknown as { departments: Department[] }).departments.map(d => ({ ...d })) }
+export function seedDeptMapping(): Record<string, string[]> { const m = (departmentsSeed as unknown as { mapping: Record<string, string[]> }).mapping; return Object.fromEntries(Object.entries(m).map(([k, v]) => [k, [...v]])) }
 /** Code-level mapping derived from the project -> sub-pillar seed. */
 export function seedMapping(): Record<string, string[]> {
   const seed = mappingSeed as unknown as { assignments?: Record<string, string[]>; projects: Record<string, { subs: string[]; codes?: string[] }>; excludeIfText: string[] }
@@ -50,7 +54,8 @@ export function seedMapping(): Record<string, string[]> {
 export function defaultConfig(): Config {
   const { users, projects } = seedUsersAndProjects()
   return {
-    version: 6,
+    version: 7,
+    departments: seedDepartments(), deptMapping: seedDeptMapping(),
     entity: { name_ar: 'الهيئة الاتحادية للضرائب', name_en: 'Federal Tax Authority' },
     users, projects, mapping: seedMapping(), overrides: {},
     cycles: [{ id: '2026-Q1-Q3', name: 'خط الأساس 2026 — الأرباع الأول إلى الثالث', name_en: '2026 Baseline — Q1 to Q3', start: '2026-01-01', end: '2026-09-30', due: '2026-12-15', status: 'open', prefillFrom: null }],
@@ -82,12 +87,18 @@ export function renameCycleInConfig(c: Config, from: string, to: string) {
   c.renamedCycles = { ...(c.renamedCycles || {}), [from]: to }
 }
 export function migrateConfig(c: Config): Config {
-  if ((c.version || 1) >= 6) return c
+  if ((c.version || 1) >= 7) return c
+  if ((c.version || 1) === 6) {
+    // responsible departments from the structure decree; existing custom values are kept
+    if (!c.departments?.length) c.departments = seedDepartments()
+    const seed = seedDeptMapping(); c.deptMapping = { ...seed, ...(c.deptMapping || {}) }
+    c.version = 7; return c
+  }
   if ((c.version || 1) === 5) {
     // the baseline assesses the first three quarters of 2026; the seeded '2026-Q4' cycle is renamed and re-dated
     const cy = c.cycles.find(x => x.id === '2026-Q4' && x.name === 'الربع الرابع 2026 — خط الأساس')
     if (cy && !c.cycles.some(x => x.id === '2026-Q1-Q3')) { cy.name = 'خط الأساس 2026 — الأرباع الأول إلى الثالث'; cy.name_en = '2026 Baseline — Q1 to Q3'; cy.start = '2026-01-01'; cy.end = '2026-09-30'; renameCycleInConfig(c, '2026-Q4', '2026-Q1-Q3') }
-    c.version = 6; return c
+    c.version = 6; return migrateConfig(c)
   }
   if ((c.version || 1) < 5) { c = migrateTo5(c); return migrateConfig(c) }
   return c

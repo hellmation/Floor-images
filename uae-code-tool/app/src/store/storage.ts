@@ -29,7 +29,7 @@ export interface StorageAdapter {
 }
 export class ReadOnlyError extends Error { constructor(msg: string) { super(msg); this.name = 'ReadOnlyError' } }
 export class ConflictError extends Error { constructor() { super('conflict'); this.name = 'ConflictError' } }
-export const APP_CONFIG_VERSION = 6
+export const APP_CONFIG_VERSION = 7
 
 /** Merge two copies of one person's answers file: per cycle/code and per note the newer updatedAt wins. */
 export function mergeAnswers(disk: AnswersFile | null, next: AnswersFile, base?: AnswersFile | null): AnswersFile {
@@ -44,7 +44,8 @@ export function mergeAnswers(disk: AnswersFile | null, next: AnswersFile, base?:
   }
   const notes = { ...(disk.notes || {}) }
   for (const [code, n] of Object.entries(next.notes || {})) { const d = notes[code]; const b = base?.notes?.[code]; if (!d || (b && d.updatedAt === b.updatedAt) || (n.updatedAt || '') >= (d.updatedAt || '')) notes[code] = n }
-  return { ...disk, ...next, cycles, notes, updatedAt: [disk.updatedAt, next.updatedAt].sort().pop() || next.updatedAt }
+  const departments = { ...(disk.departments || {}), ...(next.departments || {}) }
+  return { ...disk, ...next, cycles, notes, departments, updatedAt: [disk.updatedAt, next.updatedAt].sort().pop() || next.updatedAt }
 }
 
 /* ---------- helpers ---------- */

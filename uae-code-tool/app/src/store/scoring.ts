@@ -38,6 +38,15 @@ export function reviewApplies(review: Review | null, answer: CodeAnswer | null, 
   return review.reviewedAt >= (answer.submittedAt || answer.updatedAt)
 }
 
+/** Responsible department for a code: the owner's own choice (in their answers file) wins over the configured primary department. */
+export function departmentOf(snap: Snapshot, cycleId: string, codeId: string): string | null {
+  const cfg = snap.config; const assignee = assigneeOf(codeId, cycleId, cfg)
+  const own = assignee ? snap.answers[assignee]?.departments?.[codeId] : null
+  const id = own || cfg.deptMapping?.[codeId]?.[0] || null
+  return id && cfg.departments?.some(d => d.id === id && d.active) ? id : (cfg.deptMapping?.[codeId]?.[0] || null)
+}
+export const supportDepartments = (cfg: Config, codeId: string) => (cfg.deptMapping?.[codeId] || []).slice(1)
+export function deptName(cfg: Config, id: string | null | undefined, lang: 'ar' | 'en'): string { const d = cfg.departments?.find(x => x.id === id); return d ? (lang === 'ar' ? d.name_ar : d.name_en) : '' }
 export interface Effective { answer: CodeAnswer | null; userId: string | null; review: Review | null; state: WorkState }
 
 const RANK: Record<WorkState, number> = { approved: 4, submitted: 3, returned: 2, draft: 1, none: 0 }

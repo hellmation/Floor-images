@@ -25,8 +25,12 @@ export interface Settings {
   defaultAssigneeId: string | null
   requireEvidence: boolean
 }
+export interface Department { id: string; name_ar: string; name_en: string; active: boolean }
 export interface Config {
   version: number
+  /** Organisational units from the FTA structure decree; the responsible department per code (first = primary, rest = supporting). */
+  departments: Department[]
+  deptMapping: Record<string, string[]>
   /** Cycle ids renamed by a migration (old -> new); load() moves any file still carrying the old key. */
   renamedCycles?: Record<string, string>
   entity: { name_ar: string; name_en: string }
@@ -49,6 +53,7 @@ export interface ItemAnswer {
   evidence: Evidence[]
   projectId?: string | null
   service?: string
+  departmentId?: string | null                           // responsible department for this requirement when it differs from the code's
   clarify?: { flag: boolean; question: string; raisedAt?: string }
 }
 export interface CodeAnswer {
@@ -63,6 +68,7 @@ export interface AnswersFile {
   updatedAt: string
   cycles: Record<string, Record<string, CodeAnswer>>   // cycleId -> codeId -> answer
   notes?: Record<string, PersonalNote>                  // codeId -> private follow-up note (not cycle-bound, never exported)
+  departments?: Record<string, string>                  // codeId -> responsible department chosen by this person for codes they own
 }
 export interface PersonalNote { text: string; updatedAt: string }
 export interface Review {

@@ -17,6 +17,8 @@ interface Ctx {
   /** Resolves with the stored (merged) answer for that code; it differs from `a` only if a newer copy already existed on disk. */
   saveMyAnswer: (cycleId: string, codeId: string, a: CodeAnswer) => Promise<CodeAnswer | undefined>
   saveMyNote: (codeId: string, text: string) => Promise<void>
+  /** The owner's choice of responsible department for a code they are assigned to (null clears it back to the configured default). */
+  saveMyDepartment: (codeId: string, deptId: string | null) => Promise<void>
   saveReviews: (r: ReviewsFile, audit?: string) => Promise<void>
   myAnswers: AnswersFile | null
 }
@@ -161,6 +163,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     await writeMine(file => ({ ...file, updatedAt: now(), notes: { ...(file.notes || {}), [codeId]: { text, updatedAt: now() } } }))
   }, [writeMine])
 
+  const saveMyDepartment = useCallback(async (codeId: string, deptId: string | null) => {
+    await writeMine(file => { const departments = { ...(file.departments || {}) }; if (deptId) departments[codeId] = deptId; else delete departments[codeId]; return { ...file, updatedAt: now(), departments } })
+  }, [writeMine])
+
   const saveMyAnswer = useCallback(async (cy: string, codeId: string, a: CodeAnswer) => {
     const merged = await writeMine(file => ({ ...file, updatedAt: now(), cycles: { ...file.cycles, [cy]: { ...(file.cycles[cy] || {}), [codeId]: a } } }))
     void audit([{ at: now(), by: userId || '?', action: a.state === 'submitted' ? 'submit' : 'save', target: `${cy}/${codeId}` }]) // informational; never delays the save
@@ -179,7 +185,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     lang, setLang: setLangS, t: (k) => tr(lang, k), theme, setTheme: setThemeS,
     adapter, snap, loading, error, lastSync, user, setUserId: (id) => { setUserIdS(id); ss.set('userId', id || ''); if (id) ls.set('lastUserId', id) },
     cycleId: effCycle, setCycleId: (id) => { setCycleIdS(id); ls.set('cycleId', id) }, isAdmin,
-    connectFolder, reconnect, useLocal, refresh, needsReconnect, saveConfig, saveMyAnswer, saveMyNote, saveReviews,
+    connectFolder, reconnect, useLocal, refresh, needsReconnect, saveConfig, saveMyAnswer, saveMyNote, saveMyDepartment, saveReviews,
     myAnswers: userId && snap ? snap.answers[userId] || null : null,
   }
   return <C.Provider value={value}>{children}</C.Provider>

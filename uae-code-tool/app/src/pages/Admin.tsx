@@ -5,7 +5,7 @@ import { master, uid, assigneeOf } from '../store/scoring'
 import { pick } from '../i18n'
 import { Avatar, PageHeader, fmtDate, useToast, errMsg, Empty } from '../components/ui'
 import { Icon } from '../components/icons'
-import type { Impact, Project, Role, User } from '../types'
+import type { Department, Impact, Project, Role, User } from '../types'
 
 function toDataUrl(file: File): Promise<string> {
   return new Promise((res, rej) => { const img = new Image(); const url = URL.createObjectURL(file)
@@ -26,12 +26,14 @@ export default function Admin() {
   const admins = cfg.users.filter(u => u.active && u.role === 'admin').length
   const lastAdmin = (u: User) => u.role === 'admin' && u.active && admins <= 1
   const toast = useToast()
-  const [tab, setTab] = useState<'users' | 'projects' | 'settings' | 'audit'>('users')
+  const [tab, setTab] = useState<'users' | 'projects' | 'departments' | 'settings' | 'audit'>('users')
+  const [nd, setNd] = useState({ name_ar: '', name_en: '' })
   const [nu, setNu] = useState({ name_ar: '', name_en: '', role: 'evaluator' as Role })
   const [np, setNp] = useState({ name_ar: '', name_en: '', ownerId: '' })
   const commit = async (c: typeof cfg, a: string) => { try { await saveConfig(JSON.parse(JSON.stringify(c)), a); toast(t('saved'), 'ok') } catch (e) { toast(errMsg(e, t), 'bad') } }
   const updUser = (u: User) => commit({ ...cfg, users: cfg.users.map(x => x.id === u.id ? u : x) }, `user ${u.id}`)
   const updProj = (p: Project) => commit({ ...cfg, projects: cfg.projects.map(x => x.id === p.id ? p : x) }, `project ${p.id}`)
+  const updDept = (d: Department) => commit({ ...cfg, departments: cfg.departments.map(x => x.id === d.id ? d : x) }, `department ${d.id}`)
   const assignedCount = (uidv: string) => cycleId ? master.codes.filter(c => assigneeOf(c.id, cycleId, cfg) === uidv).length : 0
   const toggleActive = (u: User, on: boolean) => { if (!on && assignedCount(u.id) > 0 && !confirm(`${t('deactivateWarn')} (${assignedCount(u.id)})`)) return; updUser({ ...u, active: on }) }
   const toggleProject = (p: Project, on: boolean) => { if (!on && !confirm(t('confirmDeactivateProject'))) return; updProj({ ...p, active: on }) }
@@ -39,7 +41,7 @@ export default function Admin() {
   const roleOpts = <><option value="admin">{t('adminRole')}</option><option value="evaluator">{t('evaluatorRole')}</option><option value="viewer">{t('viewerRole')}</option></>
   return (
     <div>
-      <PageHeader title={t('admin')} actions={<div className="seg">{(['users', 'projects', 'settings', 'audit'] as const).map(k => <button key={k} aria-pressed={tab === k} onClick={() => setTab(k)}><Icon name={k === 'users' ? 'users' : k === 'projects' ? 'map' : k === 'settings' ? 'settings' : 'clock'} />{k === 'users' ? t('users') : k === 'projects' ? t('projects') : k === 'settings' ? t('settings') : t('audit')}</button>)}</div>} />
+      <PageHeader title={t('admin')} actions={<div className="seg">{(['users', 'projects', 'departments', 'settings', 'audit'] as const).map(k => <button key={k} aria-pressed={tab === k} onClick={() => setTab(k)}><Icon name={k === 'users' ? 'users' : k === 'projects' ? 'map' : k === 'departments' ? 'layers' : k === 'settings' ? 'settings' : 'clock'} />{k === 'users' ? t('users') : k === 'projects' ? t('projects') : k === 'departments' ? t('departments') : k === 'settings' ? t('settings') : t('audit')}</button>)}</div>} />
       {tab === 'users' && <div className="card overflow-x-auto"><table className="tbl"><thead><tr><th></th><th>{t('nameAr')}</th><th>{t('nameEn')}</th><th>{t('role')}</th><th>{t('active')}</th></tr></thead><tbody>
         {cfg.users.map(u => <tr key={u.id}><td><label className="cursor-pointer inline-block" title={t('photo')}><Avatar name={lang === 'ar' ? u.name_ar : u.name_en} photo={u.photo} size="lg" /><input type="file" accept="image/*" className="sr-only" aria-label={t('photo')} onChange={e => { const f = e.target.files?.[0]; if (f) toDataUrl(f).then(photo => updUser({ ...u, photo })) }} /></label></td><td><DraftInput aria-label={t('nameAr')} value={u.name_ar} onCommit={v => updUser({ ...u, name_ar: v })} /></td><td><DraftInput aria-label={t('nameEn')} dir="ltr" value={u.name_en} onCommit={v => updUser({ ...u, name_en: v })} /></td>
           <td><select className="select" aria-label={t('role')} value={u.role} disabled={lastAdmin(u)} title={lastAdmin(u) ? t('lastAdmin') : undefined} onChange={e => updUser({ ...u, role: e.target.value as Role })}>{roleOpts}</select>{u.id === user!.id && <div className="text-xs text-muted mt-1">{t('thisIsYou')}</div>}</td><td><input type="checkbox" aria-label={t('active')} checked={u.active} disabled={lastAdmin(u)} onChange={e => toggleActive(u, e.target.checked)} /></td></tr>)}
@@ -53,6 +55,11 @@ export default function Admin() {
         <tr className="!bg-surface-2"><td></td><td><input className="input" placeholder={t('nameAr')} aria-label={t('nameAr')} value={np.name_ar} onChange={e => setNp({ ...np, name_ar: e.target.value })} /></td><td><input className="input" dir="ltr" placeholder={t('nameEn')} value={np.name_en} onChange={e => setNp({ ...np, name_en: e.target.value })} /></td>
           <td><select className="select" value={np.ownerId} onChange={e => setNp({ ...np, ownerId: e.target.value })}><option value="">—</option>{cfg.users.map(u => <option key={u.id} value={u.id}>{lang === 'ar' ? u.name_ar : u.name_en}</option>)}</select></td>
           <td><button className="btn btn-primary btn-sm" disabled={!np.name_ar.trim()} onClick={() => { commit({ ...cfg, projects: [...cfg.projects, { id: 'p' + String(cfg.projects.length + 1).padStart(2, '0') + '-' + uid().slice(0, 4), name_ar: np.name_ar.trim(), name_en: np.name_en.trim(), ownerId: np.ownerId || null, active: true }] }, 'project add'); setNp({ name_ar: '', name_en: '', ownerId: '' }) }}><Icon name="plus" />{t('add')}</button></td></tr>
+      </tbody></table></div>}
+      {tab === 'departments' && <div className="card overflow-x-auto"><div className="px-4 pt-3 text-sm text-muted">{t('deptHint')}</div><table className="tbl"><thead><tr><th>{t('id')}</th><th>{t('nameAr')}</th><th>{t('nameEn')}</th><th>{t('codes')}</th><th>{t('active')}</th></tr></thead><tbody>
+        {cfg.departments.map(d => <tr key={d.id}><td className="code-id">{d.id}</td><td><DraftInput aria-label={t('nameAr')} value={d.name_ar} onCommit={v => updDept({ ...d, name_ar: v })} /></td><td><DraftInput aria-label={t('nameEn')} dir="ltr" value={d.name_en} onCommit={v => updDept({ ...d, name_en: v })} /></td><td className="num">{Object.values(cfg.deptMapping).filter(v => v[0] === d.id).length}</td><td><input type="checkbox" aria-label={t('active')} checked={d.active} onChange={e => updDept({ ...d, active: e.target.checked })} /></td></tr>)}
+        <tr className="!bg-surface-2"><td></td><td><input className="input" placeholder={t('nameAr')} aria-label={t('nameAr')} value={nd.name_ar} onChange={e => setNd({ ...nd, name_ar: e.target.value })} /></td><td><input className="input" dir="ltr" placeholder={t('nameEn')} aria-label={t('nameEn')} value={nd.name_en} onChange={e => setNd({ ...nd, name_en: e.target.value })} /></td><td></td>
+          <td><button className="btn btn-primary btn-sm" disabled={!nd.name_ar.trim()} onClick={() => { commit({ ...cfg, departments: [...cfg.departments, { id: 'd-' + uid().slice(0, 6), name_ar: nd.name_ar.trim(), name_en: nd.name_en.trim() || nd.name_ar.trim(), active: true }] }, 'department add'); setNd({ name_ar: '', name_en: '' }) }}><Icon name="plus" />{t('add')}</button></td></tr>
       </tbody></table></div>}
       {tab === 'settings' && <div className="grid md:grid-cols-2 gap-4">
         <div className="card p-4 flex flex-col gap-3"><div className="font-semibold flex items-center gap-2"><Icon name="users" className="text-accent-ink" />{t('coreTeam')}</div><p className="text-sm text-muted m-0">{t('step1')}</p>

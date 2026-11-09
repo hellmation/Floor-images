@@ -24,6 +24,12 @@ else:
         for c in M['codes']:
             if (c['sub'] in p['subs'] or c['id'] in p.get('codes', [])) and not any(x in c['desc_ar'] for x in excl): mapping[c['id']].append(pid)
 CORE = 'أحمد حلمي'  # project manager: unmapped codes are his
+# responsible department per code (FTA structure decision 18/2023), from departments.json next to the master file
+import os
+_dp = os.path.join(os.path.dirname(os.path.abspath(master)), 'departments.json')
+DEPTS = json.load(open(_dp, encoding='utf-8')) if os.path.exists(_dp) else {'departments': [], 'mapping': {}}
+_dname = {d['id']: d['name_ar'] for d in DEPTS['departments']}
+def department(cid): ids = DEPTS['mapping'].get(cid, []); return _dname.get(ids[0], '') if ids else ''
 def assignee(cid):
     for pid in mapping.get(cid, []):
         if owner_of.get(pid): return owner_of[pid]
@@ -48,8 +54,8 @@ wb = Workbook()
 # ============ 1. ورقة التقييم (نفس أعمدة النموذج الأصلي + أعمدة الإدارة) ============
 ws = wb.active; ws.title = 'التقييم الذاتي'
 cols = ['#', 'المحور', '#', 'المحور الفرعي', '#', 'المعيار', 'مستوى الأثر', 'جميع المتطلبات', 'جميع معايير الرصد', '#', 'المتطلب', 'معيار الرصد', 'التقييم', 'نتائج الرصد / الدليل', 'عدد الأدلة',
-        'المسؤول عن التقييم', 'المشروع', 'مالك المشروع', 'حالة الكود', 'نتيجة الكود', 'المراجع', 'تاريخ آخر تحديث', 'يحتاج توضيح', 'ملاحظات']
-widths = [4, 22, 6, 24, 7, 55, 10, 50, 50, 4, 45, 40, 11, 40, 8, 20, 30, 18, 12, 9, 16, 16, 9, 30]
+        'المسؤول عن التقييم', 'المشروع', 'مالك المشروع', 'حالة الكود', 'نتيجة الكود', 'المراجع', 'تاريخ آخر تحديث', 'يحتاج توضيح', 'ملاحظات', 'الإدارة المسؤولة']
+widths = [4, 22, 6, 24, 7, 55, 10, 50, 50, 4, 45, 40, 11, 40, 8, 20, 30, 18, 12, 9, 16, 16, 9, 30, 26]
 header(ws, cols, widths)
 r = 2
 for c in sorted(M['codes'], key=lambda c: [int(x.rstrip('b')) for x in c['id'].split('.')] + [c['id'].endswith('b')]):
@@ -59,7 +65,7 @@ for c in sorted(M['codes'], key=lambda c: [int(x.rstrip('b')) for x in c['id'].s
     for i, req in enumerate(c['requirements']):
         crit = c['criteria'][i]['text_ar'] if paired and i < len(c['criteria']) else all_crit
         vals = [int(c['pillar']), pl['name_ar'], c['sub'], sb['name_ar'], c['id'], c['desc_ar'], IMP[c['impact']], all_req, all_crit, req['n'], req['text_ar'], crit,
-                '', '', 0, assignee(c['id']), prj, own, 'لم يبدأ', '', '', '', '', '']
+                '', '', 0, assignee(c['id']), prj, own, 'لم يبدأ', '', '', '', '', '', department(c['id'])]
         for j, v in enumerate(vals, 1):
             cell = ws.cell(row=r, column=j, value=v); cell.font = body_font; cell.border = border
             cell.alignment = center if j in (1, 3, 5, 7, 10, 13, 15, 19, 20, 22, 23) else wrap

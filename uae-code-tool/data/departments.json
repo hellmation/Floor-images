@@ -1,0 +1,1486 @@
+{
+ "version": 1,
+ "source": "قرار رئيس مجلس الإدارة رقم (18) لسنة 2023 بشأن الهيكل التنظيمي على مستوى الأقسام في الهيئة الاتحادية للضرائب",
+ "departments": [
+  {
+   "id": "tso",
+   "name_ar": "مكتب دعم دافعي الضرائب",
+   "name_en": "Taxpayer Support Office",
+   "active": true
+  },
+  {
+   "id": "tps",
+   "name_ar": "إدارة خدمات دافعي الضرائب",
+   "name_en": "Taxpayer Services Department",
+   "active": true
+  },
+  {
+   "id": "ops",
+   "name_ar": "إدارة العمليات الضريبية",
+   "name_en": "Tax Operations Department",
+   "active": true
+  },
+  {
+   "id": "digital",
+   "name_ar": "إدارة مواءمة الأعمال الرقمية",
+   "name_en": "Digital Business Alignment Department",
+   "active": true
+  },
+  {
+   "id": "itsvc",
+   "name_ar": "إدارة الخدمات الرقمية",
+   "name_en": "Digital Services Department",
+   "active": true
+  },
+  {
+   "id": "infosec",
+   "name_ar": "مكتب إدارة أمن المعلومات",
+   "name_en": "Information Security Management Office",
+   "active": true
+  },
+  {
+   "id": "data",
+   "name_ar": "مكتب تحليل البيانات",
+   "name_en": "Data Analytics Office",
+   "active": true
+  },
+  {
+   "id": "comms",
+   "name_ar": "إدارة الاتصال الحكومي",
+   "name_en": "Government Communication Department",
+   "active": true
+  },
+  {
+   "id": "strategy",
+   "name_ar": "إدارة الاستراتيجية والمستقبل",
+   "name_en": "Strategy and Future Department",
+   "active": true
+  },
+  {
+   "id": "pmo",
+   "name_ar": "مكتب إدارة المشاريع",
+   "name_en": "Project Management Office",
+   "active": true
+  },
+  {
+   "id": "legal",
+   "name_ar": "إدارة الشؤون القانونية",
+   "name_en": "Legal Affairs Department",
+   "active": true
+  },
+  {
+   "id": "policy",
+   "name_ar": "إدارة السياسات الضريبية والعلاقات الدولية",
+   "name_en": "Tax Policy and International Relations Department",
+   "active": true
+  },
+  {
+   "id": "invest",
+   "name_ar": "إدارة التحري ومكافحة التهرب الضريبي",
+   "name_en": "Tax Investigation and Anti-Evasion Department",
+   "active": true
+  },
+  {
+   "id": "hr",
+   "name_ar": "إدارة الموارد البشرية",
+   "name_en": "Human Resources Department",
+   "active": true
+  },
+  {
+   "id": "finance",
+   "name_ar": "إدارة الشؤون المالية",
+   "name_en": "Finance Department",
+   "active": true
+  },
+  {
+   "id": "admin",
+   "name_ar": "إدارة الشؤون الإدارية",
+   "name_en": "Administrative Affairs Department",
+   "active": true
+  },
+  {
+   "id": "ia",
+   "name_ar": "مكتب التدقيق الداخلي",
+   "name_en": "Internal Audit Office",
+   "active": true
+  }
+ ],
+ "mapping": {
+  "1.1.1": [
+   "digital",
+   "comms"
+  ],
+  "1.1.2": [
+   "digital",
+   "comms"
+  ],
+  "1.1.3": [
+   "digital",
+   "comms"
+  ],
+  "1.1.4": [
+   "digital",
+   "comms"
+  ],
+  "1.1.5": [
+   "digital",
+   "comms"
+  ],
+  "1.1.6": [
+   "digital",
+   "comms"
+  ],
+  "1.2.1": [
+   "digital"
+  ],
+  "1.2.2": [
+   "digital"
+  ],
+  "1.2.3": [
+   "digital"
+  ],
+  "1.2.4": [
+   "digital"
+  ],
+  "1.2.5": [
+   "digital"
+  ],
+  "1.2.6": [
+   "digital"
+  ],
+  "1.2.7": [
+   "digital"
+  ],
+  "1.3.1": [
+   "digital",
+   "comms"
+  ],
+  "1.3.2": [
+   "digital"
+  ],
+  "1.3.3": [
+   "comms",
+   "digital"
+  ],
+  "1.3.4": [
+   "digital",
+   "comms"
+  ],
+  "1.3.5": [
+   "comms"
+  ],
+  "1.3.6": [
+   "comms",
+   "tso"
+  ],
+  "1.4.1": [
+   "digital",
+   "tso"
+  ],
+  "1.4.2": [
+   "tso",
+   "tps"
+  ],
+  "1.4.3": [
+   "tps",
+   "comms"
+  ],
+  "1.5.1": [
+   "digital",
+   "data"
+  ],
+  "1.5.2": [
+   "digital"
+  ],
+  "1.5.3": [
+   "tso",
+   "digital"
+  ],
+  "1.5.4": [
+   "tso",
+   "digital"
+  ],
+  "1.5.5": [
+   "digital",
+   "tso"
+  ],
+  "1.5.6": [
+   "tso",
+   "comms"
+  ],
+  "1.6.1": [
+   "digital",
+   "finance"
+  ],
+  "1.6.2": [
+   "finance",
+   "digital"
+  ],
+  "1.6.3": [
+   "digital",
+   "finance"
+  ],
+  "1.6.4": [
+   "digital",
+   "finance"
+  ],
+  "1.6.5": [
+   "digital",
+   "finance"
+  ],
+  "1.6.6": [
+   "digital",
+   "finance"
+  ],
+  "1.7.1": [
+   "digital",
+   "tso"
+  ],
+  "1.7.2": [
+   "tso",
+   "digital"
+  ],
+  "1.7.3": [
+   "tso"
+  ],
+  "1.7.4": [
+   "tso",
+   "digital"
+  ],
+  "1.7.5": [
+   "tso",
+   "digital"
+  ],
+  "1.7.6": [
+   "tso",
+   "digital"
+  ],
+  "1.7.7": [
+   "tso",
+   "digital"
+  ],
+  "1.8.1": [
+   "digital"
+  ],
+  "1.8.2": [
+   "digital"
+  ],
+  "1.8.3": [
+   "digital"
+  ],
+  "1.8.4": [
+   "tso"
+  ],
+  "1.8.5": [
+   "digital"
+  ],
+  "1.8.6": [
+   "digital"
+  ],
+  "1.9.1": [
+   "digital",
+   "comms"
+  ],
+  "1.9.2": [
+   "comms",
+   "digital"
+  ],
+  "1.9.3": [
+   "comms",
+   "digital"
+  ],
+  "1.9.4": [
+   "comms",
+   "digital"
+  ],
+  "1.9.5": [
+   "digital"
+  ],
+  "1.9.6": [
+   "comms"
+  ],
+  "1.9.7": [
+   "digital",
+   "comms"
+  ],
+  "2.1.1": [
+   "tso"
+  ],
+  "2.1.2": [
+   "tso"
+  ],
+  "2.1.3": [
+   "tso"
+  ],
+  "2.1.4": [
+   "tso"
+  ],
+  "2.1.5": [
+   "tso"
+  ],
+  "2.1.6": [
+   "tso"
+  ],
+  "2.1.7": [
+   "admin",
+   "tso"
+  ],
+  "2.1.8": [
+   "admin",
+   "tso"
+  ],
+  "2.1.9": [
+   "tso"
+  ],
+  "2.1.10": [
+   "tso",
+   "strategy"
+  ],
+  "2.1.11": [
+   "digital"
+  ],
+  "2.1.11b": [
+   "digital"
+  ],
+  "2.1.12": [
+   "digital",
+   "strategy"
+  ],
+  "2.1.13": [
+   "digital",
+   "legal"
+  ],
+  "2.2.1": [
+   "tso"
+  ],
+  "2.2.2": [
+   "tso"
+  ],
+  "2.2.3": [
+   "tso"
+  ],
+  "2.2.4": [
+   "tso"
+  ],
+  "2.2.5": [
+   "tso"
+  ],
+  "2.3.1": [
+   "tso",
+   "strategy"
+  ],
+  "2.3.2": [
+   "tso",
+   "strategy"
+  ],
+  "2.3.3": [
+   "tso",
+   "strategy"
+  ],
+  "2.3.4": [
+   "strategy",
+   "tso"
+  ],
+  "2.3.4b": [
+   "digital",
+   "tso"
+  ],
+  "2.4.1": [
+   "tso"
+  ],
+  "2.4.2": [
+   "tso"
+  ],
+  "2.4.3": [
+   "tso"
+  ],
+  "2.4.4": [
+   "tso"
+  ],
+  "2.4.5": [
+   "tso"
+  ],
+  "2.4.6": [
+   "tso",
+   "finance"
+  ],
+  "2.4.7": [
+   "digital",
+   "tso"
+  ],
+  "2.4.8": [
+   "tso",
+   "digital"
+  ],
+  "2.5.1": [
+   "tps",
+   "tso"
+  ],
+  "2.5.2": [
+   "tps",
+   "tso"
+  ],
+  "2.5.3": [
+   "digital",
+   "tps"
+  ],
+  "2.5.4": [
+   "digital",
+   "tps"
+  ],
+  "2.5.5": [
+   "comms",
+   "tps"
+  ],
+  "3.1.1": [
+   "tso",
+   "digital"
+  ],
+  "3.1.2": [
+   "tso",
+   "digital"
+  ],
+  "3.1.3": [
+   "tso",
+   "digital"
+  ],
+  "3.1.4": [
+   "tso",
+   "digital"
+  ],
+  "3.1.5": [
+   "digital",
+   "ops"
+  ],
+  "3.1.6": [
+   "tso",
+   "digital"
+  ],
+  "3.2.1": [
+   "digital",
+   "tso"
+  ],
+  "3.2.2": [
+   "digital",
+   "tso"
+  ],
+  "3.2.3": [
+   "digital",
+   "tso"
+  ],
+  "3.2.4": [
+   "digital",
+   "tso"
+  ],
+  "3.2.5": [
+   "digital",
+   "tso"
+  ],
+  "3.2.6": [
+   "digital",
+   "tso"
+  ],
+  "3.2.7": [
+   "ops",
+   "digital"
+  ],
+  "3.3.1": [
+   "data",
+   "digital"
+  ],
+  "3.3.2": [
+   "data",
+   "digital"
+  ],
+  "3.3.3": [
+   "data",
+   "digital"
+  ],
+  "3.3.4": [
+   "data",
+   "digital"
+  ],
+  "3.3.5": [
+   "comms",
+   "data"
+  ],
+  "3.3.6": [
+   "comms",
+   "data"
+  ],
+  "3.4.1": [
+   "digital",
+   "data"
+  ],
+  "3.4.2": [
+   "digital",
+   "data"
+  ],
+  "3.4.3": [
+   "digital",
+   "data"
+  ],
+  "3.4.4": [
+   "digital",
+   "data"
+  ],
+  "3.4.5": [
+   "infosec",
+   "digital"
+  ],
+  "3.4.6": [
+   "digital",
+   "data"
+  ],
+  "3.5.1": [
+   "digital"
+  ],
+  "3.5.2": [
+   "digital"
+  ],
+  "3.5.3": [
+   "digital"
+  ],
+  "3.5.4": [
+   "digital"
+  ],
+  "3.5.5": [
+   "digital"
+  ],
+  "3.5.6": [
+   "digital"
+  ],
+  "3.6.1": [
+   "digital",
+   "comms"
+  ],
+  "3.6.2": [
+   "digital",
+   "comms"
+  ],
+  "3.6.3": [
+   "digital",
+   "comms"
+  ],
+  "3.6.4": [
+   "digital",
+   "comms"
+  ],
+  "3.6.5": [
+   "digital",
+   "comms"
+  ],
+  "3.6.6": [
+   "digital",
+   "comms"
+  ],
+  "3.7.1": [
+   "ops",
+   "tps"
+  ],
+  "3.7.2": [
+   "tps",
+   "tso"
+  ],
+  "3.7.3": [
+   "tps",
+   "comms"
+  ],
+  "3.7.4": [
+   "tps",
+   "tso"
+  ],
+  "3.7.5": [
+   "digital"
+  ],
+  "3.7.6": [
+   "tps",
+   "tso"
+  ],
+  "4.1.1": [
+   "tso",
+   "digital"
+  ],
+  "4.1.2": [
+   "tso",
+   "digital"
+  ],
+  "4.1.3": [
+   "comms"
+  ],
+  "4.1.4": [
+   "digital",
+   "infosec"
+  ],
+  "4.1.5": [
+   "digital"
+  ],
+  "4.1.6": [
+   "digital"
+  ],
+  "4.1.7": [
+   "tso",
+   "strategy"
+  ],
+  "4.2.1": [
+   "digital"
+  ],
+  "4.2.2": [
+   "digital"
+  ],
+  "4.2.3": [
+   "digital"
+  ],
+  "4.2.4": [
+   "digital"
+  ],
+  "4.2.5": [
+   "digital"
+  ],
+  "4.2.6": [
+   "digital"
+  ],
+  "4.3.1": [
+   "tso",
+   "digital"
+  ],
+  "4.3.2": [
+   "tso",
+   "digital"
+  ],
+  "4.3.3": [
+   "tso",
+   "digital"
+  ],
+  "4.3.4": [
+   "tso",
+   "digital"
+  ],
+  "4.3.5": [
+   "tso",
+   "digital"
+  ],
+  "4.3.6": [
+   "hr",
+   "infosec"
+  ],
+  "4.4.1": [
+   "digital"
+  ],
+  "4.4.2": [
+   "digital"
+  ],
+  "4.4.3": [
+   "digital"
+  ],
+  "4.4.4": [
+   "digital"
+  ],
+  "4.4.5": [
+   "digital"
+  ],
+  "4.4.6": [
+   "digital"
+  ],
+  "4.5.1": [
+   "digital"
+  ],
+  "4.5.2": [
+   "digital"
+  ],
+  "4.5.3": [
+   "digital"
+  ],
+  "4.5.4": [
+   "digital"
+  ],
+  "4.5.5": [
+   "digital"
+  ],
+  "4.5.6": [
+   "digital"
+  ],
+  "4.5.7": [
+   "digital"
+  ],
+  "4.6.1": [
+   "tso",
+   "digital"
+  ],
+  "4.6.2": [
+   "tso",
+   "digital"
+  ],
+  "4.6.3": [
+   "admin",
+   "tso"
+  ],
+  "4.6.4": [
+   "digital"
+  ],
+  "4.6.5": [
+   "tso",
+   "digital"
+  ],
+  "4.6.6": [
+   "digital",
+   "tso"
+  ],
+  "4.7.1": [
+   "tso",
+   "digital"
+  ],
+  "4.7.2": [
+   "tso",
+   "digital"
+  ],
+  "4.7.3": [
+   "tso",
+   "digital"
+  ],
+  "4.7.4": [
+   "tso",
+   "digital"
+  ],
+  "4.7.5": [
+   "tso",
+   "digital"
+  ],
+  "4.7.6": [
+   "tso",
+   "digital"
+  ],
+  "4.8.1": [
+   "tso"
+  ],
+  "4.8.2": [
+   "tso"
+  ],
+  "4.8.3": [
+   "tso"
+  ],
+  "4.8.4": [
+   "tso"
+  ],
+  "4.8.5": [
+   "tso"
+  ],
+  "5.1.1": [
+   "infosec",
+   "digital"
+  ],
+  "5.1.2": [
+   "digital",
+   "infosec"
+  ],
+  "5.1.3": [
+   "infosec",
+   "digital"
+  ],
+  "5.1.4": [
+   "infosec",
+   "digital"
+  ],
+  "5.2.1": [
+   "data",
+   "legal"
+  ],
+  "5.2.2": [
+   "data",
+   "legal"
+  ],
+  "5.2.3": [
+   "data",
+   "legal"
+  ],
+  "5.2.4": [
+   "legal",
+   "data"
+  ],
+  "5.2.5": [
+   "data",
+   "legal"
+  ],
+  "5.2.6": [
+   "data",
+   "legal"
+  ],
+  "5.2.7": [
+   "digital",
+   "legal"
+  ],
+  "5.3.1": [
+   "digital",
+   "data"
+  ],
+  "5.3.2": [
+   "data",
+   "digital"
+  ],
+  "5.3.3": [
+   "data",
+   "digital"
+  ],
+  "5.3.4": [
+   "data",
+   "digital"
+  ],
+  "5.3.5": [
+   "ops",
+   "digital"
+  ],
+  "5.3.6": [
+   "data",
+   "digital"
+  ],
+  "5.4.1": [
+   "digital",
+   "infosec"
+  ],
+  "5.4.2": [
+   "digital",
+   "infosec"
+  ],
+  "5.4.3": [
+   "digital",
+   "infosec"
+  ],
+  "5.4.4": [
+   "infosec",
+   "digital"
+  ],
+  "5.4.5": [
+   "digital",
+   "infosec"
+  ],
+  "5.4.6": [
+   "data",
+   "digital"
+  ],
+  "5.4.7": [
+   "digital"
+  ],
+  "5.5.1": [
+   "infosec",
+   "invest"
+  ],
+  "5.5.2": [
+   "infosec",
+   "invest"
+  ],
+  "5.5.3": [
+   "infosec",
+   "invest"
+  ],
+  "5.5.4": [
+   "infosec",
+   "invest"
+  ],
+  "5.5.5": [
+   "tso",
+   "infosec"
+  ],
+  "5.5.6": [
+   "invest",
+   "infosec"
+  ],
+  "5.5.7": [
+   "digital",
+   "infosec"
+  ],
+  "5.6.1": [
+   "infosec",
+   "digital"
+  ],
+  "5.6.2": [
+   "digital"
+  ],
+  "5.6.3": [
+   "infosec",
+   "digital"
+  ],
+  "5.6.4": [
+   "infosec",
+   "digital"
+  ],
+  "5.6.5": [
+   "infosec",
+   "digital"
+  ],
+  "5.6.6": [
+   "infosec",
+   "digital"
+  ],
+  "5.6.7": [
+   "digital",
+   "comms"
+  ],
+  "5.6.8": [
+   "digital"
+  ],
+  "5.6.9": [
+   "digital",
+   "infosec"
+  ],
+  "5.7.1": [
+   "digital",
+   "data"
+  ],
+  "5.7.2": [
+   "data",
+   "infosec"
+  ],
+  "5.7.3": [
+   "digital",
+   "data"
+  ],
+  "5.7.4": [
+   "infosec"
+  ],
+  "5.7.5": [
+   "data",
+   "infosec"
+  ],
+  "5.7.6": [
+   "data",
+   "infosec"
+  ],
+  "5.8.1": [
+   "infosec",
+   "finance"
+  ],
+  "5.8.2": [
+   "digital",
+   "infosec"
+  ],
+  "5.8.3": [
+   "digital",
+   "finance"
+  ],
+  "5.8.4": [
+   "infosec",
+   "finance"
+  ],
+  "5.8.5": [
+   "digital",
+   "finance"
+  ],
+  "5.8.6": [
+   "infosec",
+   "finance"
+  ],
+  "5.9.1": [
+   "data"
+  ],
+  "5.9.2": [
+   "data"
+  ],
+  "5.9.3": [
+   "data"
+  ],
+  "5.9.4": [
+   "data"
+  ],
+  "5.9.5": [
+   "data"
+  ],
+  "5.9.6": [
+   "data"
+  ],
+  "5.9.7": [
+   "data"
+  ],
+  "6.1.1": [
+   "tso",
+   "hr"
+  ],
+  "6.1.2": [
+   "tso",
+   "hr"
+  ],
+  "6.1.3": [
+   "tso",
+   "hr"
+  ],
+  "6.1.4": [
+   "tso",
+   "hr"
+  ],
+  "6.1.5": [
+   "tso",
+   "data"
+  ],
+  "6.2.1": [
+   "hr",
+   "tso"
+  ],
+  "6.2.2": [
+   "hr",
+   "tso"
+  ],
+  "6.2.3": [
+   "hr",
+   "tso"
+  ],
+  "6.2.4": [
+   "hr",
+   "tso"
+  ],
+  "6.2.5": [
+   "hr",
+   "tso"
+  ],
+  "6.2.6": [
+   "hr",
+   "tso"
+  ],
+  "6.3.1": [
+   "tso"
+  ],
+  "6.3.2": [
+   "tso"
+  ],
+  "6.3.3": [
+   "tso"
+  ],
+  "6.3.4": [
+   "tso"
+  ],
+  "6.3.5": [
+   "tso"
+  ],
+  "6.3.6": [
+   "tso"
+  ],
+  "6.4.1": [
+   "tso",
+   "hr"
+  ],
+  "6.4.2": [
+   "tso",
+   "hr"
+  ],
+  "6.4.3": [
+   "tso",
+   "hr"
+  ],
+  "6.4.4": [
+   "tso",
+   "hr"
+  ],
+  "6.4.5": [
+   "hr",
+   "tso"
+  ],
+  "6.4.6": [
+   "hr",
+   "tso"
+  ],
+  "6.5.1": [
+   "digital",
+   "tso"
+  ],
+  "6.5.2": [
+   "digital",
+   "tso"
+  ],
+  "6.5.3": [
+   "digital",
+   "tso"
+  ],
+  "6.5.4": [
+   "tso",
+   "hr"
+  ],
+  "6.5.5": [
+   "infosec",
+   "digital"
+  ],
+  "6.5.6": [
+   "digital",
+   "tso"
+  ],
+  "6.5.7": [
+   "digital",
+   "tso"
+  ],
+  "6.6.1": [
+   "data",
+   "infosec"
+  ],
+  "6.6.2": [
+   "strategy",
+   "policy"
+  ],
+  "6.6.3": [
+   "strategy",
+   "policy"
+  ],
+  "6.6.4": [
+   "strategy",
+   "policy"
+  ],
+  "6.6.5": [
+   "hr",
+   "data"
+  ],
+  "6.6.6": [
+   "strategy",
+   "policy"
+  ],
+  "6.7.1": [
+   "hr"
+  ],
+  "6.7.2": [
+   "hr"
+  ],
+  "6.7.3": [
+   "hr"
+  ],
+  "6.7.4": [
+   "hr"
+  ],
+  "6.7.5": [
+   "hr"
+  ],
+  "7.1.1": [
+   "digital",
+   "tso"
+  ],
+  "7.1.2": [
+   "tso",
+   "digital"
+  ],
+  "7.1.3": [
+   "digital",
+   "comms"
+  ],
+  "7.1.4": [
+   "tso",
+   "digital"
+  ],
+  "7.1.5": [
+   "tso",
+   "digital"
+  ],
+  "7.2.1": [
+   "tso"
+  ],
+  "7.2.2": [
+   "tso"
+  ],
+  "7.2.3": [
+   "tso"
+  ],
+  "7.2.4": [
+   "tso"
+  ],
+  "7.2.5": [
+   "tso"
+  ],
+  "7.2.6": [
+   "tso"
+  ],
+  "7.3.1": [
+   "tso",
+   "comms"
+  ],
+  "7.3.2": [
+   "tso",
+   "comms"
+  ],
+  "7.3.3": [
+   "tso",
+   "comms"
+  ],
+  "7.3.4": [
+   "tso",
+   "comms"
+  ],
+  "7.3.5": [
+   "comms",
+   "tso"
+  ],
+  "7.3.6": [
+   "tso",
+   "comms"
+  ],
+  "7.4.1": [
+   "tso",
+   "comms"
+  ],
+  "7.4.2": [
+   "tso",
+   "comms"
+  ],
+  "7.4.3": [
+   "comms",
+   "tso"
+  ],
+  "7.4.4": [
+   "tso",
+   "comms"
+  ],
+  "7.4.5": [
+   "tso",
+   "comms"
+  ],
+  "7.5.1": [
+   "tso",
+   "comms"
+  ],
+  "7.5.2": [
+   "tso",
+   "comms"
+  ],
+  "7.5.3": [
+   "tso",
+   "comms"
+  ],
+  "7.5.4": [
+   "tso",
+   "comms"
+  ],
+  "7.5.5": [
+   "tso",
+   "comms"
+  ],
+  "7.6.1": [
+   "comms",
+   "tps"
+  ],
+  "7.6.2": [
+   "comms",
+   "tps"
+  ],
+  "7.6.3": [
+   "comms",
+   "tps"
+  ],
+  "7.6.4": [
+   "comms",
+   "tps"
+  ],
+  "7.6.5": [
+   "comms",
+   "tps"
+  ],
+  "7.6.6": [
+   "comms",
+   "tps"
+  ],
+  "7.7.1": [
+   "strategy",
+   "tso"
+  ],
+  "7.7.2": [
+   "strategy",
+   "tso"
+  ],
+  "7.7.3": [
+   "strategy",
+   "tso"
+  ],
+  "7.7.4": [
+   "strategy",
+   "tso"
+  ],
+  "7.7.5": [
+   "strategy",
+   "tso"
+  ],
+  "8.1.1": [
+   "itsvc",
+   "comms"
+  ],
+  "8.1.2": [
+   "itsvc",
+   "comms"
+  ],
+  "8.1.3": [
+   "itsvc",
+   "comms"
+  ],
+  "8.1.4": [
+   "itsvc",
+   "comms"
+  ],
+  "8.1.5": [
+   "itsvc"
+  ],
+  "8.1.6": [
+   "itsvc",
+   "comms"
+  ],
+  "8.1.7": [
+   "digital",
+   "tso"
+  ],
+  "8.2.1": [
+   "tso",
+   "itsvc"
+  ],
+  "8.2.2": [
+   "tso",
+   "itsvc"
+  ],
+  "8.2.3": [
+   "tso",
+   "itsvc"
+  ],
+  "8.2.4": [
+   "tso",
+   "itsvc"
+  ],
+  "8.2.5": [
+   "tso",
+   "itsvc"
+  ],
+  "8.2.6": [
+   "tso",
+   "itsvc"
+  ],
+  "8.3.1": [
+   "itsvc"
+  ],
+  "8.3.2": [
+   "itsvc"
+  ],
+  "8.3.3": [
+   "itsvc"
+  ],
+  "8.3.4": [
+   "itsvc"
+  ],
+  "8.3.5": [
+   "itsvc"
+  ],
+  "8.3.6": [
+   "itsvc"
+  ],
+  "8.4.1": [
+   "itsvc",
+   "finance"
+  ],
+  "8.4.2": [
+   "itsvc",
+   "finance"
+  ],
+  "8.4.3": [
+   "itsvc",
+   "finance"
+  ],
+  "8.4.4": [
+   "itsvc",
+   "finance"
+  ],
+  "8.4.5": [
+   "itsvc",
+   "finance"
+  ],
+  "8.4.6": [
+   "itsvc",
+   "finance"
+  ],
+  "8.5.1": [
+   "infosec",
+   "comms"
+  ],
+  "8.5.2": [
+   "infosec",
+   "comms"
+  ],
+  "8.5.3": [
+   "infosec",
+   "comms"
+  ],
+  "8.5.4": [
+   "infosec",
+   "comms"
+  ],
+  "8.5.5": [
+   "infosec",
+   "comms"
+  ],
+  "8.5.6": [
+   "infosec",
+   "comms"
+  ],
+  "8.6.1": [
+   "tso",
+   "admin"
+  ],
+  "8.6.2": [
+   "tso",
+   "admin"
+  ],
+  "8.6.3": [
+   "tso",
+   "admin"
+  ],
+  "8.6.4": [
+   "hr",
+   "tso"
+  ],
+  "8.6.5": [
+   "tso",
+   "admin"
+  ],
+  "8.6.6": [
+   "tso",
+   "admin"
+  ],
+  "8.7.1": [
+   "admin",
+   "itsvc"
+  ],
+  "8.7.2": [
+   "admin",
+   "itsvc"
+  ],
+  "8.7.3": [
+   "admin",
+   "legal"
+  ],
+  "8.7.4": [
+   "admin",
+   "itsvc"
+  ],
+  "8.7.5": [
+   "admin",
+   "itsvc"
+  ],
+  "8.7.6": [
+   "admin",
+   "itsvc"
+  ],
+  "8.8.1": [
+   "digital",
+   "itsvc"
+  ],
+  "8.8.2": [
+   "itsvc",
+   "digital"
+  ],
+  "8.8.3": [
+   "itsvc",
+   "digital"
+  ],
+  "8.8.4": [
+   "itsvc",
+   "digital"
+  ],
+  "8.8.5": [
+   "itsvc",
+   "digital"
+  ],
+  "8.8.6": [
+   "itsvc",
+   "digital"
+  ],
+  "8.8.7": [
+   "digital",
+   "itsvc"
+  ]
+ }
+}

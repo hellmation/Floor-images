@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useApp } from '../store/state'
-import { codeById, subById, pillarById, assigneeOf, effective, effectiveImpact, master, sortIds, uid, now } from '../store/scoring'
+import { codeById, subById, pillarById, assigneeOf, effective, effectiveImpact, master, sortIds, uid, now, departmentOf, supportDepartments, deptName } from '../store/scoring'
 import { pick, pickDesc, pickText } from '../i18n'
 import { ImpactPill, Pill, StatePill, StatusPill, Modal, Empty, useToast, fmtDate, errMsg } from '../components/ui'
 import { Icon } from '../components/icons'
@@ -9,7 +9,7 @@ import type { AnswerStatus, CodeAnswer, ItemAnswer } from '../types'
 const emptyItem = (): ItemAnswer => ({ status: null, evidence: [], clarify: { flag: false, question: '' } })
 
 export default function CodeView({ id }: { id: string }) {
-  const { t, lang, snap, user, isAdmin, cycleId, saveMyAnswer, saveMyNote, saveConfig } = useApp()
+  const { t, lang, snap, user, isAdmin, cycleId, saveMyAnswer, saveMyNote, saveMyDepartment, saveConfig } = useApp()
   const toast = useToast()
   const code = codeById.get(id)
   const cfg = snap!.config; const cy = cycleId!
@@ -93,6 +93,12 @@ export default function CodeView({ id }: { id: string }) {
   }
   const override = async (uidv: string) => { const c = JSON.parse(JSON.stringify(cfg)); c.overrides[cy] = c.overrides[cy] || {}; if (uidv) c.overrides[cy][code.id] = uidv; else delete c.overrides[cy][code.id]; try { await saveConfig(c, `override ${code.id} -> ${uidv || 'auto'}`) } catch (e) { toast(errMsg(e, t), 'bad') } }
   const otherPending = !!myOwn && eff!.userId !== user!.id && (eff!.state === 'submitted' || eff!.state === 'approved')
+  const codeDept = departmentOf(snap!, cy, code.id); const supports = supportDepartments(cfg, code.id); const depts = cfg.departments.filter(d => d.active)
+  const canSetDept = cycle?.status === 'open' && (user!.id === assignee || isAdmin)
+  /* The owner's choice is stored in their own file; an admin who is not the owner changes the configured default instead. */
+  const setDept = async (id: string) => { try { if (user!.id === assignee) await saveMyDepartment(code.id, id || null)
+      else { const c = JSON.parse(JSON.stringify(cfg)) as typeof cfg; c.deptMapping[code.id] = [id || cfg.deptMapping[code.id]?.[0] || '', ...supports].filter(Boolean); await saveConfig(c, `department ${code.id} -> ${id || 'default'}`) }
+      toast(t('saved'), 'ok') } catch (e) { toast(errMsg(e, t), 'bad') } }
   const adminShadow = isAdmin && assignee !== user!.id && !locked && cycle?.status === 'open'
   const answered = vals.filter(v => v?.status).length
   return (
@@ -132,12 +138,13 @@ export default function CodeView({ id }: { id: string }) {
                   {it.evidence.length > 0 && <ul className="m-0 mb-2 p-0 list-none flex flex-col gap-1">{it.evidence.map(ev => <li key={ev.id} className="flex items-center gap-2 text-sm panel px-2 py-1.5"><Icon name="link" className="text-muted" /><a href={ev.url} target="_blank" rel="noreferrer" className="truncate flex-1">{ev.title || ev.url}</a><button className="btn btn-ghost btn-sm" onClick={() => upd(r.n, { evidence: it.evidence.filter(x => x.id !== ev.id) })} aria-label={t('remove')}><Icon name="x" /></button></li>)}</ul>}
                   <EvidenceAdd onAdd={(title, url) => upd(r.n, { evidence: [...it.evidence, { id: uid(), type: 'link', title, url, addedAt: now(), addedBy: user!.id }] })} />
                 </div>
-                <div className="grid sm:grid-cols-3 gap-2">
+                <div className="grid sm:grid-cols-4 gap-2">
+                  <div className="field"><label className="label" htmlFor={`req-${r.n}-d`}>{t('reqDepartment')}</label><select id={`req-${r.n}-d`} className="select" value={it.departmentId || ''} onChange={e => upd(r.n, { departmentId: e.target.value || null })}><option value="">{t('inheritDept')} ({deptName(cfg, codeDept, lang) || '—'})</option>{depts.map(d => <option key={d.id} value={d.id}>{lang === 'ar' ? d.name_ar : d.name_en}</option>)}</select></div>
                   <div className="field"><label className="label" htmlFor={`req-${r.n}-p`}>{t('project')}</label><select id={`req-${r.n}-p`} className="select" value={it.projectId || ''} onChange={e => upd(r.n, { projectId: e.target.value || null })}><option value="">—</option>{projOpts.map(p => <option key={p.id} value={p.id}>{pick(lang, p)}</option>)}</select></div>
                   <div className="field"><label className="label" htmlFor={`req-${r.n}-s`}>{t('service')}</label><input id={`req-${r.n}-s`} className="input" value={it.service || ''} onChange={e => upd(r.n, { service: e.target.value })} /></div>
                   <div className="field"><label className="label" htmlFor={`req-${r.n}-n`}>{t('note')}</label><input id={`req-${r.n}-n`} className="input" value={it.note || ''} onChange={e => upd(r.n, { note: e.target.value })} /></div>
                 </div>
-              </> : <ReadOnly it={it} ca={ca} projName={it.projectId ? pick(lang, cfg.projects.find(p => p.id === it.projectId) || { name_ar: it.projectId }) : ''} />}
+              </> : <ReadOnly it={it} ca={ca} projName={it.projectId ? pick(lang, cfg.projects.find(p => p.id === it.projectId) || { name_ar: it.projectId }) : ''} deptLabel={it.departmentId && it.departmentId !== codeDept ? deptName(cfg, it.departmentId, lang) : ''} />}
             </section>
           })}
           {!paired && code.criteria.length > 0 && <section className="card p-4"><div className="label">{t('criteria')}</div><ol className="m-0 ps-5">{code.criteria.map(c => <li key={c.n}>{pickText(lang, c)}</li>)}</ol></section>}
@@ -147,6 +154,10 @@ export default function CodeView({ id }: { id: string }) {
             <div><div className="label">{t('requirementsNav')}</div><div className="step-rail">{code.requirements.map(r => { const s = items[String(r.n)]?.status; return <a key={r.n} href={'#req-' + r.n} onClick={e => { e.preventDefault(); document.getElementById('req-' + r.n)?.scrollIntoView({ behavior: 'smooth', block: 'center' }) }}><span className={`n ${s || ''}`}>{s ? '✓' : r.n}</span><span className="truncate">{pickText(lang, r)}</span></a> })}</div></div>
             <div className="divider" />
             <div className="text-sm"><div className="label">{t('assignedTo')}</div><div className="font-semibold">{userName(assignee)}</div>{isAdmin && <select className="select !py-1 text-xs mt-1" value={cfg.overrides[cy]?.[code.id] || ''} onChange={e => override(e.target.value)}><option value="">{t('auto')}</option>{cfg.users.filter(u => u.active).map(u => <option key={u.id} value={u.id}>{lang === 'ar' ? u.name_ar : u.name_en}</option>)}</select>}</div>
+            <div className="text-sm"><div className="label">{t('department')}</div>
+              {canSetDept ? <select className="select !py-1 text-sm" aria-label={t('department')} value={codeDept || ''} onChange={e => setDept(e.target.value)}>{depts.map(d => <option key={d.id} value={d.id}>{lang === 'ar' ? d.name_ar : d.name_en}</option>)}</select> : <div className="font-semibold">{deptName(cfg, codeDept, lang) || '—'}</div>}
+              {supports.length > 0 && <div className="text-xs text-muted mt-1">{t('supportDepts')}: {supports.map(id => deptName(cfg, id, lang)).filter(Boolean).join(' · ')}</div>}
+              <div className="text-xs text-muted mt-1">{isAdmin && user!.id !== assignee ? t('deptAdminHint') : t('deptHint')}</div></div>
             <div className="text-sm"><div className="label">{t('mappedProjects')}</div>{linked.length ? <div className="flex flex-wrap gap-1">{linked.map(p => <Pill key={p!.id} kind="accent">{pick(lang, p!)}</Pill>)}</div> : <span className="text-muted">—</span>}</div>
             {eff!.userId && <div className="text-xs text-muted">{t('submittedBy')}: {userName(eff!.userId)} · {fmtDate(eff!.answer?.updatedAt, lang)}</div>}
           </div>
@@ -196,9 +207,10 @@ function EvidenceAdd({ onAdd }: { onAdd: (title: string, url: string) => void })
   return <div className="flex flex-wrap gap-2"><input className="input flex-1 min-w-32" placeholder={t('evidenceTitle')} value={title} onChange={e => setTitle(e.target.value)} /><input className="input flex-[2] min-w-48" dir="ltr" placeholder={t('evidenceUrl')} value={url} onChange={e => setUrl(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && url.trim()) { e.preventDefault(); add() } }} />
     <button className="btn btn-sm" disabled={!url.trim()} onClick={add}><Icon name="plus" />{t('addLink')}</button></div>
 }
-function ReadOnly({ it, ca, projName }: { it: ItemAnswer; ca?: { answer: string }; projName: string }) {
+function ReadOnly({ it, ca, projName, deptLabel }: { it: ItemAnswer; ca?: { answer: string }; projName: string; deptLabel?: string }) {
   const { t } = useApp()
   return <div className="text-sm flex flex-col gap-1">
+    {deptLabel && <div className="text-muted"><span className="font-medium text-fg-2">{t('reqDepartment')}:</span> {deptLabel}</div>}
     {it.status === 'na' && it.justification && <div><span className="font-medium text-fg-2">{t('justification')}:</span> {it.justification}</div>}
     {it.evidence.length > 0 && <div className="flex flex-wrap gap-2">{it.evidence.map(e => <a key={e.id} className="pill pill-muted no-underline" href={e.url} target="_blank" rel="noreferrer"><Icon name="link" style={{ width: 12, height: 12 }} />{e.title || e.url}</a>)}</div>}
     {(projName || it.service || it.note) && <div className="text-muted">{projName && <span className="me-3">{t('project')}: {projName}</span>}{it.service && <span className="me-3">{t('service')}: {it.service}</span>}{it.note && <span>{t('note')}: {it.note}</span>}</div>}
