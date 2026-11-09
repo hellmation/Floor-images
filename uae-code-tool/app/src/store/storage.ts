@@ -29,7 +29,7 @@ export interface StorageAdapter {
 }
 export class ReadOnlyError extends Error { constructor(msg: string) { super(msg); this.name = 'ReadOnlyError' } }
 export class ConflictError extends Error { constructor() { super('conflict'); this.name = 'ConflictError' } }
-export const APP_CONFIG_VERSION = 7
+export const APP_CONFIG_VERSION = 8
 
 /** Merge two copies of one person's answers file: per cycle/code and per note the newer updatedAt wins. */
 export function mergeAnswers(disk: AnswersFile | null, next: AnswersFile, base?: AnswersFile | null): AnswersFile {

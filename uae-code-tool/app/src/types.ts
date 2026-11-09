@@ -22,6 +22,8 @@ export interface Cycle { id: string; name: string; name_en?: string; start: stri
 export interface Settings {
   scores: { yes: number; partial: number; no: number }
   weights: { high: number; medium: number; low: number; none: number }
+  /** Fulfilment points per requirement by the code's impact (Yes earns all, Partial half, No none; N/A excluded). */
+  points: { high: number; medium: number; low: number; none: number }
   defaultAssigneeId: string | null
   requireEvidence: boolean
 }
@@ -31,6 +33,8 @@ export interface Config {
   /** Organisational units from the FTA structure decree; the responsible department per code (first = primary, rest = supporting). */
   departments: Department[]
   deptMapping: Record<string, string[]>
+  /** Codes whose department mapping is uncertain: the owner must confirm the department before submitting. */
+  deptConfirm: Record<string, true>
   /** Cycle ids renamed by a migration (old -> new); load() moves any file still carrying the old key. */
   renamedCycles?: Record<string, string>
   entity: { name_ar: string; name_en: string }
@@ -62,6 +66,7 @@ export interface CodeAnswer {
   submittedAt?: string
   items: Record<string, ItemAnswer>      // requirement n -> answer
   carriedFrom?: string | null
+  deptConfirmed?: boolean                // owner confirmed the responsible department (required when the mapping is flagged)
 }
 export interface AnswersFile {
   userId: string

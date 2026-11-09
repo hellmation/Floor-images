@@ -11,11 +11,12 @@ import Mapping from './pages/Mapping'
 import Cycles from './pages/Cycles'
 import Review from './pages/Review'
 import Dashboard from './pages/Dashboard'
+import Fulfil from './pages/Fulfil'
 import Standings from './pages/Standings'
 import Admin from './pages/Admin'
 
 declare global { interface Window { __leaveGuard?: () => boolean } }
-const PAGES = new Set(['home', 'my', 'browse', 'notes', 'code', 'dashboard', 'standings', 'review', 'mapping', 'cycles', 'admin'])
+const PAGES = new Set(['home', 'my', 'browse', 'notes', 'code', 'dashboard', 'fulfil', 'standings', 'review', 'mapping', 'cycles', 'admin'])
 function useHash() {
   const [h, setH] = useState(location.hash.replace(/^#\/?/, ''))
   const prev = useRef(h); const skip = useRef(false)
@@ -45,6 +46,7 @@ export default function App() {
     case 'notes': body = <Notes />; break
     case 'code': body = <CodeView id={decodeURIComponent(route[1] || '')} />; break
     case 'dashboard': body = <Dashboard />; break
+    case 'fulfil': body = <Fulfil />; break
     case 'standings': body = <Standings />; break
     case 'review': body = <Review />; break
     case 'mapping': body = <Mapping />; break

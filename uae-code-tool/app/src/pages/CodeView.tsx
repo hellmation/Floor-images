@@ -24,6 +24,7 @@ export default function CodeView({ id }: { id: string }) {
   const [confirm, setConfirm] = useState(false)
   const [dirty, setDirty] = useState(false)
   const [busy, setBusy] = useState(false)
+  const [deptConfirmed, setDeptConfirmed] = useState(false)
   /* Form initialisation. The form is (re)built from the stored answer only when the code or cycle changes, or when the
    * stored answer changes while there are NO unsaved edits. If it changes while the person is editing (someone else saved
    * this code, or a refresh brought a newer copy), their edits are kept and a banner offers to load the newer version. */
@@ -49,7 +50,7 @@ export default function CodeView({ id }: { id: string }) {
     const next: Record<string, ItemAnswer> = {}
     for (const r of code.requirements) { next[String(r.n)] = src?.items[String(r.n)] ? { ...emptyItem(), ...JSON.parse(JSON.stringify(src.items[String(r.n)])) } : emptyItem()
       if (carry) next[String(r.n)].clarify = { flag: false, question: '' } } // a carried answer never carries an open clarification
-    setItems(next); setCarried(carry || base?.carriedFrom || null); setConfirm(false); setDirty(false)
+    setItems(next); setCarried(carry || base?.carriedFrom || null); setConfirm(false); setDirty(false); setDeptConfirmed(!!base?.deptConfirmed)
   }, [initTick]) // eslint-disable-line react-hooks/exhaustive-deps
   const ordered = useMemo(() => [...master.codes].sort((a, b) => sortIds(a.id, b.id)), [])
   // unsaved edits: warn before the tab closes and before any in-app navigation (App.useHash consults the guard)
@@ -74,12 +75,13 @@ export default function CodeView({ id }: { id: string }) {
     [!cfg.settings.requireEvidence || vals.every(v => !(v?.status === 'yes' || v?.status === 'partial') || v.evidence.length > 0), t('needEvidence')],
     [vals.every(v => v?.status !== 'na' || !!v.justification?.trim()), t('needJustification')],
     [!vals.some(v => v?.clarify?.flag), t('openClarification')],
+    ...(cfg.deptConfirm?.[code.id] ? [[deptConfirmed, t('needDeptConfirm')] as [boolean, string]] : []),
   ]
   const ok = checks.every(c => c[0])
   const save = async (state: 'draft' | 'submitted') => {
     if (busy) return; setBusy(true)
     const snapshotItems = itemsRef.current
-    const a: CodeAnswer = { state, updatedAt: now(), submittedAt: state === 'submitted' ? now() : myOwn?.submittedAt, items: snapshotItems, carriedFrom: carried }
+    const a: CodeAnswer = { state, updatedAt: now(), submittedAt: state === 'submitted' ? now() : myOwn?.submittedAt, items: snapshotItems, carriedFrom: carried, deptConfirmed }
     justSaved.current = true
     try {
       const stored = await saveMyAnswer(cy, code.id, a)
@@ -157,6 +159,9 @@ export default function CodeView({ id }: { id: string }) {
             <div className="text-sm"><div className="label">{t('department')}</div>
               {canSetDept ? <select className="select !py-1 text-sm" aria-label={t('department')} value={codeDept || ''} onChange={e => setDept(e.target.value)}>{depts.map(d => <option key={d.id} value={d.id}>{lang === 'ar' ? d.name_ar : d.name_en}</option>)}</select> : <div className="font-semibold">{deptName(cfg, codeDept, lang) || '—'}</div>}
               {supports.length > 0 && <div className="text-xs text-muted mt-1">{t('supportDepts')}: {supports.map(id => deptName(cfg, id, lang)).filter(Boolean).join(' · ')}</div>}
+              {cfg.deptConfirm?.[code.id] && <div className="text-xs text-warn-ink bg-warn-soft rounded px-2 py-1 mt-1 flex items-center gap-1"><Icon name="alert" style={{ width: 13, height: 13 }} />{t('deptNeedsConfirm')}</div>}
+              {cfg.deptConfirm?.[code.id] && canEdit && <label className="text-sm flex items-center gap-2 mt-1 cursor-pointer"><input type="checkbox" checked={deptConfirmed} onChange={e => { setDeptConfirmed(e.target.checked); setDirty(true) }} />{t('confirmDept')}</label>}
+              {isAdmin && <label className="text-xs text-muted flex items-center gap-2 mt-1 cursor-pointer"><input type="checkbox" checked={!!cfg.deptConfirm?.[code.id]} onChange={async e => { const c = JSON.parse(JSON.stringify(cfg)) as typeof cfg; c.deptConfirm = c.deptConfirm || {}; if (e.target.checked) c.deptConfirm[code.id] = true; else delete c.deptConfirm[code.id]; try { await saveConfig(c, `deptConfirm ${code.id} ${e.target.checked}`) } catch (err) { toast(errMsg(err, t), 'bad') } }} />{t('markDeptConfirm')}</label>}
               <div className="text-xs text-muted mt-1">{isAdmin && user!.id !== assignee ? t('deptAdminHint') : t('deptHint')}</div></div>
             <div className="text-sm"><div className="label">{t('mappedProjects')}</div>{linked.length ? <div className="flex flex-wrap gap-1">{linked.map(p => <Pill key={p!.id} kind="accent">{pick(lang, p!)}</Pill>)}</div> : <span className="text-muted">—</span>}</div>
             {eff!.userId && <div className="text-xs text-muted">{t('submittedBy')}: {userName(eff!.userId)} · {fmtDate(eff!.answer?.updatedAt, lang)}</div>}

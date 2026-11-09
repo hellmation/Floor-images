@@ -22,7 +22,7 @@ export function Shell({ page, children }: { page: string; children: ReactNode })
   useEffect(() => { setOpen(false) }, [page])
   const groups: { label: string; items: [string, string, IconName][] }[] = [
     { label: t('work'), items: [['home', t('home'), 'home'], ['my', t('myWork'), 'tasks'], ['browse', t('browse'), 'book'], ['notes', t('notes'), 'edit']] },
-    { label: t('insights'), items: [['dashboard', t('dashboard'), 'chart'], ['standings', t('standings'), 'trophy']] },
+    { label: t('insights'), items: [['dashboard', t('dashboard'), 'chart'], ['fulfil', t('fulfilment'), 'target'], ['standings', t('standings'), 'trophy']] },
     ...(isAdmin ? [{ label: t('administration'), items: [['review', t('review'), 'shield'], ['mapping', t('mapping'), 'map'], ['cycles', t('cycles'), 'calendar'], ['admin', t('admin'), 'settings']] as [string, string, IconName][] }] : []),
   ]
   const doRefresh = async () => { if (window.__leaveGuard && !window.__leaveGuard()) return; try { await refresh(); toast(t('refreshed'), 'ok') } catch { toast(t('storageError'), 'bad') } }

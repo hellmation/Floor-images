@@ -36,6 +36,7 @@ export function seedUsersAndProjects(): { users: User[]; projects: Project[] } {
 
 /** Organisational units and the code -> department mapping derived from the FTA structure decree (18/2023). */
 export function seedDepartments(): Department[] { return (departmentsSeed as unknown as { departments: Department[] }).departments.map(d => ({ ...d })) }
+export function seedDeptConfirm(): Record<string, true> { return { ...((departmentsSeed as unknown as { confirm?: Record<string, true> }).confirm || {}) } }
 export function seedDeptMapping(): Record<string, string[]> { const m = (departmentsSeed as unknown as { mapping: Record<string, string[]> }).mapping; return Object.fromEntries(Object.entries(m).map(([k, v]) => [k, [...v]])) }
 /** Code-level mapping derived from the project -> sub-pillar seed. */
 export function seedMapping(): Record<string, string[]> {
@@ -54,13 +55,13 @@ export function seedMapping(): Record<string, string[]> {
 export function defaultConfig(): Config {
   const { users, projects } = seedUsersAndProjects()
   return {
-    version: 7,
-    departments: seedDepartments(), deptMapping: seedDeptMapping(),
+    version: 8,
+    departments: seedDepartments(), deptMapping: seedDeptMapping(), deptConfirm: seedDeptConfirm(),
     entity: { name_ar: 'الهيئة الاتحادية للضرائب', name_en: 'Federal Tax Authority' },
     users, projects, mapping: seedMapping(), overrides: {},
     cycles: [{ id: '2026-Q1-Q3', name: 'خط الأساس 2026 — الأرباع الأول إلى الثالث', name_en: '2026 Baseline — Q1 to Q3', start: '2026-01-01', end: '2026-09-30', due: '2026-12-15', status: 'open', prefillFrom: null }],
     currentCycleId: '2026-Q1-Q3',
-    settings: { scores: { yes: 100, partial: 50, no: 0 }, weights: { high: 3, medium: 2, low: 1, none: 2 }, defaultAssigneeId: 'u-ahmed-helmy', requireEvidence: true },
+    settings: { scores: { yes: 100, partial: 50, no: 0 }, weights: { high: 3, medium: 2, low: 1, none: 2 }, defaultAssigneeId: 'u-ahmed-helmy', requireEvidence: true, points: { high: 30, medium: 20, low: 10, none: 20 } },
     impactOverrides: {},
     updatedAt: new Date().toISOString(),
   }
@@ -87,12 +88,19 @@ export function renameCycleInConfig(c: Config, from: string, to: string) {
   c.renamedCycles = { ...(c.renamedCycles || {}), [from]: to }
 }
 export function migrateConfig(c: Config): Config {
-  if ((c.version || 1) >= 7) return c
+  if ((c.version || 1) >= 8) return c
+  if ((c.version || 1) === 7) {
+    // reviewed department mapping (9 Nov): the reviewed values replace the first seed; confirmation flags and fulfilment points added
+    c.deptMapping = { ...(c.deptMapping || {}), ...seedDeptMapping() }
+    c.deptConfirm = { ...seedDeptConfirm(), ...(c.deptConfirm || {}) }
+    if (!c.settings.points) c.settings.points = { high: 30, medium: 20, low: 10, none: 20 }
+    c.version = 8; return c
+  }
   if ((c.version || 1) === 6) {
     // responsible departments from the structure decree; existing custom values are kept
     if (!c.departments?.length) c.departments = seedDepartments()
     const seed = seedDeptMapping(); c.deptMapping = { ...seed, ...(c.deptMapping || {}) }
-    c.version = 7; return c
+    c.version = 7; return migrateConfig(c)
   }
   if ((c.version || 1) === 5) {
     // the baseline assesses the first three quarters of 2026; the seeded '2026-Q4' cycle is renamed and re-dated

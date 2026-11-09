@@ -1,6 +1,6 @@
 import ExcelJS from 'exceljs'
 import type { Lang, Snapshot, Code } from '../types'
-import { master, effective, codeScore, effectiveImpact, assigneeOf, rollup, standings, sortIds, subById, pillarById, departmentOf, supportDepartments } from '../store/scoring'
+import { master, effective, codeScore, effectiveImpact, assigneeOf, rollup, standings, sortIds, subById, pillarById, departmentOf, supportDepartments, fulfilRows, fulfilSum, type FulfilRow } from '../store/scoring'
 
 let LANG: Lang = 'ar'
 const H = (ar: string, en: string) => LANG === 'ar' ? ar : en
@@ -61,6 +61,7 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
     return { c, e, a, imp, w, cnt, answered, score, links, primary, owner, evid, clar, openClar, review, dept, supports: supportDepartments(cfg, c.id), complete: answered === c.requirements.length, assignee: assigneeOf(c.id, cycleId, cfg) }
   })
   const order = new Map(codes.map((c, i) => [c.id, i + 1]))
+  const PTS = cfg.settings.points || { high: 30, medium: 20, low: 10, none: 20 }
 
   /* ---------- 0. Tracking sheet: the original template's columns plus management columns ---------- */
   {
@@ -151,7 +152,7 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
     { h: ['التقييم', 'Evaluation'], w: 12 }, { h: ['رمز التقييم', 'Evaluation code'], w: 9 }, { h: ['الدرجة', 'Score'], w: 7 }, { h: ['مبرر عدم الانطباق', 'N/A justification'], w: 30 },
     { h: ['عدد الأدلة (المتطلب)', 'Evidence count (requirement)'], w: 8 }, { h: ['الأدلة', 'Evidence'], w: 40 }, { h: ['ملاحظة', 'Note'], w: 30 }, { h: ['مشروع المتطلب', 'Requirement project'], w: 26 }, { h: ['معرّف المشروع', 'Project ID'], w: 9 }, { h: ['الخدمة', 'Service'], w: 18 },
     { h: ['يحتاج توضيح', 'Needs clarification'], w: 9 }, { h: ['سؤال التوضيح', 'Clarification question'], w: 30 }, { h: ['رد المراجع', 'Clarification reply'], w: 30 },
-    { h: ['المقيّم (كاتب الإجابة)', 'Evaluator (answer author)'], w: 18 }, { h: ['المُسند إليه', 'Assignee'], w: 18 }, { h: ['معرّف المُسند إليه', 'Assignee ID'], w: 16 }, { h: ['المشروع الرئيسي', 'Primary project'], w: 26 }, { h: ['الإدارة المسؤولة (الكود)', 'Responsible department (code)'], w: 24 }, { h: ['الإدارة المسؤولة (المتطلب)', 'Responsible department (requirement)'], w: 24 }, { h: ['نتيجة الكود', 'Code score'], w: 9, fmt: NUM }, { h: ['مكتمل', 'Complete'], w: 8 }, { h: ['حالة الكود', 'Code state'], w: 12 }, { h: ['يُحتسب رسمياً', 'Counts officially'], w: 9 }, { h: ['آخر تحديث', 'Updated at'], w: 17, fmt: DATE }, { h: ['تاريخ الإرسال', 'Submitted at'], w: 17, fmt: DATE }, { h: ['صفحة PDF', 'PDF page'], w: 7 },
+    { h: ['المقيّم (كاتب الإجابة)', 'Evaluator (answer author)'], w: 18 }, { h: ['المُسند إليه', 'Assignee'], w: 18 }, { h: ['معرّف المُسند إليه', 'Assignee ID'], w: 16 }, { h: ['المشروع الرئيسي', 'Primary project'], w: 26 }, { h: ['الإدارة المسؤولة (الكود)', 'Responsible department (code)'], w: 24 }, { h: ['الإدارة المسؤولة (المتطلب)', 'Responsible department (requirement)'], w: 24 }, { h: ['نقاط الأثر', 'Impact points'], w: 8 }, { h: ['النقاط المحققة', 'Points earned'], w: 8, fmt: NUM }, { h: ['محتسب في الاستيفاء', 'Counted in fulfilment'], w: 9 }, { h: ['نتيجة الكود', 'Code score'], w: 9, fmt: NUM }, { h: ['مكتمل', 'Complete'], w: 8 }, { h: ['حالة الكود', 'Code state'], w: 12 }, { h: ['يُحتسب رسمياً', 'Counts officially'], w: 9 }, { h: ['آخر تحديث', 'Updated at'], w: 17, fmt: DATE }, { h: ['تاريخ الإرسال', 'Submitted at'], w: 17, fmt: DATE }, { h: ['صفحة PDF', 'PDF page'], w: 7 },
   ], facts.flatMap(f => { const sb = subById.get(f.c.sub)!, pl = pillarById.get(f.c.pillar)!; const paired = f.c.criteria.length === f.c.requirements.length
     return f.c.requirements.map((r, i) => { const it = f.a?.items[String(r.n)]; const cl = snap.reviews.clarifications?.[cycleId]?.[f.c.id]?.[String(r.n)]
       const crit = paired ? txt(f.c.criteria[i]) : (i === 0 ? f.c.criteria.map(x => '• ' + txt(x)).join('\n') : '')
@@ -159,7 +160,7 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
         L(STATUS_T, it?.status), it?.status || '', it?.status && it.status !== 'na' ? cfg.settings.scores[it.status] : null, it?.status === 'na' ? (it.justification || '') : '',
         it?.evidence?.length || 0, (it?.evidence || []).map(ev => ev.title ? `${ev.title}: ${ev.url}` : ev.url).join('\n'), it?.note || '', pname(it?.projectId), it?.projectId || '', it?.service || '',
         YN(!!it?.clarify?.flag), it?.clarify?.question || '', cl?.answer || '',
-        uname(f.e.userId), uname(f.assignee) || H('غير مُسند', 'Unassigned'), f.assignee || '', pname(f.primary), dname(f.dept), dname(it?.departmentId || f.dept), f.score === null ? null : Math.round(f.score * 10) / 10, YN(f.complete), L(STATE_T, f.e.state), YN(f.e.state === 'approved'), iso(f.a?.updatedAt), iso(f.a?.submittedAt), f.c.pdf_page] }) }))
+        uname(f.e.userId), uname(f.assignee) || H('غير مُسند', 'Unassigned'), f.assignee || '', pname(f.primary), dname(f.dept), dname(it?.departmentId || f.dept), PTS[f.imp], it?.status === 'na' ? null : it?.status === 'yes' ? PTS[f.imp] : it?.status === 'partial' ? PTS[f.imp] / 2 : 0, YN(it?.status !== 'na'), f.score === null ? null : Math.round(f.score * 10) / 10, YN(f.complete), L(STATE_T, f.e.state), YN(f.e.state === 'approved'), iso(f.a?.updatedAt), iso(f.a?.submittedAt), f.c.pdf_page] }) }))
 
   /* ---------- 4. Evidence ---------- */
   table(['الأدلة', 'Evidence'], 'Evidence', [
@@ -182,6 +183,20 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
   /* ---------- 7b. Departments ---------- */
   table(['حسب الإدارة', 'Departments'], 'Departments', [CY, { h: ['معرّف الإدارة', 'Department ID'], w: 10 }, { h: ['الإدارة', 'Department'], w: 40 }, { h: ['نشطة', 'Active'], w: 7 }, { h: ['أكواد مساندة', 'Supporting on codes'], w: 9 }, ...aggCols],
     (cfg.departments || []).map(d => { const list = facts.filter(f => f.dept === d.id).map(f => f.c); return [cycleId, d.id, nm(d), YN(d.active), facts.filter(f => f.supports.includes(d.id)).length, ...agg(list)] }).filter(r => Number(r[5]) > 0 || Number(r[4]) > 0))
+
+  /* ---------- 7c. Fulfilment (points) ---------- */
+  {
+    const fr = fulfilRows(snap, cycleId, false); const frA = fulfilRows(snap, cycleId, true)
+    const FC = [{ h: ['أكواد', 'Codes'] as [string, string], w: 7 }, { h: ['متطلبات محتسبة', 'Requirements counted'] as [string, string], w: 9 }, { h: ['نعم', 'Yes'] as [string, string], w: 6 }, { h: ['جزئي', 'Partial'] as [string, string], w: 6 }, { h: ['لا', 'No'] as [string, string], w: 6 }, { h: ['غير مُجاب', 'Unanswered'] as [string, string], w: 8 }, { h: ['لا ينطبق', 'N/A'] as [string, string], w: 7 }, { h: ['النقاط المحققة', 'Points earned'] as [string, string], w: 9, fmt: NUM }, { h: ['النقاط الممكنة', 'Points possible'] as [string, string], w: 9 }, { h: ['الاستيفاء (الكل)', 'Fulfilment (all)'] as [string, string], w: 10, fmt: PCT }, { h: ['الاستيفاء (معتمد)', 'Fulfilment (approved)'] as [string, string], w: 10, fmt: PCT }]
+    const line = (rs: FulfilRow[], rsA: FulfilRow[]) => { const f = fulfilSum(rs), a = fulfilSum(rsA); return [f.codes, f.counted, f.yes, f.partial, f.no, f.unanswered, f.na, Math.round(f.earned * 10) / 10, f.possible, f.pct === null ? null : f.pct / 100, a.pct === null ? null : a.pct / 100] }
+    const groups: unknown[][] = [[cycleId, H('الكل', 'Total'), '', H('كود الإمارات', 'UAE Code'), ...line(fr, frA)]]
+    for (const pl of master.pillars) groups.push([cycleId, H('محور', 'Pillar'), Number(pl.id), nm(pl), ...line(fr.filter(r => r.code.pillar === pl.id), frA.filter(r => r.code.pillar === pl.id))])
+    for (const sb of master.subpillars) groups.push([cycleId, H('محور فرعي', 'Sub-pillar'), sb.id, nm(sb), ...line(fr.filter(r => r.code.sub === sb.id), frA.filter(r => r.code.sub === sb.id))])
+    for (const u of cfg.users.filter(x => x.active && x.role !== 'viewer')) groups.push([cycleId, H('مقيّم', 'Evaluator'), u.id, uname(u.id), ...line(fr.filter(r => r.assignee === u.id), frA.filter(r => r.assignee === u.id))])
+    for (const d of cfg.departments || []) { const rs = fr.filter(r => r.dept === d.id); if (rs.length) groups.push([cycleId, H('إدارة', 'Department'), d.id, nm(d), ...line(rs, frA.filter(r => r.dept === d.id))]) }
+    const none = fr.filter(r => !r.dept); if (none.length) groups.push([cycleId, H('إدارة', 'Department'), '', H('بدون إدارة', 'No department'), ...line(none, frA.filter(r => !r.dept))])
+    table(['الاستيفاء', 'Fulfilment'], 'Fulfilment', [CY, { h: ['المستوى', 'Level'], w: 10 }, { h: ['المعرّف', 'ID'], w: 10 }, { h: ['الاسم', 'Name'], w: 40 }, ...FC], groups)
+  }
 
   /* ---------- 8. Evaluators (standings) ---------- */
   const st = standings(snap, cycleId)
@@ -221,6 +236,7 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
     [H('المتابعة', 'Tracking'), H('نتائج الرصد / الدليل', 'Monitoring result / evidence'), H('روابط الأدلة سطرًا سطرًا، ويليها مبرر عدم الانطباق عند اختيار "لا ينطبق".', 'Evidence links one per line, followed by the N/A justification when "N/A" is chosen.')],
     [H('المتابعة', 'Tracking'), H('جميع معايير الرصد', 'All monitoring criteria'), H('عندما لا يتساوى عدد معايير الرصد مع عدد المتطلبات (10 أكواد)، تُدرج القائمة كاملة في كل صف.', 'When the criteria count differs from the requirements count (10 codes) the full list is repeated on every row.')],
     [H('الأكواد', 'Codes'), H('نتيجة الكود', 'Code score'), `${H('متوسط درجات المتطلبات المُجابة', 'Average of answered requirement scores')} (${H('نعم', 'Yes')}=${cfg.settings.scores.yes}، ${H('جزئي', 'Partial')}=${cfg.settings.scores.partial}، ${H('لا', 'No')}=${cfg.settings.scores.no})، ${H('مع استبعاد "لا ينطبق". فارغ إذا لم يُجب عن أي متطلب.', 'N/A excluded. Blank when nothing is answered.')}`],
+    [H('الاستيفاء', 'Fulfilment'), H('النقاط', 'Points'), `${H('نقاط كل متطلب بحسب أثر معياره', 'Each requirement is worth its code\'s impact points')}: ${H('عالي', 'High')} ${PTS.high} · ${H('متوسط', 'Medium')} ${PTS.medium} · ${H('منخفض', 'Low')} ${PTS.low}. ${H('نعم = كامل النقاط، جزئي = النصف، لا = صفر، لا ينطبق مستبعد، غير المُجاب = صفر.', 'Yes = all points, Partial = half, No = none, N/A excluded, unanswered = none.')}`],
     [H('عام', 'General'), H('الإدارة المسؤولة', 'Responsible department'), H('الوحدة التنظيمية المسؤولة عن الكود وفق الهيكل التنظيمي (قرار 18 لسنة 2023)، أو اختيار مالك الكود إن عدّلها. على مستوى المتطلب تُورَّث من الكود ما لم يحددها المالك.', 'Organisational unit responsible for the code per the structure decision 18/2023, or the owner\'s own choice when adjusted. At requirement level it is inherited from the code unless the owner sets one.')],
     [H('عام', 'General'), H('الترتيب', 'Order'), H('رقم تسلسلي للكود بترتيب المستند (1.9 قبل 1.10)؛ استخدمه للفرز بدل معرّف الكود النصي.', 'Sequential number of the code in document order (1.9 before 1.10); sort by it instead of the text ID.')],
     [H('عام', 'General'), H('المُسند إليه / المقيّم', 'Assignee / Evaluator'), H('المُسند إليه هو المسؤول عن الكود في الدورة؛ المقيّم هو من كتب الإجابة المعتمدة (عادة الشخص نفسه).', 'Assignee owns the code in this cycle; Evaluator wrote the effective answer (usually the same person).')],

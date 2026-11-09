@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 2,
  "source": "قرار رئيس مجلس الإدارة رقم (18) لسنة 2023 بشأن الهيكل التنظيمي على مستوى الأقسام في الهيئة الاتحادية للضرائب",
  "departments": [
   {
@@ -159,8 +159,8 @@
    "digital"
   ],
   "1.3.3": [
-   "comms",
-   "digital"
+   "digital",
+   "comms"
   ],
   "1.3.4": [
    "digital",
@@ -193,28 +193,28 @@
    "digital"
   ],
   "1.5.3": [
-   "tso",
-   "digital"
+   "digital",
+   "tso"
   ],
   "1.5.4": [
-   "tso",
-   "digital"
+   "strategy",
+   "tso"
   ],
   "1.5.5": [
    "digital",
    "tso"
   ],
   "1.5.6": [
-   "tso",
-   "comms"
+   "digital",
+   "tso"
   ],
   "1.6.1": [
    "digital",
    "finance"
   ],
   "1.6.2": [
-   "finance",
-   "digital"
+   "digital",
+   "finance"
   ],
   "1.6.3": [
    "digital",
@@ -304,10 +304,12 @@
    "comms"
   ],
   "2.1.1": [
+   "strategy",
    "tso"
   ],
   "2.1.2": [
-   "tso"
+   "digital",
+   "ops"
   ],
   "2.1.3": [
    "tso"
@@ -316,6 +318,7 @@
    "tso"
   ],
   "2.1.5": [
+   "digital",
    "tso"
   ],
   "2.1.6": [
@@ -333,8 +336,8 @@
    "tso"
   ],
   "2.1.10": [
-   "tso",
-   "strategy"
+   "strategy",
+   "tso"
   ],
   "2.1.11": [
    "digital"
@@ -351,9 +354,11 @@
    "legal"
   ],
   "2.2.1": [
+   "strategy",
    "tso"
   ],
   "2.2.2": [
+   "strategy",
    "tso"
   ],
   "2.2.3": [
@@ -363,19 +368,20 @@
    "tso"
   ],
   "2.2.5": [
+   "strategy",
    "tso"
   ],
   "2.3.1": [
-   "tso",
-   "strategy"
+   "strategy",
+   "tso"
   ],
   "2.3.2": [
-   "tso",
-   "strategy"
+   "strategy",
+   "tso"
   ],
   "2.3.3": [
-   "tso",
-   "strategy"
+   "strategy",
+   "tso"
   ],
   "2.3.4": [
    "strategy",
@@ -409,16 +415,16 @@
    "tso"
   ],
   "2.4.8": [
-   "tso",
-   "digital"
+   "digital",
+   "tso"
   ],
   "2.5.1": [
-   "tps",
-   "tso"
+   "strategy",
+   "tps"
   ],
   "2.5.2": [
-   "tps",
-   "tso"
+   "strategy",
+   "tps"
   ],
   "2.5.3": [
    "digital",
@@ -432,30 +438,18 @@
    "comms",
    "tps"
   ],
-  "3.1.1": [
-   "tso",
-   "digital"
-  ],
-  "3.1.2": [
-   "tso",
-   "digital"
-  ],
+  "3.1.1": [],
+  "3.1.2": [],
   "3.1.3": [
-   "tso",
-   "digital"
+   "ops",
+   "tso"
   ],
-  "3.1.4": [
-   "tso",
-   "digital"
-  ],
+  "3.1.4": [],
   "3.1.5": [
    "digital",
    "ops"
   ],
-  "3.1.6": [
-   "tso",
-   "digital"
-  ],
+  "3.1.6": [],
   "3.2.1": [
    "digital",
    "tso"
@@ -485,28 +479,28 @@
    "digital"
   ],
   "3.3.1": [
-   "data",
-   "digital"
+   "digital",
+   "data"
   ],
   "3.3.2": [
-   "data",
-   "digital"
+   "digital",
+   "data"
   ],
   "3.3.3": [
-   "data",
-   "digital"
+   "digital",
+   "data"
   ],
   "3.3.4": [
-   "data",
-   "digital"
+   "digital",
+   "data"
   ],
   "3.3.5": [
-   "comms",
-   "data"
+   "legal",
+   "comms"
   ],
   "3.3.6": [
-   "comms",
-   "data"
+   "legal",
+   "comms"
   ],
   "3.4.1": [
    "digital",
@@ -525,8 +519,8 @@
    "data"
   ],
   "3.4.5": [
-   "infosec",
-   "digital"
+   "digital",
+   "infosec"
   ],
   "3.4.6": [
    "digital",
@@ -579,16 +573,16 @@
    "tps"
   ],
   "3.7.2": [
-   "tps",
-   "tso"
+   "digital",
+   "tps"
   ],
   "3.7.3": [
    "tps",
    "comms"
   ],
   "3.7.4": [
-   "tps",
-   "tso"
+   "comms",
+   "tps"
   ],
   "3.7.5": [
    "digital"
@@ -602,8 +596,8 @@
    "digital"
   ],
   "4.1.2": [
-   "tso",
-   "digital"
+   "digital",
+   "tso"
   ],
   "4.1.3": [
    "comms"
@@ -648,10 +642,7 @@
    "tso",
    "digital"
   ],
-  "4.3.3": [
-   "tso",
-   "digital"
-  ],
+  "4.3.3": [],
   "4.3.4": [
    "tso",
    "digital"
@@ -782,28 +773,28 @@
    "digital"
   ],
   "5.2.1": [
-   "data",
-   "legal"
+   "digital",
+   "data"
   ],
   "5.2.2": [
-   "data",
-   "legal"
+   "digital",
+   "data"
   ],
   "5.2.3": [
-   "data",
-   "legal"
+   "digital",
+   "data"
   ],
   "5.2.4": [
    "legal",
    "data"
   ],
   "5.2.5": [
-   "data",
-   "legal"
+   "digital",
+   "data"
   ],
   "5.2.6": [
-   "data",
-   "legal"
+   "digital",
+   "data"
   ],
   "5.2.7": [
    "digital",
@@ -854,8 +845,8 @@
    "infosec"
   ],
   "5.4.6": [
-   "data",
-   "digital"
+   "digital",
+   "data"
   ],
   "5.4.7": [
    "digital"
@@ -927,8 +918,8 @@
    "data"
   ],
   "5.7.2": [
-   "data",
-   "infosec"
+   "digital",
+   "data"
   ],
   "5.7.3": [
    "digital",
@@ -938,12 +929,12 @@
    "infosec"
   ],
   "5.7.5": [
-   "data",
-   "infosec"
+   "digital",
+   "data"
   ],
   "5.7.6": [
-   "data",
-   "infosec"
+   "digital",
+   "data"
   ],
   "5.8.1": [
    "infosec",
@@ -995,8 +986,8 @@
    "hr"
   ],
   "6.1.2": [
-   "tso",
-   "hr"
+   "strategy",
+   "tso"
   ],
   "6.1.3": [
    "tso",
@@ -1089,8 +1080,8 @@
    "tso"
   ],
   "6.5.4": [
-   "tso",
-   "hr"
+   "hr",
+   "tso"
   ],
   "6.5.5": [
    "infosec",
@@ -1105,16 +1096,16 @@
    "tso"
   ],
   "6.6.1": [
-   "data",
-   "infosec"
+   "digital",
+   "data"
   ],
   "6.6.2": [
    "strategy",
    "policy"
   ],
   "6.6.3": [
-   "strategy",
-   "policy"
+   "digital",
+   "strategy"
   ],
   "6.6.4": [
    "strategy",
@@ -1160,8 +1151,8 @@
    "digital"
   ],
   "7.1.5": [
-   "tso",
-   "digital"
+   "strategy",
+   "tso"
   ],
   "7.2.1": [
    "tso"
@@ -1482,5 +1473,14 @@
    "digital",
    "itsvc"
   ]
- }
+ },
+ "confirm": {
+  "2.1.2": true,
+  "3.1.1": true,
+  "3.1.2": true,
+  "3.1.4": true,
+  "3.1.6": true,
+  "4.3.3": true
+ },
+ "reviewedBy": "أحمد حلمي — مراجعة 2026-11-09"
 }

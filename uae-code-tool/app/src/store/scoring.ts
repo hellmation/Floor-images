@@ -45,6 +45,29 @@ export function departmentOf(snap: Snapshot, cycleId: string, codeId: string): s
   const id = own || cfg.deptMapping?.[codeId]?.[0] || null
   return id && cfg.departments?.some(d => d.id === id && d.active) ? id : (cfg.deptMapping?.[codeId]?.[0] || null)
 }
+/** Fulfilment scoring: every requirement is worth the points of its code's impact (default 30/20/10); Yes earns all,
+ *  Partial half, No nothing; N/A is excluded from both earned and possible; an unanswered requirement earns nothing. */
+export interface FulfilRow { code: Code; n: number; pts: number; status: AnswerStatus | null; earned: number; counted: boolean; assignee: string | null; dept: string | null; state: WorkState }
+export function fulfilRows(snap: Snapshot, cycleId: string, approvedOnly: boolean, codes: Code[] = master.codes): FulfilRow[] {
+  const cfg = snap.config; const P = cfg.settings.points || { high: 30, medium: 20, low: 10, none: 20 }; const out: FulfilRow[] = []
+  for (const c of codes) {
+    const e = effective(snap, cycleId, c.id); const a = approvedOnly && e.state !== 'approved' ? null : e.answer
+    const pts = P[effectiveImpact(c, cfg)]; const assignee = assigneeOf(c.id, cycleId, cfg); const cd = departmentOf(snap, cycleId, c.id)
+    for (const r of c.requirements) {
+      const it = a?.items[String(r.n)]; const st = it?.status ?? null
+      const earned = st === 'yes' ? pts : st === 'partial' ? pts / 2 : 0
+      out.push({ code: c, n: r.n, pts, status: st, earned, counted: st !== 'na', assignee, dept: it?.departmentId || cd, state: e.state })
+    }
+  }
+  return out
+}
+export interface Fulfil { earned: number; possible: number; pct: number | null; counted: number; na: number; unanswered: number; yes: number; partial: number; no: number; codes: number }
+export function fulfilSum(rows: FulfilRow[]): Fulfil {
+  const f: Fulfil = { earned: 0, possible: 0, pct: null, counted: 0, na: 0, unanswered: 0, yes: 0, partial: 0, no: 0, codes: new Set(rows.map(r => r.code.id)).size }
+  for (const r of rows) { if (!r.counted) { f.na++; continue } f.counted++; f.possible += r.pts; f.earned += r.earned; if (r.status === 'yes') f.yes++; else if (r.status === 'partial') f.partial++; else if (r.status === 'no') f.no++; else f.unanswered++ }
+  f.pct = f.possible ? (f.earned / f.possible) * 100 : null
+  return f
+}
 export const supportDepartments = (cfg: Config, codeId: string) => (cfg.deptMapping?.[codeId] || []).slice(1)
 export function deptName(cfg: Config, id: string | null | undefined, lang: 'ar' | 'en'): string { const d = cfg.departments?.find(x => x.id === id); return d ? (lang === 'ar' ? d.name_ar : d.name_en) : '' }
 export interface Effective { answer: CodeAnswer | null; userId: string | null; review: Review | null; state: WorkState }
