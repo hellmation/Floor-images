@@ -69,7 +69,7 @@ const dict = {
   localMode: ['متابعة بالوضع المحلي', 'Continue in local mode'], refresh: ['تحديث', 'Refresh'], lastSync: ['آخر تحديث', 'Last refresh'],
   pdfPage: ['صفحة PDF', 'PDF page'], evaluate: ['تقييم', 'Evaluate'], view: ['عرض', 'View'],
   submitBlocked: ['لا يمكن الإرسال', 'Cannot submit'], needAllStatuses: ['أجب عن جميع المتطلبات', 'Answer every requirement'],
-  needEvidence: ['أضف دليلاً واحداً على الأقل لكل إجابة نعم أو جزئي', 'Add at least one evidence link for every Yes or Partial'],
+  needEvidence: ['أضف دليلاً واحداً على الأقل لكل إجابة «نعم»', 'Add at least one evidence link for every Yes answer'],
   needJustification: ['اكتب مبرراً لكل "لا ينطبق"', 'Write a justification for every Not applicable'],
   openClarification: ['أغلق طلبات التوضيح أولاً', 'Close open clarification requests first'],
   carried: ['مُرحّل من الدورة السابقة — يرجى إعادة التحقق', 'Carried over from the previous cycle. Please re-verify'],

@@ -55,7 +55,7 @@ export function seedMapping(): Record<string, string[]> {
 export function defaultConfig(): Config {
   const { users, projects } = seedUsersAndProjects()
   return {
-    version: 8,
+    version: 9,
     departments: seedDepartments(), deptMapping: seedDeptMapping(), deptConfirm: seedDeptConfirm(),
     entity: { name_ar: 'الهيئة الاتحادية للضرائب', name_en: 'Federal Tax Authority' },
     users, projects, mapping: seedMapping(), overrides: {},
@@ -88,13 +88,18 @@ export function renameCycleInConfig(c: Config, from: string, to: string) {
   c.renamedCycles = { ...(c.renamedCycles || {}), [from]: to }
 }
 export function migrateConfig(c: Config): Config {
-  if ((c.version || 1) >= 8) return c
+  if ((c.version || 1) >= 9) return c
+  if ((c.version || 1) === 8) {
+    // evidence rule narrowed: mandatory for Yes answers only (Partial and No submit without it)
+    c.settings.requireEvidence = true
+    c.version = 9; return c
+  }
   if ((c.version || 1) === 7) {
     // reviewed department mapping (9 Nov): the reviewed values replace the first seed; confirmation flags and fulfilment points added
     c.deptMapping = { ...(c.deptMapping || {}), ...seedDeptMapping() }
     c.deptConfirm = { ...seedDeptConfirm(), ...(c.deptConfirm || {}) }
     if (!c.settings.points) c.settings.points = { high: 30, medium: 20, low: 10, none: 20 }
-    c.version = 8; return c
+    c.version = 8; return migrateConfig(c)
   }
   if ((c.version || 1) === 6) {
     // responsible departments from the structure decree; existing custom values are kept

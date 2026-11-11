@@ -72,7 +72,7 @@ export default function CodeView({ id }: { id: string }) {
   const vals = code.requirements.map(r => items[String(r.n)])
   const checks: [boolean, string][] = [
     [vals.every(v => v?.status), t('needAllStatuses')],
-    [!cfg.settings.requireEvidence || vals.every(v => !(v?.status === 'yes' || v?.status === 'partial') || v.evidence.length > 0), t('needEvidence')],
+    [!cfg.settings.requireEvidence || vals.every(v => v?.status !== 'yes' || v.evidence.length > 0), t('needEvidence')],
     [vals.every(v => v?.status !== 'na' || !!v.justification?.trim()), t('needJustification')],
     [!vals.some(v => v?.clarify?.flag), t('openClarification')],
     ...(cfg.deptConfirm?.[code.id] ? [[deptConfirmed, t('needDeptConfirm')] as [boolean, string]] : []),
