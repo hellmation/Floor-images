@@ -13,6 +13,7 @@ export default function Setup() {
   const logoRef = useRef<HTMLImageElement>(null); const cardRef = useRef<HTMLDivElement>(null)
   const api = hasFolderApi()
   const [moved, setMoved] = useState(false)
+  const diag = `${/Edg\//.test(navigator.userAgent) ? 'Edge' : /Chrome\//.test(navigator.userAgent) ? 'Chrome' : 'Browser'} · ${location.protocol}//${location.host || 'local'} · folder API ${api ? 'on' : 'off'} · storage ${(() => { try { localStorage.getItem('x'); return 'on' } catch { return 'off' } })()}`
   // watchdog: if start-up is still "loading" after 8 s, reload the page once automatically, then offer a manual reload
   const [stalled, setStalled] = useState(false)
   useEffect(() => {
@@ -23,7 +24,7 @@ export default function Setup() {
   }, [loading])
   useEffect(() => { if (snap) { try { sessionStorage.removeItem('autoReloaded') } catch { /* ignore */ } } }, [snap])
   const connect = async () => { setErr(null); try { const m = await connectFolder(); setMoved(m) } catch (e) { if (!String(e).includes('Abort')) setErr(errMsg(e, t)) } }
-  useEffect(() => { if (snap) return; const f = (e: KeyboardEvent) => { if (e.key === 'Enter' && !loading) { if (api && needsReconnect) reconnect(); else if (api) connect() } }; addEventListener('keydown', f); return () => removeEventListener('keydown', f) }) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (snap) return; const f = (e: KeyboardEvent) => { if (e.key === 'Enter' && !loading) { if (api) connect() } }; addEventListener('keydown', f); return () => removeEventListener('keydown', f) }) // eslint-disable-line react-hooks/exhaustive-deps
   const doImport = async (f: File) => { if (adapter instanceof LocalAdapter) { adapter.importAll(await f.text()); await refresh() } }
   return (
     <div className="landing">
@@ -31,6 +32,7 @@ export default function Setup() {
       <div className="veil" />
       <div className="absolute top-4 flex gap-2" style={{ insetInlineEnd: '1rem' }}>
         <div className="seg" role="group" aria-label={t('language')}><button aria-pressed={lang === 'ar'} onClick={() => setLang('ar')}>عربي</button><button aria-pressed={lang === 'en'} onClick={() => setLang('en')}>EN</button></div>
+        <button className="btn btn-icon" title={t('reloadPage')} aria-label={t('reloadPage')} onClick={() => location.reload()}><Icon name="refresh" /></button>
         <div className="seg" role="group" aria-label={t('theme')}><button aria-pressed={theme === 'light'} aria-label={t('light')} title={t('light')} onClick={() => setTheme('light')}><Icon name="sun" /></button><button aria-pressed={theme === 'dark'} aria-label={t('dark')} title={t('dark')} onClick={() => setTheme('dark')}><Icon name="moon" /></button></div>
       </div>
       <div ref={cardRef} className="landing-card flex flex-col gap-4">
@@ -45,14 +47,16 @@ export default function Setup() {
         {!snap ? (
           <div className="flex flex-col items-center gap-3 mt-2">
             {loading && <div className="skeleton h-10 w-40" />}
-            {!loading && api && !needsReconnect && <button className="btn btn-primary !px-7 !py-3 text-base" onClick={connect}><Icon name="folder" />{t('chooseFolder')}<Icon name={lang === 'ar' ? 'arrowL' : 'arrowR'} /></button>}
-            {!loading && api && needsReconnect && <div className="flex flex-col items-center gap-2"><button className="btn btn-primary !px-7 !py-3 text-base" onClick={() => reconnect().then(ok => !ok && setErr(t('reconnectFailed')))}><Icon name="folder" />{t('reconnect')}</button><button className="btn btn-sm" onClick={connect}><Icon name="folder" />{t('chooseAgain')}</button></div>}
+            {!loading && api && <button className="btn btn-primary !px-7 !py-3 text-base" onClick={connect}><Icon name="folder" />{t('chooseFolder')}<Icon name={lang === 'ar' ? 'arrowL' : 'arrowR'} /></button>}
+            {!loading && api && needsReconnect && <button className="btn btn-sm" onClick={() => reconnect().then(ok => !ok && setErr(t('reconnectFailed')))}><Icon name="refresh" />{t('reconnect')}</button>}
             {loading && stalled && <div className="flex flex-col items-center gap-2 text-sm"><span className="text-warn-ink">{t('stillLoading')}</span><button className="btn btn-sm" onClick={() => location.reload()}><Icon name="refresh" />{t('reloadPage')}</button></div>}
             {!loading && api && <div className="text-xs text-muted">{t('orPressEnter')}</div>}
             {!loading && !api && <p className="text-bad m-0 text-sm text-center">{t('noFolderApi')}</p>}
             {!loading && <button className="btn btn-ghost btn-sm" onClick={useLocal}>{t('localMode')}</button>}
             <p className="text-xs text-muted m-0 text-center max-w-sm">{t('folderHelp')}</p>
-            {(err || error) && <p className="text-bad text-sm m-0">{err || error}</p>}
+            {(err || error) && <p className="text-bad text-sm m-0" role="alert">{err || error}</p>}
+            {(err || error) && <p className="text-xs text-muted m-0 max-w-sm text-center">{t('mappedDriveHint')}</p>}
+            <p className="text-[11px] text-muted m-0 text-center" dir="ltr">{diag}</p>
           </div>
         ) : (
           <div className="flex flex-col gap-3">
@@ -62,6 +66,7 @@ export default function Setup() {
             {adapter instanceof LocalAdapter && api && <div className="rounded-lg bg-warn-soft text-warn-ink px-3 py-2 text-sm flex flex-wrap items-center gap-2"><Icon name="alert" className="shrink-0" /><span className="flex-1 min-w-48">{t('localWarning')}</span><button className="btn btn-sm btn-primary" onClick={connect}><Icon name="folder" />{t('switchToFolder')}</button></div>}
             {moved && <div className="rounded-lg bg-ok-soft text-ok-ink px-3 py-2 text-sm flex items-center gap-2"><Icon name="checkCircle" />{t('migrated')}</div>}
             {(err || error) && <p className="text-bad text-sm m-0" role="alert">{err || error}</p>}
+            {(err || error) && <p className="text-xs text-muted m-0 max-w-sm text-center">{t('mappedDriveHint')}</p>}
             <div className="flex items-center gap-2 text-xs text-muted"><Icon name={adapter?.kind === 'folder' ? 'folder' : 'monitor'} />{adapter?.kind === 'folder' ? `${t('folderLabel')}: ${adapter.label}` : t('localModeLabel')}
               {adapter instanceof LocalAdapter && <span className="ms-auto flex gap-2"><a className="btn btn-sm" download="uae-code-backup.json" href={'data:application/json;charset=utf-8,' + encodeURIComponent(adapter.exportAll())}>{t('exportJson')}</a><label className="btn btn-sm">{t('importJson')}<input type="file" accept=".json" className="sr-only" onChange={e => e.target.files?.[0] && doImport(e.target.files[0])} /></label></span>}</div>
           </div>
