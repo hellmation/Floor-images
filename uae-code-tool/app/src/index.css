@@ -75,6 +75,9 @@ html[dir="rtl"] body { font-size: 14px; line-height: 1.8; }
 .btn-danger { color: var(--bad); border-color: var(--bad-soft); background: var(--bad-soft); } .btn-danger:hover { background: var(--bad-soft); border-color: var(--bad); }
 .btn-ghost { border-color: transparent; background: transparent; } .btn-ghost:hover { background: var(--surface-2); border-color: transparent; }
 .btn-sm { padding: .3rem .65rem; font-size: .85rem; }
+.btn-xs { padding: .1rem .35rem; font-size: .7rem; min-height: 0; line-height: 1.2; gap: .2rem; }
+.btn-xs svg { width: 12px; height: 12px; }
+table.tbl tfoot td { font-weight: 700; background: var(--surface-2); border-top: 2px solid var(--line-2); border-bottom: 0; }
 .btn-icon { padding: .45rem; width: 2.25rem; height: 2.25rem; }
 .btn .ico { width: 1.05em; height: 1.05em; }
 

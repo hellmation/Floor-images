@@ -74,7 +74,7 @@ const dict = {
   openClarification: ['أغلق طلبات التوضيح أولاً', 'Close open clarification requests first'],
   carried: ['مُرحّل من الدورة السابقة — يرجى إعادة التحقق', 'Carried over from the previous cycle. Please re-verify'],
   mappedProjects: ['المشاريع المرتبطة', 'Linked projects'], unmappedCodes: ['أكواد غير مرتبطة', 'Unmapped codes'], overrideAssignee: ['تغيير المُسند إليه', 'Override assignee'],
-  pending: ['بانتظار المراجعة', 'Awaiting review'], total: ['الإجمالي', 'Total'], answered: ['مُجاب', 'Answered'],
+  pending: ['بانتظار المراجعة', 'Awaiting review'], total: ['الإجمالي', 'Total'], copyTable: ['نسخ الجدول', 'Copy table'], copied: ['تم نسخ الجدول، يمكنك لصقه في Excel', 'Table copied; paste it into Excel'], answered: ['مُجاب', 'Answered'],
   gaps: ['الفجوات', 'Gaps'], byPillar: ['حسب المحور', 'By pillar'], byEvaluator: ['حسب المقيّم', 'By evaluator'], byProject: ['حسب المشروع', 'By project'],
   approvedOnly: ['المعتمد فقط', 'Approved only'], allAnswered: ['كل ما تمت الإجابة عنه', 'Everything answered'],
   theme: ['المظهر', 'Theme'], language: ['اللغة', 'Language'], signOut: ['تبديل المستخدم', 'Switch user'],

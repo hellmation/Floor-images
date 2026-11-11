@@ -24,6 +24,7 @@ const P: Record<string, string> = {
   menu: 'M4 6h16M4 12h16M4 18h16',
   chevronL: 'M15 6l-6 6 6 6', chevronR: 'M9 6l6 6-6 6', chevronD: 'M6 9l6 6 6-6',
   arrowR: 'M5 12h14m-6-6 6 6-6 6', arrowL: 'M19 12H5m6-6-6 6 6 6',
+  copy: 'M9 9h10v10H9zM5 15V5h10',
   folder: 'M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z',
   refresh: 'M20 12a8 8 0 0 1-14 5.3M4 12a8 8 0 0 1 14-5.3M4 4v5h5m11 11v-5h-5',
   info: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zm0-11v6m0-10h.01',
