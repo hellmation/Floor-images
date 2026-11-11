@@ -20,13 +20,25 @@ export default function Fulfil() {
   const P = cfg.settings.points || { high: 30, medium: 20, low: 10, none: 20 }
   type Row = { id: string; label: string; f: ReturnType<typeof fulfilSum>; pillar?: string }
   const cells = (f: ReturnType<typeof fulfilSum>) => [f.codes, f.counted, f.yes, f.partial, f.no, f.unanswered, f.na, Math.round(f.earned), f.possible, fmtPct(f.pct)]
-  /** Tab-separated copy of a table (header, rows, total) so it pastes straight into Excel. */
+  /** Copies a table with its formatting (HTML for Excel/Word/Outlook) plus a tab-separated fallback for plain editors. */
   const copyTable = async (rs: Row[], first: string, extra?: boolean) => {
     const head = [first, ...(extra ? [t('pillar')] : []), t('codes'), t('requirementsCounted'), t('yes'), t('partial'), t('no'), t('unanswered'), t('na'), t('earnedPoints'), t('possiblePoints'), t('fulfilment')]
     const body = rs.map(r => [(/^\d/.test(r.id) ? r.id + ' ' : '') + r.label, ...(extra ? [r.pillar || ''] : []), ...cells(r.f)])
     const foot = [t('total'), ...(extra ? [''] : []), ...cells(all)]
     const text = [head, ...body, foot].map(l => l.join('\t')).join('\n')
-    try { await navigator.clipboard.writeText(text); toast(t('copied'), 'ok') } catch { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); toast(t('copied'), 'ok') }
+    const esc = (v: string | number) => String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    const nText = extra ? 2 : 1
+    const colour = (i: number, pct?: number | null) => { const k = i - nText; if (k === 2) return '#1E7A3C'; if (k === 3) return '#9A6A00'; if (k === 4) return '#B42318'; if (k === 5 || k === 6) return '#6B6257'; if (k === 9 && pct !== null && pct !== undefined) return pct >= 80 ? '#1E7A3C' : pct >= 50 ? '#9A6A00' : '#B42318'; return '#1F2A2E' }
+    const td = (v: string | number, i: number, pct: number | null, bold = false, bg = '') => `<td style="border:1px solid #D9D4CC;padding:4px 8px;font-family:Arial;font-size:10pt;color:${colour(i, pct)};text-align:${i < nText ? 'start' : 'end'};${bold ? 'font-weight:bold;' : ''}${bg ? `background:${bg};` : ''}">${esc(v)}</td>`
+    const html = `<table dir="${lang === 'ar' ? 'rtl' : 'ltr'}" style="border-collapse:collapse"><thead><tr>${head.map(h => `<th style="border:1px solid #D9D4CC;padding:4px 8px;font-family:Arial;font-size:10pt;font-weight:bold;background:#EFEAE0;color:#1F2A2E;text-align:start">${esc(h)}</th>`).join('')}</tr></thead><tbody>${rs.map((r, ri) => `<tr>${body[ri].map((v, i) => td(v, i, r.f.pct, i === 0)).join('')}</tr>`).join('')}</tbody><tfoot><tr>${foot.map((v, i) => td(v, i, all.pct, true, '#F4F1EB')).join('')}</tr></tfoot></table>`
+    const done = () => toast(t('copied'), 'ok')
+    try {
+      if (typeof ClipboardItem !== 'undefined' && navigator.clipboard?.write) { await navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([html], { type: 'text/html' }), 'text/plain': new Blob([text], { type: 'text/plain' }) })]); done(); return }
+    } catch { /* fall through to the copy-event route */ }
+    const onCopy = (e: ClipboardEvent) => { e.preventDefault(); e.clipboardData?.setData('text/html', html); e.clipboardData?.setData('text/plain', text) }
+    document.addEventListener('copy', onCopy, { once: true })
+    const ok = document.execCommand('copy'); document.removeEventListener('copy', onCopy)
+    if (ok) done(); else { try { await navigator.clipboard.writeText(text); done() } catch { toast(t('saveFailed'), 'bad') } }
   }
   const Table = ({ rows: rs, first, extra }: { rows: Row[]; first: string; extra?: boolean }) => (
     <div className="card overflow-x-auto"><table className="tbl"><thead><tr><th><span className="inline-flex items-center gap-2">{first}<button type="button" className="btn btn-ghost btn-xs" title={t('copyTable')} aria-label={t('copyTable')} onClick={() => copyTable(rs, first, extra)}><Icon name="copy" /></button></span></th>{extra && <th>{t('pillar')}</th>}<th>{t('codes')}</th><th>{t('requirementsCounted')}</th><th>{t('yes')}</th><th>{t('partial')}</th><th>{t('no')}</th><th>{t('unanswered')}</th><th>{t('na')}</th><th>{t('earnedPoints')}</th><th>{t('possiblePoints')}</th><th>{t('fulfilment')}</th></tr></thead>
