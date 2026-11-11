@@ -106,6 +106,7 @@ export default function CodeView({ id }: { id: string }) {
   return (
     <div>
       <div className="flex flex-wrap items-center gap-2 text-sm text-muted mb-3">
+        <a href="#/my" className="btn btn-sm no-underline"><Icon name={lang === 'ar' ? 'arrowR' : 'arrowL'} />{t('backToMyWork')}</a>
         <a href="#/browse" className="no-underline">{t('browse')}</a><Icon name={lang === 'ar' ? 'chevronL' : 'chevronR'} /><a href={'#/browse?p=' + pil.id} className="no-underline">{pil.id} {pick(lang, pil)}</a><Icon name={lang === 'ar' ? 'chevronL' : 'chevronR'} /><span>{sub.id} {pick(lang, sub)}</span>
         <span className="ms-auto flex gap-1">{prev && <a className="btn btn-sm no-underline" href={'#/code/' + prev.id} title={t('prevCode')}><Icon name={lang === 'ar' ? 'chevronR' : 'chevronL'} />{prev.id}</a>}{next && <a className="btn btn-sm no-underline" href={'#/code/' + next.id} title={t('nextCode')}>{next.id}<Icon name={lang === 'ar' ? 'chevronL' : 'chevronR'} /></a>}</span>
       </div>
