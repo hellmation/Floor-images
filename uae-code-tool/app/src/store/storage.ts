@@ -83,18 +83,11 @@ async function writeJson(dir: FileSystemDirectoryHandle, name: string, data: unk
 
 /* ---------- IndexedDB for the directory handle ---------- */
 const DB = 'uae-code-tool', STORE = 'handles'
-/** Opens the small handle store. Rejects (never hangs) when IndexedDB is missing, blocked, or silent: a file opened straight
- *  from a network path can be denied storage by the browser, and the landing page must still show its buttons. */
 function idb(): Promise<IDBDatabase> {
   return new Promise((res, rej) => {
-    if (typeof indexedDB === 'undefined') { rej(new Error('no indexedDB')); return }
-    const timer = setTimeout(() => rej(new Error('indexedDB timeout')), 3000)
-    let r: IDBOpenDBRequest
-    try { r = indexedDB.open(DB, 1) } catch (e) { clearTimeout(timer); rej(e); return }
+    const r = indexedDB.open(DB, 1)
     r.onupgradeneeded = () => r.result.createObjectStore(STORE)
-    r.onsuccess = () => { clearTimeout(timer); res(r.result) }
-    r.onerror = () => { clearTimeout(timer); rej(r.error) }
-    r.onblocked = () => { clearTimeout(timer); rej(new Error('indexedDB blocked')) }
+    r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error)
   })
 }
 export async function storeHandle(h: FileSystemDirectoryHandle) {

@@ -93,18 +93,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
   // boot: try the stored folder handle, else wait for user action
   useEffect(() => {
     (async () => {
-      // nothing here may hang: whatever the browser allows, the landing page must end up showing its buttons
-      const timeout = <T,>(p: Promise<T>, ms: number): Promise<T | null> => Promise.race([p, new Promise<null>(r => setTimeout(() => r(null), ms))])
-      try {
-        const h = hasFolderApi() ? await timeout(loadHandle(), 4000) : null
-        if (h) {
-          handleRef.current = h
-          const perm = await timeout((h as unknown as { queryPermission: (o: { mode: string }) => Promise<string> }).queryPermission({ mode: 'readwrite' }), 4000)
-          if (perm === 'granted') { const ad = new FolderAdapter(h); setAdapter(ad); await load(ad); return }
-          setNeedsReconnect(true)
-        } else if (ls.get('mode') === 'local') { const ad = new LocalAdapter(); setAdapter(ad); await load(ad); return }
-      } catch (e) { console.error(e); setError(String((e as Error)?.message || e)) }
-      finally { setLoading(false) }
+      const h = hasFolderApi() ? await loadHandle() : null
+      if (h) {
+        handleRef.current = h
+        const perm = await (h as unknown as { queryPermission: (o: { mode: string }) => Promise<string> }).queryPermission({ mode: 'readwrite' })
+        if (perm === 'granted') { const ad = new FolderAdapter(h); setAdapter(ad); await load(ad); return }
+        setNeedsReconnect(true)
+      } else if (ls.get('mode') === 'local') { const ad = new LocalAdapter(); setAdapter(ad); await load(ad); return }
+      setLoading(false)
     })()
   }, [load])
 
