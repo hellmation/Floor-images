@@ -157,8 +157,8 @@ html[dir="rtl"] .eyebrow { letter-spacing: .02em; text-transform: none; font-siz
 
 /* landing */
 .landing { min-height: 100vh; display: grid; place-items: center; position: relative; overflow: hidden; background: var(--bg); }
-.field { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity 900ms ease; pointer-events: none; }
-.field.on { opacity: 1; }
+.silk { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity 900ms ease; pointer-events: none; }
+.silk.on { opacity: 1; }
 .veil { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 46% 58% at 50% 52%, color-mix(in srgb, var(--bg) 55%, transparent), transparent 70%); }
 .hero { position: relative; overflow: hidden; border-radius: var(--r-lg); border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow-2); min-height: 240px; }
 .hero .veil { background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--surface) 30%, transparent) 45%, color-mix(in srgb, var(--surface) 88%, transparent) 85%, var(--surface)); }

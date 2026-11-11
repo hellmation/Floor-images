@@ -81,6 +81,12 @@ Four independent audits (logic and storage, UI/i18n/accessibility, Excel export,
 
 Report: "I select Yes and it gets unselected." Reproduced and closed on every path (background refresh, note autosave, another person saving the same code, clicks during an in-flight save or slow read, admin settings changes). Storage additionally hardened: three-way merge immune to clock skew, slow reads never roll back fresh writes, every write is verified and re-merged if someone wrote meanwhile, transient read errors retried, defaults never written over existing data, older files become read-only against newer data, review conflicts detected, lost permission re-requested immediately, cycle switch and refresh honour the unsaved-changes guard, local mode surfaces save failures.
 
+## الجولة الثالثة (11 نوفمبر) — اختفاء الحقول / Round 3 (11 Nov) — hidden form fields
+
+البلاغ: «المرشحات غير ظاهرة». السبب: قاعدة تنسيق لخلفية صفحة الدخول (المتحركة) كانت تحمل الاسم نفسه `field` الذي تحمله حقول النماذج، فأخفت كل حقل يستخدمه منذ 3 نوفمبر: مرشحات «أعمالي»، وحقول المتطلب في صفحة الكود (الإدارة، المشروع، الخدمة، الملاحظة، تبرير «لا ينطبق»)، ونموذج الدورات، وحقول الجهة في الإعدادات. أُعيدت تسمية قاعدة الخلفية، وأُضيف اختبار يقيس الظهور الفعلي (الحجم والشفافية واستقبال النقر) لكل حقل في كل صفحة، لأن اختبارات الوظائف السابقة كانت تنجح على حقول شفافة.
+
+Report: "the filters are not visible." Cause: the landing page's animated background used the same class name as form fields, hiding every field since 3 Nov (My work filters, per-requirement fields on the code page, the Cycles form, entity fields in Settings). The background class was renamed and a computed-visibility test (size, opacity, pointer events) now runs on every page, since the functional tests had been passing against transparent fields.
+
 ## ملاحظات معروفة / Known limits
 - سجل الأحداث للعرض فقط؛ لا يُستخدم في الاحتساب.
 - الشخص نفسه من جهازين في اللحظة نفسها: يُدمج بالأحدث لكل كود (لا يُفقد شيء، لكن قد يفوز آخر تعديل على الكود نفسه).

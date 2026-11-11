@@ -74,5 +74,5 @@ export function Field({ intensity = 1, className = '', anchorRef, parallaxRef }:
     const ro = new ResizeObserver(resize); ro.observe(cv)
     return () => { st.running = false; cancelAnimationFrame(st.raf); removeEventListener('resize', resize); removeEventListener('pointermove', onMove); document.removeEventListener('visibilitychange', onVis); ro.disconnect() }
   }, [intensity, anchorRef, parallaxRef])
-  return <canvas ref={ref} className={`field ${className}`} aria-hidden="true" />
+  return <canvas ref={ref} className={`silk ${className}`} aria-hidden="true" />
 }
