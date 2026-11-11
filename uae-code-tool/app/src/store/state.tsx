@@ -118,12 +118,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setAdapter(ad); setNeedsReconnect(false); await load(ad)
     return migrated
   }, [load, adapter, snap])
+  /** Re-asks for the remembered folder. If the browser shows no prompt (some file:// contexts never answer), it gives up
+   *  after a short wait and opens the folder picker instead, while the click that started it still counts as user activation. */
   const reconnect = useCallback(async () => {
     const h = handleRef.current; if (!h) return false
-    const p = await (h as unknown as { requestPermission: (o: { mode: string }) => Promise<string> }).requestPermission({ mode: 'readwrite' })
-    if (p !== 'granted') return false
-    const ad = new FolderAdapter(h); setAdapter(ad); setNeedsReconnect(false); await load(ad); return true
-  }, [load])
+    let p: string | null = null
+    try { p = await Promise.race([(h as unknown as { requestPermission: (o: { mode: string }) => Promise<string> }).requestPermission({ mode: 'readwrite' }), new Promise<null>(r => setTimeout(() => r(null), 2500))]) } catch { p = null }
+    if (p === 'granted') { const ad = new FolderAdapter(h); setAdapter(ad); setNeedsReconnect(false); await load(ad); return true }
+    if (p === null) { try { await connectFolder(); return true } catch { /* picker cancelled or blocked */ } }
+    return false
+  }, [load, connectFolder])
   const useLocal = useCallback(() => { ls.set('mode', 'local'); const ad = new LocalAdapter(); setAdapter(ad); setNeedsReconnect(false); load(ad) }, [load])
   const refresh = useCallback(async () => { if (adapter) await load(adapter) }, [adapter, load])
 

@@ -13,6 +13,15 @@ export default function Setup() {
   const logoRef = useRef<HTMLImageElement>(null); const cardRef = useRef<HTMLDivElement>(null)
   const api = hasFolderApi()
   const [moved, setMoved] = useState(false)
+  // watchdog: if start-up is still "loading" after 8 s, reload the page once automatically, then offer a manual reload
+  const [stalled, setStalled] = useState(false)
+  useEffect(() => {
+    if (!loading) { setStalled(false); return }
+    const id = setTimeout(() => { let once = false; try { once = sessionStorage.getItem('autoReloaded') === '1' } catch { /* ignore */ }
+      if (!once) { try { sessionStorage.setItem('autoReloaded', '1') } catch { /* ignore */ } location.reload() } else setStalled(true) }, 8000)
+    return () => clearTimeout(id)
+  }, [loading])
+  useEffect(() => { if (snap) { try { sessionStorage.removeItem('autoReloaded') } catch { /* ignore */ } } }, [snap])
   const connect = async () => { setErr(null); try { const m = await connectFolder(); setMoved(m) } catch (e) { if (!String(e).includes('Abort')) setErr(errMsg(e, t)) } }
   useEffect(() => { if (snap) return; const f = (e: KeyboardEvent) => { if (e.key === 'Enter' && !loading) { if (api && needsReconnect) reconnect(); else if (api) connect() } }; addEventListener('keydown', f); return () => removeEventListener('keydown', f) }) // eslint-disable-line react-hooks/exhaustive-deps
   const doImport = async (f: File) => { if (adapter instanceof LocalAdapter) { adapter.importAll(await f.text()); await refresh() } }
@@ -37,7 +46,8 @@ export default function Setup() {
           <div className="flex flex-col items-center gap-3 mt-2">
             {loading && <div className="skeleton h-10 w-40" />}
             {!loading && api && !needsReconnect && <button className="btn btn-primary !px-7 !py-3 text-base" onClick={connect}><Icon name="folder" />{t('chooseFolder')}<Icon name={lang === 'ar' ? 'arrowL' : 'arrowR'} /></button>}
-            {!loading && api && needsReconnect && <button className="btn btn-primary !px-7 !py-3 text-base" onClick={() => reconnect().then(ok => !ok && setErr(t('permissionDenied')))}><Icon name="folder" />{t('reconnect')}</button>}
+            {!loading && api && needsReconnect && <div className="flex flex-col items-center gap-2"><button className="btn btn-primary !px-7 !py-3 text-base" onClick={() => reconnect().then(ok => !ok && setErr(t('reconnectFailed')))}><Icon name="folder" />{t('reconnect')}</button><button className="btn btn-sm" onClick={connect}><Icon name="folder" />{t('chooseAgain')}</button></div>}
+            {loading && stalled && <div className="flex flex-col items-center gap-2 text-sm"><span className="text-warn-ink">{t('stillLoading')}</span><button className="btn btn-sm" onClick={() => location.reload()}><Icon name="refresh" />{t('reloadPage')}</button></div>}
             {!loading && api && <div className="text-xs text-muted">{t('orPressEnter')}</div>}
             {!loading && !api && <p className="text-bad m-0 text-sm text-center">{t('noFolderApi')}</p>}
             {!loading && <button className="btn btn-ghost btn-sm" onClick={useLocal}>{t('localMode')}</button>}
