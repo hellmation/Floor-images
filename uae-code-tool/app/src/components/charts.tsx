@@ -157,26 +157,44 @@ export function HBars({ rows }: { rows: { key: string; label: ReactNode; prefix?
   })}</div>
 }
 
-/** Donut in the team's dashboard style: thick ring, rounded-feeling segments separated by a surface gap, hover scale,
- *  a headline figure in the centre and a legend with counts and shares. SVG, works in both directions. */
-export function Donut({ parts, total, center, size = 168, thickness = 30, legend = true }: { parts: Part[]; total?: number; center: [string, string]; size?: number; thickness?: number; legend?: boolean }) {
+/** Rounded annular sector (ECharts-style borderRadius on a pie slice). Angles in radians, clockwise from 12 o'clock. */
+function sector(cx: number, cy: number, rIn: number, rOut: number, a0: number, a1: number, rad: number): string {
+  const span = a1 - a0; if (span <= 0) return ''
+  const pt = (r: number, a: number): [number, number] => [cx + r * Math.sin(a), cy - r * Math.cos(a)]
+  const rc = Math.min(rad, (rOut - rIn) / 2, (span * rIn) / 2.2)
+  const dO = Math.asin(Math.min(1, rc / (rOut - rc))), dI = Math.asin(Math.min(1, rc / (rIn + rc)))
+  if (span < 2 * Math.max(dO, dI) + 0.02) { // too thin to round: plain sector
+    const [x0, y0] = pt(rOut, a0), [x1, y1] = pt(rOut, a1), [x2, y2] = pt(rIn, a1), [x3, y3] = pt(rIn, a0); const la = span > Math.PI ? 1 : 0
+    return `M${x0},${y0} A${rOut},${rOut} 0 ${la} 1 ${x1},${y1} L${x2},${y2} A${rIn},${rIn} 0 ${la} 0 ${x3},${y3} Z`
+  }
+  const eO = Math.sqrt((rOut - rc) ** 2 - rc ** 2), eI = Math.sqrt((rIn + rc) ** 2 - rc ** 2)
+  const la = (a1 - a0 - 2 * dO) > Math.PI ? 1 : 0, li = (a1 - a0 - 2 * dI) > Math.PI ? 1 : 0
+  const P = [pt(eI, a0), pt(eO, a0), pt(rOut, a0 + dO), pt(rOut, a1 - dO), pt(eO, a1), pt(eI, a1), pt(rIn, a1 - dI), pt(rIn, a0 + dI)]
+  const f = (q: [number, number]) => `${q[0].toFixed(2)},${q[1].toFixed(2)}`
+  return `M${f(P[0])} L${f(P[1])} A${rc},${rc} 0 0 1 ${f(P[2])} A${rOut},${rOut} 0 ${la} 1 ${f(P[3])} A${rc},${rc} 0 0 1 ${f(P[4])} L${f(P[5])} A${rc},${rc} 0 0 1 ${f(P[6])} A${rIn},${rIn} 0 ${li} 0 ${f(P[7])} A${rc},${rc} 0 0 1 ${f(P[0])} Z`
+}
+
+/** Donut in the team dashboard's style: ring between 62% and 84% of the radius, slices with 6px rounded corners and a
+ *  3px surface border, hover enlarges the slice, a headline figure in the centre, and a legend of name · count · share. */
+export function Donut({ parts, total, center, size = 190, legend = true }: { parts: Part[]; total?: number; center: [string, string]; size?: number; legend?: boolean }) {
   const { box, show, hide, Tip } = useTip()
-  const k = useProgress(900, parts.map(p => p.value).join(','))
+  const k = useProgress(800, parts.map(p => p.value).join(','))
   const sum = total ?? parts.reduce((a, p) => a + p.value, 0)
-  const r = (size - thickness) / 2, c = 2 * Math.PI * r, gap = 3
+  const R = size / 2, rOut = R * 0.84, rIn = R * 0.62, TAU = Math.PI * 2
   let acc = 0
-  const segs = parts.filter(p => p.value > 0).map(p => { const len = sum ? (p.value / sum) * c : 0; const seg = { ...p, start: acc, len }; acc += len; return seg })
-  return <div ref={box} className="relative flex items-center gap-5 flex-wrap">
-    <div className="relative shrink-0" style={{ width: size, height: size }}>
-      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ transform: 'rotate(-90deg)', direction: 'ltr' }} role="img" aria-label={parts.map(p => `${p.label}: ${p.value}`).join(' · ')}>
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="var(--surface-3)" strokeWidth={thickness} />
-        {segs.map(sg => { const shown = Math.max(0, Math.min(sg.len, c * k - sg.start)); const dash = Math.max(0, shown - gap); const pct = sum ? sg.value / sum * 100 : 0
-          return <circle key={sg.key} className="donut-seg" tabIndex={0} cx={size / 2} cy={size / 2} r={r} fill="none" stroke={sg.color} strokeWidth={thickness} strokeDasharray={`${dash} ${c - dash}`} strokeDashoffset={-sg.start - gap / 2} aria-label={`${sg.label}: ${sg.value} (${Math.round(pct)}%)`}
-            onPointerMove={e => show(e, <TipRow label={sg.label} value={`${sg.value} · ${Math.round(pct)}%`} color={sg.color} />)} onPointerLeave={hide} onFocus={() => { const b = box.current!.getBoundingClientRect(); show({ clientX: b.left + size / 2, clientY: b.top + 10 }, <TipRow label={sg.label} value={`${sg.value} · ${Math.round(pct)}%`} color={sg.color} />) }} onBlur={hide} /> })}
+  const segs = parts.filter(p => p.value > 0).map(p => { const a0 = acc; const span = sum ? (p.value / sum) * TAU : 0; acc += span; return { ...p, a0, a1: a0 + span } })
+  const node = (p: Part & { a0: number; a1: number }) => <TipRow label={p.label} value={`${p.value.toLocaleString('en')} · ${sum ? Math.round(p.value / sum * 100) : 0}%`} color={p.color} />
+  return <div ref={box} className="relative donut-wrap">
+    <div className="relative shrink-0 mx-auto" style={{ width: size, height: size }}>
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ direction: 'ltr', overflow: 'visible' }} role="img" aria-label={parts.map(p => `${p.label}: ${p.value}`).join(' · ')}>
+        {sum === 0 && <path d={sector(R, R, rIn, rOut, 0, TAU - 0.0001, 0)} fill="var(--surface-3)" />}
+        {segs.map(sg => { const end = Math.min(sg.a1, TAU * k); if (end <= sg.a0) return null
+          return <path key={sg.key} className="donut-seg" tabIndex={0} d={sector(R, R, rIn, rOut, sg.a0, end, 6)} fill={sg.color} stroke="var(--glass-bg)" strokeWidth={3} strokeLinejoin="round" aria-label={`${sg.label}: ${sg.value}`}
+            onPointerMove={e => show(e, node(sg))} onPointerLeave={hide} onFocus={() => { const b = box.current!.getBoundingClientRect(); show({ clientX: b.left + size / 2, clientY: b.top + 10 }, node(sg)) }} onBlur={hide} /> })}
       </svg>
-      <div className="absolute inset-0 grid place-items-center text-center pointer-events-none"><div><div className="num font-bold" style={{ fontSize: center[0].length > 5 ? 20 : 26, lineHeight: 1.05 }}>{center[0]}</div><div className="text-xs text-muted mt-1">{center[1]}</div></div></div>
+      <div className="absolute inset-0 grid place-items-center text-center pointer-events-none"><div><div className="num font-bold" style={{ fontSize: center[0].length > 5 ? 22 : 26, lineHeight: 1.1 }}>{center[0]}</div><div className="text-xs text-muted mt-0.5">{center[1]}</div></div></div>
     </div>
-    {legend && <div className="donut-legend flex-1 min-w-[180px]">{parts.map(p => <div key={p.key}><i className="dot" style={{ background: p.color }} />{p.label}<span className="cnt num">{p.value}{sum ? ` · ${Math.round(p.value / sum * 100)}%` : ''}</span></div>)}</div>}
+    {legend && <div className="legend">{parts.map(p => <div key={p.key} className="lg"><span className="dot" style={{ background: p.color }} /><span className="truncate">{p.label}</span><span className="cnt num">{p.value.toLocaleString('en')}</span><span className="pct num">{sum ? Math.round(p.value / sum * 100) : 0}%</span></div>)}</div>}
     {Tip}
   </div>
 }
