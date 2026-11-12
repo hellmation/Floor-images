@@ -2,8 +2,8 @@ import { useMemo, useState, type ReactNode } from 'react'
 import { useApp } from '../store/state'
 import { master, rollup, effective, codeScore, effectiveImpact, sortIds, isComplete, departmentOf, fulfilRows, type FulfilRow } from '../store/scoring'
 import { pick, pickDesc } from '../i18n'
-import { ImpactPill, PageHeader, Ring, Stat, fmtPct, tone, ringTone } from '../components/ui'
-import { Bars, Columns, Heatmap, Segmented, Stacked, Trend, TipRow } from '../components/charts'
+import { ImpactPill, PageHeader, Ring, Stat, fmtPct, tone, ringTone, PrintHeader } from '../components/ui'
+import { Bars, Columns, Donut, Heatmap, Stacked, Trend, TipRow } from '../components/charts'
 import { Icon, type IconName } from '../components/icons'
 import type { WorkState } from '../types'
 
@@ -12,9 +12,11 @@ const STATE_COLOR: Record<WorkState, string> = { approved: 'var(--ok)', submitte
 const ANSWER_COLOR = { yes: 'var(--ok)', partial: 'var(--warn)', no: 'var(--bad)', unanswered: 'var(--line-2)', na: 'color-mix(in srgb, var(--muted) 45%, var(--surface))' }
 
 /** A dashboard card: icon, title, one-line hint, then the chart. */
+let cardSeq = 0
 function Card({ icon, title, hint, right, children, className = '' }: { icon: IconName; title: ReactNode; hint?: ReactNode; right?: ReactNode; children: ReactNode; className?: string }) {
-  return <section className={`card p-4 flex flex-col ${className}`}>
-    <div className="flex items-start justify-between gap-3 mb-3"><div className="min-w-0"><h2 className="text-base font-semibold m-0 flex items-center gap-2"><Icon name={icon} className="text-accent-ink" />{title}</h2>{hint && <p className="text-xs text-muted m-0 mt-0.5">{hint}</p>}</div>{right}</div>
+  const delay = Math.min(cardSeq++ % 12, 10) * 50
+  return <section className={`card p-5 flex flex-col fade-up ${className}`} style={{ animationDelay: `${delay}ms` }}>
+    <div className="flex items-start justify-between gap-3 mb-4"><div className="min-w-0"><h2 className="text-base font-semibold m-0 flex items-center gap-2"><Icon name={icon} className="text-accent-ink" />{title}</h2>{hint && <p className="text-xs text-muted m-0 mt-0.5">{hint}</p>}</div>{right}</div>
     <div className="flex-1 min-w-0">{children}</div>
   </section>
 }
@@ -46,26 +48,29 @@ export default function Dashboard() {
   const legend = <span className="flex items-center gap-3 text-xs text-muted shrink-0"><span className="flex items-center gap-1"><i className="chart-swatch" style={{ background: 'var(--ok-soft)' }} />≥80</span><span className="flex items-center gap-1"><i className="chart-swatch" style={{ background: 'var(--warn-soft)' }} />50–79</span><span className="flex items-center gap-1"><i className="chart-swatch" style={{ background: 'var(--bad-soft)' }} />&lt;50</span></span>
   return (
     <div>
+      <PrintHeader title={`${t('reportOf')}: ${t('dashboard')}`} sub={cname(cfg.cycles.find(c => c.id === cy) || { name: cy })} />
       <PageHeader title={t('dashboard')} sub={t('overview')} actions={<>
+        <button className="btn btn-sm" onClick={() => window.print()}><Icon name="download" />{t('printReport')}</button>
         <div className="seg"><button aria-pressed={!approvedOnly} onClick={() => setApprovedOnly(false)}>{t('allAnswered')}</button><button aria-pressed={approvedOnly} onClick={() => setApprovedOnly(true)}>{t('approvedOnly')}</button></div>
         <label className="flex items-center gap-1 text-sm"><span className="text-muted">{t('compareWith')}</span><select className="select !w-auto" value={cmp} onChange={e => setCmp(e.target.value)}><option value="">{t('none')}</option>{cfg.cycles.filter(c => c.id !== cy).map(c => <option key={c.id} value={c.id}>{cname(c)}</option>)}</select></label></>} />
 
       {/* KPI row */}
       <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-3 mb-4">
-        <div className="card p-4 flex items-center gap-4"><Ring value={readiness} size={84} stroke={9} tone="accent" /><div className="min-w-0"><div className="label">{t('readiness')}</div><div className="text-sm">{t('approved')} <b className="num">{all.approved}</b> {t('of')} <b className="num">{all.total}</b></div>{cmpAll && <div className="text-xs text-muted num">{delta(readiness, cmpAll.total ? cmpAll.approved / cmpAll.total * 100 : 0)} · {cmpName}</div>}</div></div>
-        <div className="card p-4 flex items-center gap-4"><Ring value={all.score} size={84} stroke={9} tone={ringTone(all.score)} /><div className="min-w-0"><div className="label">{t('compliance')}</div><div className="text-sm">{t('weightedScore')} · <b className="num">{all.scored}</b> {t('codesCount')}</div>{cmpAll && <div className="text-xs text-muted num">{delta(all.score, cmpAll.score)} · {cmpName}</div>}</div></div>
+        <div className="card p-5 flex items-center gap-4 fade-up"><Ring value={readiness} size={84} stroke={9} tone="accent" /><div className="min-w-0"><div className="label">{t('readiness')}</div><div className="text-sm">{t('approved')} <b className="num">{all.approved}</b> {t('of')} <b className="num">{all.total}</b></div>{cmpAll && <div className="text-xs text-muted num">{delta(readiness, cmpAll.total ? cmpAll.approved / cmpAll.total * 100 : 0)} · {cmpName}</div>}</div></div>
+        <div className="card p-5 flex items-center gap-4 fade-up" style={{ animationDelay: '50ms' }}><Ring value={all.score} size={84} stroke={9} tone={ringTone(all.score)} /><div className="min-w-0"><div className="label">{t('compliance')}</div><div className="text-sm">{t('weightedScore')} · <b className="num">{all.scored}</b> {t('codesCount')}</div>{cmpAll && <div className="text-xs text-muted num">{delta(all.score, cmpAll.score)} · {cmpName}</div>}</div></div>
         <Stat label={t('answered')} value={fmtPct(all.total ? (all.answered / all.total) * 100 : 0)} sub={`${all.answered} ${t('of')} ${all.total} · ${t('submitted')} ${all.submitted}`} icon="tasks" tone="info" />
         <Stat label={t('gaps')} value={all.gaps} sub={`${t('needsClarification')}: ${all.clarifications}`} icon="alert" tone={all.gaps ? 'warn' : 'ok'} />
       </div>
 
       {/* Pipeline + answers | Trend */}
-      <div className="grid lg:grid-cols-2 gap-4 mb-4">
-        <Card icon="tasks" title={t('codePipeline')} hint={t('pipelineHint')}>
-          <Segmented parts={(['approved', 'submitted', 'returned', 'draft', 'none'] as WorkState[]).map(k => ({ key: k, label: k === 'none' ? t('notStarted') : t(k), value: states[k], color: STATE_COLOR[k] }))} total={master.codes.length} />
-          <h3 className="text-sm font-semibold mt-5 mb-2 m-0">{t('answerMix')} <span className="text-muted font-normal num">({rows.length} {t('requirements')})</span></h3>
-          <Segmented parts={(['yes', 'partial', 'no', 'unanswered', 'na'] as const).map(k => ({ key: k, label: t(k), value: answers[k], color: ANSWER_COLOR[k] }))} />
+      <div className="grid lg:grid-cols-5 gap-4 mb-4">
+        <Card icon="tasks" title={t('codePipeline')} hint={t('pipelineHint')} className="lg:col-span-3">
+          <div className="grid grid-cols-1 2xl:grid-cols-2 gap-6 items-center">
+            <Donut parts={(['approved', 'submitted', 'returned', 'draft', 'none'] as WorkState[]).map(k => ({ key: k, label: k === 'none' ? t('notStarted') : t(k), value: states[k], color: STATE_COLOR[k] }))} total={master.codes.length} center={[fmtPct(readiness), t('readiness')]} />
+            <Donut parts={(['yes', 'partial', 'no', 'unanswered', 'na'] as const).map(k => ({ key: k, label: t(k), value: answers[k], color: ANSWER_COLOR[k] }))} center={[String(rows.length), t('requirements')]} />
+          </div>
         </Card>
-        <Card icon="chart" title={t('trend')} hint={trendCycles.length < 2 ? t('noClosedCycles') : undefined}>
+        <Card icon="chart" title={t('trend')} hint={trendCycles.length < 2 ? t('noClosedCycles') : undefined} className="lg:col-span-2">
           <Trend labels={trendCycles.map(c => c.id)} series={[{ name: t('readiness'), color: 'var(--accent)', values: trend.map(x => x.readiness) }, { name: t('compliance'), color: 'var(--ok)', values: trend.map(x => x.score) }]} />
         </Card>
       </div>

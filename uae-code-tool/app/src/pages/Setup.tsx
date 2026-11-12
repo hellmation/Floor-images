@@ -3,7 +3,8 @@ import { useApp } from '../store/state'
 import { hasFolderApi, LocalAdapter } from '../store/storage'
 import { Icon } from '../components/icons'
 import { Avatar, errMsg } from '../components/ui'
-import lockup from '../assets/brand/fta-lockup.png'
+import lockup from '../assets/brand/fta-lockup-light.png'
+import lockupDark from '../assets/brand/fta-lockup-dark.png'
 import { Field } from '../components/Field'
 
 export default function Setup() {
@@ -25,7 +26,7 @@ export default function Setup() {
         <div className="seg" role="group" aria-label={t('theme')}><button aria-pressed={theme === 'light'} aria-label={t('light')} title={t('light')} onClick={() => setTheme('light')}><Icon name="sun" /></button><button aria-pressed={theme === 'dark'} aria-label={t('dark')} title={t('dark')} onClick={() => setTheme('dark')}><Icon name="moon" /></button></div>
       </div>
       <div ref={cardRef} className="landing-card flex flex-col gap-4">
-        <img ref={logoRef} src={lockup} alt={t('entity')} className="h-14 w-auto self-center object-contain" style={{ maxWidth: 260 }} />
+        <img ref={logoRef} src={theme === 'dark' ? lockupDark : lockup} alt={t('entity')} className="h-14 w-auto self-center object-contain" style={{ maxWidth: 260 }} />
         <div className="text-center">
           <div className="eyebrow">{t('internalTool')}</div>
           <h1 className="display text-3xl md:text-4xl m-0 mt-1">{t('appName')}</h1>

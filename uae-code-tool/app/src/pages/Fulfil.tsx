@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useApp } from '../store/state'
 import { master, fulfilRows, fulfilSum, deptName, pillarById, type FulfilRow } from '../store/scoring'
 import { pick } from '../i18n'
-import { PageHeader, Ring, Stat, fmtPct, tone, ringTone, useToast } from '../components/ui'
+import { PageHeader, Ring, Stat, fmtPct, tone, ringTone, useToast, PrintHeader } from '../components/ui'
 import { Icon } from '../components/icons'
 
 /** Fulfilment: the points-based UAE Code score at every level (overall, pillar, sub-pillar, evaluator, department). */
@@ -46,10 +46,11 @@ export default function Fulfil() {
       <tfoot><tr><td className="text-sm">{t('total')}</td>{extra && <td />}<td className="num">{all.codes}</td><td className="num">{all.counted}</td><td className="num text-ok-ink">{all.yes}</td><td className="num text-warn-ink">{all.partial}</td><td className="num text-bad-ink">{all.no}</td><td className="num text-muted">{all.unanswered}</td><td className="num text-muted">{all.na}</td><td className="num">{Math.round(all.earned)}</td><td className="num">{all.possible}</td><td className={`num font-bold text-${tone(all.pct)}-ink`}>{fmtPct(all.pct)}</td></tr></tfoot></table></div>)
   return (
     <div>
+      <PrintHeader title={`${t('reportOf')}: ${t('fulfilment')}`} sub={`${lang === 'ar' ? (cfg.cycles.find(c => c.id === cy)?.name || cy) : (cfg.cycles.find(c => c.id === cy)?.name_en || cy)} · ${approvedOnly ? t('approvedOnly') : t('allAnswered')}`} />
       <PageHeader title={t('fulfilment')} sub={`${t('high')} ${P.high} · ${t('medium')} ${P.medium} · ${t('low')} ${P.low} — ${t('fulfilmentHint')}`}
-        actions={<div className="seg" role="group" aria-label={t('status')}><button aria-pressed={!approvedOnly} onClick={() => setApprovedOnly(false)}>{t('allAnswered')}</button><button aria-pressed={approvedOnly} onClick={() => setApprovedOnly(true)}>{t('approvedOnly')}</button></div>} />
+        actions={<><button className="btn btn-sm" onClick={() => window.print()}><Icon name="download" />{t('printReport')}</button><div className="seg" role="group" aria-label={t('status')}><button aria-pressed={!approvedOnly} onClick={() => setApprovedOnly(false)}>{t('allAnswered')}</button><button aria-pressed={approvedOnly} onClick={() => setApprovedOnly(true)}>{t('approvedOnly')}</button></div></>} />
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
-        <div className="card p-4 flex items-center gap-4"><Ring value={all.pct} size={84} stroke={9} tone={ringTone(all.pct)} /><div><div className="label">{t('overallScore')}</div><div className="text-sm text-muted">{Math.round(all.earned)} / {all.possible} {t('earnedPoints').split(' ')[0]}</div></div></div>
+        <div className="card p-5 flex items-center gap-4 fade-up"><Ring value={all.pct} size={84} stroke={9} tone={ringTone(all.pct)} /><div><div className="label">{t('overallScore')}</div><div className="text-sm text-muted">{Math.round(all.earned)} / {all.possible} {t('earnedPoints').split(' ')[0]}</div></div></div>
         <Stat label={t('requirementsCounted')} value={all.counted} sub={`${t('na')}: ${all.na}`} icon="layers" tone="info" />
         <Stat label={t('yes')} value={all.yes} sub={`${t('partial')}: ${all.partial} · ${t('no')}: ${all.no}`} icon="checkCircle" tone="ok" />
         <Stat label={t('unanswered')} value={all.unanswered} sub={t('notStarted')} icon="clock" tone={all.unanswered ? 'warn' : 'ok'} />

@@ -2,6 +2,29 @@ import { createContext, useCallback, useContext, useEffect, useState, type React
 import type { WorkState, AnswerStatus, Impact } from '../types'
 import { useApp } from '../store/state'
 import { Icon, type IconName } from './icons'
+import lockupLight from '../assets/brand/fta-lockup-light.png'
+import lockupDark from '../assets/brand/fta-lockup-dark.png'
+
+
+/** Eased 0→1 progress over `ms` after mount (or when `key` changes); 1 immediately under reduced motion. */
+export function useProgress(ms = 900, key: unknown = 0): number {
+  const reduced = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches
+  const [k, setK] = useState(reduced ? 1 : 0)
+  useEffect(() => { if (reduced) { setK(1); return } let raf = 0; const t0 = performance.now(); const step = (now: number) => { const x = Math.min(1, (now - t0) / ms); setK(1 - Math.pow(1 - x, 3)); if (x < 1) raf = requestAnimationFrame(step) }; raf = requestAnimationFrame(step); return () => cancelAnimationFrame(raf) }, [ms, key, reduced])
+  return k
+}
+/** Counts a number up from 0 on mount and whenever the target changes. */
+export function useCountUp(target: number, ms = 900): number { const k = useProgress(ms, target); return target * k }
+/** A KPI value that counts up; keeps any suffix (e.g. %). */
+export function CountUp({ value, decimals = 0, suffix = '' }: { value: number; decimals?: number; suffix?: string }) { const v = useCountUp(value); return <>{decimals ? v.toFixed(decimals) : Math.round(v).toLocaleString('en')}{suffix}</> }
+/** Report header shown only when printing: logo, title, cycle and date. */
+export function PrintHeader({ title, sub }: { title: ReactNode; sub?: ReactNode }) {
+  const { lang, t, snap } = useApp(); const date = new Date().toLocaleDateString(lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-GB', { dateStyle: 'long' })
+  const entity = snap ? (lang === 'ar' ? snap.config.entity.name_ar : snap.config.entity.name_en) : ''
+  void lockupDark
+  return <><div className="print-head"><div><div className="pt">{title}</div>{sub && <div className="text-sm text-muted">{sub}</div>}<div className="text-xs text-muted">{entity} · {t('appName')} · {date}</div></div><img src={lockupLight} alt="" /></div>
+    <div className="print-foot"><span>{entity} · {t('appName')}</span><span>{title} · {date}</span></div></>
+}
 
 export function Pill({ kind, children, dot }: { kind: 'ok' | 'warn' | 'bad' | 'info' | 'flag' | 'muted' | 'accent'; children: ReactNode; dot?: boolean }) {
   return <span className={`pill pill-${kind}`}>{dot && <i className="dot" />}{children}</span>
@@ -28,19 +51,19 @@ export function Bar({ value, max, tone, thin, label }: { value: number; max: num
   return <div className={`bar ${thin ? 'thin' : ''}`} role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={label || `${value}/${max}`}><i className={tone || ''} style={{ width: pct + '%' }} /></div>
 }
 export function Ring({ value, size = 88, stroke = 9, tone = 'accent', label, sub }: { value: number | null; size?: number; stroke?: number; tone?: 'accent' | 'ok' | 'warn' | 'bad' | 'info'; label?: ReactNode; sub?: ReactNode }) {
-  const r = (size - stroke) / 2, c = 2 * Math.PI * r, v = Math.max(0, Math.min(100, value ?? 0))
+  const k = useProgress(900, value); const r = (size - stroke) / 2, c = 2 * Math.PI * r, v = Math.max(0, Math.min(100, value ?? 0)) * k
   return <div className="relative inline-grid place-items-center" style={{ width: size, height: size }}>
     <svg className="ring-svg" width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ transform: 'rotate(-90deg)' }}>
       <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="var(--surface-3)" strokeWidth={stroke} />
       <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={`var(--${tone})`} strokeWidth={stroke} strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - v / 100)} style={{ transition: 'stroke-dashoffset .8s var(--ease)' }} />
     </svg>
-    <div className="absolute inset-0 grid place-items-center text-center leading-none"><div className="font-bold num" style={{ fontSize: size * 0.24 }}>{label ?? fmtPct(value)}</div>{sub && <div className="text-muted mt-1" style={{ fontSize: size * 0.11 }}>{sub}</div>}</div>
+    <div className="absolute inset-0 grid place-items-center text-center leading-none"><div className="font-bold num" style={{ fontSize: size * 0.24 }}>{label ?? (value === null || value === undefined ? fmtPct(value) : fmtPct(value * k))}</div>{sub && <div className="text-muted mt-1" style={{ fontSize: size * 0.11 }}>{sub}</div>}</div>
   </div>
 }
 export function Stat({ label, value, sub, icon, tone }: { label: string; value: ReactNode; sub?: ReactNode; icon?: IconName; tone?: 'ok' | 'warn' | 'bad' | 'accent' | 'info' }) {
-  return <div className="card p-4 flex items-start gap-3">
+  return <div className="card p-5 flex items-start gap-3 fade-up">
     {icon && <span className={`inline-grid place-items-center w-10 h-10 rounded-lg shrink-0 ${tone ? `bg-${tone}-soft text-${tone}-ink` : 'bg-surface-2 text-fg-2'}`}><Icon name={icon} /></span>}
-    <div className="min-w-0 flex-1"><div className="label !mb-0">{label}</div><div className={`text-2xl font-bold num leading-tight ${tone ? `text-${tone}-ink` : ''}`}>{value}</div>{sub && <div className="text-sm text-muted mt-0.5 truncate">{sub}</div>}</div>
+    <div className="min-w-0 flex-1"><div className="label !mb-0">{label}</div><div className={`kpi-value num leading-tight ${tone ? `text-${tone}-ink` : ''}`}>{typeof value === 'number' ? <CountUp value={value} /> : typeof value === 'string' && /^\d+(\.\d+)?%$/.test(value) ? <CountUp value={parseFloat(value)} decimals={value.includes('.') ? 1 : 0} suffix="%" /> : value}</div>{sub && <div className="text-sm text-muted mt-0.5 truncate">{sub}</div>}</div>
   </div>
 }
 export function PageHeader({ title, sub, eyebrow, actions, children }: { title: ReactNode; sub?: ReactNode; eyebrow?: ReactNode; actions?: ReactNode; children?: ReactNode }) {

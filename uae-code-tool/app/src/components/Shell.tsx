@@ -6,7 +6,8 @@ import { Avatar, useToast, fmtDay } from './ui'
 import { master, sortIds } from '../store/scoring'
 import { pickDesc } from '../i18n'
 import emblem from '../assets/brand/fta-emblem.png'
-import wordmark from '../assets/brand/fta-lockup-alt.png'
+import lockupLight from '../assets/brand/fta-lockup-light.png'
+import lockupDark from '../assets/brand/fta-lockup-dark.png'
 import { exportWorkbook } from '../export/excel'
 
 export function Shell({ page, children }: { page: string; children: ReactNode }) {
@@ -28,6 +29,8 @@ export function Shell({ page, children }: { page: string; children: ReactNode })
   const doRefresh = async () => { if (window.__leaveGuard && !window.__leaveGuard()) return; try { await refresh(); toast(t('refreshed'), 'ok') } catch { toast(t('storageError'), 'bad') } }
   const doExport = async () => { if (!cycleId) return; setBusy(true); try { await exportWorkbook(snap!, cycleId, lang); toast(t('exportDone'), 'ok') } catch (e) { toast(t('exportFailed'), 'bad'); console.error(e) } finally { setBusy(false) } }
   const uname = lang === 'ar' ? user!.name_ar : user!.name_en
+  // Mouse spotlight on glass cards: the card under the pointer gets --mx/--my for its radial highlight.
+  useEffect(() => { let raf = 0; let ev: PointerEvent | null = null; const h = (e: PointerEvent) => { ev = e; if (raf) return; raf = requestAnimationFrame(() => { raf = 0; const c = (ev?.target as Element | null)?.closest?.('.card') as HTMLElement | null; if (!c || !ev) return; const b = c.getBoundingClientRect(); c.style.setProperty('--mx', ((ev.clientX - b.left) / b.width * 100).toFixed(1) + '%'); c.style.setProperty('--my', ((ev.clientY - b.top) / b.height * 100).toFixed(1) + '%') }) }; document.addEventListener('pointermove', h, { passive: true }); return () => { document.removeEventListener('pointermove', h); cancelAnimationFrame(raf) } }, [])
   return (
     <div>
       <aside className={`rail ${open ? 'open' : ''}`}>
@@ -54,7 +57,7 @@ export function Shell({ page, children }: { page: string; children: ReactNode })
         </header>
         {(needsReconnect || error) && <div className="mx-4 mt-3 rounded-lg bg-bad-soft text-bad-ink px-3 py-2 text-sm flex flex-wrap items-center gap-2" role="alert"><Icon name="alert" className="shrink-0" /><span className="flex-1 min-w-48">{needsReconnect ? t('connectionLost') : `${t('storageError')}: ${error}`}</span>{needsReconnect && <button className="btn btn-sm" onClick={() => reconnect().then(ok => toast(ok ? t('refreshed') : t('permissionDenied'), ok ? 'ok' : 'bad'))}><Icon name="folder" />{t('reconnect')}</button>}<button className="btn btn-sm btn-ghost" onClick={doRefresh}><Icon name="refresh" />{t('refresh')}</button></div>}
         <main className="page flex-1">{children}</main>
-        <footer className="px-6 py-4 text-xs text-muted flex flex-wrap items-center gap-3 border-t border-line"><img src={wordmark} alt="" className="brand-wordmark" /><span className="ms-auto">{adapter?.kind === 'folder' ? `${t('folderLabel')}: ${adapter.label}` : t('localModeLabel')} · {t('lastSync')}: {lastSync ? new Date(lastSync).toLocaleTimeString(lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-GB', { timeStyle: 'short' }) : '—'}</span><span>{t('developedBy')} · {t('version')} {__APP_VERSION__} · {t('build')} <bdi dir="ltr">{__BUILD__.replace(' UTC', '')}</bdi></span></footer>
+        <footer className="px-6 py-4 text-xs text-muted flex flex-wrap items-center gap-3 border-t border-line"><img src={lockupLight} alt="" className="brand-wordmark dark:hidden" /><img src={lockupDark} alt="" className="brand-wordmark hidden dark:inline" /><span className="ms-auto">{adapter?.kind === 'folder' ? `${t('folderLabel')}: ${adapter.label}` : t('localModeLabel')} · {t('lastSync')}: {lastSync ? new Date(lastSync).toLocaleTimeString(lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-GB', { timeStyle: 'short' }) : '—'}</span><span>{t('developedBy')} · {t('version')} {__APP_VERSION__} · {t('build')} <bdi dir="ltr">{__BUILD__.replace(' UTC', '')}</bdi></span></footer>
       </div>
       {pal && <Palette onClose={() => setPal(false)} pages={groups.flatMap(g => g.items)} />}
     </div>

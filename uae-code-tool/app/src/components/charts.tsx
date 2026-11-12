@@ -1,4 +1,5 @@
 import { useRef, useState, type ReactNode, type PointerEvent as RPE } from 'react'
+import { useProgress } from './ui'
 
 /* ----------------------------------------------------------------------------------------------
  * Chart primitives for the dashboard. All marks are thin, grids are hairlines, one hue per
@@ -154,4 +155,28 @@ export function HBars({ rows }: { rows: { key: string; label: ReactNode; prefix?
     const inner = <><span className="w-9 shrink-0">{r.prefix}</span><span className="flex-1 min-w-0 truncate text-sm">{r.label}</span><span className="w-40 shrink-0 hidden sm:block"><div className="bar"><i className={r.tone || ''} style={{ width: (r.max ? Math.round(r.value / r.max * 100) : 0) + '%' }} /></div></span><span className="w-20 shrink-0 text-end num text-sm">{r.right}</span></>
     return r.href ? <a key={r.key} href={r.href} className="flex items-center gap-3 no-underline text-fg rounded px-1 py-0.5 hover:bg-surface-2">{inner}</a> : <div key={r.key} className="flex items-center gap-3 px-1 py-0.5">{inner}</div>
   })}</div>
+}
+
+/** Donut in the team's dashboard style: thick ring, rounded-feeling segments separated by a surface gap, hover scale,
+ *  a headline figure in the centre and a legend with counts and shares. SVG, works in both directions. */
+export function Donut({ parts, total, center, size = 168, thickness = 30, legend = true }: { parts: Part[]; total?: number; center: [string, string]; size?: number; thickness?: number; legend?: boolean }) {
+  const { box, show, hide, Tip } = useTip()
+  const k = useProgress(900, parts.map(p => p.value).join(','))
+  const sum = total ?? parts.reduce((a, p) => a + p.value, 0)
+  const r = (size - thickness) / 2, c = 2 * Math.PI * r, gap = 3
+  let acc = 0
+  const segs = parts.filter(p => p.value > 0).map(p => { const len = sum ? (p.value / sum) * c : 0; const seg = { ...p, start: acc, len }; acc += len; return seg })
+  return <div ref={box} className="relative flex items-center gap-5 flex-wrap">
+    <div className="relative shrink-0" style={{ width: size, height: size }}>
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ transform: 'rotate(-90deg)', direction: 'ltr' }} role="img" aria-label={parts.map(p => `${p.label}: ${p.value}`).join(' · ')}>
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="var(--surface-3)" strokeWidth={thickness} />
+        {segs.map(sg => { const shown = Math.max(0, Math.min(sg.len, c * k - sg.start)); const dash = Math.max(0, shown - gap); const pct = sum ? sg.value / sum * 100 : 0
+          return <circle key={sg.key} className="donut-seg" tabIndex={0} cx={size / 2} cy={size / 2} r={r} fill="none" stroke={sg.color} strokeWidth={thickness} strokeDasharray={`${dash} ${c - dash}`} strokeDashoffset={-sg.start - gap / 2} aria-label={`${sg.label}: ${sg.value} (${Math.round(pct)}%)`}
+            onPointerMove={e => show(e, <TipRow label={sg.label} value={`${sg.value} · ${Math.round(pct)}%`} color={sg.color} />)} onPointerLeave={hide} onFocus={() => { const b = box.current!.getBoundingClientRect(); show({ clientX: b.left + size / 2, clientY: b.top + 10 }, <TipRow label={sg.label} value={`${sg.value} · ${Math.round(pct)}%`} color={sg.color} />) }} onBlur={hide} /> })}
+      </svg>
+      <div className="absolute inset-0 grid place-items-center text-center pointer-events-none"><div><div className="num font-bold" style={{ fontSize: center[0].length > 5 ? 20 : 26, lineHeight: 1.05 }}>{center[0]}</div><div className="text-xs text-muted mt-1">{center[1]}</div></div></div>
+    </div>
+    {legend && <div className="donut-legend flex-1 min-w-[180px]">{parts.map(p => <div key={p.key}><i className="dot" style={{ background: p.color }} />{p.label}<span className="cnt num">{p.value}{sum ? ` · ${Math.round(p.value / sum * 100)}%` : ''}</span></div>)}</div>}
+    {Tip}
+  </div>
 }
