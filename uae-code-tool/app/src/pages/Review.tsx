@@ -8,7 +8,7 @@ import { Icon } from '../components/icons'
 export default function Review() {
   const { t, lang, snap, user, cycleId, saveReviews } = useApp(); const cfg = snap!.config; const cy = cycleId!
   const toast = useToast()
-  const [tab, setTab] = useState<'queue' | 'clar' | 'approved'>('queue')
+  const [tab, setTab] = useState<'queue' | 'clar' | 'approved'>((new URLSearchParams(location.hash.split('?')[1] || '').get('tab') as 'queue' | 'clar' | 'approved') || 'queue')
   const [open, setOpen] = useState<string | null>(null)
   const [comment, setComment] = useState('')
   const [reply, setReply] = useState<Record<string, string>>({})

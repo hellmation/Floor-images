@@ -9,7 +9,7 @@ import { norm } from '../components/Shell'
 export default function Browse() {
   const { t, lang, snap, cycleId, user } = useApp(); const cfg = snap!.config; const cy = cycleId!
   const qs = new URLSearchParams(location.hash.split('?')[1] || '')
-  const [p, setP] = useState(qs.get('p') || ''); const [q, setQ] = useState(''); const [who, setWho] = useState(''); const [st, setSt] = useState(''); const [imp, setImp] = useState(''); const [dep, setDep] = useState('')
+  const [p, setP] = useState(qs.get('p') || ''); const [q, setQ] = useState(''); const [who, setWho] = useState(qs.get('who') || ''); const [st, setSt] = useState(qs.get('st') || ''); const [imp, setImp] = useState(qs.get('imp') || ''); const [dep, setDep] = useState('')
   const list = useMemo(() => master.codes.filter(c => (!p || c.pillar === p)).map(c => ({ c, a: assigneeOf(c.id, cy, cfg), e: effective(snap!, cy, c.id), i: effectiveImpact(c, cfg) }))
     .filter(r => (!who || r.a === who) && (!st || r.e.state === st) && (!imp || r.i === imp) && (!dep || departmentOf(snap!, cy, r.c.id) === dep) && (!q || norm(r.c.id + ' ' + r.c.desc_ar + ' ' + r.c.desc_en).includes(norm(q))))
     .sort((a, b) => sortIds(a.c.id, b.c.id)), [p, q, who, st, imp, dep, cfg, cy, snap])
