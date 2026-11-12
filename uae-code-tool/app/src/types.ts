@@ -49,7 +49,8 @@ export interface Config {
   updatedAt: string
 }
 
-export interface Evidence { id: string; type: 'link' | 'file'; title: string; url: string; addedAt: string; addedBy: string }
+export type EvidenceStrength = 'conclusive' | 'editable'
+export interface Evidence { id: string; type: 'link' | 'file'; title: string; url: string; addedAt: string; addedBy: string; strength?: EvidenceStrength | null }
 export interface ItemAnswer {
   status: AnswerStatus | null
   justification?: string

@@ -5,10 +5,11 @@ import { pick, pickDesc } from '../i18n'
 import { ImpactPill, PageHeader, Ring, Stat, fmtPct, tone, ringTone, PrintHeader } from '../components/ui'
 import { Bars, Columns, Donut, Heatmap, Stacked, Trend, TipRow } from '../components/charts'
 import { Icon, type IconName } from '../components/icons'
-import type { WorkState } from '../types'
+import type { WorkState, EvidenceStrength } from '../types'
 
 const heat = (v: number | null) => v === null ? 'var(--surface-2)' : v >= 80 ? 'var(--ok-soft)' : v >= 50 ? 'var(--warn-soft)' : 'var(--bad-soft)'
 const STATE_COLOR: Record<WorkState, string> = { approved: 'var(--ok)', submitted: 'var(--info)', returned: 'var(--warn)', draft: 'var(--accent)', none: 'var(--line-2)' }
+const EV_COLOR: Record<string, string> = { conclusive: 'var(--ok)', editable: 'var(--warn)', unspecified: 'var(--info)', none: 'var(--bad)' }
 const ANSWER_COLOR = { yes: 'var(--ok)', partial: 'var(--warn)', no: 'var(--bad)', unanswered: 'var(--line-2)', na: 'color-mix(in srgb, var(--muted) 45%, var(--surface))' }
 
 /** A dashboard card: icon, title, one-line hint, then the chart. */
@@ -26,6 +27,7 @@ export default function Dashboard() {
   const [approvedOnly, setApprovedOnly] = useState(false)
   const [cmp, setCmp] = useState('')
   const [allGaps, setAllGaps] = useState(false)
+  const [mode, setMode] = useState<'count' | 'pct'>('count')
   const all = useMemo(() => rollup(snap!, cy, master.codes, approvedOnly), [snap, cy, approvedOnly])
   const cmpAll = useMemo(() => cmp ? rollup(snap!, cmp, master.codes, approvedOnly) : null, [snap, cmp, approvedOnly])
   const rows = useMemo(() => fulfilRows(snap!, cy, approvedOnly), [snap, cy, approvedOnly])
@@ -37,6 +39,22 @@ export default function Dashboard() {
   const byProject = useMemo(() => cfg.projects.filter(p => p.active).map(p => ({ p, r: rollup(snap!, cy, master.codes.filter(c => (cfg.mapping[c.id] || []).includes(p.id)), approvedOnly) })).filter(x => x.r.total).sort((a, b) => (b.r.score ?? -1) - (a.r.score ?? -1) || b.r.total - a.r.total), [snap, cy, cfg, approvedOnly])
   const byDept = useMemo(() => cfg.departments.filter(d => d.active).map(d => ({ d, r: rollup(snap!, cy, master.codes.filter(c => departmentOf(snap!, cy, c.id) === d.id), approvedOnly) })).filter(x => x.r.total > 0).sort((a, b) => (b.r.score ?? -1) - (a.r.score ?? -1) || b.r.total - a.r.total), [cfg, cy, snap, approvedOnly])
   const byImpact = useMemo(() => (['high', 'medium', 'low'] as const).map(k => { const rs = rows.filter(r => effectiveImpact(r.code, cfg) === k); const v = (f: (r: FulfilRow) => boolean) => rs.filter(f).length; return { key: k, label: t(k), text: `${t(k)} · ${rs.length} ${t('requirements')}`, values: { yes: v(r => r.status === 'yes'), partial: v(r => r.status === 'partial'), no: v(r => r.status === 'no'), unanswered: v(r => !r.status), na: v(r => r.status === 'na') } } }), [rows, cfg, t])
+  /** Evidence facts per answered requirement (same basis as the fulfilment rows): status, evidence present, strongest evidence type, department. */
+  const evFacts = useMemo(() => { const out: { code: string; dept: string | null; status: string | null; hasEv: boolean; strength: EvidenceStrength | 'unspecified' | null }[] = []
+    for (const c of master.codes) { const e = effective(snap!, cy, c.id); const a = approvedOnly && e.state !== 'approved' ? null : e.answer; const cd = departmentOf(snap!, cy, c.id)
+      for (const r of c.requirements) { const it = a?.items[String(r.n)]; const ev = it?.evidence || []; const st: EvidenceStrength | 'unspecified' | null = ev.length === 0 ? null : ev.some(x => x.strength === 'conclusive') ? 'conclusive' : ev.some(x => x.strength === 'editable') ? 'editable' : 'unspecified'
+        out.push({ code: c.id, dept: it?.departmentId || cd, status: it?.status ?? null, hasEv: ev.length > 0, strength: st }) } }
+    return out }, [snap, cy, approvedOnly])
+  const answered = evFacts.filter(f => f.status && f.status !== 'na')
+  const evMix = { conclusive: answered.filter(f => f.strength === 'conclusive').length, editable: answered.filter(f => f.strength === 'editable').length, unspecified: answered.filter(f => f.strength === 'unspecified').length, none: answered.filter(f => !f.hasEv).length }
+  const codeEv = useMemo(() => { const m = new Map<string, { dept: string | null; answered: boolean; hasEv: boolean }>(); for (const f of evFacts) { const x = m.get(f.code) || { dept: departmentOf(snap!, cy, f.code), answered: false, hasEv: false }; if (f.status) x.answered = true; if (f.hasEv) x.hasEv = true; m.set(f.code, x) } return [...m.values()] }, [evFacts, snap, cy])
+  const codesAnswered = codeEv.filter(x => x.answered), codesWithEv = codesAnswered.filter(x => x.hasEv)
+  const deptName2 = (id: string | null) => { const d = cfg.departments.find(x => x.id === id); return d ? (lang === 'ar' ? d.name_ar : d.name_en) : t('noDept') }
+  const deptAnswers = useMemo(() => { const m = new Map<string, { codes: Set<string>; yes: number; partial: number; no: number; na: number; unanswered: number }>()
+    for (const r of rows) { const k = r.dept || '_none'; const x = m.get(k) || { codes: new Set<string>(), yes: 0, partial: 0, no: 0, na: 0, unanswered: 0 }; x.codes.add(r.code.id); if (r.status === 'na') x.na++; else if (r.status) x[r.status]++; else x.unanswered++; m.set(k, x) }
+    return [...m.entries()].map(([k, x]) => ({ key: k, label: `${deptName2(k === '_none' ? null : k)} · ${x.codes.size} ${t('codesN')}`, text: `${deptName2(k === '_none' ? null : k)} · ${x.codes.size} ${t('codesN')}`, values: { yes: x.yes, partial: x.partial, no: x.no, unanswered: x.unanswered, na: x.na } })).sort((a, b) => Object.values(b.values).reduce((p, q) => p + q, 0) - Object.values(a.values).reduce((p, q) => p + q, 0)) }, [rows, cfg, lang, t]) // eslint-disable-line react-hooks/exhaustive-deps
+  const deptEvidence = useMemo(() => { const m = new Map<string, { with: number; without: number }>(); for (const x of codesAnswered) { const k = x.dept || '_none'; const y = m.get(k) || { with: 0, without: 0 }; if (x.hasEv) y.with++; else y.without++; m.set(k, y) }
+    return [...m.entries()].map(([k, y]) => ({ key: k, label: deptName2(k === '_none' ? null : k), text: deptName2(k === '_none' ? null : k), values: { with: y.with, without: y.without } })).sort((a, b) => (b.values.with + b.values.without) - (a.values.with + a.values.without)) }, [codesAnswered, cfg, lang]) // eslint-disable-line react-hooks/exhaustive-deps
   const gaps = useMemo(() => master.codes.map(c => ({ c, e: effective(snap!, cy, c.id) })).map(x => ({ ...x, s: codeScore(x.e.answer, x.c, cfg) })).filter(x => x.s !== null && x.s < 100 && (approvedOnly ? x.e.state === 'approved' : isComplete(x.e.answer, x.c)))
     .sort((a, b) => { const w = cfg.settings.weights; return (w[effectiveImpact(b.c, cfg)] - w[effectiveImpact(a.c, cfg)]) || (a.s! - b.s!) || sortIds(a.c.id, b.c.id) }), [snap, cy, cfg, approvedOnly])
   const trendCycles = useMemo(() => cfg.cycles.filter(c => c.status === 'closed' || c.id === cy).sort((a, b) => a.start.localeCompare(b.start)), [cfg, cy])
@@ -100,16 +118,34 @@ export default function Dashboard() {
         </Card>
       </div>
 
-      {/* Impact | Gaps */}
-      <div className="grid lg:grid-cols-5 gap-4">
-        <Card icon="target" title={t('byImpact')} hint={t('answerMix')} className="lg:col-span-2">
-          <Stacked labelW="22%" rows={byImpact} parts={[{ key: 'yes', label: t('yes'), color: ANSWER_COLOR.yes }, { key: 'partial', label: t('partial'), color: ANSWER_COLOR.partial }, { key: 'no', label: t('no'), color: ANSWER_COLOR.no }, { key: 'unanswered', label: t('unanswered'), color: ANSWER_COLOR.unanswered }, { key: 'na', label: t('na'), color: ANSWER_COLOR.na }]} />
+      {/* Answers and evidence */}
+      <h2 className="text-lg font-bold mt-8 mb-3 flex items-center gap-2"><Icon name="checkCircle" className="text-accent-ink" />{t('answersEvidence')}<span className="seg ms-auto text-xs"><button aria-pressed={mode === 'count'} onClick={() => setMode('count')}>{t('showCounts')}</button><button aria-pressed={mode === 'pct'} onClick={() => setMode('pct')}>{t('showPct')}</button></span></h2>
+      <div className="grid lg:grid-cols-5 gap-4 mb-4">
+        <Card icon="users" title={t('answersByDept')} hint={t('answersByDeptHint')} className="lg:col-span-3">
+          <Stacked mode={mode} labelW="34%" rows={deptAnswers} parts={[{ key: 'yes', label: t('yes'), color: ANSWER_COLOR.yes }, { key: 'partial', label: t('partial'), color: ANSWER_COLOR.partial }, { key: 'no', label: t('no'), color: ANSWER_COLOR.no }, { key: 'unanswered', label: t('unanswered'), color: ANSWER_COLOR.unanswered }, { key: 'na', label: t('na'), color: ANSWER_COLOR.na }]} />
         </Card>
-        <Card icon="alert" title={<>{t('topGaps')} <span className="text-muted font-normal text-sm num">({gaps.length})</span></>} hint={t('gapsHint')} right={gaps.length > 20 ? <button className="btn btn-ghost btn-sm shrink-0" onClick={() => setAllGaps(v => !v)}>{allGaps ? `${t('showingTop')} 20` : t('viewAll')}</button> : undefined} className="lg:col-span-3 overflow-x-auto">
-          {gaps.length === 0 ? <p className="text-sm text-muted m-0">{t('noItems')}</p> : <table className="tbl"><thead><tr><th>{t('code')}</th><th>{t('codeText')}</th><th>{t('impact')}</th><th>{t('score')}</th></tr></thead><tbody>
-            {gaps.slice(0, allGaps ? gaps.length : 20).map(({ c, s }) => <tr key={c.id}><td><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a></td><td className="text-sm"><span className="line-clamp-2" title={pickDesc(lang, c)}>{pickDesc(lang, c)}</span></td><td><ImpactPill impact={effectiveImpact(c, cfg)} short /></td><td><span className="flex items-center gap-2"><span className="bar thin w-16"><i className={tone(s) === 'muted' ? '' : tone(s)} style={{ width: `${s}%` }} /></span><span className={`num font-semibold text-${tone(s)}-ink`}>{fmtPct(s)}</span></span></td></tr>)}</tbody></table>}
+        <Card icon="link" title={t('evidenceCoverage')} hint={t('evidenceCoverageHint')} className="lg:col-span-2">
+          <Donut parts={[{ key: 'conclusive', label: t('strengthConclusiveShort'), value: evMix.conclusive, color: EV_COLOR.conclusive }, { key: 'editable', label: t('strengthEditableShort'), value: evMix.editable, color: EV_COLOR.editable }, { key: 'unspecified', label: t('evUnspecified'), value: evMix.unspecified, color: EV_COLOR.unspecified }, { key: 'none', label: t('withoutEvidence'), value: evMix.none, color: EV_COLOR.none }]} center={[fmtPct(answered.length ? (answered.length - evMix.none) / answered.length * 100 : null), t('withEvidence')]} />
+          <div className="grid grid-cols-2 gap-3 mt-4 text-sm">
+            <div className="panel px-3 py-2"><div className="text-muted text-xs">{t('reqsWithEvidence')}</div><div className="num font-bold text-lg">{answered.length - evMix.none} <span className="text-muted text-sm font-normal">/ {answered.length} {t('answeredReqs')}</span></div></div>
+            <div className="panel px-3 py-2"><div className="text-muted text-xs">{t('codesWithEvidence')}</div><div className="num font-bold text-lg">{codesWithEv.length} <span className="text-muted text-sm font-normal">/ {codesAnswered.length} {t('answeredCodes')}</span></div></div>
+          </div>
         </Card>
       </div>
+      <div className="grid lg:grid-cols-5 gap-4 mb-4">
+        <Card icon="link" title={t('evidenceByDept')} hint={t('evidenceByDeptHint')} className="lg:col-span-3">
+          <Stacked mode={mode} labelW="34%" rows={deptEvidence} parts={[{ key: 'with', label: t('withEvidence'), color: 'var(--ok)' }, { key: 'without', label: t('withoutEvidence'), color: 'var(--bad)' }]} />
+        </Card>
+        <Card icon="target" title={t('byImpact')} hint={t('answerMix')} className="lg:col-span-2">
+          <Stacked mode={mode} labelW="22%" rows={byImpact} parts={[{ key: 'yes', label: t('yes'), color: ANSWER_COLOR.yes }, { key: 'partial', label: t('partial'), color: ANSWER_COLOR.partial }, { key: 'no', label: t('no'), color: ANSWER_COLOR.no }, { key: 'unanswered', label: t('unanswered'), color: ANSWER_COLOR.unanswered }, { key: 'na', label: t('na'), color: ANSWER_COLOR.na }]} />
+        </Card>
+      </div>
+
+      {/* Gaps */}
+      <Card icon="alert" title={<>{t('topGaps')} <span className="text-muted font-normal text-sm num">({gaps.length})</span></>} hint={t('gapsHint')} right={gaps.length > 20 ? <button className="btn btn-ghost btn-sm shrink-0" onClick={() => setAllGaps(v => !v)}>{allGaps ? `${t('showingTop')} 20` : t('viewAll')}</button> : undefined} className="overflow-x-auto">
+        {gaps.length === 0 ? <p className="text-sm text-muted m-0">{t('noItems')}</p> : <table className="tbl"><thead><tr><th>{t('code')}</th><th>{t('codeText')}</th><th>{t('impact')}</th><th>{t('score')}</th></tr></thead><tbody>
+          {gaps.slice(0, allGaps ? gaps.length : 20).map(({ c, s }) => <tr key={c.id}><td><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a></td><td className="text-sm"><span className="line-clamp-2" title={pickDesc(lang, c)}>{pickDesc(lang, c)}</span></td><td><ImpactPill impact={effectiveImpact(c, cfg)} short /></td><td><span className="flex items-center gap-2"><span className="bar thin w-16"><i className={tone(s) === 'muted' ? '' : tone(s)} style={{ width: `${s}%` }} /></span><span className={`num font-semibold text-${tone(s)}-ink`}>{fmtPct(s)}</span></span></td></tr>)}</tbody></table>}
+      </Card>
     </div>
   )
 }
