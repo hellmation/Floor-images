@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useApp } from '../store/state'
 import { master, effective, codeScore, sortIds, now } from '../store/scoring'
 import { pickDesc, pickText } from '../i18n'
-import { Avatar, Empty, PageHeader, StatePill, StatusPill, useToast, fmtDate, fmtPct, tone } from '../components/ui'
+import { Avatar, Empty, PageHeader, StatusPill, useToast, fmtDate, fmtPct, tone, Modal } from '../components/ui'
 import { Icon } from '../components/icons'
 import { EvidenceRate } from '../components/EvidenceRate'
 
@@ -13,6 +13,10 @@ export default function Review() {
   const [open, setOpen] = useState<string | null>(null)
   const [comment, setComment] = useState('')
   const [reply, setReply] = useState<Record<string, string>>({})
+  const [evFilter, setEvFilter] = useState<'any' | 'none' | 'weak' | 'unrated' | 'editable' | 'notStrong'>('any')
+  const [whoF, setWhoF] = useState('')
+  const [sel, setSel] = useState<Set<string>>(new Set())
+  const [bulk, setBulk] = useState(false); const [reason, setReason] = useState(''); const [busy, setBusy] = useState(false)
   const userName = (id: string | null) => { const u = cfg.users.find(x => x.id === id); return u ? (lang === 'ar' ? u.name_ar : u.name_en) : t('unassigned') }
   const photo = (id: string | null) => cfg.users.find(x => x.id === id)?.photo
   const rows = useMemo(() => master.codes.map(c => ({ c, e: effective(snap!, cy, c.id) })).sort((a, b) => sortIds(a.c.id, b.c.id)), [snap, cy])
@@ -20,6 +24,19 @@ export default function Review() {
   const queue = rows.filter(r => r.e.state === 'submitted'), approved = rows.filter(r => r.e.state === 'approved')
   const clars = rows.flatMap(r => r.c.requirements.map(rq => String(rq.n)).filter(n => r.e.answer?.items[n]?.clarify?.flag).map(n => ({ ...r, n, it: r.e.answer!.items[n], ans: snap!.reviews.clarifications?.[cy]?.[r.c.id]?.[n] })))
   const key = (codeId: string, n: string) => `${codeId}/${n}`
+  /** Evidence picture of one approved code: answered requirements with / without evidence, and the reviewer verdicts on its links. */
+  const evInfo = (codeId: string, a: NonNullable<typeof rows[number]['e']['answer']>) => { const ratings = snap!.reviews.evidenceRatings?.[cy]?.[codeId] || {}; let withEv = 0, without = 0, strong = 0, weak = 0, unrated = 0, editable = 0
+    for (const it of Object.values(a.items)) { if (!it.status || it.status === 'na') continue; if (it.evidence.length) withEv++; else without++; for (const ev of it.evidence) { const v = ratings[ev.id]?.rating; if (v === 'strong') strong++; else if (v === 'weak') weak++; else unrated++; if (ev.strength === 'editable') editable++ } }
+    return { withEv, without, strong, weak, unrated, editable } }
+  const approvedRows = useMemo(() => approved.map(r => ({ ...r, ev: evInfo(r.c.id, r.e.answer!) })).filter(r => (!whoF || r.e.userId === whoF) && (evFilter === 'any' || (evFilter === 'none' && r.ev.without > 0) || (evFilter === 'weak' && r.ev.weak > 0) || (evFilter === 'unrated' && r.ev.unrated > 0) || (evFilter === 'editable' && r.ev.editable > 0) || (evFilter === 'notStrong' && r.ev.strong === 0))), [approved, whoF, evFilter, snap]) // eslint-disable-line react-hooks/exhaustive-deps
+  const allSel = approvedRows.length > 0 && approvedRows.every(r => sel.has(r.c.id))
+  const toggleAll = () => setSel(allSel ? new Set() : new Set(approvedRows.map(r => r.c.id)))
+  const bulkReopen = async () => {
+    const ids = approvedRows.filter(r => sel.has(r.c.id)); if (!ids.length) return; setBusy(true)
+    const r = JSON.parse(JSON.stringify(snap!.reviews)); r.cycles[cy] = r.cycles[cy] || {}
+    for (const row of ids) r.cycles[cy][row.c.id] = { state: 'returned', comment: reason.trim() || 'reopened', reviewedBy: user!.id, reviewedAt: now(), evidenceVerified: false, userId: row.e.userId, submittedAt: row.e.answer!.submittedAt || row.e.answer!.updatedAt }
+    try { await saveReviews(r, `bulk reopen ${ids.length}`); toast(`${t('reopenedN')} ${ids.length}`, 'ok'); setSel(new Set()); setBulk(false); setReason('') } catch (e) { toast(String((e as Error).message || t('saveFailed')), 'bad') } finally { setBusy(false) }
+  }
   const decide = async (codeId: string, state: 'approved' | 'returned', verified: boolean, text = comment) => {
     const row = rows.find(r => r.c.id === codeId); if (!row?.e.answer) return
     const r = JSON.parse(JSON.stringify(snap!.reviews)); r.cycles[cy] = r.cycles[cy] || {}
@@ -56,8 +73,24 @@ export default function Review() {
           {ans && <div className="text-muted"><b>{t('clarificationAnswer')}</b> ({fmtDate(ans.answeredAt, lang)}): {ans.answer}</div>}
           <div className="flex gap-2"><input className="input" placeholder={t('reply')} value={reply[key(c.id, n)] || ''} onChange={e2 => setReply(s => ({ ...s, [key(c.id, n)]: e2.target.value }))} onKeyDown={e2 => { if (e2.key === 'Enter' && (reply[key(c.id, n)] || '').trim()) answer(c.id, n) }} /><button className="btn btn-sm" disabled={!(reply[key(c.id, n)] || '').trim()} onClick={() => answer(c.id, n)}><Icon name="send" />{t('reply')}</button></div>
         </div>))}
-        {tab === 'approved' && (approved.length === 0 ? <Empty icon="checkCircle" /> : <div className="card overflow-x-auto"><table className="tbl"><thead><tr><th>{t('code')}</th><th>{t('codeText')}</th><th>{t('submittedBy')}</th><th>{t('score')}</th><th>{t('status')}</th><th></th></tr></thead><tbody>
-          {approved.map(({ c, e }) => <tr key={c.id}><td><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a></td><td className="text-sm"><span className="line-clamp-2" title={pickDesc(lang, c)}>{pickDesc(lang, c)}</span></td><td>{userName(e.userId)}</td><td className={`num font-semibold text-${tone(codeScore(e.answer, c, cfg))}-ink`}>{fmtPct(codeScore(e.answer, c, cfg))}</td><td><StatePill state={e.state} /></td><td><button className="btn btn-sm" disabled={!canReview} onClick={() => { if (confirm(t('confirmReopen'))) decide(c.id, 'returned', false, 'reopened') }}><Icon name="refresh" />{t('reopen')}</button></td></tr>)}</tbody></table></div>)}
+        {tab === 'approved' && (approved.length === 0 ? <Empty icon="checkCircle" /> : <>
+          <div className="card p-3 flex flex-wrap items-end gap-3">
+            <div className="field min-w-0"><label className="label" htmlFor="rv-ev">{t('evidenceFilter')}</label><select id="rv-ev" className="select !py-1.5 text-sm" value={evFilter} onChange={e => { setEvFilter(e.target.value as typeof evFilter); setSel(new Set()) }}><option value="any">{t('evAny')}</option><option value="none">{t('evNone')}</option><option value="weak">{t('evWeak')}</option><option value="unrated">{t('evUnrated')}</option><option value="notStrong">{t('evNotStrong')}</option><option value="editable">{t('evEditable')}</option></select></div>
+            <div className="field min-w-0"><label className="label" htmlFor="rv-who">{t('evaluator')}</label><select id="rv-who" className="select !py-1.5 text-sm" value={whoF} onChange={e => { setWhoF(e.target.value); setSel(new Set()) }}><option value="">{t('all')}</option>{cfg.users.filter(u => u.active).map(u => <option key={u.id} value={u.id}>{lang === 'ar' ? u.name_ar : u.name_en}</option>)}</select></div>
+            <span className="text-sm text-muted num">{approvedRows.length} / {approved.length}</span>
+            <span className="ms-auto flex items-center gap-2"><span className="text-sm text-muted num">{sel.size} {t('selectedN')}</span><button className="btn btn-sm" disabled={!canReview || sel.size === 0} onClick={() => setBulk(true)}><Icon name="refresh" />{t('reopenSelected')} {sel.size ? <span className="num">({sel.size})</span> : null}</button></span>
+          </div>
+          <div className="card overflow-x-auto"><table className="tbl"><thead><tr><th><input type="checkbox" aria-label={t('selectAll')} checked={allSel} onChange={toggleAll} /></th><th>{t('code')}</th><th>{t('codeText')}</th><th>{t('submittedBy')}</th><th>{t('score')}</th><th title={t('evCols')}>{t('evidence')}</th><th>{t('reviewerVerdict')}</th><th></th></tr></thead><tbody>
+            {approvedRows.map(({ c, e, ev }) => <tr key={c.id} className={sel.has(c.id) ? 'bg-accent-soft/40' : ''}><td><input type="checkbox" aria-label={c.id} checked={sel.has(c.id)} onChange={() => setSel(s => { const n = new Set(s); if (n.has(c.id)) n.delete(c.id); else n.add(c.id); return n })} /></td><td><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a></td><td className="text-sm"><span className="line-clamp-2" title={pickDesc(lang, c)}>{pickDesc(lang, c)}</span></td><td>{userName(e.userId)}</td><td className={`num font-semibold text-${tone(codeScore(e.answer, c, cfg))}-ink`}>{fmtPct(codeScore(e.answer, c, cfg))}</td>
+              <td className="num text-sm whitespace-nowrap"><span className="text-ok-ink">{ev.withEv}</span> / <span className={ev.without ? 'text-bad-ink font-semibold' : 'text-muted'}>{ev.without}</span>{ev.editable ? <span className="text-warn-ink text-xs ms-2">({t('strengthEditableShort')} {ev.editable})</span> : null}</td>
+              <td className="num text-sm whitespace-nowrap"><span className="text-ok-ink">{ev.strong}</span> / <span className={ev.weak ? 'text-bad-ink font-semibold' : 'text-muted'}>{ev.weak}</span> / <span className="text-muted">{ev.unrated}</span></td>
+              <td><button className="btn btn-sm" disabled={!canReview} onClick={() => { if (confirm(t('confirmReopen'))) decide(c.id, 'returned', false, 'reopened') }}><Icon name="refresh" />{t('reopen')}</button></td></tr>)}</tbody></table></div>
+          <Modal open={bulk} onClose={() => setBulk(false)} title={`${t('reopenSelected')} (${sel.size})`} footer={<><button className="btn" onClick={() => setBulk(false)}>{t('cancel')}</button><button className="btn btn-primary" disabled={busy} onClick={bulkReopen}><Icon name="refresh" />{t('reopenSelected')}</button></>}>
+            <p className="text-sm m-0 mb-3">{t('confirmBulkReopen')}</p>
+            <div className="field"><label className="label" htmlFor="rv-reason">{t('reopenReason')}</label><textarea id="rv-reason" className="textarea" rows={3} value={reason} onChange={e => setReason(e.target.value)} /></div>
+            <ul className="m-0 mt-3 p-0 list-none flex flex-wrap gap-1 max-h-32 overflow-auto">{approvedRows.filter(r => sel.has(r.c.id)).map(r => <li key={r.c.id}><span className="code-id">{r.c.id}</span></li>)}</ul>
+          </Modal>
+        </>)}
       </div>
     </div>
   )
