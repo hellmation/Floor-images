@@ -151,3 +151,20 @@ export function sortIds(a: string, b: string) {
 }
 export const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36)
 export const now = () => new Date().toISOString()
+
+export interface EvidenceFact { code: Code; n: number; status: AnswerStatus | null; state: WorkState; assignee: string | null; dept: string | null; hasEv: boolean; evType: 'conclusive' | 'editable' | 'unspecified' | null; verdict: 'strong' | 'weak' | null }
+/** One row per requirement on the fulfilment basis: evidence present, the evaluator's type, and the reviewer's verdict (strong if any link is rated strong, weak if rated and none strong). */
+export function evidenceFacts(snap: Snapshot, cycleId: string, approvedOnly: boolean, codes: Code[] = master.codes): EvidenceFact[] {
+  const cfg = snap.config; const out: EvidenceFact[] = []; const ratings = snap.reviews.evidenceRatings?.[cycleId] || {}
+  for (const c of codes) {
+    const e = effective(snap, cycleId, c.id); const a = approvedOnly && e.state !== 'approved' ? null : e.answer; const assignee = assigneeOf(c.id, cycleId, cfg); const cd = departmentOf(snap, cycleId, c.id)
+    for (const r of c.requirements) {
+      const it = a?.items[String(r.n)]; const ev = it?.evidence || []
+      const evType = ev.length === 0 ? null : ev.some(x => x.strength === 'conclusive') ? 'conclusive' : ev.some(x => x.strength === 'editable') ? 'editable' : 'unspecified'
+      const vs = ev.map(x => ratings[c.id]?.[x.id]?.rating).filter(Boolean) as ('strong' | 'weak')[]
+      const verdict = vs.length === 0 ? null : vs.includes('strong') ? 'strong' : 'weak'
+      out.push({ code: c, n: r.n, status: it?.status ?? null, state: e.state, assignee, dept: it?.departmentId || cd, hasEv: ev.length > 0, evType, verdict })
+    }
+  }
+  return out
+}

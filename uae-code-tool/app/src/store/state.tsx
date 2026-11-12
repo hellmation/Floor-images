@@ -12,6 +12,7 @@ interface Ctx {
   user: User | null; setUserId: (id: string | null) => void
   cycleId: string | null; setCycleId: (id: string) => void
   isAdmin: boolean
+  canReview: boolean
   connectFolder: () => Promise<boolean>; reconnect: () => Promise<boolean>; useLocal: () => void; refresh: () => Promise<void>; needsReconnect: boolean
   saveConfig: (c: Config, audit?: string) => Promise<void>
   /** Resolves with the stored (merged) answer for that code; it differs from `a` only if a newer copy already existed on disk. */
@@ -128,6 +129,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const user = useMemo(() => snap?.config.users.find(u => u.id === userId) || null, [snap, userId])
   const isAdmin = user?.role === 'admin'
+  const canReview = isAdmin || user?.role === 'reviewer'
   const effCycle = cycleId && snap?.config.cycles.some(c => c.id === cycleId) ? cycleId : (snap?.config.currentCycleId || null)
   // remember the resolved cycle so an admin changing the current cycle never silently moves someone mid-edit
   useEffect(() => { if (effCycle && effCycle !== cycleId) { setCycleIdS(effCycle); ls.set('cycleId', effCycle) } }, [effCycle, cycleId])
@@ -184,7 +186,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const value: Ctx = {
     lang, setLang: setLangS, t: (k) => tr(lang, k), theme, setTheme: setThemeS,
     adapter, snap, loading, error, lastSync, user, setUserId: (id) => { setUserIdS(id); ss.set('userId', id || ''); if (id) ls.set('lastUserId', id) },
-    cycleId: effCycle, setCycleId: (id) => { setCycleIdS(id); ls.set('cycleId', id) }, isAdmin,
+    cycleId: effCycle, setCycleId: (id) => { setCycleIdS(id); ls.set('cycleId', id) }, isAdmin, canReview,
     connectFolder, reconnect, useLocal, refresh, needsReconnect, saveConfig, saveMyAnswer, saveMyNote, saveMyDepartment, saveReviews,
     myAnswers: userId && snap ? snap.answers[userId] || null : null,
   }

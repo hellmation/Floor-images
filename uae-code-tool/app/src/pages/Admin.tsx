@@ -38,7 +38,7 @@ export default function Admin() {
   const toggleActive = (u: User, on: boolean) => { if (!on && assignedCount(u.id) > 0 && !confirm(`${t('deactivateWarn')} (${assignedCount(u.id)})`)) return; updUser({ ...u, active: on }) }
   const toggleProject = (p: Project, on: boolean) => { if (!on && !confirm(t('confirmDeactivateProject'))) return; updProj({ ...p, active: on }) }
   const flagged = master.codes.filter(c => !c.impact)
-  const roleOpts = <><option value="admin">{t('adminRole')}</option><option value="evaluator">{t('evaluatorRole')}</option><option value="viewer">{t('viewerRole')}</option></>
+  const roleOpts = <><option value="admin">{t('adminRole')}</option><option value="reviewer">{t('reviewerRole')}</option><option value="evaluator">{t('evaluatorRole')}</option><option value="viewer">{t('viewerRole')}</option></>
   return (
     <div>
       <PageHeader title={t('admin')} actions={<div className="seg">{(['users', 'projects', 'departments', 'settings', 'audit'] as const).map(k => <button key={k} aria-pressed={tab === k} onClick={() => setTab(k)}><Icon name={k === 'users' ? 'users' : k === 'projects' ? 'map' : k === 'departments' ? 'layers' : k === 'settings' ? 'settings' : 'clock'} />{k === 'users' ? t('users') : k === 'projects' ? t('projects') : k === 'departments' ? t('departments') : k === 'settings' ? t('settings') : t('audit')}</button>)}</div>} />

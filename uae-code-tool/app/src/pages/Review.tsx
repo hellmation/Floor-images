@@ -4,6 +4,7 @@ import { master, effective, codeScore, sortIds, now } from '../store/scoring'
 import { pickDesc, pickText } from '../i18n'
 import { Avatar, Empty, PageHeader, StatePill, StatusPill, useToast, fmtDate, fmtPct, tone } from '../components/ui'
 import { Icon } from '../components/icons'
+import { EvidenceRate } from '../components/EvidenceRate'
 
 export default function Review() {
   const { t, lang, snap, user, cycleId, saveReviews } = useApp(); const cfg = snap!.config; const cy = cycleId!
@@ -43,7 +44,7 @@ export default function Review() {
           {open === c.id && <div className="flex flex-col gap-2 border-t border-line pt-3">
             {c.requirements.map(r => { const it = e.answer!.items[String(r.n)]; return <div key={r.n} className="text-sm panel p-2 flex flex-col gap-1"><div className="flex items-start gap-2"><span className="code-id">{r.n}</span><span className="flex-1">{pickText(lang, r)}</span><StatusPill status={it?.status ?? null} /></div>
               {it?.justification && <div className="text-muted ps-8">{t('justification')}: {it.justification}</div>}
-              {it?.evidence?.length ? <div className="ps-8 flex flex-wrap gap-2">{it.evidence.map(ev => <a key={ev.id} className="pill pill-muted no-underline" href={ev.url} target="_blank" rel="noreferrer"><Icon name="link" style={{ width: 12, height: 12 }} />{ev.title || ev.url}</a>)}</div> : null}
+              {it?.evidence?.length ? <div className="ps-8 flex flex-wrap gap-2 items-center">{it.evidence.map(ev => <span key={ev.id} className="inline-flex items-center gap-1"><a className={`pill ${ev.strength === 'conclusive' ? 'pill-ok' : ev.strength === 'editable' ? 'pill-warn' : 'pill-muted'} no-underline`} href={ev.url} target="_blank" rel="noreferrer" title={ev.strength ? t(ev.strength === 'conclusive' ? 'strengthConclusive' : 'strengthEditable') : undefined}><Icon name="link" style={{ width: 12, height: 12 }} />{ev.title || ev.url}</a><EvidenceRate codeId={c.id} ev={ev} /></span>)}</div> : null}
               {it?.note && <div className="text-muted ps-8">{t('note')}: {it.note}</div>}</div> })}
             <textarea className="textarea" rows={2} placeholder={t('reviewerComment')} value={comment} onChange={e2 => setComment(e2.target.value)} />
             <div className="flex flex-wrap gap-2 items-center"><button className="btn btn-ok btn-sm" disabled={!canReview} onClick={() => decide(c.id, 'approved', true)}><Icon name="checkCircle" />{t('approve')} · {t('evidenceVerified')}</button><button className="btn btn-sm" disabled={!canReview} onClick={() => decide(c.id, 'approved', false)}><Icon name="check" />{t('approve')}</button><button className="btn btn-danger btn-sm" disabled={!comment.trim() || !canReview} onClick={() => decide(c.id, 'returned', false)}><Icon name={lang === 'ar' ? 'arrowR' : 'arrowL'} />{t('return')}</button></div>

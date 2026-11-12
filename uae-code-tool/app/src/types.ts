@@ -1,6 +1,6 @@
 export type Impact = 'high' | 'medium' | 'low'
 export type Lang = 'ar' | 'en'
-export type Role = 'admin' | 'evaluator' | 'viewer'
+export type Role = 'admin' | 'reviewer' | 'evaluator' | 'viewer'
 export type AnswerStatus = 'yes' | 'partial' | 'no' | 'na'
 export type CycleStatus = 'planning' | 'open' | 'review' | 'closed'
 export type WorkState = 'none' | 'draft' | 'submitted' | 'returned' | 'approved'
@@ -88,8 +88,11 @@ export interface Review {
   submittedAt?: string
 }
 export interface Clarification { answer: string; answeredBy: string; answeredAt: string }
+export type EvidenceVerdict = 'strong' | 'weak'
+export interface EvidenceRating { rating: EvidenceVerdict; by: string; at: string }
 export interface ReviewsFile {
   updatedAt: string
+  evidenceRatings?: Record<string, Record<string, Record<string, EvidenceRating>>>  // cycleId -> codeId -> evidenceId -> reviewer verdict
   cycles: Record<string, Record<string, Review>>                      // cycleId -> codeId -> review
   clarifications: Record<string, Record<string, Record<string, Clarification>>> // cycleId -> codeId -> reqN -> answer
 }

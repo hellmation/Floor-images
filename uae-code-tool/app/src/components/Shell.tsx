@@ -11,7 +11,7 @@ import lockupDark from '../assets/brand/fta-lockup-dark.png'
 import { exportWorkbook } from '../export/excel'
 
 export function Shell({ page, children }: { page: string; children: ReactNode }) {
-  const app = useApp(); const { t, lang, setLang, theme, setTheme, snap, user, isAdmin, cycleId, setCycleId, refresh, adapter, lastSync, error, needsReconnect, reconnect } = app
+  const app = useApp(); const { t, lang, setLang, theme, setTheme, snap, user, isAdmin, canReview, cycleId, setCycleId, refresh, adapter, lastSync, error, needsReconnect, reconnect } = app
   const toast = useToast()
   const [open, setOpen] = useState(false)
   const [pal, setPal] = useState(false)
@@ -24,6 +24,7 @@ export function Shell({ page, children }: { page: string; children: ReactNode })
   const groups: { label: string; items: [string, string, IconName][] }[] = [
     { label: t('work'), items: [['home', t('home'), 'home'], ['my', t('myWork'), 'tasks'], ['browse', t('browse'), 'book'], ['notes', t('notes'), 'edit']] },
     { label: t('insights'), items: [['dashboard', t('dashboard'), 'chart'], ['fulfil', t('fulfilment'), 'target'], ['standings', t('standings'), 'trophy']] },
+    ...(!isAdmin && canReview ? [{ label: t('administration'), items: [['review', t('review'), 'shield']] as [string, string, IconName][] }] : []),
     ...(isAdmin ? [{ label: t('administration'), items: [['review', t('review'), 'shield'], ['mapping', t('mapping'), 'map'], ['cycles', t('cycles'), 'calendar'], ['admin', t('admin'), 'settings']] as [string, string, IconName][] }] : []),
   ]
   const doRefresh = async () => { if (window.__leaveGuard && !window.__leaveGuard()) return; try { await refresh(); toast(t('refreshed'), 'ok') } catch { toast(t('storageError'), 'bad') } }

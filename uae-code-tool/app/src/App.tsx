@@ -31,14 +31,14 @@ function useHash() {
 }
 
 export default function App() {
-  const { t, snap, user, isAdmin } = useApp()
+  const { t, snap, user, isAdmin, canReview } = useApp()
   const hash = useHash()
   useEffect(() => { document.title = `${t('appName')} · ${t('appTagline')}` })
   if (!snap || !user) return <Setup />
   const route = hash.split('?')[0].split('/')
   let page = route[0] || 'home'
   const adminOnly = ['review', 'mapping', 'cycles', 'admin']
-  if (!PAGES.has(page) || (adminOnly.includes(page) && !isAdmin)) page = 'home'
+  if (!PAGES.has(page) || (adminOnly.includes(page) && !isAdmin && !(page === 'review' && canReview))) page = 'home'
   let body
   switch (page) {
     case 'my': body = <MyWork key={hash} />; break

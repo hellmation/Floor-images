@@ -4,6 +4,7 @@ import { codeById, subById, pillarById, assigneeOf, effective, effectiveImpact, 
 import { pick, pickDesc, pickText } from '../i18n'
 import { ImpactPill, Pill, StatePill, StatusPill, Modal, Empty, useToast, fmtDate, errMsg } from '../components/ui'
 import { Icon } from '../components/icons'
+import { EvidenceRate } from '../components/EvidenceRate'
 import type { AnswerStatus, CodeAnswer, ItemAnswer, EvidenceStrength } from '../types'
 
 const emptyItem = (): ItemAnswer => ({ status: null, evidence: [], clarify: { flag: false, question: '' } })
@@ -147,7 +148,7 @@ export default function CodeView({ id }: { id: string }) {
                   <div className="field"><label className="label" htmlFor={`req-${r.n}-s`}>{t('service')}</label><input id={`req-${r.n}-s`} className="input" value={it.service || ''} onChange={e => upd(r.n, { service: e.target.value })} /></div>
                   <div className="field"><label className="label" htmlFor={`req-${r.n}-n`}>{t('note')}</label><input id={`req-${r.n}-n`} className="input" value={it.note || ''} onChange={e => upd(r.n, { note: e.target.value })} /></div>
                 </div>
-              </> : <ReadOnly it={it} ca={ca} projName={it.projectId ? pick(lang, cfg.projects.find(p => p.id === it.projectId) || { name_ar: it.projectId }) : ''} deptLabel={it.departmentId && it.departmentId !== codeDept ? deptName(cfg, it.departmentId, lang) : ''} />}
+              </> : <ReadOnly codeId={code.id} it={it} ca={ca} projName={it.projectId ? pick(lang, cfg.projects.find(p => p.id === it.projectId) || { name_ar: it.projectId }) : ''} deptLabel={it.departmentId && it.departmentId !== codeDept ? deptName(cfg, it.departmentId, lang) : ''} />}
             </section>
           })}
           {!paired && code.criteria.length > 0 && <section className="card p-4"><div className="label">{t('criteria')}</div><ol className="m-0 ps-5">{code.criteria.map(c => <li key={c.n}>{pickText(lang, c)}</li>)}</ol></section>}
@@ -214,12 +215,12 @@ function EvidenceAdd({ onAdd }: { onAdd: (title: string, url: string, strength: 
     <select className="select !w-auto" aria-label={t('evidenceStrength')} value={strength} onChange={e => setStrength(e.target.value as EvidenceStrength | '')}><option value="">{t('evidenceStrength')}: {t('strengthUnset')}</option><option value="conclusive">{t('strengthConclusive')}</option><option value="editable">{t('strengthEditable')}</option></select>
     <button className="btn btn-sm" disabled={!url.trim()} onClick={add}><Icon name="plus" />{t('addLink')}</button></div>
 }
-function ReadOnly({ it, ca, projName, deptLabel }: { it: ItemAnswer; ca?: { answer: string }; projName: string; deptLabel?: string }) {
+function ReadOnly({ it, ca, projName, deptLabel, codeId }: { it: ItemAnswer; ca?: { answer: string }; projName: string; deptLabel?: string; codeId: string }) {
   const { t } = useApp()
   return <div className="text-sm flex flex-col gap-1">
     {deptLabel && <div className="text-muted"><span className="font-medium text-fg-2">{t('reqDepartment')}:</span> {deptLabel}</div>}
     {it.status === 'na' && it.justification && <div><span className="font-medium text-fg-2">{t('justification')}:</span> {it.justification}</div>}
-    {it.evidence.length > 0 && <div className="flex flex-wrap gap-2">{it.evidence.map(e => <a key={e.id} className={`pill ${e.strength === 'conclusive' ? 'pill-ok' : e.strength === 'editable' ? 'pill-warn' : 'pill-muted'} no-underline`} href={e.url} target="_blank" rel="noreferrer" title={e.strength ? t(e.strength === 'conclusive' ? 'strengthConclusive' : 'strengthEditable') : undefined}><Icon name="link" style={{ width: 12, height: 12 }} />{e.title || e.url}</a>)}</div>}
+    {it.evidence.length > 0 && <div className="flex flex-wrap gap-2 items-center">{it.evidence.map(e => <span key={e.id} className="inline-flex items-center gap-1"><a className={`pill ${e.strength === 'conclusive' ? 'pill-ok' : e.strength === 'editable' ? 'pill-warn' : 'pill-muted'} no-underline`} href={e.url} target="_blank" rel="noreferrer" title={e.strength ? t(e.strength === 'conclusive' ? 'strengthConclusive' : 'strengthEditable') : undefined}><Icon name="link" style={{ width: 12, height: 12 }} />{e.title || e.url}</a><EvidenceRate codeId={codeId} ev={e} /></span>)}</div>}
     {(projName || it.service || it.note) && <div className="text-muted">{projName && <span className="me-3">{t('project')}: {projName}</span>}{it.service && <span className="me-3">{t('service')}: {it.service}</span>}{it.note && <span>{t('note')}: {it.note}</span>}</div>}
     {it.clarify?.flag && <div className="text-flag-ink">? {t('needsClarification')}: {it.clarify.question}{ca && <span className="text-muted"> · {t('replied')}: {ca.answer}</span>}</div>}
   </div>
