@@ -127,6 +127,9 @@ export default function Dashboard() {
       </Card>
 
       {/* 3. Performance */}
+        <Card icon="users" title={t('scoreByDept')} hint={t('scoreHint')} className="mb-4">
+          <Bars rows={byDept.map(({ d, r }) => ({ key: d.id, label: lang === 'ar' ? d.name_ar : d.name_en, text: lang === 'ar' ? d.name_ar : d.name_en, value: r.score, sub: `${r.approved}/${r.total}`, tipExtra: <TipRow label={`${t('approved')} / ${t('codes')}`} value={`${r.approved} / ${r.total}`} /> }))} />
+        </Card>
       <div className="grid lg:grid-cols-5 gap-4 mb-4">
         <Card icon="tasks" title={t('codePipeline')} hint={t('pipelineHint')} className="lg:col-span-2">
           <Donut parts={(['approved', 'submitted', 'returned', 'draft', 'none'] as WorkState[]).map(k => ({ key: k, label: k === 'none' ? t('notStarted') : t(k), value: states[k], color: STATE_COLOR[k] }))} total={master.codes.length} center={[fmtPct(readiness), t('readiness')]} />
@@ -161,14 +164,9 @@ export default function Dashboard() {
               <Donut size={150} parts={(['yes', 'partial', 'no', 'unanswered', 'na'] as const).map(k => ({ key: k, label: t(k), value: answers[k], color: ANSWER_COLOR[k] }))} center={[String(rows.length), t('requirements')]} />
             </Card>
           </div>
-          <div className="grid lg:grid-cols-2 gap-4">
-            <Card icon="users" title={t('byDepartment')} hint={t('scoreHint')}>
-              <Bars rows={byDept.map(({ d, r }) => ({ key: d.id, label: lang === 'ar' ? d.name_ar : d.name_en, text: lang === 'ar' ? d.name_ar : d.name_en, value: r.score, sub: `${r.approved}/${r.total}`, tipExtra: <TipRow label={`${t('approved')} / ${t('codes')}`} value={`${r.approved} / ${r.total}`} /> }))} />
-            </Card>
-            <Card icon="map" title={t('byProject')} hint={t('scoreHint')}>
-              {byProject.length === 0 ? <p className="text-sm text-muted m-0">{t('noItems')}</p> : <Bars rows={byProject.map(({ p, r }) => ({ key: p.id, label: pick(lang, p), text: pick(lang, p), value: r.score, sub: `${r.approved}/${r.total}`, tipExtra: <TipRow label={`${t('approved')} / ${t('codes')}`} value={`${r.approved} / ${r.total}`} /> }))} />}
-            </Card>
-          </div>
+          <Card icon="map" title={t('byProject')} hint={t('scoreHint')}>
+            {byProject.length === 0 ? <p className="text-sm text-muted m-0">{t('noItems')}</p> : <Bars rows={byProject.map(({ p, r }) => ({ key: p.id, label: pick(lang, p), text: pick(lang, p), value: r.score, sub: `${r.approved}/${r.total}`, tipExtra: <TipRow label={`${t('approved')} / ${t('codes')}`} value={`${r.approved} / ${r.total}`} /> }))} />}
+          </Card>
           <div className="grid lg:grid-cols-5 gap-4">
             <Card icon="users" title={t('answersByDept')} hint={t('answersByDeptHint')} className="lg:col-span-3">
               <Stacked mode={mode} labelW="34%" rows={deptAnswers} parts={[{ key: 'yes', label: t('yes'), color: ANSWER_COLOR.yes }, { key: 'partial', label: t('partial'), color: ANSWER_COLOR.partial }, { key: 'no', label: t('no'), color: ANSWER_COLOR.no }, { key: 'unanswered', label: t('unanswered'), color: ANSWER_COLOR.unanswered }, { key: 'na', label: t('na'), color: ANSWER_COLOR.na }]} />
