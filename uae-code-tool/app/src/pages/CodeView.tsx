@@ -139,6 +139,7 @@ export default function CodeView({ id }: { id: string }) {
                 {!it.clarify?.flag && ca && <div className="text-sm text-muted"><b>{t('clarificationAnswer')}</b>: {ca.answer}</div>}
                 {it.status === 'na' && <div className="field"><label className="label" htmlFor={`req-${r.n}-j`}>{t('justification')}</label><textarea id={`req-${r.n}-j`} className="textarea" rows={2} value={it.justification || ''} onChange={e => upd(r.n, { justification: e.target.value })} /></div>}
                 <div><div className="label">{t('evidence')}</div>
+                  <p className="text-xs text-muted m-0 mb-2 flex items-start gap-1.5"><Icon name="folder" className="shrink-0 mt-0.5" style={{ width: 13, height: 13 }} /><span>{t('evidenceHow')}</span></p>
                   {it.evidence.length > 0 && <ul className="m-0 mb-2 p-0 list-none flex flex-col gap-1">{it.evidence.map(ev => <li key={ev.id} className="flex items-center gap-2 text-sm panel px-2 py-1.5"><Icon name="link" className="text-muted" /><a href={ev.url} target="_blank" rel="noreferrer" className="truncate flex-1">{ev.title || ev.url}</a><select className="select !w-auto !py-0.5 text-xs" aria-label={t('evidenceStrength')} value={ev.strength || ''} onChange={e => upd(r.n, { evidence: it.evidence.map(x => x.id === ev.id ? { ...x, strength: (e.target.value || null) as EvidenceStrength | null } : x) })}><option value="">{t('strengthUnset')}</option><option value="conclusive">{t('strengthConclusive')}</option><option value="editable">{t('strengthEditable')}</option></select><button className="btn btn-ghost btn-sm" onClick={() => upd(r.n, { evidence: it.evidence.filter(x => x.id !== ev.id) })} aria-label={t('remove')}><Icon name="x" /></button></li>)}</ul>}
                   <EvidenceAdd onAdd={(title, url, strength) => upd(r.n, { evidence: [...it.evidence, { id: uid(), type: 'link', title, url, addedAt: now(), addedBy: user!.id, strength }] })} />
                 </div>
@@ -168,6 +169,13 @@ export default function CodeView({ id }: { id: string }) {
             <div className="text-sm"><div className="label">{t('mappedProjects')}</div>{linked.length ? <div className="flex flex-wrap gap-1">{linked.map(p => <Pill key={p!.id} kind="accent">{pick(lang, p!)}</Pill>)}</div> : <span className="text-muted">—</span>}</div>
             {eff!.userId && <div className="text-xs text-muted">{t('submittedBy')}: {userName(eff!.userId)} · {fmtDate(eff!.answer?.updatedAt, lang)}</div>}
           </div>
+          <details className="card p-4 text-sm group" open={canEdit}>
+            <summary className="cursor-pointer list-none flex items-center gap-2 font-semibold select-none"><Icon name="info" className="text-accent-ink" />{t('whatIsEvidence')}<Icon name="chevronD" className="ms-auto text-muted transition-transform group-open:rotate-180" /></summary>
+            <p className="m-0 mt-3 text-fg-2">{t('evidenceGuideIntro')}</p>
+            <ol className="m-0 mt-2 ps-0 list-none flex flex-col gap-1.5">{([t('evGuideSop'), t('evGuideExec'), t('evGuideMonitor')]).map((x, i) => <li key={i} className="flex items-start gap-2"><span className="num inline-grid place-items-center w-5 h-5 rounded-full bg-accent-soft text-accent-ink text-xs font-bold shrink-0 mt-0.5">{i + 1}</span><span>{x}</span></li>)}</ol>
+            <p className="m-0 mt-2 text-xs text-muted">{t('evGuideNot')}</p>
+            <div className="panel px-3 py-2 mt-3 text-xs"><div className="font-semibold text-fg-2 mb-0.5 flex items-center gap-1.5"><Icon name="folder" style={{ width: 13, height: 13 }} />{t('evGuideWhere')}</div><span className="text-muted">{t('evGuideFolder')}</span></div>
+          </details>
           <NoteCard key={code.id} codeId={code.id} value={snap!.answers[user!.id]?.notes?.[code.id]?.text || ''} onSave={saveMyNote} />
           {canEdit && <div className="card p-4 flex flex-col gap-3">
             <div className="flex items-center justify-between"><div className="label !mb-0">{t('submitChecklist')}</div><span className="text-xs text-muted num">{answered}/{code.requirements.length}</span></div>
