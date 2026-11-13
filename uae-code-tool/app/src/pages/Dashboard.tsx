@@ -82,8 +82,8 @@ export default function Dashboard() {
   const openClar = effs.reduce((n, x) => n + Object.entries(x.e.answer?.items || {}).filter(([k, it]) => it.clarify?.flag && !snap!.reviews.clarifications?.[cy]?.[x.c.id]?.[k]?.answer).length, 0)
   const oldest = (xs: { age: number }[]) => xs.length ? Math.max(...xs.map(x => x.age)) : 0
   const team = useMemo(() => cfg.users.filter(u => u.active).map(u => { const mine = effs.filter(x => x.who === u.id); const n = (st: WorkState) => mine.filter(x => x.e.state === st).length
-    const last = mine.reduce((m, x) => x.e.answer && x.e.answer.updatedAt > m ? x.e.answer.updatedAt : m, ''); return { u, assigned: mine.length, none: n('none'), draft: n('draft'), returned: n('returned'), submitted: n('submitted'), approved: n('approved'), evq: mine.filter(x => x.e.state !== 'none' && evPartsPending(x.e.answer) > 0).length, last } })
-    .filter(r => r.assigned > 0).sort((a, b) => b.assigned - a.assigned), [cfg, effs])
+    const last = mine.reduce((m, x) => x.e.answer && x.e.answer.updatedAt > m ? x.e.answer.updatedAt : m, ''); return { u, assigned: mine.length, none: n('none'), draft: n('draft'), returned: n('returned'), submitted: n('submitted'), approved: n('approved'), score: rollup(snap!, cy, mine.map(x => x.c), approvedOnly).score, evq: mine.filter(x => x.e.state !== 'none' && evPartsPending(x.e.answer) > 0).length, last } })
+    .filter(r => r.assigned > 0).sort((a, b) => (b.score ?? -1) - (a.score ?? -1) || b.assigned - a.assigned), [cfg, effs, snap, cy, approvedOnly])
   const risks = [
     { key: 'high', label: t('riskHighNotStarted'), n: effs.filter(x => x.e.state === 'none' && x.imp === 'high').length, href: '#/browse?st=none&imp=high', tone: 'bad' as const },
     { key: 'evq', label: t('riskEvQ'), n: effs.filter(x => x.e.state !== 'none' && evPartsPending(x.e.answer) > 0).length, href: '#/browse', tone: 'warn' as const },
@@ -117,19 +117,20 @@ export default function Dashboard() {
           </div></div>
       </div>
 
-      {/* 2. Team */}
-      <Card icon="users" title={t('teamProgress')} hint={t('teamHint')} className="mb-4 overflow-x-auto">
-        <table className="tbl"><thead><tr><th>{t('evaluator')}</th><th>{t('codes')}</th><th>{t('notStarted')}</th><th>{t('draft')}</th><th>{t('returned')}</th><th>{t('awaitingReview')}</th><th>{t('approved')}</th><th>{t('evQTab')}</th><th className="min-w-44">{t('progress')}</th><th>{t('lastActivity')}</th></tr></thead>
+      {/* 2. Performance per department */}
+        <Card icon="users" title={t('perfByDept')} hint={t('scoreHint')} className="mb-4">
+          <Bars rows={byDept.map(({ d, r }) => ({ key: d.id, label: lang === 'ar' ? d.name_ar : d.name_en, text: lang === 'ar' ? d.name_ar : d.name_en, value: r.score, sub: `${r.approved}/${r.total}`, tipExtra: <TipRow label={`${t('approved')} / ${t('codes')}`} value={`${r.approved} / ${r.total}`} /> }))} />
+        </Card>
+      {/* 3. Performance per evaluator */}
+      <Card icon="users" title={t('perfByEvaluator')} hint={t('teamHint')} className="mb-4 overflow-x-auto">
+        <table className="tbl"><thead><tr><th>{t('evaluator')}</th><th>{t('codes')}</th><th>{t('score')}</th><th>{t('notStarted')}</th><th>{t('draft')}</th><th>{t('returned')}</th><th>{t('awaitingReview')}</th><th>{t('approved')}</th><th>{t('evQTab')}</th><th className="min-w-44">{t('progress')}</th><th>{t('lastActivity')}</th></tr></thead>
           <tbody>{team.map(r => { const done = r.submitted + r.approved; const pct = r.assigned ? done / r.assigned * 100 : 0
-            return <tr key={r.u.id}><td><a href={'#/browse?who=' + r.u.id} className="flex items-center gap-2 no-underline text-fg font-medium"><Avatar name={uname(r.u)} photo={r.u.photo} />{uname(r.u)}</a></td><td className="num">{r.assigned}</td><td className="num text-muted">{r.none}</td><td className="num text-accent-ink">{r.draft}</td><td className={`num ${r.returned ? 'text-warn-ink font-semibold' : 'text-muted'}`}>{r.returned}</td><td className={`num ${r.submitted ? 'text-info-ink font-semibold' : 'text-muted'}`}>{r.submitted}</td><td className="num text-ok-ink font-semibold">{r.approved}</td><td className={`num ${r.evq ? 'text-warn-ink font-semibold' : 'text-muted'}`}>{r.evq}</td>
+            return <tr key={r.u.id}><td><a href={'#/browse?who=' + r.u.id} className="flex items-center gap-2 no-underline text-fg font-medium"><Avatar name={uname(r.u)} photo={r.u.photo} />{uname(r.u)}</a></td><td className="num">{r.assigned}</td><td className={`num font-bold text-${tone(r.score)}-ink`}>{fmtPct(r.score)}</td><td className="num text-muted">{r.none}</td><td className="num text-accent-ink">{r.draft}</td><td className={`num ${r.returned ? 'text-warn-ink font-semibold' : 'text-muted'}`}>{r.returned}</td><td className={`num ${r.submitted ? 'text-info-ink font-semibold' : 'text-muted'}`}>{r.submitted}</td><td className="num text-ok-ink font-semibold">{r.approved}</td><td className={`num ${r.evq ? 'text-warn-ink font-semibold' : 'text-muted'}`}>{r.evq}</td>
               <td><span className="flex items-center gap-2"><span className="flex flex-1 h-2 rounded overflow-hidden bg-surface-3" style={{ gap: 1 }}>{(['approved', 'submitted', 'returned', 'draft'] as WorkState[]).map(k => r[k] > 0 && <i key={k} style={{ width: `${r[k] / r.assigned * 100}%`, background: STATE_COLOR[k] }} />)}</span><b className={`num text-sm text-${tone(pct)}-ink`}>{fmtPct(pct)}</b></span></td>
               <td className="text-xs text-muted whitespace-nowrap">{r.last ? `${fmtDay(r.last, lang)} · ${ageDays(r.last)} ${t('daysUnit')}` : '—'}</td></tr> })}</tbody></table>
       </Card>
 
-      {/* 3. Performance */}
-        <Card icon="users" title={t('scoreByDept')} hint={t('scoreHint')} className="mb-4">
-          <Bars rows={byDept.map(({ d, r }) => ({ key: d.id, label: lang === 'ar' ? d.name_ar : d.name_en, text: lang === 'ar' ? d.name_ar : d.name_en, value: r.score, sub: `${r.approved}/${r.total}`, tipExtra: <TipRow label={`${t('approved')} / ${t('codes')}`} value={`${r.approved} / ${r.total}`} /> }))} />
-        </Card>
+      {/* 4. Everything else */}
       <div className="grid lg:grid-cols-5 gap-4 mb-4">
         <Card icon="tasks" title={t('codePipeline')} hint={t('pipelineHint')} className="lg:col-span-2">
           <Donut parts={(['approved', 'submitted', 'returned', 'draft', 'none'] as WorkState[]).map(k => ({ key: k, label: k === 'none' ? t('notStarted') : t(k), value: states[k], color: STATE_COLOR[k] }))} total={master.codes.length} center={[fmtPct(readiness), t('readiness')]} />
@@ -150,7 +151,7 @@ export default function Dashboard() {
         <Heatmap fill={heat} rows={master.pillars.map(p => ({ key: p.id, label: <><span className="code-id me-2">{p.id}</span>{pick(lang, p)}</>, cells: bySub.filter(x => x.s.pillar === p.id).map(({ s, r }) => ({ key: s.id, label: pick(lang, s), value: r.score, sub: `${r.approved}/${r.total} ${t('approved')}`, href: '#/browse?p=' + p.id })) }))} />
       </Card>
 
-      {/* 4. More analytics, collapsed by default */}
+      {/* 5. More analytics, collapsed by default */}
       <details className="card p-5 mt-6 group">
         <summary className="cursor-pointer list-none flex items-center gap-2 select-none"><Icon name="chart" className="text-accent-ink" /><span className="font-semibold">{t('moreAnalytics')}</span><span className="text-xs text-muted hidden sm:inline">· {t('moreAnalyticsHint')}</span><span className="seg ms-auto text-xs" onClick={e => e.preventDefault()}><button aria-pressed={mode === 'count'} onClick={() => setMode('count')}>{t('showCounts')}</button><button aria-pressed={mode === 'pct'} onClick={() => setMode('pct')}>{t('showPct')}</button></span><Icon name="chevronD" className="text-muted transition-transform group-open:rotate-180" /></summary>
         <div className="mt-5 flex flex-col gap-4">

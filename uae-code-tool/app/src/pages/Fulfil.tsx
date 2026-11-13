@@ -58,6 +58,7 @@ export default function Fulfil() {
   const stUser = [...groupBy(codeFacts, x => x.who || '_none').entries()].map(([k, xs]) => statusRow(k, k === '_none' ? t('unassigned') : uname(k), xs)).sort((a, b) => (b.v.codes as number) - (a.v.codes as number))
   const stDept = [...groupBy(codeFacts, x => x.dept || '_none').entries()].map(([k, xs]) => statusRow(k, k === '_none' ? t('noDept') : dname(k), xs)).sort((a, b) => (b.v.codes as number) - (a.v.codes as number))
   const stTotal = statusRow('all', t('total'), codeFacts)
+  const stackRow = (r: GRow) => ({ key: r.id, label: r.label, text: r.label, values: { approved: r.v.approved as number, submitted: r.v.submitted as number, prep: r.v.prep as number, none: r.v.none as number } })
   const stParts = [{ key: 'approved', label: t('approved'), color: STATE_COLOR.approved }, { key: 'submitted', label: t('awaitingReview'), color: STATE_COLOR.submitted }, { key: 'prep', label: t('inPreparation'), color: STATE_COLOR.prep }, { key: 'none', label: t('notStarted'), color: STATE_COLOR.none }]
 
   /* ---------- 2. evidence: coverage, evaluator type, reviewer verdict ---------- */
@@ -86,30 +87,46 @@ export default function Fulfil() {
       <PrintHeader title={`${t('reportOf')}: ${t('fulfilment')}`} sub={`${lang === 'ar' ? (cycle?.name || cy) : (cycle?.name_en || cy)} · ${approvedOnly ? t('approvedOnly') : t('allAnswered')}`} />
       <PageHeader title={t('fulfilment')} sub={`${t('high')} ${P.high} · ${t('medium')} ${P.medium} · ${t('low')} ${P.low} — ${t('fulfilmentHint')}`}
         actions={<><button className="btn btn-sm" onClick={() => window.print()}><Icon name="download" />{t('printReport')}</button><div className="seg" role="group" aria-label={t('status')}><button aria-pressed={!approvedOnly} onClick={() => setApprovedOnly(false)}>{t('allAnswered')}</button><button aria-pressed={approvedOnly} onClick={() => setApprovedOnly(true)}>{t('approvedOnly')}</button></div></>} />
+      {/* 1. Status cards */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
-        <div className="card p-5 flex items-center gap-4 fade-up"><Ring value={all.pct} size={84} stroke={9} tone={ringTone(all.pct)} /><div><div className="label">{t('overallScore')}</div><div className="text-sm text-muted">{Math.round(all.earned)} / {all.possible} {t('earnedPoints').split(' ')[0]}</div></div></div>
-        <Stat label={t('approved')} value={stTotal.v.approved as number} sub={`${t('awaitingReview')}: ${stTotal.v.submitted} · ${t('inPreparation')}: ${stTotal.v.prep} · ${t('notStarted')}: ${stTotal.v.none}`} icon="checkCircle" tone="ok" />
-        <Stat label={t('withEvidence')} value={fmtPct(evTotal.v.cov as number | null)} sub={`${evTotal.v.with} / ${evTotal.v.answered} ${t('answeredReqs')}`} icon="link" tone="info" />
-        <Stat label={t('reviewerVerdict')} value={`${evTotal.v.strong} / ${evTotal.v.weak}`} sub={`${t('rateStrong')} / ${t('rateWeak')} · ${t('unrated')}: ${evTotal.v.unrated}`} icon="shield" tone={(evTotal.v.weak as number) ? 'warn' : 'ok'} />
+        {([['approved', t('approved'), 'checkCircle', 'ok'], ['submitted', t('awaitingReview'), 'shield', 'info'], ['prep', t('inPreparation'), 'edit', 'warn'], ['none', t('notStarted'), 'clock', undefined]] as const).map(([k, label, icon, tn]) =>
+          <Stat key={k} label={label} value={stTotal.v[k] as number} sub={`${fmtPct((stTotal.v.codes as number) ? (stTotal.v[k] as number) / (stTotal.v.codes as number) * 100 : 0)} ${t('ofCodes')} (${stTotal.v.codes})`} icon={icon} tone={tn} />)}
       </div>
 
-      <Section icon="tasks" title={t('codeStatus')} hint={t('codeStatusHint')}>
-        <div className="card p-5 mb-3"><Stacked mode="count" labelW="30%" rows={stPillar.map(r => ({ key: r.id, label: `${r.id}. ${r.label}`, text: `${r.id}. ${r.label}`, values: { approved: r.v.approved as number, submitted: r.v.submitted as number, prep: r.v.prep as number, none: r.v.none as number } }))} parts={stParts} /></div>
-        <H2 icon="users">{t('byEvaluator')}</H2><GTable first={t('evaluator')} cols={statusCols} rows={stUser} total={stTotal} />
-        <H2 icon="map">{t('byDepartment')}</H2><GTable first={t('department')} cols={statusCols} rows={stDept} total={stTotal} />
-        <H2 icon="layers">{t('byPillar')}</H2><GTable first={t('pillar')} cols={statusCols} rows={stPillar} total={stTotal} />
+      {/* 2. Departments by status */}
+      <H2 icon="map">{t('statusByDept')}</H2>
+      <div className="card p-5 mb-3"><Stacked mode="count" labelW="30%" rows={stDept.map(stackRow)} parts={stParts} /></div>
+      <GTable first={t('department')} cols={statusCols} rows={stDept} total={stTotal} />
+
+      {/* 3. Evaluators by status */}
+      <H2 icon="users">{t('statusByEvaluator')}</H2>
+      <div className="card p-5 mb-3"><Stacked mode="count" labelW="30%" rows={stUser.map(stackRow)} parts={stParts} /></div>
+      <GTable first={t('evaluator')} cols={statusCols} rows={stUser} total={stTotal} />
+
+      {/* 4. Everything else */}
+      <Section icon="target" title={t('scoreAndEvidence')} hint={t('fulfilmentHint')}>
+        <div className="grid sm:grid-cols-3 gap-3">
+          <div className="card p-5 flex items-center gap-4 fade-up"><Ring value={all.pct} size={84} stroke={9} tone={ringTone(all.pct)} /><div><div className="label">{t('overallScore')}</div><div className="text-sm text-muted">{Math.round(all.earned)} / {all.possible} {t('earnedPoints').split(' ')[0]}</div></div></div>
+          <Stat label={t('withEvidence')} value={fmtPct(evTotal.v.cov as number | null)} sub={`${evTotal.v.with} / ${evTotal.v.answered} ${t('answeredReqs')}`} icon="link" tone="info" />
+          <Stat label={t('reviewerVerdict')} value={`${evTotal.v.strong} / ${evTotal.v.weak}`} sub={`${t('rateStrong')} / ${t('rateWeak')} · ${t('unrated')}: ${evTotal.v.unrated}`} icon="shield" tone={(evTotal.v.weak as number) ? 'warn' : 'ok'} />
+        </div>
+      </Section>
+
+      <Section icon="layers" title={t('statusByPillar')} hint={t('codeStatusHint')}>
+        <div className="card p-5 mb-3"><Stacked mode="count" labelW="30%" rows={stPillar.map(r => stackRow({ ...r, label: `${r.id}. ${r.label}` }))} parts={stParts} /></div>
+        <GTable first={t('pillar')} cols={statusCols} rows={stPillar} total={stTotal} />
       </Section>
 
       <Section icon="link" title={t('evidenceSection')} hint={t('evidenceSectionHint')}>
         <div className="card p-5 mb-3"><Stacked mode="count" labelW="30%" rows={evPillar.map(r => ({ key: r.id, label: `${r.id}. ${r.label}`, text: `${r.id}. ${r.label}`, values: { with: r.v.with as number, without: r.v.without as number } }))} parts={evParts} /></div>
-        <H2 icon="users">{t('byEvaluator')}</H2><GTable first={t('evaluator')} cols={evCols} rows={evUser} total={evTotal} />
         <H2 icon="map">{t('byDepartment')}</H2><GTable first={t('department')} cols={evCols} rows={evDept} total={evTotal} />
+        <H2 icon="users">{t('byEvaluator')}</H2><GTable first={t('evaluator')} cols={evCols} rows={evUser} total={evTotal} />
         <H2 icon="layers">{t('byPillar')}</H2><GTable first={t('pillar')} cols={evCols} rows={evPillar} total={evTotal} />
       </Section>
 
       <Section icon="target" title={t('pointsSection')} hint={t('fulfilmentHint')}>
-        <H2 icon="users">{t('byEvaluator')}</H2><GTable first={t('evaluator')} cols={ptCols} rows={ptUser} total={ptTotal} />
         <H2 icon="map">{t('byDepartment')}</H2><GTable first={t('department')} cols={ptCols} rows={ptDept} total={ptTotal} />
+        <H2 icon="users">{t('byEvaluator')}</H2><GTable first={t('evaluator')} cols={ptCols} rows={ptUser} total={ptTotal} />
         <H2 icon="layers">{t('byPillar')}</H2><GTable first={t('pillar')} cols={ptCols} rows={ptPillar} total={ptTotal} />
         <H2 icon="grid">{t('bySubpillar')}</H2><GTable first={t('subpillar')} extraH={t('pillar')} cols={ptCols} rows={ptSub} total={ptTotal} />
       </Section>
