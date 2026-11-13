@@ -153,6 +153,7 @@ export default function CodeView({ id }: { id: string }) {
             </section>
           })}
           {!paired && code.criteria.length > 0 && <section className="card p-4"><div className="label">{t('criteria')}</div><ol className="m-0 ps-5">{code.criteria.map(c => <li key={c.n}>{pickText(lang, c)}</li>)}</ol></section>}
+          <NoteCard key={code.id} codeId={code.id} value={snap!.answers[user!.id]?.notes?.[code.id]?.text || ''} onSave={saveMyNote} />
         </div>
         <aside className="flex flex-col gap-3 lg:sticky lg:top-20">
           <div className="card p-4 flex flex-col gap-3">
@@ -176,7 +177,6 @@ export default function CodeView({ id }: { id: string }) {
             <p className="m-0 mt-2 text-xs text-muted">{t('evGuideNot')}</p>
             <div className="panel px-3 py-2 mt-3 text-xs"><div className="font-semibold text-fg-2 mb-0.5 flex items-center gap-1.5"><Icon name="folder" style={{ width: 13, height: 13 }} />{t('evGuideWhere')}</div><span className="text-muted">{t('evGuideFolder')}</span></div>
           </details>
-          <NoteCard key={code.id} codeId={code.id} value={snap!.answers[user!.id]?.notes?.[code.id]?.text || ''} onSave={saveMyNote} />
           {canEdit && <div className="card p-4 flex flex-col gap-3">
             <div className="flex items-center justify-between"><div className="label !mb-0">{t('submitChecklist')}</div><span className="text-xs text-muted num">{answered}/{code.requirements.length}</span></div>
             <ul className="checklist m-0 p-0 list-none">{checks.map(([done, label]) => <li key={label} className={done ? 'done' : 'todo'}><Icon name={done ? 'checkCircle' : 'clock'} className="shrink-0 mt-0.5" style={{ width: 15, height: 15 }} />{label}</li>)}</ul>
