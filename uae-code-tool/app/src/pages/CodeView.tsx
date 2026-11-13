@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useApp } from '../store/state'
-import { codeById, subById, pillarById, assigneeOf, effective, effectiveImpact, master, sortIds, uid, now, departmentOf, supportDepartments, deptName } from '../store/scoring'
+import { codeById, subById, pillarById, assigneeOf, effective, effectiveImpact, master, sortIds, uid, now, departmentOf, supportDepartments, deptName, evPartsPending, evPartsAnswered } from '../store/scoring'
 import { pick, pickDesc, pickText } from '../i18n'
 import { ImpactPill, Pill, StatePill, StatusPill, Modal, Empty, useToast, fmtDate, errMsg } from '../components/ui'
 import { Icon } from '../components/icons'
@@ -27,6 +27,11 @@ export default function CodeView({ id }: { id: string }) {
   const [dirty, setDirty] = useState(false)
   const [busy, setBusy] = useState(false)
   const [deptConfirmed, setDeptConfirmed] = useState(false)
+  /* Evidence questions answered after submission: the owner of a submitted or approved answer may still answer the three
+   * questions where they are unanswered. Only that field is written; state, submittedAt and the review stay as they are. */
+  const [late, setLate] = useState<Record<string, NonNullable<ItemAnswer['evidenceParts']>>>({})
+  const canLate = !!code && locked && !!eff?.answer && eff.userId === user!.id && (cycle?.status === 'open' || cycle?.status === 'review')
+  const latePending = Object.keys(late).length > 0
   /* Form initialisation. The form is (re)built from the stored answer only when the code or cycle changes, or when the
    * stored answer changes while there are NO unsaved edits. If it changes while the person is editing (someone else saved
    * this code, or a refresh brought a newer copy), their edits are kept and a banner offers to load the newer version. */
@@ -52,11 +57,11 @@ export default function CodeView({ id }: { id: string }) {
     const next: Record<string, ItemAnswer> = {}
     for (const r of code.requirements) { next[String(r.n)] = src?.items[String(r.n)] ? { ...emptyItem(), ...JSON.parse(JSON.stringify(src.items[String(r.n)])) } : emptyItem()
       if (carry) next[String(r.n)].clarify = { flag: false, question: '' } } // a carried answer never carries an open clarification
-    setItems(next); setCarried(carry || base?.carriedFrom || null); setConfirm(false); setDirty(false); setDeptConfirmed(!!base?.deptConfirmed)
+    setItems(next); setCarried(carry || base?.carriedFrom || null); setConfirm(false); setDirty(false); setLate({}); setDeptConfirmed(!!base?.deptConfirmed)
   }, [initTick]) // eslint-disable-line react-hooks/exhaustive-deps
   const ordered = useMemo(() => [...master.codes].sort((a, b) => sortIds(a.id, b.id)), [])
   // unsaved edits: warn before the tab closes and before any in-app navigation (App.useHash consults the guard)
-  const dirtyRef = useRef(false); dirtyRef.current = dirty
+  const dirtyRef = useRef(false); dirtyRef.current = dirty || latePending
   useEffect(() => {
     window.__leaveGuard = () => !dirtyRef.current || window.confirm(t('unsavedLeave'))
     const bu = (e: BeforeUnloadEvent) => { if (dirtyRef.current) { e.preventDefault(); e.returnValue = '' } }
@@ -96,6 +101,16 @@ export default function CodeView({ id }: { id: string }) {
     }
     catch (e) { justSaved.current = false; toast(errMsg(e, t), 'bad') } finally { setBusy(false) }
   }
+  const lateNeeded = locked ? evPartsPending(eff?.answer) : 0
+  const saveLate = async () => {
+    if (busy || !canLate || !latePending) return; setBusy(true)
+    const cur = eff!.answer!; const nextItems = { ...cur.items }
+    for (const [n, parts] of Object.entries(late)) { const it = nextItems[n]; if (!it) continue; const merged = { ...(it.evidenceParts || {}) }
+      for (const k of ['doc', 'exec', 'monitor'] as const) if (typeof merged[k] !== 'boolean' && typeof parts[k] === 'boolean') merged[k] = parts[k] // answered questions stay as they were
+      nextItems[n] = { ...it, evidenceParts: merged } }
+    try { await saveMyAnswer(cy, code.id, { ...cur, updatedAt: now(), items: nextItems }, 'evidence-questions'); setLate({}); toast(t('evLateSaved'), 'ok') }
+    catch (e) { toast(errMsg(e, t), 'bad') } finally { setBusy(false) }
+  }
   const override = async (uidv: string) => { const c = JSON.parse(JSON.stringify(cfg)); c.overrides[cy] = c.overrides[cy] || {}; if (uidv) c.overrides[cy][code.id] = uidv; else delete c.overrides[cy][code.id]; try { await saveConfig(c, `override ${code.id} -> ${uidv || 'auto'}`) } catch (e) { toast(errMsg(e, t), 'bad') } }
   const otherPending = !!myOwn && eff!.userId !== user!.id && (eff!.state === 'submitted' || eff!.state === 'approved')
   const codeDept = departmentOf(snap!, cy, code.id); const supports = supportDepartments(cfg, code.id); const depts = cfg.departments.filter(d => d.active)
@@ -121,6 +136,9 @@ export default function CodeView({ id }: { id: string }) {
             {cycle && cycle.status !== 'open' && <div className="text-sm text-warn-ink bg-warn-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="clock" />{t(cycle.status === 'closed' ? 'cycleClosedNotice' : cycle.status === 'review' ? 'cycleReviewNotice' : 'cyclePlanningNotice')}</div>}
             {!canEdit && cycle?.status === 'open' && !locked && <div className="text-sm text-warn-ink bg-warn-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="eye" />{t('readOnly')} · {t('requestChange')}</div>}
             {stale && <div className="text-sm text-warn-ink bg-warn-soft rounded-lg px-3 py-2 flex flex-wrap items-center gap-2" role="alert"><Icon name="alert" className="shrink-0" /><span className="flex-1 min-w-48">{t('staleEdit')}</span><button className="btn btn-sm" onClick={() => setStale(false)}>{t('keepMine')}</button><button className="btn btn-sm" onClick={loadLatest}>{t('loadLatest')}</button></div>}
+            {lateNeeded > 0 && (canLate
+              ? <div className="text-sm text-warn-ink bg-warn-soft rounded-lg px-3 py-2 flex flex-wrap items-center gap-2" role="status"><Icon name="alert" className="shrink-0" /><span className="flex-1 min-w-48">{t('evLateBanner')}</span><button className="btn btn-sm btn-primary" disabled={!latePending || busy} onClick={saveLate}><Icon name="check" />{t('evLateSave')}</button></div>
+              : <div className="text-sm text-muted bg-surface-2 rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="clock" />{t('evLateWaiting')} ({userName(eff!.userId)})</div>)}
             {otherPending && <div className="text-sm text-info-ink bg-info-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="info" />{t('pendingOther')} ({userName(eff!.userId)})</div>}
             {adminShadow && <div className="text-sm text-info-ink bg-info-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="shield" />{t('adminShadow')}</div>}
             {carried && <div className="text-sm text-info-ink bg-info-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="clock" />{t('carried')} (<bdi dir="ltr">{carried}</bdi>)</div>}
@@ -152,7 +170,7 @@ export default function CodeView({ id }: { id: string }) {
                   <div className="field"><label className="label" htmlFor={`req-${r.n}-s`}>{t('service')}</label><input id={`req-${r.n}-s`} className="input" value={it.service || ''} onChange={e => upd(r.n, { service: e.target.value })} /></div>
                   <div className="field"><label className="label" htmlFor={`req-${r.n}-n`}>{t('note')}</label><input id={`req-${r.n}-n`} className="input" value={it.note || ''} onChange={e => upd(r.n, { note: e.target.value })} /></div>
                 </div>
-              </> : <ReadOnly codeId={code.id} it={it} ca={ca} projName={it.projectId ? pick(lang, cfg.projects.find(p => p.id === it.projectId) || { name_ar: it.projectId }) : ''} deptLabel={it.departmentId && it.departmentId !== codeDept ? deptName(cfg, it.departmentId, lang) : ''} />}
+              </> : <ReadOnly codeId={code.id} it={it} ca={ca} late={canLate && (it.status === 'yes' || it.status === 'partial') && !evPartsAnswered(it) ? { value: { ...(it.evidenceParts || {}), ...(late[String(r.n)] || {}) }, onChange: p => setLate(s => ({ ...s, [String(r.n)]: p })), idp: `req-${r.n}-lp` } : undefined} projName={it.projectId ? pick(lang, cfg.projects.find(p => p.id === it.projectId) || { name_ar: it.projectId }) : ''} deptLabel={it.departmentId && it.departmentId !== codeDept ? deptName(cfg, it.departmentId, lang) : ''} />}
             </section>
           })}
           {!paired && code.criteria.length > 0 && <section className="card p-4"><div className="label">{t('criteria')}</div><ol className="m-0 ps-5">{code.criteria.map(c => <li key={c.n}>{pickText(lang, c)}</li>)}</ol></section>}
@@ -226,13 +244,13 @@ function EvidenceAdd({ onAdd }: { onAdd: (title: string, url: string, strength: 
     <select className="select !w-auto" aria-label={t('evidenceStrength')} value={strength} onChange={e => setStrength(e.target.value as EvidenceStrength | '')}><option value="">{t('evidenceStrength')}: {t('strengthUnset')}</option><option value="conclusive">{t('strengthConclusive')}</option><option value="editable">{t('strengthEditable')}</option></select>
     <button className="btn btn-sm" disabled={!url.trim()} onClick={add}><Icon name="plus" />{t('addLink')}</button></div>
 }
-function ReadOnly({ it, ca, projName, deptLabel, codeId }: { it: ItemAnswer; ca?: { answer: string }; projName: string; deptLabel?: string; codeId: string }) {
+function ReadOnly({ it, ca, projName, deptLabel, codeId, late }: { it: ItemAnswer; ca?: { answer: string }; projName: string; deptLabel?: string; codeId: string; late?: { value: NonNullable<ItemAnswer['evidenceParts']>; onChange: (p: NonNullable<ItemAnswer['evidenceParts']>) => void; idp: string } }) {
   const { t } = useApp()
   return <div className="text-sm flex flex-col gap-1">
     {deptLabel && <div className="text-muted"><span className="font-medium text-fg-2">{t('reqDepartment')}:</span> {deptLabel}</div>}
     {it.status === 'na' && it.justification && <div><span className="font-medium text-fg-2">{t('justification')}:</span> {it.justification}</div>}
     {it.evidence.length > 0 && <div className="flex flex-wrap gap-2 items-center">{it.evidence.map(e => <span key={e.id} className="inline-flex items-center gap-1"><a className={`pill ${e.strength === 'conclusive' ? 'pill-ok' : e.strength === 'editable' ? 'pill-warn' : 'pill-muted'} no-underline`} href={e.url} target="_blank" rel="noreferrer" title={e.strength ? t(e.strength === 'conclusive' ? 'strengthConclusive' : 'strengthEditable') : undefined}><Icon name="link" style={{ width: 12, height: 12 }} />{e.title || e.url}</a><EvidenceRate codeId={codeId} ev={e} /></span>)}</div>}
-    <EvidencePartsView it={it} />
+    {late ? <EvidencePartsEdit idp={late.idp} it={{ ...it, evidenceParts: late.value }} onChange={late.onChange} fixed={(['doc', 'exec', 'monitor'] as const).filter(k => typeof it.evidenceParts?.[k] === 'boolean')} /> : <EvidencePartsView it={it} />}
     {(projName || it.service || it.note) && <div className="text-muted">{projName && <span className="me-3">{t('project')}: {projName}</span>}{it.service && <span className="me-3">{t('service')}: {it.service}</span>}{it.note && <span>{t('note')}: {it.note}</span>}</div>}
     {it.clarify?.flag && <div className="text-flag-ink">? {t('needsClarification')}: {it.clarify.question}{ca && <span className="text-muted"> · {t('replied')}: {ca.answer}</span>}</div>}
   </div>

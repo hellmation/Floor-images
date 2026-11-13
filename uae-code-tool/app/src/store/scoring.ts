@@ -168,3 +168,9 @@ export function evidenceFacts(snap: Snapshot, cycleId: string, approvedOnly: boo
   }
   return out
 }
+
+const EVK = ['doc', 'exec', 'monitor'] as const
+/** True when the three evidence questions of a requirement all carry an answer (yes or no). */
+export const evPartsAnswered = (it?: { evidenceParts?: { doc?: boolean | null; exec?: boolean | null; monitor?: boolean | null } } | null) => EVK.every(k => typeof it?.evidenceParts?.[k] === 'boolean')
+/** Number of Yes requirements in an answer whose three evidence questions are not all answered yet. */
+export function evPartsPending(a: CodeAnswer | null | undefined): number { if (!a) return 0; return Object.values(a.items).filter(it => it.status === 'yes' && !evPartsAnswered(it)).length }

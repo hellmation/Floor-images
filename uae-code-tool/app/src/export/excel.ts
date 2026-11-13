@@ -5,6 +5,8 @@ import { master, effective, codeScore, effectiveImpact, assigneeOf, rollup, stan
 let LANG: Lang = 'ar'
 const H = (ar: string, en: string) => LANG === 'ar' ? ar : en
 const EP = (v?: boolean | null) => v === true ? H('نعم', 'Yes') : v === false ? H('لا', 'No') : ''
+/** One line summarising the three evidence questions, or empty when none is answered. */
+const EPL = (p?: { doc?: boolean | null; exec?: boolean | null; monitor?: boolean | null }) => !p || [p.doc, p.exec, p.monitor].every(v => typeof v !== 'boolean') ? '' : `${H('وثيقة منظِّمة', 'Governing document')}: ${EP(p.doc) || '—'} · ${H('إثبات التنفيذ', 'Proof of execution')}: ${EP(p.exec) || '—'} · ${H('مراقبة الجودة', 'Quality monitoring')}: ${EP(p.monitor) || '—'}`
 const SN = (ar: string, en: string) => H(ar, en).slice(0, 31)
 const STATUS_T: Record<string, [string, string]> = { yes: ['نعم', 'Yes'], partial: ['جزئي', 'Partial'], no: ['لا', 'No'], na: ['لا ينطبق', 'N/A'] }
 const STATE_T: Record<string, [string, string]> = { none: ['لم يبدأ', 'Not started'], draft: ['مسودة', 'Draft'], submitted: ['مُرسل', 'Submitted'], returned: ['مُعاد', 'Returned'], approved: ['معتمد', 'Approved'] }
@@ -82,7 +84,7 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
       const allReq = f.c.requirements.map(x => `${x.n}. ${txt(x)}`).join('\n'), allCrit = f.c.criteria.map(x => `${x.n}. ${txt(x)}`).join('\n')
       f.c.requirements.forEach((r, i) => { const it = f.a?.items[String(r.n)]; const crit = paired ? txt(f.c.criteria[i]) : allCrit
         const row = ws.addRow([cycleId, order.get(f.c.id), Number(pl.id), nm(pl), sb.id, nm(sb), f.c.id, desc(f.c), L(IMP_T, f.imp), allReq, allCrit, r.n, txt(r), crit, L(STATUS_T, it?.status),
-          [(it?.evidence || []).map(ev => ev.title ? `${ev.title}: ${ev.url}` : ev.url).join('\n'), it?.status === 'na' && it.justification ? `${H('مبرر عدم الانطباق', 'N/A justification')}: ${it.justification}` : ''].filter(Boolean).join('\n'), it?.evidence?.length || 0,
+          [(it?.evidence || []).map(ev => ev.title ? `${ev.title}: ${ev.url}` : ev.url).join('\n'), it?.status === 'na' && it.justification ? `${H('مبرر عدم الانطباق', 'N/A justification')}: ${it.justification}` : '', EPL(it?.evidenceParts)].filter(Boolean).join('\n'), it?.evidence?.length || 0,
           uname(f.assignee) || H('غير مُسند', 'Unassigned'), f.links.map(pname).join(' | '), owners, dname(f.dept), dname(it?.departmentId || f.dept), L(STATE_T, f.e.state), i === 0 && f.score !== null ? Math.round(f.score * 10) / 10 : null,
           uname(f.review?.reviewedBy), iso(f.a?.updatedAt), YN(!!it?.clarify?.flag), [it?.note, it?.clarify?.flag ? `${H('سؤال', 'Question')}: ${it.clarify.question}` : '', f.review?.comment ? `${H('المراجع', 'Reviewer')}: ${f.review.comment}` : ''].filter(Boolean).join(' | ')])
         let lines = 1; row.eachCell((cell, n) => { const v = cell.value == null ? '' : String(cell.value); const w = cols[n - 1].w * 1.9; const l = v.split('\n').reduce((a, part) => a + Math.max(1, Math.ceil(part.length / w)), 0); if (l > lines) lines = l }); row.height = Math.min(409, 15 * lines + 4) }) }

@@ -1,6 +1,6 @@
 import { useMemo, useState, type ReactNode } from 'react'
 import { useApp } from '../store/state'
-import { master, rollup, effective, codeScore, effectiveImpact, sortIds, isComplete, departmentOf, fulfilRows, assigneeOf, type FulfilRow } from '../store/scoring'
+import { master, rollup, effective, codeScore, effectiveImpact, sortIds, isComplete, departmentOf, fulfilRows, assigneeOf, evPartsPending, type FulfilRow } from '../store/scoring'
 import { pick, pickDesc } from '../i18n'
 import { ImpactPill, PageHeader, Ring, fmtPct, tone, ringTone, PrintHeader, Avatar, fmtDay, Pill, CountUp } from '../components/ui'
 import { Bars, Columns, Donut, Heatmap, Stacked, Trend, TipRow } from '../components/charts'
@@ -82,10 +82,11 @@ export default function Dashboard() {
   const openClar = effs.reduce((n, x) => n + Object.entries(x.e.answer?.items || {}).filter(([k, it]) => it.clarify?.flag && !snap!.reviews.clarifications?.[cy]?.[x.c.id]?.[k]?.answer).length, 0)
   const oldest = (xs: { age: number }[]) => xs.length ? Math.max(...xs.map(x => x.age)) : 0
   const team = useMemo(() => cfg.users.filter(u => u.active).map(u => { const mine = effs.filter(x => x.who === u.id); const n = (st: WorkState) => mine.filter(x => x.e.state === st).length
-    const last = mine.reduce((m, x) => x.e.answer && x.e.answer.updatedAt > m ? x.e.answer.updatedAt : m, ''); return { u, assigned: mine.length, none: n('none'), draft: n('draft'), returned: n('returned'), submitted: n('submitted'), approved: n('approved'), last } })
+    const last = mine.reduce((m, x) => x.e.answer && x.e.answer.updatedAt > m ? x.e.answer.updatedAt : m, ''); return { u, assigned: mine.length, none: n('none'), draft: n('draft'), returned: n('returned'), submitted: n('submitted'), approved: n('approved'), evq: mine.filter(x => x.e.state !== 'none' && evPartsPending(x.e.answer) > 0).length, last } })
     .filter(r => r.assigned > 0).sort((a, b) => b.assigned - a.assigned), [cfg, effs])
   const risks = [
     { key: 'high', label: t('riskHighNotStarted'), n: effs.filter(x => x.e.state === 'none' && x.imp === 'high').length, href: '#/browse?st=none&imp=high', tone: 'bad' as const },
+    { key: 'evq', label: t('riskEvQ'), n: effs.filter(x => x.e.state !== 'none' && evPartsPending(x.e.answer) > 0).length, href: '#/browse', tone: 'warn' as const },
     { key: 'review', label: t('riskOldReview'), n: awaiting.filter(x => x.age > 3).length, href: '#/review', tone: 'warn' as const },
     { key: 'stale', label: t('riskStale'), n: effs.filter(x => x.e.state === 'draft' && ageDays(x.e.answer?.updatedAt) >= 14).length, href: '#/browse?st=draft', tone: 'warn' as const },
     { key: 'yesnoev', label: t('riskYesNoEv'), n: effs.filter(x => x.e.state === 'draft' || x.e.state === 'returned').reduce((n, x) => n + Object.values(x.e.answer?.items || {}).filter(it => it.status === 'yes' && it.evidence.length === 0).length, 0), href: '#/browse?st=draft', tone: 'warn' as const },
@@ -118,9 +119,9 @@ export default function Dashboard() {
 
       {/* 2. Team */}
       <Card icon="users" title={t('teamProgress')} hint={t('teamHint')} className="mb-4 overflow-x-auto">
-        <table className="tbl"><thead><tr><th>{t('evaluator')}</th><th>{t('codes')}</th><th>{t('notStarted')}</th><th>{t('draft')}</th><th>{t('returned')}</th><th>{t('awaitingReview')}</th><th>{t('approved')}</th><th className="min-w-44">{t('progress')}</th><th>{t('lastActivity')}</th></tr></thead>
+        <table className="tbl"><thead><tr><th>{t('evaluator')}</th><th>{t('codes')}</th><th>{t('notStarted')}</th><th>{t('draft')}</th><th>{t('returned')}</th><th>{t('awaitingReview')}</th><th>{t('approved')}</th><th>{t('evQTab')}</th><th className="min-w-44">{t('progress')}</th><th>{t('lastActivity')}</th></tr></thead>
           <tbody>{team.map(r => { const done = r.submitted + r.approved; const pct = r.assigned ? done / r.assigned * 100 : 0
-            return <tr key={r.u.id}><td><a href={'#/browse?who=' + r.u.id} className="flex items-center gap-2 no-underline text-fg font-medium"><Avatar name={uname(r.u)} photo={r.u.photo} />{uname(r.u)}</a></td><td className="num">{r.assigned}</td><td className="num text-muted">{r.none}</td><td className="num text-accent-ink">{r.draft}</td><td className={`num ${r.returned ? 'text-warn-ink font-semibold' : 'text-muted'}`}>{r.returned}</td><td className={`num ${r.submitted ? 'text-info-ink font-semibold' : 'text-muted'}`}>{r.submitted}</td><td className="num text-ok-ink font-semibold">{r.approved}</td>
+            return <tr key={r.u.id}><td><a href={'#/browse?who=' + r.u.id} className="flex items-center gap-2 no-underline text-fg font-medium"><Avatar name={uname(r.u)} photo={r.u.photo} />{uname(r.u)}</a></td><td className="num">{r.assigned}</td><td className="num text-muted">{r.none}</td><td className="num text-accent-ink">{r.draft}</td><td className={`num ${r.returned ? 'text-warn-ink font-semibold' : 'text-muted'}`}>{r.returned}</td><td className={`num ${r.submitted ? 'text-info-ink font-semibold' : 'text-muted'}`}>{r.submitted}</td><td className="num text-ok-ink font-semibold">{r.approved}</td><td className={`num ${r.evq ? 'text-warn-ink font-semibold' : 'text-muted'}`}>{r.evq}</td>
               <td><span className="flex items-center gap-2"><span className="flex flex-1 h-2 rounded overflow-hidden bg-surface-3" style={{ gap: 1 }}>{(['approved', 'submitted', 'returned', 'draft'] as WorkState[]).map(k => r[k] > 0 && <i key={k} style={{ width: `${r[k] / r.assigned * 100}%`, background: STATE_COLOR[k] }} />)}</span><b className={`num text-sm text-${tone(pct)}-ink`}>{fmtPct(pct)}</b></span></td>
               <td className="text-xs text-muted whitespace-nowrap">{r.last ? `${fmtDay(r.last, lang)} · ${ageDays(r.last)} ${t('daysUnit')}` : '—'}</td></tr> })}</tbody></table>
       </Card>

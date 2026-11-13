@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { useApp } from '../store/state'
-import { master, rollup, assigneeOf, standings, effective } from '../store/scoring'
+import { master, rollup, assigneeOf, standings, effective, evPartsPending } from '../store/scoring'
 import { pick } from '../i18n'
 import { Bar, Ring, Avatar, fmtPct, tone, ringTone, fmtDay } from '../components/ui'
 import { Icon } from '../components/icons'
@@ -14,10 +14,10 @@ export default function Home() {
   const mine = useMemo(() => rollup(snap!, cy, mineCodes, false), [snap, cy, mineCodes])
   const byPillar = useMemo(() => master.pillars.map(p => ({ p, r: rollup(snap!, cy, master.codes.filter(c => c.pillar === p.id), true), subs: master.subpillars.filter(s => s.pillar === p.id).length })), [snap, cy])
   const table = useMemo(() => standings(snap!, cy), [snap, cy])
-  const acts = useMemo(() => { let returned = 0, drafts = 0, unanswered = 0, replies = 0
-    for (const c of mineCodes) { const e = effective(snap!, cy, c.id); if (e.state === 'returned') returned++; else if (e.state === 'draft') drafts++; else if (e.state === 'none') unanswered++
+  const acts = useMemo(() => { let returned = 0, drafts = 0, unanswered = 0, replies = 0, evq = 0
+    for (const c of mineCodes) { const e = effective(snap!, cy, c.id); if (e.state !== 'none' && evPartsPending(e.answer) > 0) evq++; if (e.state === 'returned') returned++; else if (e.state === 'draft') drafts++; else if (e.state === 'none') unanswered++
       for (const r of c.requirements) { const it = e.answer?.items[String(r.n)]; if (it?.clarify?.flag && snap!.reviews.clarifications?.[cy]?.[c.id]?.[String(r.n)]) replies++ } }
-    return { returned, drafts, unanswered, replies } }, [mineCodes, snap, cy])
+    return { returned, drafts, unanswered, replies, evq } }, [mineCodes, snap, cy])
   const daysLeft = cycle ? Math.ceil((new Date(cycle.due).getTime() - Date.now()) / 86400000) : null
   const total = cycle ? Math.max(1, (new Date(cycle.end).getTime() - new Date(cycle.start).getTime()) / 86400000) : 1
   const elapsed = cycle ? Math.min(100, Math.max(0, ((Date.now() - new Date(cycle.start).getTime()) / 86400000) / total * 100)) : 0
@@ -27,7 +27,7 @@ export default function Home() {
   type Act = { n: number; label: string; href: string; icon: 'alert' | 'edit' | 'question' | 'tasks'; kind: 'bad' | 'warn' | 'flag' | 'muted' }
   const actions: Act[] = ([
     { n: acts.returned, label: t('returnedToYou'), href: '#/my?f=returned', icon: 'alert', kind: 'bad' }, { n: acts.replies, label: t('awaitingYourReply'), href: '#/my?f=clarify', icon: 'question', kind: 'flag' },
-    { n: acts.drafts, label: t('continueDraft'), href: '#/my?f=draft', icon: 'edit', kind: 'warn' }, { n: acts.unanswered, label: t('notStarted'), href: '#/my?f=none', icon: 'tasks', kind: 'muted' }] as Act[]).filter(a => a.n > 0)
+    { n: acts.evq, label: t('answerEvQ'), href: '#/my?f=evq', icon: 'question', kind: 'warn' }, { n: acts.drafts, label: t('continueDraft'), href: '#/my?f=draft', icon: 'edit', kind: 'warn' }, { n: acts.unanswered, label: t('notStarted'), href: '#/my?f=none', icon: 'tasks', kind: 'muted' }] as Act[]).filter(a => a.n > 0)
   return (
     <div>
       <section className="hero mb-4">

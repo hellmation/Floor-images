@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useApp } from '../store/state'
-import { master, assigneeOf, effective, effectiveImpact, isComplete, sortIds, departmentOf, deptName } from '../store/scoring'
+import { master, assigneeOf, effective, effectiveImpact, isComplete, sortIds, departmentOf, deptName, evPartsPending } from '../store/scoring'
 import { pick, pickDesc } from '../i18n'
 import { Empty, PageHeader, Ring, StatePill, Pill, ImpactPill, fmtDay } from '../components/ui'
 import { Icon } from '../components/icons'
@@ -31,12 +31,12 @@ export default function MyWork() {
   const rows = useMemo(() => mine.map(c => {
     const e = effective(snap!, cy, c.id); const links = cfg.mapping[c.id] || []
     const pid = links.find(p => cfg.projects.find(x => x.id === p)?.ownerId === user!.id) || links[0] || ''
-    return { c, e, imp: effectiveImpact(c, cfg), dept: departmentOf(snap!, cy, c.id), pid, flag: !!cfg.deptConfirm?.[c.id], complete: isComplete(e.answer, c), clar: Object.values(e.answer?.items || {}).some(i => i.clarify?.flag) }
+    return { c, e, imp: effectiveImpact(c, cfg), dept: departmentOf(snap!, cy, c.id), pid, flag: !!cfg.deptConfirm?.[c.id], complete: isComplete(e.answer, c), clar: Object.values(e.answer?.items || {}).some(i => i.clarify?.flag), evq: e.state !== 'none' && evPartsPending(e.answer) > 0 }
   }), [mine, snap, cy, cfg, user])
   const count = (s: WorkState) => rows.filter(r => r.e.state === s).length
   const done = count('approved'), sub = count('submitted')
-  const tabs: [string, string, number][] = [['', t('all'), rows.length], ['none', t('notStarted'), count('none')], ['draft', t('draft'), count('draft')], ['returned', t('returned'), count('returned')], ['clarify', t('needsClarification'), rows.filter(r => r.clar).length], ['submitted', t('submitted'), sub], ['approved', t('approved'), done]]
-  const byTab = rows.filter(r => !f || (f === 'clarify' ? r.clar : r.e.state === f))
+  const tabs: [string, string, number][] = [['', t('all'), rows.length], ['none', t('notStarted'), count('none')], ['draft', t('draft'), count('draft')], ['returned', t('returned'), count('returned')], ['clarify', t('needsClarification'), rows.filter(r => r.clar).length], ['evq', t('evQTab'), rows.filter(r => r.evq).length], ['submitted', t('submitted'), sub], ['approved', t('approved'), done]]
+  const byTab = rows.filter(r => !f || (f === 'clarify' ? r.clar : f === 'evq' ? r.evq : r.e.state === f))
   const filtered = byTab.filter(r => (!imp || r.imp === imp) && (!dep || (dep === '_none' ? !r.dept : r.dept === dep)) && (!prj || (prj === '_none' ? !r.pid : r.pid === prj)) && (!q || norm(r.c.id + ' ' + r.c.desc_ar + ' ' + r.c.desc_en).includes(norm(q))))
   const pname = (id: string) => { const p = cfg.projects.find(x => x.id === id); return p ? pick(lang, p) : t('coreTeam') }
   const sorted = [...filtered].sort((a, b) => {
@@ -72,11 +72,11 @@ export default function MyWork() {
         <div className="flex items-center gap-3 text-xs text-muted"><span className="num">{sorted.length} / {rows.length}</span>{active && <button className="btn btn-ghost btn-sm" onClick={reset}><Icon name="x" />{t('clearFilters')}</button>}</div>
       </div>
       {sorted.length === 0 && <Empty icon={rows.length === 0 ? 'checkCircle' : 'search'} title={rows.length === 0 ? t('noItems') : active || f ? t('noMatches') : t('allCaughtUp')}>{(active || f) && <button className="btn btn-sm mt-2" onClick={() => { reset(); setF('') }}>{t('clearFilters')}</button>}</Empty>}
-      {sorted.length > 0 && <div className="card overflow-hidden"><ul className="m-0 p-0 list-none divide-y divide-line">{sorted.map(({ c, e, imp: ci, dept, pid, flag, complete, clar }) => <li key={c.id}>
+      {sorted.length > 0 && <div className="card overflow-hidden"><ul className="m-0 p-0 list-none divide-y divide-line">{sorted.map(({ c, e, imp: ci, dept, pid, flag, complete, clar, evq }) => <li key={c.id}>
         <a href={'#/code/' + c.id + '?from=my'} className="flex items-center gap-3 px-4 py-2.5 no-underline text-fg hover:bg-surface-2">
           <span className="code-id">{c.id}</span>
           <span className="flex-1 min-w-0 text-sm"><span className="block truncate" title={pickDesc(lang, c)}>{pickDesc(lang, c)}</span><span className="block text-xs text-muted truncate"><Icon name="map" style={{ width: 11, height: 11 }} className="inline me-1" />{pname(pid)} · {deptName(cfg, dept, lang) || t('noDept')}{flag && <span className="text-warn-ink"> · ⚠ {t('markDeptConfirm')}</span>}</span></span>
-          <span className="flex gap-1 shrink-0 items-center"><ImpactPill impact={ci} short />{clar && <Pill kind="flag"><span aria-label={t('needsClarification')} title={t('needsClarification')}>?</span></Pill>}{e.state === 'draft' && !complete && <Pill kind="muted">{t('unanswered')}</Pill>}<StatePill state={e.state} /></span>
+          <span className="flex gap-1 shrink-0 items-center"><ImpactPill impact={ci} short />{clar && <Pill kind="flag"><span aria-label={t('needsClarification')} title={t('needsClarification')}>?</span></Pill>}{evq && <Pill kind="warn">{t('evQNeeded')}</Pill>}{e.state === 'draft' && !complete && <Pill kind="muted">{t('unanswered')}</Pill>}<StatePill state={e.state} /></span>
           <Icon name={lang === 'ar' ? 'chevronL' : 'chevronR'} className="text-muted shrink-0" />
         </a></li>)}</ul></div>}
     </div>

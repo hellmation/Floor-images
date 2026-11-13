@@ -16,7 +16,7 @@ interface Ctx {
   connectFolder: () => Promise<boolean>; reconnect: () => Promise<boolean>; useLocal: () => void; refresh: () => Promise<void>; needsReconnect: boolean
   saveConfig: (c: Config, audit?: string) => Promise<void>
   /** Resolves with the stored (merged) answer for that code; it differs from `a` only if a newer copy already existed on disk. */
-  saveMyAnswer: (cycleId: string, codeId: string, a: CodeAnswer) => Promise<CodeAnswer | undefined>
+  saveMyAnswer: (cycleId: string, codeId: string, a: CodeAnswer, action?: string) => Promise<CodeAnswer | undefined>
   saveMyNote: (codeId: string, text: string) => Promise<void>
   /** The owner's choice of responsible department for a code they are assigned to (null clears it back to the configured default). */
   saveMyDepartment: (codeId: string, deptId: string | null) => Promise<void>
@@ -169,9 +169,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     await writeMine(file => { const departments = { ...(file.departments || {}) }; if (deptId) departments[codeId] = deptId; else delete departments[codeId]; return { ...file, updatedAt: now(), departments } })
   }, [writeMine])
 
-  const saveMyAnswer = useCallback(async (cy: string, codeId: string, a: CodeAnswer) => {
+  const saveMyAnswer = useCallback(async (cy: string, codeId: string, a: CodeAnswer, action?: string) => {
     const merged = await writeMine(file => ({ ...file, updatedAt: now(), cycles: { ...file.cycles, [cy]: { ...(file.cycles[cy] || {}), [codeId]: a } } }))
-    void audit([{ at: now(), by: userId || '?', action: a.state === 'submitted' ? 'submit' : 'save', target: `${cy}/${codeId}` }]) // informational; never delays the save
+    void audit([{ at: now(), by: userId || '?', action: action || (a.state === 'submitted' ? 'submit' : 'save'), target: `${cy}/${codeId}` }]) // informational; never delays the save
     return merged.cycles?.[cy]?.[codeId]
   }, [writeMine, audit, userId])
 

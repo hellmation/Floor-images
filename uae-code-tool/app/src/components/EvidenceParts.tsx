@@ -9,11 +9,11 @@ export const partsCount = (it?: ItemAnswer | null) => EV_PARTS.filter(k => it?.e
 export const partsAnswered = (it?: ItemAnswer | null) => EV_PARTS.every(k => typeof it?.evidenceParts?.[k] === 'boolean')
 
 /** The three evidence questions for one requirement: a yes / no pair per question. */
-export function EvidencePartsEdit({ it, onChange, idp }: { it: ItemAnswer; onChange: (p: NonNullable<ItemAnswer['evidenceParts']>) => void; idp: string }) {
+export function EvidencePartsEdit({ it, onChange, idp, fixed }: { it: ItemAnswer; onChange: (p: NonNullable<ItemAnswer['evidenceParts']>) => void; idp: string; fixed?: EvPart[] }) {
   const { t } = useApp(); const v = it.evidenceParts || {}
   return <div className="panel px-3 py-2 mt-2"><div className="text-xs font-semibold text-fg-2 mb-1.5">{t('evPartsTitle')}</div>
     <div className="flex flex-col gap-1.5">{EV_PARTS.map((k, i) => <div key={k} className="flex flex-wrap items-center gap-2 text-sm"><span className="num inline-grid place-items-center w-5 h-5 rounded-full bg-accent-soft text-accent-ink text-xs font-bold shrink-0">{i + 1}</span><span className="flex-1 min-w-40" id={`${idp}-${k}`}>{t(Q[k])}</span>
-      <span className="seg seg-q text-xs" role="group" aria-labelledby={`${idp}-${k}`}><button type="button" aria-pressed={v[k] === true} className={v[k] === true ? '!bg-ok-soft !text-ok-ink' : ''} onClick={() => onChange({ ...v, [k]: v[k] === true ? null : true })}>{t('yes')}</button><button type="button" aria-pressed={v[k] === false} className={v[k] === false ? '!bg-bad-soft !text-bad-ink' : ''} onClick={() => onChange({ ...v, [k]: v[k] === false ? null : false })}>{t('no')}</button></span></div>)}</div></div>
+      <span className="seg seg-q text-xs" role="group" aria-labelledby={`${idp}-${k}`}><button type="button" disabled={fixed?.includes(k)} aria-pressed={v[k] === true} className={v[k] === true ? '!bg-ok-soft !text-ok-ink' : ''} onClick={() => onChange({ ...v, [k]: v[k] === true ? null : true })}>{t('yes')}</button><button type="button" disabled={fixed?.includes(k)} aria-pressed={v[k] === false} className={v[k] === false ? '!bg-bad-soft !text-bad-ink' : ''} onClick={() => onChange({ ...v, [k]: v[k] === false ? null : false })}>{t('no')}</button></span></div>)}</div></div>
 }
 /** Read-only: three small pills, green when the folder contains that part, red when it does not, grey when unanswered. */
 export function EvidencePartsView({ it }: { it?: ItemAnswer | null }) {

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useApp } from '../store/state'
-import { master, effective, codeScore, sortIds, now } from '../store/scoring'
+import { master, effective, codeScore, sortIds, now, evPartsPending } from '../store/scoring'
 import { pickDesc, pickText } from '../i18n'
 import { Avatar, Empty, PageHeader, StatusPill, useToast, fmtDate, fmtPct, tone, Modal } from '../components/ui'
 import { Icon } from '../components/icons'
@@ -57,7 +57,7 @@ export default function Review() {
       <div className="flex flex-col gap-3">
         {!canReview && <div className="text-sm text-warn-ink bg-warn-soft rounded-lg px-3 py-2">{t(cycle?.status === 'closed' ? 'cycleClosedNotice' : 'cyclePlanningNotice')}</div>}
         {tab === 'queue' && (queue.length === 0 ? <Empty icon="shield" title={t('allCaughtUp')} /> : queue.map(({ c, e }) => <div key={c.id} className="card p-4 flex flex-col gap-2">
-          <div className="flex flex-wrap items-center gap-3"><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a><span className="flex-1 min-w-0 text-sm truncate">{pickDesc(lang, c)}</span><span className="flex items-center gap-2 text-xs text-muted"><Avatar name={userName(e.userId)} photo={photo(e.userId)} />{userName(e.userId)} · {fmtDate(e.answer?.submittedAt, lang)}</span><span className={`num font-semibold text-${tone(codeScore(e.answer, c, cfg))}-ink`}>{fmtPct(codeScore(e.answer, c, cfg))}</span>
+          <div className="flex flex-wrap items-center gap-3"><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a><span className="flex-1 min-w-0 text-sm truncate">{pickDesc(lang, c)}</span>{evPartsPending(e.answer) > 0 && <span className="pill pill-warn" title={t('evLateWaiting')}>{t('evQNeeded')}</span>}<span className="flex items-center gap-2 text-xs text-muted"><Avatar name={userName(e.userId)} photo={photo(e.userId)} />{userName(e.userId)} · {fmtDate(e.answer?.submittedAt, lang)}</span><span className={`num font-semibold text-${tone(codeScore(e.answer, c, cfg))}-ink`}>{fmtPct(codeScore(e.answer, c, cfg))}</span>
             <button className="btn btn-sm" onClick={() => { setOpen(open === c.id ? null : c.id); setComment('') }}><Icon name={open === c.id ? 'chevronD' : 'eye'} />{open === c.id ? t('cancel') : t('view')}</button></div>
           {open === c.id && <div className="flex flex-col gap-2 border-t border-line pt-3">
             {c.requirements.map(r => { const it = e.answer!.items[String(r.n)]; return <div key={r.n} className="text-sm panel p-2 flex flex-col gap-1"><div className="flex items-start gap-2"><span className="code-id">{r.n}</span><span className="flex-1">{pickText(lang, r)}</span><StatusPill status={it?.status ?? null} /></div>

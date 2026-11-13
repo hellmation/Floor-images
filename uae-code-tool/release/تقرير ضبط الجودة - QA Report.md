@@ -87,6 +87,19 @@ Report: "I select Yes and it gets unselected." Reproduced and closed on every pa
 
 Report: "the filters are not visible." Cause: the landing page's animated background used the same class name as form fields, hiding every field since 3 Nov (My work filters, per-requirement fields on the code page, the Cycles form, entity fields in Settings). The background class was renamed and a computed-visibility test (size, opacity, pointer events) now runs on every page, since the functional tests had been passing against transparent fields.
 
+## الجولة الرابعة (13 نوفمبر) — أسئلة الدليل / Round 4 (13 Nov) — evidence questions
+
+المطلوب: لكل متطلب رابط واحد لمجلده على المجلد المشترك وثلاثة أسئلة (وثيقة منظِّمة، إثبات التنفيذ، مراقبة الجودة)، وأن تُستكمل الأسئلة لكل الأكواد حتى المُرسلة والمعتمدة في البيانات الحالية.
+
+- الأكواد المُرسلة أو المعتمدة قبل إضافة الأسئلة: يجيب المقيّم عن الأسئلة من صفحة الكود دون إعادة فتحه؛ لا تتغير حالته ولا تاريخ إرساله ولا اعتماده. اختُبر ذلك على مجلد مشترك بمستخدمين: معتمد يبقى معتمداً، ومُرسل يبقى في طابور المراجعة، والمراجع يرى الإجابات. ✓
+- الإجابة التي حُفظت لا تُعدَّل بعد ذلك إلا بإعادة فتح الكود من المراجعة. ✓
+- المسودات والمُعادة: لا تُرسل إجابة «نعم» قبل الإجابة عن الأسئلة الثلاثة. ✓
+- التنبيه: تبويب «أسئلة الدليل» في «أعمالي»، بطاقة في الرئيسية، عمود في جدول تقدم الفريق، بند في المخاطر، وشارة في طابور المراجعة. ✓
+- التصدير: ثلاثة أعمدة في ورقة المتطلبات وسطر ملخص تحت روابط الأدلة في ورقة المتابعة. ✓
+- سجل الأحداث يسجل الإجابة اللاحقة باسم evidence-questions لا كإرسال جديد. ✓
+
+Codes submitted or approved before the questions existed are answered in place by their evaluator without reopening: state, submission time and approval are untouched (verified on a simulated shared folder with two users). Saved answers are fixed unless the code is reopened. Drafts cannot submit a Yes until the three questions are answered. Pending codes are surfaced in My work, Home, the team table, the risk list and the review queue. The Excel export carries the answers in the Requirements and Tracking sheets, and the audit log records a late answer as its own action.
+
 ## ملاحظات معروفة / Known limits
 - سجل الأحداث للعرض فقط؛ لا يُستخدم في الاحتساب.
 - الشخص نفسه من جهازين في اللحظة نفسها: يُدمج بالأحدث لكل كود (لا يُفقد شيء، لكن قد يفوز آخر تعديل على الكود نفسه).
