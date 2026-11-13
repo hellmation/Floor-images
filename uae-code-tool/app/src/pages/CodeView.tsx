@@ -5,6 +5,7 @@ import { pick, pickDesc, pickText } from '../i18n'
 import { ImpactPill, Pill, StatePill, StatusPill, Modal, Empty, useToast, fmtDate, errMsg } from '../components/ui'
 import { Icon } from '../components/icons'
 import { EvidenceRate } from '../components/EvidenceRate'
+import { EvidencePartsEdit, EvidencePartsView, partsAnswered } from '../components/EvidenceParts'
 import type { AnswerStatus, CodeAnswer, ItemAnswer, EvidenceStrength } from '../types'
 
 const emptyItem = (): ItemAnswer => ({ status: null, evidence: [], clarify: { flag: false, question: '' } })
@@ -74,6 +75,7 @@ export default function CodeView({ id }: { id: string }) {
   const checks: [boolean, string][] = [
     [vals.every(v => v?.status), t('needAllStatuses')],
     [!cfg.settings.requireEvidence || vals.every(v => v?.status !== 'yes' || v.evidence.length > 0), t('needEvidence')],
+    [vals.every(v => v?.status !== 'yes' || partsAnswered(v)), t('evPartsMissing')],
     [vals.every(v => v?.status !== 'na' || !!v.justification?.trim()), t('needJustification')],
     [!vals.some(v => v?.clarify?.flag), t('openClarification')],
     ...(cfg.deptConfirm?.[code.id] ? [[deptConfirmed, t('needDeptConfirm')] as [boolean, string]] : []),
@@ -139,9 +141,10 @@ export default function CodeView({ id }: { id: string }) {
                 {!it.clarify?.flag && ca && <div className="text-sm text-muted"><b>{t('clarificationAnswer')}</b>: {ca.answer}</div>}
                 {it.status === 'na' && <div className="field"><label className="label" htmlFor={`req-${r.n}-j`}>{t('justification')}</label><textarea id={`req-${r.n}-j`} className="textarea" rows={2} value={it.justification || ''} onChange={e => upd(r.n, { justification: e.target.value })} /></div>}
                 <div><div className="label">{t('evidence')}</div>
-                  <p className="text-xs text-muted m-0 mb-2 flex items-start gap-1.5"><Icon name="folder" className="shrink-0 mt-0.5" style={{ width: 13, height: 13 }} /><span>{t('evidenceHow')}</span></p>
+                  <p className="text-xs text-muted m-0 mb-2 flex items-start gap-1.5"><Icon name="folder" className="shrink-0 mt-0.5" style={{ width: 13, height: 13 }} /><span>{t('evidenceHow')} {t('evOneLink')}</span></p>
                   {it.evidence.length > 0 && <ul className="m-0 mb-2 p-0 list-none flex flex-col gap-1">{it.evidence.map(ev => <li key={ev.id} className="flex items-center gap-2 text-sm panel px-2 py-1.5"><Icon name="link" className="text-muted" /><a href={ev.url} target="_blank" rel="noreferrer" className="truncate flex-1">{ev.title || ev.url}</a><select className="select !w-auto !py-0.5 text-xs" aria-label={t('evidenceStrength')} value={ev.strength || ''} onChange={e => upd(r.n, { evidence: it.evidence.map(x => x.id === ev.id ? { ...x, strength: (e.target.value || null) as EvidenceStrength | null } : x) })}><option value="">{t('strengthUnset')}</option><option value="conclusive">{t('strengthConclusive')}</option><option value="editable">{t('strengthEditable')}</option></select><button className="btn btn-ghost btn-sm" onClick={() => upd(r.n, { evidence: it.evidence.filter(x => x.id !== ev.id) })} aria-label={t('remove')}><Icon name="x" /></button></li>)}</ul>}
                   <EvidenceAdd onAdd={(title, url, strength) => upd(r.n, { evidence: [...it.evidence, { id: uid(), type: 'link', title, url, addedAt: now(), addedBy: user!.id, strength }] })} />
+                  {(it.status === 'yes' || it.status === 'partial' || it.evidence.length > 0) && <EvidencePartsEdit idp={`req-${r.n}-ep`} it={it} onChange={p => upd(r.n, { evidenceParts: p })} />}
                 </div>
                 <div className="grid sm:grid-cols-4 gap-2">
                   <div className="field"><label className="label" htmlFor={`req-${r.n}-d`}>{t('reqDepartment')}</label><select id={`req-${r.n}-d`} className="select" value={it.departmentId || ''} onChange={e => upd(r.n, { departmentId: e.target.value || null })}><option value="">{t('inheritDept')} ({deptName(cfg, codeDept, lang) || '—'})</option>{depts.map(d => <option key={d.id} value={d.id}>{lang === 'ar' ? d.name_ar : d.name_en}</option>)}</select></div>
@@ -229,6 +232,7 @@ function ReadOnly({ it, ca, projName, deptLabel, codeId }: { it: ItemAnswer; ca?
     {deptLabel && <div className="text-muted"><span className="font-medium text-fg-2">{t('reqDepartment')}:</span> {deptLabel}</div>}
     {it.status === 'na' && it.justification && <div><span className="font-medium text-fg-2">{t('justification')}:</span> {it.justification}</div>}
     {it.evidence.length > 0 && <div className="flex flex-wrap gap-2 items-center">{it.evidence.map(e => <span key={e.id} className="inline-flex items-center gap-1"><a className={`pill ${e.strength === 'conclusive' ? 'pill-ok' : e.strength === 'editable' ? 'pill-warn' : 'pill-muted'} no-underline`} href={e.url} target="_blank" rel="noreferrer" title={e.strength ? t(e.strength === 'conclusive' ? 'strengthConclusive' : 'strengthEditable') : undefined}><Icon name="link" style={{ width: 12, height: 12 }} />{e.title || e.url}</a><EvidenceRate codeId={codeId} ev={e} /></span>)}</div>}
+    <EvidencePartsView it={it} />
     {(projName || it.service || it.note) && <div className="text-muted">{projName && <span className="me-3">{t('project')}: {projName}</span>}{it.service && <span className="me-3">{t('service')}: {it.service}</span>}{it.note && <span>{t('note')}: {it.note}</span>}</div>}
     {it.clarify?.flag && <div className="text-flag-ink">? {t('needsClarification')}: {it.clarify.question}{ca && <span className="text-muted"> · {t('replied')}: {ca.answer}</span>}</div>}
   </div>

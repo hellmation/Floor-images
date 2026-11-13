@@ -152,7 +152,7 @@ export function sortIds(a: string, b: string) {
 export const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36)
 export const now = () => new Date().toISOString()
 
-export interface EvidenceFact { code: Code; n: number; status: AnswerStatus | null; state: WorkState; assignee: string | null; dept: string | null; hasEv: boolean; evType: 'conclusive' | 'editable' | 'unspecified' | null; verdict: 'strong' | 'weak' | null }
+export interface EvidenceFact { code: Code; n: number; status: AnswerStatus | null; state: WorkState; assignee: string | null; dept: string | null; hasEv: boolean; evType: 'conclusive' | 'editable' | 'unspecified' | null; verdict: 'strong' | 'weak' | null; doc: boolean; exec: boolean; monitor: boolean }
 /** One row per requirement on the fulfilment basis: evidence present, the evaluator's type, and the reviewer's verdict (strong if any link is rated strong, weak if rated and none strong). */
 export function evidenceFacts(snap: Snapshot, cycleId: string, approvedOnly: boolean, codes: Code[] = master.codes): EvidenceFact[] {
   const cfg = snap.config; const out: EvidenceFact[] = []; const ratings = snap.reviews.evidenceRatings?.[cycleId] || {}
@@ -163,7 +163,7 @@ export function evidenceFacts(snap: Snapshot, cycleId: string, approvedOnly: boo
       const evType = ev.length === 0 ? null : ev.some(x => x.strength === 'conclusive') ? 'conclusive' : ev.some(x => x.strength === 'editable') ? 'editable' : 'unspecified'
       const vs = ev.map(x => ratings[c.id]?.[x.id]?.rating).filter(Boolean) as ('strong' | 'weak')[]
       const verdict = vs.length === 0 ? null : vs.includes('strong') ? 'strong' : 'weak'
-      out.push({ code: c, n: r.n, status: it?.status ?? null, state: e.state, assignee, dept: it?.departmentId || cd, hasEv: ev.length > 0, evType, verdict })
+      out.push({ code: c, n: r.n, status: it?.status ?? null, state: e.state, assignee, dept: it?.departmentId || cd, hasEv: ev.length > 0, evType, verdict, doc: it?.evidenceParts?.doc === true, exec: it?.evidenceParts?.exec === true, monitor: it?.evidenceParts?.monitor === true })
     }
   }
   return out

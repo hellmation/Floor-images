@@ -12,7 +12,7 @@ export function EvidenceRate({ codeId, ev }: { codeId: string; ev: Evidence }) {
     try { await saveReviews(r, `rate ${codeId} ${ev.id} ${cur === v ? 'clear' : v}`) } catch (e) { toast(String((e as Error).message || t('saveFailed')), 'bad') }
   }
   if (!canReview) return cur ? <span className={`pill ${cur === 'strong' ? 'pill-ok' : 'pill-bad'}`} title={t('reviewerRating')}>{t(cur === 'strong' ? 'rateStrong' : 'rateWeak')}</span> : null
-  return <span className="seg text-xs" role="group" aria-label={t('reviewerRating')} title={t('reviewerRating')}>
+  return <span className="seg seg-q text-xs" role="group" aria-label={t('reviewerRating')} title={t('reviewerRating')}>
     <button type="button" aria-pressed={cur === 'strong'} className={cur === 'strong' ? '!bg-ok-soft !text-ok-ink' : ''} onClick={() => set('strong')}>{t('rateStrong')}</button>
     <button type="button" aria-pressed={cur === 'weak'} className={cur === 'weak' ? '!bg-bad-soft !text-bad-ink' : ''} onClick={() => set('weak')}>{t('rateWeak')}</button>
   </span>

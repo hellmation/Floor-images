@@ -56,6 +56,8 @@ export interface ItemAnswer {
   justification?: string
   note?: string
   evidence: Evidence[]
+  /** The three evidence questions answered for the shared folder linked above: governing document, proof of execution, quality monitoring. */
+  evidenceParts?: { doc?: boolean | null; exec?: boolean | null; monitor?: boolean | null }
   projectId?: string | null
   service?: string
   departmentId?: string | null                           // responsible department for this requirement when it differs from the code's
