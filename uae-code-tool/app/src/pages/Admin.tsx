@@ -3,7 +3,8 @@ import type React from 'react'
 import { useApp } from '../store/state'
 import { master, uid, assigneeOf } from '../store/scoring'
 import { pick } from '../i18n'
-import { Avatar, PageHeader, fmtDate, useToast, errMsg, Empty } from '../components/ui'
+import { Avatar, PageHeader, fmtDate, useToast, errMsg, Empty, Modal } from '../components/ui'
+import { makePassword } from '../store/password'
 import { Icon } from '../components/icons'
 import type { Department, Impact, Project, Role, User } from '../types'
 
@@ -31,6 +32,11 @@ export default function Admin() {
   const [nu, setNu] = useState({ name_ar: '', name_en: '', role: 'evaluator' as Role })
   const [np, setNp] = useState({ name_ar: '', name_en: '', ownerId: '' })
   const commit = async (c: typeof cfg, a: string) => { try { await saveConfig(JSON.parse(JSON.stringify(c)), a); toast(t('saved'), 'ok') } catch (e) { toast(errMsg(e, t), 'bad') } }
+  const [pwFor, setPwFor] = useState<string | null>(null); const [p1, setP1] = useState(''); const [p2, setP2] = useState('')
+  const pwUserObj = cfg.users.find(u => u.id === pwFor)
+  const savePw = () => { if (!pwUserObj) return; if (p1.length < 6) { toast(t('passwordShort'), 'bad'); return } if (p1 !== p2) { toast(t('passwordMismatch'), 'bad'); return }
+    commit({ ...cfg, users: cfg.users.map(x => x.id === pwUserObj.id ? { ...x, pwd: makePassword(p1) } : x) }, `password set ${pwUserObj.id}`); setPwFor(null); toast(t('passwordSet'), 'ok') }
+  const removePw = () => { if (!pwUserObj) return; commit({ ...cfg, users: cfg.users.map(x => x.id === pwUserObj.id ? { ...x, pwd: null } : x) }, `password removed ${pwUserObj.id}`); setPwFor(null); toast(t('passwordRemoved'), 'ok') }
   const updUser = (u: User) => commit({ ...cfg, users: cfg.users.map(x => x.id === u.id ? u : x) }, `user ${u.id}`)
   const updProj = (p: Project) => commit({ ...cfg, projects: cfg.projects.map(x => x.id === p.id ? p : x) }, `project ${p.id}`)
   const updDept = (d: Department) => commit({ ...cfg, departments: cfg.departments.map(x => x.id === d.id ? d : x) }, `department ${d.id}`)
@@ -42,11 +48,19 @@ export default function Admin() {
   return (
     <div>
       <PageHeader title={t('admin')} actions={<div className="seg">{(['users', 'projects', 'departments', 'settings', 'audit'] as const).map(k => <button key={k} aria-pressed={tab === k} onClick={() => setTab(k)}><Icon name={k === 'users' ? 'users' : k === 'projects' ? 'map' : k === 'departments' ? 'layers' : k === 'settings' ? 'settings' : 'clock'} />{k === 'users' ? t('users') : k === 'projects' ? t('projects') : k === 'departments' ? t('departments') : k === 'settings' ? t('settings') : t('audit')}</button>)}</div>} />
-      {tab === 'users' && <div className="card overflow-x-auto"><table className="tbl"><thead><tr><th></th><th>{t('nameAr')}</th><th>{t('nameEn')}</th><th>{t('role')}</th><th>{t('active')}</th></tr></thead><tbody>
+      <Modal open={!!pwUserObj} onClose={() => setPwFor(null)} title={`${pwUserObj?.pwd ? t('changePassword') : t('setPassword')} · ${pwUserObj ? (lang === 'ar' ? pwUserObj.name_ar : pwUserObj.name_en) : ''}`}
+        footer={<>{pwUserObj?.pwd && <button className="btn me-auto" onClick={removePw}>{t('removePassword')}</button>}<button className="btn" onClick={() => setPwFor(null)}>{t('cancel')}</button><button className="btn btn-primary" disabled={!p1 || !p2} onClick={savePw}><Icon name="check" />{t('save')}</button></>}>
+        <form className="flex flex-col gap-3" onSubmit={e => { e.preventDefault(); savePw() }}>
+          <div className="field"><label className="label" htmlFor="pw-new">{t('newPassword')}</label><input id="pw-new" type="password" className="input" autoComplete="new-password" value={p1} onChange={e => setP1(e.target.value)} /></div>
+          <div className="field"><label className="label" htmlFor="pw-conf">{t('confirmPassword')}</label><input id="pw-conf" type="password" className="input" autoComplete="new-password" value={p2} onChange={e => setP2(e.target.value)} /></div>
+          <p className="text-xs text-muted m-0">{t('passwordHint')}</p>
+        </form>
+      </Modal>
+      {tab === 'users' && <div className="card overflow-x-auto"><table className="tbl"><thead><tr><th></th><th>{t('nameAr')}</th><th>{t('nameEn')}</th><th>{t('role')}</th><th>{t('passwordLabel')}</th><th>{t('active')}</th></tr></thead><tbody>
         {cfg.users.map(u => <tr key={u.id}><td><label className="cursor-pointer inline-block" title={t('photo')}><Avatar name={lang === 'ar' ? u.name_ar : u.name_en} photo={u.photo} size="lg" /><input type="file" accept="image/*" className="sr-only" aria-label={t('photo')} onChange={e => { const f = e.target.files?.[0]; if (f) toDataUrl(f).then(photo => updUser({ ...u, photo })) }} /></label></td><td><DraftInput aria-label={t('nameAr')} value={u.name_ar} onCommit={v => updUser({ ...u, name_ar: v })} /></td><td><DraftInput aria-label={t('nameEn')} dir="ltr" value={u.name_en} onCommit={v => updUser({ ...u, name_en: v })} /></td>
-          <td><select className="select" aria-label={t('role')} value={u.role} disabled={lastAdmin(u)} title={lastAdmin(u) ? t('lastAdmin') : undefined} onChange={e => updUser({ ...u, role: e.target.value as Role })}>{roleOpts}</select>{u.id === user!.id && <div className="text-xs text-muted mt-1">{t('thisIsYou')}</div>}</td><td><input type="checkbox" aria-label={t('active')} checked={u.active} disabled={lastAdmin(u)} onChange={e => toggleActive(u, e.target.checked)} /></td></tr>)}
+          <td><select className="select" aria-label={t('role')} value={u.role} disabled={lastAdmin(u)} title={lastAdmin(u) ? t('lastAdmin') : undefined} onChange={e => updUser({ ...u, role: e.target.value as Role })}>{roleOpts}</select>{u.id === user!.id && <div className="text-xs text-muted mt-1">{t('thisIsYou')}</div>}</td><td className="whitespace-nowrap"><button className="btn btn-sm" onClick={() => { setPwFor(u.id); setP1(''); setP2('') }}><Icon name="shield" />{u.pwd ? t('changePassword') : t('setPassword')}</button><div className={`text-xs mt-1 ${u.pwd ? 'text-ok-ink' : 'text-muted'}`}>{u.pwd ? t('protectedAcc') : t('noPassword')}</div></td><td><input type="checkbox" aria-label={t('active')} checked={u.active} disabled={lastAdmin(u)} onChange={e => toggleActive(u, e.target.checked)} /></td></tr>)}
         <tr className="!bg-surface-2"><td></td><td><input className="input" placeholder={t('nameAr')} aria-label={t('nameAr')} value={nu.name_ar} onChange={e => setNu({ ...nu, name_ar: e.target.value })} /></td><td><input className="input" dir="ltr" placeholder={t('nameEn')} value={nu.name_en} onChange={e => setNu({ ...nu, name_en: e.target.value })} /></td>
-          <td><select className="select" value={nu.role} onChange={e => setNu({ ...nu, role: e.target.value as Role })}>{roleOpts}</select></td>
+          <td><select className="select" value={nu.role} onChange={e => setNu({ ...nu, role: e.target.value as Role })}>{roleOpts}</select></td><td></td>
           <td><button className="btn btn-primary btn-sm" disabled={!nu.name_ar.trim()} onClick={() => { commit({ ...cfg, users: [...cfg.users, { id: 'u-' + uid(), name_ar: nu.name_ar.trim(), name_en: nu.name_en.trim() || nu.name_ar.trim(), role: nu.role, active: true }] }, 'user add'); setNu({ name_ar: '', name_en: '', role: 'evaluator' }) }}><Icon name="plus" />{t('add')}</button></td></tr>
       </tbody></table></div>}
       {tab === 'projects' && <div className="card overflow-x-auto"><table className="tbl"><thead><tr><th>{t('id')}</th><th>{t('nameAr')}</th><th>{t('nameEn')}</th><th>{t('owner')}</th><th>{t('active')}</th></tr></thead><tbody>

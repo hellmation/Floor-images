@@ -5,12 +5,14 @@ import { Icon } from '../components/icons'
 import { Avatar, errMsg } from '../components/ui'
 import lockup from '../assets/brand/fta-lockup-light.png'
 import lockupDark from '../assets/brand/fta-lockup-dark.png'
+import { checkPassword } from '../store/password'
 import { Field } from '../components/Field'
 
 export default function Setup() {
   const { t, lang, setLang, theme, setTheme, snap, loading, error, connectFolder, reconnect, useLocal, needsReconnect, setUserId, adapter, refresh } = useApp()
   let lastUserId: string | null = null; try { lastUserId = localStorage.getItem('lastUserId') } catch { /* ignore */ }
   const [err, setErr] = useState<string | null>(null)
+  const [pwUser, setPwUser] = useState<string | null>(null); const [pw, setPw] = useState(''); const [pwErr, setPwErr] = useState(false)
   const logoRef = useRef<HTMLImageElement>(null); const cardRef = useRef<HTMLDivElement>(null)
   const api = hasFolderApi()
   const [moved, setMoved] = useState(false)
@@ -47,9 +49,19 @@ export default function Setup() {
           </div>
         ) : (
           <div className="flex flex-col gap-3">
+            {pwUser && (() => { const u = snap.config.users.find(x => x.id === pwUser); if (!u) return null; const n = lang === 'ar' ? u.name_ar : u.name_en
+              const go = () => { if (checkPassword(pw, u.pwd)) { setPwUser(null); setUserId(u.id) } else setPwErr(true) }
+              return <form className="flex flex-col gap-3" onSubmit={e => { e.preventDefault(); go() }}>
+                <div className="flex items-center gap-3"><Avatar name={n} photo={u.photo} size="lg" /><div><div className="font-semibold">{n}</div><div className="text-sm text-muted">{t('enterPassword')}</div></div></div>
+                <input type="password" className="input" autoFocus autoComplete="current-password" aria-label={t('passwordLabel')} placeholder={t('passwordLabel')} value={pw} onChange={e => { setPw(e.target.value); setPwErr(false) }} />
+                {pwErr && <p className="text-bad text-sm m-0" role="alert">{t('wrongPassword')}</p>}
+                <div className="flex gap-2"><button type="submit" className="btn btn-primary flex-1" disabled={!pw}><Icon name="check" />{t('signInBtn')}</button><button type="button" className="btn" onClick={() => setPwUser(null)}>{t('backBtn')}</button></div>
+              </form> })()}
+            {!pwUser && <>
             <div><div className="font-semibold">{t('whoAreYou')}</div><div className="text-sm text-muted">{t('chooseUser')}</div></div>
             <div className="grid sm:grid-cols-2 gap-2 max-h-72 overflow-y-auto pe-1">{snap.config.users.filter(u => u.active).map(u => { const n = lang === 'ar' ? u.name_ar : u.name_en; const last = u.id === lastUserId
-              return <button key={u.id} className={'user-card' + (last ? ' user-card-last' : '')} onClick={() => setUserId(u.id)}><Avatar name={n} photo={u.photo} size="lg" /><span className="min-w-0"><span className="block font-semibold truncate">{n}</span><span className="block text-xs text-muted">{t(u.role === 'admin' ? 'adminRole' : u.role === 'viewer' ? 'viewerRole' : 'evaluatorRole')}{last && <> · <span style={{ color: "var(--accent-ink)" }}>{t("lastSignIn")}</span></>}</span></span></button> })}</div>
+              return <button key={u.id} className={'user-card' + (last ? ' user-card-last' : '')} onClick={() => { if (u.pwd) { setPwUser(u.id); setPw(''); setPwErr(false) } else setUserId(u.id) }}><Avatar name={n} photo={u.photo} size="lg" /><span className="min-w-0"><span className="block font-semibold truncate">{n}</span><span className="block text-xs text-muted">{t(u.role === 'admin' ? 'adminRole' : u.role === 'reviewer' ? 'reviewerRole' : u.role === 'viewer' ? 'viewerRole' : 'evaluatorRole')}{u.pwd && <> · <Icon name="shield" style={{ width: 11, height: 11 }} className="inline" /> {t('protectedAcc')}</>}{last && <> · <span style={{ color: "var(--accent-ink)" }}>{t("lastSignIn")}</span></>}</span></span></button> })}</div>
+            </>}
             {adapter instanceof LocalAdapter && api && <div className="rounded-lg bg-warn-soft text-warn-ink px-3 py-2 text-sm flex flex-wrap items-center gap-2"><Icon name="alert" className="shrink-0" /><span className="flex-1 min-w-48">{t('localWarning')}</span><button className="btn btn-sm btn-primary" onClick={connect}><Icon name="folder" />{t('switchToFolder')}</button></div>}
             {moved && <div className="rounded-lg bg-ok-soft text-ok-ink px-3 py-2 text-sm flex items-center gap-2"><Icon name="checkCircle" />{t('migrated')}</div>}
             {(err || error) && <p className="text-bad text-sm m-0" role="alert">{err || error}</p>}

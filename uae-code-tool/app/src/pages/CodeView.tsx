@@ -2,16 +2,16 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useApp } from '../store/state'
 import { codeById, subById, pillarById, assigneeOf, effective, effectiveImpact, master, sortIds, uid, now, departmentOf, supportDepartments, deptName, evPartsPending, evPartsAnswered } from '../store/scoring'
 import { pick, pickDesc, pickText } from '../i18n'
-import { ImpactPill, Pill, StatePill, StatusPill, Modal, Empty, useToast, fmtDate, errMsg } from '../components/ui'
+import { ImpactPill, Pill, StatePill, StatusPill, Modal, Empty, useToast, fmtDate, errMsg, fmtDay } from '../components/ui'
 import { Icon } from '../components/icons'
 import { EvidenceRate } from '../components/EvidenceRate'
 import { EvidencePartsEdit, EvidencePartsView, partsAnswered } from '../components/EvidenceParts'
-import type { AnswerStatus, CodeAnswer, ItemAnswer, EvidenceStrength } from '../types'
+import type { AnswerStatus, CodeAnswer, ItemAnswer, EvidenceStrength, ReviewsFile } from '../types'
 
 const emptyItem = (): ItemAnswer => ({ status: null, evidence: [], clarify: { flag: false, question: '' } })
 
 export default function CodeView({ id }: { id: string }) {
-  const { t, lang, snap, user, isAdmin, cycleId, saveMyAnswer, saveMyNote, saveMyDepartment, saveConfig } = useApp()
+  const { t, lang, snap, user, isAdmin, cycleId, saveMyAnswer, saveMyNote, saveMyDepartment, saveConfig, saveReviews } = useApp()
   const toast = useToast()
   const code = codeById.get(id)
   const cfg = snap!.config; const cy = cycleId!
@@ -36,7 +36,7 @@ export default function CodeView({ id }: { id: string }) {
    * stored answer changes while there are NO unsaved edits. If it changes while the person is editing (someone else saved
    * this code, or a refresh brought a newer copy), their edits are kept and a banner offers to load the newer version. */
   const pageKey = `${code?.id}|${cy}`
-  const storedKey = `${myOwn?.updatedAt || ''}|${eff?.answer?.updatedAt || ''}|${eff?.userId || ''}|${cycle?.prefillFrom || ''}`
+  const storedKey = `${myOwn?.updatedAt || ''}|${eff?.answer?.updatedAt || ''}|${eff?.userId || ''}|${cycle?.prefillFrom || ''}|${eff?.edited?.at || ''}`
   const [stale, setStale] = useState(false)
   const seenStored = useRef(storedKey)
   const [initTick, setInitTick] = useState(0)
@@ -51,7 +51,7 @@ export default function CodeView({ id }: { id: string }) {
   const loadLatest = () => { seenStored.current = storedKey; setStale(false); setInitTick(t => t + 1) }
   useEffect(() => {
     if (!code) return
-    const base = myOwn || eff?.answer || null
+    const base = (eff?.userId === user!.id ? eff.answer : null) || myOwn || eff?.answer || null
     let src = base, carry: string | null = null
     if (!src && cycle?.prefillFrom) { const prev = effective(snap!, cycle.prefillFrom, code.id); if (prev.answer) { src = prev.answer; carry = cycle.prefillFrom } }
     const next: Record<string, ItemAnswer> = {}
@@ -102,6 +102,20 @@ export default function CodeView({ id }: { id: string }) {
     catch (e) { justSaved.current = false; toast(errMsg(e, t), 'bad') } finally { setBusy(false) }
   }
   const lateNeeded = locked ? evPartsPending(eff?.answer) : 0
+  /* Administrator evidence adjustment on a submitted or approved answer. Stored in reviews.json bound to that submission,
+   * so the evaluator's file is never written by someone else and the code keeps its state and approval. */
+  const [evEdit, setEvEdit] = useState<string | null>(null)
+  const canAdminEv = isAdmin && locked && !!eff?.answer && (cycle?.status === 'open' || cycle?.status === 'review')
+  const saveEvEdit = async (n: string, evidence: ItemAnswer['evidence'], parts: NonNullable<ItemAnswer['evidenceParts']>) => {
+    if (busy || !canAdminEv) return; setBusy(true)
+    const a = eff!.answer!; const bind = { userId: eff!.userId, submittedAt: a.submittedAt || a.updatedAt }
+    const r = JSON.parse(JSON.stringify(snap!.reviews)) as ReviewsFile; r.evidenceEdits = r.evidenceEdits || {}; r.evidenceEdits[cy] = r.evidenceEdits[cy] || {}
+    const cur = r.evidenceEdits[cy][code.id]; const same = cur && cur.userId === bind.userId && cur.submittedAt === bind.submittedAt
+    const hasParts = (['doc', 'exec', 'monitor'] as const).some(k => typeof parts[k] === 'boolean')
+    r.evidenceEdits[cy][code.id] = { ...bind, by: user!.id, at: now(), items: { ...(same ? cur.items : {}), [n]: { evidence, ...(hasParts ? { evidenceParts: parts } : {}), by: user!.id, at: now() } } }
+    try { await saveReviews(r, `evidence-edit ${code.id}/${n}`); setEvEdit(null); toast(t('evidenceEditSaved'), 'ok') }
+    catch (e) { toast(errMsg(e, t), 'bad') } finally { setBusy(false) }
+  }
   const saveLate = async () => {
     if (busy || !canLate || !latePending) return; setBusy(true)
     const cur = eff!.answer!; const nextItems = { ...cur.items }
@@ -170,7 +184,8 @@ export default function CodeView({ id }: { id: string }) {
                   <div className="field"><label className="label" htmlFor={`req-${r.n}-s`}>{t('service')}</label><input id={`req-${r.n}-s`} className="input" value={it.service || ''} onChange={e => upd(r.n, { service: e.target.value })} /></div>
                   <div className="field"><label className="label" htmlFor={`req-${r.n}-n`}>{t('note')}</label><input id={`req-${r.n}-n`} className="input" value={it.note || ''} onChange={e => upd(r.n, { note: e.target.value })} /></div>
                 </div>
-              </> : <ReadOnly codeId={code.id} it={it} ca={ca} late={canLate && (it.status === 'yes' || it.status === 'partial') && !evPartsAnswered(it) ? { value: { ...(it.evidenceParts || {}), ...(late[String(r.n)] || {}) }, onChange: p => setLate(s => ({ ...s, [String(r.n)]: p })), idp: `req-${r.n}-lp` } : undefined} projName={it.projectId ? pick(lang, cfg.projects.find(p => p.id === it.projectId) || { name_ar: it.projectId }) : ''} deptLabel={it.departmentId && it.departmentId !== codeDept ? deptName(cfg, it.departmentId, lang) : ''} />}
+              </> : evEdit === String(r.n) ? <AdminEvidenceEdit it={it} idp={`req-${r.n}-ae`} busy={busy} onCancel={() => setEvEdit(null)} onSave={(ev, parts) => saveEvEdit(String(r.n), ev, parts)} addedBy={user!.id} />
+              : <ReadOnly onAdminEdit={canAdminEv ? () => setEvEdit(String(r.n)) : undefined} editedBy={eff?.edited?.items[String(r.n)] ? `${userName(eff.edited.items[String(r.n)].by)} · ${fmtDay(eff.edited.items[String(r.n)].at, lang)}` : undefined} codeId={code.id} it={it} ca={ca} late={canLate && (it.status === 'yes' || it.status === 'partial') && !evPartsAnswered(it) ? { value: { ...(it.evidenceParts || {}), ...(late[String(r.n)] || {}) }, onChange: p => setLate(s => ({ ...s, [String(r.n)]: p })), idp: `req-${r.n}-lp` } : undefined} projName={it.projectId ? pick(lang, cfg.projects.find(p => p.id === it.projectId) || { name_ar: it.projectId }) : ''} deptLabel={it.departmentId && it.departmentId !== codeDept ? deptName(cfg, it.departmentId, lang) : ''} />}
             </section>
           })}
           {!paired && code.criteria.length > 0 && <section className="card p-4"><div className="label">{t('criteria')}</div><ol className="m-0 ps-5">{code.criteria.map(c => <li key={c.n}>{pickText(lang, c)}</li>)}</ol></section>}
@@ -244,14 +259,31 @@ function EvidenceAdd({ onAdd }: { onAdd: (title: string, url: string, strength: 
     <select className="select !w-auto" aria-label={t('evidenceStrength')} value={strength} onChange={e => setStrength(e.target.value as EvidenceStrength | '')}><option value="">{t('evidenceStrength')}: {t('strengthUnset')}</option><option value="conclusive">{t('strengthConclusive')}</option><option value="editable">{t('strengthEditable')}</option></select>
     <button className="btn btn-sm" disabled={!url.trim()} onClick={add}><Icon name="plus" />{t('addLink')}</button></div>
 }
-function ReadOnly({ it, ca, projName, deptLabel, codeId, late }: { it: ItemAnswer; ca?: { answer: string }; projName: string; deptLabel?: string; codeId: string; late?: { value: NonNullable<ItemAnswer['evidenceParts']>; onChange: (p: NonNullable<ItemAnswer['evidenceParts']>) => void; idp: string } }) {
+function ReadOnly({ it, ca, projName, deptLabel, codeId, late, onAdminEdit, editedBy }: { it: ItemAnswer; ca?: { answer: string }; projName: string; deptLabel?: string; codeId: string; onAdminEdit?: () => void; editedBy?: string; late?: { value: NonNullable<ItemAnswer['evidenceParts']>; onChange: (p: NonNullable<ItemAnswer['evidenceParts']>) => void; idp: string } }) {
   const { t } = useApp()
   return <div className="text-sm flex flex-col gap-1">
     {deptLabel && <div className="text-muted"><span className="font-medium text-fg-2">{t('reqDepartment')}:</span> {deptLabel}</div>}
     {it.status === 'na' && it.justification && <div><span className="font-medium text-fg-2">{t('justification')}:</span> {it.justification}</div>}
     {it.evidence.length > 0 && <div className="flex flex-wrap gap-2 items-center">{it.evidence.map(e => <span key={e.id} className="inline-flex items-center gap-1"><a className={`pill ${e.strength === 'conclusive' ? 'pill-ok' : e.strength === 'editable' ? 'pill-warn' : 'pill-muted'} no-underline`} href={e.url} target="_blank" rel="noreferrer" title={e.strength ? t(e.strength === 'conclusive' ? 'strengthConclusive' : 'strengthEditable') : undefined}><Icon name="link" style={{ width: 12, height: 12 }} />{e.title || e.url}</a><EvidenceRate codeId={codeId} ev={e} /></span>)}</div>}
+    {(onAdminEdit || editedBy) && <div className="flex flex-wrap items-center gap-2 text-xs">{onAdminEdit && <button type="button" className="btn btn-xs" onClick={onAdminEdit}><Icon name="edit" />{t('editEvidence')}</button>}{editedBy && <span className="text-info-ink">{t('evidenceEditedBy')}: {editedBy}</span>}</div>}
     {late ? <EvidencePartsEdit idp={late.idp} it={{ ...it, evidenceParts: late.value }} onChange={late.onChange} fixed={(['doc', 'exec', 'monitor'] as const).filter(k => typeof it.evidenceParts?.[k] === 'boolean')} /> : <EvidencePartsView it={it} />}
     {(projName || it.service || it.note) && <div className="text-muted">{projName && <span className="me-3">{t('project')}: {projName}</span>}{it.service && <span className="me-3">{t('service')}: {it.service}</span>}{it.note && <span>{t('note')}: {it.note}</span>}</div>}
     {it.clarify?.flag && <div className="text-flag-ink">? {t('needsClarification')}: {it.clarify.question}{ca && <span className="text-muted"> · {t('replied')}: {ca.answer}</span>}</div>}
+  </div>
+}
+
+/** Administrator editor for the evidence of one requirement on a submitted or approved code: links, their type, and the three questions. */
+function AdminEvidenceEdit({ it, idp, busy, onCancel, onSave, addedBy }: { it: ItemAnswer; idp: string; busy: boolean; onCancel: () => void; onSave: (evidence: ItemAnswer['evidence'], parts: NonNullable<ItemAnswer['evidenceParts']>) => void; addedBy: string }) {
+  const { t } = useApp()
+  const [ev, setEv] = useState<ItemAnswer['evidence']>(() => it.evidence.map(e => ({ ...e })))
+  const [parts, setParts] = useState<NonNullable<ItemAnswer['evidenceParts']>>(() => ({ ...(it.evidenceParts || {}) }))
+  return <div className="panel p-3 flex flex-col gap-2 text-sm border border-info/40">
+    <div className="text-xs text-info-ink flex items-start gap-1.5"><Icon name="shield" className="shrink-0 mt-0.5" style={{ width: 13, height: 13 }} /><span>{t('evidenceEditHint')}</span></div>
+    {ev.length > 0 && <ul className="m-0 p-0 list-none flex flex-col gap-1">{ev.map(e => <li key={e.id} className="flex flex-wrap items-center gap-2 bg-surface rounded px-2 py-1.5"><Icon name="link" className="text-muted" /><input className="input !py-1 flex-1 min-w-32" aria-label={t('evidenceTitle')} placeholder={t('evidenceTitle')} value={e.title} onChange={x => setEv(l => l.map(y => y.id === e.id ? { ...y, title: x.target.value } : y))} /><input className="input !py-1 flex-[2] min-w-48" dir="ltr" aria-label={t('evidenceUrl')} value={e.url} onChange={x => setEv(l => l.map(y => y.id === e.id ? { ...y, url: x.target.value } : y))} />
+      <select className="select !w-auto !py-1 text-xs" aria-label={t('evidenceStrength')} value={e.strength || ''} onChange={x => setEv(l => l.map(y => y.id === e.id ? { ...y, strength: (x.target.value || null) as EvidenceStrength | null } : y))}><option value="">{t('strengthUnset')}</option><option value="conclusive">{t('strengthConclusive')}</option><option value="editable">{t('strengthEditable')}</option></select>
+      <button type="button" className="btn btn-ghost btn-sm" onClick={() => setEv(l => l.filter(y => y.id !== e.id))} aria-label={t('remove')}><Icon name="x" /></button></li>)}</ul>}
+    <EvidenceAdd onAdd={(title, url, strength) => setEv(l => [...l, { id: uid(), type: 'link', title, url, addedAt: now(), addedBy, strength }])} />
+    <EvidencePartsEdit idp={idp} it={{ ...it, evidence: ev, evidenceParts: parts }} onChange={setParts} />
+    <div className="flex gap-2 justify-end"><button type="button" className="btn btn-sm" onClick={onCancel}>{t('cancel')}</button><button type="button" className="btn btn-sm btn-primary" disabled={busy || ev.some(e => !normaliseUrl(e.url))} onClick={() => onSave(ev.map(e => ({ ...e, url: normaliseUrl(e.url) || e.url, title: e.title.trim() })), parts)}><Icon name="check" />{t('save')}</button></div>
   </div>
 }

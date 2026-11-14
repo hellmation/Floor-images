@@ -14,7 +14,9 @@ export interface Code {
 }
 export interface Master { pillars: Pillar[]; subpillars: SubPillar[]; codes: Code[] }
 
-export interface User { id: string; name_ar: string; name_en: string; role: Role; email?: string; active: boolean; photo?: string }
+export interface User { id: string; name_ar: string; name_en: string; role: Role; email?: string; active: boolean; photo?: string
+  /** Optional sign-in password, stored as a salted hash. A gate inside the tool, not encryption of the data. */
+  pwd?: { salt: string; hash: string } | null }
 export interface Project { id: string; name_ar: string; name_en?: string; ownerId: string | null; active: boolean }
 export interface Cycle { id: string; name: string; name_en?: string; start: string; end: string; due: string; status: CycleStatus; prefillFrom?: string | null
   /** Assignee per code frozen when the cycle is closed, so later mapping edits never rewrite history. */
@@ -92,8 +94,13 @@ export interface Review {
 export interface Clarification { answer: string; answeredBy: string; answeredAt: string }
 export type EvidenceVerdict = 'strong' | 'weak'
 export interface EvidenceRating { rating: EvidenceVerdict; by: string; at: string }
+/** An administrator's adjustment to the evidence of a submitted answer. It is bound to that exact submission (who + when),
+ *  kept beside the reviews so the evaluator's own file is never written by anyone else, and applied on top when read. */
+export interface EvidenceEdit { userId: string | null; submittedAt: string; by: string; at: string
+  items: Record<string, { evidence: Evidence[]; evidenceParts?: { doc?: boolean | null; exec?: boolean | null; monitor?: boolean | null }; by: string; at: string }> }
 export interface ReviewsFile {
   updatedAt: string
+  evidenceEdits?: Record<string, Record<string, EvidenceEdit>>  // cycleId -> codeId -> admin evidence adjustment
   evidenceRatings?: Record<string, Record<string, Record<string, EvidenceRating>>>  // cycleId -> codeId -> evidenceId -> reviewer verdict
   cycles: Record<string, Record<string, Review>>                      // cycleId -> codeId -> review
   clarifications: Record<string, Record<string, Record<string, Clarification>>> // cycleId -> codeId -> reqN -> answer

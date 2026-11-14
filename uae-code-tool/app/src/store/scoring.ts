@@ -1,4 +1,4 @@
-import type { Code, Config, Snapshot, CodeAnswer, Review, WorkState, Impact, AnswerStatus } from '../types'
+import type { Code, Config, Snapshot, CodeAnswer, Review, WorkState, Impact, AnswerStatus, EvidenceEdit } from '../types'
 import masterJson from '../data/master.json'
 import type { Master } from '../types'
 
@@ -70,7 +70,7 @@ export function fulfilSum(rows: FulfilRow[]): Fulfil {
 }
 export const supportDepartments = (cfg: Config, codeId: string) => (cfg.deptMapping?.[codeId] || []).slice(1)
 export function deptName(cfg: Config, id: string | null | undefined, lang: 'ar' | 'en'): string { const d = cfg.departments?.find(x => x.id === id); return d ? (lang === 'ar' ? d.name_ar : d.name_en) : '' }
-export interface Effective { answer: CodeAnswer | null; userId: string | null; review: Review | null; state: WorkState }
+export interface Effective { answer: CodeAnswer | null; userId: string | null; review: Review | null; state: WorkState; edited?: EvidenceEdit }
 
 const RANK: Record<WorkState, number> = { approved: 4, submitted: 3, returned: 2, draft: 1, none: 0 }
 /** The answer that counts for a code in a cycle. Candidates are every known person's answer; the one in the most advanced
@@ -88,6 +88,13 @@ export function effective(snap: Snapshot, cycleId: string, codeId: string): Effe
     if (!best) { best = cand; continue }
     const d = RANK[state] - RANK[best.state]
     if (d > 0 || (d === 0 && (uid === assignee || (best.userId !== assignee && (a.updatedAt > best.answer!.updatedAt || (a.updatedAt === best.answer!.updatedAt && uid < (best.userId || ''))))))) best = cand
+  }
+  // an administrator's evidence adjustment applies only to the exact submission it was made on, while that answer is still the submitted one
+  const ed = snap.reviews.evidenceEdits?.[cycleId]?.[codeId]
+  if (best?.answer && ed && best.answer.state === 'submitted' && ed.userId === best.userId && ed.submittedAt === (best.answer.submittedAt || best.answer.updatedAt)) {
+    const items = { ...best.answer.items }
+    for (const [n, p] of Object.entries(ed.items)) if (items[n]) items[n] = { ...items[n], evidence: p.evidence, ...(p.evidenceParts ? { evidenceParts: p.evidenceParts } : {}) }
+    best = { ...best, answer: { ...best.answer, items }, edited: ed }
   }
   return best || { answer: null, userId: null, review, state: 'none' }
 }

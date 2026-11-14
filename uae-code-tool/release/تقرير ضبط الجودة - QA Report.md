@@ -100,6 +100,18 @@ Report: "the filters are not visible." Cause: the landing page's animated backgr
 
 Codes submitted or approved before the questions existed are answered in place by their evaluator without reopening: state, submission time and approval are untouched (verified on a simulated shared folder with two users). Saved answers are fixed unless the code is reopened. Drafts cannot submit a Yes until the three questions are answered. Pending codes are surfaced in My work, Home, the team table, the risk list and the review queue. The Excel export carries the answers in the Requirements and Tracking sheets, and the audit log records a late answer as its own action.
 
+## الجولة الخامسة (14 نوفمبر) — كلمة المرور وتعديل المدير للأدلة / Round 5 (14 Nov) — password and admin evidence adjustment
+
+- كلمة مرور اختيارية لكل مستخدم تُعيَّن من «الإدارة ← المستخدمون»، وتُطلب عند اختيار الاسم في صفحة الدخول. تُحفظ كتجزئة مملّحة (SHA-256 مكررة) ولا يُحفظ النص نفسه. اختُبر: كلمة خاطئة تُرفض، الصحيحة تدخل، والمستخدم بلا كلمة مرور يدخل مباشرة. ✓
+- تعديل المدير لأدلة كود مُرسل أو معتمد من صفحة الكود (الروابط، نوع الدليل، الأسئلة الثلاثة). يُحفظ التعديل في ملف المراجعات مرتبطاً بذلك الإرسال تحديداً؛ ملف المقيّم لا يُمس، وحالة الكود واعتماده لا يتغيران. ✓
+- المقيّم يرى الدليل المعدَّل وملاحظة «عدّل المدير الدليل»، ولا يظهر له زر التعديل. عند إعادة فتح الكود يبدأ نموذجه من الدليل المعدَّل، وبعد إعادة الإرسال يصبح جزءاً من ملفه. ✓
+- التصدير إلى Excel يحمل الدليل المعدَّل في أوراق المتابعة والمتطلبات والأدلة. ✓
+- رُفع إصدار الإعدادات إلى 10، فتصبح نسخ الأداة الأقدم للقراءة فقط ولا تستطيع تجاوز كلمة المرور بالكتابة. ✓
+
+حدّ معروف: كلمة المرور بوابة داخل الأداة وليست تشفيراً للبيانات؛ من يملك صلاحية الكتابة على المجلد المشترك يستطيع تعديل الملفات مباشرة، فصلاحيات المجلد هي الحماية الفعلية.
+
+An optional per-user password (set in Admin, asked at sign-in, stored as a salted iterated SHA-256 hash). The admin can adjust the evidence of a submitted or approved code; the adjustment lives in reviews.json bound to that exact submission, the evaluator's file is never written, and state and approval are unchanged. The evaluator sees the adjusted evidence, starts from it if the code is reopened, and it becomes part of their file on resubmission. Excel carries it. Config version 10 makes older copies of the tool read-only. Known limit: the password is a gate inside the tool, not encryption; folder permissions remain the real protection.
+
 ## ملاحظات معروفة / Known limits
 - سجل الأحداث للعرض فقط؛ لا يُستخدم في الاحتساب.
 - الشخص نفسه من جهازين في اللحظة نفسها: يُدمج بالأحدث لكل كود (لا يُفقد شيء، لكن قد يفوز آخر تعديل على الكود نفسه).
