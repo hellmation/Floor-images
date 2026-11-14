@@ -66,6 +66,14 @@ export function Stat({ label, value, sub, icon, tone }: { label: string; value: 
     <div className="min-w-0 flex-1"><div className="label !mb-0">{label}</div><div className={`kpi-value num leading-tight ${tone ? `text-${tone}-ink` : ''}`}>{typeof value === 'number' ? <CountUp value={value} /> : typeof value === 'string' && /^\d+(\.\d+)?%$/.test(value) ? <CountUp value={parseFloat(value)} decimals={value.includes('.') ? 1 : 0} suffix="%" /> : value}</div>{sub && <div className="text-sm text-muted mt-0.5 truncate">{sub}</div>}</div>
   </div>
 }
+/** Re-reads the shared folder so numbers saved by other people appear. Shows when the data was last read. */
+export function RefreshButton({ compact }: { compact?: boolean }) {
+  const { t, lang, refresh, lastSync } = useApp(); const toast = useToast(); const [busy, setBusy] = useState(false)
+  const run = async () => { if (busy) return; if (window.__leaveGuard && !window.__leaveGuard()) return; setBusy(true); try { await refresh(); toast(t('refreshed'), 'ok') } catch { toast(t('storageError'), 'bad') } finally { setBusy(false) } }
+  const time = lastSync ? new Date(lastSync).toLocaleTimeString(lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-GB', { hour: '2-digit', minute: '2-digit' }) : ''
+  return <button type="button" className={`btn no-print ${compact ? 'btn-ghost btn-icon 2xl:!w-auto 2xl:!px-2' : 'btn-sm'}`} onClick={run} disabled={busy} title={`${t('refreshHint')}${time ? ` · ${t('lastSync')}: ${time}` : ''}`} aria-label={t('refreshData')}>
+    <Icon name="refresh" className={busy ? 'animate-spin' : ''} />{!compact && <span>{t('refreshData')}</span>}{time && <span className={`num text-xs text-muted ${compact ? 'hidden 2xl:inline' : ''}`}>{time}</span>}</button>
+}
 export function PageHeader({ title, sub, eyebrow, actions, children }: { title: ReactNode; sub?: ReactNode; eyebrow?: ReactNode; actions?: ReactNode; children?: ReactNode }) {
   return <div className="flex flex-wrap items-end justify-between gap-3 mb-5"><div className="min-w-0">{eyebrow && <div className="eyebrow mb-1">{eyebrow}</div>}<h1 className="page-title">{title}</h1>{sub && <p className="page-sub">{sub}</p>}{children}</div>{actions && <div className="flex flex-wrap gap-2 items-center">{actions}</div>}</div>
 }

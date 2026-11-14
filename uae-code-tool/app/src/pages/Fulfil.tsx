@@ -2,7 +2,7 @@ import { useMemo, useState, type ReactNode } from 'react'
 import { useApp } from '../store/state'
 import { master, fulfilRows, fulfilSum, deptName, pillarById, effective, assigneeOf, departmentOf, evidenceFacts, type FulfilRow, type EvidenceFact } from '../store/scoring'
 import { pick } from '../i18n'
-import { PageHeader, Ring, Stat, fmtPct, tone, ringTone, useToast, PrintHeader } from '../components/ui'
+import { PageHeader, Ring, Stat, fmtPct, tone, ringTone, useToast, PrintHeader, RefreshButton } from '../components/ui'
 import { Stacked } from '../components/charts'
 import { Icon, type IconName } from '../components/icons'
 import type { WorkState } from '../types'
@@ -86,7 +86,7 @@ export default function Fulfil() {
     <div>
       <PrintHeader title={`${t('reportOf')}: ${t('fulfilment')}`} sub={`${lang === 'ar' ? (cycle?.name || cy) : (cycle?.name_en || cy)} · ${approvedOnly ? t('approvedOnly') : t('allAnswered')}`} />
       <PageHeader title={t('fulfilment')} sub={`${t('high')} ${P.high} · ${t('medium')} ${P.medium} · ${t('low')} ${P.low} — ${t('fulfilmentHint')}`}
-        actions={<><button className="btn btn-sm" onClick={() => window.print()}><Icon name="download" />{t('printReport')}</button><div className="seg" role="group" aria-label={t('status')}><button aria-pressed={!approvedOnly} onClick={() => setApprovedOnly(false)}>{t('allAnswered')}</button><button aria-pressed={approvedOnly} onClick={() => setApprovedOnly(true)}>{t('approvedOnly')}</button></div></>} />
+        actions={<><RefreshButton /><button className="btn btn-sm" onClick={() => window.print()}><Icon name="download" />{t('printReport')}</button><div className="seg" role="group" aria-label={t('status')}><button aria-pressed={!approvedOnly} onClick={() => setApprovedOnly(false)}>{t('allAnswered')}</button><button aria-pressed={approvedOnly} onClick={() => setApprovedOnly(true)}>{t('approvedOnly')}</button></div></>} />
       {/* 1. Status cards */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
         {([['approved', t('approved'), 'checkCircle', 'ok'], ['submitted', t('awaitingReview'), 'shield', 'info'], ['prep', t('inPreparation'), 'edit', 'warn'], ['none', t('notStarted'), 'clock', undefined]] as const).map(([k, label, icon, tn]) =>

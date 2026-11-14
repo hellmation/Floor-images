@@ -2,7 +2,7 @@ import { useMemo, useState, type ReactNode } from 'react'
 import { useApp } from '../store/state'
 import { master, rollup, effective, codeScore, effectiveImpact, sortIds, isComplete, departmentOf, fulfilRows, assigneeOf, evPartsPending, type FulfilRow } from '../store/scoring'
 import { pick, pickDesc } from '../i18n'
-import { ImpactPill, PageHeader, Ring, fmtPct, tone, ringTone, PrintHeader, Avatar, fmtDay, Pill, CountUp } from '../components/ui'
+import { ImpactPill, PageHeader, Ring, fmtPct, tone, ringTone, PrintHeader, Avatar, fmtDay, Pill, CountUp, RefreshButton } from '../components/ui'
 import { Bars, Columns, Donut, Heatmap, Stacked, Trend, TipRow } from '../components/charts'
 import { Icon, type IconName } from '../components/icons'
 import type { WorkState, EvidenceStrength } from '../types'
@@ -97,7 +97,7 @@ export default function Dashboard() {
     <div>
       <PrintHeader title={`${t('reportOf')}: ${t('dashboard')}`} sub={cname(cfg.cycles.find(c => c.id === cy) || { name: cy })} />
       <PageHeader title={t('dashboard')} sub={t('overview')} actions={<>
-        <button className="btn btn-sm" onClick={() => window.print()}><Icon name="download" />{t('printReport')}</button>
+        <RefreshButton /><button className="btn btn-sm" onClick={() => window.print()}><Icon name="download" />{t('printReport')}</button>
         <div className="seg"><button aria-pressed={!approvedOnly} onClick={() => setApprovedOnly(false)}>{t('allAnswered')}</button><button aria-pressed={approvedOnly} onClick={() => setApprovedOnly(true)}>{t('approvedOnly')}</button></div>
         <label className="flex items-center gap-1 text-sm"><span className="text-muted">{t('compareWith')}</span><select className="select !w-auto" value={cmp} onChange={e => setCmp(e.target.value)}><option value="">{t('none')}</option>{cfg.cycles.filter(c => c.id !== cy).map(c => <option key={c.id} value={c.id}>{cname(c)}</option>)}</select></label></>} />
 

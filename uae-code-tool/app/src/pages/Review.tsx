@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useApp } from '../store/state'
 import { master, effective, codeScore, sortIds, now, evPartsPending } from '../store/scoring'
 import { pickDesc, pickText } from '../i18n'
-import { Avatar, Empty, PageHeader, StatusPill, useToast, fmtDate, fmtPct, tone, Modal } from '../components/ui'
+import { Avatar, Empty, PageHeader, StatusPill, useToast, fmtDate, fmtPct, tone, Modal, RefreshButton } from '../components/ui'
 import { Icon } from '../components/icons'
 import { EvidenceRate } from '../components/EvidenceRate'
 import { EvidencePartsView, partsCount } from '../components/EvidenceParts'
@@ -53,7 +53,7 @@ export default function Review() {
   }
   return (
     <div>
-      <PageHeader title={t('review')} sub={`${queue.length} ${t('pending')} · ${clars.length} ${t('clarificationQueue')}`} actions={<div className="seg"><button aria-pressed={tab === 'queue'} onClick={() => setTab('queue')}><Icon name="shield" />{t('pending')} <span className="num">{queue.length}</span></button><button aria-pressed={tab === 'clar'} onClick={() => setTab('clar')}><Icon name="question" />{t('clarificationQueue')} <span className="num">{clars.length}</span></button><button aria-pressed={tab === 'approved'} onClick={() => setTab('approved')}><Icon name="checkCircle" />{t('approved')} <span className="num">{approved.length}</span></button></div>} />
+      <PageHeader title={t('review')} sub={`${queue.length} ${t('pending')} · ${clars.length} ${t('clarificationQueue')}`} actions={<><RefreshButton /><div className="seg"><button aria-pressed={tab === 'queue'} onClick={() => setTab('queue')}><Icon name="shield" />{t('pending')} <span className="num">{queue.length}</span></button><button aria-pressed={tab === 'clar'} onClick={() => setTab('clar')}><Icon name="question" />{t('clarificationQueue')} <span className="num">{clars.length}</span></button><button aria-pressed={tab === 'approved'} onClick={() => setTab('approved')}><Icon name="checkCircle" />{t('approved')} <span className="num">{approved.length}</span></button></div></>} />
       <div className="flex flex-col gap-3">
         {!canReview && <div className="text-sm text-warn-ink bg-warn-soft rounded-lg px-3 py-2">{t(cycle?.status === 'closed' ? 'cycleClosedNotice' : 'cyclePlanningNotice')}</div>}
         {tab === 'queue' && (queue.length === 0 ? <Empty icon="shield" title={t('allCaughtUp')} /> : queue.map(({ c, e }) => <div key={c.id} className="card p-4 flex flex-col gap-2">

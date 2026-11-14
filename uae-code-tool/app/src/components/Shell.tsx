@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { useApp } from '../store/state'
 import { t as tr, hasKey } from '../i18n'
 import { Icon, type IconName } from './icons'
-import { Avatar, useToast, fmtDay } from './ui'
+import { Avatar, useToast, fmtDay, RefreshButton } from './ui'
 import { master, sortIds } from '../store/scoring'
 import { pickDesc } from '../i18n'
 import emblem from '../assets/brand/fta-emblem.png'
@@ -51,7 +51,7 @@ export function Shell({ page, children }: { page: string; children: ReactNode })
           <div className="ms-auto flex items-center gap-2">
             <select className="select !w-auto !py-1.5 text-sm hidden md:block" value={cycleId || ''} onChange={e => { if (window.__leaveGuard && !window.__leaveGuard()) { e.target.value = cycleId || ''; return } setCycleId(e.target.value) }} aria-label={t('cycle')}>{cfg.cycles.map(c => <option key={c.id} value={c.id}>{cname(c)}</option>)}</select>
             <button className="btn btn-sm" onClick={doExport} disabled={busy} title={t('exportExcelHint')}><Icon name="download" /><span className="hidden sm:inline">{busy ? '…' : t('exportExcel')}</span></button>
-            <button className="btn btn-ghost btn-icon hidden sm:inline-flex" title={t('refresh')} aria-label={t('refresh')} onClick={doRefresh}><Icon name="refresh" /></button>
+            <RefreshButton compact />
             <div className="seg" role="group" aria-label={t('language')}><button aria-pressed={lang === 'ar'} onClick={() => setLang('ar')}>عربي</button><button aria-pressed={lang === 'en'} onClick={() => setLang('en')}>EN</button></div>
             <div className="seg hidden sm:inline-flex" role="group" aria-label={t('theme')}><button aria-pressed={theme === 'light'} title={t('light')} onClick={() => setTheme('light')}><Icon name="sun" /></button><button aria-pressed={theme === 'system'} title={t('system')} onClick={() => setTheme('system')}><Icon name="monitor" /></button><button aria-pressed={theme === 'dark'} title={t('dark')} onClick={() => setTheme('dark')}><Icon name="moon" /></button></div>
           </div>
