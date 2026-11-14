@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useApp } from '../store/state'
 import { hasFolderApi, LocalAdapter } from '../store/storage'
 import { Icon } from '../components/icons'
-import { Avatar, errMsg } from '../components/ui'
+import { Avatar, errMsg, Req } from '../components/ui'
 import lockup from '../assets/brand/fta-lockup-light.png'
 import lockupDark from '../assets/brand/fta-lockup-dark.png'
 import { checkPassword } from '../store/password'
@@ -53,7 +53,7 @@ export default function Setup() {
               const go = () => { if (checkPassword(pw, u.pwd)) { setPwUser(null); setUserId(u.id) } else setPwErr(true) }
               return <form className="flex flex-col gap-3" onSubmit={e => { e.preventDefault(); go() }}>
                 <div className="flex items-center gap-3"><Avatar name={n} photo={u.photo} size="lg" /><div><div className="font-semibold">{n}</div><div className="text-sm text-muted">{t('enterPassword')}</div></div></div>
-                <input type="password" className="input" autoFocus autoComplete="current-password" aria-label={t('passwordLabel')} placeholder={t('passwordLabel')} value={pw} onChange={e => { setPw(e.target.value); setPwErr(false) }} />
+                <span className="req-in"><Req /><input type="password" className="input" autoFocus autoComplete="current-password" aria-label={t('passwordLabel')} placeholder={t('passwordLabel')} value={pw} onChange={e => { setPw(e.target.value); setPwErr(false) }} /></span>
                 {pwErr && <p className="text-bad text-sm m-0" role="alert">{t('wrongPassword')}</p>}
                 <div className="flex gap-2"><button type="submit" className="btn btn-primary flex-1" disabled={!pw}><Icon name="check" />{t('signInBtn')}</button><button type="button" className="btn" onClick={() => setPwUser(null)}>{t('backBtn')}</button></div>
               </form> })()}

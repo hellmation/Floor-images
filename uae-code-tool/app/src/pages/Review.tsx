@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useApp } from '../store/state'
 import { master, effective, codeScore, sortIds, now, evPartsPending } from '../store/scoring'
 import { pickDesc, pickText } from '../i18n'
-import { Avatar, Empty, PageHeader, StatusPill, useToast, fmtDate, fmtPct, tone, Modal, RefreshButton, Opt } from '../components/ui'
+import { Avatar, Empty, PageHeader, StatusPill, useToast, fmtDate, fmtPct, tone, Modal, RefreshButton, Opt, Req } from '../components/ui'
 import { Icon } from '../components/icons'
 import { EvidenceRate } from '../components/EvidenceRate'
 import { EvidencePartsView, partsCount } from '../components/EvidenceParts'
@@ -65,7 +65,7 @@ export default function Review() {
               {it?.evidence?.length ? <div className="ps-8 flex flex-wrap gap-2 items-center">{it.evidence.map(ev => <span key={ev.id} className="inline-flex items-center gap-1"><a className={`pill ${ev.strength === 'conclusive' ? 'pill-ok' : ev.strength === 'editable' ? 'pill-warn' : 'pill-muted'} no-underline`} href={ev.url} target="_blank" rel="noreferrer" title={ev.strength ? t(ev.strength === 'conclusive' ? 'strengthConclusive' : 'strengthEditable') : undefined}><Icon name="link" style={{ width: 12, height: 12 }} />{ev.title || ev.url}</a><EvidenceRate codeId={c.id} ev={ev} /></span>)}</div> : null}
               {it?.evidenceParts && <div className="ps-8"><EvidencePartsView it={it} /></div>}
               {it?.note && <div className="text-muted ps-8">{t('note')}: {it.note}</div>}</div> })}
-            <textarea className="textarea" rows={2} placeholder={t('reviewerComment')} value={comment} onChange={e2 => setComment(e2.target.value)} />
+            <label className="label !mb-0" htmlFor={'rv-c-' + c.id}>{t('reviewerComment')}<Opt text={t('reqWhenReturn')} /></label><textarea id={'rv-c-' + c.id} className="textarea" rows={2} placeholder={t('reviewerComment')} value={comment} onChange={e2 => setComment(e2.target.value)} />
             <div className="flex flex-wrap gap-2 items-center"><button className="btn btn-ok btn-sm" disabled={!canReview} onClick={() => decide(c.id, 'approved', true)}><Icon name="checkCircle" />{t('approve')} · {t('evidenceVerified')}</button><button className="btn btn-sm" disabled={!canReview} onClick={() => decide(c.id, 'approved', false)}><Icon name="check" />{t('approve')}</button><button className="btn btn-danger btn-sm" disabled={!comment.trim() || !canReview} onClick={() => decide(c.id, 'returned', false)}><Icon name={lang === 'ar' ? 'arrowR' : 'arrowL'} />{t('return')}</button></div>
           </div>}
         </div>))}
@@ -73,7 +73,7 @@ export default function Review() {
           <div className="flex flex-wrap items-center gap-2"><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a><span className="code-id">{n}</span><span className="flex-1 min-w-0">{pickText(lang, c.requirements.find(r => String(r.n) === n) || { text_ar: n, text_en: n })}</span><span className="text-xs text-muted">{userName(e.userId)} · {fmtDate(it.clarify?.raisedAt, lang)}</span>{ans && <span className="pill pill-ok">{t('replied')}</span>}</div>
           <div className="rounded-lg bg-flag-soft text-flag-ink p-3"><b>{t('needsClarification')}:</b> {it.clarify?.question || '—'}</div>
           {ans && <div className="text-muted"><b>{t('clarificationAnswer')}</b> ({fmtDate(ans.answeredAt, lang)}): {ans.answer}</div>}
-          <div className="flex gap-2"><input className="input" placeholder={t('reply')} value={reply[key(c.id, n)] || ''} onChange={e2 => setReply(s => ({ ...s, [key(c.id, n)]: e2.target.value }))} onKeyDown={e2 => { if (e2.key === 'Enter' && (reply[key(c.id, n)] || '').trim()) answer(c.id, n) }} /><button className="btn btn-sm" disabled={!(reply[key(c.id, n)] || '').trim()} onClick={() => answer(c.id, n)}><Icon name="send" />{t('reply')}</button></div>
+          <div className="flex gap-2"><span className="req-in flex-1"><Req /><input className="input" placeholder={t('reply')} aria-label={t('reply')} aria-required value={reply[key(c.id, n)] || ''} onChange={e2 => setReply(s => ({ ...s, [key(c.id, n)]: e2.target.value }))} onKeyDown={e2 => { if (e2.key === 'Enter' && (reply[key(c.id, n)] || '').trim()) answer(c.id, n) }} /></span><button className="btn btn-sm" disabled={!(reply[key(c.id, n)] || '').trim()} onClick={() => answer(c.id, n)}><Icon name="send" />{t('reply')}</button></div>
         </div>))}
         {tab === 'approved' && (approved.length === 0 ? <Empty icon="checkCircle" /> : <>
           <div className="card p-3 flex flex-wrap items-end gap-3">

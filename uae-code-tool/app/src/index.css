@@ -302,6 +302,10 @@ html[dir="rtl"] .chart-tip { transform: translate(calc(-100% - 12px), 14px); }
 
 /* mandatory / optional markers */
 .req-star { color: var(--bad); font-weight: 800; margin-inline-start: .25rem; font-size: 1.35em; line-height: .8; vertical-align: middle; }
+/* a mandatory control that has no label of its own: the asterisk sits just before it */
+.req-in { display: flex; align-items: center; gap: .3rem; min-width: 0; }
+.req-in > .req-star { margin: 0; flex: none; }
+.req-in > .input, .req-in > .textarea, .req-in > .select { flex: 1 1 auto; min-width: 0; }
 .opt-tag { color: var(--muted); font-weight: 400; font-size: .85em; margin-inline-start: .35rem; text-transform: none; letter-spacing: 0; }
 /* any labelled field whose control carries the required attribute gets the asterisk automatically */
 .field:has(:required) > .label::after { content: " *"; color: var(--bad); font-weight: 800; font-size: 1.35em; line-height: .8; vertical-align: middle; }
