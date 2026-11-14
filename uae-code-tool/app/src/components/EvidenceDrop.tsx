@@ -45,8 +45,8 @@ export function EvidenceDrop({ code, onLinked }: { code: Code; onLinked: (title:
       onClick={() => input.current?.click()} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.current?.click() } }}
       onDragOver={e => { e.preventDefault(); setOver(true) }} onDragLeave={() => setOver(false)}
       onDrop={e => { e.preventDefault(); setOver(false); void store(Array.from(e.dataTransfer.files || []), false) }}>
-      <Icon name="folder" className="text-accent-ink" style={{ width: 22, height: 22 }} />
-      <div className="min-w-0"><div className="font-medium text-sm">{busy ? t('dropSaving') : t('dropTitle')}</div><div className="text-xs text-muted">{t('dropHint')}</div></div>
+      <span className="dz-icon"><Icon name="folder" style={{ width: 26, height: 26 }} /></span>
+      <div className="min-w-0"><div className="dz-title">{busy ? t('dropSaving') : t('dropTitle')}</div><div className="dz-hint mt-1">{t('dropHint')}</div></div>
       <input ref={input} type="file" multiple className="sr-only" tabIndex={-1} onClick={e => e.stopPropagation()} onChange={e => { const fs = Array.from(e.target.files || []); e.target.value = ''; void store(fs, true) }} />
     </div>
     {pending.length > 0 && <div className="flex flex-wrap items-center gap-2 text-sm bg-warn-soft text-warn-ink rounded-lg px-3 py-2 mt-2"><Icon name="alert" className="shrink-0" /><span className="flex-1 min-w-40">{pending.length} {t('dropPending')} · {t('dropLinkHint')}</span><button type="button" className="btn btn-sm btn-primary" disabled={busy} onClick={() => store(pending, true)}><Icon name="folder" />{t('dropLink')}</button><button type="button" className="btn btn-sm btn-ghost" onClick={() => setPending([])}>{t('cancel')}</button></div>}
