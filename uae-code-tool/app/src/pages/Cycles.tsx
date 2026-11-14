@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useApp } from '../store/state'
-import { Modal, PageHeader, Pill, useToast, fmtDay } from '../components/ui'
+import { Modal, PageHeader, Pill, useToast, fmtDay, Opt } from '../components/ui'
 import { Icon } from '../components/icons'
 import type { Cycle, CycleStatus } from '../types'
 import { freezeAssignments } from '../store/scoring'
@@ -42,13 +42,13 @@ export default function Cycles() {
       <Modal open={!!draft} onClose={() => setDraft(null)} title={draft && !draft.isNew ? t('edit') : t('newCycle')} footer={<><button className="btn" onClick={() => setDraft(null)}>{t('cancel')}</button><button className="btn btn-primary" form="cycle-form">{t('save')}</button></>}>
         {draft && <form id="cycle-form" className="grid sm:grid-cols-2 gap-3" onSubmit={e => { e.preventDefault(); save(draft) }}>
           <div className="field"><label className="label" htmlFor="cy-id">{t('id')}</label><input id="cy-id" className="input" required dir="ltr" value={draft.id} disabled={!draft.isNew} onChange={e => setDraft({ ...draft, id: e.target.value })} placeholder="2027-Q1" /></div>
-          <div className="field"><label className="label" htmlFor="cy-status">{t('status')}</label><select id="cy-status" className="select" value={draft.status} onChange={e => setDraft({ ...draft, status: e.target.value as CycleStatus })}>{statuses.map(s => <option key={s} value={s}>{sl(s)}</option>)}</select></div>
+          <div className="field"><label className="label" htmlFor="cy-status">{t('status')}</label><select id="cy-status" required className="select" value={draft.status} onChange={e => setDraft({ ...draft, status: e.target.value as CycleStatus })}>{statuses.map(s => <option key={s} value={s}>{sl(s)}</option>)}</select></div>
           <div className="field"><label className="label" htmlFor="cy-name">{t('nameAr')}</label><input id="cy-name" className="input" required value={draft.name} onChange={e => setDraft({ ...draft, name: e.target.value })} /></div>
-          <div className="field"><label className="label" htmlFor="cy-name_en">{t('nameEn')}</label><input id="cy-name_en" className="input" value={draft.name_en || ''} onChange={e => setDraft({ ...draft, name_en: e.target.value })} /></div>
+          <div className="field"><label className="label" htmlFor="cy-name_en">{t('nameEn')}<Opt /></label><input id="cy-name_en" className="input" value={draft.name_en || ''} onChange={e => setDraft({ ...draft, name_en: e.target.value })} /></div>
           <div className="field"><label className="label" htmlFor="cy-start">{t('startDate')}</label><input id="cy-start" type="date" className="input" required value={draft.start} onChange={e => setDraft({ ...draft, start: e.target.value })} /></div>
           <div className="field"><label className="label" htmlFor="cy-end">{t('endDate')}</label><input id="cy-end" type="date" className="input" required value={draft.end} onChange={e => setDraft({ ...draft, end: e.target.value })} /></div>
           <div className="field"><label className="label" htmlFor="cy-due">{t('dueDate')}</label><input id="cy-due" type="date" className="input" required value={draft.due} onChange={e => setDraft({ ...draft, due: e.target.value })} /></div>
-          <div className="field"><label className="label" htmlFor="cy-prefillFrom">{t('prefillFrom')}</label><select id="cy-prefillFrom" className="select" value={draft.prefillFrom || ''} onChange={e => setDraft({ ...draft, prefillFrom: e.target.value || null })}><option value="">{t('none')}</option>{cfg.cycles.filter(c => c.id !== draft.id).map(c => <option key={c.id} value={c.id}>{cname(c)}</option>)}</select></div>
+          <div className="field"><label className="label" htmlFor="cy-prefillFrom">{t('prefillFrom')}<Opt /></label><select id="cy-prefillFrom" className="select" value={draft.prefillFrom || ''} onChange={e => setDraft({ ...draft, prefillFrom: e.target.value || null })}><option value="">{t('none')}</option>{cfg.cycles.filter(c => c.id !== draft.id).map(c => <option key={c.id} value={c.id}>{cname(c)}</option>)}</select></div>
         </form>}
       </Modal>
     </div>

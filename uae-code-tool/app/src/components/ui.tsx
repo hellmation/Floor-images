@@ -74,6 +74,10 @@ export function RefreshButton({ compact }: { compact?: boolean }) {
   return <button type="button" className={`btn no-print ${compact ? 'btn-ghost btn-icon 2xl:!w-auto 2xl:!px-2' : 'btn-sm'}`} onClick={run} disabled={busy} title={`${t('refreshHint')}${time ? ` · ${t('lastSync')}: ${time}` : ''}`} aria-label={t('refreshData')}>
     <Icon name="refresh" className={busy ? 'animate-spin' : ''} />{!compact && <span>{t('refreshData')}</span>}{time && <span className={`num text-xs text-muted ${compact ? 'hidden 2xl:inline' : ''}`}>{time}</span>}</button>
 }
+/** Red asterisk for a mandatory field (announced to screen readers as "required"). */
+export function Req() { const { t } = useApp(); return <><span className="req-star" aria-hidden="true">*</span><span className="sr-only"> ({t('mandatory')})</span></> }
+/** Muted "(optional)" tag for a field that may be left empty. */
+export function Opt({ text }: { text?: string }) { const { t } = useApp(); return <span className="opt-tag">({text || t('optional')})</span> }
 export function PageHeader({ title, sub, eyebrow, actions, children }: { title: ReactNode; sub?: ReactNode; eyebrow?: ReactNode; actions?: ReactNode; children?: ReactNode }) {
   return <div className="flex flex-wrap items-end justify-between gap-3 mb-5"><div className="min-w-0">{eyebrow && <div className="eyebrow mb-1">{eyebrow}</div>}<h1 className="page-title">{title}</h1>{sub && <p className="page-sub">{sub}</p>}{children}</div>{actions && <div className="flex flex-wrap gap-2 items-center">{actions}</div>}</div>
 }

@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useApp } from '../store/state'
 import { master, effective, codeScore, sortIds, now, evPartsPending } from '../store/scoring'
 import { pickDesc, pickText } from '../i18n'
-import { Avatar, Empty, PageHeader, StatusPill, useToast, fmtDate, fmtPct, tone, Modal, RefreshButton } from '../components/ui'
+import { Avatar, Empty, PageHeader, StatusPill, useToast, fmtDate, fmtPct, tone, Modal, RefreshButton, Opt } from '../components/ui'
 import { Icon } from '../components/icons'
 import { EvidenceRate } from '../components/EvidenceRate'
 import { EvidencePartsView, partsCount } from '../components/EvidenceParts'
@@ -89,7 +89,7 @@ export default function Review() {
               <td><button className="btn btn-sm" disabled={!canReview} onClick={() => { if (confirm(t('confirmReopen'))) decide(c.id, 'returned', false, 'reopened') }}><Icon name="refresh" />{t('reopen')}</button></td></tr>)}</tbody></table></div>
           <Modal open={bulk} onClose={() => setBulk(false)} title={`${t('reopenSelected')} (${sel.size})`} footer={<><button className="btn" onClick={() => setBulk(false)}>{t('cancel')}</button><button className="btn btn-primary" disabled={busy} onClick={bulkReopen}><Icon name="refresh" />{t('reopenSelected')}</button></>}>
             <p className="text-sm m-0 mb-3">{t('confirmBulkReopen')}</p>
-            <div className="field"><label className="label" htmlFor="rv-reason">{t('reopenReason')}</label><textarea id="rv-reason" className="textarea" rows={3} value={reason} onChange={e => setReason(e.target.value)} /></div>
+            <div className="field"><label className="label" htmlFor="rv-reason">{t('reopenReason')}<Opt /></label><textarea id="rv-reason" className="textarea" rows={3} value={reason} onChange={e => setReason(e.target.value)} /></div>
             <ul className="m-0 mt-3 p-0 list-none flex flex-wrap gap-1 max-h-32 overflow-auto">{approvedRows.filter(r => sel.has(r.c.id)).map(r => <li key={r.c.id}><span className="code-id">{r.c.id}</span></li>)}</ul>
           </Modal>
         </>)}

@@ -284,3 +284,9 @@ html[dir="rtl"] .chart-tip { transform: translate(calc(-100% - 12px), 14px); }
 .drop-zone:hover, .drop-zone:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
 .drop-zone.over { border-color: var(--accent); border-style: solid; background: var(--accent-soft); }
 .drop-zone.busy { opacity: .7; pointer-events: none; }
+
+/* mandatory / optional markers */
+.req-star { color: var(--bad); font-weight: 800; margin-inline-start: .25rem; font-size: 1.35em; line-height: .8; vertical-align: middle; }
+.opt-tag { color: var(--muted); font-weight: 400; font-size: .85em; margin-inline-start: .35rem; text-transform: none; letter-spacing: 0; }
+/* any labelled field whose control carries the required attribute gets the asterisk automatically */
+.field:has(:required) > .label::after { content: " *"; color: var(--bad); font-weight: 800; font-size: 1.35em; line-height: .8; vertical-align: middle; }
