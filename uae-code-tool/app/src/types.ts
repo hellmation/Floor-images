@@ -28,6 +28,8 @@ export interface Settings {
   points: { high: number; medium: number; low: number; none: number }
   defaultAssigneeId: string | null
   requireEvidence: boolean
+  /** Network path of the evidence root folder; used to build the link of a code's evidence folder after files are dropped. */
+  evidenceRoot?: string
 }
 export interface Department { id: string; name_ar: string; name_en: string; active: boolean }
 export interface Config {

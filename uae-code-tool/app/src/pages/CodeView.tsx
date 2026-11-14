@@ -5,8 +5,9 @@ import { pick, pickDesc, pickText } from '../i18n'
 import { ImpactPill, Pill, StatePill, StatusPill, Modal, Empty, useToast, fmtDate, errMsg, fmtDay } from '../components/ui'
 import { Icon } from '../components/icons'
 import { EvidenceRate } from '../components/EvidenceRate'
+import { EvidenceDrop } from '../components/EvidenceDrop'
 import { EvidencePartsEdit, EvidencePartsView, partsAnswered } from '../components/EvidenceParts'
-import type { AnswerStatus, CodeAnswer, ItemAnswer, EvidenceStrength, ReviewsFile } from '../types'
+import type { AnswerStatus, CodeAnswer, ItemAnswer, EvidenceStrength, ReviewsFile, Code } from '../types'
 
 const emptyItem = (): ItemAnswer => ({ status: null, evidence: [], clarify: { flag: false, question: '' } })
 
@@ -175,6 +176,7 @@ export default function CodeView({ id }: { id: string }) {
                 <div><div className="label">{t('evidence')}</div>
                   <p className="text-xs text-muted m-0 mb-2 flex items-start gap-1.5"><Icon name="folder" className="shrink-0 mt-0.5" style={{ width: 13, height: 13 }} /><span>{t('evidenceHow')} {t('evOneLink')}</span></p>
                   {it.evidence.length > 0 && <ul className="m-0 mb-2 p-0 list-none flex flex-col gap-1">{it.evidence.map(ev => <li key={ev.id} className="flex items-center gap-2 text-sm panel px-2 py-1.5"><Icon name="link" className="text-muted" /><a href={ev.url} target="_blank" rel="noreferrer" className="truncate flex-1">{ev.title || ev.url}</a><select className="select !w-auto !py-0.5 text-xs" aria-label={t('evidenceStrength')} value={ev.strength || ''} onChange={e => upd(r.n, { evidence: it.evidence.map(x => x.id === ev.id ? { ...x, strength: (e.target.value || null) as EvidenceStrength | null } : x) })}><option value="">{t('strengthUnset')}</option><option value="conclusive">{t('strengthConclusive')}</option><option value="editable">{t('strengthEditable')}</option></select><button className="btn btn-ghost btn-sm" onClick={() => upd(r.n, { evidence: it.evidence.filter(x => x.id !== ev.id) })} aria-label={t('remove')}><Icon name="x" /></button></li>)}</ul>}
+                  <EvidenceDrop code={code} onLinked={(title, path) => { const url = normaliseUrl(path); if (!url) return; const cur = itemsRef.current[String(r.n)] || it; if (cur.evidence.some(e => e.url === url)) return; upd(r.n, { evidence: [...cur.evidence, { id: uid(), type: 'link', title, url, addedAt: now(), addedBy: user!.id, strength: null }] }) }} />
                   <EvidenceAdd onAdd={(title, url, strength) => upd(r.n, { evidence: [...it.evidence, { id: uid(), type: 'link', title, url, addedAt: now(), addedBy: user!.id, strength }] })} />
                   {(it.status === 'yes' || it.status === 'partial' || it.evidence.length > 0) && <EvidencePartsEdit idp={`req-${r.n}-ep`} it={it} onChange={p => upd(r.n, { evidenceParts: p })} />}
                 </div>
@@ -184,7 +186,7 @@ export default function CodeView({ id }: { id: string }) {
                   <div className="field"><label className="label" htmlFor={`req-${r.n}-s`}>{t('service')}</label><input id={`req-${r.n}-s`} className="input" value={it.service || ''} onChange={e => upd(r.n, { service: e.target.value })} /></div>
                   <div className="field"><label className="label" htmlFor={`req-${r.n}-n`}>{t('note')}</label><input id={`req-${r.n}-n`} className="input" value={it.note || ''} onChange={e => upd(r.n, { note: e.target.value })} /></div>
                 </div>
-              </> : evEdit === String(r.n) ? <AdminEvidenceEdit it={it} idp={`req-${r.n}-ae`} busy={busy} onCancel={() => setEvEdit(null)} onSave={(ev, parts) => saveEvEdit(String(r.n), ev, parts)} addedBy={user!.id} />
+              </> : evEdit === String(r.n) ? <AdminEvidenceEdit code={code} it={it} idp={`req-${r.n}-ae`} busy={busy} onCancel={() => setEvEdit(null)} onSave={(ev, parts) => saveEvEdit(String(r.n), ev, parts)} addedBy={user!.id} />
               : <ReadOnly onAdminEdit={canAdminEv ? () => setEvEdit(String(r.n)) : undefined} editedBy={eff?.edited?.items[String(r.n)] ? `${userName(eff.edited.items[String(r.n)].by)} · ${fmtDay(eff.edited.items[String(r.n)].at, lang)}` : undefined} codeId={code.id} it={it} ca={ca} late={canLate && (it.status === 'yes' || it.status === 'partial') && !evPartsAnswered(it) ? { value: { ...(it.evidenceParts || {}), ...(late[String(r.n)] || {}) }, onChange: p => setLate(s => ({ ...s, [String(r.n)]: p })), idp: `req-${r.n}-lp` } : undefined} projName={it.projectId ? pick(lang, cfg.projects.find(p => p.id === it.projectId) || { name_ar: it.projectId }) : ''} deptLabel={it.departmentId && it.departmentId !== codeDept ? deptName(cfg, it.departmentId, lang) : ''} />}
             </section>
           })}
@@ -273,7 +275,7 @@ function ReadOnly({ it, ca, projName, deptLabel, codeId, late, onAdminEdit, edit
 }
 
 /** Administrator editor for the evidence of one requirement on a submitted or approved code: links, their type, and the three questions. */
-function AdminEvidenceEdit({ it, idp, busy, onCancel, onSave, addedBy }: { it: ItemAnswer; idp: string; busy: boolean; onCancel: () => void; onSave: (evidence: ItemAnswer['evidence'], parts: NonNullable<ItemAnswer['evidenceParts']>) => void; addedBy: string }) {
+function AdminEvidenceEdit({ it, idp, busy, onCancel, onSave, addedBy, code }: { it: ItemAnswer; idp: string; busy: boolean; onCancel: () => void; onSave: (evidence: ItemAnswer['evidence'], parts: NonNullable<ItemAnswer['evidenceParts']>) => void; addedBy: string; code: Code }) {
   const { t } = useApp()
   const [ev, setEv] = useState<ItemAnswer['evidence']>(() => it.evidence.map(e => ({ ...e })))
   const [parts, setParts] = useState<NonNullable<ItemAnswer['evidenceParts']>>(() => ({ ...(it.evidenceParts || {}) }))
@@ -282,6 +284,7 @@ function AdminEvidenceEdit({ it, idp, busy, onCancel, onSave, addedBy }: { it: I
     {ev.length > 0 && <ul className="m-0 p-0 list-none flex flex-col gap-1">{ev.map(e => <li key={e.id} className="flex flex-wrap items-center gap-2 bg-surface rounded px-2 py-1.5"><Icon name="link" className="text-muted" /><input className="input !py-1 flex-1 min-w-32" aria-label={t('evidenceTitle')} placeholder={t('evidenceTitle')} value={e.title} onChange={x => setEv(l => l.map(y => y.id === e.id ? { ...y, title: x.target.value } : y))} /><input className="input !py-1 flex-[2] min-w-48" dir="ltr" aria-label={t('evidenceUrl')} value={e.url} onChange={x => setEv(l => l.map(y => y.id === e.id ? { ...y, url: x.target.value } : y))} />
       <select className="select !w-auto !py-1 text-xs" aria-label={t('evidenceStrength')} value={e.strength || ''} onChange={x => setEv(l => l.map(y => y.id === e.id ? { ...y, strength: (x.target.value || null) as EvidenceStrength | null } : y))}><option value="">{t('strengthUnset')}</option><option value="conclusive">{t('strengthConclusive')}</option><option value="editable">{t('strengthEditable')}</option></select>
       <button type="button" className="btn btn-ghost btn-sm" onClick={() => setEv(l => l.filter(y => y.id !== e.id))} aria-label={t('remove')}><Icon name="x" /></button></li>)}</ul>}
+    <EvidenceDrop code={code} onLinked={(title, path) => { const url = normaliseUrl(path); if (url) setEv(l => l.some(e => e.url === url) ? l : [...l, { id: uid(), type: 'link', title, url, addedAt: now(), addedBy, strength: null }]) }} />
     <EvidenceAdd onAdd={(title, url, strength) => setEv(l => [...l, { id: uid(), type: 'link', title, url, addedAt: now(), addedBy, strength }])} />
     <EvidencePartsEdit idp={idp} it={{ ...it, evidence: ev, evidenceParts: parts }} onChange={setParts} />
     <div className="flex gap-2 justify-end"><button type="button" className="btn btn-sm" onClick={onCancel}>{t('cancel')}</button><button type="button" className="btn btn-sm btn-primary" disabled={busy || ev.some(e => !normaliseUrl(e.url))} onClick={() => onSave(ev.map(e => ({ ...e, url: normaliseUrl(e.url) || e.url, title: e.title.trim() })), parts)}><Icon name="check" />{t('save')}</button></div>

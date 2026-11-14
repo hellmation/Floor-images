@@ -5,6 +5,7 @@ import { master, uid, assigneeOf } from '../store/scoring'
 import { pick } from '../i18n'
 import { Avatar, PageHeader, fmtDate, useToast, errMsg, Empty, Modal } from '../components/ui'
 import { makePassword } from '../store/password'
+import { DEFAULT_EVIDENCE_ROOT } from '../store/evidenceFolder'
 import { Icon } from '../components/icons'
 import type { Department, Impact, Project, Role, User } from '../types'
 
@@ -79,6 +80,7 @@ export default function Admin() {
         <div className="card p-4 flex flex-col gap-3"><div className="font-semibold flex items-center gap-2"><Icon name="users" className="text-accent-ink" />{t('coreTeam')}</div><p className="text-sm text-muted m-0">{t('step1')}</p>
           <select className="select" aria-label={t('coreTeam')} value={cfg.settings.defaultAssigneeId || ''} onChange={e => commit({ ...cfg, settings: { ...cfg.settings, defaultAssigneeId: e.target.value || null } }, 'default assignee')}><option value="">—</option>{cfg.users.filter(u => u.active).map(u => <option key={u.id} value={u.id}>{lang === 'ar' ? u.name_ar : u.name_en}</option>)}</select>
           <label className="text-sm flex items-center gap-2"><input type="checkbox" checked={cfg.settings.requireEvidence} onChange={e => commit({ ...cfg, settings: { ...cfg.settings, requireEvidence: e.target.checked } }, 'requireEvidence')} />{t('needEvidence')}</label>
+          <div className="field"><label className="label" htmlFor="ev-root">{t('evidenceRootLabel')}</label><DraftInput id="ev-root" dir="ltr" value={cfg.settings.evidenceRoot || DEFAULT_EVIDENCE_ROOT} onCommit={v => commit({ ...cfg, settings: { ...cfg.settings, evidenceRoot: v.trim() || DEFAULT_EVIDENCE_ROOT } }, 'evidenceRoot')} /><div className="text-xs text-muted">{t('evidenceRootHint')}</div></div>
           <div className="field"><label className="label" htmlFor="ent-ar">{t('entityName')} — {t('nameAr')}</label><DraftInput id="ent-ar" value={cfg.entity.name_ar} onCommit={v => commit({ ...cfg, entity: { ...cfg.entity, name_ar: v } }, 'entity')} /></div>
           <div className="field"><label className="label" htmlFor="ent-en">{t('entityName')} — {t('nameEn')}</label><DraftInput id="ent-en" dir="ltr" value={cfg.entity.name_en} onCommit={v => commit({ ...cfg, entity: { ...cfg.entity, name_en: v } }, 'entity')} /></div>
         </div>
