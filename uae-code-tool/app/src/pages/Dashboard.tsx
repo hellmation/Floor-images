@@ -16,8 +16,8 @@ const ANSWER_COLOR = { yes: 'var(--ok)', partial: 'var(--warn)', no: 'var(--bad)
 let cardSeq = 0
 function Card({ icon, title, hint, right, children, className = '' }: { icon: IconName; title: ReactNode; hint?: ReactNode; right?: ReactNode; children: ReactNode; className?: string }) {
   const delay = Math.min(cardSeq++ % 12, 10) * 50
-  return <section className={`card p-5 flex flex-col fade-up ${className}`} style={{ animationDelay: `${delay}ms` }}>
-    <div className="flex items-start justify-between gap-3 mb-4"><div className="min-w-0"><h2 className="text-base font-semibold m-0 flex items-center gap-2"><Icon name={icon} className="text-accent-ink" />{title}</h2>{hint && <p className="text-xs text-muted m-0 mt-0.5">{hint}</p>}</div>{right}</div>
+  return <section className={`card pad flex flex-col fade-up ${className}`} style={{ animationDelay: `${delay}ms` }}>
+    <div className="flex items-start justify-between gap-3 mb-4"><div className="min-w-0"><h2 className="card-title"><Icon name={icon} className="text-accent-ink" />{title}</h2>{hint && <p className="card-hint">{hint}</p>}</div>{right}</div>
     <div className="flex-1 min-w-0">{children}</div>
   </section>
 }
@@ -96,13 +96,13 @@ export default function Dashboard() {
   return (
     <div>
       <PrintHeader title={`${t('reportOf')}: ${t('dashboard')}`} sub={cname(cfg.cycles.find(c => c.id === cy) || { name: cy })} />
-      <PageHeader title={t('dashboard')} sub={t('overview')} actions={<>
+      <PageHeader eyebrow={t('insights')} title={t('dashboard')} sub={t('overview')} actions={<>
         <RefreshButton /><button className="btn btn-sm" onClick={() => window.print()}><Icon name="download" />{t('printReport')}</button>
         <div className="seg"><button aria-pressed={!approvedOnly} onClick={() => setApprovedOnly(false)}>{t('allAnswered')}</button><button aria-pressed={approvedOnly} onClick={() => setApprovedOnly(true)}>{t('approvedOnly')}</button></div>
         <label className="flex items-center gap-1 text-sm"><span className="text-muted">{t('compareWith')}</span><select className="select !w-auto" value={cmp} onChange={e => setCmp(e.target.value)}><option value="">{t('none')}</option>{cfg.cycles.filter(c => c.id !== cy).map(c => <option key={c.id} value={c.id}>{cname(c)}</option>)}</select></label></>} />
 
       {/* 1. Where we stand */}
-      <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-3 mb-4">
+      <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-3 mb-6">
         <div className="card p-5 flex items-center gap-4 fade-up"><Ring value={readiness} size={84} stroke={9} tone="accent" /><div className="min-w-0"><div className="label">{t('readiness')}</div><div className="text-sm">{t('approved')} <b className="num">{all.approved}</b> {t('of')} <b className="num">{all.total}</b></div><div className="text-xs text-muted num">{t('submitted')} {all.submitted - all.approved} · {t('remaining')} {remaining}{cmpAll ? ` · ${delta(readiness, cmpAll.total ? cmpAll.approved / cmpAll.total * 100 : 0)} ${cmpName}` : ''}</div></div></div>
         <div className="card p-5 flex items-center gap-4 fade-up" style={{ animationDelay: '50ms' }}><Ring value={all.score} size={84} stroke={9} tone={ringTone(all.score)} /><div className="min-w-0"><div className="label">{t('compliance')}</div><div className="text-sm">{t('weightedScore')} · <b className="num">{all.scored}</b> {t('codesCount')}</div><div className="text-xs text-muted num">{t('gaps')} {all.gaps}{cmpAll ? ` · ${delta(all.score, cmpAll.score)} ${cmpName}` : ''}</div></div></div>
         <div className="card p-5 flex items-start gap-3 fade-up" style={{ animationDelay: '100ms' }}><span className={`inline-grid place-items-center w-10 h-10 rounded-lg shrink-0 bg-${paceTone}-soft text-${paceTone}-ink`}><Icon name="clock" /></span>
@@ -152,7 +152,7 @@ export default function Dashboard() {
       </Card>
 
       {/* 5. More analytics, collapsed by default */}
-      <details className="card p-5 mt-6 group">
+      <details className="card pad mt-10 group">
         <summary className="cursor-pointer list-none flex items-center gap-2 select-none"><Icon name="chart" className="text-accent-ink" /><span className="font-semibold">{t('moreAnalytics')}</span><span className="text-xs text-muted hidden sm:inline">· {t('moreAnalyticsHint')}</span><span className="seg ms-auto text-xs" onClick={e => e.preventDefault()}><button aria-pressed={mode === 'count'} onClick={() => setMode('count')}>{t('showCounts')}</button><button aria-pressed={mode === 'pct'} onClick={() => setMode('pct')}>{t('showPct')}</button></span><Icon name="chevronD" className="text-muted transition-transform group-open:rotate-180" /></summary>
         <div className="mt-5 flex flex-col gap-4">
           <div className="grid lg:grid-cols-2 gap-4">

@@ -61,7 +61,7 @@ export function Ring({ value, size = 88, stroke = 9, tone = 'accent', label, sub
   </div>
 }
 export function Stat({ label, value, sub, icon, tone }: { label: string; value: ReactNode; sub?: ReactNode; icon?: IconName; tone?: 'ok' | 'warn' | 'bad' | 'accent' | 'info' }) {
-  return <div className="card p-5 flex items-start gap-3 fade-up">
+  return <div className="card pad flex items-start gap-3 fade-up">
     {icon && <span className={`inline-grid place-items-center w-10 h-10 rounded-lg shrink-0 ${tone ? `bg-${tone}-soft text-${tone}-ink` : 'bg-surface-2 text-fg-2'}`}><Icon name={icon} /></span>}
     <div className="min-w-0 flex-1"><div className="label !mb-0">{label}</div><div className={`kpi-value num leading-tight ${tone ? `text-${tone}-ink` : ''}`}>{typeof value === 'number' ? <CountUp value={value} /> : typeof value === 'string' && /^\d+(\.\d+)?%$/.test(value) ? <CountUp value={parseFloat(value)} decimals={value.includes('.') ? 1 : 0} suffix="%" /> : value}</div>{sub && <div className="text-sm text-muted mt-0.5 truncate">{sub}</div>}</div>
   </div>
@@ -79,7 +79,7 @@ export function Req() { const { t } = useApp(); return <><span className="req-st
 /** Muted "(optional)" tag for a field that may be left empty. */
 export function Opt({ text }: { text?: string }) { const { t } = useApp(); return <span className="opt-tag">({text || t('optional')})</span> }
 export function PageHeader({ title, sub, eyebrow, actions, children }: { title: ReactNode; sub?: ReactNode; eyebrow?: ReactNode; actions?: ReactNode; children?: ReactNode }) {
-  return <div className="flex flex-wrap items-end justify-between gap-3 mb-5"><div className="min-w-0">{eyebrow && <div className="eyebrow mb-1">{eyebrow}</div>}<h1 className="page-title">{title}</h1>{sub && <p className="page-sub">{sub}</p>}{children}</div>{actions && <div className="flex flex-wrap gap-2 items-center">{actions}</div>}</div>
+  return <div className="page-head"><div className="min-w-0">{eyebrow && <div className="eyebrow">{eyebrow}</div>}<h1 className="page-title">{title}</h1>{sub && <p className="page-sub">{sub}</p>}{children}</div>{actions && <div className="flex flex-wrap gap-2 items-center">{actions}</div>}</div>
 }
 export function Empty({ icon = 'sparkle', title, children }: { icon?: IconName; title?: ReactNode; children?: ReactNode }) {
   const { t } = useApp()

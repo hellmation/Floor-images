@@ -58,7 +58,7 @@ export default function MyWork() {
     <div className="field min-w-0"><label className="label" htmlFor={id}>{label}</label><select id={id} className="select !py-1.5 text-sm" value={value} onChange={e => onChange(e.target.value)}>{children}</select></div>)
   return (
     <div>
-      <PageHeader title={t('myWork')} sub={cycle && `${lang === 'ar' ? cycle.name : (cycle.name_en || cycle.name)} · ${t('dueDate')}: ${fmtDay(cycle.due, lang)}${daysLeft !== null ? ` · ${daysLeft >= 0 ? `${daysLeft} ${t('daysLeft')}` : t('overdue')}` : ''}`}
+      <PageHeader eyebrow={t('work')} title={t('myWork')} sub={cycle && `${lang === 'ar' ? cycle.name : (cycle.name_en || cycle.name)} · ${t('dueDate')}: ${fmtDay(cycle.due, lang)}${daysLeft !== null ? ` · ${daysLeft >= 0 ? `${daysLeft} ${t('daysLeft')}` : t('overdue')}` : ''}`}
         actions={<div className="flex items-center gap-3"><div className="text-end text-sm"><div className="text-muted">{t('progress')}</div><div className="num font-semibold">{done + sub} / {rows.length}</div></div><Ring value={rows.length ? ((done + sub) / rows.length) * 100 : 0} size={64} stroke={7} /></div>} />
       <div className="card p-3 mb-4 flex flex-col gap-3">
         <div className="seg flex-wrap" role="group" aria-label={t('status')}>{tabs.map(([k, l, n]) => <button key={k} aria-pressed={f === k} onClick={() => setF(k)}>{l}<span className={`num text-xs ${f === k ? '' : 'text-muted'}`}>{n}</span></button>)}</div>

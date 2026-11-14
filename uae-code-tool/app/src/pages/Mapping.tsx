@@ -26,7 +26,7 @@ export default function Mapping() {
   const core = cfg.users.find(u => u.id === cfg.settings.defaultAssigneeId)
   return (
     <div>
-      <PageHeader title={t('mapping')} sub={t('step1')} actions={<div className="flex items-center gap-3"><div className="text-end text-sm"><div className="text-muted">{t('unmappedCodes')}</div><div className="num font-semibold">{unmapped} / {master.codes.length}</div><div className="text-xs text-muted">{t('coreTeam')}: {core ? (lang === 'ar' ? core.name_ar : core.name_en) : t('unassigned')}</div></div><Ring value={(1 - unmapped / master.codes.length) * 100} size={64} stroke={7} /></div>} />
+      <PageHeader eyebrow={t('administration')} title={t('mapping')} sub={t('step1')} actions={<div className="flex items-center gap-3"><div className="text-end text-sm"><div className="text-muted">{t('unmappedCodes')}</div><div className="num font-semibold">{unmapped} / {master.codes.length}</div><div className="text-xs text-muted">{t('coreTeam')}: {core ? (lang === 'ar' ? core.name_ar : core.name_en) : t('unassigned')}</div></div><Ring value={(1 - unmapped / master.codes.length) * 100} size={64} stroke={7} /></div>} />
       <div className="grid lg:grid-cols-[320px_1fr] gap-4 items-start">
         <aside className="card p-2 lg:sticky lg:top-20 max-h-[75vh] overflow-y-auto">
           {owners.map(o => <div key={o.id} className="mb-1"><div className="flex items-center gap-2 px-2 py-2"><Avatar name={lang === 'ar' ? o.name_ar : o.name_en} photo={o.photo} /><span className="text-sm font-semibold">{lang === 'ar' ? o.name_ar : o.name_en}</span></div>

@@ -31,8 +31,8 @@ export default function Cycles() {
   const sorted = [...cfg.cycles].sort((a, b) => a.start.localeCompare(b.start))
   return (
     <div>
-      <PageHeader title={t('cycles')} sub={t('step4')} actions={<button className="btn btn-primary" onClick={() => setDraft({ id: '', name: '', name_en: '', start: '', end: '', due: '', status: 'planning', prefillFrom: sorted[sorted.length - 1]?.id || null, isNew: true })}><Icon name="plus" />{t('newCycle')}</button>} />
-      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-3">{sorted.map(c => <div key={c.id} className={`card p-4 flex flex-col gap-2 ${cfg.currentCycleId === c.id ? 'ring-2 ring-[var(--accent)]' : ''}`}>
+      <PageHeader eyebrow={t('administration')} title={t('cycles')} sub={t('step4')} actions={<button className="btn btn-primary" onClick={() => setDraft({ id: '', name: '', name_en: '', start: '', end: '', due: '', status: 'planning', prefillFrom: sorted[sorted.length - 1]?.id || null, isNew: true })}><Icon name="plus" />{t('newCycle')}</button>} />
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-3">{sorted.map(c => <div key={c.id} className={`card pad flex flex-col gap-2 ${cfg.currentCycleId === c.id ? 'ring-2 ring-[var(--accent)]' : ''}`}>
         <div className="flex items-center gap-2"><span className="code-id">{c.id}</span><Pill kind={kind(c.status)} dot>{sl(c.status)}</Pill>{cfg.currentCycleId === c.id && <Pill kind="accent">{t('currentCycle')}</Pill>}</div>
         <div className="font-semibold text-lg leading-tight">{cname(c)}</div>
         <div className="text-sm text-muted grid grid-cols-3 gap-2"><span><span className="block text-xs">{t('startDate')}</span>{fmtDay(c.start, lang)}</span><span><span className="block text-xs">{t('endDate')}</span>{fmtDay(c.end, lang)}</span><span><span className="block text-xs">{t('dueDate')}</span><b className="text-fg">{fmtDay(c.due, lang)}</b></span></div>

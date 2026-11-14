@@ -143,11 +143,11 @@ export default function CodeView({ id }: { id: string }) {
         <a href="#/browse" className="no-underline">{t('browse')}</a><Icon name={lang === 'ar' ? 'chevronL' : 'chevronR'} /><a href={'#/browse?p=' + pil.id} className="no-underline">{pil.id} {pick(lang, pil)}</a><Icon name={lang === 'ar' ? 'chevronL' : 'chevronR'} /><span>{sub.id} {pick(lang, sub)}</span>
         <span className="ms-auto flex gap-1">{prev && <a className="btn btn-sm no-underline" href={'#/code/' + prev.id} title={t('prevCode')}><Icon name={lang === 'ar' ? 'chevronR' : 'chevronL'} />{prev.id}</a>}{next && <a className="btn btn-sm no-underline" href={'#/code/' + next.id} title={t('nextCode')}>{next.id}<Icon name={lang === 'ar' ? 'chevronL' : 'chevronR'} /></a>}</span>
       </div>
-      <div className="grid lg:grid-cols-[1fr_300px] gap-4 items-start">
+      <div className="grid lg:grid-cols-[1fr_300px] gap-4 xl:gap-6 items-start">
         <div className="flex flex-col gap-4 min-w-0">
-          <div className="card card-raised p-5 flex flex-col gap-3">
+          <div className="card card-raised pad flex flex-col gap-3">
             <div className="flex flex-wrap items-center gap-2"><span className="code-id text-lg !px-3">{code.id}</span><ImpactPill impact={effectiveImpact(code, cfg)} /><StatePill state={eff!.state} />{code.flags.map(f => <Pill key={f} kind="flag">{t(f === 'duplicate_id_in_pdf' ? 'flagDuplicate' : f === 'duplicate_item_in_pdf' ? 'flagDupItem' : f === 'criteria_mismatch_in_pdf' ? 'flagCriteria' : 'flagImpact')}</Pill>)}<span className="ms-auto text-xs text-muted">{t('pdfPage')} {code.pdf_page}</span></div>
-            <p className="m-0 text-base leading-relaxed">{pickDesc(lang, code)}</p>
+            <p className="m-0 text-base leading-relaxed measure">{pickDesc(lang, code)}</p>
             {canEdit && <div className="text-xs text-muted flex flex-wrap items-center gap-x-4 gap-y-1"><span><Req /> {t('requiredLegend')}</span><span><Opt /> {t('optionalLegend')}</span></div>}
             {cycle && cycle.status !== 'open' && <div className="text-sm text-warn-ink bg-warn-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="clock" />{t(cycle.status === 'closed' ? 'cycleClosedNotice' : cycle.status === 'review' ? 'cycleReviewNotice' : 'cyclePlanningNotice')}</div>}
             {!canEdit && cycle?.status === 'open' && !locked && <div className="text-sm text-warn-ink bg-warn-soft rounded-lg px-3 py-2 flex items-center gap-2"><Icon name="eye" />{t('readOnly')} · {t('requestChange')}</div>}
@@ -163,7 +163,7 @@ export default function CodeView({ id }: { id: string }) {
           {code.requirements.map((r, i) => {
             const it = items[String(r.n)] || emptyItem(); const ca = clarAnswers[String(r.n)]
             const projOpts = [...linked.map(p => p!), ...cfg.projects.filter(p => p.active && !linked.some(l => l!.id === p.id))]
-            return <section key={r.n} id={'req-' + r.n} className="card p-4 flex flex-col gap-3 scroll-mt-20">
+            return <section key={r.n} id={'req-' + r.n} className="card pad flex flex-col gap-3 scroll-mt-20">
               <div className="flex items-start gap-3"><span className={`inline-grid place-items-center w-7 h-7 rounded-full text-xs font-bold shrink-0 ${it.status ? ({ yes: 'bg-ok text-[var(--on-status)]', partial: 'bg-warn text-[var(--on-status)]', no: 'bg-bad text-[var(--on-status)]', na: 'bg-fg-2 text-surface' } as Record<string, string>)[it.status] : 'bg-surface-3 text-fg-2'}`}>{r.n}</span>
                 <div className="flex-1 min-w-0"><div className="font-semibold leading-snug">{pickText(lang, r)}</div>{paired && code.criteria[i] && <div className="text-sm text-muted mt-1 flex gap-1.5"><Icon name="target" className="shrink-0 mt-0.5" style={{ width: 14, height: 14 }} /><span><span className="font-medium text-fg-2">{t('criterion')}:</span> {pickText(lang, code.criteria[i])}</span></div>}</div>{!canEdit && <StatusPill status={it.status} />}</div>
               {canEdit ? <>
@@ -192,11 +192,11 @@ export default function CodeView({ id }: { id: string }) {
               : <ReadOnly onAdminEdit={canAdminEv ? () => setEvEdit(String(r.n)) : undefined} editedBy={eff?.edited?.items[String(r.n)] ? `${userName(eff.edited.items[String(r.n)].by)} · ${fmtDay(eff.edited.items[String(r.n)].at, lang)}` : undefined} codeId={code.id} it={it} ca={ca} late={canLate && (it.status === 'yes' || it.status === 'partial') && !evPartsAnswered(it) ? { value: { ...(it.evidenceParts || {}), ...(late[String(r.n)] || {}) }, onChange: p => setLate(s => ({ ...s, [String(r.n)]: p })), idp: `req-${r.n}-lp` } : undefined} projName={it.projectId ? pick(lang, cfg.projects.find(p => p.id === it.projectId) || { name_ar: it.projectId }) : ''} deptLabel={it.departmentId && it.departmentId !== codeDept ? deptName(cfg, it.departmentId, lang) : ''} />}
             </section>
           })}
-          {!paired && code.criteria.length > 0 && <section className="card p-4"><div className="label">{t('criteria')}</div><ol className="m-0 ps-5">{code.criteria.map(c => <li key={c.n}>{pickText(lang, c)}</li>)}</ol></section>}
+          {!paired && code.criteria.length > 0 && <section className="card pad"><div className="label">{t('criteria')}</div><ol className="m-0 ps-5">{code.criteria.map(c => <li key={c.n}>{pickText(lang, c)}</li>)}</ol></section>}
           <NoteCard key={code.id} codeId={code.id} value={snap!.answers[user!.id]?.notes?.[code.id]?.text || ''} onSave={saveMyNote} />
         </div>
         <aside className="flex flex-col gap-3 lg:sticky lg:top-20">
-          <div className="card p-4 flex flex-col gap-3">
+          <div className="card pad flex flex-col gap-3">
             <div><div className="label">{t('requirementsNav')}</div><div className="step-rail">{code.requirements.map(r => { const s = items[String(r.n)]?.status; return <a key={r.n} href={'#req-' + r.n} onClick={e => { e.preventDefault(); document.getElementById('req-' + r.n)?.scrollIntoView({ behavior: 'smooth', block: 'center' }) }}><span className={`n ${s || ''}`}>{s ? '✓' : r.n}</span><span className="truncate">{pickText(lang, r)}</span></a> })}</div></div>
             <div className="divider" />
             <div className="text-sm"><div className="label">{t('assignedTo')}</div><div className="font-semibold">{userName(assignee)}</div>{isAdmin && <select className="select !py-1 text-xs mt-1" value={cfg.overrides[cy]?.[code.id] || ''} onChange={e => override(e.target.value)}><option value="">{t('auto')}</option>{cfg.users.filter(u => u.active).map(u => <option key={u.id} value={u.id}>{lang === 'ar' ? u.name_ar : u.name_en}</option>)}</select>}</div>
@@ -210,14 +210,14 @@ export default function CodeView({ id }: { id: string }) {
             <div className="text-sm"><div className="label">{t('mappedProjects')}</div>{linked.length ? <div className="flex flex-wrap gap-1">{linked.map(p => <Pill key={p!.id} kind="accent">{pick(lang, p!)}</Pill>)}</div> : <span className="text-muted">—</span>}</div>
             {eff!.userId && <div className="text-xs text-muted">{t('submittedBy')}: {userName(eff!.userId)} · {fmtDate(eff!.answer?.updatedAt, lang)}</div>}
           </div>
-          <details className="card p-4 text-sm group" open={canEdit}>
+          <details className="card pad text-sm group" open={canEdit}>
             <summary className="cursor-pointer list-none flex items-center gap-2 font-semibold select-none"><Icon name="info" className="text-accent-ink" />{t('whatIsEvidence')}<Icon name="chevronD" className="ms-auto text-muted transition-transform group-open:rotate-180" /></summary>
             <p className="m-0 mt-3 text-fg-2">{t('evidenceGuideIntro')}</p>
             <ol className="m-0 mt-2 ps-0 list-none flex flex-col gap-1.5">{([t('evGuideSop'), t('evGuideExec'), t('evGuideMonitor')]).map((x, i) => <li key={i} className="flex items-start gap-2"><span className="num inline-grid place-items-center w-5 h-5 rounded-full bg-accent-soft text-accent-ink text-xs font-bold shrink-0 mt-0.5">{i + 1}</span><span>{x}</span></li>)}</ol>
             <p className="m-0 mt-2 text-xs text-muted">{t('evGuideNot')}</p>
             <div className="panel px-3 py-2 mt-3 text-xs"><div className="font-semibold text-fg-2 mb-0.5 flex items-center gap-1.5"><Icon name="folder" style={{ width: 13, height: 13 }} />{t('evGuideWhere')}</div><span className="text-muted">{t('evGuideFolder')}</span></div>
           </details>
-          {canEdit && <div className="card p-4 flex flex-col gap-3">
+          {canEdit && <div className="card pad flex flex-col gap-3">
             <div className="flex items-center justify-between"><div className="label !mb-0">{t('submitChecklist')}</div><span className="text-xs text-muted num">{answered}/{code.requirements.length}</span></div>
             <ul className="checklist m-0 p-0 list-none">{checks.map(([done, label]) => <li key={label} className={done ? 'done' : 'todo'}><Icon name={done ? 'checkCircle' : 'clock'} className="shrink-0 mt-0.5" style={{ width: 15, height: 15 }} />{label}</li>)}</ul>
             <button className="btn" disabled={busy} onClick={() => save('draft')}><Icon name="edit" />{t('saveDraft')}{dirty && <span className="dot bg-warn w-2 h-2 rounded-full inline-block" />}</button>
@@ -242,7 +242,7 @@ export function NoteCard({ codeId, value, onSave, compact }: { codeId: string; v
   useEffect(() => { if (v === last.current) return; setSaved(false); const id = setTimeout(commit, 1200); return () => clearTimeout(id) }, [v]) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => () => { if (vRef.current !== last.current) onSave(codeId, vRef.current).catch(() => undefined) }, []) // flush a pending note when leaving the page // eslint-disable-line react-hooks/exhaustive-deps
   if (compact) return <textarea className="textarea !py-1.5 text-sm" rows={2} placeholder={t('personalNote')} value={v} onChange={e => setV(e.target.value)} onBlur={commit} aria-label={t('personalNote')} />
-  return <div className="card p-4 flex flex-col gap-2" id="personal-note">
+  return <div className="card pad flex flex-col gap-2" id="personal-note">
     <div className="flex items-center justify-between"><div className="label !mb-0 flex items-center gap-1.5"><Icon name="edit" style={{ width: 14, height: 14 }} />{t('personalNote')}</div><span className={`text-xs ${saved ? 'text-muted' : 'text-warn-ink'}`}>{saved ? (v ? t('saved') : '') : '…'}</span></div>
     <textarea className="textarea" rows={4} value={v} onChange={e => setV(e.target.value)} onBlur={commit} placeholder={t('personalNote')} />
     <div className="text-xs text-muted">{t('personalNoteHint')}</div>

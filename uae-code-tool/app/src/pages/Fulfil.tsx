@@ -46,8 +46,8 @@ export default function Fulfil() {
     <div className="card overflow-x-auto"><table className="tbl"><thead><tr><th><span className="inline-flex items-center gap-2">{first}<button type="button" className="btn btn-ghost btn-xs" title={t('copyTable')} aria-label={t('copyTable')} onClick={() => copyTable(first, extraH, cols, rs, total)}><Icon name="copy" /></button></span></th>{extraH && <th>{extraH}</th>}{cols.map(c => <th key={c.key}>{c.h}</th>)}</tr></thead>
       <tbody>{rs.map(r => <tr key={r.id}><td className="text-sm font-medium">{/^\d/.test(r.id) ? <span className="code-id me-2">{r.id}</span> : null}{r.label}</td>{extraH && <td className="text-sm text-muted">{r.extra}</td>}{cols.map(c => <td key={c.key} className={cellCls(c, r.v[c.key])}>{fmtCell(c, r.v[c.key])}</td>)}</tr>)}</tbody>
       <tfoot><tr><td className="text-sm">{t('total')}</td>{extraH && <td />}{cols.map(c => <td key={c.key} className={cellCls(c, total.v[c.key])}>{fmtCell(c, total.v[c.key])}</td>)}</tr></tfoot></table></div>)
-  const H2 = ({ icon, children }: { icon: IconName; children: ReactNode }) => <h2 className="text-base font-semibold mt-6 mb-2 flex items-center gap-2"><Icon name={icon} className="text-accent-ink" />{children}</h2>
-  const Section = ({ icon, title, hint, children }: { icon: IconName; title: string; hint: string; children: ReactNode }) => <section className="mt-8"><div className="flex items-center gap-2 mb-1"><Icon name={icon} className="text-accent-ink" /><h2 className="text-lg font-bold m-0">{title}</h2></div><p className="text-sm text-muted m-0 mb-3">{hint}</p>{children}</section>
+  const H2 = ({ icon, children }: { icon: IconName; children: ReactNode }) => <h2 className="sec-title mt-10 mb-3"><Icon name={icon} className="text-accent-ink" />{children}</h2>
+  const Section = ({ icon, title, hint, children }: { icon: IconName; title: string; hint: string; children: ReactNode }) => <section className="sec"><h2 className="sec-title"><Icon name={icon} className="text-accent-ink" />{title}</h2><p className="sec-hint">{hint}</p>{children}</section>
 
   /* ---------- 1. code status: done / submitted / in preparation / not started ---------- */
   const codeFacts = useMemo(() => master.codes.map(c => ({ c, state: effective(snap!, cy, c.id).state, who: assigneeOf(c.id, cy, cfg), dept: departmentOf(snap!, cy, c.id) })), [snap, cy, cfg])
@@ -85,40 +85,40 @@ export default function Fulfil() {
   return (
     <div>
       <PrintHeader title={`${t('reportOf')}: ${t('fulfilment')}`} sub={`${lang === 'ar' ? (cycle?.name || cy) : (cycle?.name_en || cy)} · ${approvedOnly ? t('approvedOnly') : t('allAnswered')}`} />
-      <PageHeader title={t('fulfilment')} sub={`${t('high')} ${P.high} · ${t('medium')} ${P.medium} · ${t('low')} ${P.low} — ${t('fulfilmentHint')}`}
+      <PageHeader eyebrow={t('insights')} title={t('fulfilment')} sub={`${t('high')} ${P.high} · ${t('medium')} ${P.medium} · ${t('low')} ${P.low} — ${t('fulfilmentHint')}`}
         actions={<><RefreshButton /><button className="btn btn-sm" onClick={() => window.print()}><Icon name="download" />{t('printReport')}</button><div className="seg" role="group" aria-label={t('status')}><button aria-pressed={!approvedOnly} onClick={() => setApprovedOnly(false)}>{t('allAnswered')}</button><button aria-pressed={approvedOnly} onClick={() => setApprovedOnly(true)}>{t('approvedOnly')}</button></div></>} />
       {/* 1. Status cards */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
         {([['approved', t('approved'), 'checkCircle', 'ok'], ['submitted', t('awaitingReview'), 'shield', 'info'], ['prep', t('inPreparation'), 'edit', 'warn'], ['none', t('notStarted'), 'clock', undefined]] as const).map(([k, label, icon, tn]) =>
           <Stat key={k} label={label} value={stTotal.v[k] as number} sub={`${fmtPct((stTotal.v.codes as number) ? (stTotal.v[k] as number) / (stTotal.v.codes as number) * 100 : 0)} ${t('ofCodes')} (${stTotal.v.codes})`} icon={icon} tone={tn} />)}
       </div>
 
       {/* 2. Departments by status */}
       <H2 icon="map">{t('statusByDept')}</H2>
-      <div className="card p-5 mb-3"><Stacked mode="count" labelW="30%" rows={stDept.map(stackRow)} parts={stParts} /></div>
+      <div className="card pad mb-4"><Stacked mode="count" labelW="30%" rows={stDept.map(stackRow)} parts={stParts} /></div>
       <GTable first={t('department')} cols={statusCols} rows={stDept} total={stTotal} />
 
       {/* 3. Evaluators by status */}
       <H2 icon="users">{t('statusByEvaluator')}</H2>
-      <div className="card p-5 mb-3"><Stacked mode="count" labelW="30%" rows={stUser.map(stackRow)} parts={stParts} /></div>
+      <div className="card pad mb-4"><Stacked mode="count" labelW="30%" rows={stUser.map(stackRow)} parts={stParts} /></div>
       <GTable first={t('evaluator')} cols={statusCols} rows={stUser} total={stTotal} />
 
       {/* 4. Everything else */}
       <Section icon="target" title={t('scoreAndEvidence')} hint={t('fulfilmentHint')}>
-        <div className="grid sm:grid-cols-3 gap-3">
-          <div className="card p-5 flex items-center gap-4 fade-up"><Ring value={all.pct} size={84} stroke={9} tone={ringTone(all.pct)} /><div><div className="label">{t('overallScore')}</div><div className="text-sm text-muted">{Math.round(all.earned)} / {all.possible} {t('earnedPoints').split(' ')[0]}</div></div></div>
+        <div className="grid sm:grid-cols-3 gap-4">
+          <div className="card pad flex items-center gap-4 fade-up"><Ring value={all.pct} size={84} stroke={9} tone={ringTone(all.pct)} /><div><div className="label">{t('overallScore')}</div><div className="text-sm text-muted">{Math.round(all.earned)} / {all.possible} {t('earnedPoints').split(' ')[0]}</div></div></div>
           <Stat label={t('withEvidence')} value={fmtPct(evTotal.v.cov as number | null)} sub={`${evTotal.v.with} / ${evTotal.v.answered} ${t('answeredReqs')}`} icon="link" tone="info" />
           <Stat label={t('reviewerVerdict')} value={`${evTotal.v.strong} / ${evTotal.v.weak}`} sub={`${t('rateStrong')} / ${t('rateWeak')} · ${t('unrated')}: ${evTotal.v.unrated}`} icon="shield" tone={(evTotal.v.weak as number) ? 'warn' : 'ok'} />
         </div>
       </Section>
 
       <Section icon="layers" title={t('statusByPillar')} hint={t('codeStatusHint')}>
-        <div className="card p-5 mb-3"><Stacked mode="count" labelW="30%" rows={stPillar.map(r => stackRow({ ...r, label: `${r.id}. ${r.label}` }))} parts={stParts} /></div>
+        <div className="card pad mb-4"><Stacked mode="count" labelW="30%" rows={stPillar.map(r => stackRow({ ...r, label: `${r.id}. ${r.label}` }))} parts={stParts} /></div>
         <GTable first={t('pillar')} cols={statusCols} rows={stPillar} total={stTotal} />
       </Section>
 
       <Section icon="link" title={t('evidenceSection')} hint={t('evidenceSectionHint')}>
-        <div className="card p-5 mb-3"><Stacked mode="count" labelW="30%" rows={evPillar.map(r => ({ key: r.id, label: `${r.id}. ${r.label}`, text: `${r.id}. ${r.label}`, values: { with: r.v.with as number, without: r.v.without as number } }))} parts={evParts} /></div>
+        <div className="card pad mb-4"><Stacked mode="count" labelW="30%" rows={evPillar.map(r => ({ key: r.id, label: `${r.id}. ${r.label}`, text: `${r.id}. ${r.label}`, values: { with: r.v.with as number, without: r.v.without as number } }))} parts={evParts} /></div>
         <H2 icon="map">{t('byDepartment')}</H2><GTable first={t('department')} cols={evCols} rows={evDept} total={evTotal} />
         <H2 icon="users">{t('byEvaluator')}</H2><GTable first={t('evaluator')} cols={evCols} rows={evUser} total={evTotal} />
         <H2 icon="layers">{t('byPillar')}</H2><GTable first={t('pillar')} cols={evCols} rows={evPillar} total={evTotal} />

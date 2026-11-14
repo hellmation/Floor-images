@@ -15,9 +15,9 @@ export default function Standings() {
   const top = [table[1], table[0], table[2]]
   return (
     <div>
-      <PageHeader eyebrow={t('appName')} title={t('standings')} sub={t('standingsHint')} />
+      <PageHeader eyebrow={t('insights')} title={t('standings')} sub={t('standingsHint')} />
       {table.length === 0 ? <div className="card p-8 text-center text-muted">{t('noItems')}</div> : <>
-        <section className="card p-5 mb-4"><h2 className="text-base font-semibold m-0 mb-4 flex items-center gap-2"><Icon name="trophy" className="text-accent-ink" />{t('podium')}</h2>
+        <section className="card pad mb-4"><h2 className="card-title mb-4"><Icon name="trophy" className="text-accent-ink" />{t('podium')}</h2>
           <div className="podium max-w-2xl mx-auto">{top.map((s, i) => s ? <div key={s.userId} className={`step ${s.rank === 1 ? 'first' : ''}`} style={{ paddingTop: s.rank === 1 ? 28 : s.rank === 2 ? 18 : 10 }}>
             <div className="text-2xl">{['🥇', '🥈', '🥉'][s.rank - 1]}</div><div className="my-2 inline-block"><Avatar name={uname(s.userId)} photo={photo(s.userId)} size="xl" /></div><div className="font-semibold truncate">{uname(s.userId)}</div><div className="text-muted text-xs num">{s.approved}/{s.total} · {fmtPct(s.score)}</div><div className="display text-2xl font-bold num mt-1">{Math.round(s.points)}</div><div className="text-xs text-muted">{t('points')}</div></div> : <div key={i} />)}</div></section>
         <section className="card overflow-x-auto"><table className="tbl"><thead><tr><th>{t('rank')}</th><th>{t('evaluator')}</th><th>{t('projects')}</th><th>{t('codes')}</th><th>{t('progress')}</th><th>{t('approved')}</th><th>{t('compliance')}</th><th>{t('points')}</th>{prevCycle && <th><bdi dir="ltr">{prevCycle.id}</bdi></th>}</tr></thead><tbody>

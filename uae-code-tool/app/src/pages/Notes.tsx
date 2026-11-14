@@ -20,7 +20,7 @@ export default function Notes() {
   const userName = (id: string | null) => { const u = cfg.users.find(x => x.id === id); return u ? (lang === 'ar' ? u.name_ar : u.name_en) : t('unassigned') }
   return (
     <div>
-      <PageHeader title={t('notes')} sub={`${n} ${t('notesCount')} · ${t('personalNoteHint')}`} />
+      <PageHeader eyebrow={t('work')} title={t('notes')} sub={`${n} ${t('notesCount')} · ${t('personalNoteHint')}`} />
       <div className="card p-3 mb-4 flex flex-wrap gap-2 items-center">
         <Icon name="filter" className="text-muted" />
         <button aria-pressed={only} className={`btn btn-sm ${only ? 'btn-primary' : ''}`} onClick={() => setOnly(o => !o)}><Icon name="edit" />{t('withNotesOnly')}<span className={`num ${only ? 'opacity-80' : 'text-muted'}`}>{n}</span></button>

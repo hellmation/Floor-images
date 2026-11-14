@@ -48,29 +48,29 @@ export default function Home() {
       </section>
       <div className="grid lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2 flex flex-col gap-4">
-          <section className="card p-4">
-            <div className="flex items-center justify-between mb-3"><h2 className="m-0 text-base font-semibold flex items-center gap-2"><Icon name="target" className="text-accent-ink" />{t('nextActions')}</h2><span className="text-sm text-muted num">{mine.answered}/{mine.total} {t('answered')}</span></div>
+          <section className="card pad">
+            <div className="flex items-center justify-between mb-3"><h2 className="card-title"><Icon name="target" className="text-accent-ink" />{t('nextActions')}</h2><span className="text-sm text-muted num">{mine.answered}/{mine.total} {t('answered')}</span></div>
             {actions.length === 0 ? <div className="flex items-center gap-3 text-ok-ink bg-ok-soft rounded-lg px-4 py-3"><Icon name="checkCircle" />{t('allCaughtUp')}</div>
               : <div className="grid sm:grid-cols-2 gap-2">{actions.map(a => <a key={a.label} href={a.href} className={`no-underline text-fg flex items-center gap-3 rounded-lg border border-line px-3 py-2.5 hover:bg-surface-2`}><span className={`inline-grid place-items-center w-9 h-9 rounded-lg bg-${a.kind}-soft text-${a.kind}-ink`}><Icon name={a.icon} /></span><span className="flex-1 font-medium">{a.label}</span><span className="text-xl font-bold num">{a.n}</span><Icon name={lang === 'ar' ? 'chevronL' : 'chevronR'} className="text-muted" /></a>)}</div>}
           </section>
-          <section className="card p-4">
-            <div className="flex items-center justify-between mb-3"><h2 className="m-0 text-base font-semibold flex items-center gap-2"><Icon name="layers" className="text-accent-ink" />{t('thePillars')}</h2><span className="text-xs text-muted">{master.subpillars.length} {t('subpillarsCount')} · {master.codes.length} {t('codesCount')}</span></div>
+          <section className="card pad">
+            <div className="flex items-center justify-between mb-3"><h2 className="card-title"><Icon name="layers" className="text-accent-ink" />{t('thePillars')}</h2><span className="text-xs text-muted">{master.subpillars.length} {t('subpillarsCount')} · {master.codes.length} {t('codesCount')}</span></div>
             <div className="grid sm:grid-cols-2 gap-3">{byPillar.map(({ p, r, subs }) => <a key={p.id} href={'#/browse?p=' + p.id} className="no-underline text-fg rounded-lg border border-line p-3 flex gap-3 hover:bg-surface-2 transition-colors">
               <span className="display text-3xl font-bold text-accent-ink num leading-none w-8">{p.id}</span>
               <span className="flex-1 min-w-0"><span className="block font-semibold leading-tight">{pick(lang, p)}</span><span className="block text-xs text-muted mt-0.5 mb-2">{subs} {t('subpillarsCount')} · {r.total} {t('codesCount')}</span><Bar value={r.approved} max={r.total} thin /><span className="flex justify-between text-xs mt-1"><span className="text-muted num">{r.approved}/{r.total} {t('approved')}</span><span className={`num font-semibold text-${tone(r.score)}-ink`}>{fmtPct(r.score)}</span></span></span></a>)}</div>
           </section>
         </div>
         <div className="flex flex-col gap-4">
-          <section className="card p-4">
+          <section className="card pad">
             <div className="label">{t('currentCycle')}</div><div className="font-semibold text-lg leading-tight">{cname}</div>
             <div className="flex items-center gap-4 mt-3"><Ring value={elapsed} size={76} stroke={8} tone="info" label={<span className="num">{daysLeft !== null && daysLeft >= 0 ? daysLeft : 0}</span>} sub={t('days')} /><div className="text-sm"><div className="text-muted">{t('dueDate')}</div><div className="font-semibold"><bdi>{fmtDay(cycle?.due, lang)}</bdi></div><div className={`mt-1 ${daysLeft !== null && daysLeft < 0 ? 'text-bad' : 'text-muted'}`}>{daysLeft !== null && daysLeft >= 0 ? `${daysLeft} ${t('daysLeft')}` : t('overdue')}</div></div></div>
           </section>
-          <section className="card p-4 flex items-center justify-around">
+          <section className="card pad flex items-center justify-around">
             <Ring value={all.total ? (all.approved / all.total) * 100 : 0} tone="accent" sub={t('readiness')} />
             <Ring value={all.score} tone={ringTone(all.score)} sub={t('compliance')} />
           </section>
-          <section className="card p-4">
-            <div className="flex items-center justify-between mb-2"><h2 className="m-0 text-base font-semibold flex items-center gap-2"><Icon name="trophy" className="text-accent-ink" />{t('standings')}</h2><a href="#/standings" className="text-sm">{t('viewAll')}</a></div>
+          <section className="card pad">
+            <div className="flex items-center justify-between mb-2"><h2 className="card-title"><Icon name="trophy" className="text-accent-ink" />{t('standings')}</h2><a href="#/standings" className="text-sm">{t('viewAll')}</a></div>
             {table.length === 0 ? <div className="text-sm text-muted">—</div> : <ol className="m-0 p-0 list-none flex flex-col gap-1">{table.slice(0, 5).map(s => <li key={s.userId} className={`flex items-center gap-2 text-sm rounded-lg px-2 py-1.5 ${s.userId === user!.id ? 'bg-accent-soft' : ''}`}><span className="num w-6 text-center font-bold">{s.rank <= 3 ? ['🥇', '🥈', '🥉'][s.rank - 1] : s.rank}</span><Avatar name={uname(s.userId)} photo={photo(s.userId)} /><span className="flex-1 min-w-0 truncate font-medium">{uname(s.userId)}</span><span className="num text-muted text-xs">{s.approved}/{s.total}</span><span className="num font-bold w-8 text-end">{Math.round(s.points)}</span></li>)}</ol>}
           </section>
         </div>
