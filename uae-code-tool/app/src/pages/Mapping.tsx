@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
+import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
 import { master, sortIds } from '../store/scoring'
 import { pick, pickDesc } from '../i18n'
@@ -9,8 +10,8 @@ import { norm } from '../components/Shell'
 export default function Mapping() {
   const { t, lang, snap, saveConfig } = useApp(); const cfg = snap!.config
   const toast = useToast()
-  const [sel, setSel] = useState<string>(cfg.projects.find(p => p.active && p.ownerId)?.id || cfg.projects[0]?.id || '')
-  const [p, setP] = useState(''); const [q, setQ] = useState(''); const [onlyUnmapped, setOnlyUnmapped] = useState(false)
+  const [vs, setVs] = useViewState('mapping', { sel: cfg.projects.find(p => p.active && p.ownerId)?.id || cfg.projects[0]?.id || '', p: '', q: '', onlyUnmapped: false }); const { sel, p, q, onlyUnmapped } = vs
+  const setSel = (v: string) => setVs({ sel: v }), setP = (v: string) => setVs({ p: v }), setQ = (v: string) => setVs({ q: v }), setOnlyUnmapped = (v: boolean) => setVs({ onlyUnmapped: v })
   const unmapped = master.codes.filter(c => !(cfg.mapping[c.id] || []).length).length
   const list = useMemo(() => master.codes.filter(c => (!p || c.pillar === p) && (!onlyUnmapped || !(cfg.mapping[c.id] || []).length) && (!q || norm(c.id + ' ' + c.desc_ar + ' ' + c.desc_en).includes(norm(q)))).sort((a, b) => sortIds(a.id, b.id)), [p, q, onlyUnmapped, cfg])
   const toggle = async (codeId: string) => {

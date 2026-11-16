@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
+import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
 import { master, assigneeOf, effective, sortIds } from '../store/scoring'
 import { pick, pickDesc } from '../i18n'
@@ -12,7 +13,8 @@ export default function Notes() {
   const { t, lang, snap, user, cycleId, saveMyNote } = useApp(); const cfg = snap!.config; const cy = cycleId!
   const notes = Object.fromEntries(Object.entries(snap!.answers[user!.id]?.notes || {}).filter(([, v]) => v.text.trim()))
   const n = Object.keys(notes).length
-  const [only, setOnly] = useState(n > 0); const [p, setP] = useState(''); const [q, setQ] = useState(''); const [mine, setMine] = useState(false)
+  const [vs, setVs] = useViewState('notes', { only: n > 0, p: '', q: '', mine: false }); const { only, p, q, mine } = vs
+  const setOnly = (v: boolean) => setVs({ only: v }), setP = (v: string) => setVs({ p: v }), setQ = (v: string) => setVs({ q: v }), setMine = (v: boolean) => setVs({ mine: v })
   const list = useMemo(() => master.codes.filter(c => (!p || c.pillar === p) && (!only || notes[c.id]) && (!mine || assigneeOf(c.id, cy, cfg) === user!.id)
     && (!q || norm(c.id + ' ' + c.desc_ar + ' ' + c.desc_en + ' ' + (notes[c.id]?.text || '')).includes(norm(q))))
     .map(c => ({ c, e: effective(snap!, cy, c.id), note: notes[c.id] }))
@@ -23,8 +25,8 @@ export default function Notes() {
       <PageHeader eyebrow={t('work')} title={t('notes')} sub={`${n} ${t('notesCount')} · ${t('personalNoteHint')}`} />
       <div className="card p-3 mb-4 flex flex-wrap gap-2 items-center">
         <Icon name="filter" className="text-muted" />
-        <button aria-pressed={only} className={`btn btn-sm ${only ? 'btn-primary' : ''}`} onClick={() => setOnly(o => !o)}><Icon name="edit" />{t('withNotesOnly')}<span className={`num ${only ? 'opacity-80' : 'text-muted'}`}>{n}</span></button>
-        <button aria-pressed={mine} className={`btn btn-sm ${mine ? 'btn-primary' : ''}`} onClick={() => setMine(m => !m)}><Icon name="tasks" />{t('myCodes')}</button>
+        <button aria-pressed={only} className={`btn btn-sm ${only ? 'btn-primary' : ''}`} onClick={() => setOnly(!only)}><Icon name="edit" />{t('withNotesOnly')}<span className={`num ${only ? 'opacity-80' : 'text-muted'}`}>{n}</span></button>
+        <button aria-pressed={mine} className={`btn btn-sm ${mine ? 'btn-primary' : ''}`} onClick={() => setMine(!mine)}><Icon name="tasks" />{t('myCodes')}</button>
         <select className="select !w-auto" value={p} onChange={e => setP(e.target.value)}><option value="">{t('pillar')}: {t('all')}</option>{master.pillars.map(x => <option key={x.id} value={x.id}>{x.id} · {pick(lang, x)}</option>)}</select>
         <div className="relative flex-1 min-w-48"><Icon name="search" className="absolute top-2.5 text-muted" style={{ insetInlineStart: 10 }} /><input className="input !ps-9" placeholder={t('search')} aria-label={t('search')} value={q} onChange={e => setQ(e.target.value)} /></div>
         <span className="text-sm text-muted num">{list.length} / {master.codes.length}</span>

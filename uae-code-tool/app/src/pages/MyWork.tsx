@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
+import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
 import { master, assigneeOf, effective, effectiveImpact, isComplete, sortIds, departmentOf, deptName, evPartsPending } from '../store/scoring'
 import { pick, pickDesc } from '../i18n'
@@ -10,21 +11,15 @@ import type { WorkState } from '../types'
 type Sort = 'code' | 'impact' | 'dept' | 'status' | 'project'
 const IMP_RANK: Record<string, number> = { high: 0, medium: 1, low: 2, none: 3 }
 const STATE_RANK: Record<WorkState, number> = { returned: 0, draft: 1, none: 2, submitted: 3, approved: 4 }
-const KEY = 'mywork:filters'
 
 /** The evaluator's own list: status tabs, labelled filters (impact, department, project), a sort and a search.
  *  Filters are remembered for the tab so coming back from a code page lands on the same list. */
 export default function MyWork() {
   const { t, lang, snap, user, cycleId } = useApp(); const cfg = snap!.config; const cy = cycleId!
-  const saved = (() => { try { return JSON.parse(sessionStorage.getItem(KEY) || '{}') } catch { return {} } })() as Partial<{ f: string; imp: string; dep: string; prj: string; sort: Sort; q: string }>
   const fromUrl = new URLSearchParams(location.hash.split('?')[1] || '').get('f')
-  const [f, setF] = useState(fromUrl ?? saved.f ?? '')
-  const [imp, setImp] = useState(saved.imp || '')
-  const [dep, setDep] = useState(saved.dep || '')
-  const [prj, setPrj] = useState(saved.prj || '')
-  const [sort, setSort] = useState<Sort>(saved.sort || 'code')
-  const [q, setQ] = useState(saved.q || '')
-  useEffect(() => { try { sessionStorage.setItem(KEY, JSON.stringify({ f, imp, dep, prj, sort, q })) } catch { /* ignore */ } }, [f, imp, dep, prj, sort, q])
+  const [vs, setVs] = useViewState('my', { f: '', imp: '', dep: '', prj: '', sort: 'code' as Sort, q: '' }, fromUrl !== null ? { f: fromUrl } : undefined)
+  const { f, imp, dep, prj, sort, q } = vs
+  const setF = (v: string) => setVs({ f: v }), setImp = (v: string) => setVs({ imp: v }), setDep = (v: string) => setVs({ dep: v }), setPrj = (v: string) => setVs({ prj: v }), setSort = (v: Sort) => setVs({ sort: v }), setQ = (v: string) => setVs({ q: v })
 
   const mine = useMemo(() => master.codes.filter(c => assigneeOf(c.id, cy, cfg) === user!.id).sort((a, b) => sortIds(a.id, b.id)), [cfg, cy, user])
   const cycle = cfg.cycles.find(c => c.id === cy)
@@ -52,7 +47,7 @@ export default function MyWork() {
   const deptOpts = opts(r => r.dept || '_none', k => k === '_none' ? t('noDept') : deptName(cfg, k, lang))
   const prjOpts = opts(r => r.pid || '_none', k => k === '_none' ? t('coreTeam') : pname(k))
   const active = !!(imp || dep || prj || q)
-  const reset = () => { setImp(''); setDep(''); setPrj(''); setQ(''); setSort('code') }
+  const reset = () => setVs({ imp: '', dep: '', prj: '', q: '', sort: 'code' })
   const daysLeft = cycle ? Math.ceil((new Date(cycle.due).getTime() - Date.now()) / 86400000) : null
   const Sel = ({ label, value, onChange, children, id }: { label: string; value: string; onChange: (v: string) => void; children: React.ReactNode; id: string }) => (
     <div className="field min-w-0"><label className="label" htmlFor={id}>{label}</label><select id={id} className="select !py-1.5 text-sm" value={value} onChange={e => onChange(e.target.value)}>{children}</select></div>)

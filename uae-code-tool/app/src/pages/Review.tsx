@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
 import { master, effective, codeScore, sortIds, now, evPartsPending } from '../store/scoring'
 import { pickDesc, pickText } from '../i18n'
@@ -10,12 +11,13 @@ import { EvidencePartsView, partsCount } from '../components/EvidenceParts'
 export default function Review() {
   const { t, lang, snap, user, cycleId, saveReviews } = useApp(); const cfg = snap!.config; const cy = cycleId!
   const toast = useToast()
-  const [tab, setTab] = useState<'queue' | 'clar' | 'approved'>((new URLSearchParams(location.hash.split('?')[1] || '').get('tab') as 'queue' | 'clar' | 'approved') || 'queue')
-  const [open, setOpen] = useState<string | null>(null)
+  type Tab = 'queue' | 'clar' | 'approved'; type EvF = 'any' | 'none' | 'weak' | 'unrated' | 'editable' | 'notStrong' | 'missAny' | 'missDoc' | 'missExec' | 'missMonitor'
+  const urlTab = new URLSearchParams(location.hash.split('?')[1] || '').get('tab') as Tab | null
+  const [vs, setVs] = useViewState('review', { tab: 'queue' as Tab, open: null as string | null, evFilter: 'any' as EvF, whoF: '' }, urlTab ? { tab: urlTab } : undefined)
+  const { tab, open, evFilter, whoF } = vs
+  const setTab = (v: Tab) => setVs({ tab: v }), setOpen = (v: string | null) => setVs({ open: v }), setEvFilter = (v: EvF) => setVs({ evFilter: v }), setWhoF = (v: string) => setVs({ whoF: v })
   const [comment, setComment] = useState('')
   const [reply, setReply] = useState<Record<string, string>>({})
-  const [evFilter, setEvFilter] = useState<'any' | 'none' | 'weak' | 'unrated' | 'editable' | 'notStrong' | 'missAny' | 'missDoc' | 'missExec' | 'missMonitor'>('any')
-  const [whoF, setWhoF] = useState('')
   const [sel, setSel] = useState<Set<string>>(new Set())
   const [bulk, setBulk] = useState(false); const [reason, setReason] = useState(''); const [busy, setBusy] = useState(false)
   const userName = (id: string | null) => { const u = cfg.users.find(x => x.id === id); return u ? (lang === 'ar' ? u.name_ar : u.name_en) : t('unassigned') }

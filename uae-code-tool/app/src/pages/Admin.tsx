@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useViewState } from '../store/viewState'
 import type React from 'react'
 import { useApp } from '../store/state'
 import { master, uid, assigneeOf } from '../store/scoring'
@@ -28,7 +29,8 @@ export default function Admin() {
   const admins = cfg.users.filter(u => u.active && u.role === 'admin').length
   const lastAdmin = (u: User) => u.role === 'admin' && u.active && admins <= 1
   const toast = useToast()
-  const [tab, setTab] = useState<'users' | 'projects' | 'departments' | 'settings' | 'audit'>('users')
+  type ATab = 'users' | 'projects' | 'departments' | 'settings' | 'audit'
+  const [vs, setVs] = useViewState('admin', { tab: 'users' as ATab }); const tab = vs.tab; const setTab = (v: ATab) => setVs({ tab: v })
   const [nd, setNd] = useState({ name_ar: '', name_en: '' })
   const [nu, setNu] = useState({ name_ar: '', name_en: '', role: 'evaluator' as Role })
   const [np, setNp] = useState({ name_ar: '', name_en: '', ownerId: '' })

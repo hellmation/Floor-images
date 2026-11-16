@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { originOfCode, originPage } from '../store/viewState'
 import { useApp } from '../store/state'
 import { codeById, subById, pillarById, assigneeOf, effective, effectiveImpact, master, sortIds, uid, now, departmentOf, supportDepartments, deptName, evPartsPending, evPartsAnswered } from '../store/scoring'
 import { pick, pickDesc, pickText } from '../i18n'
@@ -11,6 +12,7 @@ import type { AnswerStatus, CodeAnswer, ItemAnswer, EvidenceStrength, ReviewsFil
 
 const emptyItem = (): ItemAnswer => ({ status: null, evidence: [], clarify: { flag: false, question: '' } })
 
+const BACK_LABEL: Record<string, 'browse' | 'review' | 'dashboard' | 'fulfilment' | 'notes' | 'home' | 'mapping' | 'standings' | 'admin' | 'cycles'> = { browse: 'browse', review: 'review', dashboard: 'dashboard', fulfil: 'fulfilment', notes: 'notes', home: 'home', mapping: 'mapping', standings: 'standings', admin: 'admin', cycles: 'cycles' }
 export default function CodeView({ id }: { id: string }) {
   const { t, lang, snap, user, isAdmin, cycleId, saveMyAnswer, saveMyNote, saveMyDepartment, saveConfig, saveReviews } = useApp()
   const toast = useToast()
@@ -129,9 +131,10 @@ export default function CodeView({ id }: { id: string }) {
   const override = async (uidv: string) => { const c = JSON.parse(JSON.stringify(cfg)); c.overrides[cy] = c.overrides[cy] || {}; if (uidv) c.overrides[cy][code.id] = uidv; else delete c.overrides[cy][code.id]; try { await saveConfig(c, `override ${code.id} -> ${uidv || 'auto'}`) } catch (e) { toast(errMsg(e, t), 'bad') } }
   const otherPending = !!myOwn && eff!.userId !== user!.id && (eff!.state === 'submitted' || eff!.state === 'approved')
   const codeDept = departmentOf(snap!, cy, code.id); const supports = supportDepartments(cfg, code.id); const depts = cfg.departments.filter(d => d.active)
-  const canSetDept = cycle?.status === 'open' && (user!.id === assignee || isAdmin)
+  const deptLocked = !!cfg.deptLocked?.[code.id]
+  const canSetDept = cycle?.status === 'open' && (isAdmin || (user!.id === assignee && !deptLocked))
   /* The owner's choice is stored in their own file; an admin who is not the owner changes the configured default instead. */
-  const setDept = async (id: string) => { try { if (user!.id === assignee) await saveMyDepartment(code.id, id || null)
+  const setDept = async (id: string) => { try { if (user!.id === assignee && !deptLocked) await saveMyDepartment(code.id, id || null)
       else { const c = JSON.parse(JSON.stringify(cfg)) as typeof cfg; c.deptMapping[code.id] = [id || cfg.deptMapping[code.id]?.[0] || '', ...supports].filter(Boolean); await saveConfig(c, `department ${code.id} -> ${id || 'default'}`) }
       toast(t('saved'), 'ok') } catch (e) { toast(errMsg(e, t), 'bad') } }
   const adminShadow = isAdmin && assignee !== user!.id && !locked && cycle?.status === 'open'
@@ -139,7 +142,7 @@ export default function CodeView({ id }: { id: string }) {
   return (
     <div>
       <div className="flex flex-wrap items-center gap-2 text-sm text-muted mb-3">
-        <a href="#/my" className="btn btn-sm no-underline"><Icon name={lang === 'ar' ? 'arrowR' : 'arrowL'} />{t('backToMyWork')}</a>
+        <a href={'#/' + originOfCode()} className="btn btn-sm no-underline"><Icon name={lang === 'ar' ? 'arrowR' : 'arrowL'} />{originPage() === 'my' ? t('backToMyWork') : `${t('backTo')} ${t(BACK_LABEL[originPage()] || 'home')}`}</a>
         <a href="#/browse" className="no-underline">{t('browse')}</a><Icon name={lang === 'ar' ? 'chevronL' : 'chevronR'} /><a href={'#/browse?p=' + pil.id} className="no-underline">{pil.id} {pick(lang, pil)}</a><Icon name={lang === 'ar' ? 'chevronL' : 'chevronR'} /><span>{sub.id} {pick(lang, sub)}</span>
         <span className="ms-auto flex gap-1">{prev && <a className="btn btn-sm no-underline" href={'#/code/' + prev.id} title={t('prevCode')}><Icon name={lang === 'ar' ? 'chevronR' : 'chevronL'} />{prev.id}</a>}{next && <a className="btn btn-sm no-underline" href={'#/code/' + next.id} title={t('nextCode')}>{next.id}<Icon name={lang === 'ar' ? 'chevronL' : 'chevronR'} /></a>}</span>
       </div>
@@ -202,6 +205,7 @@ export default function CodeView({ id }: { id: string }) {
             <div className="text-sm"><div className="label">{t('assignedTo')}</div><div className="font-semibold">{userName(assignee)}</div>{isAdmin && <select className="select !py-1 text-xs mt-1" value={cfg.overrides[cy]?.[code.id] || ''} onChange={e => override(e.target.value)}><option value="">{t('auto')}</option>{cfg.users.filter(u => u.active).map(u => <option key={u.id} value={u.id}>{lang === 'ar' ? u.name_ar : u.name_en}</option>)}</select>}</div>
             <div className="text-sm"><div className="label">{t('department')}</div>
               {canSetDept ? <select className="select !py-1 text-sm" aria-label={t('department')} value={codeDept || ''} onChange={e => setDept(e.target.value)}>{depts.map(d => <option key={d.id} value={d.id}>{lang === 'ar' ? d.name_ar : d.name_en}</option>)}</select> : <div className="font-semibold">{deptName(cfg, codeDept, lang) || '—'}</div>}
+              {deptLocked && <div className="text-xs text-muted mt-1 flex items-center gap-1"><Icon name="shield" style={{ width: 12, height: 12 }} />{t('deptLockedHint')}</div>}
               {supports.length > 0 && <div className="text-xs text-muted mt-1">{t('supportDepts')}: {supports.map(id => deptName(cfg, id, lang)).filter(Boolean).join(' · ')}</div>}
               {cfg.deptConfirm?.[code.id] && <div className="text-xs text-warn-ink bg-warn-soft rounded px-2 py-1 mt-1 flex items-center gap-1"><Icon name="alert" style={{ width: 13, height: 13 }} />{t('deptNeedsConfirm')}</div>}
               {cfg.deptConfirm?.[code.id] && canEdit && <label className="text-sm flex items-center gap-2 mt-1 cursor-pointer"><input type="checkbox" checked={deptConfirmed} onChange={e => { setDeptConfirmed(e.target.checked); setDirty(true) }} />{t('confirmDept')}<Req /></label>}

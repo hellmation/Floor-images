@@ -1,4 +1,5 @@
-import { useMemo, useState, type ReactNode } from 'react'
+import { useMemo, type ReactNode } from 'react'
+import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
 import { master, rollup, effective, codeScore, effectiveImpact, sortIds, isComplete, departmentOf, fulfilRows, assigneeOf, evPartsPending, type FulfilRow } from '../store/scoring'
 import { pick, pickDesc } from '../i18n'
@@ -24,10 +25,8 @@ function Card({ icon, title, hint, right, children, className = '' }: { icon: Ic
 
 export default function Dashboard() {
   const { t, lang, snap, cycleId } = useApp(); const cfg = snap!.config; const cy = cycleId!
-  const [approvedOnly, setApprovedOnly] = useState(false)
-  const [cmp, setCmp] = useState('')
-  const [allGaps, setAllGaps] = useState(false)
-  const [mode, setMode] = useState<'count' | 'pct'>('count')
+  const [vs, setVs] = useViewState('dashboard', { approvedOnly: false, cmp: '', allGaps: false, mode: 'count' as 'count' | 'pct', more: false }); const { approvedOnly, cmp, allGaps, mode } = vs
+  const setApprovedOnly = (v: boolean) => setVs({ approvedOnly: v }), setCmp = (v: string) => setVs({ cmp: v }), setAllGaps = (v: boolean) => setVs({ allGaps: v }), setMode = (v: 'count' | 'pct') => setVs({ mode: v })
   const all = useMemo(() => rollup(snap!, cy, master.codes, approvedOnly), [snap, cy, approvedOnly])
   const cmpAll = useMemo(() => cmp ? rollup(snap!, cmp, master.codes, approvedOnly) : null, [snap, cmp, approvedOnly])
   const rows = useMemo(() => fulfilRows(snap!, cy, approvedOnly), [snap, cy, approvedOnly])
@@ -152,7 +151,7 @@ export default function Dashboard() {
       </Card>
 
       {/* 5. More analytics, collapsed by default */}
-      <details className="card pad mt-10 group">
+      <details className="card pad mt-10 group" open={vs.more} onToggle={e => { const o = (e.currentTarget as HTMLDetailsElement).open; if (o !== vs.more) setVs({ more: o }) }}>
         <summary className="cursor-pointer list-none flex items-center gap-2 select-none"><Icon name="chart" className="text-accent-ink" /><span className="font-semibold">{t('moreAnalytics')}</span><span className="text-xs text-muted hidden sm:inline">· {t('moreAnalyticsHint')}</span><span className="seg ms-auto text-xs" onClick={e => e.preventDefault()}><button aria-pressed={mode === 'count'} onClick={() => setMode('count')}>{t('showCounts')}</button><button aria-pressed={mode === 'pct'} onClick={() => setMode('pct')}>{t('showPct')}</button></span><Icon name="chevronD" className="text-muted transition-transform group-open:rotate-180" /></summary>
         <div className="mt-5 flex flex-col gap-4">
           <div className="grid lg:grid-cols-2 gap-4">
@@ -183,7 +182,7 @@ export default function Dashboard() {
           <Card icon="link" title={t('evidenceByDept')} hint={t('evidenceByDeptHint')}>
             <Stacked mode={mode} labelW="34%" rows={deptEvidence} parts={[{ key: 'with', label: t('withEvidence'), color: 'var(--ok)' }, { key: 'without', label: t('withoutEvidence'), color: 'var(--bad)' }]} />
           </Card>
-          <Card icon="alert" title={<>{t('topGaps')} <span className="text-muted font-normal text-sm num">({gaps.length})</span></>} hint={t('gapsHint')} right={gaps.length > 20 ? <button className="btn btn-ghost btn-sm shrink-0" onClick={() => setAllGaps(v => !v)}>{allGaps ? `${t('showingTop')} 20` : t('viewAll')}</button> : undefined} className="overflow-x-auto">
+          <Card icon="alert" title={<>{t('topGaps')} <span className="text-muted font-normal text-sm num">({gaps.length})</span></>} hint={t('gapsHint')} right={gaps.length > 20 ? <button className="btn btn-ghost btn-sm shrink-0" onClick={() => setAllGaps(!allGaps)}>{allGaps ? `${t('showingTop')} 20` : t('viewAll')}</button> : undefined} className="overflow-x-auto">
             {gaps.length === 0 ? <p className="text-sm text-muted m-0">{t('noItems')}</p> : <table className="tbl"><thead><tr><th>{t('code')}</th><th>{t('codeText')}</th><th>{t('impact')}</th><th>{t('score')}</th></tr></thead><tbody>
               {gaps.slice(0, allGaps ? gaps.length : 20).map(({ c, s }) => <tr key={c.id}><td><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a></td><td className="text-sm"><span className="line-clamp-2" title={pickDesc(lang, c)}>{pickDesc(lang, c)}</span></td><td><ImpactPill impact={effectiveImpact(c, cfg)} short /></td><td><span className="flex items-center gap-2"><span className="bar thin w-16"><i className={tone(s) === 'muted' ? '' : tone(s)} style={{ width: `${s}%` }} /></span><span className={`num font-semibold text-${tone(s)}-ink`}>{fmtPct(s)}</span></span></td></tr>)}</tbody></table>}
           </Card>

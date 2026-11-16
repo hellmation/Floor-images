@@ -39,6 +39,8 @@ export interface Config {
   deptMapping: Record<string, string[]>
   /** Codes whose department mapping is uncertain: the owner must confirm the department before submitting. */
   deptConfirm: Record<string, true>
+  /** codes whose responsible department was set by the administrator in bulk: the configured value wins over the owner's own choice */
+  deptLocked?: Record<string, boolean>
   /** Cycle ids renamed by a migration (old -> new); load() moves any file still carrying the old key. */
   renamedCycles?: Record<string, string>
   entity: { name_ar: string; name_en: string }

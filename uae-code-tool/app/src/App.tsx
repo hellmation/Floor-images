@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useLayoutEffect } from 'react'
+import { navigate } from './store/viewState'
 import { useApp } from './store/state'
 import { Shell } from './components/Shell'
 import Setup from './pages/Setup'
@@ -19,13 +20,17 @@ declare global { interface Window { __leaveGuard?: () => boolean } }
 const PAGES = new Set(['home', 'my', 'browse', 'notes', 'code', 'dashboard', 'fulfil', 'standings', 'review', 'mapping', 'cycles', 'admin'])
 function useHash() {
   const [h, setH] = useState(location.hash.replace(/^#\/?/, ''))
-  const prev = useRef(h); const skip = useRef(false)
+  const prev = useRef(h); const skip = useRef(false); const target = useRef(0); const first = useRef(true)
+  // after the new page has rendered: top for a fresh visit, the remembered offset when coming back
+  useLayoutEffect(() => { if (first.current) { first.current = false; return } const y = target.current; window.scrollTo({ top: y, behavior: 'instant' as ScrollBehavior }); if (y <= 0) return; let n = 0, raf = 0
+    const tick = () => { if (Math.abs(window.scrollY - y) > 2 && n++ < 30) { window.scrollTo({ top: y, behavior: 'instant' as ScrollBehavior }); raf = requestAnimationFrame(tick) } }
+    raf = requestAnimationFrame(tick); return () => cancelAnimationFrame(raf) }, [h])
   useEffect(() => { const f = () => {
     const next = location.hash.replace(/^#\/?/, '')
     if (skip.current) { skip.current = false; return }
     // a page with unsaved edits may veto the navigation (CodeView registers the guard)
     if (window.__leaveGuard && !window.__leaveGuard()) { skip.current = true; location.hash = '#/' + prev.current; return }
-    prev.current = next; setH(next); window.scrollTo({ top: 0 }) }
+    target.current = navigate(prev.current, window.scrollY, next); prev.current = next; setH(next) }
     addEventListener('hashchange', f); return () => removeEventListener('hashchange', f) }, [])
   return h
 }

@@ -1,4 +1,5 @@
-import { useMemo, useState, type ReactNode } from 'react'
+import { useMemo, type ReactNode } from 'react'
+import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
 import { master, fulfilRows, fulfilSum, deptName, pillarById, effective, assigneeOf, departmentOf, evidenceFacts, type FulfilRow, type EvidenceFact } from '../store/scoring'
 import { pick } from '../i18n'
@@ -16,7 +17,7 @@ const STATE_COLOR: Record<string, string> = { approved: 'var(--ok)', submitted: 
 /** Fulfilment: what is done, what is in preparation, what has evidence and how strong it is, then the points-based score at every level. */
 export default function Fulfil() {
   const { t, lang, snap, cycleId } = useApp(); const cfg = snap!.config; const cy = cycleId!; const toast = useToast()
-  const [approvedOnly, setApprovedOnly] = useState(false)
+  const [vs, setVs] = useViewState('fulfil', { approvedOnly: false }); const approvedOnly = vs.approvedOnly; const setApprovedOnly = (v: boolean) => setVs({ approvedOnly: v })
   const rows = useMemo(() => fulfilRows(snap!, cy, approvedOnly), [snap, cy, approvedOnly])
   const all = fulfilSum(rows)
   const uname = (id: string | null) => { const u = cfg.users.find(x => x.id === id); return u ? (lang === 'ar' ? u.name_ar : u.name_en) : t('unassigned') }

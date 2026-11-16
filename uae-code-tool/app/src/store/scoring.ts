@@ -41,7 +41,7 @@ export function reviewApplies(review: Review | null, answer: CodeAnswer | null, 
 /** Responsible department for a code: the owner's own choice (in their answers file) wins over the configured primary department. */
 export function departmentOf(snap: Snapshot, cycleId: string, codeId: string): string | null {
   const cfg = snap.config; const assignee = assigneeOf(codeId, cycleId, cfg)
-  const own = assignee ? snap.answers[assignee]?.departments?.[codeId] : null
+  const own = assignee && !cfg.deptLocked?.[codeId] ? snap.answers[assignee]?.departments?.[codeId] : null
   const id = own || cfg.deptMapping?.[codeId]?.[0] || null
   return id && cfg.departments?.some(d => d.id === id && d.active) ? id : (cfg.deptMapping?.[codeId]?.[0] || null)
 }
