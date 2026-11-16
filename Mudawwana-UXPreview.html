@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mudawwana · Ease-of-use previewer</title>
+<style>
+:root{--bg:#f6f4f1;--panel:#fff;--ink:#141416;--mut:#6d6f76;--line:#e4e1dc;--acc:#6B3FA0;--acc-soft:#efe8f8;--gold:#b68a35;--fs:14.5px;--lh:1.55;--fsar:15.5px}
+*{box-sizing:border-box}
+body{margin:0;background:#e9e7e3;color:var(--ink);font:14px/1.45 "IBM Plex Sans",system-ui,"Segoe UI",sans-serif}
+button{font:inherit;cursor:pointer}
+/* previewer strip */
+#ctl{position:sticky;top:0;z-index:20;background:#17171a;color:#fff;padding:10px 16px;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+#ctl h1{font-size:14px;margin:0 8px 0 0;font-weight:600}
+#ctl .seg{display:inline-flex;background:#2b2b31;border-radius:999px;padding:3px}
+#ctl .seg button{border:0;background:none;color:#c9c9d1;padding:6px 14px;border-radius:999px;font-size:13px}
+#ctl .seg button.on{background:#fff;color:#17171a;font-weight:600}
+#ctl label{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;background:#2b2b31;border-radius:999px;padding:5px 11px 5px 8px;cursor:pointer;user-select:none}
+#ctl label.on{background:#6B3FA0}
+#ctl input{accent-color:#fff;margin:0}
+#why{background:#fffbe9;border-bottom:1px solid #eadfae;padding:9px 16px;font-size:13px;color:#4b4420;min-height:38px}
+#why b{color:#17171a}
+/* app mock */
+.app{margin:14px auto;max-width:1440px;height:820px;background:var(--bg);border-radius:14px;overflow:hidden;display:grid;grid-template-rows:58px 1fr;box-shadow:0 10px 40px rgba(0,0,0,.12)}
+.top{background:var(--panel);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;padding:0 16px}
+.logo{width:26px;height:26px;border-radius:50%;background:conic-gradient(#c8102e,#007a3d,#141416,#c8102e)}
+.brand b{font-weight:600}.brand span{color:var(--mut)}
+.search{flex:1;margin:0 10px;border:1px solid var(--line);border-radius:10px;padding:9px 12px;color:var(--mut);background:#fff}
+.pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-size:13px;white-space:nowrap}
+.pill.who{display:inline-flex;gap:6px;align-items:center}.av{width:20px;height:20px;border-radius:50%;background:var(--acc);color:#fff;font-size:10px;display:grid;place-items:center;font-weight:700}
+.body{display:grid;grid-template-columns:262px 1fr 400px;min-height:0}
+.side{border-inline-end:1px solid var(--line);padding:14px 10px;overflow:hidden}
+.svc{border:2px solid var(--acc);border-radius:12px;background:#fff;padding:12px;margin-bottom:16px}
+.svc small{color:var(--acc);letter-spacing:.14em;font-weight:700;font-size:10px}.svc b{display:block;margin-top:2px}
+.svc .sw{margin-top:9px;border:1px solid var(--line);border-radius:8px;text-align:center;padding:6px;font-size:12.5px;color:var(--acc);font-weight:600}
+.cap{font-size:10.5px;letter-spacing:.14em;color:var(--mut);margin:14px 8px 6px}
+.nav div{display:flex;justify-content:space-between;padding:7px 8px;border-radius:8px;font-size:13px}.nav div span{color:var(--mut);font-size:11.5px}
+.nav .sub{padding-inline-start:28px;color:#3c3d42}
+.sc{display:inline-block;border:1px solid var(--line);background:#fff;border-radius:8px;padding:4px 8px;font-size:11.5px;margin:0 0 6px 6px}
+.main{padding:18px 34px;overflow:hidden;position:relative}
+.banner{border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px 16px;display:flex;gap:8px;align-items:center;margin-bottom:14px;font-size:12.5px}
+.banner b{margin-inline-end:6px;font-size:13.5px}.chip{border:1px solid var(--line);border-radius:999px;padding:3px 9px;background:#fff;font-size:12px}
+.crumb{font-size:10.5px;letter-spacing:.16em;color:var(--mut)}
+.h{font-size:22px;font-weight:600;margin:4px 0 2px}.h span{font-weight:400;color:#55565c;font-size:17px;margin-inline-start:8px}
+.hint{color:var(--mut);font-size:12.5px;margin-bottom:12px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 12px;font-size:13px}
+.segm{display:inline-flex;background:#ebe8e3;border-radius:10px;padding:3px;gap:2px}
+.segm span{padding:6px 12px;border-radius:8px;font-size:13px;color:#44454a}.segm span.on{background:#fff;color:var(--acc);font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.goldline{height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:14px 0 18px}
+.sec{display:flex;justify-content:space-between;font-weight:600;font-size:16px;margin-bottom:10px}.sec span{color:var(--mut);font-weight:400;font-size:12px}
+.card{background:#fff;border:1px solid var(--line);border-inline-start:4px solid var(--acc);border-radius:12px;padding:14px 18px;margin-bottom:12px}
+.card.att{border-inline-start-color:#306190}
+.meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mut);margin-bottom:8px}
+.kp{background:var(--acc-soft);color:var(--acc);font-weight:700;border-radius:999px;padding:2px 9px;font-size:11px}
+.att .kp{background:#e6eef6;color:#306190}
+.q{margin-inline-start:auto;display:flex;gap:5px}.q i{width:26px;height:26px;border:1px solid var(--line);border-radius:7px;display:grid;place-items:center;font-style:normal;font-size:10px;color:#55565c}
+.en{font-size:var(--fs);line-height:var(--lh);margin:0 0 10px;max-width:var(--measure,none)}
+.ar{font-size:var(--fsar);line-height:1.8;margin:0;direction:rtl;text-align:right;font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif}
+.foot{display:flex;justify-content:flex-end;border-top:1px dashed var(--line);margin-top:10px;padding-top:10px}
+.add{background:var(--acc);color:#fff;border:0;border-radius:999px;padding:8px 18px;font-weight:600;font-size:13px}
+.comp{border-inline-start:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;min-height:0}
+.ch{display:flex;align-items:center;gap:8px;padding:14px 16px;font-weight:600}.ch .n{background:var(--acc);color:#fff;border-radius:50%;width:20px;height:20px;font-size:11px;display:grid;place-items:center}
+.cb{padding:0 16px;overflow:hidden;flex:1}
+.it{border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin-bottom:8px;font-size:13px;background:#faf9f7}
+.it small{display:block;color:var(--mut);font-size:11px;margin-top:3px}
+.ck{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:#3c3d42;margin:8px 0}
+.ck i{display:inline-block;width:13px;height:13px;border:1.5px solid #9a9ba1;border-radius:3px;vertical-align:-2px;margin-inline-end:5px}
+.prev{border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.6;background:#faf9f7;max-height:120px;overflow:hidden}
+.cf{padding:12px 16px;border-top:1px solid var(--line)}
+.ready{border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:12.5px;font-weight:600;display:flex;justify-content:space-between;margin-bottom:10px}
+.copy{width:100%;background:var(--acc);color:#fff;border:0;border-radius:10px;padding:12px;font-weight:600;font-size:14px}
+.toasts{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:grid;gap:8px}
+.toasts div{background:#141416;color:#fff;border-radius:9px;padding:10px 20px;font-size:13px}
+/* proposal-only blocks hidden by default */
+.app:not(.p1) .only1,.app:not(.p2) .only2,.app:not(.p3) .only3,.app:not(.p4) .only4,.app:not(.p5) .only5,.app:not(.p6) .only6{display:none}
+/* P1: comments start at the top */
+.p1 .banner,.p1 .crumb,.p1 .hint,.p1 .old-rows,.p1 .goldline{display:none}
+.p1 .only1{display:flex}
+.p1 .h{font-size:18px;margin:0}.p1 .h span{display:none}
+.p1 .main{padding-top:14px}
+.bar1{align-items:center;gap:10px;margin:0 0 12px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.bar1 .sp{flex:1}
+/* P2: side by side */
+.p2 .pair{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.p2 .pair .en{margin:0}.p2 .pair .ar{border-left:1px solid var(--line);padding-left:22px}
+.p2 .q .lang{display:none}
+/* P3: most used */
+.p3 .only3{display:block}
+.mu{margin-bottom:14px}
+.mu .t{font-size:11px;letter-spacing:.14em;color:var(--mut);margin-bottom:7px}
+.mu .g{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mu .g div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:12.5px;display:flex;gap:8px;align-items:center;justify-content:space-between}
+.mu .g b{color:var(--acc);border:1px solid var(--acc);border-radius:50%;width:20px;height:20px;display:grid;place-items:center;flex:none;font-size:13px}
+/* P4: quiet composer */
+.p4 .old-out,.p4 .ready,.p4 .toasts{display:none}
+.p4 .only4{display:flex}
+.p4 .prev{max-height:300px;background:#fff;border-color:var(--acc);font-size:13.5px}
+.p4 .it{padding:6px 10px;display:flex;justify-content:space-between;gap:8px}.p4 .it small{display:none}
+.sum{align-items:center;justify-content:space-between;font-size:12.5px;color:#3c3d42;margin:10px 0;padding:8px 12px;background:#f3f1ee;border-radius:9px}
+.sum u{color:var(--acc);text-decoration:none;font-weight:600}
+.p4 .ch .n{animation:pulse 1.6s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(107,63,160,.5)}100%{box-shadow:0 0 0 10px rgba(107,63,160,0)}}
+/* P5: reading comfort */
+.p5{--fs:16px;--lh:1.65;--fsar:17.5px;--ink:#1f2328;--bg:#faf8f4;--measure:68ch}
+.p5 .only5{display:inline-flex}
+.p5 .card{border-color:#e9e5de;box-shadow:0 1px 2px rgba(60,50,30,.04)}
+.p5 .meta{font-size:12.5px}
+.tsz{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}
+.tsz span{padding:6px 10px;border-inline-end:1px solid var(--line);font-size:12px}.tsz span:last-child{border:0;font-size:15px}.tsz span.on{background:var(--acc-soft);color:var(--acc);font-weight:700}
+/* P6: simpler top bar */
+.p6 .old-top{display:none}.p6 .only6{display:inline-flex}
+.note{max-width:1440px;margin:0 auto 30px;padding:0 6px;color:#55565c;font-size:12.5px}
+</style>
+</head>
+<body>
+<div id="ctl">
+  <h1>Mudawwana · ease-of-use previewer</h1>
+  <span class="seg"><button data-all="0">Current</button><button data-all="1" class="on">All proposed</button></span>
+  <label><input type="checkbox" data-p="1">1 · Comments start at the top</label>
+  <label><input type="checkbox" data-p="2">2 · English and Arabic side by side</label>
+  <label><input type="checkbox" data-p="3">3 · Most used first</label>
+  <label><input type="checkbox" data-p="4">4 · Quieter composer</label>
+  <label><input type="checkbox" data-p="5">5 · Reading comfort</label>
+  <label><input type="checkbox" data-p="6">6 · Simpler top bar</label>
+</div>
+<div id="why"></div>
+
+<div class="app" id="app">
+  <div class="top">
+    <span class="logo"></span><span class="brand"><b>Mudawwana</b> <span>· Refunds Services</span></span>
+    <span class="search">Search comments… e.g. iban, completion certificate, خلاصة القيد</span>
+    <span class="pill old-top">Your details</span><span class="pill old-top">Guide</span><span class="pill old-top">Reset</span>
+    <span class="pill who only6"><span class="av">AH</span>Ahmed</span>
+    <span class="pill">عربي</span><span class="pill">☾</span>
+    <span class="pill old-top">⚙</span><span class="pill old-top">?</span>
+    <span class="pill only6">⋯ More</span>
+  </div>
+  <div class="body">
+    <div class="side">
+      <div class="svc"><small>REFUNDS · SERVICE</small><b>Excise Tax Refund</b><span style="color:#55565c">استرداد الضريبة الانتقائية</span><div class="sw">Switch service ▾</div></div>
+      <div class="cap">SECTIONS</div>
+      <div class="nav"><div><b style="font-weight:500">Required Documents</b><span>7</span></div><div class="sub">Bank, Import &amp; Export Documents<span>4</span></div><div class="sub">Excise Goods Evidence<span>3</span></div><div><b style="font-weight:500">Taxpayer Call Log</b><span>5</span></div></div>
+      <div class="cap">SCENARIOS</div>
+      <span class="sc">Excise refund — standard document set</span><span class="sc">Call — answered</span><span class="sc">Call — not answered</span>
+    </div>
+
+    <div class="main">
+      <div class="banner"><b>Mudawwana v1.1.0</b><span class="chip">150 comments</span><span class="chip">6/7 services with comments</span><span class="chip">Last updated 02/11/2026</span><span style="margin-inline-start:auto">✕</span></div>
+      <div class="crumb">REFUNDS › SERVICE</div>
+      <div class="row only1 bar1">
+        <div class="h">Excise Tax Refund <span>استرداد الضريبة الانتقائية</span></div><span class="sp"></span>
+        <span class="segm"><span class="on">To the taxpayer 7</span><span>Internal 0</span><span>Call log 5</span></span>
+        <span class="btn">Filter ▾</span><span class="tsz only5"><span>A−</span><span class="on">A</span><span>A+</span></span>
+      </div>
+      <div class="old-rows">
+        <div class="h">Excise Tax Refund <span>استرداد الضريبة الانتقائية</span></div>
+        <div class="hint">Type to search. ↑↓ to move, Enter to add, Ctrl+Enter to copy.</div>
+        <div class="row"><span class="btn">☰ Services</span><span class="btn">💡 Start from a scenario</span></div>
+        <div class="row"><span class="crumb">SHOW</span><span class="segm"><span class="on">To the taxpayer 7</span><span>Internal notes 0</span><span>Call log 5</span><span>All 12</span></span></div>
+        <div class="row"><span class="chip" style="border-color:var(--acc);color:var(--acc)">All kinds</span><span class="chip">Request</span><span class="chip">Attachment</span><span class="chip">Rejection</span><span class="chip">Notice</span><span class="chip">Has condition</span><span class="chip">Has Arabic</span><span class="chip">Has blanks</span></div>
+        <div class="row" style="justify-content:flex-end"><span class="segm"><span class="on">Comfortable</span><span>Compact</span></span></div>
+      </div>
+      <div class="goldline"></div>
+
+      <div class="mu only3"><div class="t">★ YOUR MOST USED IN THIS SERVICE</div><div class="g">
+        <div>Attach customs declaration with proof of exit<b>+</b></div><div>Attach invoice and packing list<b>+</b></div><div>Update bank details and attach bank letter<b>+</b></div><div>Provide deductible form reference<b>+</b></div></div></div>
+
+      <div class="sec">Required Documents <span>7</span></div>
+
+      <div class="card">
+        <div class="meta"><span class="kp">Request</span>Bank, Import &amp; Export Documents<span class="q"><i>☆</i><i>⧉</i><i class="lang">EN</i><i class="lang">AR</i></span></div>
+        <div class="pair">
+          <p class="en">Kindly assist us with the following: (1) update your bank details; (2) attach a bank letter; (3) attach the import declaration; (4) attach the export declaration together with the exit certificate.</p>
+          <p class="ar">يرجى التكرم بما يلي: (1) تحديث البيانات البنكية؛ (2) إرفاق خطاب من البنك؛ (3) إرفاق البيان الجمركي للاستيراد؛ (4) إرفاق البيان الجمركي للتصدير مع شهادة الخروج.</p>
+        </div>
+        <div class="foot"><button class="add">+ Add</button></div>
+      </div>
+      <div class="card att">
+        <div class="meta"><span class="kp">Attachment</span>Bank, Import &amp; Export Documents<span class="q"><i>☆</i><i>⧉</i><i class="lang">EN</i><i class="lang">AR</i></span></div>
+        <div class="pair">
+          <p class="en">Kindly attach the customs declaration together with the proof of exit (stamped by Customs).</p>
+          <p class="ar">يرجى إرفاق البيان الجمركي مع إثبات الخروج (مختوماً من الجمارك).</p>
+        </div>
+        <div class="foot"><button class="add">+ Add</button></div>
+      </div>
+      <div class="card att">
+        <div class="meta"><span class="kp">Attachment</span>Bank, Import &amp; Export Documents<span class="q"><i>☆</i><i>⧉</i><i class="lang">EN</i><i class="lang">AR</i></span></div>
+        <div class="pair">
+          <p class="en">Kindly attach the invoice and the packing list.</p>
+          <p class="ar">يرجى إرفاق الفاتورة وقائمة التعبئة.</p>
+        </div>
+        <div class="foot"><button class="add">+ Add</button></div>
+      </div>
+      <div class="card">
+        <div class="meta"><span class="kp">Request</span>Excise Goods Evidence<span class="q"><i>☆</i><i>⧉</i><i class="lang">EN</i><i class="lang">AR</i></span></div>
+        <div class="pair">
+          <p class="en">Kindly provide the reference number of the deductible form for the same period.</p>
+          <p class="ar">يرجى تزويدنا بالرقم المرجعي لنموذج الخصم للفترة نفسها.</p>
+        </div>
+        <div class="foot"><button class="add">+ Add</button></div>
+      </div>
+      <div class="toasts"><div>✓ Added to composer</div><div>✓ Added to composer</div></div>
+    </div>
+
+    <div class="comp">
+      <div class="ch">Composer <span class="n">2</span></div>
+      <div class="cb">
+        <div class="it"><span>1 · Kindly assist us with the following: (1) update your bank…</span><small>REQUEST · Bank, Import &amp; Export Documents</small><span class="only4">✕</span></div>
+        <div class="it"><span>2 · Kindly attach the customs declaration together with…</span><small>ATTACHMENT · Bank, Import &amp; Export Documents</small><span class="only4">✕</span></div>
+        <div class="row only4 sum"><span>English then Arabic · Numbered</span><u>Options ▾</u></div>
+        <div class="old-out">
+          <div class="cap" style="margin-inline:0">OUTPUT</div>
+          <div class="row"><span class="segm"><span>EN</span><span>AR</span><span class="on">EN then AR</span><span>Interleaved</span></span></div>
+          <div class="row"><span class="segm"><span class="on">Numbered</span><span>Bullets</span><span>Plain</span></span></div>
+          <div class="ck"><span><i></i>Opening line</span><span><i></i>Closing line</span><span><i></i>Attachment summary</span><span><i></i>Reviewer stamp</span></div>
+          <div class="cap" style="margin-inline:0">PREVIEW</div>
+        </div>
+        <div class="prev">1. Kindly assist us with the following: (1) update your bank details; (2) attach a bank letter; (3) attach the import declaration; (4) attach the export declaration together with the exit certificate.<br>2. Kindly attach the customs declaration together with the proof of exit (stamped by Customs).<br><br><span dir="rtl" style="display:block;text-align:right">1. يرجى التكرم بما يلي: (1) تحديث البيانات البنكية؛ (2) إرفاق خطاب من البنك؛ (3) إرفاق البيان الجمركي للاستيراد…<br>2. يرجى إرفاق البيان الجمركي مع إثبات الخروج (مختوماً من الجمارك).</span></div>
+      </div>
+      <div class="cf"><div class="ready"><span>✓ Ready to paste</span><span>100%</span></div><button class="copy">⧉ Copy comment</button></div>
+    </div>
+  </div>
+</div>
+<p class="note">This is a mock-up of the Refunds screen for discussion only. Nothing here changes the real files. Tick the proposals you want and tell me their numbers.</p>
+
+<script>
+const WHY={
+ 0:'<b>Current screen.</b> The first comment starts more than halfway down the page, each card shows both languages stacked, and the composer shows every option at once.',
+ 1:'<b>1 · Comments start at the top.</b> The version banner, breadcrumb, hint line and three filter rows fold into one toolbar, so two to three more comments fit on the first screen. Kind filters move into one Filter menu. Basis: show less at once and reveal detail on demand (progressive disclosure).',
+ 2:'<b>2 · English and Arabic side by side.</b> Cards get shorter and the two texts can be compared line by line. Basis: bilingual guidance recommends parallel layouts, each in its own reading direction, instead of stacking.',
+ 3:'<b>3 · Most used first.</b> The four comments you add most in this service sit at the top with a one-click plus. Basis: help-desk tools surface an agent\'s most used macros first because a small set covers most cases.',
+ 4:'<b>4 · Quieter composer.</b> Output options collapse into one line that states the current choice, the preview becomes the main thing, and the stacked "Added" pop-ups become a pulse on the counter. Basis: recognition over recall, and fewer interruptions.',
+ 5:'<b>5 · Reading comfort.</b> Text grows to 16px with more line spacing, Arabic is sized a step larger to match visually, contrast is softened from near-black on white, lines are capped at a comfortable length, and a text-size control is added. Basis: common readability guidance for long screen sessions.',
+ 6:'<b>6 · Simpler top bar.</b> Guide, Reset, Settings and Help move into one More menu. Search, your name, language and theme stay visible. Basis: keep frequent actions visible and rare ones one click away.'
+};
+const app=document.getElementById('app'),why=document.getElementById('why');
+const boxes=[...document.querySelectorAll('[data-p]')];
+function apply(last){
+  boxes.forEach(b=>{app.classList.toggle('p'+b.dataset.p,b.checked);b.parentElement.classList.toggle('on',b.checked)});
+  const on=boxes.filter(b=>b.checked);
+  document.querySelector('[data-all="0"]').classList.toggle('on',on.length===0);
+  document.querySelector('[data-all="1"]').classList.toggle('on',on.length===boxes.length);
+  why.innerHTML=last!=null?WHY[last]:(on.length===boxes.length?'<b>All six proposals on.</b> Untick any one to see the screen without it, or tick one alone to judge it by itself. Each tick shows its reason here.':WHY[0]);
+}
+boxes.forEach(b=>b.onchange=()=>apply(b.checked?+b.dataset.p:null));
+document.querySelectorAll('[data-all]').forEach(x=>x.onclick=()=>{boxes.forEach(b=>b.checked=x.dataset.all==='1');apply(null)});
+const q=new URLSearchParams(location.search).get('p');
+boxes.forEach(b=>b.checked=q===null?true:q.split(',').includes(b.dataset.p));
+apply(null);
+</script>
+</body>
+</html>
