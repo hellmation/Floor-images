@@ -21,16 +21,24 @@
    "active": true
   },
   {
+   "id": "itsector",
+   "name_ar": "قطاع تقنية المعلومات",
+   "name_en": "Information Technology Sector",
+   "active": true
+  },
+  {
    "id": "digital",
    "name_ar": "إدارة مواءمة الأعمال الرقمية",
    "name_en": "Digital Business Alignment Department",
-   "active": true
+   "active": false,
+   "mergedInto": "itsector"
   },
   {
    "id": "itsvc",
    "name_ar": "إدارة الخدمات الرقمية",
    "name_en": "Digital Services Department",
-   "active": true
+   "active": false,
+   "mergedInto": "itsector"
   },
   {
    "id": "infosec",
@@ -107,63 +115,63 @@
  ],
  "mapping": {
   "1.1.1": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "1.1.2": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "1.1.3": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "1.1.4": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "1.1.5": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "1.1.6": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "1.2.1": [
-   "digital"
+   "itsector"
   ],
   "1.2.2": [
-   "digital"
+   "itsector"
   ],
   "1.2.3": [
-   "digital"
+   "itsector"
   ],
   "1.2.4": [
-   "digital"
+   "itsector"
   ],
   "1.2.5": [
-   "digital"
+   "itsector"
   ],
   "1.2.6": [
-   "digital"
+   "itsector"
   ],
   "1.2.7": [
-   "digital"
+   "itsector"
   ],
   "1.3.1": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "1.3.2": [
-   "digital"
+   "itsector"
   ],
   "1.3.3": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "1.3.4": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "1.3.5": [
@@ -174,7 +182,7 @@
    "tso"
   ],
   "1.4.1": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "1.4.2": [
@@ -186,14 +194,14 @@
    "comms"
   ],
   "1.5.1": [
-   "digital",
+   "itsector",
    "data"
   ],
   "1.5.2": [
-   "digital"
+   "itsector"
   ],
   "1.5.3": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "1.5.4": [
@@ -201,106 +209,106 @@
    "tso"
   ],
   "1.5.5": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "1.5.6": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "1.6.1": [
-   "digital",
+   "itsector",
    "finance"
   ],
   "1.6.2": [
-   "digital",
+   "itsector",
    "finance"
   ],
   "1.6.3": [
-   "digital",
+   "itsector",
    "finance"
   ],
   "1.6.4": [
-   "digital",
+   "itsector",
    "finance"
   ],
   "1.6.5": [
-   "digital",
+   "itsector",
    "finance"
   ],
   "1.6.6": [
-   "digital",
+   "itsector",
    "finance"
   ],
   "1.7.1": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "1.7.2": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "1.7.3": [
    "tso"
   ],
   "1.7.4": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "1.7.5": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "1.7.6": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "1.7.7": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "1.8.1": [
-   "digital"
+   "itsector"
   ],
   "1.8.2": [
-   "digital"
+   "itsector"
   ],
   "1.8.3": [
-   "digital"
+   "itsector"
   ],
   "1.8.4": [
    "tso"
   ],
   "1.8.5": [
-   "digital"
+   "itsector"
   ],
   "1.8.6": [
-   "digital"
+   "itsector"
   ],
   "1.9.1": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "1.9.2": [
    "comms",
-   "digital"
+   "itsector"
   ],
   "1.9.3": [
    "comms",
-   "digital"
+   "itsector"
   ],
   "1.9.4": [
    "comms",
-   "digital"
+   "itsector"
   ],
   "1.9.5": [
-   "digital"
+   "itsector"
   ],
   "1.9.6": [
    "comms"
   ],
   "1.9.7": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "2.1.1": [
@@ -308,7 +316,7 @@
    "tso"
   ],
   "2.1.2": [
-   "digital",
+   "itsector",
    "ops"
   ],
   "2.1.3": [
@@ -318,7 +326,7 @@
    "tso"
   ],
   "2.1.5": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "2.1.6": [
@@ -340,17 +348,17 @@
    "tso"
   ],
   "2.1.11": [
-   "digital"
+   "itsector"
   ],
   "2.1.11b": [
-   "digital"
+   "itsector"
   ],
   "2.1.12": [
-   "digital",
+   "itsector",
    "strategy"
   ],
   "2.1.13": [
-   "digital",
+   "itsector",
    "legal"
   ],
   "2.2.1": [
@@ -388,7 +396,7 @@
    "tso"
   ],
   "2.3.4b": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "2.4.1": [
@@ -411,11 +419,11 @@
    "finance"
   ],
   "2.4.7": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "2.4.8": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "2.5.1": [
@@ -427,11 +435,11 @@
    "tps"
   ],
   "2.5.3": [
-   "digital",
+   "itsector",
    "tps"
   ],
   "2.5.4": [
-   "digital",
+   "itsector",
    "tps"
   ],
   "2.5.5": [
@@ -446,52 +454,52 @@
   ],
   "3.1.4": [],
   "3.1.5": [
-   "digital",
+   "itsector",
    "ops"
   ],
   "3.1.6": [],
   "3.2.1": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "3.2.2": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "3.2.3": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "3.2.4": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "3.2.5": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "3.2.6": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "3.2.7": [
    "ops",
-   "digital"
+   "itsector"
   ],
   "3.3.1": [
-   "digital",
+   "itsector",
    "data"
   ],
   "3.3.2": [
-   "digital",
+   "itsector",
    "data"
   ],
   "3.3.3": [
-   "digital",
+   "itsector",
    "data"
   ],
   "3.3.4": [
-   "digital",
+   "itsector",
    "data"
   ],
   "3.3.5": [
@@ -503,69 +511,69 @@
    "comms"
   ],
   "3.4.1": [
-   "digital",
+   "itsector",
    "data"
   ],
   "3.4.2": [
-   "digital",
+   "itsector",
    "data"
   ],
   "3.4.3": [
-   "digital",
+   "itsector",
    "data"
   ],
   "3.4.4": [
-   "digital",
+   "itsector",
    "data"
   ],
   "3.4.5": [
-   "digital",
+   "itsector",
    "infosec"
   ],
   "3.4.6": [
-   "digital",
+   "itsector",
    "data"
   ],
   "3.5.1": [
-   "digital"
+   "itsector"
   ],
   "3.5.2": [
-   "digital"
+   "itsector"
   ],
   "3.5.3": [
-   "digital"
+   "itsector"
   ],
   "3.5.4": [
-   "digital"
+   "itsector"
   ],
   "3.5.5": [
-   "digital"
+   "itsector"
   ],
   "3.5.6": [
-   "digital"
+   "itsector"
   ],
   "3.6.1": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "3.6.2": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "3.6.3": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "3.6.4": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "3.6.5": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "3.6.6": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "3.7.1": [
@@ -573,7 +581,7 @@
    "tps"
   ],
   "3.7.2": [
-   "digital",
+   "itsector",
    "tps"
   ],
   "3.7.3": [
@@ -585,7 +593,7 @@
    "tps"
   ],
   "3.7.5": [
-   "digital"
+   "itsector"
   ],
   "3.7.6": [
    "tps",
@@ -593,153 +601,153 @@
   ],
   "4.1.1": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "4.1.2": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "4.1.3": [
    "comms"
   ],
   "4.1.4": [
-   "digital",
+   "itsector",
    "infosec"
   ],
   "4.1.5": [
-   "digital"
+   "itsector"
   ],
   "4.1.6": [
-   "digital"
+   "itsector"
   ],
   "4.1.7": [
    "tso",
    "strategy"
   ],
   "4.2.1": [
-   "digital"
+   "itsector"
   ],
   "4.2.2": [
-   "digital"
+   "itsector"
   ],
   "4.2.3": [
-   "digital"
+   "itsector"
   ],
   "4.2.4": [
-   "digital"
+   "itsector"
   ],
   "4.2.5": [
-   "digital"
+   "itsector"
   ],
   "4.2.6": [
-   "digital"
+   "itsector"
   ],
   "4.3.1": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "4.3.2": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "4.3.3": [],
   "4.3.4": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "4.3.5": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "4.3.6": [
    "hr",
    "infosec"
   ],
   "4.4.1": [
-   "digital"
+   "itsector"
   ],
   "4.4.2": [
-   "digital"
+   "itsector"
   ],
   "4.4.3": [
-   "digital"
+   "itsector"
   ],
   "4.4.4": [
-   "digital"
+   "itsector"
   ],
   "4.4.5": [
-   "digital"
+   "itsector"
   ],
   "4.4.6": [
-   "digital"
+   "itsector"
   ],
   "4.5.1": [
-   "digital"
+   "itsector"
   ],
   "4.5.2": [
-   "digital"
+   "itsector"
   ],
   "4.5.3": [
-   "digital"
+   "itsector"
   ],
   "4.5.4": [
-   "digital"
+   "itsector"
   ],
   "4.5.5": [
-   "digital"
+   "itsector"
   ],
   "4.5.6": [
-   "digital"
+   "itsector"
   ],
   "4.5.7": [
-   "digital"
+   "itsector"
   ],
   "4.6.1": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "4.6.2": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "4.6.3": [
    "admin",
    "tso"
   ],
   "4.6.4": [
-   "digital"
+   "itsector"
   ],
   "4.6.5": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "4.6.6": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "4.7.1": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "4.7.2": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "4.7.3": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "4.7.4": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "4.7.5": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "4.7.6": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "4.8.1": [
    "tso"
@@ -758,30 +766,30 @@
   ],
   "5.1.1": [
    "infosec",
-   "digital"
+   "itsector"
   ],
   "5.1.2": [
-   "digital",
+   "itsector",
    "infosec"
   ],
   "5.1.3": [
    "infosec",
-   "digital"
+   "itsector"
   ],
   "5.1.4": [
    "infosec",
-   "digital"
+   "itsector"
   ],
   "5.2.1": [
-   "digital",
+   "itsector",
    "data"
   ],
   "5.2.2": [
-   "digital",
+   "itsector",
    "data"
   ],
   "5.2.3": [
-   "digital",
+   "itsector",
    "data"
   ],
   "5.2.4": [
@@ -789,67 +797,67 @@
    "data"
   ],
   "5.2.5": [
-   "digital",
+   "itsector",
    "data"
   ],
   "5.2.6": [
-   "digital",
+   "itsector",
    "data"
   ],
   "5.2.7": [
-   "digital",
+   "itsector",
    "legal"
   ],
   "5.3.1": [
-   "digital",
+   "itsector",
    "data"
   ],
   "5.3.2": [
    "data",
-   "digital"
+   "itsector"
   ],
   "5.3.3": [
    "data",
-   "digital"
+   "itsector"
   ],
   "5.3.4": [
    "data",
-   "digital"
+   "itsector"
   ],
   "5.3.5": [
    "ops",
-   "digital"
+   "itsector"
   ],
   "5.3.6": [
    "data",
-   "digital"
+   "itsector"
   ],
   "5.4.1": [
-   "digital",
+   "itsector",
    "infosec"
   ],
   "5.4.2": [
-   "digital",
+   "itsector",
    "infosec"
   ],
   "5.4.3": [
-   "digital",
+   "itsector",
    "infosec"
   ],
   "5.4.4": [
    "infosec",
-   "digital"
+   "itsector"
   ],
   "5.4.5": [
-   "digital",
+   "itsector",
    "infosec"
   ],
   "5.4.6": [
-   "digital",
+   "itsector",
    "data"
   ],
   "5.4.7": [
-   "digital"
+   "itsector"
   ],
   "5.5.1": [
    "infosec",
@@ -876,64 +884,64 @@
    "infosec"
   ],
   "5.5.7": [
-   "digital",
+   "itsector",
    "infosec"
   ],
   "5.6.1": [
    "infosec",
-   "digital"
+   "itsector"
   ],
   "5.6.2": [
-   "digital"
+   "itsector"
   ],
   "5.6.3": [
    "infosec",
-   "digital"
+   "itsector"
   ],
   "5.6.4": [
    "infosec",
-   "digital"
+   "itsector"
   ],
   "5.6.5": [
    "infosec",
-   "digital"
+   "itsector"
   ],
   "5.6.6": [
    "infosec",
-   "digital"
+   "itsector"
   ],
   "5.6.7": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "5.6.8": [
-   "digital"
+   "itsector"
   ],
   "5.6.9": [
-   "digital",
+   "itsector",
    "infosec"
   ],
   "5.7.1": [
-   "digital",
+   "itsector",
    "data"
   ],
   "5.7.2": [
-   "digital",
+   "itsector",
    "data"
   ],
   "5.7.3": [
-   "digital",
+   "itsector",
    "data"
   ],
   "5.7.4": [
    "infosec"
   ],
   "5.7.5": [
-   "digital",
+   "itsector",
    "data"
   ],
   "5.7.6": [
-   "digital",
+   "itsector",
    "data"
   ],
   "5.8.1": [
@@ -941,11 +949,11 @@
    "finance"
   ],
   "5.8.2": [
-   "digital",
+   "itsector",
    "infosec"
   ],
   "5.8.3": [
-   "digital",
+   "itsector",
    "finance"
   ],
   "5.8.4": [
@@ -953,7 +961,7 @@
    "finance"
   ],
   "5.8.5": [
-   "digital",
+   "itsector",
    "finance"
   ],
   "5.8.6": [
@@ -1068,15 +1076,15 @@
    "tso"
   ],
   "6.5.1": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "6.5.2": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "6.5.3": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "6.5.4": [
@@ -1085,18 +1093,18 @@
   ],
   "6.5.5": [
    "infosec",
-   "digital"
+   "itsector"
   ],
   "6.5.6": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "6.5.7": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "6.6.1": [
-   "digital",
+   "itsector",
    "data"
   ],
   "6.6.2": [
@@ -1104,7 +1112,7 @@
    "policy"
   ],
   "6.6.3": [
-   "digital",
+   "itsector",
    "strategy"
   ],
   "6.6.4": [
@@ -1135,20 +1143,20 @@
    "hr"
   ],
   "7.1.1": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "7.1.2": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "7.1.3": [
-   "digital",
+   "itsector",
    "comms"
   ],
   "7.1.4": [
    "tso",
-   "digital"
+   "itsector"
   ],
   "7.1.5": [
    "strategy",
@@ -1281,96 +1289,96 @@
    "tso"
   ],
   "8.1.1": [
-   "itsvc",
+   "itsector",
    "comms"
   ],
   "8.1.2": [
-   "itsvc",
+   "itsector",
    "comms"
   ],
   "8.1.3": [
-   "itsvc",
+   "itsector",
    "comms"
   ],
   "8.1.4": [
-   "itsvc",
+   "itsector",
    "comms"
   ],
   "8.1.5": [
-   "itsvc"
+   "itsector"
   ],
   "8.1.6": [
-   "itsvc",
+   "itsector",
    "comms"
   ],
   "8.1.7": [
-   "digital",
+   "itsector",
    "tso"
   ],
   "8.2.1": [
    "tso",
-   "itsvc"
+   "itsector"
   ],
   "8.2.2": [
    "tso",
-   "itsvc"
+   "itsector"
   ],
   "8.2.3": [
    "tso",
-   "itsvc"
+   "itsector"
   ],
   "8.2.4": [
    "tso",
-   "itsvc"
+   "itsector"
   ],
   "8.2.5": [
    "tso",
-   "itsvc"
+   "itsector"
   ],
   "8.2.6": [
    "tso",
-   "itsvc"
+   "itsector"
   ],
   "8.3.1": [
-   "itsvc"
+   "itsector"
   ],
   "8.3.2": [
-   "itsvc"
+   "itsector"
   ],
   "8.3.3": [
-   "itsvc"
+   "itsector"
   ],
   "8.3.4": [
-   "itsvc"
+   "itsector"
   ],
   "8.3.5": [
-   "itsvc"
+   "itsector"
   ],
   "8.3.6": [
-   "itsvc"
+   "itsector"
   ],
   "8.4.1": [
-   "itsvc",
+   "itsector",
    "finance"
   ],
   "8.4.2": [
-   "itsvc",
+   "itsector",
    "finance"
   ],
   "8.4.3": [
-   "itsvc",
+   "itsector",
    "finance"
   ],
   "8.4.4": [
-   "itsvc",
+   "itsector",
    "finance"
   ],
   "8.4.5": [
-   "itsvc",
+   "itsector",
    "finance"
   ],
   "8.4.6": [
-   "itsvc",
+   "itsector",
    "finance"
   ],
   "8.5.1": [
@@ -1423,11 +1431,11 @@
   ],
   "8.7.1": [
    "admin",
-   "itsvc"
+   "itsector"
   ],
   "8.7.2": [
    "admin",
-   "itsvc"
+   "itsector"
   ],
   "8.7.3": [
    "admin",
@@ -1435,43 +1443,36 @@
   ],
   "8.7.4": [
    "admin",
-   "itsvc"
+   "itsector"
   ],
   "8.7.5": [
    "admin",
-   "itsvc"
+   "itsector"
   ],
   "8.7.6": [
    "admin",
-   "itsvc"
+   "itsector"
   ],
   "8.8.1": [
-   "digital",
-   "itsvc"
+   "itsector"
   ],
   "8.8.2": [
-   "itsvc",
-   "digital"
+   "itsector"
   ],
   "8.8.3": [
-   "itsvc",
-   "digital"
+   "itsector"
   ],
   "8.8.4": [
-   "itsvc",
-   "digital"
+   "itsector"
   ],
   "8.8.5": [
-   "itsvc",
-   "digital"
+   "itsector"
   ],
   "8.8.6": [
-   "itsvc",
-   "digital"
+   "itsector"
   ],
   "8.8.7": [
-   "digital",
-   "itsvc"
+   "itsector"
   ]
  },
  "confirm": {

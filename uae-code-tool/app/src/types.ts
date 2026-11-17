@@ -31,7 +31,8 @@ export interface Settings {
   /** Network path of the evidence root folder; used to build the link of a code's evidence folder after files are dropped. */
   evidenceRoot?: string
 }
-export interface Department { id: string; name_ar: string; name_en: string; active: boolean }
+/** `mergedInto`: this unit is no longer reported on its own; anything still pointing at it resolves to the unit that replaced it. */
+export interface Department { id: string; name_ar: string; name_en: string; active: boolean; mergedInto?: string }
 export interface Config {
   version: number
   /** Organisational units from the FTA structure decree; the responsible department per code (first = primary, rest = supporting). */

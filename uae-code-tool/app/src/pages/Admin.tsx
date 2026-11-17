@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useViewState } from '../store/viewState'
 import type React from 'react'
 import { useApp } from '../store/state'
-import { master, uid, assigneeOf } from '../store/scoring'
+import { master, uid, assigneeOf, deptName } from '../store/scoring'
 import { pick } from '../i18n'
 import { Avatar, PageHeader, fmtDate, useToast, errMsg, Empty, Modal, Req } from '../components/ui'
 import { makePassword } from '../store/password'
@@ -74,7 +74,7 @@ export default function Admin() {
           <td><button className="btn btn-primary btn-sm" disabled={!np.name_ar.trim()} onClick={() => { commit({ ...cfg, projects: [...cfg.projects, { id: 'p' + String(cfg.projects.length + 1).padStart(2, '0') + '-' + uid().slice(0, 4), name_ar: np.name_ar.trim(), name_en: np.name_en.trim(), ownerId: np.ownerId || null, active: true }] }, 'project add'); setNp({ name_ar: '', name_en: '', ownerId: '' }) }}><Icon name="plus" />{t('add')}</button></td></tr>
       </tbody></table></div>}
       {tab === 'departments' && <div className="card overflow-x-auto"><div className="px-4 pt-3 text-sm text-muted">{t('deptHint')}</div><table className="tbl"><thead><tr><th>{t('id')}</th><th>{t('nameAr')}</th><th>{t('nameEn')}</th><th>{t('codes')}</th><th>{t('active')}</th></tr></thead><tbody>
-        {cfg.departments.map(d => <tr key={d.id}><td className="code-id">{d.id}</td><td><DraftInput aria-label={t('nameAr')} value={d.name_ar} onCommit={v => updDept({ ...d, name_ar: v })} /></td><td><DraftInput aria-label={t('nameEn')} dir="ltr" value={d.name_en} onCommit={v => updDept({ ...d, name_en: v })} /></td><td className="num">{Object.values(cfg.deptMapping).filter(v => v[0] === d.id).length}</td><td><input type="checkbox" aria-label={t('active')} checked={d.active} onChange={e => updDept({ ...d, active: e.target.checked })} /></td></tr>)}
+        {cfg.departments.map(d => <tr key={d.id}><td className="code-id">{d.id}</td><td><DraftInput aria-label={t('nameAr')} value={d.name_ar} onCommit={v => updDept({ ...d, name_ar: v })} /></td><td><DraftInput aria-label={t('nameEn')} dir="ltr" value={d.name_en} onCommit={v => updDept({ ...d, name_en: v })} /></td><td className="num">{Object.values(cfg.deptMapping).filter(v => v[0] === d.id).length}</td><td><input type="checkbox" aria-label={t('active')} checked={d.active} onChange={e => { const n = { ...d, active: e.target.checked }; if (e.target.checked) delete n.mergedInto; updDept(n) }} />{d.mergedInto && <div className="text-xs text-muted mt-1 whitespace-nowrap">{t('mergedInto')}: {deptName(cfg, d.mergedInto, lang)}</div>}</td></tr>)}
         <tr className="!bg-surface-2"><td></td><td><span className="req-in"><Req /><input className="input" required placeholder={t('nameAr')} aria-label={t('nameAr')} value={nd.name_ar} onChange={e => setNd({ ...nd, name_ar: e.target.value })} /></span></td><td><input className="input" dir="ltr" placeholder={t('nameEn')} aria-label={t('nameEn')} value={nd.name_en} onChange={e => setNd({ ...nd, name_en: e.target.value })} /></td><td></td>
           <td><button className="btn btn-primary btn-sm" disabled={!nd.name_ar.trim()} onClick={() => { commit({ ...cfg, departments: [...cfg.departments, { id: 'd-' + uid().slice(0, 6), name_ar: nd.name_ar.trim(), name_en: nd.name_en.trim() || nd.name_ar.trim(), active: true }] }, 'department add'); setNd({ name_ar: '', name_en: '' }) }}><Icon name="plus" />{t('add')}</button></td></tr>
       </tbody></table></div>}

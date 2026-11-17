@@ -55,7 +55,7 @@ export function seedMapping(): Record<string, string[]> {
 export function defaultConfig(): Config {
   const { users, projects } = seedUsersAndProjects()
   return {
-    version: 11,
+    version: 12,
     departments: seedDepartments(), deptMapping: seedDeptMapping(), deptConfirm: seedDeptConfirm(),
     entity: { name_ar: 'الهيئة الاتحادية للضرائب', name_en: 'Federal Tax Authority' },
     users, projects, mapping: seedMapping(), overrides: {},
@@ -88,11 +88,19 @@ export function renameCycleInConfig(c: Config, from: string, to: string) {
   c.renamedCycles = { ...(c.renamedCycles || {}), [from]: to }
 }
 export function migrateConfig(c: Config): Config {
-  if ((c.version || 1) >= 11) return c
+  if ((c.version || 1) >= 12) return c
+  if ((c.version || 1) === 11) {
+    // the Digital Business Alignment and Digital Services departments are reported together as the Information Technology Sector (17 Nov)
+    const into = 'itsector', from = ['digital', 'itsvc']
+    if (!c.departments.some(d => d.id === into)) { const at = c.departments.findIndex(d => from.includes(d.id)); c.departments.splice(at < 0 ? c.departments.length : at, 0, { id: into, name_ar: 'قطاع تقنية المعلومات', name_en: 'Information Technology Sector', active: true }) }
+    for (const d of c.departments) if (from.includes(d.id)) { d.active = false; d.mergedInto = into }
+    for (const id of Object.keys(c.deptMapping || {})) c.deptMapping[id] = [...new Set(c.deptMapping[id].map(d => from.includes(d) ? into : d))]
+    c.version = 12; return c
+  }
   if ((c.version || 1) === 10) {
     // sub-pillars 7.3, 7.4 and 7.5 belong to the Taxpayer Services Department, not the Taxpayer Support Office (16 Nov)
     if (c.departments?.some(d => d.id === 'tps')) for (const id of Object.keys(c.deptMapping || {})) if (/^7\.[345]\./.test(id)) c.deptMapping[id] = [...new Set(c.deptMapping[id].map(d => d === 'tso' ? 'tps' : d))]
-    c.version = 11; return c
+    c.version = 11; return migrateConfig(c)
   }
   // v10: optional sign-in passwords and administrator evidence adjustments. No data changes; the version bump makes older files read-only.
   if ((c.version || 1) === 9) { c.version = 10; return migrateConfig(c) }

@@ -1,6 +1,6 @@
 import ExcelJS from 'exceljs'
 import type { Lang, Snapshot, Code } from '../types'
-import { master, effective, codeScore, effectiveImpact, assigneeOf, rollup, standings, sortIds, subById, pillarById, departmentOf, supportDepartments, fulfilRows, fulfilSum, type FulfilRow } from '../store/scoring'
+import { master, effective, codeScore, effectiveImpact, assigneeOf, rollup, standings, sortIds, subById, pillarById, departmentOf, resolveDept, supportDepartments, fulfilRows, fulfilSum, type FulfilRow } from '../store/scoring'
 
 let LANG: Lang = 'ar'
 const H = (ar: string, en: string) => LANG === 'ar' ? ar : en
@@ -85,7 +85,7 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
       f.c.requirements.forEach((r, i) => { const it = f.a?.items[String(r.n)]; const crit = paired ? txt(f.c.criteria[i]) : allCrit
         const row = ws.addRow([cycleId, order.get(f.c.id), Number(pl.id), nm(pl), sb.id, nm(sb), f.c.id, desc(f.c), L(IMP_T, f.imp), allReq, allCrit, r.n, txt(r), crit, L(STATUS_T, it?.status),
           [(it?.evidence || []).map(ev => ev.title ? `${ev.title}: ${ev.url}` : ev.url).join('\n'), it?.status === 'na' && it.justification ? `${H('مبرر عدم الانطباق', 'N/A justification')}: ${it.justification}` : '', EPL(it?.evidenceParts)].filter(Boolean).join('\n'), it?.evidence?.length || 0,
-          uname(f.assignee) || H('غير مُسند', 'Unassigned'), f.links.map(pname).join(' | '), owners, dname(f.dept), dname(it?.departmentId || f.dept), L(STATE_T, f.e.state), i === 0 && f.score !== null ? Math.round(f.score * 10) / 10 : null,
+          uname(f.assignee) || H('غير مُسند', 'Unassigned'), f.links.map(pname).join(' | '), owners, dname(f.dept), dname(resolveDept(cfg, it?.departmentId) || f.dept), L(STATE_T, f.e.state), i === 0 && f.score !== null ? Math.round(f.score * 10) / 10 : null,
           uname(f.review?.reviewedBy), iso(f.a?.updatedAt), YN(!!it?.clarify?.flag), [it?.note, it?.clarify?.flag ? `${H('سؤال', 'Question')}: ${it.clarify.question}` : '', f.review?.comment ? `${H('المراجع', 'Reviewer')}: ${f.review.comment}` : ''].filter(Boolean).join(' | ')])
         let lines = 1; row.eachCell((cell, n) => { const v = cell.value == null ? '' : String(cell.value); const w = cols[n - 1].w * 1.9; const l = v.split('\n').reduce((a, part) => a + Math.max(1, Math.ceil(part.length / w)), 0); if (l > lines) lines = l }); row.height = Math.min(409, 15 * lines + 4) }) }
     const last = ws.rowCount
@@ -163,7 +163,7 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
         L(STATUS_T, it?.status), it?.status || '', it?.status && it.status !== 'na' ? cfg.settings.scores[it.status] : null, it?.status === 'na' ? (it.justification || '') : '',
         it?.evidence?.length || 0, (it?.evidence || []).map(ev => ev.title ? `${ev.title}: ${ev.url}` : ev.url).join('\n'), EP(it?.evidenceParts?.doc), EP(it?.evidenceParts?.exec), EP(it?.evidenceParts?.monitor), it?.note || '', pname(it?.projectId), it?.projectId || '', it?.service || '',
         YN(!!it?.clarify?.flag), it?.clarify?.question || '', cl?.answer || '',
-        uname(f.e.userId), uname(f.assignee) || H('غير مُسند', 'Unassigned'), f.assignee || '', pname(f.primary), dname(f.dept), dname(it?.departmentId || f.dept), PTS[f.imp], it?.status === 'na' ? null : it?.status === 'yes' ? PTS[f.imp] : it?.status === 'partial' ? PTS[f.imp] / 2 : 0, YN(it?.status !== 'na'), f.score === null ? null : Math.round(f.score * 10) / 10, YN(f.complete), L(STATE_T, f.e.state), YN(f.e.state === 'approved'), iso(f.a?.updatedAt), iso(f.a?.submittedAt), f.c.pdf_page] }) }))
+        uname(f.e.userId), uname(f.assignee) || H('غير مُسند', 'Unassigned'), f.assignee || '', pname(f.primary), dname(f.dept), dname(resolveDept(cfg, it?.departmentId) || f.dept), PTS[f.imp], it?.status === 'na' ? null : it?.status === 'yes' ? PTS[f.imp] : it?.status === 'partial' ? PTS[f.imp] / 2 : 0, YN(it?.status !== 'na'), f.score === null ? null : Math.round(f.score * 10) / 10, YN(f.complete), L(STATE_T, f.e.state), YN(f.e.state === 'approved'), iso(f.a?.updatedAt), iso(f.a?.submittedAt), f.c.pdf_page] }) }))
 
   /* ---------- 4. Evidence ---------- */
   table(['الأدلة', 'Evidence'], 'Evidence', [

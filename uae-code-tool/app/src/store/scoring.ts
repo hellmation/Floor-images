@@ -39,11 +39,18 @@ export function reviewApplies(review: Review | null, answer: CodeAnswer | null, 
 }
 
 /** Responsible department for a code: the owner's own choice (in their answers file) wins over the configured primary department. */
+/** A department that was merged into another resolves to the one that replaced it. */
+export function resolveDept(cfg: Config, id: string | null | undefined): string | null {
+  let cur = id || null
+  for (let i = 0; i < 4 && cur; i++) { const to = cfg.departments?.find(d => d.id === cur)?.mergedInto; if (!to || to === cur) break; cur = to }
+  return cur
+}
 export function departmentOf(snap: Snapshot, cycleId: string, codeId: string): string | null {
   const cfg = snap.config; const assignee = assigneeOf(codeId, cycleId, cfg)
-  const own = assignee && !cfg.deptLocked?.[codeId] ? snap.answers[assignee]?.departments?.[codeId] : null
-  const id = own || cfg.deptMapping?.[codeId]?.[0] || null
-  return id && cfg.departments?.some(d => d.id === id && d.active) ? id : (cfg.deptMapping?.[codeId]?.[0] || null)
+  const own = assignee && !cfg.deptLocked?.[codeId] ? resolveDept(cfg, snap.answers[assignee]?.departments?.[codeId]) : null
+  const def = resolveDept(cfg, cfg.deptMapping?.[codeId]?.[0])
+  const id = own || def
+  return id && cfg.departments?.some(d => d.id === id && d.active) ? id : def
 }
 /** Fulfilment scoring: every requirement is worth the points of its code's impact (default 30/20/10); Yes earns all,
  *  Partial half, No nothing; N/A is excluded from both earned and possible; an unanswered requirement earns nothing. */
@@ -56,7 +63,7 @@ export function fulfilRows(snap: Snapshot, cycleId: string, approvedOnly: boolea
     for (const r of c.requirements) {
       const it = a?.items[String(r.n)]; const st = it?.status ?? null
       const earned = st === 'yes' ? pts : st === 'partial' ? pts / 2 : 0
-      out.push({ code: c, n: r.n, pts, status: st, earned, counted: st !== 'na', assignee, dept: it?.departmentId || cd, state: e.state })
+      out.push({ code: c, n: r.n, pts, status: st, earned, counted: st !== 'na', assignee, dept: resolveDept(cfg, it?.departmentId) || cd, state: e.state })
     }
   }
   return out
@@ -68,7 +75,7 @@ export function fulfilSum(rows: FulfilRow[]): Fulfil {
   f.pct = f.possible ? (f.earned / f.possible) * 100 : null
   return f
 }
-export const supportDepartments = (cfg: Config, codeId: string) => (cfg.deptMapping?.[codeId] || []).slice(1)
+export const supportDepartments = (cfg: Config, codeId: string) => { const m = (cfg.deptMapping?.[codeId] || []).map(d => resolveDept(cfg, d) as string); return [...new Set(m.slice(1))].filter(d => d !== m[0]) }
 export function deptName(cfg: Config, id: string | null | undefined, lang: 'ar' | 'en'): string { const d = cfg.departments?.find(x => x.id === id); return d ? (lang === 'ar' ? d.name_ar : d.name_en) : '' }
 export interface Effective { answer: CodeAnswer | null; userId: string | null; review: Review | null; state: WorkState; edited?: EvidenceEdit }
 
@@ -170,7 +177,7 @@ export function evidenceFacts(snap: Snapshot, cycleId: string, approvedOnly: boo
       const evType = ev.length === 0 ? null : ev.some(x => x.strength === 'conclusive') ? 'conclusive' : ev.some(x => x.strength === 'editable') ? 'editable' : 'unspecified'
       const vs = ev.map(x => ratings[c.id]?.[x.id]?.rating).filter(Boolean) as ('strong' | 'weak')[]
       const verdict = vs.length === 0 ? null : vs.includes('strong') ? 'strong' : 'weak'
-      out.push({ code: c, n: r.n, status: it?.status ?? null, state: e.state, assignee, dept: it?.departmentId || cd, hasEv: ev.length > 0, evType, verdict, doc: it?.evidenceParts?.doc === true, exec: it?.evidenceParts?.exec === true, monitor: it?.evidenceParts?.monitor === true })
+      out.push({ code: c, n: r.n, status: it?.status ?? null, state: e.state, assignee, dept: resolveDept(cfg, it?.departmentId) || cd, hasEv: ev.length > 0, evType, verdict, doc: it?.evidenceParts?.doc === true, exec: it?.evidenceParts?.exec === true, monitor: it?.evidenceParts?.monitor === true })
     }
   }
   return out

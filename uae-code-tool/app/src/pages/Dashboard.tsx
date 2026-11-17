@@ -1,7 +1,7 @@
 import { useMemo, type ReactNode } from 'react'
 import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
-import { master, rollup, effective, codeScore, effectiveImpact, sortIds, isComplete, departmentOf, fulfilRows, assigneeOf, evPartsPending, type FulfilRow } from '../store/scoring'
+import { master, rollup, effective, codeScore, effectiveImpact, sortIds, isComplete, departmentOf, resolveDept, fulfilRows, assigneeOf, evPartsPending, type FulfilRow } from '../store/scoring'
 import { pick, pickDesc } from '../i18n'
 import { ImpactPill, PageHeader, Ring, fmtPct, tone, ringTone, PrintHeader, Avatar, fmtDay, Pill, CountUp, RefreshButton } from '../components/ui'
 import { Bars, Columns, Donut, Heatmap, Stacked, Trend, TipRow } from '../components/charts'
@@ -42,7 +42,7 @@ export default function Dashboard() {
   const evFacts = useMemo(() => { const out: { code: string; dept: string | null; status: string | null; hasEv: boolean; strength: EvidenceStrength | 'unspecified' | null }[] = []
     for (const c of master.codes) { const e = effective(snap!, cy, c.id); const a = approvedOnly && e.state !== 'approved' ? null : e.answer; const cd = departmentOf(snap!, cy, c.id)
       for (const r of c.requirements) { const it = a?.items[String(r.n)]; const ev = it?.evidence || []; const st: EvidenceStrength | 'unspecified' | null = ev.length === 0 ? null : ev.some(x => x.strength === 'conclusive') ? 'conclusive' : ev.some(x => x.strength === 'editable') ? 'editable' : 'unspecified'
-        out.push({ code: c.id, dept: it?.departmentId || cd, status: it?.status ?? null, hasEv: ev.length > 0, strength: st }) } }
+        out.push({ code: c.id, dept: resolveDept(cfg, it?.departmentId) || cd, status: it?.status ?? null, hasEv: ev.length > 0, strength: st }) } }
     return out }, [snap, cy, approvedOnly])
   const answered = evFacts.filter(f => f.status && f.status !== 'na')
   const evMix = { conclusive: answered.filter(f => f.strength === 'conclusive').length, editable: answered.filter(f => f.strength === 'editable').length, unspecified: answered.filter(f => f.strength === 'unspecified').length, none: answered.filter(f => !f.hasEv).length }
