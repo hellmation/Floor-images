@@ -55,7 +55,7 @@ export function seedMapping(): Record<string, string[]> {
 export function defaultConfig(): Config {
   const { users, projects } = seedUsersAndProjects()
   return {
-    version: 12,
+    version: 13,
     departments: seedDepartments(), deptMapping: seedDeptMapping(), deptConfirm: seedDeptConfirm(),
     entity: { name_ar: 'الهيئة الاتحادية للضرائب', name_en: 'Federal Tax Authority' },
     users, projects, mapping: seedMapping(), overrides: {},
@@ -87,16 +87,19 @@ export function renameCycleInConfig(c: Config, from: string, to: string) {
   if (c.overrides[from] && !c.overrides[to]) { c.overrides[to] = c.overrides[from]; delete c.overrides[from] }
   c.renamedCycles = { ...(c.renamedCycles || {}), [from]: to }
 }
+/** Folds departments into the Information Technology Sector: they stay listed (inactive, marked as merged) and every code that named them names the sector instead. */
+function mergeIntoItSector(c: Config, from: string[]) {
+  const into = 'itsector'
+  if (!c.departments.some(d => d.id === into)) { const at = c.departments.findIndex(d => from.includes(d.id)); c.departments.splice(at < 0 ? c.departments.length : at, 0, { id: into, name_ar: 'قطاع تقنية المعلومات', name_en: 'Information Technology Sector', active: true }) }
+  for (const d of c.departments) if (from.includes(d.id)) { d.active = false; d.mergedInto = into }
+  for (const id of Object.keys(c.deptMapping || {})) c.deptMapping[id] = [...new Set(c.deptMapping[id].map(d => from.includes(d) ? into : d))]
+}
 export function migrateConfig(c: Config): Config {
-  if ((c.version || 1) >= 12) return c
-  if ((c.version || 1) === 11) {
-    // the Digital Business Alignment and Digital Services departments are reported together as the Information Technology Sector (17 Nov)
-    const into = 'itsector', from = ['digital', 'itsvc']
-    if (!c.departments.some(d => d.id === into)) { const at = c.departments.findIndex(d => from.includes(d.id)); c.departments.splice(at < 0 ? c.departments.length : at, 0, { id: into, name_ar: 'قطاع تقنية المعلومات', name_en: 'Information Technology Sector', active: true }) }
-    for (const d of c.departments) if (from.includes(d.id)) { d.active = false; d.mergedInto = into }
-    for (const id of Object.keys(c.deptMapping || {})) c.deptMapping[id] = [...new Set(c.deptMapping[id].map(d => from.includes(d) ? into : d))]
-    c.version = 12; return c
-  }
+  if ((c.version || 1) >= 13) return c
+  // v13: everything mapped to an information-technology unit is reported under the Information Technology Sector, which
+  // shares the codes out internally: the information security and data analytics offices join the two digital departments (17 Nov)
+  if ((c.version || 1) === 12) { mergeIntoItSector(c, ['infosec', 'data']); c.version = 13; return c }
+  if ((c.version || 1) === 11) { mergeIntoItSector(c, ['digital', 'itsvc']); c.version = 12; return migrateConfig(c) }
   if ((c.version || 1) === 10) {
     // sub-pillars 7.3, 7.4 and 7.5 belong to the Taxpayer Services Department, not the Taxpayer Support Office (16 Nov)
     if (c.departments?.some(d => d.id === 'tps')) for (const id of Object.keys(c.deptMapping || {})) if (/^7\.[345]\./.test(id)) c.deptMapping[id] = [...new Set(c.deptMapping[id].map(d => d === 'tso' ? 'tps' : d))]

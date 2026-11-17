@@ -44,13 +44,15 @@
    "id": "infosec",
    "name_ar": "مكتب إدارة أمن المعلومات",
    "name_en": "Information Security Management Office",
-   "active": true
+   "active": false,
+   "mergedInto": "itsector"
   },
   {
    "id": "data",
    "name_ar": "مكتب تحليل البيانات",
    "name_en": "Data Analytics Office",
-   "active": true
+   "active": false,
+   "mergedInto": "itsector"
   },
   {
    "id": "comms",
@@ -194,8 +196,7 @@
    "comms"
   ],
   "1.5.1": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "1.5.2": [
    "itsector"
@@ -487,20 +488,16 @@
    "itsector"
   ],
   "3.3.1": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "3.3.2": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "3.3.3": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "3.3.4": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "3.3.5": [
    "legal",
@@ -511,28 +508,22 @@
    "comms"
   ],
   "3.4.1": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "3.4.2": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "3.4.3": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "3.4.4": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "3.4.5": [
-   "itsector",
-   "infosec"
+   "itsector"
   ],
   "3.4.6": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "3.5.1": [
    "itsector"
@@ -611,8 +602,7 @@
    "comms"
   ],
   "4.1.4": [
-   "itsector",
-   "infosec"
+   "itsector"
   ],
   "4.1.5": [
    "itsector"
@@ -661,7 +651,7 @@
   ],
   "4.3.6": [
    "hr",
-   "infosec"
+   "itsector"
   ],
   "4.4.1": [
    "itsector"
@@ -765,63 +755,50 @@
    "tso"
   ],
   "5.1.1": [
-   "infosec",
    "itsector"
   ],
   "5.1.2": [
-   "itsector",
-   "infosec"
+   "itsector"
   ],
   "5.1.3": [
-   "infosec",
    "itsector"
   ],
   "5.1.4": [
-   "infosec",
    "itsector"
   ],
   "5.2.1": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "5.2.2": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "5.2.3": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "5.2.4": [
    "legal",
-   "data"
+   "itsector"
   ],
   "5.2.5": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "5.2.6": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "5.2.7": [
    "itsector",
    "legal"
   ],
   "5.3.1": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "5.3.2": [
-   "data",
    "itsector"
   ],
   "5.3.3": [
-   "data",
    "itsector"
   ],
   "5.3.4": [
-   "data",
    "itsector"
   ],
   "5.3.5": [
@@ -829,85 +806,72 @@
    "itsector"
   ],
   "5.3.6": [
-   "data",
    "itsector"
   ],
   "5.4.1": [
-   "itsector",
-   "infosec"
+   "itsector"
   ],
   "5.4.2": [
-   "itsector",
-   "infosec"
+   "itsector"
   ],
   "5.4.3": [
-   "itsector",
-   "infosec"
+   "itsector"
   ],
   "5.4.4": [
-   "infosec",
    "itsector"
   ],
   "5.4.5": [
-   "itsector",
-   "infosec"
+   "itsector"
   ],
   "5.4.6": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "5.4.7": [
    "itsector"
   ],
   "5.5.1": [
-   "infosec",
+   "itsector",
    "invest"
   ],
   "5.5.2": [
-   "infosec",
+   "itsector",
    "invest"
   ],
   "5.5.3": [
-   "infosec",
+   "itsector",
    "invest"
   ],
   "5.5.4": [
-   "infosec",
+   "itsector",
    "invest"
   ],
   "5.5.5": [
    "tso",
-   "infosec"
+   "itsector"
   ],
   "5.5.6": [
    "invest",
-   "infosec"
+   "itsector"
   ],
   "5.5.7": [
-   "itsector",
-   "infosec"
+   "itsector"
   ],
   "5.6.1": [
-   "infosec",
    "itsector"
   ],
   "5.6.2": [
    "itsector"
   ],
   "5.6.3": [
-   "infosec",
    "itsector"
   ],
   "5.6.4": [
-   "infosec",
    "itsector"
   ],
   "5.6.5": [
-   "infosec",
    "itsector"
   ],
   "5.6.6": [
-   "infosec",
    "itsector"
   ],
   "5.6.7": [
@@ -918,46 +882,39 @@
    "itsector"
   ],
   "5.6.9": [
-   "itsector",
-   "infosec"
+   "itsector"
   ],
   "5.7.1": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "5.7.2": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "5.7.3": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "5.7.4": [
-   "infosec"
+   "itsector"
   ],
   "5.7.5": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "5.7.6": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "5.8.1": [
-   "infosec",
+   "itsector",
    "finance"
   ],
   "5.8.2": [
-   "itsector",
-   "infosec"
+   "itsector"
   ],
   "5.8.3": [
    "itsector",
    "finance"
   ],
   "5.8.4": [
-   "infosec",
+   "itsector",
    "finance"
   ],
   "5.8.5": [
@@ -965,29 +922,29 @@
    "finance"
   ],
   "5.8.6": [
-   "infosec",
+   "itsector",
    "finance"
   ],
   "5.9.1": [
-   "data"
+   "itsector"
   ],
   "5.9.2": [
-   "data"
+   "itsector"
   ],
   "5.9.3": [
-   "data"
+   "itsector"
   ],
   "5.9.4": [
-   "data"
+   "itsector"
   ],
   "5.9.5": [
-   "data"
+   "itsector"
   ],
   "5.9.6": [
-   "data"
+   "itsector"
   ],
   "5.9.7": [
-   "data"
+   "itsector"
   ],
   "6.1.1": [
    "tso",
@@ -1007,7 +964,7 @@
   ],
   "6.1.5": [
    "tso",
-   "data"
+   "itsector"
   ],
   "6.2.1": [
    "hr",
@@ -1092,7 +1049,6 @@
    "tso"
   ],
   "6.5.5": [
-   "infosec",
    "itsector"
   ],
   "6.5.6": [
@@ -1104,8 +1060,7 @@
    "tso"
   ],
   "6.6.1": [
-   "itsector",
-   "data"
+   "itsector"
   ],
   "6.6.2": [
    "strategy",
@@ -1121,7 +1076,7 @@
   ],
   "6.6.5": [
    "hr",
-   "data"
+   "itsector"
   ],
   "6.6.6": [
    "strategy",
@@ -1382,27 +1337,27 @@
    "finance"
   ],
   "8.5.1": [
-   "infosec",
+   "itsector",
    "comms"
   ],
   "8.5.2": [
-   "infosec",
+   "itsector",
    "comms"
   ],
   "8.5.3": [
-   "infosec",
+   "itsector",
    "comms"
   ],
   "8.5.4": [
-   "infosec",
+   "itsector",
    "comms"
   ],
   "8.5.5": [
-   "infosec",
+   "itsector",
    "comms"
   ],
   "8.5.6": [
-   "infosec",
+   "itsector",
    "comms"
   ],
   "8.6.1": [
