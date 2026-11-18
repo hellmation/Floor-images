@@ -1,6 +1,6 @@
 {
- "version": "1.1.0",
- "publishedAt": "2026-11-02",
+ "version": "1.2.0",
+ "publishedAt": "2026-11-18",
  "appName": {
   "en": "Mudawwana",
   "ar": "مدوّنة"
@@ -19,8 +19,8 @@
   "adminHash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
   "logo": "",
   "stamp": {
-   "en": "Reviewed by {{name}} · {{team}} · {{date}}",
-   "ar": "تمت المراجعة بواسطة {{name}} · {{team}} · {{date}}"
+   "en": "Reviewed by {{name}} ({{role}}) · {{team}} · {{date}}",
+   "ar": "تمت المراجعة بواسطة {{name}} ({{role}}) · {{team}} · {{date}}"
   },
   "attachHeading": {
    "en": "Required attachments:",
@@ -36,8 +36,8 @@
    "ar": "إدارة الاسترداد"
   },
   "accent": {
-   "light": "#0f766e",
-   "dark": "#d9b45a"
+   "light": "#6b3fa0",
+   "dark": "#b9a1f0"
   },
   "searchHint": {
    "en": "Search comments… e.g. iban, completion certificate, voluntary disclosure, خلاصة القيد",
@@ -504,6 +504,24 @@
      "id": "ex-goods",
      "en": "Excise Goods Evidence",
      "ar": "إثباتات السلع الانتقائية"
+    }
+   ]
+  },
+  {
+   "id": "call-log",
+   "en": "Taxpayer Call Log (Audit Trail)",
+   "ar": "سجل مكالمات الخاضع للضريبة (سجل التدقيق)",
+   "svc": "*",
+   "subsections": [
+    {
+     "id": "call-rec",
+     "en": "Call Record",
+     "ar": "تسجيل المكالمة"
+    },
+    {
+     "id": "call-tp",
+     "en": "Lines to the Taxpayer (return request)",
+     "ar": "نصوص موجهة للخاضع للضريبة (طلب الإعادة)"
     }
    ]
   }
@@ -5492,6 +5510,191 @@
      ]
     }
    ]
+  },
+  {
+   "id": "call-01",
+   "s": "call-log",
+   "ss": "call-rec",
+   "kind": "internal",
+   "en": "[CALL] {{date}} {{time}} – Status: {{callStatus}}\nSpoke with: {{contactName}}\nAction taken with the taxpayer: {{action}}\nAdditional comments: {{notes}}",
+   "ar": "[مكالمة] {{date}} {{time}} – الحالة: {{callStatus}}\nتم التحدث مع: {{contactName}}\nالإجراء المتخذ مع الخاضع للضريبة: {{action}}\nملاحظات إضافية: {{notes}}",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "answered",
+    "informed",
+    "confirmed",
+    "clarified",
+    "call record"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "[CALL] {{date}} {{time}} – Status: {{callStatus}}\nSpoke with: {{contactName}}\nAction taken with the taxpayer: {{action}}\nAdditional comments: {{notes}}",
+     "ar": "[مكالمة] {{date}} {{time}} – الحالة: {{callStatus}}\nتم التحدث مع: {{contactName}}\nالإجراء المتخذ مع الخاضع للضريبة: {{action}}\nملاحظات إضافية: {{notes}}",
+     "cond": null,
+     "kind": "internal",
+     "status": "published",
+     "tags": [
+      "answered",
+      "informed",
+      "confirmed",
+      "clarified",
+      "call record"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "call-02",
+   "s": "call-log",
+   "ss": "call-rec",
+   "kind": "internal",
+   "en": "[CALL] {{date}} {{time}} – Status: {{callStatus}} – Attempt {{attempt}}\nCalled: {{contactName}}\nAction taken: {{action}}\nAdditional comments: {{notes}}",
+   "ar": "[مكالمة] {{date}} {{time}} – الحالة: {{callStatus}} – المحاولة {{attempt}}\nتم الاتصال بـ: {{contactName}}\nالإجراء المتخذ: {{action}}\nملاحظات إضافية: {{notes}}",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "not answered",
+    "busy",
+    "switched off",
+    "refused",
+    "wrong number",
+    "attempt"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "[CALL] {{date}} {{time}} – Status: {{callStatus}} – Attempt {{attempt}}\nCalled: {{contactName}}\nAction taken: {{action}}\nAdditional comments: {{notes}}",
+     "ar": "[مكالمة] {{date}} {{time}} – الحالة: {{callStatus}} – المحاولة {{attempt}}\nتم الاتصال بـ: {{contactName}}\nالإجراء المتخذ: {{action}}\nملاحظات إضافية: {{notes}}",
+     "cond": null,
+     "kind": "internal",
+     "status": "published",
+     "tags": [
+      "not answered",
+      "busy",
+      "switched off",
+      "refused",
+      "wrong number",
+      "attempt"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "call-03",
+   "s": "call-log",
+   "ss": "call-rec",
+   "kind": "internal",
+   "en": "[CALL] No contact after two attempts – Status: {{callStatus}}\nAttempt 1: {{attempt1At}} – Attempt 2: {{attempt2At}}\nCalled: {{contactName}}\nAction taken: {{action}}\nAdditional comments: {{notes}}",
+   "ar": "[مكالمة] تعذّر التواصل بعد محاولتين – الحالة: {{callStatus}}\nالمحاولة 1: {{attempt1At}} – المحاولة 2: {{attempt2At}}\nتم الاتصال بـ: {{contactName}}\nالإجراء المتخذ: {{action}}\nملاحظات إضافية: {{notes}}",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "no contact",
+    "two attempts",
+    "not answered"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "[CALL] No contact after two attempts – Status: {{callStatus}}\nAttempt 1: {{attempt1At}} – Attempt 2: {{attempt2At}}\nCalled: {{contactName}}\nAction taken: {{action}}\nAdditional comments: {{notes}}",
+     "ar": "[مكالمة] تعذّر التواصل بعد محاولتين – الحالة: {{callStatus}}\nالمحاولة 1: {{attempt1At}} – المحاولة 2: {{attempt2At}}\nتم الاتصال بـ: {{contactName}}\nالإجراء المتخذ: {{action}}\nملاحظات إضافية: {{notes}}",
+     "cond": null,
+     "kind": "internal",
+     "status": "published",
+     "tags": [
+      "no contact",
+      "two attempts",
+      "not answered"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "call-11",
+   "s": "call-log",
+   "ss": "call-tp",
+   "kind": "notice",
+   "en": "As discussed in our call on {{date}} at {{time}}, kindly find below the complete list of items required to continue processing your application.",
+   "ar": "كما تمت مناقشته في مكالمتنا بتاريخ {{date}} الساعة {{time}}، تجدون أدناه القائمة الكاملة بالبنود المطلوبة لمتابعة معالجة طلبكم.",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "return request",
+    "reference to call",
+    "taxpayer"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "As discussed in our call on {{date}} at {{time}}, kindly find below the complete list of items required to continue processing your application.",
+     "ar": "كما تمت مناقشته في مكالمتنا بتاريخ {{date}} الساعة {{time}}، تجدون أدناه القائمة الكاملة بالبنود المطلوبة لمتابعة معالجة طلبكم.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "return request",
+      "reference to call",
+      "taxpayer"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "call-12",
+   "s": "call-log",
+   "ss": "call-tp",
+   "kind": "notice",
+   "en": "We tried to call you on {{date}} regarding your application, without success. Kindly find below the complete list of items required to continue processing your application.",
+   "ar": "حاولنا الاتصال بكم بتاريخ {{date}} بشأن طلبكم دون جدوى. تجدون أدناه القائمة الكاملة بالبنود المطلوبة لمتابعة معالجة طلبكم.",
+   "tags": [
+    "call",
+    "outbound",
+    "audit trail",
+    "return request",
+    "no contact",
+    "taxpayer"
+   ],
+   "status": "published",
+   "updatedAt": "2026-11-02T00:00:00Z",
+   "updatedBy": "admin",
+   "history": [
+    {
+     "at": "2026-11-02T00:00:00Z",
+     "by": "admin",
+     "en": "We tried to call you on {{date}} regarding your application, without success. Kindly find below the complete list of items required to continue processing your application.",
+     "ar": "حاولنا الاتصال بكم بتاريخ {{date}} بشأن طلبكم دون جدوى. تجدون أدناه القائمة الكاملة بالبنود المطلوبة لمتابعة معالجة طلبكم.",
+     "cond": null,
+     "kind": "notice",
+     "status": "published",
+     "tags": [
+      "return request",
+      "no contact",
+      "taxpayer"
+     ]
+    }
+   ]
   }
  ],
  "reviewItems": [],
@@ -5575,6 +5778,70 @@
    "en": "Mosque number",
    "ar": "رقم المسجد",
    "type": "text"
+  },
+  "callStatus": {
+   "type": "select",
+   "en": "Call status",
+   "ar": "حالة المكالمة",
+   "options": [
+    "Answered",
+    "Not answered",
+    "Busy / unreachable",
+    "Wrong number",
+    "Call back requested"
+   ],
+   "optionsAr": [
+    "تم الرد",
+    "لم يتم الرد",
+    "مشغول / لا يمكن الوصول",
+    "رقم خاطئ",
+    "طلب معاودة الاتصال"
+   ]
+  },
+  "time": {
+   "type": "text",
+   "en": "Time (HH:MM)",
+   "ar": "الوقت (س:د)"
+  },
+  "contactName": {
+   "type": "text",
+   "en": "Taxpayer / contact name",
+   "ar": "اسم الخاضع للضريبة / جهة الاتصال"
+  },
+  "action": {
+   "type": "textarea",
+   "en": "Action taken with the taxpayer (what was communicated / agreed / sent)",
+   "ar": "الإجراء المتخذ مع الخاضع للضريبة (ما تم إبلاغه / الاتفاق عليه / إرساله)"
+  },
+  "notes": {
+   "type": "textarea",
+   "en": "Additional comments (write “None” if nothing)",
+   "ar": "ملاحظات إضافية (اكتب «لا يوجد» إن لم يكن هناك شيء)"
+  },
+  "attempt": {
+   "type": "select",
+   "en": "Attempt",
+   "ar": "المحاولة",
+   "options": [
+    "1 of 2",
+    "2 of 2",
+    "3 (call-back)"
+   ],
+   "optionsAr": [
+    "1 من 2",
+    "2 من 2",
+    "3 (معاودة اتصال)"
+   ]
+  },
+  "attempt1At": {
+   "type": "text",
+   "en": "Attempt 1 (DD/MM/YYYY HH:MM)",
+   "ar": "المحاولة 1 (يوم/شهر/سنة س:د)"
+  },
+  "attempt2At": {
+   "type": "text",
+   "en": "Attempt 2 (DD/MM/YYYY HH:MM)",
+   "ar": "المحاولة 2 (يوم/شهر/سنة س:د)"
   }
  },
  "synonyms": {
@@ -5702,6 +5969,12 @@
    "at": "2026-11-02",
    "by": "Service Development Team",
    "note": "Added 90 bilingual comments and 14 scenarios for Business Visitors, Foreign Missions and Diplomats, Mosques and Excise Tax refunds, from the resubmission comment sheets (Oct 2026)."
+  },
+  {
+   "version": "1.2.0",
+   "at": "2026-11-18",
+   "by": "Service Development Team",
+   "note": "Mosques service renamed to its official name: Refund of Input Tax Incurred on the Construction and Operation of Mosques."
   }
  ],
  "scenarios": [
@@ -6230,6 +6503,63 @@
     "en": "Additional evidence",
     "ar": "أدلة إضافية"
    }
+  },
+  {
+   "id": "call-sc-answered",
+   "en": "Call — answered",
+   "ar": "مكالمة — تمت الإجابة",
+   "ids": [
+    "call-01"
+   ],
+   "svc": "*",
+   "basis": {
+    "en": "Record within 15 minutes",
+    "ar": "يُسجَّل خلال 15 دقيقة"
+   },
+   "checks": [
+    {
+     "en": "Official line · 9:00 AM – 8:00 PM · say in “Action taken” the items communicated; the written return must list the same items",
+     "ar": "الخط الرسمي · 9 ص – 8 م · اذكر في «الإجراء المتخذ» البنود المبلغ عنها؛ ويجب أن يتضمن طلب الإعادة الخطي البنود نفسها"
+    }
+   ]
+  },
+  {
+   "id": "call-sc-noanswer",
+   "en": "Call — not answered (one attempt)",
+   "ar": "مكالمة — لم يتم الرد (محاولة واحدة)",
+   "ids": [
+    "call-02"
+   ],
+   "svc": "*",
+   "basis": {
+    "en": "Record each attempt",
+    "ar": "تُسجَّل كل محاولة"
+   },
+   "checks": [
+    {
+     "en": "Ring ≥ 30 s; second attempt after ≥ 1 hour within the window",
+     "ar": "رنين ≥ 30 ث؛ المحاولة الثانية بعد ساعة على الأقل ضمن الفترة"
+    }
+   ]
+  },
+  {
+   "id": "call-sc-nocontact",
+   "en": "Call — no contact after two attempts",
+   "ar": "مكالمة — تعذّر التواصل بعد محاولتين",
+   "ids": [
+    "call-03"
+   ],
+   "svc": "*",
+   "basis": {
+    "en": "Proceed with the written return",
+    "ar": "المتابعة بطلب الإعادة الخطي"
+   },
+   "checks": [
+    {
+     "en": "Two attempts ≥ 1 hour apart; the next return of this application requires a confirmation call",
+     "ar": "محاولتان بفاصل ≥ ساعة؛ الإعادة التالية لهذا الطلب تتطلب مكالمة تأكيد"
+    }
+   ]
   }
  ],
  "conflicts": [
@@ -6293,6 +6623,11 @@
    "ar": "استرداد ضريبة القيمة المضافة عن المساكن الجديدة لمواطني الدولة"
   },
   {
+   "id": "mosque-refund",
+   "en": "Refund of Input Tax Incurred on the Construction and Operation of Mosques",
+   "ar": "استرداد ضريبة المدخلات المتكبدة عن بناء المساجد وتشغيلها"
+  },
+  {
    "id": "tourist-refund",
    "en": "Tourist Refund Scheme",
    "ar": "نظام استرداد الضريبة للسياح"
@@ -6301,11 +6636,6 @@
    "id": "business-visitor-refund",
    "en": "VAT Refund for Business Visitors",
    "ar": "استرداد ضريبة القيمة المضافة لزوار الأعمال"
-  },
-  {
-   "id": "mosque-refund",
-   "en": "VAT Refund for Construction and Operation of Mosques",
-   "ar": "استرداد ضريبة القيمة المضافة عن بناء وتشغيل المساجد"
   },
   {
    "id": "foreign-government-refund",
@@ -6324,7 +6654,7 @@
    "hb-06",
    "hb-08"
   ],
-  "total": 145,
+  "total": 150,
   "services": 7,
   "counts": {
    "hb-identity": 6,
