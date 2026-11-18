@@ -9,6 +9,12 @@
    "active": true
   },
   {
+   "id": "sdt",
+   "name_ar": "فريق تطوير الخدمات",
+   "name_en": "Service Development Team",
+   "active": true
+  },
+  {
    "id": "tps",
    "name_ar": "إدارة خدمات دافعي الضرائب",
    "name_en": "Taxpayer Services Department",

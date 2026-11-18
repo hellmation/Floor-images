@@ -42,6 +42,8 @@ export interface Config {
   deptConfirm: Record<string, true>
   /** codes whose responsible department was set by the administrator in bulk: the configured value wins over the owner's own choice */
   deptLocked?: Record<string, boolean>
+  /** departments that were deleted with a replacement: anything still naming the old id resolves to the replacement */
+  deptAlias?: Record<string, string>
   /** Cycle ids renamed by a migration (old -> new); load() moves any file still carrying the old key. */
   renamedCycles?: Record<string, string>
   entity: { name_ar: string; name_en: string }

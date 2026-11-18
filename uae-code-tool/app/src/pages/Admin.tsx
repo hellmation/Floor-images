@@ -4,7 +4,7 @@ import type React from 'react'
 import { useApp } from '../store/state'
 import { master, uid, assigneeOf, deptName } from '../store/scoring'
 import { pick } from '../i18n'
-import { Avatar, PageHeader, fmtDate, useToast, errMsg, Empty, Modal, Req } from '../components/ui'
+import { Avatar, PageHeader, fmtDate, useToast, errMsg, Empty, Modal, Req, Opt } from '../components/ui'
 import { makePassword } from '../store/password'
 import { DEFAULT_EVIDENCE_ROOT } from '../store/evidenceFolder'
 import { Icon } from '../components/icons'
@@ -42,6 +42,16 @@ export default function Admin() {
   const removePw = () => { if (!pwUserObj) return; commit({ ...cfg, users: cfg.users.map(x => x.id === pwUserObj.id ? { ...x, pwd: null } : x) }, `password removed ${pwUserObj.id}`); setPwFor(null); toast(t('passwordRemoved'), 'ok') }
   const updUser = (u: User) => commit({ ...cfg, users: cfg.users.map(x => x.id === u.id ? u : x) }, `user ${u.id}`)
   const updProj = (p: Project) => commit({ ...cfg, projects: cfg.projects.map(x => x.id === p.id ? p : x) }, `project ${p.id}`)
+  /* Deleting a department: codes that name it move to the chosen replacement (required when it is the responsible department of any code). */
+  const [delDept, setDelDept] = useState<string | null>(null); const [delTo, setDelTo] = useState('')
+  const deptUse = (id: string) => { const m = Object.values(cfg.deptMapping); return { primary: m.filter(v => v[0] === id).length, support: m.filter(v => v.slice(1).includes(id)).length } }
+  const removeDept = () => { const id = delDept; if (!id) return; const to = delTo || null
+    const c = JSON.parse(JSON.stringify(cfg)) as typeof cfg
+    c.departments = c.departments.filter(d => d.id !== id).map(d => { if (d.mergedInto !== id) return d; const n = { ...d }; if (to) n.mergedInto = to; else delete n.mergedInto; return n })
+    for (const k of Object.keys(c.deptMapping)) if (c.deptMapping[k].includes(id)) c.deptMapping[k] = [...new Set(c.deptMapping[k].map(x => x === id ? (to || '') : x).filter(Boolean))]
+    c.deptAlias = { ...(c.deptAlias || {}) }; for (const k of Object.keys(c.deptAlias)) if (c.deptAlias[k] === id) { if (to) c.deptAlias[k] = to; else delete c.deptAlias[k] }
+    if (to) c.deptAlias[id] = to
+    commit(c, `department delete ${id}${to ? ' -> ' + to : ''}`); setDelDept(null); setDelTo('') }
   const updDept = (d: Department) => commit({ ...cfg, departments: cfg.departments.map(x => x.id === d.id ? d : x) }, `department ${d.id}`)
   const assignedCount = (uidv: string) => cycleId ? master.codes.filter(c => assigneeOf(c.id, cycleId, cfg) === uidv).length : 0
   const toggleActive = (u: User, on: boolean) => { if (!on && assignedCount(u.id) > 0 && !confirm(`${t('deactivateWarn')} (${assignedCount(u.id)})`)) return; updUser({ ...u, active: on }) }
@@ -73,10 +83,16 @@ export default function Admin() {
           <td><select className="select" value={np.ownerId} onChange={e => setNp({ ...np, ownerId: e.target.value })}><option value="">—</option>{cfg.users.map(u => <option key={u.id} value={u.id}>{lang === 'ar' ? u.name_ar : u.name_en}</option>)}</select></td>
           <td><button className="btn btn-primary btn-sm" disabled={!np.name_ar.trim()} onClick={() => { commit({ ...cfg, projects: [...cfg.projects, { id: 'p' + String(cfg.projects.length + 1).padStart(2, '0') + '-' + uid().slice(0, 4), name_ar: np.name_ar.trim(), name_en: np.name_en.trim(), ownerId: np.ownerId || null, active: true }] }, 'project add'); setNp({ name_ar: '', name_en: '', ownerId: '' }) }}><Icon name="plus" />{t('add')}</button></td></tr>
       </tbody></table></div>}
-      {tab === 'departments' && <div className="card overflow-x-auto"><div className="px-4 pt-3 text-sm text-muted">{t('deptHint')}</div><table className="tbl"><thead><tr><th>{t('id')}</th><th>{t('nameAr')}</th><th>{t('nameEn')}</th><th>{t('codes')}</th><th>{t('active')}</th></tr></thead><tbody>
-        {cfg.departments.map(d => <tr key={d.id}><td className="code-id">{d.id}</td><td><DraftInput aria-label={t('nameAr')} value={d.name_ar} onCommit={v => updDept({ ...d, name_ar: v })} /></td><td><DraftInput aria-label={t('nameEn')} dir="ltr" value={d.name_en} onCommit={v => updDept({ ...d, name_en: v })} /></td><td className="num">{Object.values(cfg.deptMapping).filter(v => v[0] === d.id).length}</td><td><input type="checkbox" aria-label={t('active')} checked={d.active} onChange={e => { const n = { ...d, active: e.target.checked }; if (e.target.checked) delete n.mergedInto; updDept(n) }} />{d.mergedInto && <div className="text-xs text-muted mt-1 whitespace-nowrap">{t('mergedInto')}: {deptName(cfg, d.mergedInto, lang)}</div>}</td></tr>)}
+      {(() => { const d = cfg.departments.find(x => x.id === delDept); if (!d) return null; const u = deptUse(d.id); const need = u.primary > 0; const others = cfg.departments.filter(x => x.id !== d.id && x.active)
+        return <Modal open onClose={() => setDelDept(null)} title={`${t('deleteDept')} · ${lang === 'ar' ? d.name_ar : d.name_en}`} footer={<><button className="btn" onClick={() => setDelDept(null)}>{t('cancel')}</button><button className="btn btn-danger" disabled={need && !delTo} onClick={removeDept}><Icon name="x" />{t('remove')}</button></>}>
+          <p className="text-sm m-0 mb-3">{t('deleteDeptUse')} <b className="num">{u.primary}</b> {t('deleteDeptPrimary')} · <b className="num">{u.support}</b> {t('deleteDeptSupport')}</p>
+          {(u.primary > 0 || u.support > 0) && <div className="field"><label className="label" htmlFor="del-to">{t('moveCodesTo')}{need ? <Req /> : <Opt />}</label><select id="del-to" className="select" value={delTo} onChange={e => setDelTo(e.target.value)}><option value="">{need ? '—' : t('deleteDeptStrip')}</option>{others.map(x => <option key={x.id} value={x.id}>{lang === 'ar' ? x.name_ar : x.name_en}</option>)}</select></div>}
+          <p className="text-xs text-muted m-0 mt-3">{t('deleteDeptNote')}</p>
+        </Modal> })()}
+      {tab === 'departments' && <div className="card overflow-x-auto"><div className="px-4 pt-3 text-sm text-muted measure">{t('deptListHint')}</div><table className="tbl"><thead><tr><th>{t('id')}</th><th>{t('nameAr')}</th><th>{t('nameEn')}</th><th>{t('codes')}</th><th>{t('active')}</th><th></th></tr></thead><tbody>
+        {cfg.departments.map(d => <tr key={d.id}><td className="code-id">{d.id}</td><td><DraftInput aria-label={t('nameAr')} value={d.name_ar} onCommit={v => updDept({ ...d, name_ar: v })} /></td><td><DraftInput aria-label={t('nameEn')} dir="ltr" value={d.name_en} onCommit={v => updDept({ ...d, name_en: v })} /></td><td className="num">{Object.values(cfg.deptMapping).filter(v => v[0] === d.id).length}</td><td><input type="checkbox" aria-label={t('active')} checked={d.active} onChange={e => { const n = { ...d, active: e.target.checked }; if (e.target.checked) delete n.mergedInto; updDept(n) }} />{d.mergedInto && <div className="text-xs text-muted mt-1 whitespace-nowrap">{t('mergedInto')}: {deptName(cfg, d.mergedInto, lang)}</div>}</td><td><button className="btn btn-ghost btn-sm text-bad-ink" onClick={() => { setDelDept(d.id); setDelTo('') }} aria-label={`${t('remove')} ${d.name_ar}`}><Icon name="x" />{t('remove')}</button></td></tr>)}
         <tr className="!bg-surface-2"><td></td><td><span className="req-in"><Req /><input className="input" required placeholder={t('nameAr')} aria-label={t('nameAr')} value={nd.name_ar} onChange={e => setNd({ ...nd, name_ar: e.target.value })} /></span></td><td><input className="input" dir="ltr" placeholder={t('nameEn')} aria-label={t('nameEn')} value={nd.name_en} onChange={e => setNd({ ...nd, name_en: e.target.value })} /></td><td></td>
-          <td><button className="btn btn-primary btn-sm" disabled={!nd.name_ar.trim()} onClick={() => { commit({ ...cfg, departments: [...cfg.departments, { id: 'd-' + uid().slice(0, 6), name_ar: nd.name_ar.trim(), name_en: nd.name_en.trim() || nd.name_ar.trim(), active: true }] }, 'department add'); setNd({ name_ar: '', name_en: '' }) }}><Icon name="plus" />{t('add')}</button></td></tr>
+          <td><button className="btn btn-primary btn-sm" disabled={!nd.name_ar.trim()} onClick={() => { commit({ ...cfg, departments: [...cfg.departments, { id: 'd-' + uid().slice(0, 6), name_ar: nd.name_ar.trim(), name_en: nd.name_en.trim() || nd.name_ar.trim(), active: true }] }, 'department add'); setNd({ name_ar: '', name_en: '' }) }}><Icon name="plus" />{t('add')}</button></td><td></td></tr>
       </tbody></table></div>}
       {tab === 'settings' && <div className="grid md:grid-cols-2 gap-4">
         <div className="card pad flex flex-col gap-3"><div className="card-title"><Icon name="users" className="text-accent-ink" />{t('coreTeam')}</div><p className="text-sm text-muted m-0">{t('step1')}</p>

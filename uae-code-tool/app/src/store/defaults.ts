@@ -55,7 +55,7 @@ export function seedMapping(): Record<string, string[]> {
 export function defaultConfig(): Config {
   const { users, projects } = seedUsersAndProjects()
   return {
-    version: 13,
+    version: 14,
     departments: seedDepartments(), deptMapping: seedDeptMapping(), deptConfirm: seedDeptConfirm(),
     entity: { name_ar: 'الهيئة الاتحادية للضرائب', name_en: 'Federal Tax Authority' },
     users, projects, mapping: seedMapping(), overrides: {},
@@ -95,10 +95,15 @@ function mergeIntoItSector(c: Config, from: string[]) {
   for (const id of Object.keys(c.deptMapping || {})) c.deptMapping[id] = [...new Set(c.deptMapping[id].map(d => from.includes(d) ? into : d))]
 }
 export function migrateConfig(c: Config): Config {
-  if ((c.version || 1) >= 13) return c
+  if ((c.version || 1) >= 14) return c
+  if ((c.version || 1) === 13) {
+    // the Service Development Team is listed as a unit of its own (18 Nov); no code is moved to it here
+    if (!c.departments.some(d => d.id === 'sdt')) { const at = c.departments.findIndex(d => d.id === 'tso'); c.departments.splice(at < 0 ? c.departments.length : at + 1, 0, { id: 'sdt', name_ar: 'فريق تطوير الخدمات', name_en: 'Service Development Team', active: true }) }
+    c.version = 14; return c
+  }
   // v13: everything mapped to an information-technology unit is reported under the Information Technology Sector, which
   // shares the codes out internally: the information security and data analytics offices join the two digital departments (17 Nov)
-  if ((c.version || 1) === 12) { mergeIntoItSector(c, ['infosec', 'data']); c.version = 13; return c }
+  if ((c.version || 1) === 12) { mergeIntoItSector(c, ['infosec', 'data']); c.version = 13; return migrateConfig(c) }
   if ((c.version || 1) === 11) { mergeIntoItSector(c, ['digital', 'itsvc']); c.version = 12; return migrateConfig(c) }
   if ((c.version || 1) === 10) {
     // sub-pillars 7.3, 7.4 and 7.5 belong to the Taxpayer Services Department, not the Taxpayer Support Office (16 Nov)

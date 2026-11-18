@@ -42,7 +42,12 @@ export function reviewApplies(review: Review | null, answer: CodeAnswer | null, 
 /** A department that was merged into another resolves to the one that replaced it. */
 export function resolveDept(cfg: Config, id: string | null | undefined): string | null {
   let cur = id || null
-  for (let i = 0; i < 4 && cur; i++) { const to = cfg.departments?.find(d => d.id === cur)?.mergedInto; if (!to || to === cur) break; cur = to }
+  for (let i = 0; i < 6 && cur; i++) {
+    const d = cfg.departments?.find(x => x.id === cur)
+    if (!d) { cur = cfg.deptAlias?.[cur] || null; continue }
+    if (!d.mergedInto || d.mergedInto === cur) break
+    cur = d.mergedInto
+  }
   return cur
 }
 export function departmentOf(snap: Snapshot, cycleId: string, codeId: string): string | null {
