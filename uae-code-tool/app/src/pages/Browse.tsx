@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
 import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
-import { master, assigneeOf, effective, effectiveImpact, sortIds, departmentOf, deptName } from '../store/scoring'
+import { master, assigneeOf, effective, effectiveImpact, sortIds, departmentOf, deptName, pillarById } from '../store/scoring'
+import { DEFAULT_EVIDENCE_ROOT, evidenceSupported, linkEvidenceRoot, saveEvidenceFiles, type DirCache } from '../store/evidenceFolder'
 import { pick, pickDesc } from '../i18n'
 import { ImpactPill, PageHeader, StatePill, Empty, Modal, useToast, errMsg } from '../components/ui'
 import { Icon } from '../components/icons'
@@ -38,6 +39,21 @@ export default function Browse() {
       toast(`${t('bulkDone')} (${ids.length})`, 'ok'); setSel(new Set()); setAsk(null)
     } catch (e) { toast(errMsg(e, t), 'bad') } finally { setBusy(false) }
   }
+  /* Evidence folders for the ticked codes: each code gets its folder under its pillar in the evidence root (existing ones are left as they are). */
+  const makeFolders = async () => {
+    const ids = [...sel].sort(sortIds); if (!ids.length) return
+    if (!evidenceSupported()) { toast(t('bulkFoldersUnsupported'), 'bad'); return }
+    setBusy(true)
+    try {
+      const root = await linkEvidenceRoot(); if (!root) return
+      const expected = (cfg.settings.evidenceRoot || DEFAULT_EVIDENCE_ROOT).replace(/[\\/]+$/, '').split(/[\\/]/).pop() || ''
+      if (expected && root.name !== expected && !window.confirm(`${t('dropWrongFolder')}\n\n${root.name}\n≠ ${expected}`)) return
+      const cache: DirCache = new Map(); let created = 0, existing = 0, failed = 0
+      for (const id of ids) { const c = master.codes.find(x => x.id === id); const pil = c && pillarById.get(c.pillar); if (!c || !pil) { failed++; continue }
+        try { const r = await saveEvidenceFiles(root, { id: pil.id, name: pil.name_ar }, c.sub, c.id, [], cache); if (r.createdCode) created++; else existing++ } catch (e) { console.error(id, e); failed++ } }
+      toast(`${t('bulkFoldersDone')} ${created} · ${t('bulkFoldersExisting')} ${existing}${failed ? ` · ${t('bulkFoldersFailed')} ${failed}` : ''}`, failed ? 'bad' : 'ok')
+    } catch (e) { if ((e as DOMException)?.name !== 'AbortError') toast(errMsg(e, t), 'bad') } finally { setBusy(false) }
+  }
   const cols = isAdmin ? 7 : 6
   let lastSub = ''
   return (
@@ -65,6 +81,8 @@ export default function Browse() {
           <span className="w-px self-stretch bg-line mx-1" />
           <select className="select !w-auto !py-1.5 text-sm" aria-label={t('bulkAssign')} value={bWho} onChange={e => setBWho(e.target.value)}><option value="__keep">{t('bulkAssign')}…</option><option value="">{t('auto')}</option>{cfg.users.filter(u => u.active).map(u => <option key={u.id} value={u.id}>{lang === 'ar' ? u.name_ar : u.name_en}</option>)}</select>
           <button className="btn btn-primary btn-sm" disabled={!sel.size || bWho === '__keep'} onClick={() => setAsk('who')}><Icon name="check" />{t('apply')}</button>
+          <span className="w-px self-stretch bg-line mx-1" />
+          <button className="btn btn-sm" disabled={!sel.size || busy} onClick={makeFolders}><Icon name="folder" />{t('bulkFolders')}</button>
         </span>
       </div>}
       {list.length === 0 && <Empty icon="search" title={t('noMatches')}><button className="btn btn-sm mt-2" onClick={() => setVs({ p: '', q: '', who: '', st: '', imp: '', dep: '' })}>{t('clearFilters')}</button></Empty>}

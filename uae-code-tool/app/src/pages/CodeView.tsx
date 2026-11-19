@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState , type ReactNode } from 'react'
 import { originOfCode, originPage } from '../store/viewState'
 import { useApp } from '../store/state'
 import { codeById, subById, pillarById, assigneeOf, effective, effectiveImpact, master, sortIds, uid, now, departmentOf, resolveDept, supportDepartments, deptName, evPartsPending, evPartsAnswered } from '../store/scoring'
@@ -119,6 +119,14 @@ export default function CodeView({ id }: { id: string }) {
     try { await saveReviews(r, `evidence-edit ${code.id}/${n}`); setEvEdit(null); toast(t('evidenceEditSaved'), 'ok') }
     catch (e) { toast(errMsg(e, t), 'bad') } finally { setBusy(false) }
   }
+  /* Evidence filed after submission: the files are already in the code's folder; if that folder is not linked on the
+     requirement yet, its link is added to the owner's own answer. State, submission time and approval are untouched. */
+  const addLateEvidence = async (n: string, title: string, path: string) => {
+    const url = normaliseUrl(path); const mine = myOwn; if (!url || !canLate || !mine) return
+    const it = mine.items[n]; if (!it || it.evidence.some(e => e.url === url)) return
+    const items = { ...mine.items, [n]: { ...it, evidence: [...it.evidence, { id: uid(), type: 'link' as const, title, url, addedAt: now(), addedBy: user!.id, strength: null }] } }
+    try { await saveMyAnswer(cy, code.id, { ...mine, updatedAt: now(), items }, 'evidence-files'); toast(t('evLateLinked'), 'ok') } catch (e) { toast(errMsg(e, t), 'bad') }
+  }
   const saveLate = async () => {
     if (busy || !canLate || !latePending) return; setBusy(true)
     const cur = eff!.answer!; const nextItems = { ...cur.items }
@@ -192,7 +200,7 @@ export default function CodeView({ id }: { id: string }) {
                   <div className="field"><label className="label" htmlFor={`req-${r.n}-n`}>{t('note')}<Opt /></label><input id={`req-${r.n}-n`} className="input" value={it.note || ''} onChange={e => upd(r.n, { note: e.target.value })} /></div>
                 </div>
               </> : evEdit === String(r.n) ? <AdminEvidenceEdit code={code} it={it} idp={`req-${r.n}-ae`} busy={busy} onCancel={() => setEvEdit(null)} onSave={(ev, parts) => saveEvEdit(String(r.n), ev, parts)} addedBy={user!.id} />
-              : <ReadOnly onAdminEdit={canAdminEv ? () => setEvEdit(String(r.n)) : undefined} editedBy={eff?.edited?.items[String(r.n)] ? `${userName(eff.edited.items[String(r.n)].by)} · ${fmtDay(eff.edited.items[String(r.n)].at, lang)}` : undefined} codeId={code.id} it={it} ca={ca} late={canLate && (it.status === 'yes' || it.status === 'partial') && !evPartsAnswered(it) ? { value: { ...(it.evidenceParts || {}), ...(late[String(r.n)] || {}) }, onChange: p => setLate(s => ({ ...s, [String(r.n)]: p })), idp: `req-${r.n}-lp` } : undefined} projName={it.projectId ? pick(lang, cfg.projects.find(p => p.id === it.projectId) || { name_ar: it.projectId }) : ''} deptLabel={(() => { const rd = resolveDept(cfg, it.departmentId); return rd && rd !== codeDept ? deptName(cfg, rd, lang) : '' })()} />}
+              : <ReadOnly lateDrop={canLate ? <EvidenceDrop compact code={code} onLinked={(title, path) => { void addLateEvidence(String(r.n), title, path) }} /> : undefined} onAdminEdit={canAdminEv ? () => setEvEdit(String(r.n)) : undefined} editedBy={eff?.edited?.items[String(r.n)] ? `${userName(eff.edited.items[String(r.n)].by)} · ${fmtDay(eff.edited.items[String(r.n)].at, lang)}` : undefined} codeId={code.id} it={it} ca={ca} late={canLate && (it.status === 'yes' || it.status === 'partial') && !evPartsAnswered(it) ? { value: { ...(it.evidenceParts || {}), ...(late[String(r.n)] || {}) }, onChange: p => setLate(s => ({ ...s, [String(r.n)]: p })), idp: `req-${r.n}-lp` } : undefined} projName={it.projectId ? pick(lang, cfg.projects.find(p => p.id === it.projectId) || { name_ar: it.projectId }) : ''} deptLabel={(() => { const rd = resolveDept(cfg, it.departmentId); return rd && rd !== codeDept ? deptName(cfg, rd, lang) : '' })()} />}
             </section>
           })}
           {!paired && code.criteria.length > 0 && <section className="card pad"><div className="label">{t('criteria')}</div><ol className="m-0 ps-5">{code.criteria.map(c => <li key={c.n}>{pickText(lang, c)}</li>)}</ol></section>}
@@ -267,13 +275,14 @@ function EvidenceAdd({ onAdd, required }: { onAdd: (title: string, url: string, 
     <select className="select !w-auto" aria-label={t('evidenceStrength')} value={strength} onChange={e => setStrength(e.target.value as EvidenceStrength | '')}><option value="">{t('evidenceStrength')}: {t('strengthUnset')}</option><option value="conclusive">{t('strengthConclusive')}</option><option value="editable">{t('strengthEditable')}</option></select>
     <button className="btn btn-sm" disabled={!url.trim()} onClick={add}><Icon name="plus" />{t('addLink')}</button></div>
 }
-function ReadOnly({ it, ca, projName, deptLabel, codeId, late, onAdminEdit, editedBy }: { it: ItemAnswer; ca?: { answer: string }; projName: string; deptLabel?: string; codeId: string; onAdminEdit?: () => void; editedBy?: string; late?: { value: NonNullable<ItemAnswer['evidenceParts']>; onChange: (p: NonNullable<ItemAnswer['evidenceParts']>) => void; idp: string } }) {
+function ReadOnly({ it, ca, projName, deptLabel, codeId, late, onAdminEdit, editedBy, lateDrop }: { it: ItemAnswer; ca?: { answer: string }; projName: string; deptLabel?: string; codeId: string; onAdminEdit?: () => void; editedBy?: string; lateDrop?: ReactNode; late?: { value: NonNullable<ItemAnswer['evidenceParts']>; onChange: (p: NonNullable<ItemAnswer['evidenceParts']>) => void; idp: string } }) {
   const { t } = useApp()
   return <div className="text-sm flex flex-col gap-1">
     {deptLabel && <div className="text-muted"><span className="font-medium text-fg-2">{t('reqDepartment')}:</span> {deptLabel}</div>}
     {it.status === 'na' && it.justification && <div><span className="font-medium text-fg-2">{t('justification')}:</span> {it.justification}</div>}
     {it.evidence.length > 0 && <div className="flex flex-wrap gap-2 items-center">{it.evidence.map(e => <span key={e.id} className="inline-flex items-center gap-1"><a className={`pill ${e.strength === 'conclusive' ? 'pill-ok' : e.strength === 'editable' ? 'pill-warn' : 'pill-muted'} no-underline`} href={e.url} target="_blank" rel="noreferrer" title={e.strength ? t(e.strength === 'conclusive' ? 'strengthConclusive' : 'strengthEditable') : undefined}><Icon name="link" style={{ width: 12, height: 12 }} />{e.title || e.url}</a><EvidenceRate codeId={codeId} ev={e} /></span>)}</div>}
     {(onAdminEdit || editedBy) && <div className="flex flex-wrap items-center gap-2 text-xs">{onAdminEdit && <button type="button" className="btn btn-xs" onClick={onAdminEdit}><Icon name="edit" />{t('editEvidence')}</button>}{editedBy && <span className="text-info-ink">{t('evidenceEditedBy')}: {editedBy}</span>}</div>}
+    {lateDrop && <div className="mt-1"><div className="text-xs text-muted mb-1">{t('evLateDropHint')}</div>{lateDrop}</div>}
     {late ? <EvidencePartsEdit required idp={late.idp} it={{ ...it, evidenceParts: late.value }} onChange={late.onChange} fixed={(['doc', 'exec', 'monitor'] as const).filter(k => typeof it.evidenceParts?.[k] === 'boolean')} /> : <EvidencePartsView it={it} />}
     {(projName || it.service || it.note) && <div className="text-muted">{projName && <span className="me-3">{t('project')}: {projName}</span>}{it.service && <span className="me-3">{t('service')}: {it.service}</span>}{it.note && <span>{t('note')}: {it.note}</span>}</div>}
     {it.clarify?.flag && <div className="text-flag-ink">? {t('needsClarification')}: {it.clarify.question}{ca && <span className="text-muted"> · {t('replied')}: {ca.answer}</span>}</div>}

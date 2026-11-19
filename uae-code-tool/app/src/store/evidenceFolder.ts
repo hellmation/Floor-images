@@ -31,28 +31,49 @@ export async function linkEvidenceRoot(forcePick = false): Promise<Dir | null> {
   root = picked; await remember(picked); return picked
 }
 
-const dirs = async (d: Dir) => { const out: [string, Dir][] = []; for await (const [name, h] of d as unknown as AsyncIterable<[string, FileSystemHandle]>) if (h.kind === 'directory') out.push([name, h as Dir]); return out.sort((a, b) => a[0].localeCompare(b[0])) }
+type Listing = [string, Dir][]
+/** Folder listings remembered for one batch, so creating folders for many codes does not re-read the share each time. */
+export type DirCache = Map<Dir, Listing>
+const dirs = async (d: Dir, cache?: DirCache): Promise<Listing> => {
+  const hit = cache?.get(d); if (hit) return hit
+  const out: Listing = []; for await (const [name, h] of d as unknown as AsyncIterable<[string, FileSystemHandle]>) if (h.kind === 'directory') out.push([name, h as Dir])
+  out.sort((a, b) => a[0].localeCompare(b[0])); cache?.set(d, out); return out
+}
 const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 /** Windows-safe folder name: no reserved characters, no trailing dot or space. */
 export const safeName = (s: string) => s.replace(/[\\/:*?"<>|\u0000-\u001f]/g, ' ').replace(/\s+/g, ' ').trim().replace(/[. ]+$/, '').slice(0, 80)
-const startsWithId = (name: string, id: string) => new RegExp('^\\s*' + esc(id) + '(?![\\d.])').test(name)
+/* Folder names are matched leniently, because the folders are made by hand: Arabic-Indic digits count as digits, a
+ * leading word (المحور / Pillar / كود / Code) is optional, and the number may be followed by ".", "-", a space or nothing —
+ * but not by more digits, so "1" never matches "10" or "1.2". */
+const latin = (s: string) => s.replace(/[٠-٩]/g, c => String(c.charCodeAt(0) - 0x660)).replace(/[۰-۹]/g, c => String(c.charCodeAt(0) - 0x6F0))
+const NUM_END = '(?!\\d|\\.\\d)'
+const ORDINAL: Record<string, string> = { '1': 'الأول|الاول|الأولى', '2': 'الثاني|الثانية', '3': 'الثالث|الثالثة', '4': 'الرابع|الرابعة', '5': 'الخامس|الخامسة', '6': 'السادس|السادسة', '7': 'السابع|السابعة', '8': 'الثامن|الثامنة', '9': 'التاسع|التاسعة' }
+export const isPillarFolder = (name: string, id: string) => { const n = latin(name)
+  return new RegExp('^\\s*(?:المحور|محور|Pillar|P)?\\s*[-_#]?\\s*0*' + esc(id) + NUM_END, 'i').test(n) || (!!ORDINAL[id] && new RegExp('^\\s*(?:المحور|محور)\\s+(?:' + ORDINAL[id] + ')(?![\\u0600-\\u06FF])').test(n)) }
+export const startsWithId = (name: string, id: string) => new RegExp('^\\s*(?:الكود|كود|المحور الفرعي|Code|Sub-?pillar)?\\s*[-_#]?\\s*' + esc(id) + NUM_END, 'i').test(latin(name))
 
 export interface SaveResult { segments: string[]; saved: string[]; createdCode: boolean; createdPillar: boolean }
-/** Saves files into the code's folder under the evidence root. The code folder is searched inside the pillar folder
- *  (directly, or one level down inside a sub-pillar folder) by its number; it is created when missing. */
-export async function saveEvidenceFiles(rootDir: Dir, pillar: { id: string; name: string }, subId: string, codeId: string, files: File[]): Promise<SaveResult> {
-  const top = await dirs(rootDir)
-  const pillarRe = new RegExp('^\\s*(?:المحور|محور|Pillar)?\\s*0*' + esc(pillar.id) + '(?![\\d.])', 'i')
-  let pEntry = top.find(([n]) => pillarRe.test(n)); let createdPillar = false
-  if (!pEntry) { const name = safeName(`المحور ${pillar.id} - ${pillar.name}`); pEntry = [name, await rootDir.getDirectoryHandle(name, { create: true })]; createdPillar = true }
-  const [pName, pDir] = pEntry; const level1 = await dirs(pDir)
-  let segments: string[] | null = null; let codeDir: Dir | null = null
-  const direct = level1.find(([n]) => startsWithId(n, codeId))
-  if (direct) { segments = [pName, direct[0]]; codeDir = direct[1] }
-  let subEntry: [string, Dir] | undefined
-  if (!codeDir) for (const [sn, sd] of level1) { if (startsWithId(sn, subId)) subEntry = [sn, sd]; const hit = (await dirs(sd)).find(([n]) => startsWithId(n, codeId)); if (hit) { segments = [pName, sn, hit[0]]; codeDir = hit[1]; break } }
-  let createdCode = false
-  if (!codeDir) { const parent = subEntry ? subEntry[1] : pDir; codeDir = await parent.getDirectoryHandle(codeId, { create: true }); segments = subEntry ? [pName, subEntry[0], codeId] : [pName, codeId]; createdCode = true }
+/** Saves files into the code's folder under the evidence root, creating the folder when it does not exist. With no
+ *  files it only makes sure the folder is there. The code folder is looked for by its number inside the pillar folder,
+ *  directly or one level down inside a sub-pillar folder; a code folder sitting directly in the root is used too. */
+export async function saveEvidenceFiles(rootDir: Dir, pillar: { id: string; name: string }, subId: string, codeId: string, files: File[], cache?: DirCache): Promise<SaveResult> {
+  const top = await dirs(rootDir, cache)
+  let segments: string[] | null = null; let codeDir: Dir | null = null; let createdPillar = false, createdCode = false
+  const atRoot = top.find(([n]) => startsWithId(n, codeId))
+  if (atRoot) { segments = [atRoot[0]]; codeDir = atRoot[1] }
+  if (!codeDir) {
+    let pEntry = top.find(([n]) => isPillarFolder(n, pillar.id))
+    if (!pEntry) { const name = safeName(`المحور ${pillar.id} - ${pillar.name}`); pEntry = [name, await rootDir.getDirectoryHandle(name, { create: true })]; createdPillar = true; top.push(pEntry) }
+    const [pName, pDir] = pEntry; const level1 = await dirs(pDir, cache)
+    const direct = level1.find(([n]) => startsWithId(n, codeId))
+    if (direct) { segments = [pName, direct[0]]; codeDir = direct[1] }
+    let subEntry: [string, Dir] | undefined
+    if (!codeDir) for (const [sn, sd] of level1) { if (!startsWithId(sn, subId)) continue; subEntry = [sn, sd]; const hit = (await dirs(sd, cache)).find(([n]) => startsWithId(n, codeId)); if (hit) { segments = [pName, sn, hit[0]]; codeDir = hit[1] } break }
+    // the code may have been filed under a differently numbered folder by hand: look one level down everywhere before creating
+    if (!codeDir) for (const [sn, sd] of level1) { if (subEntry && sd === subEntry[1]) continue; const hit = (await dirs(sd, cache)).find(([n]) => startsWithId(n, codeId)); if (hit) { segments = [pName, sn, hit[0]]; codeDir = hit[1]; break } }
+    if (!codeDir) { const parent = subEntry ? subEntry[1] : pDir; codeDir = await parent.getDirectoryHandle(codeId, { create: true }); segments = subEntry ? [pName, subEntry[0], codeId] : [pName, codeId]; createdCode = true
+      const list = cache?.get(parent); if (list) list.push([codeId, codeDir]) }
+  }
   const saved: string[] = []
   for (const f of files) {
     let name = safeFile(f.name); const dot = name.lastIndexOf('.'); const stem = dot > 0 ? name.slice(0, dot) : name, ext = dot > 0 ? name.slice(dot) : ''

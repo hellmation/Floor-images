@@ -105,7 +105,11 @@ export function effective(snap: Snapshot, cycleId: string, codeId: string): Effe
   const ed = snap.reviews.evidenceEdits?.[cycleId]?.[codeId]
   if (best?.answer && ed && best.answer.state === 'submitted' && ed.userId === best.userId && ed.submittedAt === (best.answer.submittedAt || best.answer.updatedAt)) {
     const items = { ...best.answer.items }
-    for (const [n, p] of Object.entries(ed.items)) if (items[n]) items[n] = { ...items[n], evidence: p.evidence, ...(p.evidenceParts ? { evidenceParts: p.evidenceParts } : {}) }
+    for (const [n, p] of Object.entries(ed.items)) if (items[n]) {
+      // links the owner added after the adjustment (evidence filed late into the code's folder) stay visible
+      const later = items[n].evidence.filter(e => e.addedAt > p.at && !p.evidence.some(x => x.url === e.url))
+      items[n] = { ...items[n], evidence: [...p.evidence, ...later], ...(p.evidenceParts ? { evidenceParts: p.evidenceParts } : {}) }
+    }
     best = { ...best, answer: { ...best.answer, items }, edited: ed }
   }
   return best || { answer: null, userId: null, review, state: 'none' }
