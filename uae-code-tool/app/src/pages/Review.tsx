@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
-import { master, effective, codeScore, sortIds, now, evPartsPending } from '../store/scoring'
+import { master, effective, codeScore, sortIds, now, evPartsPending, clarStatus, type ClarStatus } from '../store/scoring'
 import { pickDesc, pickText } from '../i18n'
 import { Avatar, Empty, PageHeader, StatusPill, useToast, fmtDate, fmtPct, tone, Modal, RefreshButton, Opt, Req } from '../components/ui'
 import { Icon } from '../components/icons'
@@ -13,8 +13,8 @@ export default function Review() {
   const toast = useToast()
   type Tab = 'queue' | 'clar' | 'approved'; type EvF = 'any' | 'none' | 'weak' | 'unrated' | 'editable' | 'notStrong' | 'missAny' | 'missDoc' | 'missExec' | 'missMonitor'
   const urlTab = new URLSearchParams(location.hash.split('?')[1] || '').get('tab') as Tab | null
-  const [vs, setVs] = useViewState('review', { tab: 'queue' as Tab, open: null as string | null, evFilter: 'any' as EvF, whoF: '' }, urlTab ? { tab: urlTab } : undefined)
-  const { tab, open, evFilter, whoF } = vs
+  const [vs, setVs] = useViewState('review', { tab: 'queue' as Tab, open: null as string | null, evFilter: 'any' as EvF, whoF: '', clarF: 'pending' as ClarStatus | 'all' }, urlTab ? { tab: urlTab } : undefined)
+  const { tab, open, evFilter, whoF, clarF } = vs
   const setTab = (v: Tab) => setVs({ tab: v }), setOpen = (v: string | null) => setVs({ open: v }), setEvFilter = (v: EvF) => setVs({ evFilter: v }), setWhoF = (v: string) => setVs({ whoF: v })
   const [comment, setComment] = useState('')
   const [reply, setReply] = useState<Record<string, string>>({})
@@ -25,7 +25,15 @@ export default function Review() {
   const rows = useMemo(() => master.codes.map(c => ({ c, e: effective(snap!, cy, c.id) })).sort((a, b) => sortIds(a.c.id, b.c.id)), [snap, cy])
   const cycle = cfg.cycles.find(c => c.id === cy); const canReview = cycle?.status === 'open' || cycle?.status === 'review'
   const queue = rows.filter(r => r.e.state === 'submitted'), approved = rows.filter(r => r.e.state === 'approved')
-  const clars = rows.flatMap(r => r.c.requirements.map(rq => String(rq.n)).filter(n => r.e.answer?.items[n]?.clarify?.flag).map(n => ({ ...r, n, it: r.e.answer!.items[n], ans: snap!.reviews.clarifications?.[cy]?.[r.c.id]?.[n] })))
+  /* Every clarification of the cycle with its status, numbered in the order it was raised (oldest = 1). */
+  const clarAll = rows.flatMap(r => r.c.requirements.map(rq => String(rq.n)).map(n => { const it = r.e.answer?.items[n]; const ans = snap!.reviews.clarifications?.[cy]?.[r.c.id]?.[n]; const st = clarStatus(it, ans); return st && it ? { ...r, n, it, ans, st } : null }))
+    .filter((x): x is NonNullable<typeof x> => !!x)
+    .sort((a, b) => (a.it.clarify?.raisedAt || a.ans?.answeredAt || '').localeCompare(b.it.clarify?.raisedAt || b.ans?.answeredAt || '') || sortIds(a.c.id, b.c.id) || Number(a.n) - Number(b.n))
+    .map((x, i) => ({ ...x, no: i + 1 }))
+  const clarCount = (s: ClarStatus) => clarAll.filter(x => x.st === s).length
+  const clars = clarAll.filter(x => clarF === 'all' || x.st === clarF)
+  const CLAR_PILL: Record<ClarStatus, string> = { pending: 'pill-warn', replied: 'pill-info', closed: 'pill-ok' }
+  const CLAR_LABEL: Record<ClarStatus, 'clarPending' | 'clarReplied' | 'clarClosed'> = { pending: 'clarPending', replied: 'clarReplied', closed: 'clarClosed' }
   const key = (codeId: string, n: string) => `${codeId}/${n}`
   /** Evidence picture of one approved code: answered requirements with / without evidence, and the reviewer verdicts on its links. */
   const evInfo = (codeId: string, a: NonNullable<typeof rows[number]['e']['answer']>) => { const ratings = snap!.reviews.evidenceRatings?.[cy]?.[codeId] || {}; let withEv = 0, without = 0, strong = 0, weak = 0, unrated = 0, editable = 0, missDoc = 0, missExec = 0, missMonitor = 0, complete = 0
@@ -55,7 +63,7 @@ export default function Review() {
   }
   return (
     <div>
-      <PageHeader eyebrow={t('administration')} title={t('review')} sub={`${queue.length} ${t('pending')} · ${clars.length} ${t('clarificationQueue')}`} actions={<><RefreshButton /><div className="seg"><button aria-pressed={tab === 'queue'} onClick={() => setTab('queue')}><Icon name="shield" />{t('pending')} <span className="num">{queue.length}</span></button><button aria-pressed={tab === 'clar'} onClick={() => setTab('clar')}><Icon name="question" />{t('clarificationQueue')} <span className="num">{clars.length}</span></button><button aria-pressed={tab === 'approved'} onClick={() => setTab('approved')}><Icon name="checkCircle" />{t('approved')} <span className="num">{approved.length}</span></button></div></>} />
+      <PageHeader eyebrow={t('administration')} title={t('review')} sub={`${queue.length} ${t('pending')} · ${clarCount('pending')} ${t('clarificationQueue')}`} actions={<><RefreshButton /><div className="seg"><button aria-pressed={tab === 'queue'} onClick={() => setTab('queue')}><Icon name="shield" />{t('pending')} <span className="num">{queue.length}</span></button><button aria-pressed={tab === 'clar'} onClick={() => setTab('clar')}><Icon name="question" />{t('clarificationQueue')} <span className="num">{clarCount('pending')}</span></button><button aria-pressed={tab === 'approved'} onClick={() => setTab('approved')}><Icon name="checkCircle" />{t('approved')} <span className="num">{approved.length}</span></button></div></>} />
       <div className="flex flex-col gap-3">
         {!canReview && <div className="text-sm text-warn-ink bg-warn-soft rounded-lg px-3 py-2">{t(cycle?.status === 'closed' ? 'cycleClosedNotice' : 'cyclePlanningNotice')}</div>}
         {tab === 'queue' && (queue.length === 0 ? <Empty icon="shield" title={t('allCaughtUp')} /> : queue.map(({ c, e }) => <div key={c.id} className="card pad flex flex-col gap-2">
@@ -71,12 +79,17 @@ export default function Review() {
             <div className="flex flex-wrap gap-2 items-center"><button className="btn btn-ok btn-sm" disabled={!canReview} onClick={() => decide(c.id, 'approved', true)}><Icon name="checkCircle" />{t('approve')} · {t('evidenceVerified')}</button><button className="btn btn-sm" disabled={!canReview} onClick={() => decide(c.id, 'approved', false)}><Icon name="check" />{t('approve')}</button><button className="btn btn-danger btn-sm" disabled={!comment.trim() || !canReview} onClick={() => decide(c.id, 'returned', false)}><Icon name={lang === 'ar' ? 'arrowR' : 'arrowL'} />{t('return')}</button></div>
           </div>}
         </div>))}
-        {tab === 'clar' && (clars.length === 0 ? <Empty icon="question" /> : clars.map(({ c, e, n, it, ans }) => <div key={key(c.id, n)} className="card pad flex flex-col gap-2 text-sm">
-          <div className="flex flex-wrap items-center gap-2"><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a><span className="code-id">{n}</span><span className="flex-1 min-w-0">{pickText(lang, c.requirements.find(r => String(r.n) === n) || { text_ar: n, text_en: n })}</span><span className="text-xs text-muted">{userName(e.userId)} · {fmtDate(it.clarify?.raisedAt, lang)}</span>{ans && <span className="pill pill-ok">{t('replied')}</span>}</div>
-          <div className="rounded-lg bg-flag-soft text-flag-ink p-3"><b>{t('needsClarification')}:</b> {it.clarify?.question || '—'}</div>
-          {ans && <div className="text-muted"><b>{t('clarificationAnswer')}</b> ({fmtDate(ans.answeredAt, lang)}): {ans.answer}</div>}
-          <div className="flex gap-2"><span className="req-in flex-1"><Req /><input className="input" placeholder={t('reply')} aria-label={t('reply')} aria-required value={reply[key(c.id, n)] || ''} onChange={e2 => setReply(s => ({ ...s, [key(c.id, n)]: e2.target.value }))} onKeyDown={e2 => { if (e2.key === 'Enter' && (reply[key(c.id, n)] || '').trim()) answer(c.id, n) }} /></span><button className="btn btn-sm" disabled={!(reply[key(c.id, n)] || '').trim()} onClick={() => answer(c.id, n)}><Icon name="send" />{t('reply')}</button></div>
-        </div>))}
+        {tab === 'clar' && <>
+          <div className="card p-3 flex flex-wrap items-center gap-3"><Icon name="filter" className="text-muted" /><span className="label !mb-0">{t('status')}</span>
+            <div className="seg">{(['pending', 'replied', 'closed', 'all'] as const).map(k => <button key={k} aria-pressed={clarF === k} onClick={() => setVs({ clarF: k })}>{t(k === 'all' ? 'all' : CLAR_LABEL[k])} <span className="num">{k === 'all' ? clarAll.length : clarCount(k)}</span></button>)}</div>
+            <span className="text-xs text-muted ms-auto">{t('clarNumberHint')}</span></div>
+          {clars.length === 0 ? <Empty icon="question" title={clarAll.length ? t('clarNoneInFilter') : undefined} /> : clars.map(({ c, e, n, it, ans, st, no }) => <div key={key(c.id, n)} className="card pad flex flex-col gap-2 text-sm">
+            <div className="flex flex-wrap items-center gap-2"><span className="num font-bold text-accent-ink" title={t('clarNumberHint')}>#{no}</span><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a><span className="code-id">{n}</span><span className="flex-1 min-w-0">{pickText(lang, c.requirements.find(r => String(r.n) === n) || { text_ar: n, text_en: n })}</span><span className="text-xs text-muted">{userName(e.userId)}{it.clarify?.raisedAt ? ` · ${fmtDate(it.clarify.raisedAt, lang)}` : ''}</span><span className={`pill ${CLAR_PILL[st]}`}>{t(CLAR_LABEL[st])}</span></div>
+            <div className="rounded-lg bg-flag-soft text-flag-ink p-3"><b>{t('needsClarification')}:</b> {it.clarify?.question || '—'}</div>
+            {ans?.answer && <div className="text-muted"><b>{t('clarificationAnswer')}</b> ({userName(ans.answeredBy)} · {fmtDate(ans.answeredAt, lang)}): {ans.answer}</div>}
+            {st !== 'closed' && <div className="flex gap-2"><span className="req-in flex-1"><Req /><input className="input" placeholder={st === 'replied' ? t('clarEditReply') : t('reply')} aria-label={t('reply')} aria-required value={reply[key(c.id, n)] || ''} onChange={e2 => setReply(s => ({ ...s, [key(c.id, n)]: e2.target.value }))} onKeyDown={e2 => { if (e2.key === 'Enter' && (reply[key(c.id, n)] || '').trim()) answer(c.id, n) }} /></span><button className="btn btn-sm" disabled={!(reply[key(c.id, n)] || '').trim()} onClick={() => answer(c.id, n)}><Icon name="send" />{t('reply')}</button></div>}
+          </div>)}
+        </>}
         {tab === 'approved' && (approved.length === 0 ? <Empty icon="checkCircle" /> : <>
           <div className="card p-3 flex flex-wrap items-end gap-3">
             <div className="field min-w-0"><label className="label" htmlFor="rv-ev">{t('evidenceFilter')}</label><select id="rv-ev" className="select !py-1.5 text-sm" value={evFilter} onChange={e => { setEvFilter(e.target.value as typeof evFilter); setSel(new Set()) }}><option value="any">{t('evAny')}</option><option value="none">{t('evNone')}</option><option value="missAny">{t('evMissingAny')}</option><option value="missDoc">{t('evMissDoc')}</option><option value="missExec">{t('evMissExec')}</option><option value="missMonitor">{t('evMissMonitor')}</option><option value="weak">{t('evWeak')}</option><option value="unrated">{t('evUnrated')}</option><option value="notStrong">{t('evNotStrong')}</option><option value="editable">{t('evEditable')}</option></select></div>

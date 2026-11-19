@@ -1,7 +1,7 @@
 import { useMemo, type ReactNode } from 'react'
 import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
-import { master, rollup, effective, codeScore, effectiveImpact, sortIds, isComplete, departmentOf, resolveDept, fulfilRows, assigneeOf, evPartsPending, type FulfilRow } from '../store/scoring'
+import { master, rollup, effective, codeScore, effectiveImpact, sortIds, isComplete, departmentOf, resolveDept, clarStatus, fulfilRows, assigneeOf, evPartsPending, type FulfilRow } from '../store/scoring'
 import { pick, pickDesc } from '../i18n'
 import { ImpactPill, PageHeader, Ring, fmtPct, tone, ringTone, PrintHeader, Avatar, fmtDay, Pill, CountUp, RefreshButton } from '../components/ui'
 import { Bars, Columns, Donut, Heatmap, Stacked, Trend, TipRow } from '../components/charts'
@@ -78,7 +78,7 @@ export default function Dashboard() {
   const ageDays = (iso?: string | null) => iso ? Math.max(0, Math.floor((now - new Date(iso).getTime()) / DAY)) : 0
   const awaiting = effs.filter(x => x.e.state === 'submitted').map(x => ({ ...x, age: ageDays(x.e.answer?.submittedAt || x.e.answer?.updatedAt) }))
   const returnedP = effs.filter(x => x.e.state === 'returned').map(x => ({ ...x, age: ageDays(x.e.review?.reviewedAt) }))
-  const openClar = effs.reduce((n, x) => n + Object.entries(x.e.answer?.items || {}).filter(([k, it]) => it.clarify?.flag && !snap!.reviews.clarifications?.[cy]?.[x.c.id]?.[k]?.answer).length, 0)
+  const openClar = effs.reduce((n, x) => n + Object.entries(x.e.answer?.items || {}).filter(([k, it]) => clarStatus(it, snap!.reviews.clarifications?.[cy]?.[x.c.id]?.[k]) === 'pending').length, 0)
   const oldest = (xs: { age: number }[]) => xs.length ? Math.max(...xs.map(x => x.age)) : 0
   const team = useMemo(() => cfg.users.filter(u => u.active).map(u => { const mine = effs.filter(x => x.who === u.id); const n = (st: WorkState) => mine.filter(x => x.e.state === st).length
     const last = mine.reduce((m, x) => x.e.answer && x.e.answer.updatedAt > m ? x.e.answer.updatedAt : m, ''); return { u, assigned: mine.length, none: n('none'), draft: n('draft'), returned: n('returned'), submitted: n('submitted'), approved: n('approved'), score: rollup(snap!, cy, mine.map(x => x.c), approvedOnly).score, evq: mine.filter(x => x.e.state !== 'none' && evPartsPending(x.e.answer) > 0).length, last } })

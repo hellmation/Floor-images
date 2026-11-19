@@ -80,6 +80,8 @@ const dict = {
   bulkDeptConfirm: ['ستصبح الإدارة المسؤولة عن الأكواد التالية:', 'The responsible department of these codes becomes:'], bulkAssignConfirm: ['سيتم إسناد الأكواد التالية إلى:', 'These codes will be assigned to:'],
   bulkDeptNote: ['قرار مدير المشروع يُثبَّت على هذه الأكواد: لا يستطيع المقيّم تغيير الإدارة المسؤولة عنها بعد ذلك، ويبقى التغيير متاحًا للمدير.', 'The project manager\'s decision is fixed on these codes: the evaluator can no longer change their responsible department; the administrator still can.'],
   deptLockedHint: ['حدّدها مدير المشروع', 'Set by the project manager'], mergedInto: ['مدمجة في', 'Merged into'],
+  clarPending: ['بانتظار الرد', 'Awaiting reply'], clarReplied: ['تم الرد', 'Replied'], clarClosed: ['مغلق', 'Closed'], clarEditReply: ['تعديل الرد', 'Edit the reply'],
+  clarNumberHint: ['الرقم # حسب تاريخ رفع الطلب (الأقدم = 1)', 'The # follows the date the request was raised (oldest = 1)'], clarNoneInFilter: ['لا توجد طلبات بهذه الحالة', 'No requests with this status'],
   dropNeedsLink: ['لم تُحفظ الملفات بعد: اربط مجلد الأدلة أولًا من الشريط الأصفر.', 'The files are not saved yet: link the evidence folder first from the yellow bar.'], dropNotLinked: ['مجلد الأدلة غير مربوط على هذا المتصفح', 'The evidence folder is not linked in this browser'],
   dropFolderOnly: ['إنشاء مجلد الكود فقط (بدون ملفات)', 'Create the code folder only (no files)'], dropFolderExists: ['مجلد الكود موجود', 'The code folder already exists'],
   evLateDropHint: ['يمكنك إضافة ملفات الدليل إلى مجلد الكود دون إعادة فتحه:', 'You can add evidence files to the code folder without reopening the code:'], evLateLinked: ['أُضيف رابط مجلد الكود إلى الأدلة', 'The code folder link was added to the evidence'],

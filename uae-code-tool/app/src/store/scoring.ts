@@ -1,4 +1,4 @@
-import type { Code, Config, Snapshot, CodeAnswer, Review, WorkState, Impact, AnswerStatus, EvidenceEdit } from '../types'
+import type { Code, Config, Snapshot, CodeAnswer, Review, WorkState, Impact, AnswerStatus, EvidenceEdit, ItemAnswer } from '../types'
 import masterJson from '../data/master.json'
 import type { Master } from '../types'
 
@@ -115,6 +115,14 @@ export function effective(snap: Snapshot, cycleId: string, codeId: string): Effe
   return best || { answer: null, userId: null, review, state: 'none' }
 }
 
+export type ClarStatus = 'pending' | 'replied' | 'closed'
+/** Where a clarification request stands: waiting for the reviewer's reply; replied and waiting for the evaluator to close
+ *  it; or closed (the evaluator cleared the flag after the reply). A question raised again after a reply is pending again. */
+export function clarStatus(it: ItemAnswer | undefined, ans: { answer?: string; answeredAt?: string } | undefined): ClarStatus | null {
+  const has = !!ans?.answer
+  if (it?.clarify?.flag) return has && !(it.clarify.raisedAt && ans!.answeredAt && it.clarify.raisedAt > ans!.answeredAt) ? 'replied' : 'pending'
+  return has && it?.clarify?.question ? 'closed' : null
+}
 export function itemScore(status: AnswerStatus | null, cfg: Config): number | null {
   if (!status || status === 'na') return null
   return cfg.settings.scores[status]
