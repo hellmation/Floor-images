@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode, useRef, useMemo } from 'react'
+import { sector } from './arc'
 import type { WorkState, AnswerStatus, Impact } from '../types'
 import { useApp } from '../store/state'
 import { Icon, type IconName } from './icons'
@@ -50,14 +51,17 @@ export function Bar({ value, max, tone, thin, label }: { value: number; max: num
   const pct = max ? Math.round((value / max) * 100) : 0
   return <div className={`bar ${thin ? 'thin' : ''}`} role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={label || `${value}/${max}`}><i className={tone || ''} style={{ width: pct + '%' }} /></div>
 }
-export function Ring({ value, size = 88, stroke = 9, tone = 'accent', label, sub }: { value: number | null; size?: number; stroke?: number; tone?: 'accent' | 'ok' | 'warn' | 'bad' | 'info'; label?: ReactNode; sub?: ReactNode }) {
-  const k = useProgress(900, value); const r = (size - stroke) / 2, c = 2 * Math.PI * r, v = Math.max(0, Math.min(100, value ?? 0)) * k
+/** Progress ring. Drawn with the same segment geometry as the donut charts (rounded segment ends, a thin gap between
+ *  the filled part and the remainder, the same ring thickness), so it reads as one family with them. */
+export function Ring({ value, size = 88, tone = 'accent', label, sub }: { value: number | null; size?: number; stroke?: number; tone?: 'accent' | 'ok' | 'warn' | 'bad' | 'info'; label?: ReactNode; sub?: ReactNode }) {
+  const k = useProgress(900, value); const v = Math.max(0, Math.min(100, value ?? 0)) * k
+  const R = size / 2, rOut = R - 1.5, rIn = rOut * (0.62 / 0.84), TAU = Math.PI * 2, a = (v / 100) * TAU, rad = Math.max(3, size * 0.06), gap = Math.max(2, size * 0.03)
   return <div className="relative inline-grid place-items-center" style={{ width: size, height: size }}>
-    <svg className="ring-svg" width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ transform: 'rotate(-90deg)' }}>
-      <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="var(--surface-3)" strokeWidth={stroke} />
-      <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={`var(--${tone})`} strokeWidth={stroke} strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - v / 100)} style={{ transition: 'stroke-dashoffset .8s var(--ease)' }} />
+    <svg className="ring-svg" width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ direction: 'ltr', overflow: 'visible' }} aria-hidden="true">
+      {a < TAU - 0.02 && <path d={a > 0.02 ? sector(R, R, rIn, rOut, a, TAU, rad) : sector(R, R, rIn, rOut, 0, TAU - 0.0001, 0)} fill="var(--surface-3)" stroke="var(--glass-bg)" strokeWidth={a > 0.02 ? gap : 0} strokeLinejoin="round" />}
+      {a > 0.02 && <path d={a < TAU - 0.02 ? sector(R, R, rIn, rOut, 0, a, rad) : sector(R, R, rIn, rOut, 0, TAU - 0.0001, 0)} fill={`var(--${tone})`} stroke="var(--glass-bg)" strokeWidth={a < TAU - 0.02 ? gap : 0} strokeLinejoin="round" />}
     </svg>
-    <div className="absolute inset-0 grid place-items-center text-center leading-none"><div className="font-bold num" style={{ fontSize: size * 0.24 }}>{label ?? (value === null || value === undefined ? fmtPct(value) : fmtPct(value * k))}</div>{sub && <div className="text-muted mt-1" style={{ fontSize: size * 0.11 }}>{sub}</div>}</div>
+    <div className="absolute inset-0 grid place-items-center text-center leading-none"><div><div className="font-bold num" style={{ fontSize: size * 0.22 }}>{label ?? (value === null || value === undefined ? fmtPct(value) : fmtPct(value * k))}</div>{sub && <div className="text-muted mt-1" style={{ fontSize: size * 0.105 }}>{sub}</div>}</div></div>
   </div>
 }
 export function Stat({ label, value, sub, icon, tone }: { label: string; value: ReactNode; sub?: ReactNode; icon?: IconName; tone?: 'ok' | 'warn' | 'bad' | 'accent' | 'info' }) {

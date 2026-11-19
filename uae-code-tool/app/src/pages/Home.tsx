@@ -19,7 +19,8 @@ export default function Home() {
       for (const r of c.requirements) { const it = e.answer?.items[String(r.n)]; if (it?.clarify?.flag && snap!.reviews.clarifications?.[cy]?.[c.id]?.[String(r.n)]) replies++ } }
     return { returned, drafts, unanswered, replies, evq } }, [mineCodes, snap, cy])
   const daysLeft = cycle ? Math.ceil((new Date(cycle.due).getTime() - Date.now()) / 86400000) : null
-  const total = cycle ? Math.max(1, (new Date(cycle.end).getTime() - new Date(cycle.start).getTime()) / 86400000) : 1
+  // the ring runs from the start of the cycle to its due date, so it tells the same story as the days-left number inside it
+  const total = cycle ? Math.max(1, (Math.max(new Date(cycle.end).getTime(), new Date(cycle.due).getTime()) - new Date(cycle.start).getTime()) / 86400000) : 1
   const elapsed = cycle ? Math.min(100, Math.max(0, ((Date.now() - new Date(cycle.start).getTime()) / 86400000) / total * 100)) : 0
   const cname = cycle ? (lang === 'ar' ? cycle.name : (cycle.name_en || cycle.name)) : ''
   const uname = (id: string) => { const u = cfg.users.find(x => x.id === id); return u ? (lang === 'ar' ? u.name_ar : u.name_en) : t('unassigned') }
