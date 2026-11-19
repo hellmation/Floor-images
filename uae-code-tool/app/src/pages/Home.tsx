@@ -5,11 +5,14 @@ import { pick } from '../i18n'
 import { Bar, Ring, Avatar, fmtPct, tone, ringTone, fmtDay } from '../components/ui'
 import { Icon } from '../components/icons'
 import { Field } from '../components/Field'
+import { Donut, STATE_COLOR } from '../components/charts'
+import type { WorkState } from '../types'
 
 export default function Home() {
   const { t, lang, snap, user, cycleId } = useApp(); const cfg = snap!.config; const cy = cycleId!
   const cycle = cfg.cycles.find(c => c.id === cy)
   const all = useMemo(() => rollup(snap!, cy, master.codes, true), [snap, cy])
+  const states = useMemo(() => { const s: Record<WorkState, number> = { approved: 0, submitted: 0, returned: 0, draft: 0, none: 0 }; for (const c of master.codes) s[effective(snap!, cy, c.id).state]++; return s }, [snap, cy])
   const mineCodes = useMemo(() => master.codes.filter(c => assigneeOf(c.id, cy, cfg) === user!.id), [cy, cfg, user])
   const mine = useMemo(() => rollup(snap!, cy, mineCodes, false), [snap, cy, mineCodes])
   const byPillar = useMemo(() => master.pillars.map(p => ({ p, r: rollup(snap!, cy, master.codes.filter(c => c.pillar === p.id), true), subs: master.subpillars.filter(s => s.pillar === p.id).length })), [snap, cy])
@@ -66,9 +69,11 @@ export default function Home() {
             <div className="label">{t('currentCycle')}</div><div className="font-semibold text-lg leading-tight">{cname}</div>
             <div className="flex items-center gap-4 mt-3"><Ring value={elapsed} size={76} stroke={8} tone="info" label={<span className="num">{daysLeft !== null && daysLeft >= 0 ? daysLeft : 0}</span>} sub={t('days')} /><div className="text-sm"><div className="text-muted">{t('dueDate')}</div><div className="font-semibold"><bdi>{fmtDay(cycle?.due, lang)}</bdi></div><div className={`mt-1 ${daysLeft !== null && daysLeft < 0 ? 'text-bad' : 'text-muted'}`}>{daysLeft !== null && daysLeft >= 0 ? `${daysLeft} ${t('daysLeft')}` : t('overdue')}</div></div></div>
           </section>
-          <section className="card pad flex items-center justify-around">
-            <Ring value={all.total ? (all.approved / all.total) * 100 : 0} tone="accent" sub={t('readiness')} />
-            <Ring value={all.score} tone={ringTone(all.score)} sub={t('compliance')} />
+          <section className="card pad flex flex-wrap items-center justify-around gap-3">
+            <Donut legend={false} size={144} total={master.codes.length} center={[fmtPct(all.total ? (all.approved / all.total) * 100 : 0), t('readiness')]}
+              parts={(['approved', 'submitted', 'returned', 'draft', 'none'] as WorkState[]).map(k => ({ key: k, label: k === 'none' ? t('notStarted') : t(k), value: states[k], color: STATE_COLOR[k] }))} />
+            <Donut legend={false} size={144} center={[fmtPct(all.score), t('compliance')]}
+              parts={all.score === null ? [] : [{ key: 'score', label: t('compliance'), value: Math.round(all.score * 10) / 10, color: `var(--${ringTone(all.score)})` }, { key: 'gap', label: t('gaps'), value: Math.round((100 - all.score) * 10) / 10, color: 'var(--surface-3)' }]} />
           </section>
           <section className="card pad">
             <div className="flex items-center justify-between mb-2"><h2 className="card-title"><Icon name="trophy" className="text-accent-ink" />{t('standings')}</h2><a href="#/standings" className="text-sm">{t('viewAll')}</a></div>

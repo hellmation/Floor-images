@@ -4,12 +4,11 @@ import { useApp } from '../store/state'
 import { master, rollup, effective, codeScore, effectiveImpact, sortIds, isComplete, departmentOf, resolveDept, clarStatus, fulfilRows, assigneeOf, evPartsPending, type FulfilRow } from '../store/scoring'
 import { pick, pickDesc } from '../i18n'
 import { ImpactPill, PageHeader, Ring, fmtPct, tone, ringTone, PrintHeader, Avatar, fmtDay, Pill, CountUp, RefreshButton } from '../components/ui'
-import { Bars, Columns, Donut, Heatmap, Stacked, Trend, TipRow } from '../components/charts'
+import { Bars, Columns, Donut, Heatmap, Stacked, Trend, TipRow, STATE_COLOR } from '../components/charts'
 import { Icon, type IconName } from '../components/icons'
 import type { WorkState, EvidenceStrength } from '../types'
 
 const heat = (v: number | null) => v === null ? 'var(--surface-2)' : v >= 80 ? 'var(--ok-soft)' : v >= 50 ? 'var(--warn-soft)' : 'var(--bad-soft)'
-const STATE_COLOR: Record<WorkState, string> = { approved: 'var(--ok)', submitted: 'var(--info)', returned: 'var(--warn)', draft: 'var(--accent)', none: 'var(--line-2)' }
 const EV_COLOR: Record<string, string> = { conclusive: 'var(--ok)', editable: 'var(--warn)', unspecified: 'var(--info)', none: 'var(--bad)' }
 const ANSWER_COLOR = { yes: 'var(--ok)', partial: 'var(--warn)', no: 'var(--bad)', unanswered: 'var(--line-2)', na: 'color-mix(in srgb, var(--muted) 45%, var(--surface))' }
 
