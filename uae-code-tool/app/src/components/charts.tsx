@@ -1,7 +1,7 @@
 import { useRef, useState, type ReactNode, type PointerEvent as RPE } from 'react'
 import type { WorkState } from '../types'
 import { sector } from './arc'
-import { useProgress } from './ui'
+import { useProgress, fmtPct } from './ui'
 
 /* ----------------------------------------------------------------------------------------------
  * Chart primitives for the dashboard. All marks are thin, grids are hairlines, one hue per
@@ -164,25 +164,35 @@ export function HBars({ rows }: { rows: { key: string; label: ReactNode; prefix?
  *  3px surface border, hover enlarges the slice, a headline figure in the centre, and a legend of name · count · share. */
 /** Colour of each work state, shared by every chart that shows the code pipeline. */
 export const STATE_COLOR: Record<WorkState, string> = { approved: 'var(--ok)', submitted: 'var(--info)', returned: 'var(--warn)', draft: 'var(--accent)', none: 'var(--line-2)' }
-export function Donut({ parts, total, center, size = 190, legend = true }: { parts: Part[]; total?: number; center: [string, string]; size?: number; legend?: boolean }) {
+/** `fit`: the ring fills its box (for small donuts placed inline, like the progress rings). `interactive: false` drops the tooltips. */
+export function Donut({ parts, total, center, size = 190, legend = true, fit = false, interactive = true }: { parts: Part[]; total?: number; center: [string, string]; size?: number; legend?: boolean; fit?: boolean; interactive?: boolean }) {
   const { box, show, hide, Tip } = useTip()
   const k = useProgress(800, parts.map(p => p.value).join(','))
   const sum = total ?? parts.reduce((a, p) => a + p.value, 0)
-  const R = size / 2, rOut = R * 0.84, rIn = R * 0.62, TAU = Math.PI * 2
+  const R = size / 2, rOut = fit ? R - 2 : R * 0.84, rIn = rOut * (0.62 / 0.84), TAU = Math.PI * 2
+  const rad = fit ? Math.max(3, size * 0.06) : 6, gap = fit ? Math.max(2, size * 0.03) : 3
   let acc = 0
   const segs = parts.filter(p => p.value > 0).map(p => { const a0 = acc; const span = sum ? (p.value / sum) * TAU : 0; acc += span; return { ...p, a0, a1: a0 + span } })
   const node = (p: Part & { a0: number; a1: number }) => <TipRow label={p.label} value={`${p.value.toLocaleString('en')} · ${sum ? Math.round(p.value / sum * 100) : 0}%`} color={p.color} />
   return <div ref={box} className={`relative donut-wrap ${legend ? '' : 'solo'}`}>
     <div className="relative shrink-0 mx-auto" style={{ width: size, height: size }}>
       <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ direction: 'ltr', overflow: 'visible' }} role="img" aria-label={parts.map(p => `${p.label}: ${p.value}`).join(' · ')}>
-        {sum === 0 && <path d={sector(R, R, rIn, rOut, 0, TAU, 0)} fill="var(--surface-3)" stroke="var(--glass-bg)" strokeWidth={3} />}
+        {sum === 0 && <path d={sector(R, R, rIn, rOut, 0, TAU, 0)} fill="var(--surface-3)" stroke="var(--glass-bg)" strokeWidth={gap} />}
         {segs.map(sg => { const end = Math.min(sg.a1, TAU * k); if (end <= sg.a0) return null
-          return <path key={sg.key} className="donut-seg" tabIndex={0} d={sector(R, R, rIn, rOut, sg.a0, end, 6)} fill={sg.color} stroke="var(--glass-bg)" strokeWidth={3} strokeLinejoin="round" aria-label={`${sg.label}: ${sg.value}`}
+          if (!interactive) return <path key={sg.key} className="donut-seg" d={sector(R, R, rIn, rOut, sg.a0, end, rad)} fill={sg.color} stroke="var(--glass-bg)" strokeWidth={gap} strokeLinejoin="round" />
+          return <path key={sg.key} className="donut-seg" tabIndex={0} d={sector(R, R, rIn, rOut, sg.a0, end, rad)} fill={sg.color} stroke="var(--glass-bg)" strokeWidth={gap} strokeLinejoin="round" aria-label={`${sg.label}: ${sg.value}`}
             onPointerMove={e => show(e, node(sg))} onPointerLeave={hide} onFocus={() => { const b = box.current!.getBoundingClientRect(); show({ clientX: b.left + size / 2, clientY: b.top + 10 }, node(sg)) }} onBlur={hide} /> })}
       </svg>
-      <div className="absolute inset-0 grid place-items-center text-center pointer-events-none"><div><div className="num font-bold" style={{ fontSize: Math.round(size * (center[0].length > 5 ? 0.116 : 0.137)), lineHeight: 1.1 }}>{center[0]}</div><div className="text-muted mt-0.5" style={{ fontSize: Math.max(10, Math.round(size * 0.063)) }}>{center[1]}</div></div></div>
+      <div className="absolute inset-0 grid place-items-center text-center pointer-events-none"><div><div className="num font-bold" style={{ fontSize: Math.round(size * (fit ? 0.22 : center[0].length > 5 ? 0.116 : 0.137)), lineHeight: 1.1 }}>{center[0]}</div>{center[1] && <div className="text-muted mt-0.5" style={{ fontSize: fit ? Math.max(8, Math.round(size * 0.105)) : Math.max(10, Math.round(size * 0.063)) }}>{center[1]}</div>}</div></div>
     </div>
     {legend && <div className="legend">{parts.map(p => <div key={p.key} className="lg"><span className="dot" style={{ background: p.color }} /><span className="truncate">{p.label}</span><span className="cnt num">{p.value.toLocaleString('en')}</span><span className="pct num">{sum ? Math.round(p.value / sum * 100) : 0}%</span></div>)}</div>}
     {Tip}
   </div>
+}
+
+/** A single percentage as a donut: the value against the remainder. Same component and look as every other donut. */
+export function Ring({ value, size = 88, tone = 'accent', label, sub }: { value: number | null; size?: number; stroke?: number; tone?: 'accent' | 'ok' | 'warn' | 'bad' | 'info'; label?: string; sub?: string }) {
+  const v = value === null || value === undefined ? null : Math.max(0, Math.min(100, value))
+  const parts: Part[] = v === null ? [] : [{ key: 'v', label: sub || '', value: Math.round(v * 10) / 10, color: `var(--${tone})` }, { key: 'rest', label: '', value: Math.round((100 - v) * 10) / 10, color: 'var(--surface-3)' }]
+  return <Donut fit interactive={false} legend={false} size={size} parts={parts} center={[label ?? fmtPct(v), sub || '']} />
 }

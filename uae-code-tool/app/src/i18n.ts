@@ -79,7 +79,7 @@ const dict = {
   bulkDept: ['تعيين الإدارة المسؤولة', 'Set responsible department'], bulkAssign: ['إسناد إلى', 'Assign to'], apply: ['تطبيق', 'Apply'], bulkDone: ['تم تطبيق التغيير على الأكواد المحددة', 'Change applied to the selected codes'],
   bulkDeptConfirm: ['ستصبح الإدارة المسؤولة عن الأكواد التالية:', 'The responsible department of these codes becomes:'], bulkAssignConfirm: ['سيتم إسناد الأكواد التالية إلى:', 'These codes will be assigned to:'],
   bulkDeptNote: ['قرار مدير المشروع يُثبَّت على هذه الأكواد: لا يستطيع المقيّم تغيير الإدارة المسؤولة عنها بعد ذلك، ويبقى التغيير متاحًا للمدير.', 'The project manager\'s decision is fixed on these codes: the evaluator can no longer change their responsible department; the administrator still can.'],
-  deptLockedHint: ['حدّدها مدير المشروع', 'Set by the project manager'], mergedInto: ['مدمجة في', 'Merged into'],
+  deptLockedHint: ['حدّدها مدير المشروع', 'Set by the project manager'], mergedInto: ['مدمجة في', 'Merged into'], resizeMenu: ['اسحب لتغيير عرض القائمة · نقر مزدوج لإعادة العرض الأصلي', 'Drag to resize the menu · double-click to reset'],
   clarPending: ['بانتظار الرد', 'Awaiting reply'], clarReplied: ['تم الرد', 'Replied'], clarClosed: ['مغلق', 'Closed'], clarEditReply: ['تعديل الرد', 'Edit the reply'],
   clarNumberHint: ['الرقم # حسب تاريخ رفع الطلب (الأقدم = 1)', 'The # follows the date the request was raised (oldest = 1)'], clarNoneInFilter: ['لا توجد طلبات بهذه الحالة', 'No requests with this status'],
   dropNeedsLink: ['لم تُحفظ الملفات بعد: اربط مجلد الأدلة أولًا من الشريط الأصفر.', 'The files are not saved yet: link the evidence folder first from the yellow bar.'], dropNotLinked: ['مجلد الأدلة غير مربوط على هذا المتصفح', 'The evidence folder is not linked in this browser'],

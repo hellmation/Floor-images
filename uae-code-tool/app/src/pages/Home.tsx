@@ -2,10 +2,10 @@ import { useMemo } from 'react'
 import { useApp } from '../store/state'
 import { master, rollup, assigneeOf, standings, effective, evPartsPending } from '../store/scoring'
 import { pick } from '../i18n'
-import { Bar, Ring, Avatar, fmtPct, tone, ringTone, fmtDay } from '../components/ui'
+import { Bar, Avatar, fmtPct, tone, ringTone, fmtDay } from '../components/ui'
 import { Icon } from '../components/icons'
 import { Field } from '../components/Field'
-import { Donut, STATE_COLOR } from '../components/charts'
+import { Donut, STATE_COLOR, Ring } from '../components/charts'
 import type { WorkState } from '../types'
 
 export default function Home() {
@@ -67,7 +67,7 @@ export default function Home() {
         <div className="flex flex-col gap-4">
           <section className="card pad">
             <div className="label">{t('currentCycle')}</div><div className="font-semibold text-lg leading-tight">{cname}</div>
-            <div className="flex items-center gap-4 mt-3"><Ring value={elapsed} size={76} stroke={8} tone="info" label={<span className="num">{daysLeft !== null && daysLeft >= 0 ? daysLeft : 0}</span>} sub={t('days')} /><div className="text-sm"><div className="text-muted">{t('dueDate')}</div><div className="font-semibold"><bdi>{fmtDay(cycle?.due, lang)}</bdi></div><div className={`mt-1 ${daysLeft !== null && daysLeft < 0 ? 'text-bad' : 'text-muted'}`}>{daysLeft !== null && daysLeft >= 0 ? `${daysLeft} ${t('daysLeft')}` : t('overdue')}</div></div></div>
+            <div className="flex items-center gap-4 mt-3"><Ring value={elapsed} size={76} tone="info" label={String(daysLeft !== null && daysLeft >= 0 ? daysLeft : 0)} sub={t('days')} /><div className="text-sm"><div className="text-muted">{t('dueDate')}</div><div className="font-semibold"><bdi>{fmtDay(cycle?.due, lang)}</bdi></div><div className={`mt-1 ${daysLeft !== null && daysLeft < 0 ? 'text-bad' : 'text-muted'}`}>{daysLeft !== null && daysLeft >= 0 ? `${daysLeft} ${t('daysLeft')}` : t('overdue')}</div></div></div>
           </section>
           <section className="card pad flex flex-wrap items-center justify-around gap-3">
             <Donut legend={false} size={144} total={master.codes.length} center={[fmtPct(all.total ? (all.approved / all.total) * 100 : 0), t('readiness')]}

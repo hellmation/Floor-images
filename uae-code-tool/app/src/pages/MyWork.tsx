@@ -3,7 +3,8 @@ import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
 import { master, assigneeOf, effective, effectiveImpact, isComplete, sortIds, departmentOf, deptName, evPartsPending } from '../store/scoring'
 import { pick, pickDesc } from '../i18n'
-import { Empty, PageHeader, Ring, StatePill, Pill, ImpactPill, fmtDay } from '../components/ui'
+import { Empty, PageHeader, StatePill, Pill, ImpactPill, fmtDay, fmtPct } from '../components/ui'
+import { Donut, STATE_COLOR } from '../components/charts'
 import { Icon } from '../components/icons'
 import { norm } from '../components/Shell'
 import type { WorkState } from '../types'
@@ -54,7 +55,7 @@ export default function MyWork() {
   return (
     <div>
       <PageHeader eyebrow={t('work')} title={t('myWork')} sub={cycle && `${lang === 'ar' ? cycle.name : (cycle.name_en || cycle.name)} · ${t('dueDate')}: ${fmtDay(cycle.due, lang)}${daysLeft !== null ? ` · ${daysLeft >= 0 ? `${daysLeft} ${t('daysLeft')}` : t('overdue')}` : ''}`}
-        actions={<div className="flex items-center gap-3"><div className="text-end text-sm"><div className="text-muted">{t('progress')}</div><div className="num font-semibold">{done + sub} / {rows.length}</div></div><Ring value={rows.length ? ((done + sub) / rows.length) * 100 : 0} size={64} stroke={7} /></div>} />
+        actions={<div className="flex items-center gap-3"><div className="text-end text-sm"><div className="text-muted">{t('progress')}</div><div className="num font-semibold">{done + sub} / {rows.length}</div></div><Donut fit legend={false} size={72} total={rows.length} center={[fmtPct(rows.length ? ((done + sub) / rows.length) * 100 : 0), '']} parts={(['approved', 'submitted', 'returned', 'draft', 'none'] as WorkState[]).map(k => ({ key: k, label: k === 'none' ? t('notStarted') : t(k), value: count(k), color: STATE_COLOR[k] }))} /></div>} />
       <div className="card p-3 mb-4 flex flex-col gap-3">
         <div className="seg flex-wrap" role="group" aria-label={t('status')}>{tabs.map(([k, l, n]) => <button key={k} aria-pressed={f === k} onClick={() => setF(k)}>{l}<span className={`num text-xs ${f === k ? '' : 'text-muted'}`}>{n}</span></button>)}</div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-2 items-end">

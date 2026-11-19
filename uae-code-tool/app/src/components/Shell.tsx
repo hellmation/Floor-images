@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type ReactNode, type PointerEvent as ReactPointerEvent } from 'react'
 import { useApp } from '../store/state'
 import { t as tr, hasKey } from '../i18n'
 import { Icon, type IconName } from './icons'
@@ -10,6 +10,7 @@ import lockupLight from '../assets/brand/fta-lockup-light.png'
 import lockupDark from '../assets/brand/fta-lockup-dark.png'
 import { exportWorkbook } from '../export/excel'
 
+const RAIL_KEY = 'uae-code-tool:rail-width', RAIL_DEFAULT = 248, RAIL_MIN = 200, RAIL_MAX = 440
 export function Shell({ page, children }: { page: string; children: ReactNode }) {
   const app = useApp(); const { t, lang, setLang, theme, setTheme, snap, user, isAdmin, canReview, cycleId, setCycleId, refresh, adapter, lastSync, error, needsReconnect, reconnect } = app
   const toast = useToast()
@@ -27,6 +28,16 @@ export function Shell({ page, children }: { page: string; children: ReactNode })
     ...(!isAdmin && canReview ? [{ label: t('administration'), items: [['review', t('review'), 'shield']] as [string, string, IconName][] }] : []),
     ...(isAdmin ? [{ label: t('administration'), items: [['review', t('review'), 'shield'], ['mapping', t('mapping'), 'map'], ['cycles', t('cycles'), 'calendar'], ['admin', t('admin'), 'settings']] as [string, string, IconName][] }] : []),
   ]
+  /* The side menu can be dragged wider or narrower from its inner edge; the width is remembered on this computer. Double-click resets it. */
+  const railW = useRef(RAIL_DEFAULT)
+  const setRail = (w: number, save = true) => { const v = Math.round(Math.max(RAIL_MIN, Math.min(RAIL_MAX, w))); railW.current = v; document.documentElement.style.setProperty('--rail', v + 'px'); if (save) { try { localStorage.setItem(RAIL_KEY, String(v)) } catch { /* not remembered */ } } }
+  useEffect(() => { try { const v = Number(localStorage.getItem(RAIL_KEY)); if (v) setRail(v, false) } catch { /* default width */ } }, [])
+  const startResize = (e: ReactPointerEvent<HTMLDivElement>) => {
+    e.preventDefault(); const rtl = document.documentElement.dir === 'rtl'; document.body.classList.add('rail-resizing')
+    const move = (ev: PointerEvent) => setRail(rtl ? window.innerWidth - ev.clientX : ev.clientX, false)
+    const up = () => { removeEventListener('pointermove', move); removeEventListener('pointerup', up); document.body.classList.remove('rail-resizing'); setRail(railW.current) }
+    addEventListener('pointermove', move); addEventListener('pointerup', up)
+  }
   const doRefresh = async () => { if (window.__leaveGuard && !window.__leaveGuard()) return; try { await refresh(); toast(t('refreshed'), 'ok') } catch { toast(t('storageError'), 'bad') } }
   const doExport = async () => { if (!cycleId) return; setBusy(true); try { await exportWorkbook(snap!, cycleId, lang); toast(t('exportDone'), 'ok') } catch (e) { toast(t('exportFailed'), 'bad'); console.error(e) } finally { setBusy(false) } }
   const uname = lang === 'ar' ? user!.name_ar : user!.name_en
@@ -35,6 +46,7 @@ export function Shell({ page, children }: { page: string; children: ReactNode })
   return (
     <div>
       <aside className={`rail ${open ? 'open' : ''}`}>
+        <div className="rail-grip" role="separator" aria-orientation="vertical" aria-label={t('resizeMenu')} title={t('resizeMenu')} tabIndex={0} onPointerDown={startResize} onDoubleClick={() => setRail(RAIL_DEFAULT)} onKeyDown={e => { const d = e.key === 'ArrowLeft' ? -16 : e.key === 'ArrowRight' ? 16 : 0; if (!d) return; e.preventDefault(); setRail(railW.current + d * (document.documentElement.dir === 'rtl' ? -1 : 1)) }} />
         <a href="#/home" className="flex items-center gap-3 px-4 pt-4 pb-3 no-underline text-fg">
           <img src={emblem} alt="" className="w-9 h-9" /><div className="min-w-0"><div className="font-bold leading-tight truncate">{t('appName')}</div><div className="text-xs text-muted truncate">{lang === 'ar' ? cfg.entity.name_ar : cfg.entity.name_en}</div></div>
         </a>
