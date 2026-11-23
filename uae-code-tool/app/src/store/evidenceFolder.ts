@@ -84,3 +84,54 @@ export async function saveEvidenceFiles(rootDir: Dir, pillar: { id: string; name
 }
 const safeFile = (s: string) => s.replace(/[\\/:*?"<>|\u0000-\u001f]/g, '_').trim() || 'file'
 async function exists(d: Dir, name: string) { try { await d.getFileHandle(name); return true } catch { return false } }
+
+/* ---------- Self-check: is this browser linked to a usable evidence folder, and does it look like the right one? ---------- */
+export interface RootCheck {
+  supported: boolean
+  linked: boolean                       // a folder was chosen on this browser at some point
+  name: string | null                   // its name (the browser never reveals the full path)
+  permission: 'granted' | 'prompt' | 'denied' | 'unknown'
+  canWrite: boolean | null              // a file could be created and removed in it
+  writeError?: string
+  pillars: { id: string; folder: string | null; subFolders: number; codeFolders: number }[]
+  codeFoldersAtRoot: number
+  other: string[]                       // top-level folders that are neither a pillar nor a code folder
+}
+const looksLikeCode = (n: string) => /^\s*(?:\S+\s+)?\d+\.\d+\.\d+[a-z]?(?!\d|\.\d)/i.test(latin(n))
+const looksLikeSub = (n: string) => /^\s*(?:\S+\s+){0,2}\d+\.\d+(?!\d|\.\d)/.test(latin(n))
+/** Checks the linked evidence folder without changing anything in it except a test file that is removed again.
+ *  `ask` may show the browser's permission prompt, so pass true only from a click. */
+export async function checkEvidenceRoot(pillarIds: string[], ask: boolean): Promise<RootCheck> {
+  const res: RootCheck = { supported: evidenceSupported(), linked: false, name: null, permission: 'unknown', canWrite: null, pillars: pillarIds.map(id => ({ id, folder: null, subFolders: 0, codeFolders: 0 })), codeFoldersAtRoot: 0, other: [] }
+  if (!res.supported) return res
+  if (!root) root = await recall()
+  if (!root) return res
+  res.linked = true; res.name = root.name
+  const h = root as AnyDir
+  try { res.permission = h.queryPermission ? await h.queryPermission({ mode: 'readwrite' }) as RootCheck['permission'] : 'granted' } catch { res.permission = 'unknown' }
+  if (res.permission !== 'granted' && ask && h.requestPermission) { try { res.permission = await h.requestPermission({ mode: 'readwrite' }) as RootCheck['permission'] } catch { /* stays as it was */ } }
+  if (res.permission !== 'granted') return res
+  const probe = `.uae-code-check-${Date.now()}.tmp`
+  try { const fh = await root.getFileHandle(probe, { create: true }); const w = await fh.createWritable(); await w.write('ok'); await w.close(); await root.removeEntry(probe); res.canWrite = true }
+  catch (e) { res.canWrite = false; res.writeError = (e as Error)?.message || String(e); try { await root.removeEntry(probe) } catch { /* nothing was left */ } }
+  try {
+    const top = await dirs(root)
+    for (const [n, d] of top) {
+      const p = res.pillars.find(x => !x.folder && isPillarFolder(n, x.id))
+      if (!p) { if (looksLikeCode(n)) res.codeFoldersAtRoot++; else res.other.push(n); continue }
+      p.folder = n
+      for (const [n1, d1] of await dirs(d)) { if (looksLikeCode(n1)) p.codeFolders++; else if (looksLikeSub(n1)) { p.subFolders++; p.codeFolders += (await dirs(d1)).filter(([n2]) => looksLikeCode(n2)).length } }
+    }
+  } catch (e) { res.writeError = res.writeError || (e as Error)?.message }
+  return res
+}
+/** Leaves a small marker file in the linked folder so a person can open the shared path in the file explorer and see
+ *  that it is the same folder. Returns the file name. */
+export async function writeEvidenceMarker(who: string, text: string): Promise<string | null> {
+  const r = await evidenceRootReady(); if (!r) return null
+  const d = new Date(); const pad = (n: number) => String(n).padStart(2, '0')
+  const name = safeFile(`_فحص ربط الأداة - ${who} - ${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}.${pad(d.getMinutes())}.txt`)
+  const fh = await r.getFileHandle(name, { create: true }); const w = await fh.createWritable(); await w.write(text); await w.close(); return name
+}
+export async function removeEvidenceMarker(name: string): Promise<boolean> { const r = await evidenceRootReady(); if (!r) return false; try { await r.removeEntry(name); return true } catch { return false } }
+

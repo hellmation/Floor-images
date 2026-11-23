@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode, useRef, useMemo } from 'react'
+import { createPortal } from 'react-dom'
 import type { WorkState, AnswerStatus, Impact } from '../types'
 import { useApp } from '../store/state'
 import { Icon, type IconName } from './icons'
@@ -98,7 +99,8 @@ export function Modal({ open, onClose, title, children, footer }: { open: boolea
     addEventListener('keydown', f, true); return () => { removeEventListener('keydown', f, true); opener?.focus?.() }
   }, [open, onClose])
   if (!open) return null
-  return <><div className="backdrop" onClick={onClose} /><div ref={ref} className="modal" role="dialog" aria-modal="true" aria-labelledby={id}><div className="px-5 py-4 border-b border-line font-semibold text-lg flex items-center justify-between"><h2 id={id} className="m-0 text-lg font-semibold">{title}</h2><button className="btn btn-ghost btn-icon" onClick={onClose} aria-label={t('close')}><Icon name="x" /></button></div><div className="px-5 py-4 modal-body">{children}</div>{footer && <div className="px-5 py-3 border-t border-line bg-surface-2 flex flex-wrap gap-2 justify-end">{footer}</div>}</div></>
+  // rendered at the top of the page, so a dialog opened from inside a card is never clipped or painted over by its neighbours
+  return createPortal(<><div className="backdrop" onClick={onClose} /><div ref={ref} className="modal" role="dialog" aria-modal="true" aria-labelledby={id}><div className="px-5 py-4 border-b border-line font-semibold text-lg flex items-center justify-between"><h2 id={id} className="m-0 text-lg font-semibold">{title}</h2><button className="btn btn-ghost btn-icon" onClick={onClose} aria-label={t('close')}><Icon name="x" /></button></div><div className="px-5 py-4 modal-body">{children}</div>{footer && <div className="px-5 py-3 border-t border-line bg-surface-2 flex flex-wrap gap-2 justify-end">{footer}</div>}</div></>, document.body)
 }
 /* toasts */
 interface Toast { id: number; text: string; kind?: 'ok' | 'bad' }

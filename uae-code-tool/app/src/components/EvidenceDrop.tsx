@@ -5,6 +5,7 @@ import { Icon } from './icons'
 import { pillarById } from '../store/scoring'
 import { DEFAULT_EVIDENCE_ROOT, evidenceRootReady, evidenceSupported, linkEvidenceRoot, saveEvidenceFiles } from '../store/evidenceFolder'
 import type { Code } from '../types'
+import { EvidenceCheck } from './EvidenceCheck'
 
 /** Drop zone for evidence files of one requirement. Files go to the code's folder under the evidence root on the shared
  *  drive (the folder is created when missing) and the folder link is handed back so it can be added as the evidence link. */
@@ -55,6 +56,7 @@ export function EvidenceDrop({ code, onLinked, compact }: { code: Code; onLinked
       {last && <span className="text-ok-ink flex items-center gap-1"><Icon name="checkCircle" style={{ width: 12, height: 12 }} /><bdi>{last}</bdi></span>}
       {ready === false && pending.length === 0 && <span className="inline-flex items-center gap-2 text-warn-ink bg-warn-soft rounded px-2 py-1"><Icon name="alert" style={{ width: 12, height: 12 }} />{t('dropNotLinked')}<button type="button" className="underline font-semibold" onClick={() => linkEvidenceRoot().then(r => setReady(!!r)).catch(() => {})}>{t('dropLink')}</button></span>}
       <button type="button" className="underline" disabled={busy} onClick={() => store([], true, false, true)}>{t('dropFolderOnly')}</button>
+      <EvidenceCheck small />
       {ready && <button type="button" className="underline" onClick={() => linkEvidenceRoot(true).then(r => setReady(!!r)).catch(() => {})}>{t('changeEvidenceFolder')}</button>}
     </div>
   </div>
