@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useApp } from '../store/state'
 import { master, rollup, assigneeOf, standings, effective, evPartsPending } from '../store/scoring'
 import { pick } from '../i18n'
-import { Bar, Avatar, fmtPct, tone, ringTone, fmtDay } from '../components/ui'
+import { Bar, Avatar, fmtPct, tone, fmtDay } from '../components/ui'
 import { Icon } from '../components/icons'
 import { Field } from '../components/Field'
 import { Donut, STATE_COLOR, Ring } from '../components/charts'
@@ -69,11 +69,11 @@ export default function Home() {
             <div className="label">{t('currentCycle')}</div><div className="font-semibold text-lg leading-tight">{cname}</div>
             <div className="flex items-center gap-4 mt-3"><Ring value={elapsed} size={76} tone="info" label={String(daysLeft !== null && daysLeft >= 0 ? daysLeft : 0)} sub={t('days')} /><div className="text-sm"><div className="text-muted">{t('dueDate')}</div><div className="font-semibold"><bdi>{fmtDay(cycle?.due, lang)}</bdi></div><div className={`mt-1 ${daysLeft !== null && daysLeft < 0 ? 'text-bad' : 'text-muted'}`}>{daysLeft !== null && daysLeft >= 0 ? `${daysLeft} ${t('daysLeft')}` : t('overdue')}</div></div></div>
           </section>
-          <section className="card pad flex flex-wrap items-center justify-around gap-3">
+          <section className="card pad flex flex-wrap items-center justify-around gap-3" title={t('overallHint')}>
             <Donut legend={false} size={144} total={master.codes.length} center={[fmtPct(all.total ? (all.approved / all.total) * 100 : 0), t('readiness')]}
               parts={(['approved', 'submitted', 'returned', 'draft', 'none'] as WorkState[]).map(k => ({ key: k, label: k === 'none' ? t('notStarted') : t(k), value: states[k], color: STATE_COLOR[k] }))} />
-            <Donut legend={false} size={144} center={[fmtPct(all.score), t('compliance')]}
-              parts={all.score === null ? [] : [{ key: 'score', label: t('compliance'), value: Math.round(all.score * 10) / 10, color: `var(--${ringTone(all.score)})` }, { key: 'gap', label: t('gaps'), value: Math.round((100 - all.score) * 10) / 10, color: 'var(--surface-3)' }]} />
+            <Donut legend={false} size={144} center={[fmtPct(all.overall), t('overallCompliance')]}
+              parts={all.overall === null ? [] : [{ key: 'score', label: t('overallCompliance'), value: Math.round(all.overall * 10) / 10, color: 'var(--accent)' }, { key: 'gap', label: t('overallGap'), value: Math.round((100 - all.overall) * 10) / 10, color: 'var(--surface-3)' }]} />
           </section>
           <section className="card pad">
             <div className="flex items-center justify-between mb-2"><h2 className="card-title"><Icon name="trophy" className="text-accent-ink" />{t('standings')}</h2><a href="#/standings" className="text-sm">{t('viewAll')}</a></div>

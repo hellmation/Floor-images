@@ -109,6 +109,7 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
     [H('أكواد معتمدة', 'Codes approved'), all.approved, allW.approved],
     [H('الجاهزية (معتمد ÷ الإجمالي)', 'Readiness (approved ÷ total)'), all.total ? all.approved / all.total : 0, allW.total ? allW.approved / allW.total : 0],
     [H('نسبة الإنجاز (مُجاب ÷ الإجمالي)', 'Completion (answered ÷ total)'), all.total ? all.answered / all.total : 0, allW.total ? allW.answered / allW.total : 0],
+    [H('الامتثال الكلي (المعتمد على كل الأكواد)', 'Overall compliance (approved, over all codes)'), all.overall === null ? null : all.overall / 100],
     [H('الامتثال المرجح', 'Weighted compliance'), all.score === null ? null : all.score / 100, allW.score === null ? null : allW.score / 100],
     [H('الفجوات (نتيجة أقل من 100)', 'Gaps (score below 100)'), all.gaps, allW.gaps],
     [H('علامات "يحتاج توضيح"', 'Clarification flags'), allW.clarifications],
@@ -120,13 +121,14 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
     [H('أوزان الأثر', 'Impact weights'), `${H('عالي', 'High')}=${cfg.settings.weights.high} · ${H('متوسط', 'Medium')}=${cfg.settings.weights.medium} · ${H('منخفض', 'Low')}=${cfg.settings.weights.low} · ${H('غير محدد', 'Not specified')}=${cfg.settings.weights.none}`],
     [H('نتيجة الكود', 'Code score'), H('متوسط درجات متطلباته (0–100)', 'Average of its requirement scores (0–100)')],
     [H('الامتثال المرجح', 'Weighted compliance'), H('مجموع (نتيجة الكود × الوزن) ÷ مجموع الأوزان', 'Sum of (code score × weight) ÷ sum of weights')],
+    [H('الامتثال الكلي', 'Overall compliance'), H('الامتثال المرجح محسوبًا على كل الأكواد: المعتمد بنتيجته، وغير المعتمد صفر، والمعتمد «لا ينطبق» بالكامل مستبعد', 'Weighted compliance taken over all codes: an approved code with its score, any other code as zero, a fully not-applicable approved code left out')],
     [H('نقاط الترتيب', 'Standings points'), H('نصف نسبة الاعتماد + نصف الامتثال على ما أُجيب عنه', 'Half approval rate + half compliance on answered codes')],
   ]
   s.addRows(rows); s.getColumn(1).font = { bold: true }
   rows.forEach((r, i) => { const n = i + 1; const label = String(r[0] || '')
     if (label === H('تاريخ التصدير', 'Exported at')) s.getCell(`B${n}`).numFmt = DATE
     if (label === H('فترة الدورة', 'Cycle period') || label === H('تاريخ الاستحقاق', 'Due date')) { s.getCell(`B${n}`).numFmt = 'yyyy-mm-dd'; s.getCell(`C${n}`).numFmt = 'yyyy-mm-dd' }
-    if (label.startsWith(H('الجاهزية', 'Readiness')) || label.startsWith(H('نسبة الإنجاز', 'Completion')) || label === H('الامتثال المرجح', 'Weighted compliance') && typeof r[1] !== 'string') { s.getCell(`B${n}`).numFmt = PCT; s.getCell(`C${n}`).numFmt = PCT }
+    if (label.startsWith(H('الجاهزية', 'Readiness')) || label.startsWith(H('نسبة الإنجاز', 'Completion')) || (label === H('الامتثال المرجح', 'Weighted compliance') || label === H('الامتثال الكلي (المعتمد على كل الأكواد)', 'Overall compliance (approved, over all codes)')) && typeof r[1] !== 'string') { s.getCell(`B${n}`).numFmt = PCT; s.getCell(`C${n}`).numFmt = PCT }
     if (r[1] === H('المعتمد فقط', 'Approved only')) s.getRow(n).font = { bold: true } })
 
   /* ---------- 2. Codes (one row per code) ---------- */

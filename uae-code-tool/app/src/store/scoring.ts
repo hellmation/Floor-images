@@ -148,12 +148,16 @@ export function isComplete(answer: CodeAnswer | null, code: Code): boolean {
   return !!answer && code.requirements.every(r => !!answer.items[String(r.n)]?.status)
 }
 
-export interface Rollup { total: number; answered: number; submitted: number; approved: number; scored: number; score: number | null; weight: number; gaps: number; clarifications: number }
+/** `score`: weighted compliance of the codes that count (approved, or answered). `overall`: the same weighted score taken
+ *  over ALL the codes passed in — an approved code counts with its score, every other code counts as zero, and an
+ *  approved code that is entirely not-applicable is left out. It is what the entity has actually secured so far. */
+export interface Rollup { total: number; answered: number; submitted: number; approved: number; scored: number; score: number | null; weight: number; gaps: number; clarifications: number; overall: number | null }
 export function rollup(snap: Snapshot, cycleId: string, codes: Code[], approvedOnly: boolean): Rollup {
   const cfg = snap.config
-  let answered = 0, submitted = 0, approved = 0, scored = 0, wsum = 0, wtot = 0, gaps = 0, clar = 0
+  let answered = 0, submitted = 0, approved = 0, scored = 0, wsum = 0, wtot = 0, gaps = 0, clar = 0, onum = 0, oden = 0
   for (const c of codes) {
     const e = effective(snap, cycleId, c.id)
+    { const w = cfg.settings.weights[effectiveImpact(c, cfg)]; const s = e.state === 'approved' ? codeScore(e.answer, c, cfg) : 0; if (s !== null) { onum += s * w; oden += w } }
     if (e.answer) {
       if (isComplete(e.answer, c)) answered++
       if (e.state === 'submitted' || e.state === 'approved') submitted++
@@ -166,7 +170,7 @@ export function rollup(snap: Snapshot, cycleId: string, codes: Code[], approvedO
       if (s !== null) { const w = cfg.settings.weights[effectiveImpact(c, cfg)]; wsum += s * w; wtot += w; scored++; if (s < 100) gaps++ }
     }
   }
-  return { total: codes.length, answered, submitted, approved, scored, score: wtot ? wsum / wtot : null, weight: wtot, gaps, clarifications: clar }
+  return { total: codes.length, answered, submitted, approved, scored, score: wtot ? wsum / wtot : null, weight: wtot, gaps, clarifications: clar, overall: oden ? onum / oden : null }
 }
 
 export interface Standing { userId: string; rank: number; points: number; approvedPct: number; score: number | null; total: number; approved: number; answered: number }
