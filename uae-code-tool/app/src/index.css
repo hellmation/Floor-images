@@ -315,6 +315,7 @@ html[dir="rtl"] .chart-tip { transform: translate(calc(-100% - 12px), 14px); }
 .req-in > .input, .req-in > .textarea, .req-in > .select { flex: 1 1 auto; min-width: 0; }
 .drop-zone.compact { padding: .55rem .9rem; min-height: 0; gap: .7rem; flex-direction: row; text-align: start; justify-content: flex-start; }
 .drop-zone.compact .dz-icon { width: 2rem; height: 2rem; } .drop-zone.compact .dz-icon svg { width: 16px !important; height: 16px !important; } .drop-zone.compact .dz-title { font-size: .85rem; }
+.card.ring-sel { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-glow), var(--shadow-rest); }
 .bulk-bar[data-on] { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow), var(--shadow-rest); }
 .opt-tag { color: var(--muted); font-weight: 400; font-size: .85em; margin-inline-start: .35rem; text-transform: none; letter-spacing: 0; }
 /* any labelled field whose control carries the required attribute gets the asterisk automatically */

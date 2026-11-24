@@ -30,6 +30,9 @@ export interface Settings {
   requireEvidence: boolean
   /** Network path of the evidence root folder; used to build the link of a code's evidence folder after files are dropped. */
   evidenceRoot?: string
+  /** Weekly days off (0 = Sunday … 6 = Saturday) and official holidays (YYYY-MM-DD), left out when counting the working days to a due date. */
+  weekend?: number[]
+  holidays?: string[]
 }
 /** `mergedInto`: this unit is no longer reported on its own; anything still pointing at it resolves to the unit that replaced it. */
 export interface Department { id: string; name_ar: string; name_en: string; active: boolean; mergedInto?: string }

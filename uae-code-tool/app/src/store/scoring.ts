@@ -115,6 +115,16 @@ export function effective(snap: Snapshot, cycleId: string, codeId: string): Effe
   return best || { answer: null, userId: null, review, state: 'none' }
 }
 
+/** Weekly days off when the setting is empty: Saturday and Sunday, the federal government weekend. */
+export const DEFAULT_WEEKEND = [6, 0]
+/** Working days from tomorrow up to and including the due date, leaving out the weekly days off and the listed holidays. */
+export function workdaysUntil(due: string, cfg: Config, from = new Date()): number {
+  const off = new Set(cfg.settings.weekend ?? DEFAULT_WEEKEND), hol = new Set(cfg.settings.holidays || [])
+  const d = new Date(from); d.setHours(12, 0, 0, 0); const end = new Date(due + 'T23:59:59'); let n = 0
+  const iso = (x: Date) => `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, '0')}-${String(x.getDate()).padStart(2, '0')}`
+  for (let i = 0; i < 800; i++) { d.setDate(d.getDate() + 1); if (d > end) break; if (!off.has(d.getDay()) && !hol.has(iso(d))) n++ }
+  return n
+}
 export type ClarStatus = 'pending' | 'replied' | 'closed'
 /** Where a clarification request stands: waiting for the reviewer's reply; replied and waiting for the evaluator to close
  *  it; or closed (the evaluator cleared the flag after the reply). A question raised again after a reply is pending again. */

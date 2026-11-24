@@ -1,7 +1,7 @@
 import { useMemo, type ReactNode } from 'react'
 import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
-import { master, rollup, effective, codeScore, effectiveImpact, sortIds, isComplete, departmentOf, resolveDept, clarStatus, fulfilRows, assigneeOf, evPartsPending, type FulfilRow } from '../store/scoring'
+import { master, rollup, effective, codeScore, effectiveImpact, sortIds, isComplete, departmentOf, resolveDept, clarStatus, workdaysUntil, fulfilRows, assigneeOf, evPartsPending, type FulfilRow } from '../store/scoring'
 import { pick, pickDesc } from '../i18n'
 import { ImpactPill, PageHeader, fmtPct, tone, ringTone, PrintHeader, Avatar, fmtDay, Pill, CountUp, RefreshButton } from '../components/ui'
 import { Bars, Columns, Donut, Heatmap, Stacked, Trend, TipRow, STATE_COLOR, Ring } from '../components/charts'
@@ -23,7 +23,7 @@ function Card({ icon, title, hint, right, children, className = '' }: { icon: Ic
 }
 
 export default function Dashboard() {
-  const { t, lang, snap, cycleId } = useApp(); const cfg = snap!.config; const cy = cycleId!
+  const { t, lang, snap, cycleId, isAdmin } = useApp(); const cfg = snap!.config; const cy = cycleId!
   const [vs, setVs] = useViewState('dashboard', { approvedOnly: false, cmp: '', allGaps: false, mode: 'count' as 'count' | 'pct', more: false }); const { approvedOnly, cmp, allGaps, mode } = vs
   const setApprovedOnly = (v: boolean) => setVs({ approvedOnly: v }), setCmp = (v: string) => setVs({ cmp: v }), setAllGaps = (v: boolean) => setVs({ allGaps: v }), setMode = (v: 'count' | 'pct') => setVs({ mode: v })
   const all = useMemo(() => rollup(snap!, cy, master.codes, approvedOnly), [snap, cy, approvedOnly])
@@ -68,7 +68,7 @@ export default function Dashboard() {
   const cycle = cfg.cycles.find(c => c.id === cy)
   const effs = useMemo(() => master.codes.map(c => ({ c, e: effective(snap!, cy, c.id), who: assigneeOf(c.id, cy, cfg), imp: effectiveImpact(c, cfg) })), [snap, cy, cfg])
   const daysLeft = cycle ? Math.ceil((new Date(cycle.due).getTime() - now) / DAY) : null
-  const workdaysLeft = useMemo(() => { if (!cycle) return 0; let n = 0; const d = new Date(); d.setHours(12, 0, 0, 0); const due = new Date(cycle.due); for (let i = 0; i < 400; i++) { d.setDate(d.getDate() + 1); if (d > due) break; const wd = d.getDay(); if (wd !== 5 && wd !== 6) n++ } return n }, [cycle])
+  const workdaysLeft = useMemo(() => cycle ? workdaysUntil(cycle.due, cfg) : 0, [cycle, cfg])
   const remaining = effs.filter(x => x.e.state !== 'approved').length
   const needPerDay = workdaysLeft > 0 ? remaining / workdaysLeft : remaining
   const recent7 = effs.filter(x => x.e.answer && x.e.state !== 'none' && x.e.state !== 'draft' && new Date(x.e.answer.submittedAt || x.e.answer.updatedAt).getTime() > now - 7 * DAY).length
@@ -104,7 +104,7 @@ export default function Dashboard() {
         <div className="card p-5 flex items-center gap-4 fade-up"><Ring value={readiness} size={84} stroke={9} tone="accent" /><div className="min-w-0"><div className="label">{t('readiness')}</div><div className="text-sm">{t('approved')} <b className="num">{all.approved}</b> {t('of')} <b className="num">{all.total}</b></div><div className="text-xs text-muted num">{t('submitted')} {all.submitted - all.approved} · {t('remaining')} {remaining}{cmpAll ? ` · ${delta(readiness, cmpAll.total ? cmpAll.approved / cmpAll.total * 100 : 0)} ${cmpName}` : ''}</div></div></div>
         <div className="card p-5 flex items-center gap-4 fade-up" style={{ animationDelay: '50ms' }}><Ring value={all.score} size={84} stroke={9} tone={ringTone(all.score)} /><div className="min-w-0"><div className="label">{t('compliance')}</div><div className="text-sm">{t('weightedScore')} · <b className="num">{all.scored}</b> {t('codesCount')}</div><div className="text-xs text-muted num">{t('gaps')} {all.gaps}{cmpAll ? ` · ${delta(all.score, cmpAll.score)} ${cmpName}` : ''}</div></div></div>
         <div className="card p-5 flex items-start gap-3 fade-up" style={{ animationDelay: '100ms' }}><span className={`inline-grid place-items-center w-10 h-10 rounded-lg shrink-0 bg-${paceTone}-soft text-${paceTone}-ink`}><Icon name="clock" /></span>
-          <div className="min-w-0 flex-1"><div className="label !mb-0">{t('timeline')}</div><div className="kpi-value num leading-tight">{daysLeft === null ? '—' : daysLeft < 0 ? t('overdue') : <><CountUp value={daysLeft} /> <span className="text-sm font-normal text-muted">{t('daysUnit')}</span></>}</div>
+          <div className="min-w-0 flex-1"><div className="label !mb-0 flex items-center gap-2">{t('timeline')}{isAdmin && <a href="#/admin?tab=settings" className="ms-auto text-xs font-normal normal-case tracking-normal no-print" title={t('timelineEdit')}><Icon name="edit" style={{ width: 12, height: 12 }} /> {t('edit')}</a>}</div><div className="kpi-value num leading-tight">{daysLeft === null ? '—' : daysLeft < 0 ? t('overdue') : <><CountUp value={daysLeft} /> <span className="text-sm font-normal text-muted">{t('daysUnit')}</span></>}</div>
             <div className="text-xs text-muted mt-0.5">{cycle && <>{t('dueOn')} {fmtDay(cycle.due, lang)} · {workdaysLeft} {t('workdayUnit')}</>}</div>
             <div className="flex flex-wrap items-center gap-2 mt-2 text-xs"><span className="shrink-0"><Pill kind={paceTone}>{remaining === 0 ? t('allCaughtUp') : paceTone === 'ok' ? t('onTrack') : paceTone === 'warn' ? t('atRisk') : t('behind')}</Pill></span><span className="text-muted num">{t('neededPerDay')} {needPerDay.toFixed(1)} · {t('last7')} {recent7}</span></div></div></div>
         <div className="card p-5 fade-up" style={{ animationDelay: '150ms' }}><div className="label">{t('actionRequired')}</div>

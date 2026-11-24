@@ -3,9 +3,9 @@ import { EvidenceCheck } from '../components/EvidenceCheck'
 import { useViewState } from '../store/viewState'
 import type React from 'react'
 import { useApp } from '../store/state'
-import { master, uid, assigneeOf, deptName } from '../store/scoring'
+import { master, uid, assigneeOf, deptName, workdaysUntil, DEFAULT_WEEKEND } from '../store/scoring'
 import { pick } from '../i18n'
-import { Avatar, PageHeader, fmtDate, useToast, errMsg, Empty, Modal, Req, Opt } from '../components/ui'
+import { Avatar, PageHeader, fmtDate, useToast, errMsg, Empty, Modal, Req, Opt, fmtDay } from '../components/ui'
 import { makePassword } from '../store/password'
 import { DEFAULT_EVIDENCE_ROOT } from '../store/evidenceFolder'
 import { Icon } from '../components/icons'
@@ -31,7 +31,17 @@ export default function Admin() {
   const lastAdmin = (u: User) => u.role === 'admin' && u.active && admins <= 1
   const toast = useToast()
   type ATab = 'users' | 'projects' | 'departments' | 'settings' | 'audit'
-  const [vs, setVs] = useViewState('admin', { tab: 'users' as ATab }); const tab = vs.tab; const setTab = (v: ATab) => setVs({ tab: v })
+  const urlTab = new URLSearchParams(location.hash.split('?')[1] || '').get('tab') as ATab | null
+  const [vs, setVs] = useViewState('admin', { tab: 'users' as ATab }, urlTab ? { tab: urlTab } : undefined); const tab = vs.tab; const setTab = (v: ATab) => setVs({ tab: v })
+  /* Timeline of the selected cycle, editable here: its dates, the weekly days off and the official holidays that the working-day count leaves out. */
+  const cyc = cfg.cycles.find(c => c.id === cycleId); const weekend = cfg.settings.weekend ?? DEFAULT_WEEKEND; const holidays = cfg.settings.holidays || []
+  const [newHol, setNewHol] = useState('')
+  const setCycleDate = (k: 'start' | 'end' | 'due', v: string) => { if (!cyc || !v) return; const n = { ...cyc, [k]: v }
+    if (!(n.start <= n.end && n.start <= n.due)) { toast(t('badDates'), 'bad'); return }
+    commit({ ...cfg, cycles: cfg.cycles.map(c => c.id === cyc.id ? n : c) }, `timeline ${cyc.id} ${k} -> ${v}`) }
+  const setWeekend = (d: number, on: boolean) => { const w = on ? [...new Set([...weekend, d])] : weekend.filter(x => x !== d); if (w.length > 6) return; commit({ ...cfg, settings: { ...cfg.settings, weekend: w } }, 'weekend') }
+  const setHolidays = (h: string[]) => commit({ ...cfg, settings: { ...cfg.settings, holidays: [...new Set(h)].sort() } }, 'holidays')
+  const dayName = (d: number) => new Intl.DateTimeFormat(lang === 'ar' ? 'ar' : 'en', { weekday: 'long' }).format(new Date(2024, 0, 7 + d))
   const [nd, setNd] = useState({ name_ar: '', name_en: '' })
   const [nu, setNu] = useState({ name_ar: '', name_en: '', role: 'evaluator' as Role })
   const [np, setNp] = useState({ name_ar: '', name_en: '', ownerId: '' })
@@ -108,6 +118,21 @@ export default function Admin() {
           <div><div className="label">{t('impactWeights')}<Req /></div><div className="grid grid-cols-4 gap-2 text-sm">{(['high', 'medium', 'low', 'none'] as const).map(k => <label key={k}>{t(k === 'none' ? 'notSpecified' : k)}<DraftInput number min={0} step="0.5" value={cfg.settings.weights[k]} onCommit={v => commit({ ...cfg, settings: { ...cfg.settings, weights: { ...cfg.settings.weights, [k]: Number(v) } } }, 'weights')} /></label>)}</div></div>
           <div><div className="label">{t('impactPoints')}<Req /></div><div className="grid grid-cols-4 gap-2 text-sm">{(['high', 'medium', 'low', 'none'] as const).map(k => <label key={k}>{t(k === 'none' ? 'notSpecified' : k)}<DraftInput number min={0} value={(cfg.settings.points || { high: 30, medium: 20, low: 10, none: 20 })[k]} onCommit={v => commit({ ...cfg, settings: { ...cfg.settings, points: { ...(cfg.settings.points || { high: 30, medium: 20, low: 10, none: 20 }), [k]: Number(v) } } }, 'points')} /></label>)}</div><div className="text-xs text-muted mt-1">{t('fulfilmentHint')}</div></div>
           {flagged.length > 0 && <div><div className="label">{t('flagImpact')}</div>{flagged.map(c => <div key={c.id} className="flex items-center gap-2 text-sm mt-1"><span className="code-id">{c.id}</span><select className="select !w-auto" value={cfg.impactOverrides[c.id] || ''} onChange={e => { const io = { ...cfg.impactOverrides }; if (e.target.value) io[c.id] = e.target.value as Impact; else delete io[c.id]; commit({ ...cfg, impactOverrides: io }, 'impact ' + c.id) }}><option value="">{t('notSpecified')}</option><option value="high">{t('high')}</option><option value="medium">{t('medium')}</option><option value="low">{t('low')}</option></select></div>)}</div>}
+        </div>
+        <div className="card pad flex flex-col gap-3 md:col-span-2" id="timeline-settings"><div className="card-title"><Icon name="clock" className="text-accent-ink" />{t('timeline')}</div>
+          {!cyc ? <p className="text-sm text-muted m-0">—</p> : <>
+            <p className="text-sm text-muted m-0 measure">{t('timelineHint')} <b className="text-fg">{lang === 'ar' ? cyc.name : (cyc.name_en || cyc.name)}</b></p>
+            <div className="grid sm:grid-cols-3 gap-3">
+              <div className="field"><label className="label" htmlFor="tl-start">{t('startDate')}</label><input id="tl-start" type="date" required className="input" value={cyc.start} onChange={e => setCycleDate('start', e.target.value)} /></div>
+              <div className="field"><label className="label" htmlFor="tl-end">{t('endDate')}</label><input id="tl-end" type="date" required className="input" value={cyc.end} onChange={e => setCycleDate('end', e.target.value)} /></div>
+              <div className="field"><label className="label" htmlFor="tl-due">{t('dueDate')}</label><input id="tl-due" type="date" required className="input" value={cyc.due} onChange={e => setCycleDate('due', e.target.value)} /></div>
+            </div>
+            <div><div className="label">{t('weekendDays')}</div><div className="flex flex-wrap gap-2">{[0, 1, 2, 3, 4, 5, 6].map(d => <label key={d} className={`text-sm flex items-center gap-1.5 px-2.5 py-1 rounded-lg border cursor-pointer ${weekend.includes(d) ? 'bg-accent-soft border-accent text-accent-ink font-semibold' : 'border-line-2'}`}><input type="checkbox" checked={weekend.includes(d)} onChange={e => setWeekend(d, e.target.checked)} />{dayName(d)}</label>)}</div></div>
+            <div><div className="label">{t('holidays')}<Opt /></div>
+              <div className="flex flex-wrap items-center gap-2">{holidays.map(h => <span key={h} className="pill pill-muted"><bdi>{fmtDay(h, lang)}</bdi><button type="button" className="ms-1" aria-label={`${t('remove')} ${h}`} onClick={() => setHolidays(holidays.filter(x => x !== h))}>×</button></span>)}
+                <input type="date" className="input !w-auto !py-1" aria-label={t('holidays')} value={newHol} onChange={e => setNewHol(e.target.value)} /><button type="button" className="btn btn-sm" disabled={!newHol} onClick={() => { setHolidays([...holidays, newHol]); setNewHol('') }}><Icon name="plus" />{t('add')}</button></div></div>
+            <p className="m-0 text-sm panel px-3 py-2">{t('timelineNow')} <b className="num">{Math.max(0, Math.ceil((new Date(cyc.due).getTime() - Date.now()) / 86400000))}</b> {t('daysUnit')} · <b className="num">{workdaysUntil(cyc.due, cfg)}</b> {t('workdayUnit')}</p>
+          </>}
         </div>
       </div>}
       {tab === 'audit' && (snap!.audit.length === 0 ? <Empty icon="clock" /> : <div className="card overflow-x-auto"><table className="tbl"><thead><tr><th>{t('at')}</th><th>{t('by')}</th><th>{t('action')}</th><th>{t('target')}</th></tr></thead><tbody>

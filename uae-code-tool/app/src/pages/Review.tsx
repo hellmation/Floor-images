@@ -11,14 +11,17 @@ import { EvidencePartsView, partsCount } from '../components/EvidenceParts'
 export default function Review() {
   const { t, lang, snap, user, cycleId, saveReviews } = useApp(); const cfg = snap!.config; const cy = cycleId!
   const toast = useToast()
+  type QEv = 'any' | 'complete' | 'none' | 'missAny'
   type Tab = 'queue' | 'clar' | 'approved'; type EvF = 'any' | 'none' | 'weak' | 'unrated' | 'editable' | 'notStrong' | 'missAny' | 'missDoc' | 'missExec' | 'missMonitor'
   const urlTab = new URLSearchParams(location.hash.split('?')[1] || '').get('tab') as Tab | null
-  const [vs, setVs] = useViewState('review', { tab: 'queue' as Tab, open: null as string | null, evFilter: 'any' as EvF, whoF: '', clarF: 'pending' as ClarStatus | 'all' }, urlTab ? { tab: urlTab } : undefined)
-  const { tab, open, evFilter, whoF, clarF } = vs
+  const [vs, setVs] = useViewState('review', { tab: 'queue' as Tab, open: null as string | null, evFilter: 'any' as EvF, whoF: '', clarF: 'pending' as ClarStatus | 'all', qWho: '', qEv: 'any' as QEv }, urlTab ? { tab: urlTab } : undefined)
+  const { tab, open, evFilter, whoF, clarF, qWho, qEv } = vs
   const setTab = (v: Tab) => setVs({ tab: v }), setOpen = (v: string | null) => setVs({ open: v }), setEvFilter = (v: EvF) => setVs({ evFilter: v }), setWhoF = (v: string) => setVs({ whoF: v })
   const [comment, setComment] = useState('')
   const [reply, setReply] = useState<Record<string, string>>({})
   const [sel, setSel] = useState<Set<string>>(new Set())
+  /* Bulk review of the pending queue: tick codes, then approve or return them in one step. */
+  const [qsel, setQsel] = useState<Set<string>>(new Set()); const [qAsk, setQAsk] = useState<null | 'approve' | 'verified' | 'return'>(null); const [qComment, setQComment] = useState(''); const [qSkip, setQSkip] = useState(true)
   const [bulk, setBulk] = useState(false); const [reason, setReason] = useState(''); const [busy, setBusy] = useState(false)
   const userName = (id: string | null) => { const u = cfg.users.find(x => x.id === id); return u ? (lang === 'ar' ? u.name_ar : u.name_en) : t('unassigned') }
   const photo = (id: string | null) => cfg.users.find(x => x.id === id)?.photo
@@ -40,6 +43,21 @@ export default function Review() {
     for (const it of Object.values(a.items)) { if (!it.status || it.status === 'na') continue; if (it.evidence.length) withEv++; else without++; if (it.status === 'yes') { if (it.evidenceParts?.doc !== true) missDoc++; if (it.evidenceParts?.exec !== true) missExec++; if (it.evidenceParts?.monitor !== true) missMonitor++; if (partsCount(it) === 3) complete++ } for (const ev of it.evidence) { const v = ratings[ev.id]?.rating; if (v === 'strong') strong++; else if (v === 'weak') weak++; else unrated++; if (ev.strength === 'editable') editable++ } }
     return { withEv, without, strong, weak, unrated, editable, missDoc, missExec, missMonitor, complete } }
   const approvedRows = useMemo(() => approved.map(r => ({ ...r, ev: evInfo(r.c.id, r.e.answer!) })).filter(r => (!whoF || r.e.userId === whoF) && (evFilter === 'any' || (evFilter === 'none' && r.ev.without > 0) || (evFilter === 'weak' && r.ev.weak > 0) || (evFilter === 'unrated' && r.ev.unrated > 0) || (evFilter === 'editable' && r.ev.editable > 0) || (evFilter === 'notStrong' && r.ev.strong === 0) || (evFilter === 'missAny' && (r.ev.missDoc + r.ev.missExec + r.ev.missMonitor) > 0) || (evFilter === 'missDoc' && r.ev.missDoc > 0) || (evFilter === 'missExec' && r.ev.missExec > 0) || (evFilter === 'missMonitor' && r.ev.missMonitor > 0))), [approved, whoF, evFilter, snap]) // eslint-disable-line react-hooks/exhaustive-deps
+  /* The pending queue with each code's evidence picture; "incomplete" = an answered requirement without evidence, or a Yes whose three evidence parts are not all confirmed. */
+  const queueRows = useMemo(() => queue.map(r => { const ev = evInfo(r.c.id, r.e.answer!); return { ...r, ev, incomplete: ev.without > 0 || (ev.missDoc + ev.missExec + ev.missMonitor) > 0 } })
+    .filter(r => (!qWho || r.e.userId === qWho) && (qEv === 'any' || (qEv === 'complete' && !r.incomplete) || (qEv === 'none' && r.ev.without > 0) || (qEv === 'missAny' && (r.ev.missDoc + r.ev.missExec + r.ev.missMonitor) > 0))), [queue, qWho, qEv, snap]) // eslint-disable-line react-hooks/exhaustive-deps
+  const qPicked = queueRows.filter(r => qsel.has(r.c.id)); const qAllShown = queueRows.length > 0 && queueRows.every(r => qsel.has(r.c.id))
+  const qTargets = qAsk && qAsk !== 'return' && qSkip ? qPicked.filter(r => !r.incomplete) : qPicked
+  const bulkDecide = async () => {
+    if (!qAsk || !qTargets.length || busy) return; const state = qAsk === 'return' ? 'returned' as const : 'approved' as const
+    if (state === 'returned' && !qComment.trim()) return
+    setBusy(true); const r = JSON.parse(JSON.stringify(snap!.reviews)); r.cycles[cy] = r.cycles[cy] || {}
+    // each review is bound to the exact submission it was made on, as with a single decision
+    for (const row of qTargets) r.cycles[cy][row.c.id] = { state, comment: qComment.trim(), reviewedBy: user!.id, reviewedAt: now(), evidenceVerified: qAsk === 'verified', userId: row.e.userId, submittedAt: row.e.answer!.submittedAt || row.e.answer!.updatedAt }
+    try { await saveReviews(r, `bulk ${state}${qAsk === 'verified' ? ' (evidence verified)' : ''} ${qTargets.length}: ${qTargets.slice(0, 40).map(x => x.c.id).join(', ')}${qTargets.length > 40 ? ', …' : ''}`)
+      toast(`${t(state === 'approved' ? 'approvedN' : 'returnedN')} ${qTargets.length}`, state === 'approved' ? 'ok' : 'bad'); setQsel(new Set()); setQAsk(null); setQComment(''); setOpen(null) }
+    catch (e) { toast(String((e as Error).message || t('saveFailed')), 'bad') } finally { setBusy(false) }
+  }
   const allSel = approvedRows.length > 0 && approvedRows.every(r => sel.has(r.c.id))
   const toggleAll = () => setSel(allSel ? new Set() : new Set(approvedRows.map(r => r.c.id)))
   const bulkReopen = async () => {
@@ -66,8 +84,19 @@ export default function Review() {
       <PageHeader eyebrow={t('administration')} title={t('review')} sub={`${queue.length} ${t('pending')} · ${clarCount('pending')} ${t('clarificationQueue')}`} actions={<><RefreshButton /><div className="seg"><button aria-pressed={tab === 'queue'} onClick={() => setTab('queue')}><Icon name="shield" />{t('pending')} <span className="num">{queue.length}</span></button><button aria-pressed={tab === 'clar'} onClick={() => setTab('clar')}><Icon name="question" />{t('clarificationQueue')} <span className="num">{clarCount('pending')}</span></button><button aria-pressed={tab === 'approved'} onClick={() => setTab('approved')}><Icon name="checkCircle" />{t('approved')} <span className="num">{approved.length}</span></button></div></>} />
       <div className="flex flex-col gap-3">
         {!canReview && <div className="text-sm text-warn-ink bg-warn-soft rounded-lg px-3 py-2">{t(cycle?.status === 'closed' ? 'cycleClosedNotice' : 'cyclePlanningNotice')}</div>}
-        {tab === 'queue' && (queue.length === 0 ? <Empty icon="shield" title={t('allCaughtUp')} /> : queue.map(({ c, e }) => <div key={c.id} className="card pad flex flex-col gap-2">
-          <div className="flex flex-wrap items-center gap-3"><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a><span className="flex-1 min-w-0 text-sm truncate">{pickDesc(lang, c)}</span>{evPartsPending(e.answer) > 0 && <span className="pill pill-warn" title={t('evLateWaiting')}>{t('evQNeeded')}</span>}<span className="flex items-center gap-2 text-xs text-muted"><Avatar name={userName(e.userId)} photo={photo(e.userId)} />{userName(e.userId)} · {fmtDate(e.answer?.submittedAt, lang)}</span><span className={`num font-semibold text-${tone(codeScore(e.answer, c, cfg))}-ink`}>{fmtPct(codeScore(e.answer, c, cfg))}</span>
+        {tab === 'queue' && queue.length > 0 && <div className="card p-3 flex flex-wrap items-end gap-3 bulk-bar" data-on={qsel.size > 0 || undefined}>
+          <div className="field min-w-0"><label className="label" htmlFor="rq-ev">{t('evidenceFilter')}</label><select id="rq-ev" className="select !py-1.5 text-sm" value={qEv} onChange={e => { setVs({ qEv: e.target.value as QEv }); setQsel(new Set()) }}><option value="any">{t('evAny')}</option><option value="complete">{t('evCompleteOnly')}</option><option value="none">{t('evNone')}</option><option value="missAny">{t('evMissingAny')}</option></select></div>
+          <div className="field min-w-0"><label className="label" htmlFor="rq-who">{t('evaluator')}</label><select id="rq-who" className="select !py-1.5 text-sm" value={qWho} onChange={e => { setVs({ qWho: e.target.value }); setQsel(new Set()) }}><option value="">{t('all')}</option>{cfg.users.filter(u => u.active).map(u => <option key={u.id} value={u.id}>{lang === 'ar' ? u.name_ar : u.name_en}</option>)}</select></div>
+          <span className="text-sm text-muted num">{queueRows.length} / {queue.length}</span>
+          <button className="btn btn-sm" disabled={!queueRows.length} onClick={() => setQsel(qAllShown ? new Set() : new Set(queueRows.map(r => r.c.id)))}>{qAllShown ? t('clearShown') : `${t('selectShown')} (${queueRows.length})`}</button>
+          <span className="ms-auto flex flex-wrap items-center gap-2"><span className="text-sm num"><b>{qPicked.length}</b> {t('selectedN')}</span>
+            <button className="btn btn-ok btn-sm" disabled={!canReview || !qPicked.length} onClick={() => { setQSkip(true); setQComment(''); setQAsk('verified') }}><Icon name="checkCircle" />{t('approve')} · {t('evidenceVerified')}</button>
+            <button className="btn btn-sm" disabled={!canReview || !qPicked.length} onClick={() => { setQSkip(true); setQComment(''); setQAsk('approve') }}><Icon name="check" />{t('approve')}</button>
+            <button className="btn btn-danger btn-sm" disabled={!canReview || !qPicked.length} onClick={() => { setQComment(''); setQAsk('return') }}><Icon name={lang === 'ar' ? 'arrowR' : 'arrowL'} />{t('return')}</button></span>
+        </div>}
+        {tab === 'queue' && queue.length > 0 && queueRows.length === 0 && <Empty icon="search" title={t('noMatches')} />}
+        {tab === 'queue' && (queue.length === 0 ? <Empty icon="shield" title={t('allCaughtUp')} /> : queueRows.map(({ c, e, incomplete }) => <div key={c.id} className={`card pad flex flex-col gap-2 ${qsel.has(c.id) ? 'ring-sel' : ''}`}>
+          <div className="flex flex-wrap items-center gap-3"><input type="checkbox" aria-label={`${t('selectAll')} ${c.id}`} checked={qsel.has(c.id)} onChange={() => setQsel(s => { const n = new Set(s); if (n.has(c.id)) n.delete(c.id); else n.add(c.id); return n })} /><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a><span className="flex-1 min-w-0 text-sm truncate">{pickDesc(lang, c)}</span>{evPartsPending(e.answer) > 0 ? <span className="pill pill-warn" title={t('evLateWaiting')}>{t('evQNeeded')}</span> : incomplete ? <span className="pill pill-warn">{t('evIncomplete')}</span> : null}<span className="flex items-center gap-2 text-xs text-muted"><Avatar name={userName(e.userId)} photo={photo(e.userId)} />{userName(e.userId)} · {fmtDate(e.answer?.submittedAt, lang)}</span><span className={`num font-semibold text-${tone(codeScore(e.answer, c, cfg))}-ink`}>{fmtPct(codeScore(e.answer, c, cfg))}</span>
             <button className="btn btn-sm" onClick={() => { setOpen(open === c.id ? null : c.id); setComment('') }}><Icon name={open === c.id ? 'chevronD' : 'eye'} />{open === c.id ? t('cancel') : t('view')}</button></div>
           {open === c.id && <div className="flex flex-col gap-2 border-t border-line pt-3">
             {c.requirements.map(r => { const it = e.answer!.items[String(r.n)]; return <div key={r.n} className="text-sm panel p-2 flex flex-col gap-1"><div className="flex items-start gap-2"><span className="code-id">{r.n}</span><span className="flex-1">{pickText(lang, r)}</span><StatusPill status={it?.status ?? null} /></div>
@@ -90,6 +119,13 @@ export default function Review() {
             {st !== 'closed' && <div className="flex gap-2"><span className="req-in flex-1"><Req /><input className="input" placeholder={st === 'replied' ? t('clarEditReply') : t('reply')} aria-label={t('reply')} aria-required value={reply[key(c.id, n)] || ''} onChange={e2 => setReply(s => ({ ...s, [key(c.id, n)]: e2.target.value }))} onKeyDown={e2 => { if (e2.key === 'Enter' && (reply[key(c.id, n)] || '').trim()) answer(c.id, n) }} /></span><button className="btn btn-sm" disabled={!(reply[key(c.id, n)] || '').trim()} onClick={() => answer(c.id, n)}><Icon name="send" />{t('reply')}</button></div>}
           </div>)}
         </>}
+        <Modal open={!!qAsk} onClose={() => setQAsk(null)} title={`${qAsk === 'return' ? t('bulkReturn') : qAsk === 'verified' ? `${t('bulkApprove')} · ${t('evidenceVerified')}` : t('bulkApprove')} (${qTargets.length})`}
+          footer={<><button className="btn" onClick={() => setQAsk(null)}>{t('cancel')}</button><button className={`btn ${qAsk === 'return' ? 'btn-danger' : 'btn-ok'}`} disabled={busy || !qTargets.length || (qAsk === 'return' && !qComment.trim())} onClick={bulkDecide}><Icon name={qAsk === 'return' ? (lang === 'ar' ? 'arrowR' : 'arrowL') : 'check'} />{t('confirm')}</button></>}>
+          <p className="text-sm m-0 mb-3">{t(qAsk === 'return' ? 'bulkReturnConfirm' : 'bulkApproveConfirm')}</p>
+          {qAsk !== 'return' && qPicked.some(r => r.incomplete) && <label className="text-sm flex items-start gap-2 bg-warn-soft text-warn-ink rounded-lg px-3 py-2 mb-3"><input type="checkbox" className="mt-1" checked={qSkip} onChange={e => setQSkip(e.target.checked)} /><span>{t('bulkSkipIncomplete')} <b className="num">({qPicked.filter(r => r.incomplete).length})</b></span></label>}
+          <div className="field"><label className="label" htmlFor="rq-comment">{t(qAsk === 'return' ? 'bulkReturnReason' : 'reviewerComment')}{qAsk === 'return' ? <Req /> : <Opt />}</label><textarea id="rq-comment" className="textarea" rows={3} value={qComment} onChange={e => setQComment(e.target.value)} /></div>
+          <ul className="m-0 mt-3 p-0 list-none flex flex-wrap gap-1 max-h-32 overflow-auto">{qTargets.map(r => <li key={r.c.id}><span className="code-id">{r.c.id}</span></li>)}</ul>
+        </Modal>
         {tab === 'approved' && (approved.length === 0 ? <Empty icon="checkCircle" /> : <>
           <div className="card p-3 flex flex-wrap items-end gap-3">
             <div className="field min-w-0"><label className="label" htmlFor="rv-ev">{t('evidenceFilter')}</label><select id="rv-ev" className="select !py-1.5 text-sm" value={evFilter} onChange={e => { setEvFilter(e.target.value as typeof evFilter); setSel(new Set()) }}><option value="any">{t('evAny')}</option><option value="none">{t('evNone')}</option><option value="missAny">{t('evMissingAny')}</option><option value="missDoc">{t('evMissDoc')}</option><option value="missExec">{t('evMissExec')}</option><option value="missMonitor">{t('evMissMonitor')}</option><option value="weak">{t('evWeak')}</option><option value="unrated">{t('evUnrated')}</option><option value="notStrong">{t('evNotStrong')}</option><option value="editable">{t('evEditable')}</option></select></div>
