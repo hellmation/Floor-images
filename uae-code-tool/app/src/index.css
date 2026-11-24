@@ -384,6 +384,17 @@ html[dir="rtl"] .fbar-clear { padding: 0 .35rem 0 .75rem; }
 .hero-dl > div { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding-bottom: .3rem; border-bottom: 1px dashed var(--line); } .hero-dl > div:last-child { border-bottom: 0; padding-bottom: 0; }
 .hero-dl > div, .ptile-dl > div { min-width: 0; } .hero-dl dt, .ptile-dl dt { font-size: .78rem; color: var(--muted); } .hero-dl dd { margin: 0; font-size: 1.05rem; font-weight: 700; }
 .hero-kpi > .min-w-0 { flex: 1; }
+.hero-kpi { flex-wrap: wrap; }
+.hero-status { flex-basis: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; padding-top: .85rem; border-top: 1px solid var(--line); }
+.hs { display: flex; flex-direction: column; gap: .1rem; padding: .55rem .7rem; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); text-decoration: none; color: var(--fg); min-width: 0; transition: border-color .15s, transform .15s var(--ease-out); }
+.hs:hover { border-color: var(--hs); transform: translateY(-1px); }
+.hs-ok { --hs: var(--ok); } .hs-info { --hs: var(--info); } .hs-muted { --hs: var(--muted); }
+.hs-label { font-size: .76rem; font-weight: 700; color: var(--hs); }
+.hs-n { font-size: 1.45rem; font-weight: 800; line-height: 1.15; }
+.hs-n small { font-size: .72rem; font-weight: 600; color: var(--muted); }
+.hs-sub { font-size: .74rem; color: var(--muted); }
+.hs-bar { display: block; height: 4px; border-radius: 999px; background: var(--surface-3); overflow: hidden; margin-top: .3rem; } .hs-bar i { display: block; height: 100%; background: var(--hs); border-radius: 999px; }
+@media (max-width: 640px) { .hero-status { text-align: start; flex-basis: auto; width: 100%; gap: .35rem; } .hs { padding: .5rem; } .hs-n { font-size: 1.2rem; } }
 .results-side { display: flex; flex-direction: column; gap: 1rem; justify-content: center; padding: 1rem 1.15rem; border-radius: var(--r-card); border: 1px dashed var(--line-2); }
 .side-row { display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; font-size: .85rem; color: var(--fg-2); margin-bottom: .35rem; } .side-row b { color: var(--fg); font-size: 1rem; }
 .stackbar { display: flex; gap: 2px; height: 10px; border-radius: 999px; overflow: hidden; background: var(--surface-3); }

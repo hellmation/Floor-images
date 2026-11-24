@@ -67,6 +67,10 @@ export default function Dashboard() {
   const fOverall = useMemo(() => fulfilSum(fulfilRows(snap!, cy, true)), [snap, cy])
   const fCmp = useMemo(() => cmp ? fulfilSum(fulfilRows(snap!, cmp, true)) : null, [snap, cmp])
   const fAssessed = assessedF(rows)
+  /* where the 371 codes stand, with their requirements: done = approved; in progress = draft, submitted or returned; not started */
+  const stage = useMemo(() => { const z = () => ({ codes: 0, reqs: 0 }); const m = { done: z(), progress: z(), pending: z() }
+    for (const c of master.codes) { const st = effective(snap!, cy, c.id).state; const g = st === 'approved' ? m.done : st === 'none' ? m.pending : m.progress; g.codes++; g.reqs += c.requirements.length }
+    return m }, [snap, cy])
   const ptsLost = rows.reduce((n, r) => n + (r.status === 'no' || r.status === 'partial' ? r.pts - r.earned : 0), 0)
   const resultOf = (codes: Code[]) => ({ r: rollup(snap!, cy, codes, approvedOnly), fo: fulfilSum(fulfilRows(snap!, cy, true, codes)).pct, fa: assessedF(fulfilRows(snap!, cy, approvedOnly, codes)) })
   const deptResults = useMemo(() => { const g = new Map<string, Code[]>(); for (const c of master.codes) { const k = departmentOf(snap!, cy, c.id) || '_none'; g.set(k, [...(g.get(k) || []), c]) }
@@ -122,7 +126,9 @@ export default function Dashboard() {
               <dl className="hero-dl"><div><dt>{t('evaluatedScore')}</dt><dd className={`num text-${tone(all.score)}-ink`}>{fmtPct(all.score)}</dd></div><div><dt>{t('codesAssessed')}</dt><dd className="num">{all.scored}</dd></div><div><dt>{t('gaps')}</dt><dd className="num">{all.gaps}</dd></div></dl></div></div>
           <div className="hero-kpi"><Ring value={fOverall.pct} size={136} tone="info" sub={t('overallShort')} />
             <div className="min-w-0"><div className="hero-label">{t('overallFulfilment')} {vs2(fOverall.pct, fCmp?.pct)}</div><div className="hero-sub">{t('pointsEarned')} <bdi dir="ltr" className="num"><b>{Math.round(fOverall.earned).toLocaleString('en')}</b> / {Math.round(fOverall.possible).toLocaleString('en')}</bdi></div>
-              <dl className="hero-dl"><div><dt>{t('fulfilAssessed')}</dt><dd className={`num text-${tone(fAssessed)}-ink`}>{fmtPct(fAssessed)}</dd></div><div><dt>{t('pointsLostShort')}</dt><dd className="num">{Math.round(ptsLost).toLocaleString('en')}</dd></div><div><dt>{t('requirements')}</dt><dd className="num">{fOverall.counted.toLocaleString('en')}</dd></div></dl></div></div>
+              <dl className="hero-dl"><div><dt>{t('fulfilAssessed')}</dt><dd className={`num text-${tone(fAssessed)}-ink`}>{fmtPct(fAssessed)}</dd></div><div><dt>{t('pointsLostShort')}</dt><dd className="num">{Math.round(ptsLost).toLocaleString('en')}</dd></div><div><dt>{t('requirements')}</dt><dd className="num">{fOverall.counted.toLocaleString('en')}</dd></div></dl></div>
+            <div className="hero-status">{([['done', 'ok', '#/browse?st=approved', t('stDone'), t('approved')], ['progress', 'info', '#/browse', t('stInProgress'), `${t('draft')} ${states.draft} · ${t('submitted')} ${states.submitted} · ${t('returned')} ${states.returned}`], ['pending', 'muted', '#/browse?st=none', t('stNotStarted'), t('notStarted')]] as const).map(([k, tn, href, label, sub2]) =>
+              <a key={k} href={href} className={`hs hs-${tn}`} title={sub2}><span className="hs-label">{label}</span><span className="hs-n"><span className="num"><CountUp value={stage[k].codes} /></span> <small>{t('codesCount')}</small></span><span className="hs-sub"><span className="num">{stage[k].reqs}</span> {t('reqUnit')}</span><span className="hs-bar"><i style={{ width: `${stage[k].codes / master.codes.length * 100}%` }} /></span></a>)}</div></div>
           <div className="results-side">
             <div><div className="side-row"><span>{t('readiness')}</span><b className="num">{fmtPct(readiness)}</b></div><MiniBar v={readiness} k="ok" label={`${all.approved} / ${all.total}`} /><div className="text-xs text-muted num mt-1">{t('submitted')} {all.submitted - all.approved} · {t('remaining')} {remaining}</div></div>
             <div><div className="side-row"><span>{t('reqAnswers')}</span><b className="num" dir="ltr">{(answers.yes + answers.partial + answers.no + answers.na).toLocaleString('en')} / {(answers.yes + answers.partial + answers.no + answers.na + answers.unanswered).toLocaleString('en')}</b></div>
