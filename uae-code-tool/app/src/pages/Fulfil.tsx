@@ -87,7 +87,7 @@ export default function Fulfil() {
     <div>
       <PrintHeader title={`${t('reportOf')}: ${t('fulfilment')}`} sub={`${lang === 'ar' ? (cycle?.name || cy) : (cycle?.name_en || cy)} · ${approvedOnly ? t('approvedOnly') : t('allAnswered')}`} />
       <PageHeader eyebrow={t('insights')} title={t('fulfilment')} sub={`${t('high')} ${P.high} · ${t('medium')} ${P.medium} · ${t('low')} ${P.low} — ${t('fulfilmentHint')}`}
-        actions={<><RefreshButton /><button className="btn btn-sm" onClick={() => window.print()}><Icon name="download" />{t('printReport')}</button><div className="seg" role="group" aria-label={t('status')}><button aria-pressed={!approvedOnly} onClick={() => setApprovedOnly(false)}>{t('allAnswered')}</button><button aria-pressed={approvedOnly} onClick={() => setApprovedOnly(true)}>{t('approvedOnly')}</button></div></>} />
+        actions={<><RefreshButton /><button className="btn btn-sm" onClick={() => window.print()}><Icon name="download" />{t('printReport')}</button><div className="seg ftabs" role="group" aria-label={t('status')}><button aria-pressed={!approvedOnly} onClick={() => setApprovedOnly(false)}>{t('allAnswered')}</button><button aria-pressed={approvedOnly} onClick={() => setApprovedOnly(true)}>{t('approvedOnly')}</button></div></>} />
       {/* 1. Status cards */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
         {([['approved', t('approved'), 'checkCircle', 'ok'], ['submitted', t('awaitingReview'), 'shield', 'info'], ['prep', t('inPreparation'), 'edit', 'warn'], ['none', t('notStarted'), 'clock', undefined]] as const).map(([k, label, icon, tn]) =>

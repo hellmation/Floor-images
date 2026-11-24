@@ -1,4 +1,5 @@
 import { useMemo, type ReactNode } from 'react'
+import { FilterChip } from '../components/filters'
 import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
 import { master, rollup, effective, codeScore, effectiveImpact, sortIds, isComplete, departmentOf, resolveDept, clarStatus, workdaysUntil, fulfilRows, assigneeOf, evPartsPending, type FulfilRow } from '../store/scoring'
@@ -96,8 +97,8 @@ export default function Dashboard() {
       <PrintHeader title={`${t('reportOf')}: ${t('dashboard')}`} sub={cname(cfg.cycles.find(c => c.id === cy) || { name: cy })} />
       <PageHeader eyebrow={t('insights')} title={t('dashboard')} sub={t('overview')} actions={<>
         <RefreshButton /><button className="btn btn-sm" onClick={() => window.print()}><Icon name="download" />{t('printReport')}</button>
-        <div className="seg"><button aria-pressed={!approvedOnly} onClick={() => setApprovedOnly(false)}>{t('allAnswered')}</button><button aria-pressed={approvedOnly} onClick={() => setApprovedOnly(true)}>{t('approvedOnly')}</button></div>
-        <label className="flex items-center gap-1 text-sm"><span className="text-muted">{t('compareWith')}</span><select className="select !w-auto" value={cmp} onChange={e => setCmp(e.target.value)}><option value="">{t('none')}</option>{cfg.cycles.filter(c => c.id !== cy).map(c => <option key={c.id} value={c.id}>{cname(c)}</option>)}</select></label></>} />
+        <div className="seg ftabs"><button aria-pressed={!approvedOnly} onClick={() => setApprovedOnly(false)}>{t('allAnswered')}</button><button aria-pressed={approvedOnly} onClick={() => setApprovedOnly(true)}>{t('approvedOnly')}</button></div>
+        <FilterChip label={t('compareWith')} icon="calendar" value={cmp} onChange={setCmp}><option value="">{t('none')}</option>{cfg.cycles.filter(c => c.id !== cy).map(c => <option key={c.id} value={c.id}>{cname(c)}</option>)}</FilterChip></>} />
 
       {/* 1. Where we stand */}
       <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-3 mb-6">

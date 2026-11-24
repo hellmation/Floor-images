@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { FilterBar, FilterChip, FilterSearch, FilterTabs } from '../components/filters'
 import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
 import { master, assigneeOf, effective, effectiveImpact, isComplete, sortIds, departmentOf, deptName, evPartsPending } from '../store/scoring'
@@ -50,23 +51,18 @@ export default function MyWork() {
   const active = !!(imp || dep || prj || q)
   const reset = () => setVs({ imp: '', dep: '', prj: '', q: '', sort: 'code' })
   const daysLeft = cycle ? Math.ceil((new Date(cycle.due).getTime() - Date.now()) / 86400000) : null
-  const Sel = ({ label, value, onChange, children, id }: { label: string; value: string; onChange: (v: string) => void; children: React.ReactNode; id: string }) => (
-    <div className="field min-w-0"><label className="label" htmlFor={id}>{label}</label><select id={id} className="select !py-1.5 text-sm" value={value} onChange={e => onChange(e.target.value)}>{children}</select></div>)
   return (
     <div>
       <PageHeader eyebrow={t('work')} title={t('myWork')} sub={cycle && `${lang === 'ar' ? cycle.name : (cycle.name_en || cycle.name)} · ${t('dueDate')}: ${fmtDay(cycle.due, lang)}${daysLeft !== null ? ` · ${daysLeft >= 0 ? `${daysLeft} ${t('daysLeft')}` : t('overdue')}` : ''}`}
         actions={<div className="flex items-center gap-3"><div className="text-end text-sm"><div className="text-muted">{t('progress')}</div><div className="num font-semibold">{done + sub} / {rows.length}</div></div><Donut fit legend={false} size={72} total={rows.length} center={[fmtPct(rows.length ? ((done + sub) / rows.length) * 100 : 0), '']} parts={(['approved', 'submitted', 'returned', 'draft', 'none'] as WorkState[]).map(k => ({ key: k, label: k === 'none' ? t('notStarted') : t(k), value: count(k), color: STATE_COLOR[k] }))} /></div>} />
-      <div className="card p-3 mb-4 flex flex-col gap-3">
-        <div className="seg flex-wrap" role="group" aria-label={t('status')}>{tabs.map(([k, l, n]) => <button key={k} aria-pressed={f === k} onClick={() => setF(k)}>{l}<span className={`num text-xs ${f === k ? '' : 'text-muted'}`}>{n}</span></button>)}</div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-2 items-end">
-          <Sel id="mw-imp" label={t('impact')} value={imp} onChange={setImp}><option value="">{t('all')}</option>{(['high', 'medium', 'low'] as const).map(k => <option key={k} value={k}>{t(k)} ({byTab.filter(r => r.imp === k).length})</option>)}</Sel>
-          <Sel id="mw-dep" label={t('department')} value={dep} onChange={setDep}><option value="">{t('all')}</option>{deptOpts.map(o => <option key={o.k} value={o.k}>{o.label} ({o.n})</option>)}</Sel>
-          <Sel id="mw-prj" label={t('project')} value={prj} onChange={setPrj}><option value="">{t('all')}</option>{prjOpts.map(o => <option key={o.k} value={o.k}>{o.label} ({o.n})</option>)}</Sel>
-          <Sel id="mw-sort" label={t('sortBy')} value={sort} onChange={v => setSort(v as Sort)}><option value="code">{t('sortCode')}</option><option value="impact">{t('sortImpact')}</option><option value="dept">{t('department')}</option><option value="project">{t('project')}</option><option value="status">{t('status')}</option></Sel>
-          <div className="field min-w-0"><label className="label" htmlFor="mw-q">{t('search')}</label><div className="relative"><Icon name="search" className="absolute top-2.5 text-muted" style={{ insetInlineStart: 10 }} /><input id="mw-q" className="input !ps-9 !py-1.5 text-sm" placeholder={t('search')} value={q} onChange={e => setQ(e.target.value)} /></div></div>
-        </div>
-        <div className="flex items-center gap-3 text-xs text-muted"><span className="num">{sorted.length} / {rows.length}</span>{active && <button className="btn btn-ghost btn-sm" onClick={reset}><Icon name="x" />{t('clearFilters')}</button>}</div>
-      </div>
+      <FilterBar shown={sorted.length} total={rows.length} active={[imp, dep, prj, q].filter(Boolean).length} onClear={reset}
+        tabs={<FilterTabs label={t('status')} value={f} onChange={setF} tabs={tabs.map(([k, l, n]) => ({ k, label: l, n }))} />}>
+        <FilterChip id="mw-imp" label={t('impact')} icon="target" value={imp} onChange={setImp}><option value="">{t('all')}</option>{(['high', 'medium', 'low'] as const).map(k => <option key={k} value={k}>{t(k)} ({byTab.filter(r => r.imp === k).length})</option>)}</FilterChip>
+        <FilterChip id="mw-dep" label={t('department')} icon="users" value={dep} onChange={setDep}><option value="">{t('all')}</option>{deptOpts.map(o => <option key={o.k} value={o.k}>{o.label} ({o.n})</option>)}</FilterChip>
+        <FilterChip id="mw-prj" label={t('project')} icon="map" value={prj} onChange={setPrj}><option value="">{t('all')}</option>{prjOpts.map(o => <option key={o.k} value={o.k}>{o.label} ({o.n})</option>)}</FilterChip>
+        <FilterSearch id="mw-q" value={q} onChange={setQ} />
+        <FilterChip id="mw-sort" plain label={t('sortBy')} icon="grid" value={sort} onChange={v => setSort(v as Sort)}><option value="code">{t('sortCode')}</option><option value="impact">{t('sortImpact')}</option><option value="dept">{t('department')}</option><option value="project">{t('project')}</option><option value="status">{t('status')}</option></FilterChip>
+      </FilterBar>
       {sorted.length === 0 && <Empty icon={rows.length === 0 ? 'checkCircle' : 'search'} title={rows.length === 0 ? t('noItems') : active || f ? t('noMatches') : t('allCaughtUp')}>{(active || f) && <button className="btn btn-sm mt-2" onClick={() => { reset(); setF('') }}>{t('clearFilters')}</button>}</Empty>}
       {sorted.length > 0 && <div className="card overflow-hidden"><ul className="m-0 p-0 list-none divide-y divide-line">{sorted.map(({ c, e, imp: ci, dept, pid, flag, complete, clar, evq }) => <li key={c.id}>
         <a href={'#/code/' + c.id + '?from=my'} className="flex items-center gap-3 px-4 py-2.5 no-underline text-fg hover:bg-surface-2">

@@ -316,6 +316,60 @@ html[dir="rtl"] .chart-tip { transform: translate(calc(-100% - 12px), 14px); }
 .drop-zone.compact { padding: .55rem .9rem; min-height: 0; gap: .7rem; flex-direction: row; text-align: start; justify-content: flex-start; }
 .drop-zone.compact .dz-icon { width: 2rem; height: 2rem; } .drop-zone.compact .dz-icon svg { width: 16px !important; height: 16px !important; } .drop-zone.compact .dz-title { font-size: .85rem; }
 .card.ring-sel { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-glow), var(--shadow-rest); }
+/* ---------- filters: one visual language for every list ---------- */
+.fbar { padding: .7rem .85rem; display: flex; flex-direction: column; gap: .65rem; margin-bottom: 1rem; }
+.fbar-tabs { display: flex; min-width: 0; padding-bottom: .65rem; border-bottom: 1px solid var(--line); }
+.fbar-row { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; min-width: 0; }
+.fbar-ico { display: inline-grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 999px; background: var(--surface-2); color: var(--muted); flex: none; transition: background .2s, color .2s; }
+.fbar-ico svg { width: 15px; height: 15px; }
+.fbar[data-active] .fbar-ico { background: var(--accent-soft); color: var(--accent-ink); }
+.fbar-end { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-inline-start: auto; }
+.fbar-count { font-size: .82rem; color: var(--muted); white-space: nowrap; }
+.fbar-count b { color: var(--fg); font-size: 1rem; }
+.fbar-clear { display: inline-flex; align-items: center; gap: .4rem; height: 2.1rem; padding: 0 .75rem 0 .35rem; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--accent-ink); font: inherit; font-size: .82rem; font-weight: 600; cursor: pointer; transition: background .15s; }
+html[dir="rtl"] .fbar-clear { padding: 0 .35rem 0 .75rem; }
+.fbar-clear:hover { background: var(--accent-soft); } .fbar-clear svg { width: 13px; height: 13px; }
+.fbar-n, .fbadge { display: inline-grid; place-items: center; min-width: 1.35rem; height: 1.35rem; padding: 0 .35rem; border-radius: 999px; background: var(--accent); color: var(--accent-fg); font-size: .72rem; font-weight: 700; line-height: 1; }
+
+.fchip { display: inline-flex; align-items: stretch; height: 2.1rem; max-width: 100%; border: 1px solid var(--line-2); border-radius: 999px; background: var(--surface); color: var(--fg); font-size: .85rem; transition: border-color .15s, background .15s, box-shadow .15s; overflow: hidden; }
+.fchip:hover { border-color: var(--muted); }
+.fchip:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+.fchip-main { display: inline-flex; align-items: center; gap: .4rem; padding-inline: .8rem .3rem; min-width: 0; cursor: pointer; position: relative; }
+.fchip-main > svg { width: 14px; height: 14px; color: var(--muted); flex: none; }
+.fchip-l { color: var(--muted); font-size: .78rem; white-space: nowrap; flex: none; }
+.fchip-l::after { content: ""; display: inline-block; width: 1px; height: .9em; background: var(--line-2); margin-inline-start: .5rem; vertical-align: -.1em; }
+.fchip-v { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 13rem; min-width: 0; }
+.fchip-car { flex: none; width: 10px; height: 6px; margin-inline: .15rem .45rem; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%237a8090' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center; transition: transform .2s; }
+.fchip:focus-within .fchip-car { transform: translateY(1px); }
+.fchip select { position: absolute; inset: 0; width: 100%; height: 100%; appearance: none; -webkit-appearance: none; border: 0; outline: 0; margin: 0; padding: 0; background: transparent; color: transparent; font: inherit; cursor: pointer; }
+.fchip select option { color: var(--fg); background: var(--surface); font-weight: 400; }
+.fchip[data-on] { background: var(--accent-soft); border-color: var(--accent); }
+.fchip[data-on] .fchip-l, .fchip[data-on] .fchip-main > svg { color: var(--accent-ink); }
+.fchip[data-on] .fchip-v { color: var(--accent-ink); }
+.fchip-x { display: inline-grid; place-items: center; width: 1.9rem; flex: none; border: 0; border-inline-start: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); background: transparent; color: var(--accent-ink); cursor: pointer; transition: background .15s; }
+.fchip-x:hover { background: color-mix(in srgb, var(--accent) 22%, transparent); } .fchip-x svg { width: 12px; height: 12px; }
+.ftoggle { cursor: pointer; font: inherit; font-size: .85rem; padding: 0; }
+.ftoggle .fchip-main { padding-inline: .8rem; font-weight: 600; }
+.ftoggle .fbadge { background: var(--surface-2); color: var(--muted); } .ftoggle[data-on] .fbadge { background: var(--accent); color: var(--accent-fg); }
+
+.fsearch { display: inline-flex; align-items: center; gap: .45rem; height: 2.1rem; flex: 1 1 13rem; min-width: 11rem; max-width: 26rem; padding-inline-start: .8rem; border: 1px solid var(--line-2); border-radius: 999px; background: var(--surface); transition: border-color .15s, box-shadow .15s, background .15s; overflow: hidden; }
+.fsearch:hover { border-color: var(--muted); } .fsearch:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+.fsearch > svg { width: 15px; height: 15px; color: var(--muted); flex: none; }
+.fsearch input { flex: 1; min-width: 0; height: 100%; border: 0; outline: 0; background: transparent; color: var(--fg); font: inherit; font-size: .85rem; padding-inline-end: .7rem; }
+.fsearch input::placeholder { color: var(--muted); } .fsearch input::-webkit-search-cancel-button { display: none; }
+.fsearch[data-on] { border-color: var(--accent); background: var(--accent-soft); } .fsearch[data-on] > svg { color: var(--accent-ink); } .fsearch[data-on] input { font-weight: 600; padding-inline-end: .2rem; }
+
+/* tabs with count badges (a refinement of the segmented control, used only for filtering and views) */
+.seg.ftabs { background: transparent; border: 0; padding: 0; gap: .35rem; border-radius: 0; max-width: 100%; }
+.seg.ftabs > button { height: 2.1rem; padding: 0 .85rem; border-radius: 999px; border: 1px solid transparent; color: var(--fg-2); font-size: .85rem; gap: .45rem; white-space: nowrap; }
+.seg.ftabs > button:hover { background: var(--surface-2); color: var(--fg); }
+.seg.ftabs > button svg { width: 15px; height: 15px; opacity: .8; }
+.seg.ftabs > button .num { display: inline-grid; place-items: center; min-width: 1.4rem; height: 1.25rem; padding: 0 .4rem; border-radius: 999px; background: var(--surface-2); color: var(--muted); font-size: .72rem; font-weight: 700; line-height: 1; transition: background .15s, color .15s; }
+.seg.ftabs > button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-ink); box-shadow: none; font-weight: 700; }
+.seg.ftabs > button[aria-pressed="true"] .num { background: var(--accent); color: var(--accent-fg); }
+.seg.ftabs > button[data-empty]:not([aria-pressed="true"]) { color: var(--muted); } .seg.ftabs > button[data-empty]:not([aria-pressed="true"]) .num { opacity: .6; }
+@media (max-width: 640px) { .fbar { padding: .6rem; } .fbar-tabs { overflow-x: auto; } .fbar-tabs .seg.ftabs { flex-wrap: nowrap; } .fsearch { max-width: none; flex-basis: 100%; } .fchip-v { max-width: 8.5rem; } .fbar-end { margin-inline-start: 0; width: 100%; justify-content: space-between; } }
+@media print { .fbar { display: none !important; } }
 .bulk-bar[data-on] { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow), var(--shadow-rest); }
 .opt-tag { color: var(--muted); font-weight: 400; font-size: .85em; margin-inline-start: .35rem; text-transform: none; letter-spacing: 0; }
 /* any labelled field whose control carries the required attribute gets the asterisk automatically */

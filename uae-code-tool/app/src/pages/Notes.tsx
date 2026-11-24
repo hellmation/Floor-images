@@ -1,10 +1,10 @@
 import { useMemo } from 'react'
+import { FilterBar, FilterChip, FilterSearch, FilterToggle } from '../components/filters'
 import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
 import { master, assigneeOf, effective, sortIds } from '../store/scoring'
 import { pick, pickDesc } from '../i18n'
 import { Empty, PageHeader, StatePill, fmtDay } from '../components/ui'
-import { Icon } from '../components/icons'
 import { norm } from '../components/Shell'
 import { NoteCard } from './CodeView'
 
@@ -23,14 +23,12 @@ export default function Notes() {
   return (
     <div>
       <PageHeader eyebrow={t('work')} title={t('notes')} sub={`${n} ${t('notesCount')} · ${t('personalNoteHint')}`} />
-      <div className="card p-3 mb-4 flex flex-wrap gap-2 items-center">
-        <Icon name="filter" className="text-muted" />
-        <button aria-pressed={only} className={`btn btn-sm ${only ? 'btn-primary' : ''}`} onClick={() => setOnly(!only)}><Icon name="edit" />{t('withNotesOnly')}<span className={`num ${only ? 'opacity-80' : 'text-muted'}`}>{n}</span></button>
-        <button aria-pressed={mine} className={`btn btn-sm ${mine ? 'btn-primary' : ''}`} onClick={() => setMine(!mine)}><Icon name="tasks" />{t('myCodes')}</button>
-        <select className="select !w-auto" value={p} onChange={e => setP(e.target.value)}><option value="">{t('pillar')}: {t('all')}</option>{master.pillars.map(x => <option key={x.id} value={x.id}>{x.id} · {pick(lang, x)}</option>)}</select>
-        <div className="relative flex-1 min-w-48"><Icon name="search" className="absolute top-2.5 text-muted" style={{ insetInlineStart: 10 }} /><input className="input !ps-9" placeholder={t('search')} aria-label={t('search')} value={q} onChange={e => setQ(e.target.value)} /></div>
-        <span className="text-sm text-muted num">{list.length} / {master.codes.length}</span>
-      </div>
+      <FilterBar shown={list.length} total={master.codes.length} active={[only, mine, p, q].filter(Boolean).length} onClear={() => setVs({ only: false, mine: false, p: '', q: '' })}>
+        <FilterToggle pressed={only} onChange={setOnly} icon="edit" count={n}>{t('withNotesOnly')}</FilterToggle>
+        <FilterToggle pressed={mine} onChange={setMine} icon="tasks">{t('myCodes')}</FilterToggle>
+        <FilterChip label={t('pillar')} icon="layers" value={p} onChange={setP}><option value="">{t('all')}</option>{master.pillars.map(x => <option key={x.id} value={x.id}>{x.id} · {pick(lang, x)}</option>)}</FilterChip>
+        <FilterSearch value={q} onChange={setQ} />
+      </FilterBar>
       {list.length === 0 && (n === 0 ? <Empty icon="edit" title={t('noNotesYet')} /> : <Empty icon="search" title={t('noMatches')}><button className="btn btn-sm mt-2" onClick={() => { setP(''); setQ(''); setOnly(false); setMine(false) }}>{t('clearFilters')}</button></Empty>)}
       {list.length > 0 && <div className="card overflow-x-auto"><table className="tbl">
         <thead><tr><th>{t('code')}</th><th>{t('codeText')}</th><th>{t('status')}</th><th style={{ minWidth: 320 }}>{t('personalNote')}</th></tr></thead>

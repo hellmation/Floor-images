@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { FilterBar, FilterChip, FilterSearch } from '../components/filters'
 import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
 import { master, assigneeOf, effective, effectiveImpact, sortIds, departmentOf, deptName, pillarById } from '../store/scoring'
@@ -59,27 +60,24 @@ export default function Browse() {
   return (
     <div>
       <PageHeader eyebrow={t('work')} title={t('browse')} sub={`${master.pillars.length} ${t('pillarsCount')} · ${master.subpillars.length} ${t('subpillarsCount')} · ${master.codes.length} ${t('codesCount')}`} />
-      <div className="card p-3 mb-4 flex flex-wrap gap-2 items-center">
-        <Icon name="filter" className="text-muted" />
-        <select className="select !w-auto" value={p} onChange={e => setVs({ p: e.target.value })}><option value="">{t('pillar')}: {t('all')}</option>{master.pillars.map(x => <option key={x.id} value={x.id}>{x.id} · {pick(lang, x)}</option>)}</select>
-        <select className="select !w-auto" value={who} onChange={e => setVs({ who: e.target.value })}><option value="">{t('assignedTo')}: {t('all')}</option><option value={user!.id}>{t('myCodes')}</option>{cfg.users.filter(u => u.id !== user!.id).map(u => <option key={u.id} value={u.id}>{lang === 'ar' ? u.name_ar : u.name_en}</option>)}</select>
-        <select className="select !w-auto" value={st} onChange={e => setVs({ st: e.target.value })}><option value="">{t('status')}: {t('all')}</option>{(['none', 'draft', 'submitted', 'returned', 'approved'] as const).map(s => <option key={s} value={s}>{t(s === 'none' ? 'notStarted' : s)}</option>)}</select>
-        <select className="select !w-auto" value={dep} onChange={e => setVs({ dep: e.target.value })} aria-label={t('department')}><option value="">{t('department')}: {t('all')}</option>{depts.map(d => <option key={d.id} value={d.id}>{lang === 'ar' ? d.name_ar : d.name_en}</option>)}</select>
-        <select className="select !w-auto" value={imp} onChange={e => setVs({ imp: e.target.value })}><option value="">{t('impact')}: {t('all')}</option><option value="high">{t('high')}</option><option value="medium">{t('medium')}</option><option value="low">{t('low')}</option></select>
-        <div className="relative flex-1 min-w-48"><Icon name="search" className="absolute top-2.5 text-muted" style={{ insetInlineStart: 10 }} /><input className="input !ps-9" placeholder={t('search')} aria-label={t('search')} value={q} onChange={e => setVs({ q: e.target.value })} /></div>
-        <span className="text-sm text-muted num">{list.length} / {master.codes.length}</span>
-        {(p || q || who || st || imp || dep) && <button className="btn btn-sm" onClick={() => setVs({ p: '', q: '', who: '', st: '', imp: '', dep: '' })}><Icon name="x" />{t('clearFilters')}</button>}
-      </div>
+      <FilterBar shown={list.length} total={master.codes.length} active={[p, q, who, st, imp, dep].filter(Boolean).length} onClear={() => setVs({ p: '', q: '', who: '', st: '', imp: '', dep: '' })}>
+        <FilterChip label={t('pillar')} icon="layers" value={p} onChange={v => setVs({ p: v })}><option value="">{t('all')}</option>{master.pillars.map(x => <option key={x.id} value={x.id}>{x.id} · {pick(lang, x)}</option>)}</FilterChip>
+        <FilterChip label={t('assignedTo')} icon="user" value={who} onChange={v => setVs({ who: v })}><option value="">{t('all')}</option><option value={user!.id}>{t('myCodes')}</option>{cfg.users.filter(u => u.id !== user!.id).map(u => <option key={u.id} value={u.id}>{lang === 'ar' ? u.name_ar : u.name_en}</option>)}</FilterChip>
+        <FilterChip label={t('status')} icon="checkCircle" value={st} onChange={v => setVs({ st: v })}><option value="">{t('all')}</option>{(['none', 'draft', 'submitted', 'returned', 'approved'] as const).map(s => <option key={s} value={s}>{t(s === 'none' ? 'notStarted' : s)}</option>)}</FilterChip>
+        <FilterChip label={t('department')} icon="users" value={dep} onChange={v => setVs({ dep: v })}><option value="">{t('all')}</option>{depts.map(d => <option key={d.id} value={d.id}>{lang === 'ar' ? d.name_ar : d.name_en}</option>)}</FilterChip>
+        <FilterChip label={t('impact')} icon="target" value={imp} onChange={v => setVs({ imp: v })}><option value="">{t('all')}</option><option value="high">{t('high')}</option><option value="medium">{t('medium')}</option><option value="low">{t('low')}</option></FilterChip>
+        <FilterSearch value={q} onChange={v => setVs({ q: v })} />
+      </FilterBar>
       {isAdmin && <div className="card p-3 mb-4 flex flex-wrap gap-x-4 gap-y-2 items-center bulk-bar" data-on={sel.size > 0 || undefined}>
         <span className="flex items-center gap-2 font-semibold"><Icon name="tasks" className="text-accent-ink" />{t('bulkControl')}</span>
         <span className="text-sm num"><b>{sel.size}</b> {t('selectedN')}</span>
         <button className="btn btn-sm" disabled={!shown.length} onClick={() => toggle(shown, !allShown)}>{allShown ? t('clearShown') : `${t('selectShown')} (${shown.length})`}</button>
         {sel.size > 0 && <button className="btn btn-ghost btn-sm" onClick={() => setSel(new Set())}><Icon name="x" />{t('clearSelection')}</button>}
-        <span className="flex flex-wrap items-center gap-2 ms-auto">
-          <select className="select !w-auto !py-1.5 text-sm" aria-label={t('bulkDept')} value={bDept} onChange={e => setBDept(e.target.value)}><option value="">{t('bulkDept')}…</option>{depts.map(d => <option key={d.id} value={d.id}>{lang === 'ar' ? d.name_ar : d.name_en}</option>)}</select>
+        <span className="flex flex-wrap items-center gap-2 ms-auto min-w-0 max-w-full">
+          <select className="select !w-auto !py-1.5 text-sm max-w-full min-w-0" aria-label={t('bulkDept')} value={bDept} onChange={e => setBDept(e.target.value)}><option value="">{t('bulkDept')}…</option>{depts.map(d => <option key={d.id} value={d.id}>{lang === 'ar' ? d.name_ar : d.name_en}</option>)}</select>
           <button className="btn btn-primary btn-sm" disabled={!sel.size || !bDept} onClick={() => setAsk('dept')}><Icon name="check" />{t('apply')}</button>
           <span className="w-px self-stretch bg-line mx-1" />
-          <select className="select !w-auto !py-1.5 text-sm" aria-label={t('bulkAssign')} value={bWho} onChange={e => setBWho(e.target.value)}><option value="__keep">{t('bulkAssign')}…</option><option value="">{t('auto')}</option>{cfg.users.filter(u => u.active).map(u => <option key={u.id} value={u.id}>{lang === 'ar' ? u.name_ar : u.name_en}</option>)}</select>
+          <select className="select !w-auto !py-1.5 text-sm max-w-full min-w-0" aria-label={t('bulkAssign')} value={bWho} onChange={e => setBWho(e.target.value)}><option value="__keep">{t('bulkAssign')}…</option><option value="">{t('auto')}</option>{cfg.users.filter(u => u.active).map(u => <option key={u.id} value={u.id}>{lang === 'ar' ? u.name_ar : u.name_en}</option>)}</select>
           <button className="btn btn-primary btn-sm" disabled={!sel.size || bWho === '__keep'} onClick={() => setAsk('who')}><Icon name="check" />{t('apply')}</button>
           <span className="w-px self-stretch bg-line mx-1" />
           <button className="btn btn-sm" disabled={!sel.size || busy} onClick={makeFolders}><Icon name="folder" />{t('bulkFolders')}</button>

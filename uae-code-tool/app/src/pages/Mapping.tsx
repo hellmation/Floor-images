@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { FilterBar, FilterChip, FilterSearch, FilterToggle } from '../components/filters'
 import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
 import { master, sortIds } from '../store/scoring'
@@ -37,12 +38,12 @@ export default function Mapping() {
           {cfg.projects.filter(pr => !pr.ownerId && pr.active).map(pr => <button key={pr.id} onClick={() => setSel(pr.id)} className={`w-full text-start px-3 py-1.5 rounded-lg text-sm ${sel === pr.id ? 'bg-accent-soft text-accent-ink font-semibold' : 'hover:bg-surface-2'}`}>{pick(lang, pr)}</button>)}
         </aside>
         <div className="flex flex-col gap-3 min-w-0">
-          <div className="card p-3 flex flex-wrap gap-2 items-center">
-            <span className="pill pill-accent"><Icon name="map" style={{ width: 13, height: 13 }} />{selProj ? pick(lang, selProj) : '—'} · {sel ? countFor(sel) : 0}</span>
-            <select className="select !w-auto" value={p} onChange={e => setP(e.target.value)}><option value="">{t('pillar')}: {t('all')}</option>{master.pillars.map(x => <option key={x.id} value={x.id}>{x.id} · {pick(lang, x)}</option>)}</select>
-            <input className="input flex-1 min-w-40" placeholder={t('search')} aria-label={t('search')} value={q} onChange={e => setQ(e.target.value)} />
-            <label className="text-sm flex items-center gap-1.5"><input type="checkbox" checked={onlyUnmapped} onChange={e => setOnlyUnmapped(e.target.checked)} />{t('unmappedCodes')}</label>
-          </div>
+          <FilterBar className="!mb-0" shown={list.length} active={[p, q, onlyUnmapped].filter(Boolean).length} onClear={() => setVs({ p: '', q: '', onlyUnmapped: false })}
+            extra={<span className="pill pill-accent"><Icon name="map" style={{ width: 13, height: 13 }} />{selProj ? pick(lang, selProj) : '—'} · {sel ? countFor(sel) : 0}</span>}>
+            <FilterChip label={t('pillar')} icon="layers" value={p} onChange={setP}><option value="">{t('all')}</option>{master.pillars.map(x => <option key={x.id} value={x.id}>{x.id} · {pick(lang, x)}</option>)}</FilterChip>
+            <FilterToggle pressed={onlyUnmapped} onChange={setOnlyUnmapped} icon="alert">{t('unmappedCodes')}</FilterToggle>
+            <FilterSearch value={q} onChange={setQ} />
+          </FilterBar>
           {list.length === 0 && <Empty icon="search" title={t('noMatches')}><button className="btn btn-sm mt-2" onClick={() => { setP(''); setQ(''); setOnlyUnmapped(false) }}>{t('clearFilters')}</button></Empty>}
           <div className="card divide-y divide-line">
             {list.map(c => { const links = cfg.mapping[c.id] || []; const on = links.includes(sel)
