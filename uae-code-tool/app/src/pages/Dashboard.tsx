@@ -2,12 +2,12 @@ import { useMemo, type ReactNode } from 'react'
 import { FilterChip } from '../components/filters'
 import { useViewState } from '../store/viewState'
 import { useApp } from '../store/state'
-import { master, rollup, effective, codeScore, effectiveImpact, sortIds, isComplete, departmentOf, resolveDept, clarStatus, workdaysUntil, fulfilRows, assigneeOf, evPartsPending, type FulfilRow } from '../store/scoring'
+import { master, rollup, effective, codeScore, effectiveImpact, sortIds, isComplete, departmentOf, resolveDept, clarStatus, workdaysUntil, fulfilRows, fulfilSum, assigneeOf, evPartsPending, type FulfilRow } from '../store/scoring'
 import { pick, pickDesc } from '../i18n'
 import { ImpactPill, PageHeader, fmtPct, tone, PrintHeader, Avatar, fmtDay, Pill, CountUp, RefreshButton } from '../components/ui'
 import { Bars, Columns, Donut, Heatmap, Stacked, Trend, TipRow, STATE_COLOR, Ring } from '../components/charts'
 import { Icon, type IconName } from '../components/icons'
-import type { WorkState, EvidenceStrength } from '../types'
+import type { WorkState, EvidenceStrength, Code } from '../types'
 
 const heat = (v: number | null) => v === null ? 'var(--surface-2)' : v >= 80 ? 'var(--ok-soft)' : v >= 50 ? 'var(--warn-soft)' : 'var(--bad-soft)'
 const EV_COLOR: Record<string, string> = { conclusive: 'var(--ok)', editable: 'var(--warn)', unspecified: 'var(--info)', none: 'var(--bad)' }
@@ -36,7 +36,6 @@ export default function Dashboard() {
   const lostByPillar = useMemo(() => master.pillars.map(p => ({ p, lost: rows.filter(r => r.code.pillar === p.id && (r.status === 'no' || r.status === 'partial')).reduce((a, r) => a + (r.pts - r.earned), 0) })), [rows])
   const bySub = useMemo(() => master.subpillars.map(s => ({ s, r: rollup(snap!, cy, master.codes.filter(c => c.sub === s.id), approvedOnly) })), [snap, cy, approvedOnly])
   const byProject = useMemo(() => cfg.projects.filter(p => p.active).map(p => ({ p, r: rollup(snap!, cy, master.codes.filter(c => (cfg.mapping[c.id] || []).includes(p.id)), approvedOnly) })).filter(x => x.r.total).sort((a, b) => (b.r.score ?? -1) - (a.r.score ?? -1) || b.r.total - a.r.total), [snap, cy, cfg, approvedOnly])
-  const byDept = useMemo(() => cfg.departments.filter(d => d.active).map(d => ({ d, r: rollup(snap!, cy, master.codes.filter(c => departmentOf(snap!, cy, c.id) === d.id), approvedOnly) })).filter(x => x.r.total > 0).sort((a, b) => (b.r.score ?? -1) - (a.r.score ?? -1) || b.r.total - a.r.total), [cfg, cy, snap, approvedOnly])
   const byImpact = useMemo(() => (['high', 'medium', 'low'] as const).map(k => { const rs = rows.filter(r => effectiveImpact(r.code, cfg) === k); const v = (f: (r: FulfilRow) => boolean) => rs.filter(f).length; return { key: k, label: t(k), text: `${t(k)} · ${rs.length} ${t('requirements')}`, values: { yes: v(r => r.status === 'yes'), partial: v(r => r.status === 'partial'), no: v(r => r.status === 'no'), unanswered: v(r => !r.status), na: v(r => r.status === 'na') } } }), [rows, cfg, t])
   /** Evidence facts per answered requirement (same basis as the fulfilment rows): status, evidence present, strongest evidence type, department. */
   const evFacts = useMemo(() => { const out: { code: string; dept: string | null; status: string | null; hasEv: boolean; strength: EvidenceStrength | 'unspecified' | null }[] = []
@@ -58,10 +57,24 @@ export default function Dashboard() {
     .sort((a, b) => { const w = cfg.settings.weights; return (w[effectiveImpact(b.c, cfg)] - w[effectiveImpact(a.c, cfg)]) || (a.s! - b.s!) || sortIds(a.c.id, b.c.id) }), [snap, cy, cfg, approvedOnly])
   const trendCycles = useMemo(() => cfg.cycles.filter(c => c.status === 'closed' || c.id === cy).sort((a, b) => a.start.localeCompare(b.start)), [cfg, cy])
   const trend = useMemo(() => trendCycles.map(c => { const r = rollup(snap!, c.id, master.codes, true); return { readiness: r.total ? r.approved / r.total * 100 : 0, score: r.score } }), [trendCycles, snap])
-  const delta = (a: number | null, b: number | null) => a === null || b === null ? '' : '‎' + (a - b >= 0 ? '+' : '') + Math.round(a - b)
   const cname = (c: { name: string; name_en?: string }) => lang === 'ar' ? c.name : (c.name_en || c.name)
   const cmpName = cmp ? cname(cfg.cycles.find(c => c.id === cmp) || { name: cmp }) : ''
   const readiness = all.total ? (all.approved / all.total) * 100 : 0
+  /* ---------- results: the whole Code first, then by department, then by pillar ----------
+     "overall" = over every code (an approved code counts with its result, any other code as zero);
+     "assessed" = over what has been assessed so far, following the all-answered / approved-only switch. */
+  const assessedF = (rs: FulfilRow[]) => { let e = 0, p = 0; for (const r of rs) if (r.status && r.status !== 'na') { e += r.earned; p += r.pts } return p ? e / p * 100 : null }
+  const fOverall = useMemo(() => fulfilSum(fulfilRows(snap!, cy, true)), [snap, cy])
+  const fCmp = useMemo(() => cmp ? fulfilSum(fulfilRows(snap!, cmp, true)) : null, [snap, cmp])
+  const fAssessed = assessedF(rows)
+  const ptsLost = rows.reduce((n, r) => n + (r.status === 'no' || r.status === 'partial' ? r.pts - r.earned : 0), 0)
+  const resultOf = (codes: Code[]) => ({ r: rollup(snap!, cy, codes, approvedOnly), fo: fulfilSum(fulfilRows(snap!, cy, true, codes)).pct, fa: assessedF(fulfilRows(snap!, cy, approvedOnly, codes)) })
+  const deptResults = useMemo(() => { const g = new Map<string, Code[]>(); for (const c of master.codes) { const k = departmentOf(snap!, cy, c.id) || '_none'; g.set(k, [...(g.get(k) || []), c]) }
+    return [...g.entries()].map(([k, codes]) => ({ key: k, label: deptName2(k === '_none' ? null : k), ...resultOf(codes) }))
+      .sort((a, b) => (a.key === '_none' ? 1 : 0) - (b.key === '_none' ? 1 : 0) || (b.r.overall ?? -1) - (a.r.overall ?? -1) || b.r.total - a.r.total) }, [snap, cy, approvedOnly, cfg, lang]) // eslint-disable-line react-hooks/exhaustive-deps
+  const pillarResults = useMemo(() => byPillar.map(x => ({ ...x, ...resultOf(master.codes.filter(c => c.pillar === x.p.id)), r: x.r })), [byPillar, snap, cy, approvedOnly]) // eslint-disable-line react-hooks/exhaustive-deps
+  const vs2 = (a: number | null, b: number | null | undefined) => b === null || b === undefined || a === null ? null : <span className={`delta num ${a - b >= 0 ? 'up' : 'down'}`} title={cmpName}>{a - b >= 0 ? '▲' : '▼'} {Math.abs(Math.round(a - b))}</span>
+  const MiniBar = ({ v, k = 'accent', label }: { v: number | null; k?: string; label?: string }) => <span className="mbar-cell"><span className="mbar"><i style={{ width: `${Math.max(0, Math.min(100, v ?? 0))}%`, background: `var(--${k})` }} /></span><b className="num" dir="ltr">{label ?? fmtPct(v)}</b></span>
   const legend = <span className="flex items-center gap-3 text-xs text-muted shrink-0"><span className="flex items-center gap-1"><i className="chart-swatch" style={{ background: 'var(--ok-soft)' }} />≥80</span><span className="flex items-center gap-1"><i className="chart-swatch" style={{ background: 'var(--warn-soft)' }} />50–79</span><span className="flex items-center gap-1"><i className="chart-swatch" style={{ background: 'var(--bad-soft)' }} />&lt;50</span></span>
 
   /* ---------- project-manager view: time, actions, people, risks ---------- */
@@ -100,10 +113,48 @@ export default function Dashboard() {
         <div className="seg ftabs"><button aria-pressed={!approvedOnly} onClick={() => setApprovedOnly(false)}>{t('allAnswered')}</button><button aria-pressed={approvedOnly} onClick={() => setApprovedOnly(true)}>{t('approvedOnly')}</button></div>
         <FilterChip label={t('compareWith')} icon="calendar" value={cmp} onChange={setCmp}><option value="">{t('none')}</option>{cfg.cycles.filter(c => c.id !== cy).map(c => <option key={c.id} value={c.id}>{cname(c)}</option>)}</FilterChip></>} />
 
-      {/* 1. Where we stand */}
-      <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-3 mb-6">
-        <div className="card p-5 flex items-center gap-4 fade-up"><Ring value={readiness} size={84} stroke={9} tone="accent" /><div className="min-w-0"><div className="label">{t('readiness')}</div><div className="text-sm">{t('approved')} <b className="num">{all.approved}</b> {t('of')} <b className="num">{all.total}</b></div><div className="text-xs text-muted num">{t('submitted')} {all.submitted - all.approved} · {t('remaining')} {remaining}{cmpAll ? ` · ${delta(readiness, cmpAll.total ? cmpAll.approved / cmpAll.total * 100 : 0)} ${cmpName}` : ''}</div></div></div>
-        <div className="card p-5 flex items-center gap-4 fade-up" style={{ animationDelay: '50ms' }} title={t('overallHint')}><Ring value={all.overall} size={84} stroke={9} tone="accent" /><div className="min-w-0"><div className="label">{t('overallCompliance')}</div><div className="text-sm">{t('overallOn')} <b className="num">{all.total}</b> {t('codesCount')}{cmpAll ? <span className="text-xs text-muted num"> · {delta(all.overall, cmpAll.overall)} {cmpName}</span> : null}</div><div className="text-xs text-muted num">{t('evaluatedScore')} <b className="text-fg-2">{fmtPct(all.score)}</b> ({all.scored}) · {t('gaps')} {all.gaps}</div></div></div>
+      {/* 1. The whole Code: overall compliance and fulfilment, then their breakdown */}
+      <section className="card results-hero fade-up mb-4" aria-labelledby="res-title">
+        <div className="results-head"><div className="min-w-0"><div className="eyebrow">{t('resultsEyebrow')}</div><h2 id="res-title" className="sec-title !m-0">{t('resultsTitle')}</h2><p className="card-hint measure">{t('resultsHint')}</p></div>{cmp && <span className="pill pill-muted shrink-0"><Icon name="calendar" style={{ width: 12, height: 12 }} />{t('compareWith')}: {cmpName}</span>}</div>
+        <div className="results-grid">
+          <div className="hero-kpi"><Ring value={all.overall} size={136} tone="accent" sub={t('overallShort')} />
+            <div className="min-w-0"><div className="hero-label">{t('overallCompliance')} {vs2(all.overall, cmpAll?.overall)}</div><div className="hero-sub">{t('overallOn')} <b className="num">{all.total}</b> {t('codesCount')}</div>
+              <dl className="hero-dl"><div><dt>{t('evaluatedScore')}</dt><dd className={`num text-${tone(all.score)}-ink`}>{fmtPct(all.score)}</dd></div><div><dt>{t('codesAssessed')}</dt><dd className="num">{all.scored}</dd></div><div><dt>{t('gaps')}</dt><dd className="num">{all.gaps}</dd></div></dl></div></div>
+          <div className="hero-kpi"><Ring value={fOverall.pct} size={136} tone="info" sub={t('overallShort')} />
+            <div className="min-w-0"><div className="hero-label">{t('overallFulfilment')} {vs2(fOverall.pct, fCmp?.pct)}</div><div className="hero-sub">{t('pointsEarned')} <bdi dir="ltr" className="num"><b>{Math.round(fOverall.earned).toLocaleString('en')}</b> / {Math.round(fOverall.possible).toLocaleString('en')}</bdi></div>
+              <dl className="hero-dl"><div><dt>{t('fulfilAssessed')}</dt><dd className={`num text-${tone(fAssessed)}-ink`}>{fmtPct(fAssessed)}</dd></div><div><dt>{t('pointsLostShort')}</dt><dd className="num">{Math.round(ptsLost).toLocaleString('en')}</dd></div><div><dt>{t('requirements')}</dt><dd className="num">{fOverall.counted.toLocaleString('en')}</dd></div></dl></div></div>
+          <div className="results-side">
+            <div><div className="side-row"><span>{t('readiness')}</span><b className="num">{fmtPct(readiness)}</b></div><MiniBar v={readiness} k="ok" label={`${all.approved} / ${all.total}`} /><div className="text-xs text-muted num mt-1">{t('submitted')} {all.submitted - all.approved} · {t('remaining')} {remaining}</div></div>
+            <div><div className="side-row"><span>{t('reqAnswers')}</span><b className="num" dir="ltr">{(answers.yes + answers.partial + answers.no + answers.na).toLocaleString('en')} / {(answers.yes + answers.partial + answers.no + answers.na + answers.unanswered).toLocaleString('en')}</b></div>
+              <span className="stackbar" aria-hidden="true">{(['yes', 'partial', 'no', 'na', 'unanswered'] as const).map(k => answers[k] > 0 && <i key={k} style={{ flex: answers[k], background: ANSWER_COLOR[k] }} />)}</span>
+              <span className="stack-legend">{(['yes', 'partial', 'no', 'na', 'unanswered'] as const).map(k => <span key={k}><i style={{ background: ANSWER_COLOR[k] }} />{t(k)} <b className="num">{answers[k].toLocaleString('en')}</b></span>)}</span></div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Results by department */}
+      <Card icon="users" title={t('resultsByDept')} hint={t('resultsByDeptHint')} className="mb-4 overflow-x-auto">
+        <table className="tbl res-tbl"><thead><tr><th>{t('department')}</th><th className="num">{t('codes')}</th><th>{t('approved')}</th><th>{t('overallCompliance')}</th><th>{t('evaluatedScore')}</th><th>{t('overallFulfilment')}</th></tr></thead>
+          <tbody>{deptResults.map(({ key, label, r, fo }) => <tr key={key}><td>{key === '_none' ? <span className="text-muted">{label}</span> : <a className="no-underline text-fg font-medium" href={'#/browse?dep=' + key}>{label}</a>}</td><td className="num">{r.total}</td><td><MiniBar v={r.total ? r.approved / r.total * 100 : 0} k="ok" label={`${r.approved}/${r.total}`} /></td><td><MiniBar v={r.overall} /></td><td className={`num font-semibold text-${tone(r.score)}-ink`}>{fmtPct(r.score)}</td><td><MiniBar v={fo} k="info" /></td></tr>)}</tbody>
+          <tfoot><tr><td>{t('total')}</td><td className="num">{all.total}</td><td><MiniBar v={readiness} k="ok" label={`${all.approved}/${all.total}`} /></td><td><MiniBar v={all.overall} /></td><td className={`num text-${tone(all.score)}-ink`}>{fmtPct(all.score)}</td><td><MiniBar v={fOverall.pct} k="info" /></td></tr></tfoot></table>
+      </Card>
+
+      {/* 3. Compliance by pillar (the Code's eight sections) */}
+      <Card icon="layers" title={t('resultsByPillar')} hint={t('resultsByPillarHint')} className="mb-6">
+        <div className="ptiles">{pillarResults.map(({ p, r, c, fo }) => <a key={p.id} href={'#/browse?p=' + p.id} className="ptile">
+          <div className="ptile-head"><span className="code-id">{p.id}</span><span className="ptile-name">{pick(lang, p)}</span>{c && vs2(r.overall, c.overall)}</div>
+          <div className="ptile-body"><Ring value={r.overall} size={88} tone="accent" sub={t('overallShort')} />
+            <dl className="ptile-dl"><div><dt>{t('evaluatedScore')}</dt><dd className={`num text-${tone(r.score)}-ink`}>{fmtPct(r.score)}</dd></div><div><dt>{t('overallFulfilment')}</dt><dd className="num text-info-ink">{fmtPct(fo)}</dd></div><div><dt>{t('approved')}</dt><dd className="num" dir="ltr">{r.approved}/{r.total}</dd></div></dl></div>
+          <span className="mbar"><i style={{ width: `${r.total ? r.approved / r.total * 100 : 0}%`, background: 'var(--ok)' }} /></span>
+        </a>)}</div>
+      </Card>
+
+      {/* 4. How the work is going: pipeline, timeline, actions */}
+      <h2 className="sec-title mb-3">{t('workProgress')}</h2>
+      <div className="grid lg:grid-cols-3 gap-3 mb-4 items-stretch">
+        <Card icon="tasks" title={t('codePipeline')} hint={t('pipelineHint')}>
+          <Donut size={150} parts={(['approved', 'submitted', 'returned', 'draft', 'none'] as WorkState[]).map(k => ({ key: k, label: k === 'none' ? t('notStarted') : t(k), value: states[k], color: STATE_COLOR[k] }))} total={master.codes.length} center={[fmtPct(readiness), t('readiness')]} />
+        </Card>
         <div className="card p-5 flex items-start gap-3 fade-up" style={{ animationDelay: '100ms' }}><span className={`inline-grid place-items-center w-10 h-10 rounded-lg shrink-0 bg-${paceTone}-soft text-${paceTone}-ink`}><Icon name="clock" /></span>
           <div className="min-w-0 flex-1"><div className="label !mb-0 flex items-center gap-2">{t('timeline')}{isAdmin && <a href="#/admin?tab=settings" className="ms-auto text-xs font-normal normal-case tracking-normal no-print" title={t('timelineEdit')}><Icon name="edit" style={{ width: 12, height: 12 }} /> {t('edit')}</a>}</div><div className="kpi-value num leading-tight">{daysLeft === null ? '—' : daysLeft < 0 ? t('overdue') : <><CountUp value={daysLeft} /> <span className="text-sm font-normal text-muted">{t('daysUnit')}</span></>}</div>
             <div className="text-xs text-muted mt-0.5">{cycle && <>{t('dueOn')} {fmtDay(cycle.due, lang)} · {workdaysLeft} {t('workdayUnit')}</>}</div>
@@ -116,11 +167,7 @@ export default function Dashboard() {
           </div></div>
       </div>
 
-      {/* 2. Performance per department */}
-        <Card icon="users" title={t('perfByDept')} hint={t('scoreHint')} className="mb-4">
-          <Bars rows={byDept.map(({ d, r }) => ({ key: d.id, label: lang === 'ar' ? d.name_ar : d.name_en, text: lang === 'ar' ? d.name_ar : d.name_en, value: r.score, sub: `${r.approved}/${r.total}`, tipExtra: <TipRow label={`${t('approved')} / ${t('codes')}`} value={`${r.approved} / ${r.total}`} /> }))} />
-        </Card>
-      {/* 3. Performance per evaluator */}
+      {/* 5. Performance per evaluator */}
       <Card icon="users" title={t('perfByEvaluator')} hint={t('teamHint')} className="mb-4 overflow-x-auto">
         <table className="tbl"><thead><tr><th>{t('evaluator')}</th><th>{t('codes')}</th><th>{t('score')}</th><th>{t('notStarted')}</th><th>{t('draft')}</th><th>{t('returned')}</th><th>{t('awaitingReview')}</th><th>{t('approved')}</th><th>{t('evQTab')}</th><th className="min-w-44">{t('progress')}</th><th>{t('lastActivity')}</th></tr></thead>
           <tbody>{team.map(r => { const done = r.submitted + r.approved; const pct = r.assigned ? done / r.assigned * 100 : 0
@@ -129,15 +176,7 @@ export default function Dashboard() {
               <td className="text-xs text-muted whitespace-nowrap">{r.last ? `${fmtDay(r.last, lang)} · ${ageDays(r.last)} ${t('daysUnit')}` : '—'}</td></tr> })}</tbody></table>
       </Card>
 
-      {/* 4. Everything else */}
-      <div className="grid lg:grid-cols-5 gap-4 mb-4">
-        <Card icon="tasks" title={t('codePipeline')} hint={t('pipelineHint')} className="lg:col-span-2">
-          <Donut parts={(['approved', 'submitted', 'returned', 'draft', 'none'] as WorkState[]).map(k => ({ key: k, label: k === 'none' ? t('notStarted') : t(k), value: states[k], color: STATE_COLOR[k] }))} total={master.codes.length} center={[fmtPct(readiness), t('readiness')]} />
-        </Card>
-        <Card icon="layers" title={t('scoreByPillar')} hint={t('scoreHint')} className="lg:col-span-3">
-          <Bars compareLabel={cmpName} rows={byPillar.map(({ p, r, c }) => ({ key: p.id, prefix: <span className="code-id">{p.id}</span>, label: pick(lang, p), text: `${p.id}. ${pick(lang, p)}`, value: r.score, compare: c ? c.score : null, sub: `${r.approved}/${r.total}`, href: '#/browse?p=' + p.id, tipExtra: <TipRow label={`${t('approved')} / ${t('codes')}`} value={`${r.approved} / ${r.total}`} /> }))} />
-        </Card>
-      </div>
+      {/* 6. Everything else */}
       <div className="grid lg:grid-cols-5 gap-4 mb-4">
         <Card icon="alert" title={t('risks')} hint={t('risksHint')} className="lg:col-span-2">
           <div className="flex flex-col gap-1">{risks.map(r => <a key={r.key} href={r.href} className={`flex items-center gap-3 no-underline rounded-lg px-2 py-2 -mx-2 hover:bg-surface-2 ${r.n ? 'text-fg' : 'text-muted'}`}><span className={`num text-lg font-bold w-10 text-center rounded-md ${r.n ? `bg-${r.tone}-soft text-${r.tone}-ink` : 'bg-surface-2'}`}>{r.n}</span><span className="text-sm flex-1 min-w-0">{r.label}</span><Icon name={lang === 'ar' ? 'chevronL' : 'chevronR'} className="text-muted shrink-0" /></a>)}</div>

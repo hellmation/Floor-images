@@ -12,7 +12,7 @@ import { norm } from '../components/Shell'
 export default function Browse() {
   const { t, lang, snap, cycleId, user, isAdmin, saveConfig } = useApp(); const cfg = snap!.config; const cy = cycleId!; const toast = useToast()
   const qs = new URLSearchParams(location.hash.split('?')[1] || '')
-  const [vs, setVs] = useViewState('browse', { p: '', q: '', who: '', st: '', imp: '', dep: '' }, { p: qs.get('p') ?? undefined, who: qs.get('who') ?? undefined, st: qs.get('st') ?? undefined, imp: qs.get('imp') ?? undefined })
+  const [vs, setVs] = useViewState('browse', { p: '', q: '', who: '', st: '', imp: '', dep: '' }, { p: qs.get('p') ?? undefined, who: qs.get('who') ?? undefined, st: qs.get('st') ?? undefined, imp: qs.get('imp') ?? undefined, dep: qs.get('dep') ?? undefined })
   const { p, q, who, st, imp, dep } = vs
   const list = useMemo(() => master.codes.filter(c => (!p || c.pillar === p)).map(c => ({ c, a: assigneeOf(c.id, cy, cfg), e: effective(snap!, cy, c.id), i: effectiveImpact(c, cfg) }))
     .filter(r => (!who || r.a === who) && (!st || r.e.state === st) && (!imp || r.i === imp) && (!dep || departmentOf(snap!, cy, r.c.id) === dep) && (!q || norm(r.c.id + ' ' + r.c.desc_ar + ' ' + r.c.desc_en).includes(norm(q))))
