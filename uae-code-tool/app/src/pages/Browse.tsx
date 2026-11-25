@@ -99,7 +99,7 @@ export default function Browse() {
         </span>
       </div>}
       {list.length === 0 && <Empty icon="search" title={t('noMatches')}><button className="btn btn-sm mt-2" onClick={() => setVs({ p: '', q: '', who: '', st: '', imp: '', dep: '', prj: '' })}>{t('clearFilters')}</button></Empty>}
-      {list.length > 0 && <div className="card overflow-x-auto checklist"><table className={`tbl ${dep ? 'hide-dept' : ''} ${who ? 'hide-who' : ''}`}>
+      {list.length > 0 && <div className="card overflow-x-auto checklist"><table className="tbl">
         <thead><tr><th className="print-only ck-col">✓</th>{isAdmin && <th className="w-8 no-print"><input type="checkbox" aria-label={t('selectShown')} checked={allShown} onChange={e => toggle(shown, e.target.checked)} /></th>}<th>{t('code')}</th><th>{t('codeText')}</th><th>{t('impact')}</th><th className="col-dept">{t('department')}</th><th className="col-who">{t('assignedTo')}</th><th>{t('status')}</th><th className="print-only notes-col">{t('checklistNotes')}</th></tr></thead>
         <tbody>{list.map(({ c, a, e, i }) => { const sub = master.subpillars.find(s => s.id === c.sub)!; const showSub = sub.id !== lastSub; lastSub = sub.id
           const subIds = showSub && isAdmin ? list.filter(r => r.c.sub === sub.id).map(r => r.c.id) : []

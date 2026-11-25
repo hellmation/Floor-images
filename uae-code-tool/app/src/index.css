@@ -391,7 +391,6 @@ html[dir="rtl"] .fbar-clear { padding: 0 .35rem 0 .75rem; }
   .checklist-page > .page-head { display: none !important; }
   .checklist .col-dept { width: 30mm; font-size: 7.8pt; }
   .checklist .col-who { width: 22mm; font-size: 7.8pt; white-space: normal !important; }
-  .checklist .hide-dept .col-dept, .checklist .hide-who .col-who { display: none !important; }
   .checklist td .pill + .pill { margin-inline-start: 2px; }
   .checklist td span.flex.flex-wrap { gap: 2px !important; margin-top: 2px !important; }
 }
