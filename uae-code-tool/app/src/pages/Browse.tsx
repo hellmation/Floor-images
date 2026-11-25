@@ -5,7 +5,7 @@ import { useApp } from '../store/state'
 import { master, assigneeOf, effective, effectiveImpact, sortIds, departmentOf, deptName, pillarById } from '../store/scoring'
 import { DEFAULT_EVIDENCE_ROOT, evidenceSupported, linkEvidenceRoot, saveEvidenceFiles, type DirCache } from '../store/evidenceFolder'
 import { pick, pickDesc } from '../i18n'
-import { ImpactPill, PageHeader, StatePill, Empty, Modal, useToast, errMsg } from '../components/ui'
+import { ImpactPill, PageHeader, StatePill, Empty, Modal, useToast, errMsg, PrintHeader } from '../components/ui'
 import { Icon } from '../components/icons'
 import { norm } from '../components/Shell'
 
@@ -66,8 +66,14 @@ export default function Browse() {
   const cols = isAdmin ? 7 : 6
   let lastSub = ''
   return (
-    <div>
-      <PageHeader eyebrow={t('work')} title={t('browse')} sub={`${master.pillars.length} ${t('pillarsCount')} · ${master.subpillars.length} ${t('subpillarsCount')} · ${master.codes.length} ${t('codesCount')}`} />
+    <div className="checklist-page">
+      <PrintHeader title={t('checklistTitle')} sub={[
+        p && `${t('pillar')}: ${p} · ${pick(lang, master.pillars.find(x => x.id === p) || { name_ar: p, name_en: p })}`,
+        dep && `${t('department')}: ${deptName(cfg, dep, lang)}`, prj && `${t('project')}: ${prj === '_none' ? t('noProject') : projName(prj)}`,
+        who && `${t('assignedTo')}: ${userName(who)}`, st && `${t('status')}: ${t(st === 'none' ? 'notStarted' : st as 'draft')}`, imp && `${t('impact')}: ${t(imp as 'high')}`, q && `${t('search')}: ${q}`,
+        `${list.length} ${t('codesCount')}`].filter(Boolean).join(' · ')} />
+      <PageHeader eyebrow={t('work')} title={t('browse')} sub={`${master.pillars.length} ${t('pillarsCount')} · ${master.subpillars.length} ${t('subpillarsCount')} · ${master.codes.length} ${t('codesCount')}`}
+        actions={<button className="btn btn-sm" disabled={!list.length} onClick={() => window.print()} title={t('printChecklistHint')}><Icon name="download" />{t('printChecklist')} <span className="num">({list.length})</span></button>} />
       <FilterBar shown={list.length} total={master.codes.length} active={[p, q, who, st, imp, dep, prj].filter(Boolean).length} onClear={() => setVs({ p: '', q: '', who: '', st: '', imp: '', dep: '', prj: '' })}>
         <FilterChip label={t('pillar')} icon="layers" value={p} onChange={v => setVs({ p: v })}><option value="">{t('all')}</option>{master.pillars.map(x => <option key={x.id} value={x.id}>{x.id} · {pick(lang, x)}</option>)}</FilterChip>
         <FilterChip label={t('assignedTo')} icon="user" value={who} onChange={v => setVs({ who: v })}><option value="">{t('all')}</option><option value={user!.id}>{t('myCodes')}</option>{cfg.users.filter(u => u.id !== user!.id).map(u => <option key={u.id} value={u.id}>{lang === 'ar' ? u.name_ar : u.name_en}</option>)}</FilterChip>
@@ -77,7 +83,7 @@ export default function Browse() {
         <FilterChip label={t('impact')} icon="target" value={imp} onChange={v => setVs({ imp: v })}><option value="">{t('all')}</option><option value="high">{t('high')}</option><option value="medium">{t('medium')}</option><option value="low">{t('low')}</option></FilterChip>
         <FilterSearch value={q} onChange={v => setVs({ q: v })} />
       </FilterBar>
-      {isAdmin && <div className="card p-3 mb-4 flex flex-wrap gap-x-4 gap-y-2 items-center bulk-bar" data-on={sel.size > 0 || undefined}>
+      {isAdmin && <div className="card p-3 mb-4 flex flex-wrap gap-x-4 gap-y-2 items-center bulk-bar no-print" data-on={sel.size > 0 || undefined}>
         <span className="flex items-center gap-2 font-semibold"><Icon name="tasks" className="text-accent-ink" />{t('bulkControl')}</span>
         <span className="text-sm num"><b>{sel.size}</b> {t('selectedN')}</span>
         <button className="btn btn-sm" disabled={!shown.length} onClick={() => toggle(shown, !allShown)}>{allShown ? t('clearShown') : `${t('selectShown')} (${shown.length})`}</button>
@@ -93,12 +99,12 @@ export default function Browse() {
         </span>
       </div>}
       {list.length === 0 && <Empty icon="search" title={t('noMatches')}><button className="btn btn-sm mt-2" onClick={() => setVs({ p: '', q: '', who: '', st: '', imp: '', dep: '', prj: '' })}>{t('clearFilters')}</button></Empty>}
-      {list.length > 0 && <div className="card overflow-x-auto"><table className="tbl">
-        <thead><tr>{isAdmin && <th className="w-8"><input type="checkbox" aria-label={t('selectShown')} checked={allShown} onChange={e => toggle(shown, e.target.checked)} /></th>}<th>{t('code')}</th><th>{t('codeText')}</th><th>{t('impact')}</th><th>{t('department')}</th><th>{t('assignedTo')}</th><th>{t('status')}</th></tr></thead>
+      {list.length > 0 && <div className="card overflow-x-auto checklist"><table className={`tbl ${dep ? 'hide-dept' : ''} ${who ? 'hide-who' : ''}`}>
+        <thead><tr><th className="print-only ck-col">✓</th>{isAdmin && <th className="w-8 no-print"><input type="checkbox" aria-label={t('selectShown')} checked={allShown} onChange={e => toggle(shown, e.target.checked)} /></th>}<th>{t('code')}</th><th>{t('codeText')}</th><th>{t('impact')}</th><th className="col-dept">{t('department')}</th><th className="col-who">{t('assignedTo')}</th><th>{t('status')}</th><th className="print-only notes-col">{t('checklistNotes')}</th></tr></thead>
         <tbody>{list.map(({ c, a, e, i }) => { const sub = master.subpillars.find(s => s.id === c.sub)!; const showSub = sub.id !== lastSub; lastSub = sub.id
           const subIds = showSub && isAdmin ? list.filter(r => r.c.sub === sub.id).map(r => r.c.id) : []
-          return [showSub && <tr key={'s' + sub.id}>{isAdmin && <td className="!bg-surface-2 !py-2"><input type="checkbox" aria-label={`${t('selectAll')} ${sub.id}`} checked={subIds.every(id => sel.has(id))} onChange={ev => toggle(subIds, ev.target.checked)} /></td>}<td colSpan={cols - (isAdmin ? 1 : 0)} className="!bg-surface-2 font-semibold text-accent-ink !py-2">{sub.id} {pick(lang, sub)}</td></tr>,
-            <tr key={c.id} className={sel.has(c.id) ? 'bg-accent-soft/40' : ''}>{isAdmin && <td><input type="checkbox" aria-label={c.id} checked={sel.has(c.id)} onChange={ev => toggle([c.id], ev.target.checked)} /></td>}<td><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a></td><td className="max-w-2xl">{pickDesc(lang, c)}{(cfg.mapping[c.id] || []).length > 0 && <span className="flex flex-wrap gap-1 mt-1">{(cfg.mapping[c.id] || []).map(id => <button type="button" key={id} className={`pill ${id === prj ? 'pill-accent' : 'pill-muted'} !text-[11px]`} title={t('project')} onClick={() => setVs({ prj: id })}><Icon name="map" style={{ width: 11, height: 11 }} />{projName(id)}</button>)}</span>}</td><td><ImpactPill impact={i} short /></td><td className="text-sm">{deptName(cfg, departmentOf(snap!, cy, c.id), lang) || '—'}</td><td className="whitespace-nowrap">{userName(a)}</td><td><StatePill state={e.state} /></td></tr>] })}</tbody></table></div>}
+          return [showSub && <tr key={'s' + sub.id} className="sub-row"><td className="print-only !bg-surface-2" />{isAdmin && <td className="!bg-surface-2 !py-2 no-print"><input type="checkbox" aria-label={`${t('selectAll')} ${sub.id}`} checked={subIds.every(id => sel.has(id))} onChange={ev => toggle(subIds, ev.target.checked)} /></td>}<td colSpan={cols - (isAdmin ? 1 : 0)} className="!bg-surface-2 font-semibold text-accent-ink !py-2">{sub.id} {pick(lang, sub)}</td><td className="print-only !bg-surface-2" /></tr>,
+            <tr key={c.id} className={sel.has(c.id) ? 'bg-accent-soft/40' : ''}><td className="print-only ck-col"><span className="ck-box" /></td>{isAdmin && <td className="no-print"><input type="checkbox" aria-label={c.id} checked={sel.has(c.id)} onChange={ev => toggle([c.id], ev.target.checked)} /></td>}<td><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a></td><td className="max-w-2xl">{pickDesc(lang, c)}{(cfg.mapping[c.id] || []).length > 0 && <span className="flex flex-wrap gap-1 mt-1">{(cfg.mapping[c.id] || []).map(id => <button type="button" key={id} className={`pill ${id === prj ? 'pill-accent' : 'pill-muted'} !text-[11px]`} title={t('project')} onClick={() => setVs({ prj: id })}><Icon name="map" style={{ width: 11, height: 11 }} />{projName(id)}</button>)}</span>}</td><td><ImpactPill impact={i} short /></td><td className="text-sm col-dept">{deptName(cfg, departmentOf(snap!, cy, c.id), lang) || '—'}</td><td className="whitespace-nowrap col-who">{userName(a)}</td><td><StatePill state={e.state} /></td><td className="print-only notes-col" /></tr>] })}</tbody></table></div>}
       <Modal open={!!ask} onClose={() => setAsk(null)} title={`${t(ask === 'who' ? 'bulkAssign' : 'bulkDept')} (${sel.size})`} footer={<><button className="btn" onClick={() => setAsk(null)}>{t('cancel')}</button><button className="btn btn-primary" disabled={busy} onClick={applyBulk}><Icon name="check" />{t('confirm')}</button></>}>
         <p className="text-sm m-0 mb-2">{ask === 'who' ? t('bulkAssignConfirm') : t('bulkDeptConfirm')} <b>{ask === 'who' ? (bWho ? userName(bWho) : t('auto')) : deptName(cfg, bDept, lang)}</b></p>
         {ask === 'dept' && <p className="text-xs text-muted m-0 mb-2">{t('bulkDeptNote')}</p>}

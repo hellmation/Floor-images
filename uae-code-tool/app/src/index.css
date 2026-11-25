@@ -370,6 +370,32 @@ html[dir="rtl"] .fbar-clear { padding: 0 .35rem 0 .75rem; }
 .seg.ftabs > button[data-empty]:not([aria-pressed="true"]) { color: var(--muted); } .seg.ftabs > button[data-empty]:not([aria-pressed="true"]) .num { opacity: .6; }
 @media (max-width: 640px) { .fbar { padding: .6rem; } .fbar-tabs { overflow-x: auto; } .fbar-tabs .seg.ftabs { flex-wrap: nowrap; } .fsearch { max-width: none; flex-basis: 100%; } .fchip-v { max-width: 8.5rem; } .fbar-end { margin-inline-start: 0; width: 100%; justify-content: space-between; } }
 @media print { .fbar { display: none !important; } }
+/* Browse printed as a review checklist: compact A4, a tick box and a notes column on every code, headings repeated on each page */
+.print-only { display: none; }
+@media print {
+  .print-only { display: table-cell !important; }
+  .checklist { overflow: visible !important; border: 0 !important; padding: 0 !important; break-inside: auto !important; page-break-inside: auto !important; }
+  .checklist table.tbl { width: 100%; border-collapse: collapse; font-size: 8.6pt; line-height: 1.35; }
+  .checklist table.tbl thead { display: table-header-group; }
+  .checklist table.tbl th, .checklist table.tbl td { padding: 3px 5px !important; border: 1px solid #c9c4b8 !important; vertical-align: top; }
+  .checklist table.tbl th { background: #efe8d8 !important; color: #111 !important; font-size: 8pt; }
+  .checklist tr { break-inside: avoid; page-break-inside: avoid; }
+  .checklist tr.sub-row td { background: #f6f1e6 !important; font-size: 8.6pt; padding-block: 2px !important; break-after: avoid; page-break-after: avoid; }
+  .checklist .code-id { font-size: 8pt; padding: 0 3px; background: none !important; border: 0; }
+  .checklist .pill { font-size: 7pt !important; padding: 0 5px !important; line-height: 1.5; border: 1px solid #ccc; }
+  .checklist .ck-col { width: 7mm; text-align: center; }
+  .checklist .ck-box { display: inline-block; width: 3.6mm; height: 3.6mm; border: 1.2px solid #444; border-radius: 1px; margin-top: 1px; }
+  .checklist .notes-col { width: 34mm; }
+  .checklist td.max-w-2xl { max-width: none; }
+  .checklist button.pill { pointer-events: none; }
+  .checklist-page > .page-head { display: none !important; }
+  .checklist .col-dept { width: 30mm; font-size: 7.8pt; }
+  .checklist .col-who { width: 22mm; font-size: 7.8pt; white-space: normal !important; }
+  .checklist .hide-dept .col-dept, .checklist .hide-who .col-who { display: none !important; }
+  .checklist td .pill + .pill { margin-inline-start: 2px; }
+  .checklist td span.flex.flex-wrap { gap: 2px !important; margin-top: 2px !important; }
+}
+
 /* ---------- dashboard results ---------- */
 .results-hero { padding: var(--pad-card); }
 .results-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: .75rem 1.5rem; margin-bottom: 1.25rem; }
