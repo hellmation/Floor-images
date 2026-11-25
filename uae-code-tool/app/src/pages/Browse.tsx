@@ -6,8 +6,19 @@ import { master, assigneeOf, effective, effectiveImpact, sortIds, departmentOf, 
 import { DEFAULT_EVIDENCE_ROOT, evidenceSupported, linkEvidenceRoot, saveEvidenceFiles, type DirCache } from '../store/evidenceFolder'
 import { pick, pickDesc, pickText } from '../i18n'
 import { ImpactPill, PageHeader, StatePill, Empty, Modal, useToast, errMsg, PrintHeader } from '../components/ui'
+import type { Key } from '../i18n'
 import { Icon } from '../components/icons'
 import { norm } from '../components/Shell'
+
+/* The printed report (PDF): which columns and parts of each code it carries. Kept per browser; printing with Ctrl+P uses the same choice. */
+type RK = 'no' | 'imp' | 'dept' | 'who' | 'st' | 'upd' | 'rev' | 'ev' | 'notes' | 'reqs' | 'crit' | 'reqst' | 'proj' | 'subs' | 'summary'
+const RPT_COLS: [RK, Key][] = [['no', 'rptNo'], ['imp', 'impact'], ['dept', 'department'], ['who', 'assignedTo'], ['st', 'status'], ['upd', 'rptUpd'], ['rev', 'rptRev'], ['ev', 'rptEv'], ['notes', 'rptNotes']]
+const RPT_PARTS: [RK, Key][] = [['reqs', 'requirements'], ['crit', 'criteria'], ['reqst', 'rptReqSt'], ['proj', 'rptProj'], ['subs', 'rptSubRows'], ['summary', 'rptSummary']]
+const RPT_ALL: RK[] = [...RPT_COLS, ...RPT_PARTS].map(x => x[0])
+const RPT_DEFAULT: RK[] = ['no', 'imp', 'dept', 'who', 'st', 'notes', 'reqs', 'crit', 'subs']
+const RPT_STORE = 'uae-code-tool:report-cols'
+const loadRpt = (): Set<RK> => { try { const v = JSON.parse(localStorage.getItem(RPT_STORE) || 'null'); if (Array.isArray(v)) return new Set(v.filter((k: RK) => RPT_ALL.includes(k))) } catch { /* storage unavailable */ } return new Set(RPT_DEFAULT) }
+const saveRpt = (s: Set<RK>) => { try { localStorage.setItem(RPT_STORE, JSON.stringify([...s])) } catch { /* storage unavailable */ } }
 
 export default function Browse() {
   const { t, lang, snap, cycleId, user, isAdmin, saveConfig } = useApp(); const cfg = snap!.config; const cy = cycleId!; const toast = useToast()
@@ -64,16 +75,35 @@ export default function Browse() {
     } catch (e) { if ((e as DOMException)?.name !== 'AbortError') toast(errMsg(e, t), 'bad') } finally { setBusy(false) }
   }
   const cols = isAdmin ? 7 : 6
+  const [rpt, setRptRaw] = useState<Set<RK>>(loadRpt); const [rptOpen, setRptOpen] = useState(false); const [rptName, setRptName] = useState('')
+  const setRpt = (n: Set<RK>) => { setRptRaw(n); saveRpt(n) }
+  const flip = (k: RK) => { const n = new Set(rpt); if (n.has(k)) n.delete(k); else n.add(k); setRpt(n) }
+  const printCols = 2 + (['no', 'imp', 'dept', 'who', 'st', 'upd', 'rev', 'ev', 'notes'] as RK[]).filter(k => rpt.has(k)).length
+  const offCls = RPT_ALL.filter(k => !rpt.has(k)).map(k => 'off-' + k).join(' ')
+  const makeReport = () => { setRptOpen(false); setTimeout(() => window.print(), 120) }
+  const dayFmt = (iso?: string) => iso ? new Date(iso).toLocaleDateString(lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : ''
+  const STATES = ['none', 'draft', 'submitted', 'returned', 'approved'] as const
+  const stLabel = (s: string) => t(s === 'none' ? 'notStarted' : s as 'draft')
+  const ansLabel: Record<string, string> = { yes: t('yes'), partial: t('partial'), no: t('no'), na: t('na') }
   let lastSub = ''
   return (
-    <div className="checklist-page">
-      <PrintHeader title={t('checklistTitle')} sub={[
+    <div className={`checklist-page ${offCls}`}>
+      <PrintHeader title={rptName.trim() || t('checklistTitle')} sub={[
         p && `${t('pillar')}: ${p} · ${pick(lang, master.pillars.find(x => x.id === p) || { name_ar: p, name_en: p })}`,
         dep && `${t('department')}: ${deptName(cfg, dep, lang)}`, prj && `${t('project')}: ${prj === '_none' ? t('noProject') : projName(prj)}`,
         who && `${t('assignedTo')}: ${userName(who)}`, st && `${t('status')}: ${t(st === 'none' ? 'notStarted' : st as 'draft')}`, imp && `${t('impact')}: ${t(imp as 'high')}`, q && `${t('search')}: ${q}`,
         `${list.length} ${t('codesCount')}`].filter(Boolean).join(' · ')} />
       <PageHeader eyebrow={t('work')} title={t('browse')} sub={`${master.pillars.length} ${t('pillarsCount')} · ${master.subpillars.length} ${t('subpillarsCount')} · ${master.codes.length} ${t('codesCount')}`}
-        actions={<button className="btn btn-sm" disabled={!list.length} onClick={() => window.print()} title={t('printChecklistHint')}><Icon name="download" />{t('printChecklist')} <span className="num">({list.length})</span></button>} />
+        actions={<button className="btn btn-sm" disabled={!list.length} onClick={() => setRptOpen(true)} title={t('printChecklistHint')}><Icon name="download" />{t('rptBtn')} <span className="num">({list.length})</span></button>} />
+      <Modal open={rptOpen} onClose={() => setRptOpen(false)} title={t('rptTitle')} footer={<><button className="btn" onClick={() => setRptOpen(false)}>{t('cancel')}</button><button className="btn btn-primary" onClick={makeReport}><Icon name="download" />{t('rptGo')} <span className="num">({list.length})</span></button></>}>
+        <div className="space-y-4 rpt-dlg">
+          <label className="block"><span className="label">{t('rptName')}</span><input className="input" value={rptName} placeholder={t('checklistTitle')} onChange={e => setRptName(e.target.value)} /></label>
+          {([['rptCols', RPT_COLS], ['rptContent', RPT_PARTS]] as const).map(([h, keys]) => <fieldset key={h}><legend className="label">{t(h)}</legend>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 mt-1">{keys.map(([k, l]) => <label key={k} className="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" data-rpt={k} checked={rpt.has(k)} onChange={() => flip(k)} />{t(l)}</label>)}</div></fieldset>)}
+          <div className="flex flex-wrap gap-2"><button className="btn btn-sm" onClick={() => setRpt(new Set(RPT_ALL))}>{t('rptAllOn')}</button><button className="btn btn-ghost btn-sm" onClick={() => setRpt(new Set(RPT_DEFAULT))}>{t('rptDefault')}</button></div>
+          <p className="text-xs text-muted">{t('rptHint')}</p>
+        </div>
+      </Modal>
       <FilterBar shown={list.length} total={master.codes.length} active={[p, q, who, st, imp, dep, prj].filter(Boolean).length} onClear={() => setVs({ p: '', q: '', who: '', st: '', imp: '', dep: '', prj: '' })}>
         <FilterChip label={t('pillar')} icon="layers" value={p} onChange={v => setVs({ p: v })}><option value="">{t('all')}</option>{master.pillars.map(x => <option key={x.id} value={x.id}>{x.id} · {pick(lang, x)}</option>)}</FilterChip>
         <FilterChip label={t('assignedTo')} icon="user" value={who} onChange={v => setVs({ who: v })}><option value="">{t('all')}</option><option value={user!.id}>{t('myCodes')}</option>{cfg.users.filter(u => u.id !== user!.id).map(u => <option key={u.id} value={u.id}>{lang === 'ar' ? u.name_ar : u.name_en}</option>)}</FilterChip>
@@ -99,12 +129,20 @@ export default function Browse() {
         </span>
       </div>}
       {list.length === 0 && <Empty icon="search" title={t('noMatches')}><button className="btn btn-sm mt-2" onClick={() => setVs({ p: '', q: '', who: '', st: '', imp: '', dep: '', prj: '' })}>{t('clearFilters')}</button></Empty>}
+      {list.length > 0 && <div className="print-block rpt-summary">{STATES.map(s => { const n = list.filter(r => r.e.state === s).length; return <span key={s}><b className="num">{n}</b> {stLabel(s)}</span> })}<span><b className="num">{list.length}</b> {t('rptCodes')}</span></div>}
       {list.length > 0 && <div className="card overflow-x-auto print-cklist"><table className="tbl">
-        <thead><tr><th className="print-only no-col">#</th>{isAdmin && <th className="w-8 no-print"><input type="checkbox" aria-label={t('selectShown')} checked={allShown} onChange={e => toggle(shown, e.target.checked)} /></th>}<th>{t('code')}</th><th>{t('codeText')}</th><th>{t('impact')}</th><th className="col-dept">{t('department')}</th><th className="col-who">{t('assignedTo')}</th><th>{t('status')}</th><th className="print-only notes-col">{t('checklistNotes')}</th></tr></thead>
+        <thead><tr><th className="print-only no-col col-no">#</th>{isAdmin && <th className="w-8 no-print"><input type="checkbox" aria-label={t('selectShown')} checked={allShown} onChange={e => toggle(shown, e.target.checked)} /></th>}<th>{t('code')}</th><th>{t('codeText')}</th><th className="col-imp">{t('impact')}</th><th className="col-dept">{t('department')}</th><th className="col-who">{t('assignedTo')}</th><th className="col-st">{t('status')}</th><th className="print-only col-upd">{t('rptUpd')}</th><th className="print-only col-rev">{t('rptRev')}</th><th className="print-only col-ev">{t('rptEv')}</th><th className="print-only notes-col col-notes">{t('checklistNotes')}</th></tr></thead>
         <tbody>{list.map(({ c, a, e, i }, rowNo) => { const sub = master.subpillars.find(s => s.id === c.sub)!; const showSub = sub.id !== lastSub; lastSub = sub.id
           const subIds = showSub && isAdmin ? list.filter(r => r.c.sub === sub.id).map(r => r.c.id) : []
-          return [showSub && <tr key={'s' + sub.id} className="sub-row"><td className="print-only !bg-surface-2" />{isAdmin && <td className="!bg-surface-2 py-2 no-print"><input type="checkbox" aria-label={`${t('selectAll')} ${sub.id}`} checked={subIds.every(id => sel.has(id))} onChange={ev => toggle(subIds, ev.target.checked)} /></td>}<td colSpan={cols - (isAdmin ? 1 : 0)} className="!bg-surface-2 font-semibold text-accent-ink py-2">{sub.id} {pick(lang, sub)}</td><td className="print-only !bg-surface-2" /></tr>,
-            <tr key={c.id} className={sel.has(c.id) ? 'bg-accent-soft/40' : ''}><td className="print-only no-col num">{rowNo + 1}</td>{isAdmin && <td className="no-print"><input type="checkbox" aria-label={c.id} checked={sel.has(c.id)} onChange={ev => toggle([c.id], ev.target.checked)} /></td>}<td><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a></td><td className="max-w-2xl"><span className="code-txt">{pickDesc(lang, c)}</span><ol className="print-block print-reqs">{c.requirements.map((r, ri) => <li key={r.n}><b className="num">{c.id}.{r.n}</b> {pickText(lang, r)}{c.criteria.length === c.requirements.length && c.criteria[ri] && <span className="crit"><i>{t('criterion')}:</i> {pickText(lang, c.criteria[ri])}</span>}</li>)}</ol>{c.criteria.length > 0 && c.criteria.length !== c.requirements.length && <div className="print-block print-crit"><i>{t('criteria')}:</i> {c.criteria.map((x, xi) => <span key={x.n}>{xi ? ' · ' : ''}{x.n}. {pickText(lang, x)}</span>)}</div>}{(cfg.mapping[c.id] || []).length > 0 && <span className="flex flex-wrap gap-1 mt-1">{(cfg.mapping[c.id] || []).map(id => <button type="button" key={id} className={`pill tag-pill ${id === prj ? 'pill-accent' : 'pill-muted'}`} title={t('project')} onClick={() => setVs({ prj: id })}><Icon name="map" style={{ width: 11, height: 11 }} />{projName(id)}</button>)}</span>}</td><td><ImpactPill impact={i} short /></td><td className="text-sm col-dept">{deptName(cfg, departmentOf(snap!, cy, c.id), lang) || '—'}</td><td className="whitespace-nowrap col-who">{userName(a)}</td><td><StatePill state={e.state} /></td><td className="print-only notes-col" /></tr>] })}</tbody></table></div>}
+          return [showSub && <tr key={'s' + sub.id} className="sub-row">{isAdmin && <td className="!bg-surface-2 py-2 no-print"><input type="checkbox" aria-label={`${t('selectAll')} ${sub.id}`} checked={subIds.every(id => sel.has(id))} onChange={ev => toggle(subIds, ev.target.checked)} /></td>}<td colSpan={cols - (isAdmin ? 1 : 0)} className="!bg-surface-2 font-semibold text-accent-ink py-2 no-print">{sub.id} {pick(lang, sub)}</td><td colSpan={printCols} className="print-only !bg-surface-2 font-semibold">{sub.id} {pick(lang, sub)}</td></tr>,
+            <tr key={c.id} className={sel.has(c.id) ? 'bg-accent-soft/40' : ''}><td className="print-only no-col col-no num">{rowNo + 1}</td>{isAdmin && <td className="no-print"><input type="checkbox" aria-label={c.id} checked={sel.has(c.id)} onChange={ev => toggle([c.id], ev.target.checked)} /></td>}<td><a className="code-id no-underline" href={'#/code/' + c.id}>{c.id}</a></td><td className="max-w-2xl"><span className="code-txt">{pickDesc(lang, c)}</span><ol className="print-block print-reqs">{c.requirements.map((r, ri) => <li key={r.n}><b className="num">{c.id}.{r.n}</b> {pickText(lang, r)}<span className={`req-st print-inline st-${e.answer?.items[r.n]?.status || 'x'}`}>{ansLabel[e.answer?.items[r.n]?.status || ''] || '—'}</span>{c.criteria.length === c.requirements.length && c.criteria[ri] && <span className="crit"><i>{t('criterion')}:</i> {pickText(lang, c.criteria[ri])}</span>}</li>)}</ol>{c.criteria.length > 0 && c.criteria.length !== c.requirements.length && <div className="print-block print-crit"><i>{t('criteria')}:</i> {c.criteria.map((x, xi) => <span key={x.n}>{xi ? ' · ' : ''}{x.n}. {pickText(lang, x)}</span>)}</div>}{(cfg.mapping[c.id] || []).length > 0 && <span className="flex flex-wrap gap-1 mt-1 proj-tags">{(cfg.mapping[c.id] || []).map(id => <button type="button" key={id} className={`pill tag-pill ${id === prj ? 'pill-accent' : 'pill-muted'}`} title={t('project')} onClick={() => setVs({ prj: id })}><Icon name="map" style={{ width: 11, height: 11 }} />{projName(id)}</button>)}</span>}</td><td className="col-imp"><ImpactPill impact={i} short /></td><td className="text-sm col-dept">{deptName(cfg, departmentOf(snap!, cy, c.id), lang) || '—'}</td><td className="whitespace-nowrap col-who">{userName(a)}</td><td className="col-st"><StatePill state={e.state} /></td>{(() => {
+              const items = Object.values(e.answer?.items || {}); const withEv = c.requirements.filter(r => (e.answer?.items[r.n]?.evidence || []).length > 0).length
+              const upd = [e.answer && { at: e.answer.updatedAt, by: e.userId }, e.review && { at: e.review.reviewedAt, by: e.review.reviewedBy }].filter(Boolean).sort((x, y) => (y!.at > x!.at ? 1 : -1))[0]
+              const asks = items.filter(x => x.clarify?.flag && x.clarify.question).map(x => x.clarify!.question)
+              return <><td className="print-only col-upd">{upd ? <>{dayFmt(upd.at)}<br /><span className="muted">{userName(upd.by)}</span></> : '—'}</td>
+                <td className="print-only col-rev">{e.review?.comment ? <>{e.review.state === 'returned' ? '↩ ' : ''}{e.review.comment}</> : ''}{asks.map((q, k) => <div key={k}>؟ {q}</div>)}{!e.review?.comment && !asks.length && '—'}</td>
+                <td className="print-only col-ev num">{e.answer ? `${withEv}/${c.requirements.length}` : '—'}</td></>
+            })()}<td className="print-only notes-col col-notes" /></tr>] })}</tbody></table></div>}
       <Modal open={!!ask} onClose={() => setAsk(null)} title={`${t(ask === 'who' ? 'bulkAssign' : 'bulkDept')} (${sel.size})`} footer={<><button className="btn" onClick={() => setAsk(null)}>{t('cancel')}</button><button className="btn btn-primary" disabled={busy} onClick={applyBulk}><Icon name="check" />{t('confirm')}</button></>}>
         <p className="text-sm m-0 mb-2">{ask === 'who' ? t('bulkAssignConfirm') : t('bulkDeptConfirm')} <b>{ask === 'who' ? (bWho ? userName(bWho) : t('auto')) : deptName(cfg, bDept, lang)}</b></p>
         {ask === 'dept' && <p className="text-xs text-muted m-0 mb-2">{t('bulkDeptNote')}</p>}
