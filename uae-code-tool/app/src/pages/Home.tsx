@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { useApp } from '../store/state'
-import { master, rollup, assigneeOf, standings, effective, evPartsPending } from '../store/scoring'
+import { master, rollup, assigneeOf, standings, effective, evPartsPending, departmentOf, deptName } from '../store/scoring'
 import { pick } from '../i18n'
 import { Bar, Avatar, fmtPct, tone, fmtDay } from '../components/ui'
 import { Icon } from '../components/icons'
@@ -16,6 +16,10 @@ export default function Home() {
   const mineCodes = useMemo(() => master.codes.filter(c => assigneeOf(c.id, cy, cfg) === user!.id), [cy, cfg, user])
   const mine = useMemo(() => rollup(snap!, cy, mineCodes, false), [snap, cy, mineCodes])
   const byPillar = useMemo(() => master.pillars.map(p => ({ p, r: rollup(snap!, cy, master.codes.filter(c => c.pillar === p.id), true), subs: master.subpillars.filter(s => s.pillar === p.id).length })), [snap, cy])
+  /* the same picture by responsible department, largest share of the Code first; codes with no department last */
+  const byDept = useMemo(() => { const g = new Map<string, typeof master.codes>(); for (const c of master.codes) { const k = departmentOf(snap!, cy, c.id) || '_none'; g.set(k, [...(g.get(k) || []), c]) }
+    return [...g.entries()].map(([k, codes]) => ({ k, name: k === '_none' ? t('noDept') : deptName(snap!.config, k, lang), r: rollup(snap!, cy, codes, true) }))
+      .sort((a, b) => (a.k === '_none' ? 1 : 0) - (b.k === '_none' ? 1 : 0) || b.r.total - a.r.total) }, [snap, cy, lang, t])
   const table = useMemo(() => standings(snap!, cy), [snap, cy])
   const acts = useMemo(() => { let returned = 0, drafts = 0, unanswered = 0, replies = 0, evq = 0
     for (const c of mineCodes) { const e = effective(snap!, cy, c.id); if (e.state !== 'none' && evPartsPending(e.answer) > 0) evq++; if (e.state === 'returned') returned++; else if (e.state === 'draft') drafts++; else if (e.state === 'none') unanswered++
@@ -62,6 +66,12 @@ export default function Home() {
             <div className="grid sm:grid-cols-2 gap-3">{byPillar.map(({ p, r, subs }) => <a key={p.id} href={'#/browse?p=' + p.id} className="no-underline text-fg rounded-lg border border-line p-3 flex gap-3 hover:bg-surface-2 transition-colors">
               <span className="display text-3xl font-bold text-accent-ink num leading-none w-8">{p.id}</span>
               <span className="flex-1 min-w-0"><span className="block font-semibold leading-tight">{pick(lang, p)}</span><span className="block text-xs text-muted mt-0.5 mb-2">{subs} {t('subpillarsCount')} · {r.total} {t('codesCount')}</span><Bar value={r.approved} max={r.total} thin /><span className="flex justify-between text-xs mt-1"><span className="text-muted num">{r.approved}/{r.total} {t('approved')}</span><span className={`num font-semibold text-${tone(r.score)}-ink`}>{fmtPct(r.score)}</span></span></span></a>)}</div>
+          </section>
+          <section className="card pad">
+            <div className="flex items-center justify-between mb-3"><h2 className="card-title"><Icon name="users" className="text-accent-ink" />{t('theDepartments')}</h2><span className="text-xs text-muted">{byDept.filter(d => d.k !== '_none').length} {t('departmentsCount')} · {master.codes.length} {t('codesCount')}</span></div>
+            <div className="grid sm:grid-cols-2 gap-3">{byDept.map(({ k, name, r }) => <a key={k} href={k === '_none' ? '#/browse' : '#/browse?dep=' + k} className="no-underline text-fg rounded-lg border border-line p-3 flex gap-3 hover:bg-surface-2 transition-colors">
+              <span className={`inline-grid place-items-center w-9 h-9 rounded-full shrink-0 ${k === '_none' ? 'bg-surface-2 text-muted' : 'bg-accent-soft text-accent-ink'}`}><Icon name={k === '_none' ? 'alert' : 'users'} style={{ width: 17, height: 17 }} /></span>
+              <span className="flex-1 min-w-0"><span className={`block font-semibold leading-tight ${k === '_none' ? 'text-muted' : ''}`}>{name}</span><span className="block text-xs text-muted mt-0.5 mb-2">{r.total} {t('codesCount')} · {r.total / master.codes.length * 100 < 1 ? '<1' : Math.round(r.total / master.codes.length * 100)}% {t('ofTheCode')}</span><Bar value={r.approved} max={r.total} thin /><span className="flex justify-between text-xs mt-1"><span className="text-muted num">{r.approved}/{r.total} {t('approved')}</span><span className={`num font-semibold text-${tone(r.score)}-ink`}>{fmtPct(r.score)}</span></span></span></a>)}</div>
           </section>
         </div>
         <div className="flex flex-col gap-4">
