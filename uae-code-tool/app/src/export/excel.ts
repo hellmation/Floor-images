@@ -1,6 +1,6 @@
 import ExcelJS from 'exceljs'
 import type { Lang, Snapshot, Code } from '../types'
-import { master, effective, codeScore, effectiveImpact, assigneeOf, rollup, standings, sortIds, subById, pillarById, departmentOf, resolveDept, supportDepartments, fulfilRows, fulfilSum, type FulfilRow } from '../store/scoring'
+import { master, criteriaOf, effective, codeScore, effectiveImpact, assigneeOf, rollup, standings, sortIds, subById, pillarById, departmentOf, resolveDept, supportDepartments, fulfilRows, fulfilSum, type FulfilRow } from '../store/scoring'
 
 let LANG: Lang = 'ar'
 const H = (ar: string, en: string) => LANG === 'ar' ? ar : en
@@ -79,10 +79,10 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
     cols.forEach((c, i) => { const cell = ws.getCell(1, i + 1); cell.value = H(...c.h); cell.font = { bold: true, color: { argb: 'FFFFFFFF' } }; cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFA7812D' } }; cell.alignment = { vertical: 'middle', horizontal: 'center', wrapText: true }
       const col = ws.getColumn(i + 1); col.width = c.w; col.alignment = { wrapText: true, vertical: 'top', horizontal: c.c ? 'center' : (rtl ? 'right' : 'left') }; if (c.fmt) col.numFmt = c.fmt })
     ws.getRow(1).height = 32
-    for (const f of facts) { const sb = subById.get(f.c.sub)!, pl = pillarById.get(f.c.pillar)!; const paired = f.c.criteria.length === f.c.requirements.length
+    for (const f of facts) { const sb = subById.get(f.c.sub)!, pl = pillarById.get(f.c.pillar)!
       const owners = [...new Set(f.links.map(pid => cfg.projects.find(p => p.id === pid)?.ownerId).filter(Boolean))].map(id => uname(id as string)).join(' | ')
       const allReq = f.c.requirements.map(x => `${x.n}. ${txt(x)}`).join('\n'), allCrit = f.c.criteria.map(x => `${x.n}. ${txt(x)}`).join('\n')
-      f.c.requirements.forEach((r, i) => { const it = f.a?.items[String(r.n)]; const crit = paired ? txt(f.c.criteria[i]) : allCrit
+      f.c.requirements.forEach((r, i) => { const it = f.a?.items[String(r.n)]; const crit = criteriaOf(f.c, i).map(txt).join('\n')
         const row = ws.addRow([cycleId, order.get(f.c.id), Number(pl.id), nm(pl), sb.id, nm(sb), f.c.id, desc(f.c), L(IMP_T, f.imp), allReq, allCrit, r.n, txt(r), crit, L(STATUS_T, it?.status),
           [(it?.evidence || []).map(ev => ev.title ? `${ev.title}: ${ev.url}` : ev.url).join('\n'), it?.status === 'na' && it.justification ? `${H('مبرر عدم الانطباق', 'N/A justification')}: ${it.justification}` : '', EPL(it?.evidenceParts)].filter(Boolean).join('\n'), it?.evidence?.length || 0,
           uname(f.assignee) || H('غير مُسند', 'Unassigned'), f.links.map(pname).join(' | '), owners, dname(f.dept), dname(resolveDept(cfg, it?.departmentId) || f.dept), L(STATE_T, f.e.state), i === 0 && f.score !== null ? Math.round(f.score * 10) / 10 : null,
@@ -158,9 +158,9 @@ export async function exportWorkbook(snap: Snapshot, cycleId: string, lang: Lang
     { h: ['عدد الأدلة (المتطلب)', 'Evidence count (requirement)'], w: 8 }, { h: ['الأدلة', 'Evidence'], w: 40 }, { h: ['وثيقة منظِّمة', 'Governing document'], w: 10 }, { h: ['إثبات التنفيذ', 'Proof of execution'], w: 10 }, { h: ['مراقبة الجودة', 'Quality monitoring'], w: 10 }, { h: ['ملاحظة', 'Note'], w: 30 }, { h: ['مشروع المتطلب', 'Requirement project'], w: 26 }, { h: ['معرّف المشروع', 'Project ID'], w: 9 }, { h: ['الخدمة', 'Service'], w: 18 },
     { h: ['يحتاج توضيح', 'Needs clarification'], w: 9 }, { h: ['سؤال التوضيح', 'Clarification question'], w: 30 }, { h: ['رد المراجع', 'Clarification reply'], w: 30 },
     { h: ['المقيّم (كاتب الإجابة)', 'Evaluator (answer author)'], w: 18 }, { h: ['المُسند إليه', 'Assignee'], w: 18 }, { h: ['معرّف المُسند إليه', 'Assignee ID'], w: 16 }, { h: ['المشروع الرئيسي', 'Primary project'], w: 26 }, { h: ['الإدارة المسؤولة (الكود)', 'Responsible department (code)'], w: 24 }, { h: ['الإدارة المسؤولة (المتطلب)', 'Responsible department (requirement)'], w: 24 }, { h: ['نقاط الأثر', 'Impact points'], w: 8 }, { h: ['النقاط المحققة', 'Points earned'], w: 8, fmt: NUM }, { h: ['محتسب في الاستيفاء', 'Counted in fulfilment'], w: 9 }, { h: ['نتيجة الكود', 'Code score'], w: 9, fmt: NUM }, { h: ['مكتمل', 'Complete'], w: 8 }, { h: ['حالة الكود', 'Code state'], w: 12 }, { h: ['يُحتسب رسمياً', 'Counts officially'], w: 9 }, { h: ['آخر تحديث', 'Updated at'], w: 17, fmt: DATE }, { h: ['تاريخ الإرسال', 'Submitted at'], w: 17, fmt: DATE }, { h: ['صفحة PDF', 'PDF page'], w: 7 },
-  ], facts.flatMap(f => { const sb = subById.get(f.c.sub)!, pl = pillarById.get(f.c.pillar)!; const paired = f.c.criteria.length === f.c.requirements.length
+  ], facts.flatMap(f => { const sb = subById.get(f.c.sub)!, pl = pillarById.get(f.c.pillar)!
     return f.c.requirements.map((r, i) => { const it = f.a?.items[String(r.n)]; const cl = snap.reviews.clarifications?.[cycleId]?.[f.c.id]?.[String(r.n)]
-      const crit = paired ? txt(f.c.criteria[i]) : (i === 0 ? f.c.criteria.map(x => '• ' + txt(x)).join('\n') : '')
+      const crit = criteriaOf(f.c, i).map(txt).join('\n')
       return [cycleId, order.get(f.c.id), Number(pl.id), nm(pl), sb.id, nm(sb), f.c.id, desc(f.c), L(IMP_T, f.imp), f.w, r.n, txt(r), crit,
         L(STATUS_T, it?.status), it?.status || '', it?.status && it.status !== 'na' ? cfg.settings.scores[it.status] : null, it?.status === 'na' ? (it.justification || '') : '',
         it?.evidence?.length || 0, (it?.evidence || []).map(ev => ev.title ? `${ev.title}: ${ev.url}` : ev.url).join('\n'), EP(it?.evidenceParts?.doc), EP(it?.evidenceParts?.exec), EP(it?.evidenceParts?.monitor), it?.note || '', pname(it?.projectId), it?.projectId || '', it?.service || '',

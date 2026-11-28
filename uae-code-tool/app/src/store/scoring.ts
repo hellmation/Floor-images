@@ -1,8 +1,23 @@
 import type { Code, Config, Snapshot, CodeAnswer, Review, WorkState, Impact, AnswerStatus, EvidenceEdit, ItemAnswer } from '../types'
 import masterJson from '../data/master.json'
-import type { Master } from '../types'
+import type { Master, Item } from '../types'
 
 export const master = masterJson as unknown as Master
+
+/* Monitoring criteria shown under each requirement. Most codes list one criterion per requirement (paired by order).
+ * Ten codes in the UAE Code list fewer or more criteria than requirements; for those each requirement is linked to the
+ * official criterion that evidences it (requirement n -> criterion numbers). No criterion text is added or changed. */
+const CRIT_LINK: Record<string, number[][]> = {
+  '5.1.2': [[1], [1]], '5.1.3': [[1], [1], [2], [1]], '5.2.1': [[1], [2], [1]], '5.3.1': [[1], [2], [1]],
+  '5.4.1': [[3], [2], [1], [1]], '5.6.1': [[1], [2], [1]], '5.7.1': [[1], [2], [1]], '6.2.1': [[1], [2], [1]],
+  '8.2.1': [[1], [2], [2]], '8.8.1': [[1, 2]],
+}
+export function criteriaOf(code: Code, i: number): Item[] {
+  if (code.criteria.length === code.requirements.length) return code.criteria[i] ? [code.criteria[i]] : []
+  const link = CRIT_LINK[code.id]?.[i]
+  if (link) return link.map(n => code.criteria.find(c => c.n === n)).filter((c): c is Item => !!c)
+  return i === 0 ? code.criteria : []
+}
 export const codeById = new Map(master.codes.map(c => [c.id, c]))
 export const subById = new Map(master.subpillars.map(s => [s.id, s]))
 export const pillarById = new Map(master.pillars.map(p => [p.id, p]))

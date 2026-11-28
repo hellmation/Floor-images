@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState , type ReactNode } from 'react'
 import { originOfCode, originPage } from '../store/viewState'
 import { useApp } from '../store/state'
-import { codeById, subById, pillarById, assigneeOf, effective, effectiveImpact, master, sortIds, uid, now, departmentOf, resolveDept, supportDepartments, deptName, evPartsPending, evPartsAnswered } from '../store/scoring'
+import { codeById, subById, pillarById, assigneeOf, effective, effectiveImpact, master, sortIds, uid, now, departmentOf, resolveDept, supportDepartments, deptName, evPartsPending, evPartsAnswered, criteriaOf } from '../store/scoring'
 import { pick, pickDesc, pickText } from '../i18n'
 import { ImpactPill, Pill, StatePill, StatusPill, Modal, Empty, useToast, fmtDate, errMsg, fmtDay, Req, Opt } from '../components/ui'
 import { Icon } from '../components/icons'
@@ -74,7 +74,6 @@ export default function CodeView({ id }: { id: string }) {
   if (!code) return <Empty icon="search" title={`${t('unknownCode')}: ${id}`}><a className="btn btn-sm no-underline mt-2" href="#/browse"><Icon name="book" />{t('backToBrowse')}</a></Empty>
   const idx = ordered.findIndex(c => c.id === code.id); const prev = ordered[idx - 1], next = ordered[idx + 1]
   const sub = subById.get(code.sub)!, pil = pillarById.get(code.pillar)!
-  const paired = code.criteria.length === code.requirements.length
   const linked = (cfg.mapping[code.id] || []).map(p => cfg.projects.find(x => x.id === p)).filter(Boolean)
   const userName = (uidv: string | null) => { const u = cfg.users.find(x => x.id === uidv); return u ? (lang === 'ar' ? u.name_ar : u.name_en) : t('unassigned') }
   const clarAnswers = snap!.reviews.clarifications?.[cy]?.[code.id] || {}
@@ -176,7 +175,7 @@ export default function CodeView({ id }: { id: string }) {
             const projOpts = [...linked.map(p => p!), ...cfg.projects.filter(p => p.active && !linked.some(l => l!.id === p.id))]
             return <section key={r.n} id={'req-' + r.n} className="card pad flex flex-col gap-3 scroll-mt-20">
               <div className="flex items-start gap-3"><span className={`inline-grid place-items-center w-7 h-7 rounded-full text-xs font-bold shrink-0 ${it.status ? ({ yes: 'bg-ok text-[var(--on-status)]', partial: 'bg-warn text-[var(--on-status)]', no: 'bg-bad text-[var(--on-status)]', na: 'bg-fg-2 text-surface' } as Record<string, string>)[it.status] : 'bg-surface-3 text-fg-2'}`}>{r.n}</span>
-                <div className="flex-1 min-w-0"><div className="font-semibold leading-snug">{pickText(lang, r)}</div>{paired && code.criteria[i] && <div className="text-sm text-muted mt-1 flex gap-1.5"><Icon name="target" className="shrink-0 mt-0.5" style={{ width: 14, height: 14 }} /><span><span className="font-medium text-fg-2">{t('criterion')}:</span> {pickText(lang, code.criteria[i])}</span></div>}</div>{!canEdit && <StatusPill status={it.status} />}</div>
+                <div className="flex-1 min-w-0"><div className="font-semibold leading-snug">{pickText(lang, r)}</div>{criteriaOf(code, i).map(cr => <div key={cr.n} className="text-sm text-muted mt-1 flex gap-1.5"><Icon name="target" className="shrink-0 mt-0.5" style={{ width: 14, height: 14 }} /><span><span className="font-medium text-fg-2">{t('criterion')}:</span> {pickText(lang, cr)}</span></div>)}</div>{!canEdit && <StatusPill status={it.status} />}</div>
               {canEdit ? <>
                 <div className="label !mb-1">{t('evaluation')}<Req /></div>
                 <div className="flex flex-wrap gap-3 items-center">
@@ -203,7 +202,6 @@ export default function CodeView({ id }: { id: string }) {
               : <ReadOnly lateDrop={canLate ? <EvidenceDrop compact code={code} onLinked={(title, path) => { void addLateEvidence(String(r.n), title, path) }} /> : undefined} onAdminEdit={canAdminEv ? () => setEvEdit(String(r.n)) : undefined} editedBy={eff?.edited?.items[String(r.n)] ? `${userName(eff.edited.items[String(r.n)].by)} · ${fmtDay(eff.edited.items[String(r.n)].at, lang)}` : undefined} codeId={code.id} it={it} ca={ca} late={canLate && (it.status === 'yes' || it.status === 'partial') && !evPartsAnswered(it) ? { value: { ...(it.evidenceParts || {}), ...(late[String(r.n)] || {}) }, onChange: p => setLate(s => ({ ...s, [String(r.n)]: p })), idp: `req-${r.n}-lp` } : undefined} projName={it.projectId ? pick(lang, cfg.projects.find(p => p.id === it.projectId) || { name_ar: it.projectId }) : ''} deptLabel={(() => { const rd = resolveDept(cfg, it.departmentId); return rd && rd !== codeDept ? deptName(cfg, rd, lang) : '' })()} />}
             </section>
           })}
-          {!paired && code.criteria.length > 0 && <section className="card pad"><div className="label">{t('criteria')}</div><ol className="m-0 ps-5">{code.criteria.map(c => <li key={c.n}>{pickText(lang, c)}</li>)}</ol></section>}
           <NoteCard key={code.id} codeId={code.id} value={snap!.answers[user!.id]?.notes?.[code.id]?.text || ''} onSave={saveMyNote} />
         </div>
         <aside className="flex flex-col gap-3 lg:sticky lg:top-20">
